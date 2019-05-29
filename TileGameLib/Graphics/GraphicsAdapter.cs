@@ -44,10 +44,10 @@ namespace TileGameLib.Graphics
             return Buffer.Pixels[y * Buffer.Width + x];
         }
 
-        public void Clear()
+        public void Fill(int color)
         {
             for (int i = 0; i < Buffer.Pixels.Length; i++)
-                Buffer.Pixels[i] = 0;
+                Buffer.Pixels[i] = color;
         }
 
         public void Clear(Palette pal, int palIndex)

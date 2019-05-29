@@ -11,10 +11,10 @@ namespace TileGameLib.Core
     {
         public string Name { set; get; }
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
+        public Charset Charset { get; set; } = new Charset();
+        public Palette Palette { get; set; } = new Palette();
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public Charset Charset { get; set; }
-        public Palette Palette { get; set; }
 
         public ObjectLayer this[int layer]
         {
@@ -41,6 +41,21 @@ namespace TileGameLib.Core
         {
             foreach (ObjectLayer layer in Layers)
                 layer.Clear();
+        }
+
+        public void SetObject(GameObject o, int layer, int x, int y)
+        {
+            Layers[layer].SetObject(o, x, y);
+        }
+
+        public ref GameObject GetObject(int layer, int x, int y)
+        {
+            return ref Layers[layer].GetObject(x, y);
+        }
+
+        public GameObject CopyObject(int layer, int x, int y)
+        {
+            return Layers[layer].CopyObject(x, y);
         }
     }
 }

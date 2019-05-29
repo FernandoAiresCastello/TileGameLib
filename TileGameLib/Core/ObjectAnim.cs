@@ -64,5 +64,15 @@ namespace TileGameLib.Core
         {
             Frames.Add(ch.Copy());
         }
+
+        public void SetFrame(int index, ObjectChar ch)
+        {
+            Frames[index] = ch;
+        }
+
+        public ObjectChar GetFrame(int index)
+        {
+            return Frames[index];
+        }
     }
 }

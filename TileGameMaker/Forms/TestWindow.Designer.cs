@@ -1,4 +1,4 @@
-﻿using TileGameMaker.GUI;
+﻿using TileGameMaker.Component;
 
 namespace TileGameMaker.Forms
 {
@@ -32,13 +32,13 @@ namespace TileGameMaker.Forms
         {
             this.SuspendLayout();
             // 
-            // MainWindow
+            // TestWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(403, 334);
-            this.Name = "MainWindow";
+            this.Name = "TestWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 

@@ -9,32 +9,54 @@ using System.Windows.Forms;
 using TileGameLib.Graphics;
 using Char = TileGameLib.Graphics.Char;
 
-namespace TileGameMaker.GUI
+namespace TileGameMaker.Component
 {
     public class Display : PictureBox
     {
-        public GraphicsAdapter Graphics { get; private set; }
-        public Bitmap Grid { get; private set; }
+        public GraphicsAdapter Graphics { get; set; }
         public Bitmap Overlay { set; get; }
         public bool ShowGrid { set; get; }
         public bool ShowOverlay { set; get; }
+        public Color GridColor { set; get; }
+
+        public int RefreshInterval
+        {
+            get { return RefreshTimer.Interval; }
+            set { RefreshTimer.Interval = value; }
+        }
 
         private int Zoom;
+        private Bitmap Grid;
+        private Timer RefreshTimer;
 
-        public Display(Control parent, int width, int height, int zoom)
+        public Display(Control parent, GraphicsAdapter gr, int zoom)
         {
             Parent = parent;
+            Graphics = gr;
+            Image = gr.Bitmap;
             ShowGrid = false;
             ShowOverlay = true;
-            Graphics = new GraphicsAdapter(width, height);
-            Image = Graphics.Bitmap;
+            GridColor = Color.FromArgb(80, 0, 0, 0);
             BorderStyle = BorderStyle.Fixed3D;
+            Graphics.Fill(Color.White.ToArgb());
             SetZoom(zoom);
-            Graphics.Clear();
+
+            RefreshTimer = new Timer();
+            RefreshInterval = 60;
+            RefreshTimer.Tick += RefreshTimer_Tick;
+            RefreshTimer.Start();
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            Refresh();
         }
 
         public void SetZoom(int zoom)
         {
+            if (zoom < 1)
+                zoom = 1;
+
             Zoom = zoom;
             Size = new Size(Zoom * Graphics.Width, Zoom * Graphics.Height);
             Grid = new Bitmap(Width, Height);
@@ -43,7 +65,8 @@ namespace TileGameMaker.GUI
 
         public Bitmap CreateOverlay()
         {
-            return new Bitmap(Width, Height);
+            Overlay = new Bitmap(Width, Height);
+            return Overlay;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -73,7 +96,7 @@ namespace TileGameMaker.GUI
         private void MakeGrid()
         {
             Graphics g = System.Drawing.Graphics.FromImage(Grid);
-            Pen pen = new Pen(Color.FromArgb(80, 0, 0, 0));
+            Pen pen = new Pen(GridColor);
 
             for (int y = -1; y < Height; y += Zoom * Char.RowCount)
                 g.DrawLine(pen, 0, y, Width, y);
@@ -84,7 +107,7 @@ namespace TileGameMaker.GUI
             g.Dispose();
         }
 
-        public Point SnapMousePosToGrid(Point point)
+        public Point GetGridPoint(Point point)
         {
             return new Point
             {

@@ -47,9 +47,10 @@
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Graphics\GraphicsAdapter.cs" />
     <Compile Include="Core\ObjectChar.cs" />
+    <Compile Include="Graphics\MapRenderer.cs" />
     <Compile Include="Graphics\Palette.cs" />
     <Compile Include="Graphics\UIContext.cs" />
-    <Compile Include="GUI\Display.cs">
+    <Compile Include="Component\Display.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

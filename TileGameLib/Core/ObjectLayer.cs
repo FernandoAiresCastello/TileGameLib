@@ -14,14 +14,14 @@ namespace TileGameLib.Core
 
         public ObjectLayer(int width, int height)
         {
-            Objects = new GameObject[width, height];
-
-            for (int row = 0; row < Height; row++)
-                for (int col = 0; col < Width; col++)
-                    Objects[col, row] = new GameObject();
-
             Width = width;
             Height = height;
+
+            Objects = new GameObject[width, height];
+
+            for (int row = 0; row < height; row++)
+                for (int col = 0; col < width; col++)
+                    Objects[col, row] = new GameObject();
         }
 
         public void Clear()
@@ -31,17 +31,17 @@ namespace TileGameLib.Core
                     Objects[col, row].SetNull();
         }
 
-        public void Set(GameObject o, int x, int y)
+        public void SetObject(GameObject o, int x, int y)
         {
             Objects[x, y].SetEqual(o);
         }
 
-        public ref GameObject Get(int x, int y)
+        public ref GameObject GetObject(int x, int y)
         {
             return ref Objects[x, y];
         }
 
-        public GameObject Copy(int x, int y)
+        public GameObject CopyObject(int x, int y)
         {
             return Objects[x, y].Copy();
         }

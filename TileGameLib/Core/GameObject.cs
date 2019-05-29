@@ -11,7 +11,7 @@ namespace TileGameLib.Core
         public int Type { set; get; }
         public int Param { set; get; }
         public string Data { set; get; }
-        public ObjectAnim Animation { set; get; }
+        public ObjectAnim Animation { set; get; } = new ObjectAnim();
 
         public GameObject()
         {
@@ -21,6 +21,12 @@ namespace TileGameLib.Core
         public GameObject(GameObject other)
         {
             SetEqual(other);
+        }
+
+        public GameObject(ObjectChar singleAnimFrame)
+        {
+            SetNull();
+            Animation.SetFrame(0, singleAnimFrame);
         }
 
         public void SetNull()
