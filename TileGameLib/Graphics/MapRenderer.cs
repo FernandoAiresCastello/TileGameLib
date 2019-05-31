@@ -2,48 +2,62 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using TileGameLib.Core;
+using TileGameMaker.Component;
 
 namespace TileGameLib.Graphics
 {
     public class MapRenderer
     {
         public ObjectMap Map { set; get; }
-        public GraphicsAdapter Gr { set; get; }
 
-        private int AnimationFrame;
+        private Display Disp;
         private Timer AnimationTimer;
-        private readonly int AnimationInterval;
+        private int AnimationFrame;
 
-        public MapRenderer(ObjectMap map, GraphicsAdapter gr)
+        public MapRenderer(ObjectMap map, Display disp, int animationInterval)
         {
             Map = map;
-            Gr = gr;
+            Disp = disp;
             AnimationFrame = 0;
-            AnimationInterval = 100;
-            AnimationTimer = new Timer((e) => { Render(); }, null, 
-                TimeSpan.Zero, TimeSpan.FromMilliseconds(AnimationInterval));
+            AnimationTimer = new Timer();
+            AnimationTimer.Interval = animationInterval;
+            AnimationTimer.Tick += AnimationTimer_Tick;
+            AnimationTimer.Start();
         }
 
-        private void Render()
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            Render();
+            Disp.Refresh();
+            AdvanceAnimation();
+        }
+
+        public void AdvanceAnimation()
+        {
+            AnimationFrame++;
+        }
+
+        public void Render()
         {
             foreach (ObjectLayer layer in Map.Layers)
                 RenderLayer(layer);
+
+            Disp.Refresh();
         }
 
-        private void RenderLayer(ObjectLayer layer)
+        public void RenderLayer(ObjectLayer layer)
         {
             for (int y = 0; y < layer.Height; y++)
                 for (int x = 0; x < layer.Width; x++)
                     RenderObject(layer.GetObject(x, y), x, y);
         }
 
-        private void RenderObject(GameObject o, int x, int y)
+        public void RenderObject(GameObject o, int x, int y)
         {
             ObjectChar ch = o.Animation.GetFrame(AnimationFrame);
-            Gr.DrawChar(Map.Charset, Map.Palette, x, y,
+            Disp.Graphics.DrawChar(Map.Charset, Map.Palette, x, y,
                 ch.CharIx, ch.ForeColorIx, ch.BackColorIx);
         }
     }

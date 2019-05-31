@@ -19,15 +19,8 @@ namespace TileGameMaker.Component
         public bool ShowOverlay { set; get; }
         public Color GridColor { set; get; }
 
-        public int RefreshInterval
-        {
-            get { return RefreshTimer.Interval; }
-            set { RefreshTimer.Interval = value; }
-        }
-
         private int Zoom;
         private Bitmap Grid;
-        private Timer RefreshTimer;
 
         public Display(Control parent, GraphicsAdapter gr, int zoom)
         {
@@ -40,16 +33,6 @@ namespace TileGameMaker.Component
             BorderStyle = BorderStyle.Fixed3D;
             Graphics.Fill(Color.White.ToArgb());
             SetZoom(zoom);
-
-            RefreshTimer = new Timer();
-            RefreshInterval = 60;
-            RefreshTimer.Tick += RefreshTimer_Tick;
-            RefreshTimer.Start();
-        }
-
-        private void RefreshTimer_Tick(object sender, EventArgs e)
-        {
-            Refresh();
         }
 
         public void SetZoom(int zoom)

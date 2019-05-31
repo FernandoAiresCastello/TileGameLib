@@ -28,18 +28,17 @@ namespace TileGameMaker.Forms
 
             Chars = new Charset();
             Pal = new Palette();
+            Map = new ObjectMap(30, 25);
             Gr = new GraphicsAdapter(256, 192);
             Disp = new Display(this, Gr, 3);
-            Map = new ObjectMap(10, 10);
-            MapRenderer = new MapRenderer(Map, Gr);
+            MapRenderer = new MapRenderer(Map, Disp, 256);
 
-            GameObject o = new GameObject(new ObjectChar(2, 3, 6));
-            o.Animation.AddFrame(new ObjectChar(1, 2, 4));
+            GameObject o = new GameObject(new ObjectChar('|', 3, 6));
+            o.Animation.AddFrame(new ObjectChar('-', 3, 6));
+            o.Animation.AddFrame(new ObjectChar('+', 3, 6));
             for (int y = 0; y < Map.Height; y++)
                 for (int x = 0; x < Map.Width; x++)
                     Map.SetObject(o, 0, x, y);
-
-            //MapRenderer.Render();
 
             Disp.ShowGrid = true;
             Disp.MouseMove += Display_MouseMove;
@@ -73,7 +72,7 @@ namespace TileGameMaker.Forms
         {
             Point point = Disp.GetGridPoint(e.Location);
             Disp.Graphics.DrawChar(Chars, Pal, point.X, point.Y, '@', 0, 1);
-            //Disp.Refresh();
+            Disp.Refresh();
         }
 
         private void Display_MouseMove(object sender, MouseEventArgs e)

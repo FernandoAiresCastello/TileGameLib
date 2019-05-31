@@ -12,7 +12,7 @@ namespace TileGameLib.Core
 
         public ObjectChar this[int index]
         {
-            get { return Frames[index]; }
+            get { return GetFrame(index); }
         }
 
         public ObjectAnim()
@@ -72,7 +72,7 @@ namespace TileGameLib.Core
 
         public ObjectChar GetFrame(int index)
         {
-            return Frames[index];
+            return Frames[index % Frames.Count];
         }
     }
 }
