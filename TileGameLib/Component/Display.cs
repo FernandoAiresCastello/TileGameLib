@@ -19,8 +19,8 @@ namespace TileGameMaker.Component
         public bool ShowOverlay { set; get; }
         public Color GridColor { set; get; }
 
-        private int Zoom;
-        private Bitmap Grid;
+        protected int Zoom;
+        protected Bitmap Grid;
 
         public Display(Control parent, GraphicsAdapter gr, int zoom)
         {
@@ -29,7 +29,7 @@ namespace TileGameMaker.Component
             Image = gr.Bitmap;
             ShowGrid = false;
             ShowOverlay = true;
-            GridColor = Color.FromArgb(80, 0, 0, 0);
+            GridColor = Color.FromArgb(50, 0, 0, 0);
             BorderStyle = BorderStyle.Fixed3D;
             Graphics.Fill(Color.White.ToArgb());
             SetZoom(zoom);
@@ -76,7 +76,7 @@ namespace TileGameMaker.Component
             }
         }
 
-        private void MakeGrid()
+        protected void MakeGrid()
         {
             Graphics g = System.Drawing.Graphics.FromImage(Grid);
             Pen pen = new Pen(GridColor);
@@ -90,13 +90,19 @@ namespace TileGameMaker.Component
             g.Dispose();
         }
 
-        public Point GetGridPoint(Point point)
+        public Point GetMouseToCellPos(Point point)
         {
             return new Point
             {
                 X = point.X / (Zoom * Char.RowLength),
                 Y = point.Y / (Zoom * Char.RowCount)
             };
+        }
+
+        public int GetMouseToCellIndex(Point point)
+        {
+            Point p = GetMouseToCellPos(point);
+            return (p.Y * Graphics.Cols) + p.X;
         }
     }
 }

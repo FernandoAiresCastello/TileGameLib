@@ -46,25 +46,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\CharPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\CharPickerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\CharPickerWindow.Designer.cs">
+      <DependentUpon>CharPickerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ColorPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\ColorPickerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\ColorPickerWindow.Designer.cs">
+      <DependentUpon>ColorPickerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\TestWindow.cs">
+    <Compile Include="Component\MapWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\TestWindow.Designer.cs">
-      <DependentUpon>TestWindow.cs</DependentUpon>
+    <Compile Include="Component\MapWindow.Designer.cs">
+      <DependentUpon>MapWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Component\CharPickerWindow.resx">
+      <DependentUpon>CharPickerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ColorPickerWindow.resx">
+      <DependentUpon>ColorPickerWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TestWindow.resx">
-      <DependentUpon>TestWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Component\MapWindow.resx">
+      <DependentUpon>MapWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -93,6 +118,9 @@
       <Project>{ed0d0220-b0af-4183-bc9f-204e6df1381c}</Project>
       <Name>TileGameLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -19,8 +19,11 @@ namespace TileGameLib.Graphics
 
         private readonly FastBitmap Buffer;
 
-        public GraphicsAdapter(int width, int height)
+        public GraphicsAdapter(int cols, int rows)
         {
+            int width = cols * Char.RowLength + 1;
+            int height = rows * Char.RowCount + 1;
+
             Buffer = new FastBitmap(width, height);
         }
 

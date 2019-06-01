@@ -11,55 +11,39 @@ using TileGameLib.Core;
 using TileGameLib.Graphics;
 using TileGameMaker.Component;
 
-namespace TileGameMaker.Forms
+namespace TileGameMaker.Component
 {
-    public partial class TestWindow : Form
+    public partial class MapWindow : Form
     {
         private Display Disp;
         private GraphicsAdapter Gr;
-        private Charset Chars;
-        private Palette Pal;
         private ObjectMap Map;
         private MapRenderer MapRenderer;
 
-        public TestWindow()
+        public MapWindow()
         {
             InitializeComponent();
+            StatusLabel.Text = "";
 
-            Chars = new Charset();
-            Pal = new Palette();
-            Map = new ObjectMap(30, 25);
-            Gr = new GraphicsAdapter(256, 192);
-            Disp = new Display(this, Gr, 3);
+            Map = new ObjectMap(30, 20);
+            Gr = new GraphicsAdapter(30, 20);
+            Disp = new Display(MapPanel, Gr, 3);
             MapRenderer = new MapRenderer(Map, Disp, 256);
 
-            GameObject o = new GameObject(new ObjectChar('|', 3, 6));
-            o.Animation.AddFrame(new ObjectChar('-', 3, 6));
-            o.Animation.AddFrame(new ObjectChar('+', 3, 6));
+            GameObject o = new GameObject(new ObjectChar('|', 0, 63));
+            o.Animation.AddFrame(new ObjectChar('-', 0, 63));
+            o.Animation.AddFrame(new ObjectChar('+', 63, 0));
             for (int y = 0; y < Map.Height; y++)
                 for (int x = 0; x < Map.Width; x++)
                     Map.SetObject(o, 0, x, y);
+
+            Text = Map.Name;
 
             Disp.ShowGrid = true;
             Disp.MouseMove += Display_MouseMove;
             Disp.MouseDown += Disp_MouseDown;
             Disp.MouseMove += Disp_MouseMove;
-        }
-
-        private void DrawCharset()
-        {
-            Gr.Clear(Pal, 1);
-
-            int x = 0, y = 0;
-            for (int i = 0; i < Chars.Size; i++)
-            {
-                Gr.DrawChar(Chars, Pal, x, y, i, 0, 1);
-                if (++x >= 16)
-                {
-                    x = 0;
-                    y++;
-                }
-            }
+            Disp.MouseLeave += Disp_MouseLeave;
         }
 
         private void Disp_MouseMove(object sender, MouseEventArgs e)
@@ -70,15 +54,19 @@ namespace TileGameMaker.Forms
 
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
-            Point point = Disp.GetGridPoint(e.Location);
-            Disp.Graphics.DrawChar(Chars, Pal, point.X, point.Y, '@', 0, 1);
+            Point point = Disp.GetMouseToCellPos(e.Location);
             Disp.Refresh();
         }
 
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
-            Point point = Disp.GetGridPoint(e.Location);
-            Text = point.X + ", " + point.Y;
+            Point point = Disp.GetMouseToCellPos(e.Location);
+            StatusLabel.Text = point.X + ", " + point.Y;
+        }
+
+        private void Disp_MouseLeave(object sender, EventArgs e)
+        {
+            StatusLabel.Text = "";
         }
     }
 }
