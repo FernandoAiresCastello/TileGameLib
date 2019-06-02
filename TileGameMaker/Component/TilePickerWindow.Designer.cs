@@ -54,7 +54,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(218, 346);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(219, 346);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // toolStrip1
@@ -63,7 +63,7 @@
             this.BtnNew});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(218, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(219, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -82,10 +82,11 @@
             // 
             this.CharPickerPanel.AutoScroll = true;
             this.CharPickerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CharPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.CharPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CharPickerPanel.Location = new System.Drawing.Point(3, 28);
             this.CharPickerPanel.Name = "CharPickerPanel";
-            this.CharPickerPanel.Size = new System.Drawing.Size(212, 291);
+            this.CharPickerPanel.Size = new System.Drawing.Size(213, 291);
             this.CharPickerPanel.TabIndex = 1;
             // 
             // statusStrip1
@@ -96,7 +97,7 @@
             this.HoverLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 322);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(218, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(219, 24);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -113,17 +114,18 @@
             this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
             // 
-            // CharPickerWindow
+            // TilePickerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 346);
+            this.ClientSize = new System.Drawing.Size(219, 346);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(234, 234);
-            this.Name = "CharPickerWindow";
+            this.MaximumSize = new System.Drawing.Size(235, 999);
+            this.MinimumSize = new System.Drawing.Size(235, 234);
+            this.Name = "TilePickerWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Tileset";
             this.tableLayoutPanel1.ResumeLayout(false);

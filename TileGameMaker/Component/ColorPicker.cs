@@ -32,7 +32,7 @@ namespace TileGameMaker.Component
             {
                 Graphics.DrawTile(x, y, SwatchTileIx, i, 0);
                 x++;
-                if (x > 7)
+                if (x >= Graphics.Cols)
                 {
                     x = 0;
                     y++;

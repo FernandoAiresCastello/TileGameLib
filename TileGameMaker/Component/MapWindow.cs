@@ -25,6 +25,7 @@ namespace TileGameMaker.Component
 
             Map = map;
             Disp = new Display(MapPanel, map.Width, map.Height, 3);
+            Disp.BorderStyle = BorderStyle.None;
             MapRenderer = new MapRenderer(Map, Disp, 256);
 
             Disp.ShowGrid = true;
@@ -35,7 +36,7 @@ namespace TileGameMaker.Component
 
             Text = Map.Name;
             HoverLabel.Text = "";
-            StatusLabel.Text = "Size: " + Map.Width + "x" + Map.Height;
+            StatusLabel.Text = "Size: " + Map.Width + " x " + Map.Height;
 
             FillTestMap();
         }
@@ -65,7 +66,8 @@ namespace TileGameMaker.Component
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
             Point point = Disp.GetMouseToCellPos(e.Location);
-            HoverLabel.Text = "X: " + point.X + " Y: " + point.Y;
+            GameObject o = Map.GetObject(0, point.X, point.Y);
+            HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " - " + o;
         }
 
         private void Disp_MouseLeave(object sender, EventArgs e)
@@ -77,6 +79,23 @@ namespace TileGameMaker.Component
         {
             Map.Fill(new GameObject(new Tile(0, 0, Disp.Graphics.Palette.Size - 1)));
             Refresh();
+        }
+
+        private void BtnScreenshot_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "Save map image";
+            dialog.AddExtension = true;
+            dialog.DefaultExt = "png";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                Disp.Graphics.SaveScreenshot(dialog.FileName);
+        }
+
+        private void BtnGrid_Click(object sender, EventArgs e)
+        {
+            Disp.ShowGrid = !Disp.ShowGrid;
+            Disp.Refresh();
         }
     }
 }

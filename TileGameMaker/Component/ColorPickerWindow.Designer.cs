@@ -37,13 +37,14 @@
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.ColorPickerPanel = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
-            this.ForeColorPanel = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
+            this.ForeColorPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.ForeBackColorPanels.SuspendLayout();
+            this.BackColorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,7 +62,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(218, 347);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(219, 347);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // StatusBar
@@ -72,7 +73,7 @@
             this.LblHover});
             this.StatusBar.Location = new System.Drawing.Point(0, 323);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(218, 24);
+            this.StatusBar.Size = new System.Drawing.Size(219, 24);
             this.StatusBar.TabIndex = 3;
             this.StatusBar.Text = "statusStrip1";
             // 
@@ -102,7 +103,7 @@
             this.ToolStripAndColorPicker.RowCount = 2;
             this.ToolStripAndColorPicker.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.ToolStripAndColorPicker.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ToolStripAndColorPicker.Size = new System.Drawing.Size(218, 243);
+            this.ToolStripAndColorPicker.Size = new System.Drawing.Size(219, 243);
             this.ToolStripAndColorPicker.TabIndex = 0;
             // 
             // toolStrip1
@@ -112,7 +113,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(218, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(219, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -130,50 +131,51 @@
             // ColorPickerPanel
             // 
             this.ColorPickerPanel.AutoScroll = true;
+            this.ColorPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ColorPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ColorPickerPanel.Location = new System.Drawing.Point(3, 28);
             this.ColorPickerPanel.Name = "ColorPickerPanel";
-            this.ColorPickerPanel.Size = new System.Drawing.Size(212, 212);
+            this.ColorPickerPanel.Size = new System.Drawing.Size(213, 212);
             this.ColorPickerPanel.TabIndex = 1;
             // 
             // ForeBackColorPanels
             // 
             this.ForeBackColorPanels.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ForeBackColorPanels.Controls.Add(this.ForeColorPanel);
             this.ForeBackColorPanels.Controls.Add(this.BackColorPanel);
             this.ForeBackColorPanels.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ForeBackColorPanels.Location = new System.Drawing.Point(3, 246);
             this.ForeBackColorPanels.Name = "ForeBackColorPanels";
-            this.ForeBackColorPanels.Size = new System.Drawing.Size(212, 74);
+            this.ForeBackColorPanels.Size = new System.Drawing.Size(213, 74);
             this.ForeBackColorPanels.TabIndex = 1;
-            // 
-            // ForeColorPanel
-            // 
-            this.ForeColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ForeColorPanel.Location = new System.Drawing.Point(70, 28);
-            this.ForeColorPanel.Name = "ForeColorPanel";
-            this.ForeColorPanel.Size = new System.Drawing.Size(50, 35);
-            this.ForeColorPanel.TabIndex = 5;
             // 
             // BackColorPanel
             // 
             this.BackColorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BackColorPanel.Location = new System.Drawing.Point(94, 8);
+            this.BackColorPanel.Controls.Add(this.ForeColorPanel);
+            this.BackColorPanel.Location = new System.Drawing.Point(70, 6);
             this.BackColorPanel.Name = "BackColorPanel";
-            this.BackColorPanel.Size = new System.Drawing.Size(50, 35);
+            this.BackColorPanel.Size = new System.Drawing.Size(74, 59);
             this.BackColorPanel.TabIndex = 4;
+            // 
+            // ForeColorPanel
+            // 
+            this.ForeColorPanel.Location = new System.Drawing.Point(16, 15);
+            this.ForeColorPanel.Name = "ForeColorPanel";
+            this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
+            this.ForeColorPanel.TabIndex = 5;
             // 
             // ColorPickerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 347);
+            this.ClientSize = new System.Drawing.Size(219, 347);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(235, 999);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(234, 363);
+            this.MinimumSize = new System.Drawing.Size(235, 363);
             this.Name = "ColorPickerWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Palette";
@@ -186,6 +188,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ForeBackColorPanels.ResumeLayout(false);
+            this.BackColorPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

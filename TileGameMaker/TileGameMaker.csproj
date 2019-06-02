@@ -49,6 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\TileEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Component\TileEditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\TileEditorWindow.Designer.cs">
+      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MapEditor.cs" />
     <Compile Include="Component\TilePicker.cs">
       <SubType>Component</SubType>
@@ -82,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Component\TileEditorWindow.resx">
+      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\TilePickerWindow.resx">
       <DependentUpon>TilePickerWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +139,20 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\layouts_four_grid.png" />
+    <None Include="Resources\camera.png" />
+    <None Include="Resources\transform_move.png" />
+    <None Include="Resources\bullet_arrow_right.png" />
+    <None Include="Resources\shape_flip_vertical.png" />
+    <None Include="Resources\shape_flip_horizontal.png" />
+    <None Include="Resources\color_picker_default.png" />
+    <None Include="Resources\copying_and_distribution.png" />
+    <None Include="Resources\draw_eraser.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\undo.png" />
+    <None Include="Resources\tick.png" />
+    <None Include="Resources\accept_button.png" />
+    <None Include="Resources\arrow_undo.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />

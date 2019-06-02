@@ -14,22 +14,20 @@ namespace TileGameMaker.Component
     public partial class TilePickerWindow : Form
     {
         private TilePicker TilePicker;
+        private TileEditorWindow TileEditorWindow;
 
-        public TilePickerWindow()
+        public TilePickerWindow(Tileset tileset)
         {
             InitializeComponent();
             TilePicker = new TilePicker(CharPickerPanel, 8, 64, 3);
+            TilePicker.Graphics.Tileset = tileset;
             TilePicker.ShowGrid = true;
             TilePicker.MouseMove += CharPicker_MouseMove;
             TilePicker.MouseLeave += CharPicker_MouseLeave;
             TilePicker.MouseDown += CharPicker_MouseDown;
+            TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
+            TileEditorWindow = new TileEditorWindow(TilePicker, tileset);
             SetHoverStatus("");
-            UpdateStatus();
-        }
-
-        public TilePickerWindow(Tileset tileset) : this()
-        {
-            TilePicker.Graphics.Tileset = tileset;
             UpdateStatus();
         }
 
@@ -59,6 +57,15 @@ namespace TileGameMaker.Component
             }
         }
 
+        private void TilePicker_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            TileEditorWindow.SetTile(tileIx);
+            TileEditorWindow.Location = new Point(Location.X, Location.Y + 50);
+            TileEditorWindow.ShowDialog(this);
+            
+        }
+
         private void CharPicker_MouseLeave(object sender, EventArgs e)
         {
             SetHoverStatus("");
@@ -66,7 +73,7 @@ namespace TileGameMaker.Component
 
         private void UpdateStatus()
         {
-            StatusLabel.Text = "Selected IX: " + TilePicker.TileIndex;
+            StatusLabel.Text = "SEL: " + TilePicker.TileIndex;
         }
 
         private void SetHoverStatus(string status)

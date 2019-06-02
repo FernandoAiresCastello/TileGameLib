@@ -30,8 +30,13 @@ namespace TileGameMaker.Component
             ShowGrid = false;
             ShowOverlay = true;
             GridColor = Color.FromArgb(50, 0, 0, 0);
-            BorderStyle = BorderStyle.Fixed3D;
+            ShowBorder(false);
             SetZoom(zoom);
+        }
+
+        public void ShowBorder(bool show)
+        {
+            BorderStyle = show ? BorderStyle.Fixed3D : BorderStyle.None;
         }
 
         public void SetZoom(int zoom)
@@ -56,7 +61,7 @@ namespace TileGameMaker.Component
             Graphics g = e.Graphics;
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.SmoothingMode = SmoothingMode.None;
-            g.PixelOffsetMode = PixelOffsetMode.None;
+            g.PixelOffsetMode = PixelOffsetMode.Half;
             g.CompositingQuality = CompositingQuality.HighSpeed;
             g.CompositingMode = CompositingMode.SourceCopy;
 

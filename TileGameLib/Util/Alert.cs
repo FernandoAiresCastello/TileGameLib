@@ -9,6 +9,11 @@ namespace TileGameLib.Util
 {
     public class Alert
     {
+        public static void Warning(string msg)
+        {
+            MessageBox.Show(msg, "TileGameLib Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         public static void Error(string msg)
         {
             MessageBox.Show(msg, "TileGameLib Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

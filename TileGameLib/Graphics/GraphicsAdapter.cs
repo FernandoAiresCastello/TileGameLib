@@ -29,8 +29,8 @@ namespace TileGameLib.Graphics
             Palette = new Palette();
             TileBuffer = new TileBuffer(cols, rows);
 
-            int width = cols * TilePixels.RowLength + 1;
-            int height = rows * TilePixels.RowCount + 1;
+            int width = cols * TilePixels.RowLength;
+            int height = rows * TilePixels.RowCount;
 
             FastBitmap = new FastBitmap(width, height);
         }
@@ -101,6 +101,11 @@ namespace TileGameLib.Graphics
                     }
                 }
             }
+        }
+
+        public void SaveScreenshot(string file)
+        {
+            Bitmap.Save(file);
         }
     }
 }

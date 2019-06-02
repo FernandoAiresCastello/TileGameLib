@@ -73,5 +73,12 @@ namespace TileGameLib.Core
         {
             return new GameObject(this);
         }
+
+        public override string ToString()
+        {
+            Tile tile = Animation.Frames[0];
+            return string.Format("T: {0} P: {1} A: {2} - IX: {3} FG: {4} BG: {5} - DL: {6}",
+                Type, Param, Animation.Frames.Count, tile.TileIx, tile.ForeColorIx, tile.BackColorIx, Data.Length);
+        }
     }
 }

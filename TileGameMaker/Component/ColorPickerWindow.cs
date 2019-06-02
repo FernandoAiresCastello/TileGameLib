@@ -17,8 +17,13 @@ namespace TileGameMaker.Component
 
         public ColorPickerWindow()
         {
+        }
+
+        public ColorPickerWindow(Palette palette) : this()
+        {
             InitializeComponent();
             ColorPicker = new ColorPicker(ColorPickerPanel, 8, 32, 3);
+            ColorPicker.Graphics.Palette = palette;
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;
             ColorPicker.MouseLeave += ColorPicker_MouseLeave;
@@ -29,13 +34,6 @@ namespace TileGameMaker.Component
             UpdatePanelColors();
             UpdateStatus();
             SetHoverStatus("");
-        }
-
-        public ColorPickerWindow(Palette palette) : this()
-        {
-            ColorPicker.Graphics.Palette = palette;
-            UpdatePanelColors();
-            UpdateStatus();
         }
 
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)

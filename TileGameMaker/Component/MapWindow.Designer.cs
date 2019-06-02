@@ -37,8 +37,10 @@ namespace TileGameMaker.Component
             this.panel1 = new System.Windows.Forms.Panel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -82,7 +84,9 @@ namespace TileGameMaker.Component
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnNew});
+            this.BtnNew,
+            this.BtnScreenshot,
+            this.BtnGrid});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(759, 25);
@@ -92,6 +96,7 @@ namespace TileGameMaker.Component
             // MapPanel
             // 
             this.MapPanel.AutoScroll = true;
+            this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapPanel.Location = new System.Drawing.Point(3, 28);
             this.MapPanel.Name = "MapPanel";
@@ -110,7 +115,7 @@ namespace TileGameMaker.Component
             // HoverLabel
             // 
             this.HoverLabel.Name = "HoverLabel";
-            this.HoverLabel.Size = new System.Drawing.Size(67, 17);
+            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
             // 
             // statusStrip1
@@ -124,6 +129,13 @@ namespace TileGameMaker.Component
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
+            this.StatusLabel.Text = "StatusLabel";
+            // 
             // BtnNew
             // 
             this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -135,18 +147,34 @@ namespace TileGameMaker.Component
             this.BtnNew.ToolTipText = "Clear map";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
-            // StatusLabel
+            // BtnScreenshot
             // 
-            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
-            this.StatusLabel.Text = "StatusLabel";
+            this.BtnScreenshot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnScreenshot.Image = global::TileGameMaker.Properties.Resources.camera;
+            this.BtnScreenshot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnScreenshot.Name = "BtnScreenshot";
+            this.BtnScreenshot.Size = new System.Drawing.Size(23, 22);
+            this.BtnScreenshot.Text = "toolStripButton1";
+            this.BtnScreenshot.ToolTipText = "Save image";
+            this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
+            // 
+            // BtnGrid
+            // 
+            this.BtnGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnGrid.Image = global::TileGameMaker.Properties.Resources.layouts_four_grid;
+            this.BtnGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnGrid.Name = "BtnGrid";
+            this.BtnGrid.Size = new System.Drawing.Size(23, 22);
+            this.BtnGrid.Text = "toolStripButton1";
+            this.BtnGrid.ToolTipText = "Toggle grid";
+            this.BtnGrid.Click += new System.EventHandler(this.BtnGrid_Click);
             // 
             // MapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 552);
+            this.ControlBox = false;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
@@ -176,6 +204,8 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripButton BtnNew;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
+        private System.Windows.Forms.ToolStripButton BtnScreenshot;
+        private System.Windows.Forms.ToolStripButton BtnGrid;
     }
 }
 
