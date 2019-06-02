@@ -6,4 +6,4 @@ This is a Visual Studio solution comprised of two independent C# projects target
 
 - **TileGameMaker** is a Windows desktop application project that generates a .NET executable file. It contains several tools to aid in the creation of tile-based games, built using the TileGameLib.
 
-This project is a spiritual successor of [TBRGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
+This project is a spiritual successor of [TBRLGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
