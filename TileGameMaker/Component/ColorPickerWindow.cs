@@ -14,6 +14,7 @@ namespace TileGameMaker.Component
     public partial class ColorPickerWindow : Form
     {
         private ColorPicker ColorPicker;
+        private ColorEditorWindow ColorEditorWindow;
 
         public ColorPickerWindow()
         {
@@ -31,6 +32,9 @@ namespace TileGameMaker.Component
             ColorPicker.MouseDoubleClick += ColorPicker_MouseDoubleClick;
             ForeColorPanel.MouseDown += ColorPanel_Click;
             BackColorPanel.MouseDown += ColorPanel_Click;
+            ColorEditorWindow = new ColorEditorWindow(ColorPicker.Graphics.Palette);
+            ColorEditorWindow.Subscribe(ColorPicker);
+            ColorEditorWindow.Subscribe(this);
             UpdatePanelColors();
             UpdateStatus();
             SetHoverStatus("");
@@ -42,17 +46,9 @@ namespace TileGameMaker.Component
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
-            Color currentColor = Color.FromArgb(ColorPicker.GetColor(colorIx));
-            ColorDialog dialog = new ColorDialog();
-            dialog.Color = currentColor;
-
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                ColorPicker.SetColor(colorIx, dialog.Color);
-                ColorPicker.Refresh();
-                UpdatePanelColors();
-                UpdateStatus();
-            }
+            ColorEditorWindow.SetColor(colorIx);
+            ColorEditorWindow.Location = new Point(Location.X, Location.Y + 50);
+            ColorEditorWindow.ShowDialog(this);
         }
 
         private void ColorPicker_MouseClick(object sender, MouseEventArgs e)
@@ -88,6 +84,12 @@ namespace TileGameMaker.Component
         private void ColorPicker_MouseLeave(object sender, EventArgs e)
         {
             SetHoverStatus("");
+        }
+
+        public override void Refresh()
+        {
+            base.Refresh();
+            UpdatePanelColors();
         }
 
         private void UpdateStatus()

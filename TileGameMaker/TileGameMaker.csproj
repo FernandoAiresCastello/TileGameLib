@@ -36,6 +36,7 @@
     <ApplicationIcon>Resources\Sonya-Swarm-Gameboy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\ColorEditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\ColorEditorWindow.Designer.cs">
+      <DependentUpon>ColorEditorWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\TileEditor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,6 +98,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Component\ColorEditorWindow.resx">
+      <DependentUpon>ColorEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\TileEditorWindow.resx">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
     </EmbeddedResource>

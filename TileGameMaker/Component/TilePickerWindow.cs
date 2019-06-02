@@ -63,7 +63,6 @@ namespace TileGameMaker.Component
             TileEditorWindow.SetTile(tileIx);
             TileEditorWindow.Location = new Point(Location.X, Location.Y + 50);
             TileEditorWindow.ShowDialog(this);
-            
         }
 
         private void CharPicker_MouseLeave(object sender, EventArgs e)
