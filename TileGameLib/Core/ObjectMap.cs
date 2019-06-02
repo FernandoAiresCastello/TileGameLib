@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 
 namespace TileGameLib.Core
 {
@@ -51,17 +52,46 @@ namespace TileGameLib.Core
 
         public void SetObject(GameObject o, int layer, int x, int y)
         {
-            Layers[layer].SetObject(o, x, y);
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+            {
+                Layers[layer].SetObject(o, x, y);
+            }
+            else
+            {
+                Alert.Error(
+                    "Invalid object layer index on SetObject\n" +
+                    "X: " + x + " Y: " + y + "\n" +
+                    "Object layer size: " + Width + "x" + Height
+                );
+            }
         }
 
-        public ref GameObject GetObject(int layer, int x, int y)
+        public GameObject GetObject(int layer, int x, int y)
         {
-            return ref Layers[layer].GetObject(x, y);
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return Layers[layer].GetObject(x, y);
+
+            Alert.Error(
+                "Invalid object layer index on GetObject\n" +
+                "X: " + x + " Y: " + y + "\n" +
+                "Object layer size: " + Width + "x" + Height
+            );
+
+            return null;
         }
 
         public GameObject CopyObject(int layer, int x, int y)
         {
-            return Layers[layer].CopyObject(x, y);
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return Layers[layer].CopyObject(x, y);
+
+            Alert.Error(
+                "Invalid object layer index on CopyObject\n" +
+                "X: " + x + " Y: " + y + "\n" +
+                "Object layer size: " + Width + "x" + Height
+            );
+
+            return null;
         }
     }
 }

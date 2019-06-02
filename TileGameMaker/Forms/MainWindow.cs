@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Core;
-using TileGameMaker.Module;
+using TileGameMaker.Modules;
 using TileGameMaker.Component;
 
 namespace TileGameMaker.Forms

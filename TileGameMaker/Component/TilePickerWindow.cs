@@ -8,17 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
+using TileGameMaker.Modules;
 
 namespace TileGameMaker.Component
 {
     public partial class TilePickerWindow : Form
     {
+        private MapEditor MapEditor;
         private TilePicker TilePicker;
         private TileEditorWindow TileEditorWindow;
 
-        public TilePickerWindow(Tileset tileset)
+        public TilePickerWindow(MapEditor editor, Tileset tileset)
         {
             InitializeComponent();
+            MapEditor = editor;
             TilePicker = new TilePicker(CharPickerPanel, 8, 64, 3);
             TilePicker.Graphics.Tileset = tileset;
             TilePicker.ShowGrid = true;
@@ -26,9 +29,17 @@ namespace TileGameMaker.Component
             TilePicker.MouseLeave += CharPicker_MouseLeave;
             TilePicker.MouseDown += CharPicker_MouseDown;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
-            TileEditorWindow = new TileEditorWindow(TilePicker, tileset);
+            TileEditorWindow = new TileEditorWindow(tileset);
+            TileEditorWindow.Subscribe(this);
+            TileEditorWindow.Subscribe(TilePicker);
+            TileEditorWindow.Subscribe(editor.MapWindow);
             SetHoverStatus("");
             UpdateStatus();
+        }
+
+        public int GetTileIndex()
+        {
+            return TilePicker.TileIndex;
         }
 
         private void CharPicker_MouseDown(object sender, MouseEventArgs e)

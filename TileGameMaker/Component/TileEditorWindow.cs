@@ -12,18 +12,17 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Component
 {
-    public partial class TileEditorWindow : Form
+    public partial class TileEditorWindow : BaseForm
     {
         private readonly TileEditor TileEditor;
         private readonly Tileset Tileset;
         private TilePixels OriginalPixels;
 
-        public TileEditorWindow(Control refreshOnChange, Tileset tileset)
+        public TileEditorWindow(Tileset tileset)
         {
             InitializeComponent();
             Tileset = tileset;
             TileEditor = new TileEditor(TilePanel, 8, 8, 3);
-            TileEditor.Subscribe(refreshOnChange);
             TileEditor.ShowGrid = true;
             TileEditor.MouseMove += TileEditor_MouseMove;
             TileEditor.MouseLeave += TileEditor_MouseLeave;
@@ -38,6 +37,8 @@ namespace TileGameMaker.Component
                 TileEditor.SetTilePixel(p.X, p.Y, 1);
             else if (e.Button == MouseButtons.Right)
                 TileEditor.SetTilePixel(p.X, p.Y, 0);
+
+            RefreshSubscribed();
         }
 
         private void TileEditor_MouseMove(object sender, MouseEventArgs e)
@@ -68,11 +69,13 @@ namespace TileGameMaker.Component
         private void Undo()
         {
             TileEditor.SetTilePixels(OriginalPixels);
+            RefreshSubscribed();
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
         {
             TileEditor.ClearTile();
+            RefreshSubscribed();
         }
 
         private void BtnUndo_Click(object sender, EventArgs e)
@@ -94,16 +97,19 @@ namespace TileGameMaker.Component
         private void BtnInvert_Click(object sender, EventArgs e)
         {
             TileEditor.InvertTile();
+            RefreshSubscribed();
         }
 
         private void BtnFlipH_Click(object sender, EventArgs e)
         {
             TileEditor.FlipHorizontal();
+            RefreshSubscribed();
         }
 
         private void BtnFlipV_Click(object sender, EventArgs e)
         {
             TileEditor.FlipVertical();
+            RefreshSubscribed();
         }
 
         private void BtnShift_Click(object sender, EventArgs e)

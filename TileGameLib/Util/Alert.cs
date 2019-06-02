@@ -9,15 +9,21 @@ namespace TileGameLib.Util
 {
     public class Alert
     {
+        public static bool EnableAlerts { set; get; } = false;
+
         public static void Warning(string msg)
         {
-            MessageBox.Show(msg, "TileGameLib Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (EnableAlerts)
+                MessageBox.Show(msg, "TileGameLib Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void Error(string msg)
         {
-            MessageBox.Show(msg, "TileGameLib Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            throw new Exception(msg);
+            if (EnableAlerts)
+            {
+                MessageBox.Show(msg, "TileGameLib Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception(msg);
+            }
         }
     }
 }

@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Core;
+using TileGameLib.Graphics;
 using TileGameMaker.Component;
 
-namespace TileGameMaker.Module
+namespace TileGameMaker.Modules
 {
-    public class MapEditor
+    public class MapEditor : Module
     {
         public ObjectMap Map { get; private set; }
         public MapWindow MapWindow { get; private set; }
@@ -22,9 +23,9 @@ namespace TileGameMaker.Module
         {
             Parent = parent;
             Map = new ObjectMap(31, 16);
-            MapWindow = new MapWindow(Map);
-            TilePickerWindow = new TilePickerWindow(Map.Charset);
-            ColorPickerWindow = new ColorPickerWindow(Map.Palette);
+            MapWindow = new MapWindow(this, Map);
+            TilePickerWindow = new TilePickerWindow(this, Map.Charset);
+            ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
 
             if (parent.IsMdiContainer)
             {
@@ -39,6 +40,14 @@ namespace TileGameMaker.Module
             MapWindow.Show();
             TilePickerWindow.Show();
             ColorPickerWindow.Show();
+        }
+
+        public Tile GetSelectedTile()
+        {
+            return new Tile(
+                TilePickerWindow.GetTileIndex(),
+                ColorPickerWindow.GetForeColorIndex(), 
+                ColorPickerWindow.GetBackColorIndex());
         }
     }
 }

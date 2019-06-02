@@ -8,21 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
+using TileGameMaker.Modules;
 
 namespace TileGameMaker.Component
 {
-    public partial class ColorPickerWindow : Form
+    public partial class ColorPickerWindow : BaseForm
     {
+        private MapEditor MapEditor;
         private ColorPicker ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        public ColorPickerWindow()
-        {
-        }
-
-        public ColorPickerWindow(Palette palette) : this()
+        public ColorPickerWindow(MapEditor editor, Palette palette)
         {
             InitializeComponent();
+            MapEditor = editor;
             ColorPicker = new ColorPicker(ColorPickerPanel, 8, 32, 3);
             ColorPicker.Graphics.Palette = palette;
             ColorPicker.ShowGrid = true;
@@ -33,11 +32,22 @@ namespace TileGameMaker.Component
             ForeColorPanel.MouseDown += ColorPanel_Click;
             BackColorPanel.MouseDown += ColorPanel_Click;
             ColorEditorWindow = new ColorEditorWindow(ColorPicker.Graphics.Palette);
-            ColorEditorWindow.Subscribe(ColorPicker);
             ColorEditorWindow.Subscribe(this);
+            ColorEditorWindow.Subscribe(ColorPicker);
+            ColorEditorWindow.Subscribe(editor.MapWindow);
             UpdatePanelColors();
             UpdateStatus();
             SetHoverStatus("");
+        }
+
+        public int GetForeColorIndex()
+        {
+            return ColorPicker.ForeColorIx;
+        }
+
+        public int GetBackColorIndex()
+        {
+            return ColorPicker.BackColorIx;
         }
 
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -10,6 +10,8 @@ namespace TileGameLib.Graphics
 {
     public class MapRenderer
     {
+        public bool AnimationEnabled { set; get; }
+
         private ObjectMap Map;
         private Display Disp;
         private Timer AnimationTimer;
@@ -22,6 +24,7 @@ namespace TileGameLib.Graphics
             Disp.Graphics.Tileset = Map.Charset;
             Disp.Graphics.Palette = Map.Palette;
             AnimationFrame = 0;
+            AnimationEnabled = true;
             AnimationTimer = new Timer();
             AnimationTimer.Interval = animationInterval;
             AnimationTimer.Tick += AnimationTimer_Tick;
@@ -30,9 +33,11 @@ namespace TileGameLib.Graphics
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
         {
-            Render();
-            Disp.Refresh();
-            AdvanceAnimation();
+            if (AnimationEnabled)
+            {
+                Render();
+                AdvanceAnimation();
+            }
         }
 
         public void AdvanceAnimation()

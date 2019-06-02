@@ -14,18 +14,12 @@ namespace TileGameMaker.Component
     {
         private Tileset Tileset;
         private int TileIndex;
-        private List<Control> SubscribedControls = new List<Control>();
 
         public TileEditor(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
             Graphics.Palette.Set(0, Color.White);
             Graphics.Palette.Set(1, Color.Black);
-        }
-
-        public void Subscribe(Control control)
-        {
-            SubscribedControls.Add(control);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -105,18 +99,6 @@ namespace TileGameMaker.Component
         {
             Tileset[TileIndex].FlipVertical();
             Refresh();
-        }
-
-        public override void Refresh()
-        {
-            base.Refresh();
-            RefreshSubscribed();
-        }
-
-        private void RefreshSubscribed()
-        {
-            foreach (Control control in SubscribedControls)
-                control.Refresh();
         }
     }
 }

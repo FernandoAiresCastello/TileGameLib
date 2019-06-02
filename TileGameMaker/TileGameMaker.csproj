@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Component\ColorEditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +68,7 @@
     <Compile Include="Component\TileEditorWindow.Designer.cs">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MapEditor.cs" />
+    <Compile Include="Modules\MapEditor.cs" />
     <Compile Include="Component\TilePicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -96,6 +99,7 @@
     <Compile Include="Component\MapWindow.Designer.cs">
       <DependentUpon>MapWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Component\ColorEditorWindow.resx">

@@ -12,13 +12,12 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Component
 {
-    public partial class ColorEditorWindow : Form
+    public partial class ColorEditorWindow : BaseForm
     {
         private Palette Palette;
         private int ColorIndex;
         private Color Color;
         private Color OriginalColor;
-        private List<Control> SubscribedControls = new List<Control>();
 
         public ColorEditorWindow(Palette palette)
         {
@@ -127,11 +126,6 @@ namespace TileGameMaker.Component
             RefreshSubscribed();
         }
 
-        public void Subscribe(Control control)
-        {
-            SubscribedControls.Add(control);
-        }
-
         private void UpdateSliders()
         {
             RedSlider.Value = Color.R;
@@ -172,12 +166,6 @@ namespace TileGameMaker.Component
             base.Refresh();
             RefreshSubscribed();
             ColorPanel.BackColor = Color;
-        }
-
-        private void RefreshSubscribed()
-        {
-            foreach (Control control in SubscribedControls)
-                control.Refresh();
         }
     }
 }
