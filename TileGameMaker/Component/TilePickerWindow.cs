@@ -13,37 +13,43 @@ namespace TileGameMaker.Component
 {
     public partial class TilePickerWindow : Form
     {
-        private TilePicker CharPicker;
+        private TilePicker TilePicker;
 
         public TilePickerWindow()
         {
             InitializeComponent();
-            CharPicker = new TilePicker(CharPickerPanel, 8, 64, 3);
-            CharPicker.ShowGrid = true;
-            CharPicker.MouseMove += CharPicker_MouseMove;
-            CharPicker.MouseLeave += CharPicker_MouseLeave;
-            CharPicker.MouseDown += CharPicker_MouseDown;
+            TilePicker = new TilePicker(CharPickerPanel, 8, 64, 3);
+            TilePicker.ShowGrid = true;
+            TilePicker.MouseMove += CharPicker_MouseMove;
+            TilePicker.MouseLeave += CharPicker_MouseLeave;
+            TilePicker.MouseDown += CharPicker_MouseDown;
             SetHoverStatus("");
+            UpdateStatus();
+        }
+
+        public TilePickerWindow(Tileset tileset) : this()
+        {
+            TilePicker.Graphics.Tileset = tileset;
             UpdateStatus();
         }
 
         private void CharPicker_MouseDown(object sender, MouseEventArgs e)
         {
-            int tileIx = CharPicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx < 0 || tileIx >= CharPicker.Graphics.Tileset.Size)
+            int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
                 return;
 
             if (e.Button == MouseButtons.Left)
             {
-                CharPicker.SelectTiileIndex(tileIx);
+                TilePicker.SelectTiileIndex(tileIx);
                 UpdateStatus();
             }
         }
 
         private void CharPicker_MouseMove(object sender, MouseEventArgs e)
         {
-            int tileIx = CharPicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx >= 0 && tileIx < CharPicker.Graphics.Tileset.Size)
+            int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            if (tileIx >= 0 && tileIx < TilePicker.Graphics.Tileset.Size)
             {
                 SetHoverStatus("IX: " + tileIx);
             }
@@ -60,7 +66,7 @@ namespace TileGameMaker.Component
 
         private void UpdateStatus()
         {
-            StatusLabel.Text = "Selected IX: " + CharPicker.TileIndex;
+            StatusLabel.Text = "Selected IX: " + TilePicker.TileIndex;
         }
 
         private void SetHoverStatus(string status)
@@ -70,7 +76,7 @@ namespace TileGameMaker.Component
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            CharPicker.Clear();
+            TilePicker.Clear();
             UpdateStatus();
         }
     }

@@ -31,6 +31,13 @@ namespace TileGameMaker.Component
             SetHoverStatus("");
         }
 
+        public ColorPickerWindow(Palette palette) : this()
+        {
+            ColorPicker.Graphics.Palette = palette;
+            UpdatePanelColors();
+            UpdateStatus();
+        }
+
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);

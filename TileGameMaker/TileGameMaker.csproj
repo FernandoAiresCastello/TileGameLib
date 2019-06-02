@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Sonya-Swarm-Gameboy.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Sonya-Swarm-Gameboy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module\MapEditor.cs" />
     <Compile Include="Component\TilePicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -126,7 +127,8 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sonya-Swarm-Gameboy.ico" />
+    <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

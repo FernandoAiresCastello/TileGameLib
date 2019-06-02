@@ -8,34 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Core;
+using TileGameMaker.Module;
 using TileGameMaker.Component;
 
 namespace TileGameMaker.Forms
 {
     public partial class MainWindow : Form
     {
-        ObjectMap DefaultMap;
-
         public MainWindow()
         {
             InitializeComponent();
 
-            DefaultMap = new ObjectMap(31, 16);
-
-            MapWindow win = new MapWindow(DefaultMap);
-            win.MdiParent = this;
-            win.Location = new Point(0, 0);
-            win.Show();
-
-            ColorPickerWindow colorPicker = new ColorPickerWindow();
-            colorPicker.MdiParent = this;
-            colorPicker.Location = new Point(800, 0);
-            colorPicker.Show();
-
-            TilePickerWindow charPicker = new TilePickerWindow();
-            charPicker.MdiParent = this;
-            charPicker.Location = new Point(1050, 0);
-            charPicker.Show();
+            MapEditor editor = new MapEditor(this);
+            editor.MapWindow.Location = new Point(0, 0);
+            editor.ColorPickerWindow.Location = new Point(800, 0);
+            editor.TilePickerWindow.Location = new Point(1050, 0);
+            editor.Show();
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
