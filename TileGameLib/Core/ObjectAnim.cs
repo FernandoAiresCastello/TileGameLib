@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Graphics;
 
 namespace TileGameLib.Core
 {
     public class ObjectAnim
     {
-        public List<ObjectChar> Frames { set; get; } = new List<ObjectChar>();
+        public List<Tile> Frames { set; get; } = new List<Tile>();
 
-        public ObjectChar this[int index]
+        public Tile this[int index]
         {
             get { return GetFrame(index); }
         }
@@ -28,7 +29,7 @@ namespace TileGameLib.Core
         public void Clear()
         {
             Frames.Clear();
-            Frames.Add(new ObjectChar());
+            Frames.Add(new Tile());
         }
 
         public bool IsSingleFrame()
@@ -39,8 +40,8 @@ namespace TileGameLib.Core
         public void SetEqual(ObjectAnim other)
         {
             Frames.Clear();
-            foreach (ObjectChar ch in other.Frames)
-                Frames.Add(new ObjectChar(ch.CharIx, ch.ForeColorIx, ch.BackColorIx));
+            foreach (Tile ch in other.Frames)
+                Frames.Add(new Tile(ch.TileIx, ch.ForeColorIx, ch.BackColorIx));
         }
 
         public override bool Equals(object o)
@@ -60,17 +61,17 @@ namespace TileGameLib.Core
             return true;
         }
 
-        public void AddFrame(ObjectChar ch)
+        public void AddFrame(Tile ch)
         {
             Frames.Add(ch.Copy());
         }
 
-        public void SetFrame(int index, ObjectChar ch)
+        public void SetFrame(int index, Tile ch)
         {
             Frames[index] = ch;
         }
 
-        public ObjectChar GetFrame(int index)
+        public Tile GetFrame(int index)
         {
             return Frames[index % Frames.Count];
         }

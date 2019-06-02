@@ -6,25 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
-using TileGameMaker.Component;
 
 namespace TileGameMaker.Component
 {
     public class ColorPicker : Display
     {
-        public Palette Pal { set; get; }
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
 
-        private readonly Charset Chars;
+        private readonly int SwatchTileIx = 0xdb;
 
-        public ColorPicker(Control parent, GraphicsAdapter gr, int zoom)
-            : base(parent, gr, zoom)
+        public ColorPicker(Control parent, int cols, int rows, int zoom)
+            : base(parent, cols, rows, zoom)
         {
-            Pal = new Palette();
-            Chars = new Charset();
             ForeColorIx = 0;
-            BackColorIx = Pal.Size - 1;
+            BackColorIx = Graphics.Palette.Size - 1;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -32,9 +28,9 @@ namespace TileGameMaker.Component
             int x = 0;
             int y = 0;
 
-            for (int i = 0; i < Pal.Size; i++)
+            for (int i = 0; i < Graphics.Palette.Size; i++)
             {
-                Graphics.DrawChar(Chars, Pal, x, y, 0xdb, i, 0);
+                Graphics.DrawTile(x, y, SwatchTileIx, i, 0);
                 x++;
                 if (x > 7)
                 {
@@ -46,14 +42,21 @@ namespace TileGameMaker.Component
             base.OnPaint(e);
         }
 
+        public int GetColorIndexAtMousePos(Point mousePos)
+        {
+            Point p = GetMouseToCellPos(mousePos);
+            Tile tile = Graphics.GetTile(p.X, p.Y);
+            return tile.ForeColorIx;
+        }
+
         public int GetColor(int index)
         {
-            return Pal.Colors[index];
+            return Graphics.Palette.Colors[index];
         }
 
         public void SetColor(int index, int color)
         {
-            Pal.Colors[index] = color;
+            Graphics.Palette.Colors[index] = color;
         }
 
         public void SetColor(int index, Color color)
@@ -64,12 +67,20 @@ namespace TileGameMaker.Component
 
         public Color GetForeColor()
         {
-            return Color.FromArgb(Pal.Colors[ForeColorIx]);
+            return Color.FromArgb(Graphics.Palette.Colors[ForeColorIx]);
         }
 
         public Color GetBackColor()
         {
-            return Color.FromArgb(Pal.Colors[BackColorIx]);
+            return Color.FromArgb(Graphics.Palette.Colors[BackColorIx]);
+        }
+
+        internal void Clear()
+        {
+            Graphics.Palette.Clear();
+            ForeColorIx = 0;
+            BackColorIx = Graphics.Palette.Size - 1;
+            Refresh();
         }
     }
 }

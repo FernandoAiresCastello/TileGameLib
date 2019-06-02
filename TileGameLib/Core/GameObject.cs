@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Graphics;
 
 namespace TileGameLib.Core
 {
@@ -23,7 +24,7 @@ namespace TileGameLib.Core
             SetEqual(other);
         }
 
-        public GameObject(ObjectChar singleAnimFrame)
+        public GameObject(Tile singleAnimFrame)
         {
             SetNull();
             Animation.SetFrame(0, singleAnimFrame);

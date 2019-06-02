@@ -11,6 +11,8 @@ namespace TileGameLib.Graphics
     {
         public List<int> Colors { get; private set; } = new List<int>();
 
+        public static readonly int DefaultSize = 256;
+
         public int this[int index]
         {
             get { return Colors[index]; }
@@ -39,6 +41,31 @@ namespace TileGameLib.Graphics
             Colors.Add(color.ToArgb());
         }
 
+        public void Set(int index, uint color)
+        {
+            Set(index, (int)color);
+        }
+
+        public void Set(int index, int color)
+        {
+            Colors[index] = color;
+        }
+
+        public void Set(int index, Color color)
+        {
+            Set(index, color.ToArgb());
+        }
+
+        public void Clear()
+        {
+            Clear(DefaultSize, 0xFFffffff);
+        }
+
+        public void Clear(int count, uint color)
+        {
+            Clear(count, (int)color);
+        }
+
         public void Clear(int count, int color)
         {
             Colors.Clear();
@@ -53,72 +80,74 @@ namespace TileGameLib.Graphics
 
         public void InitDefault()
         {
-            Colors.Clear();
+            Clear();
 
-            Add(0xFF000000);
-            Add(0xFF000055);
-            Add(0xFF0000aa);
-            Add(0xFF0000ff);
-            Add(0xFF550000);
-            Add(0xFF550055);
-            Add(0xFF5500aa);
-            Add(0xFF5500ff);
-            Add(0xFFaa0000);
-            Add(0xFFaa0055);
-            Add(0xFFaa00aa);
-            Add(0xFFaa00ff);
-            Add(0xFFff0000);
-            Add(0xFFff0055);
-            Add(0xFFff00aa);
-            Add(0xFFff00ff);
-            Add(0xFF005500);
-            Add(0xFF005555);
-            Add(0xFF0055aa);
-            Add(0xFF0055ff);
-            Add(0xFF555500);
-            Add(0xFF555555);
-            Add(0xFF5555aa);
-            Add(0xFF5555ff);
-            Add(0xFFaa5500);
-            Add(0xFFaa5555);
-            Add(0xFFaa55aa);
-            Add(0xFFaa55ff);
-            Add(0xFFff5500);
-            Add(0xFFff5555);
-            Add(0xFFff55aa);
-            Add(0xFFff55ff);
-            Add(0xFF00aa00);
-            Add(0xFF00aa55);
-            Add(0xFF00aaaa);
-            Add(0xFF00aaff);
-            Add(0xFF55aa00);
-            Add(0xFF55aa55);
-            Add(0xFF55aaaa);
-            Add(0xFF55aaff);
-            Add(0xFFaaaa00);
-            Add(0xFFaaaa55);
-            Add(0xFFaaaaaa);
-            Add(0xFFaaaaff);
-            Add(0xFFffaa00);
-            Add(0xFFffaa55);
-            Add(0xFFffaaaa);
-            Add(0xFFffaaff);
-            Add(0xFF00ff00);
-            Add(0xFF00ff55);
-            Add(0xFF00ffaa);
-            Add(0xFF00ffff);
-            Add(0xFF55ff00);
-            Add(0xFF55ff55);
-            Add(0xFF55ffaa);
-            Add(0xFF55ffff);
-            Add(0xFFaaff00);
-            Add(0xFFaaff55);
-            Add(0xFFaaffaa);
-            Add(0xFFaaffff);
-            Add(0xFFffff00);
-            Add(0xFFffff55);
-            Add(0xFFffffaa);
-            Add(0xFFffffff);
+            int i = 0;
+
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000055);
+            Set(i++, 0xFF0000aa);
+            Set(i++, 0xFF0000ff);
+            Set(i++, 0xFF550000);
+            Set(i++, 0xFF550055);
+            Set(i++, 0xFF5500aa);
+            Set(i++, 0xFF5500ff);
+            Set(i++, 0xFFaa0000);
+            Set(i++, 0xFFaa0055);
+            Set(i++, 0xFFaa00aa);
+            Set(i++, 0xFFaa00ff);
+            Set(i++, 0xFFff0000);
+            Set(i++, 0xFFff0055);
+            Set(i++, 0xFFff00aa);
+            Set(i++, 0xFFff00ff);
+            Set(i++, 0xFF005500);
+            Set(i++, 0xFF005555);
+            Set(i++, 0xFF0055aa);
+            Set(i++, 0xFF0055ff);
+            Set(i++, 0xFF555500);
+            Set(i++, 0xFF555555);
+            Set(i++, 0xFF5555aa);
+            Set(i++, 0xFF5555ff);
+            Set(i++, 0xFFaa5500);
+            Set(i++, 0xFFaa5555);
+            Set(i++, 0xFFaa55aa);
+            Set(i++, 0xFFaa55ff);
+            Set(i++, 0xFFff5500);
+            Set(i++, 0xFFff5555);
+            Set(i++, 0xFFff55aa);
+            Set(i++, 0xFFff55ff);
+            Set(i++, 0xFF00aa00);
+            Set(i++, 0xFF00aa55);
+            Set(i++, 0xFF00aaaa);
+            Set(i++, 0xFF00aaff);
+            Set(i++, 0xFF55aa00);
+            Set(i++, 0xFF55aa55);
+            Set(i++, 0xFF55aaaa);
+            Set(i++, 0xFF55aaff);
+            Set(i++, 0xFFaaaa00);
+            Set(i++, 0xFFaaaa55);
+            Set(i++, 0xFFaaaaaa);
+            Set(i++, 0xFFaaaaff);
+            Set(i++, 0xFFffaa00);
+            Set(i++, 0xFFffaa55);
+            Set(i++, 0xFFffaaaa);
+            Set(i++, 0xFFffaaff);
+            Set(i++, 0xFF00ff00);
+            Set(i++, 0xFF00ff55);
+            Set(i++, 0xFF00ffaa);
+            Set(i++, 0xFF00ffff);
+            Set(i++, 0xFF55ff00);
+            Set(i++, 0xFF55ff55);
+            Set(i++, 0xFF55ffaa);
+            Set(i++, 0xFF55ffff);
+            Set(i++, 0xFFaaff00);
+            Set(i++, 0xFFaaff55);
+            Set(i++, 0xFFaaffaa);
+            Set(i++, 0xFFaaffff);
+            Set(i++, 0xFFffff00);
+            Set(i++, 0xFFffff55);
+            Set(i++, 0xFFffffaa);
+            Set(i++, 0xFFffffff);
         }
     }
 }

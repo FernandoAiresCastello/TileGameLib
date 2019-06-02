@@ -10,107 +10,82 @@ namespace TileGameLib.Graphics
 {
     public class GraphicsAdapter
     {
-        public Bitmap Bitmap { get { return Buffer.Bitmap; } }
-        public int PixelCount { get { return Buffer.Pixels.Length; } }
-        public int Width { get { return Buffer.Width; } }
-        public int Height { get { return Buffer.Height; } }
-        public int Cols { get { return Buffer.Width / Char.RowLength; } }
-        public int Rows { get { return Buffer.Height / Char.RowCount; } }
+        public Bitmap Bitmap { get { return FastBitmap.Bitmap; } }
+        public int PixelCount { get { return FastBitmap.Pixels.Length; } }
+        public int Width { get { return FastBitmap.Width; } }
+        public int Height { get { return FastBitmap.Height; } }
+        public int Cols { get { return FastBitmap.Width / TilePixels.RowLength; } }
+        public int Rows { get { return FastBitmap.Height / TilePixels.RowCount; } }
+        public Tileset Tileset { set; get; }
+        public Palette Palette { set; get; }
+        public TileBuffer TileBuffer { get; private set; }
 
-        private readonly FastBitmap Buffer;
+        private readonly FastBitmap FastBitmap;
 
         public GraphicsAdapter(int cols, int rows)
         {
-            int width = cols * Char.RowLength + 1;
-            int height = rows * Char.RowCount + 1;
+            Tileset = new Tileset();
+            Palette = new Palette();
+            TileBuffer = new TileBuffer(cols, rows);
 
-            Buffer = new FastBitmap(width, height);
+            int width = cols * TilePixels.RowLength + 1;
+            int height = rows * TilePixels.RowCount + 1;
+
+            FastBitmap = new FastBitmap(width, height);
         }
 
-        public void SetPixel(int index, int color)
-        {
-            Buffer.Pixels[index] = color;
-        }
-
-        public void SetPixel(int x, int y, int color)
-        {
-            Buffer.Pixels[y * Buffer.Width + x] = color;
-        }
-
-        public int GetPixel(int index)
-        {
-            return Buffer.Pixels[index];
-        }
-
-        public int GetPixel(int x, int y)
-        {
-            return Buffer.Pixels[y * Buffer.Width + x];
-        }
-
-        public void Fill(int color)
-        {
-            for (int i = 0; i < Buffer.Pixels.Length; i++)
-                Buffer.Pixels[i] = color;
-        }
-
-        public void Clear(Palette pal, int palIndex)
-        {
-            for (int i = 0; i < Buffer.Pixels.Length; i++)
-                Buffer.Pixels[i] = pal[palIndex];
-        }
-
-        public void DrawString(Charset chars, Palette pal, int x, int y, string str, int palIndex1, int palIndex0)
+        public void DrawString(int x, int y, string str, int palIndex1, int palIndex0)
         {
             foreach (char ch in str)
-                DrawChar(chars, pal, x++, y, ch, palIndex1, palIndex0);
+                DrawTile(x++, y, ch, palIndex1, palIndex0);
         }
 
-        public void DrawChar(Charset chars, Palette pal, int x, int y, int charIndex, int palIndex1, int palIndex0)
+        public void DrawTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
         {
-            SetPixels8x8(true, x, y, pal[palIndex1], pal[palIndex0], chars[charIndex].PixelRows);
+            TileBuffer.Tiles[col, row].Set(charIndex, palIndex1, palIndex0);
+            SetTilePixels(col, row, Palette[palIndex1], Palette[palIndex0], Tileset[charIndex].PixelRows);
         }
 
-        private void SetPixels8x8(bool tileXY, int x, int y, int color1, int color0,
-            byte row1, byte row2, byte row3, byte row4,
-            byte row5, byte row6, byte row7, byte row8)
+        public ref Tile GetTile(int col, int row)
         {
-            SetPixels8x8(tileXY, x, y, color0, color1,
-                new[] { row1, row2, row3, row4, row5, row6, row7, row8 });
+            return ref TileBuffer.Tiles[col, row];
         }
 
-        private void SetPixels8x8(bool tileXY, int x, int y, int color1, int color0, byte[] rows)
+        public Tile CopyTile(int col, int row)
         {
-            if (tileXY)
-            {
-                x *= Char.RowLength;
-                y *= Char.RowCount;
-            }
+            return TileBuffer.Tiles[col, row].Copy();
+        }
 
-            int px = x;
+        private void SetTilePixels(int col, int row, int color1, int color0, byte[] rows)
+        {
+            col *= TilePixels.RowLength;
+            row *= TilePixels.RowCount;
+
+            int prevCol = col;
             int i = 0;
 
             for (int rowIx = 0; rowIx < rows.Length; rowIx++)
             {
-                ref byte row = ref rows[rowIx];
+                ref byte pixelRow = ref rows[rowIx];
 
-                for (int bit = Char.RowLength - 1; bit >= 0; bit--)
+                for (int bit = TilePixels.RowLength - 1; bit >= 0; bit--)
                 {
-                    int pixelIndex = y * Buffer.Width + x;
-                    if (pixelIndex < 0 || pixelIndex >= Buffer.Pixels.Length)
+                    int pixelIndex = row * FastBitmap.Width + col;
+                    if (pixelIndex < 0 || pixelIndex >= FastBitmap.Pixels.Length)
                         return;
 
-                    Buffer.Pixels[pixelIndex] = 
-                        (row & (1 << bit)) != 0 ? color1 : color0;
+                    FastBitmap.Pixels[pixelIndex] = 
+                        (pixelRow & (1 << bit)) != 0 ? color1 : color0;
 
-                    if (++i < Char.RowLength)
+                    if (++i < TilePixels.RowLength)
                     {
-                        x++;
+                        col++;
                     }
                     else
                     {
                         i = 0;
-                        x = px;
-                        y++;
+                        col = prevCol;
+                        row++;
                     }
                 }
             }

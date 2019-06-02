@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TileGameLib.Graphics
 {
-    public class Char
+    public class TilePixels
     {
         public static readonly int RowCount = 8;
         public static readonly int RowLength = 8;
@@ -14,12 +14,12 @@ namespace TileGameLib.Graphics
 
         public byte[] PixelRows { set; get; } = new byte[RowCount];
 
-        public Char()
+        public TilePixels()
         {
             Clear();
         }
 
-        public Char(byte row1, byte row2, byte row3, byte row4,
+        public TilePixels(byte row1, byte row2, byte row3, byte row4,
             byte row5, byte row6, byte row7, byte row8)
         {
             Set(row1, row2, row3, row4, row5, row6, row7, row8);

@@ -10,8 +10,7 @@ namespace TileGameLib.Graphics
 {
     public class MapRenderer
     {
-        public ObjectMap Map { set; get; }
-
+        private ObjectMap Map;
         private Display Disp;
         private Timer AnimationTimer;
         private int AnimationFrame;
@@ -20,6 +19,8 @@ namespace TileGameLib.Graphics
         {
             Map = map;
             Disp = disp;
+            Disp.Graphics.Tileset = Map.Charset;
+            Disp.Graphics.Palette = Map.Palette;
             AnimationFrame = 0;
             AnimationTimer = new Timer();
             AnimationTimer.Interval = animationInterval;
@@ -56,9 +57,8 @@ namespace TileGameLib.Graphics
 
         public void RenderObject(GameObject o, int x, int y)
         {
-            ObjectChar ch = o.Animation.GetFrame(AnimationFrame);
-            Disp.Graphics.DrawChar(Map.Charset, Map.Palette, x, y,
-                ch.CharIx, ch.ForeColorIx, ch.BackColorIx);
+            Tile ch = o.Animation.GetFrame(AnimationFrame);
+            Disp.Graphics.DrawTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
         }
     }
 }

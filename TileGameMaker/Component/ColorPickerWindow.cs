@@ -13,15 +13,12 @@ namespace TileGameMaker.Component
 {
     public partial class ColorPickerWindow : Form
     {
-        private GraphicsAdapter Gr;
         private ColorPicker ColorPicker;
 
         public ColorPickerWindow()
         {
             InitializeComponent();
-            StatusLabel.Text = "";
-            Gr = new GraphicsAdapter(8, 32);
-            ColorPicker = new ColorPicker(ColorPickerPanel, Gr, 3);
+            ColorPicker = new ColorPicker(ColorPickerPanel, 8, 32, 3);
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;
             ColorPicker.MouseLeave += ColorPicker_MouseLeave;
@@ -30,69 +27,72 @@ namespace TileGameMaker.Component
             ForeColorPanel.MouseDown += ColorPanel_Click;
             BackColorPanel.MouseDown += ColorPanel_Click;
             UpdatePanelColors();
+            UpdateStatus();
+            SetHoverStatus("");
         }
 
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = ColorPicker.GetMouseToCellIndex(e.Location);
-            if (index >= ColorPicker.Pal.Size)
+            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
-            Color currentColor = Color.FromArgb(ColorPicker.GetColor(index));
+            Color currentColor = Color.FromArgb(ColorPicker.GetColor(colorIx));
             ColorDialog dialog = new ColorDialog();
             dialog.Color = currentColor;
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                ColorPicker.SetColor(index, dialog.Color);
+                ColorPicker.SetColor(colorIx, dialog.Color);
                 ColorPicker.Refresh();
                 UpdatePanelColors();
+                UpdateStatus();
             }
         }
 
         private void ColorPicker_MouseClick(object sender, MouseEventArgs e)
         {
-            int index = ColorPicker.GetMouseToCellIndex(e.Location);
-            if (index >= ColorPicker.Pal.Size)
+            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
             if (e.Button == MouseButtons.Left)
-                ColorPicker.ForeColorIx = index;
+                ColorPicker.ForeColorIx = colorIx;
             else if (e.Button == MouseButtons.Right)
-                ColorPicker.BackColorIx = index;
+                ColorPicker.BackColorIx = colorIx;
 
             UpdatePanelColors();
+            UpdateStatus();
         }
 
         private void ColorPicker_MouseMove(object sender, MouseEventArgs e)
         {
-            int index = ColorPicker.GetMouseToCellIndex(e.Location);
-
-            if (index < ColorPicker.Pal.Size)
+            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            if (colorIx >= 0 && colorIx < ColorPicker.Graphics.Palette.Size)
             {
-                int color = ColorPicker.GetColor(index);
+                int color = ColorPicker.GetColor(colorIx);
                 string rgb = color.ToString("X").Substring(2);
-                SetStatus("Index: " + index + " RGB: 0x" + rgb);
+                SetHoverStatus("IX: " + colorIx + " RGB: 0x" + rgb);
             }
             else
             {
-                ClearStatus();
+                SetHoverStatus("");
             }
         }
 
         private void ColorPicker_MouseLeave(object sender, EventArgs e)
         {
-            ClearStatus();
+            SetHoverStatus("");
         }
 
-        private void ClearStatus()
+        private void UpdateStatus()
         {
-            SetStatus("");
+            LblStatus.Text = "FG: " + ColorPicker.ForeColorIx + " BG: " + ColorPicker.BackColorIx;
         }
 
-        private void SetStatus(string status)
+        private void SetHoverStatus(string status)
         {
-            StatusLabel.Text = status;
+            LblHover.Text = status;
         }
 
         private void ColorPanel_Click(object sender, EventArgs e)
@@ -112,13 +112,14 @@ namespace TileGameMaker.Component
             ColorPicker.ForeColorIx = ColorPicker.BackColorIx;
             ColorPicker.BackColorIx = temp;
             UpdatePanelColors();
+            UpdateStatus();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            ColorPicker.Pal.Clear(64, Color.White);
-            ColorPicker.Refresh();
+            ColorPicker.Clear();
             UpdatePanelColors();
+            UpdateStatus();
         }
     }
 }

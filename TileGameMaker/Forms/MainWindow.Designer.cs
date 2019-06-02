@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.MenuBar = new System.Windows.Forms.MenuStrip();
-            this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.MenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,14 +44,6 @@
             this.MenuBar.Size = new System.Drawing.Size(747, 24);
             this.MenuBar.TabIndex = 1;
             this.MenuBar.Text = "MenuBar";
-            // 
-            // StatusBar
-            // 
-            this.StatusBar.Location = new System.Drawing.Point(0, 377);
-            this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(747, 22);
-            this.StatusBar.TabIndex = 2;
-            this.StatusBar.Text = "statusStrip1";
             // 
             // FileMenu
             // 
@@ -66,15 +58,23 @@
             this.ExitMenuItem.Name = "ExitMenuItem";
             this.ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.X)));
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(156, 22);
             this.ExitMenuItem.Text = "Exit";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
+            // 
+            // StatusBar
+            // 
+            this.StatusBar.Location = new System.Drawing.Point(0, 378);
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.Size = new System.Drawing.Size(747, 22);
+            this.StatusBar.TabIndex = 2;
+            this.StatusBar.Text = "statusStrip1";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 399);
+            this.ClientSize = new System.Drawing.Size(747, 400);
             this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.MenuBar);
             this.IsMdiContainer = true;

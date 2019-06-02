@@ -31,6 +31,13 @@ namespace TileGameLib.Core
                     Objects[col, row].SetNull();
         }
 
+        public void Fill(GameObject o)
+        {
+            for (int row = 0; row < Height; row++)
+                for (int col = 0; col < Width; col++)
+                    Objects[col, row].SetEqual(o);
+        }
+
         public void SetObject(GameObject o, int x, int y)
         {
             Objects[x, y].SetEqual(o);

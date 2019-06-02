@@ -46,14 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\CharPicker.cs">
+    <Compile Include="Component\TilePicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Component\CharPickerWindow.cs">
+    <Compile Include="Component\TilePickerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\CharPickerWindow.Designer.cs">
-      <DependentUpon>CharPickerWindow.cs</DependentUpon>
+    <Compile Include="Component\TilePickerWindow.Designer.cs">
+      <DependentUpon>TilePickerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\ColorPicker.cs">
       <SubType>Component</SubType>
@@ -78,8 +78,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Component\CharPickerWindow.resx">
-      <DependentUpon>CharPickerWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Component\TilePickerWindow.resx">
+      <DependentUpon>TilePickerWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\ColorPickerWindow.resx">
       <DependentUpon>ColorPickerWindow.cs</DependentUpon>

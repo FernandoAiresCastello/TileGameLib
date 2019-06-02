@@ -9,7 +9,7 @@ namespace TileGameLib.Graphics
     public class UIContext
     {
         public GraphicsAdapter Gr { set; get; }
-        public Charset Chars { set; get; }
+        public Tileset Chars { set; get; }
         public Palette Pal { set; get; }
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
@@ -17,7 +17,7 @@ namespace TileGameLib.Graphics
         public UIContext(GraphicsAdapter gr)
         {
             Gr = gr;
-            Chars = new Charset();
+            Chars = new Tileset();
             Pal = new Palette();
             ForeColorIx = 1;
             BackColorIx = 0;
