@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Util;
 
 namespace TileGameLib.Graphics
 {
@@ -34,18 +35,6 @@ namespace TileGameLib.Graphics
             FastBitmap = new FastBitmap(width, height);
         }
 
-        public void DrawString(int x, int y, string str, int palIndex1, int palIndex0)
-        {
-            foreach (char ch in str)
-                DrawTile(x++, y, ch, palIndex1, palIndex0);
-        }
-
-        public void DrawTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
-        {
-            TileBuffer.Tiles[col, row].Set(charIndex, palIndex1, palIndex0);
-            SetTilePixels(col, row, Palette[palIndex1], Palette[palIndex0], Tileset[charIndex].PixelRows);
-        }
-
         public ref Tile GetTile(int col, int row)
         {
             return ref TileBuffer.Tiles[col, row];
@@ -54,6 +43,29 @@ namespace TileGameLib.Graphics
         public Tile CopyTile(int col, int row)
         {
             return TileBuffer.Tiles[col, row].Copy();
+        }
+
+        public void DrawString(int x, int y, string str, int palIndex1, int palIndex0)
+        {
+            foreach (char ch in str)
+                DrawTile(x++, y, ch, palIndex1, palIndex0);
+        }
+
+        public void DrawTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
+        {
+            if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
+            {
+                TileBuffer.Tiles[col, row].Set(charIndex, palIndex1, palIndex0);
+                SetTilePixels(col, row, Palette[palIndex1], Palette[palIndex0], Tileset[charIndex].PixelRows);
+            }
+            else
+            {
+                Alert.Error(
+                    "Invalid tile buffer index on DrawTile\n" +
+                    "Col: " + col + " Row: " + row + "\n" +
+                    "Tile buffer size: " + TileBuffer.Cols + "x" + TileBuffer.Rows
+                );
+            }
         }
 
         private void SetTilePixels(int col, int row, int color1, int color0, byte[] rows)

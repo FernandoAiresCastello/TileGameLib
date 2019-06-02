@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Sonya-Swarm-Gameboy.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -121,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

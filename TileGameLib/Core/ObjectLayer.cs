@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Util;
 
 namespace TileGameLib.Core
 {
@@ -40,7 +41,18 @@ namespace TileGameLib.Core
 
         public void SetObject(GameObject o, int x, int y)
         {
-            Objects[x, y].SetEqual(o);
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+            {
+                Objects[x, y].SetEqual(o);
+            }
+            else
+            {
+                Alert.Error(
+                    "Invalid object layer index on SetObject\n" +
+                    "X: " + x + " Y: " + y + "\n" +
+                    "Layer size: " + Width + "x" + Height
+                );
+            }
         }
 
         public ref GameObject GetObject(int x, int y)
