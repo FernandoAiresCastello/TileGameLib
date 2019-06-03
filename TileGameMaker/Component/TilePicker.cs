@@ -17,7 +17,7 @@ namespace TileGameMaker.Component
         public TilePicker(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            TileIndex = 0;
+            TileIndex = 0xdb;
             Graphics.Palette.Set(0, SystemColors.WindowText);
             Graphics.Palette.Set(1, SystemColors.Window);
             Graphics.Palette.Set(2, SystemColors.HighlightText);

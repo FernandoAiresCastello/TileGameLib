@@ -24,6 +24,7 @@ namespace TileGameMaker.Component
         public MapWindow(MapEditor editor, ObjectMap map)
         {
             InitializeComponent();
+            InfoPanel.Hide();
             MapEditor = editor;
             Map = map;
             Disp = new Display(MapPanel, map.Width, map.Height, 3);
@@ -37,8 +38,15 @@ namespace TileGameMaker.Component
             Disp.MouseLeave += Disp_MouseLeave;
             Text = Map.Name;
             HoverLabel.Text = "";
-            StatusLabel.Text = "Size: " + Map.Width + " x " + Map.Height;
+            UpdateStatusLabel();
             FillBlankMap();
+        }
+
+        private void UpdateStatusLabel()
+        {
+            StatusLabel.Text = 
+                "Size: " + Map.Width + " x " + Map.Height + " " +
+                "Zoom: " + Disp.GetZoom();
         }
 
         private void FillBlankMap()
@@ -126,6 +134,26 @@ namespace TileGameMaker.Component
         public void RenderMap()
         {
             MapRenderer.Render();
+        }
+
+        private void BtnZoomIn_Click(object sender, EventArgs e)
+        {
+            Disp.ZoomIn();
+            UpdateStatusLabel();
+        }
+
+        private void BtnZoomOut_Click(object sender, EventArgs e)
+        {
+            Disp.ZoomOut();
+            UpdateStatusLabel();
+        }
+
+        private void BtnInfo_Click(object sender, EventArgs e)
+        {
+            if (InfoPanel.Visible)
+                InfoPanel.Hide();
+            else
+                InfoPanel.Show();
         }
     }
 }

@@ -19,8 +19,10 @@ namespace TileGameMaker.Component
         public bool ShowOverlay { set; get; }
         public Color GridColor { set; get; }
 
-        protected int Zoom;
         protected Bitmap Grid;
+        protected int Zoom;
+        protected int MinZoom = 1;
+        protected int MaxZoom = 10;
 
         public Display(Control parent, int cols, int rows, int zoom)
         {
@@ -41,13 +43,31 @@ namespace TileGameMaker.Component
 
         public void SetZoom(int zoom)
         {
-            if (zoom < 1)
-                zoom = 1;
+            if (zoom < MinZoom)
+                zoom = MinZoom;
+            else if (zoom > MaxZoom)
+                zoom = MaxZoom;
 
             Zoom = zoom;
             Size = new Size(Zoom * Graphics.Width, Zoom * Graphics.Height);
             Grid = new Bitmap(Width, Height);
             MakeGrid();
+            Refresh();
+        }
+
+        public int GetZoom()
+        {
+            return Zoom;
+        }
+
+        public void ZoomIn()
+        {
+            SetZoom(Zoom + 1);
+        }
+
+        public void ZoomOut()
+        {
+            SetZoom(Zoom - 1);
         }
 
         public Bitmap CreateOverlay()

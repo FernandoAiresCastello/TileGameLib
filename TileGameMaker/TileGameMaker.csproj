@@ -153,6 +153,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\zoom_in.png" />
     <None Include="Resources\layouts_four_grid.png" />
     <None Include="Resources\camera.png" />
     <None Include="Resources\transform_move.png" />
@@ -167,6 +168,9 @@
     <None Include="Resources\tick.png" />
     <None Include="Resources\accept_button.png" />
     <None Include="Resources\arrow_undo.png" />
+    <None Include="Resources\magnifier_zoom_out.png" />
+    <None Include="Resources\magnifier_zoom_in.png" />
+    <None Include="Resources\information.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />

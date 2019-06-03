@@ -22,7 +22,7 @@ namespace TileGameMaker.Modules
         public MapEditor(Form parent)
         {
             Parent = parent;
-            Map = new ObjectMap(31, 16);
+            Map = new ObjectMap(31, 21);
             MapWindow = new MapWindow(this, Map);
             TilePickerWindow = new TilePickerWindow(this, Map.Charset);
             ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
