@@ -12,7 +12,7 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Component
 {
-    public partial class ColorEditorWindow : BaseForm
+    public partial class ColorEditorWindow : BaseWindow
     {
         private Palette Palette;
         private int ColorIndex;

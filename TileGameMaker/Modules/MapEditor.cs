@@ -10,7 +10,7 @@ using TileGameMaker.Component;
 
 namespace TileGameMaker.Modules
 {
-    public class MapEditor : Module
+    public class MapEditor
     {
         public ObjectMap Map { get; private set; }
         public MapWindow MapWindow { get; private set; }
@@ -18,13 +18,15 @@ namespace TileGameMaker.Modules
         public ColorPickerWindow ColorPickerWindow { get; private set; }
 
         private readonly Form Parent;
+        private readonly int DefaultMapWidth = 31;
+        private readonly int DefaultMapHeight = 21;
 
         public MapEditor(Form parent)
         {
             Parent = parent;
-            Map = new ObjectMap(31, 21);
+            CreateNewMap();
             MapWindow = new MapWindow(this, Map);
-            TilePickerWindow = new TilePickerWindow(this, Map.Charset);
+            TilePickerWindow = new TilePickerWindow(this, Map.Tileset);
             ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
 
             if (parent.IsMdiContainer)
@@ -48,6 +50,12 @@ namespace TileGameMaker.Modules
                 TilePickerWindow.GetTileIndex(),
                 ColorPickerWindow.GetForeColorIndex(), 
                 ColorPickerWindow.GetBackColorIndex());
+        }
+
+        public void CreateNewMap()
+        {
+            Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
+            MapWindow.SetMap(Map);
         }
     }
 }

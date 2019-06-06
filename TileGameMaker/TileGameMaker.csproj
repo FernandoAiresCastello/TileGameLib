@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\BaseForm.cs">
+    <Compile Include="Component\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Component\ColorEditorWindow.cs">
@@ -99,7 +99,6 @@
     <Compile Include="Component\MapWindow.Designer.cs">
       <DependentUpon>MapWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Component\ColorEditorWindow.resx">

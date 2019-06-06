@@ -8,15 +8,15 @@ namespace TileGameLib.Graphics
 {
     public class Tileset
     {
-        public List<TilePixels> Chars { get; private set; } = new List<TilePixels>();
+        public List<TilePixels> Pixels { get; private set; } = new List<TilePixels>();
 
         public TilePixels this[int index]
         {
-            get { return Chars[index]; }
-            set { Chars[index] = value; }
+            get { return Pixels[index]; }
+            set { Pixels[index] = value; }
         }
 
-        public int Size { get { return Chars.Count; } }
+        public int Size { get { return Pixels.Count; } }
 
         public Tileset()
         {
@@ -26,19 +26,19 @@ namespace TileGameLib.Graphics
         public void Add(byte row1, byte row2, byte row3, byte row4,
             byte row5, byte row6, byte row7, byte row8)
         {
-            Chars.Add(new TilePixels(
+            Pixels.Add(new TilePixels(
                 row1, row2, row3, row4, row5, row6, row7, row8));
         }
 
         public void Set(int index, byte row1, byte row2, byte row3, byte row4,
             byte row5, byte row6, byte row7, byte row8)
         {
-            Chars[index].Set(row1, row2, row3, row4, row5, row6, row7, row8);
+            Pixels[index].Set(row1, row2, row3, row4, row5, row6, row7, row8);
         }
 
         public void Clear()
         {
-            Chars.Clear();
+            Pixels.Clear();
 
             for (int ix = 0; ix < 512; ix++)
                 Add(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);

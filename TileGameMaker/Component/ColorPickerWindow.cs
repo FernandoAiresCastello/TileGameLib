@@ -12,7 +12,7 @@ using TileGameMaker.Modules;
 
 namespace TileGameMaker.Component
 {
-    public partial class ColorPickerWindow : BaseForm
+    public partial class ColorPickerWindow : BaseWindow
     {
         private MapEditor MapEditor;
         private ColorPicker ColorPicker;

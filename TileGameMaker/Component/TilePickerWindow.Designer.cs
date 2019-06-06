@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.CharPickerPanel = new System.Windows.Forms.Panel();
+            this.TilePickerPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,7 +45,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.CharPickerPanel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.TilePickerPanel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -78,16 +78,16 @@
             this.BtnNew.ToolTipText = "Clear tileset";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
-            // CharPickerPanel
+            // TilePickerPanel
             // 
-            this.CharPickerPanel.AutoScroll = true;
-            this.CharPickerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CharPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.CharPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CharPickerPanel.Location = new System.Drawing.Point(3, 28);
-            this.CharPickerPanel.Name = "CharPickerPanel";
-            this.CharPickerPanel.Size = new System.Drawing.Size(213, 291);
-            this.CharPickerPanel.TabIndex = 1;
+            this.TilePickerPanel.AutoScroll = true;
+            this.TilePickerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TilePickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TilePickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TilePickerPanel.Location = new System.Drawing.Point(3, 28);
+            this.TilePickerPanel.Name = "TilePickerPanel";
+            this.TilePickerPanel.Size = new System.Drawing.Size(213, 291);
+            this.TilePickerPanel.TabIndex = 1;
             // 
             // statusStrip1
             // 
@@ -140,7 +140,7 @@
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel CharPickerPanel;
+        private System.Windows.Forms.Panel TilePickerPanel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
         private System.Windows.Forms.StatusStrip statusStrip1;

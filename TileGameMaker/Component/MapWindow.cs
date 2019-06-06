@@ -14,7 +14,7 @@ using TileGameMaker.Modules;
 
 namespace TileGameMaker.Component
 {
-    public partial class MapWindow : BaseForm
+    public partial class MapWindow : BaseWindow
     {
         private MapEditor MapEditor;
         private Display Disp;
@@ -40,6 +40,13 @@ namespace TileGameMaker.Component
             HoverLabel.Text = "";
             UpdateStatusLabel();
             FillBlankMap();
+        }
+
+        public void SetMap(ObjectMap map)
+        {
+            Map = map;
+            MapRenderer.Map = map;
+            Disp.ResizeGraphics(map.Width, map.Height);
         }
 
         private void UpdateStatusLabel()

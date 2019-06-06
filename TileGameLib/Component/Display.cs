@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
-using TilePixels = TileGameLib.Graphics.TilePixels;
 
 namespace TileGameMaker.Component
 {
@@ -34,6 +33,12 @@ namespace TileGameMaker.Component
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
             SetZoom(zoom);
+        }
+
+        public void ResizeGraphics(int cols, int rows)
+        {
+            Graphics = new GraphicsAdapter(cols, rows);
+            Refresh();
         }
 
         public void ShowBorder(bool show)

@@ -12,7 +12,7 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Component
 {
-    public partial class TileEditorWindow : BaseForm
+    public partial class TileEditorWindow : BaseWindow
     {
         private readonly TileEditor TileEditor;
         private readonly Tileset Tileset;

@@ -12,7 +12,7 @@ namespace TileGameLib.Core
     {
         public string Name { set; get; }
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
-        public Tileset Charset { get; set; } = new Tileset();
+        public Tileset Tileset { get; set; } = new Tileset();
         public Palette Palette { get; set; } = new Palette();
         public int Width { get; private set; }
         public int Height { get; private set; }

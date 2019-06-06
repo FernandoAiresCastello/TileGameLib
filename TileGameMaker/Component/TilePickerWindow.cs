@@ -22,12 +22,12 @@ namespace TileGameMaker.Component
         {
             InitializeComponent();
             MapEditor = editor;
-            TilePicker = new TilePicker(CharPickerPanel, 8, 64, 3);
+            TilePicker = new TilePicker(TilePickerPanel, 8, 64, 3);
             TilePicker.Graphics.Tileset = tileset;
             TilePicker.ShowGrid = true;
-            TilePicker.MouseMove += CharPicker_MouseMove;
-            TilePicker.MouseLeave += CharPicker_MouseLeave;
-            TilePicker.MouseDown += CharPicker_MouseDown;
+            TilePicker.MouseMove += TilePicker_MouseMove;
+            TilePicker.MouseLeave += TilePicker_MouseLeave;
+            TilePicker.MouseDown += TilePicker_MouseDown;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
             TileEditorWindow = new TileEditorWindow(tileset);
             TileEditorWindow.Subscribe(this);
@@ -42,7 +42,7 @@ namespace TileGameMaker.Component
             return TilePicker.TileIndex;
         }
 
-        private void CharPicker_MouseDown(object sender, MouseEventArgs e)
+        private void TilePicker_MouseDown(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
             if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
@@ -55,7 +55,7 @@ namespace TileGameMaker.Component
             }
         }
 
-        private void CharPicker_MouseMove(object sender, MouseEventArgs e)
+        private void TilePicker_MouseMove(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
             if (tileIx >= 0 && tileIx < TilePicker.Graphics.Tileset.Size)
@@ -76,7 +76,7 @@ namespace TileGameMaker.Component
             TileEditorWindow.ShowDialog(this);
         }
 
-        private void CharPicker_MouseLeave(object sender, EventArgs e)
+        private void TilePicker_MouseLeave(object sender, EventArgs e)
         {
             SetHoverStatus("");
         }

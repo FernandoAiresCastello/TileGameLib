@@ -10,9 +10,9 @@ namespace TileGameLib.Graphics
 {
     public class MapRenderer
     {
+        public ObjectMap Map { set; get; }
         public bool AnimationEnabled { set; get; }
 
-        private ObjectMap Map;
         private Display Disp;
         private Timer AnimationTimer;
         private int AnimationFrame;
@@ -21,7 +21,7 @@ namespace TileGameLib.Graphics
         {
             Map = map;
             Disp = disp;
-            Disp.Graphics.Tileset = Map.Charset;
+            Disp.Graphics.Tileset = Map.Tileset;
             Disp.Graphics.Palette = Map.Palette;
             AnimationFrame = 0;
             AnimationEnabled = true;
