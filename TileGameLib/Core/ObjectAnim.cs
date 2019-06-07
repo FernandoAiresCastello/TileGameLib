@@ -37,6 +37,14 @@ namespace TileGameLib.Core
             return Frames.Count == 1;
         }
 
+        public Tile GetFirstFrame()
+        {
+            if (Frames.Count > 0)
+                return Frames[0];
+
+            return null;
+        }
+
         public void SetEqual(ObjectAnim other)
         {
             Frames.Clear();

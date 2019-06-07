@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace TileGameLib.Core
         public int Type { set; get; }
         public int Param { set; get; }
         public string Data { set; get; }
+
+        [Browsable(false)]
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
 
         public GameObject()

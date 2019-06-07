@@ -40,6 +40,20 @@ namespace TileGameMaker.Component
             SetHoverStatus("");
         }
 
+        public void SetForeColorIndex(int index)
+        {
+            ColorPicker.ForeColorIx = index;
+            UpdatePanelColors();
+            UpdateStatus();
+        }
+
+        public void SetBackColorIndex(int index)
+        {
+            ColorPicker.BackColorIx = index;
+            UpdatePanelColors();
+            UpdateStatus();
+        }
+
         public int GetForeColorIndex()
         {
             return ColorPicker.ForeColorIx;

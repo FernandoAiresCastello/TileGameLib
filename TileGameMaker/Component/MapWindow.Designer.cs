@@ -34,26 +34,25 @@ namespace TileGameMaker.Component
             this.LayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.MapPanel = new System.Windows.Forms.Panel();
-            this.InfoPanel = new System.Windows.Forms.Panel();
-            this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.TxtContextMenuCell = new System.Windows.Forms.ToolStripTextBox();
-            this.CtxBtnCancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnInfo = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.CtxBtnSetProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.MapPanel = new System.Windows.Forms.Panel();
+            this.InfoPanel = new System.Windows.Forms.Panel();
+            this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.TxtContextMenuCell = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CtxBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.CtxBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.CtxBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.CtxBtnCancel = new System.Windows.Forms.ToolStripMenuItem();
             this.LayoutPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -109,91 +108,6 @@ namespace TileGameMaker.Component
             this.toolStrip1.Size = new System.Drawing.Size(754, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // MapPanel
-            // 
-            this.MapPanel.AutoScroll = true;
-            this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapPanel.Location = new System.Drawing.Point(3, 28);
-            this.MapPanel.Name = "MapPanel";
-            this.MapPanel.Size = new System.Drawing.Size(748, 402);
-            this.MapPanel.TabIndex = 1;
-            // 
-            // InfoPanel
-            // 
-            this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoPanel.Location = new System.Drawing.Point(3, 436);
-            this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(748, 100);
-            this.InfoPanel.TabIndex = 1;
-            // 
-            // HoverLabel
-            // 
-            this.HoverLabel.Name = "HoverLabel";
-            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
-            this.HoverLabel.Text = "HoverLabel";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel,
-            this.HoverLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(754, 24);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
-            this.StatusLabel.Text = "StatusLabel";
-            // 
-            // ContextMenu
-            // 
-            this.ContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TxtContextMenuCell,
-            this.toolStripSeparator1,
-            this.CtxBtnSetProperties,
-            this.CtxBtnCopy,
-            this.CtxBtnPaste,
-            this.CtxBtnDelete,
-            this.toolStripSeparator2,
-            this.CtxBtnCancel});
-            this.ContextMenu.Name = "contextMenuStrip1";
-            this.ContextMenu.Size = new System.Drawing.Size(181, 172);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // TxtContextMenuCell
-            // 
-            this.TxtContextMenuCell.BackColor = System.Drawing.Color.White;
-            this.TxtContextMenuCell.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtContextMenuCell.Enabled = false;
-            this.TxtContextMenuCell.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtContextMenuCell.Name = "TxtContextMenuCell";
-            this.TxtContextMenuCell.ReadOnly = true;
-            this.TxtContextMenuCell.Size = new System.Drawing.Size(100, 16);
-            // 
-            // CtxBtnCancel
-            // 
-            this.CtxBtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.CtxBtnCancel.Name = "CtxBtnCancel";
-            this.CtxBtnCancel.Size = new System.Drawing.Size(180, 22);
-            this.CtxBtnCancel.Text = "Cancel";
-            this.CtxBtnCancel.Click += new System.EventHandler(this.CtxBtnCancel_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // BtnNew
             // 
@@ -261,14 +175,76 @@ namespace TileGameMaker.Component
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // CtxBtnSetProperties
+            // MapPanel
             // 
-            this.CtxBtnSetProperties.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.CtxBtnSetProperties.Image = global::TileGameMaker.Properties.Resources.table_edit;
-            this.CtxBtnSetProperties.Name = "CtxBtnSetProperties";
-            this.CtxBtnSetProperties.Size = new System.Drawing.Size(180, 22);
-            this.CtxBtnSetProperties.Text = "Set properties";
-            this.CtxBtnSetProperties.Click += new System.EventHandler(this.CtxBtnSetProperties_Click);
+            this.MapPanel.AutoScroll = true;
+            this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapPanel.Location = new System.Drawing.Point(3, 28);
+            this.MapPanel.Name = "MapPanel";
+            this.MapPanel.Size = new System.Drawing.Size(748, 402);
+            this.MapPanel.TabIndex = 1;
+            // 
+            // InfoPanel
+            // 
+            this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.InfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InfoPanel.Location = new System.Drawing.Point(3, 436);
+            this.InfoPanel.Name = "InfoPanel";
+            this.InfoPanel.Size = new System.Drawing.Size(748, 100);
+            this.InfoPanel.TabIndex = 1;
+            // 
+            // HoverLabel
+            // 
+            this.HoverLabel.Name = "HoverLabel";
+            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
+            this.HoverLabel.Text = "HoverLabel";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusLabel,
+            this.HoverLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(754, 24);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
+            this.StatusLabel.Text = "StatusLabel";
+            // 
+            // ContextMenu
+            // 
+            this.ContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TxtContextMenuCell,
+            this.toolStripSeparator1,
+            this.CtxBtnCopy,
+            this.CtxBtnPaste,
+            this.CtxBtnDelete,
+            this.toolStripSeparator2,
+            this.CtxBtnCancel});
+            this.ContextMenu.Name = "contextMenuStrip1";
+            this.ContextMenu.Size = new System.Drawing.Size(181, 150);
+            // 
+            // TxtContextMenuCell
+            // 
+            this.TxtContextMenuCell.BackColor = System.Drawing.Color.White;
+            this.TxtContextMenuCell.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtContextMenuCell.Enabled = false;
+            this.TxtContextMenuCell.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtContextMenuCell.Name = "TxtContextMenuCell";
+            this.TxtContextMenuCell.ReadOnly = true;
+            this.TxtContextMenuCell.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // CtxBtnCopy
             // 
@@ -293,6 +269,19 @@ namespace TileGameMaker.Component
             this.CtxBtnDelete.Size = new System.Drawing.Size(180, 22);
             this.CtxBtnDelete.Text = "Delete";
             this.CtxBtnDelete.Click += new System.EventHandler(this.CtxBtnDelete_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // CtxBtnCancel
+            // 
+            this.CtxBtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.CtxBtnCancel.Name = "CtxBtnCancel";
+            this.CtxBtnCancel.Size = new System.Drawing.Size(180, 22);
+            this.CtxBtnCancel.Text = "Cancel";
+            this.CtxBtnCancel.Click += new System.EventHandler(this.CtxBtnCancel_Click);
             // 
             // MapWindow
             // 
@@ -337,7 +326,6 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.ToolStripButton BtnZoomOut;
         private System.Windows.Forms.ToolStripButton BtnInfo;
         private System.Windows.Forms.ContextMenuStrip ContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem CtxBtnSetProperties;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnCopy;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnPaste;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnDelete;

@@ -11,41 +11,47 @@ using TileGameLib.Core;
 
 namespace TileGameMaker.Component
 {
-    public partial class GameObjectPropertyWindow : Form
+    public partial class TemplateWindow : Form
     {
         public GameObject Object { set; get; }
-        public Point Position { set; get; }
 
-        public GameObjectPropertyWindow()
+        public TemplateWindow()
         {
             InitializeComponent();
 
-            Shown += GameObjectPropertyWindow_Shown;
-            FormClosed += GameObjectPropertyWindow_FormClosed;
+            Object = new GameObject();
         }
 
-        private void GameObjectPropertyWindow_Shown(object sender, EventArgs e)
+        public override void Refresh()
         {
-            TxtPosX.Text = Position.X.ToString();
-            TxtPosY.Text = Position.Y.ToString();
+            base.Refresh();
             TxtType.Text = Object.Type.ToString();
             TxtParam.Text = Object.Param.ToString();
             TxtData.Text = Object.Data;
         }
 
-        private void GameObjectPropertyWindow_FormClosed(object sender, FormClosedEventArgs e)
+        private void TxtBox_TextChanged(object sender, EventArgs e)
         {
-            Object.Type = int.Parse(TxtType.Text);
-            Object.Param = int.Parse(TxtParam.Text);
+            int.TryParse(TxtType.Text, out int type);
+            int.TryParse(TxtParam.Text, out int param);
+
+            Object.Type = type;
+            Object.Param = param;
             Object.Data = TxtData.Text;
         }
 
-        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            Object.SetNull();
+            Refresh();
         }
     }
 }

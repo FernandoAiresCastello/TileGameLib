@@ -37,6 +37,13 @@ namespace TileGameMaker.Component
             UpdateStatus();
         }
 
+        public void SetTileIndex(int index)
+        {
+            TilePicker.TileIndex = index;
+            UpdateStatus();
+            Refresh();
+        }
+
         public int GetTileIndex()
         {
             return TilePicker.TileIndex;

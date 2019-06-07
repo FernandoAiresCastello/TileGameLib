@@ -59,11 +59,11 @@
     <Compile Include="Component\ColorEditorWindow.Designer.cs">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Component\GameObjectPropertyWindow.cs">
+    <Compile Include="Component\TemplateWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\GameObjectPropertyWindow.Designer.cs">
-      <DependentUpon>GameObjectPropertyWindow.cs</DependentUpon>
+    <Compile Include="Component\TemplateWindow.Designer.cs">
+      <DependentUpon>TemplateWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\TileEditor.cs">
       <SubType>Component</SubType>
@@ -110,8 +110,8 @@
     <EmbeddedResource Include="Component\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Component\GameObjectPropertyWindow.resx">
-      <DependentUpon>GameObjectPropertyWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Component\TemplateWindow.resx">
+      <DependentUpon>TemplateWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TileEditorWindow.resx">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
