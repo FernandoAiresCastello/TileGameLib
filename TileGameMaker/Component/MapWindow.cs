@@ -20,6 +20,8 @@ namespace TileGameMaker.Component
         private Display Disp;
         private ObjectMap Map;
         private MapRenderer MapRenderer;
+        private Point ContextMenuCell;
+        private GameObject ClipboardObject;
 
         public MapWindow(MapEditor editor, ObjectMap map)
         {
@@ -40,6 +42,7 @@ namespace TileGameMaker.Component
             HoverLabel.Text = "";
             UpdateStatusLabel();
             FillBlankMap();
+            ClipboardObject = new GameObject(new Tile(0, 0, 63));
         }
 
         public void SetMap(ObjectMap map)
@@ -87,10 +90,34 @@ namespace TileGameMaker.Component
 
             if (o != null)
             {
-                o.Animation.Clear();
-                o.Animation.GetFrame(0).SetEqual(MapEditor.GetSelectedTile());
-                RenderMap();
+                if (e.Button == MouseButtons.Left)
+                {
+                    PutCurrentObject(o);
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenuCell = point;
+                    TxtContextMenuCell.Text = point.X + ", " + point.Y;
+                    ContextMenu.Show(MousePosition, ToolStripDropDownDirection.Default);
+                }
             }
+        }
+
+        private void PutCurrentObject(GameObject o)
+        {
+            o.Animation.Clear();
+            o.Animation.GetFrame(0).SetEqual(MapEditor.GetSelectedTile());
+            RenderMap();
+        }
+
+        private void ShowObjectProperties(GameObject o, Point pos)
+        {
+            GameObject objCopy = o.Copy();
+            MapEditor.PropertyWindow.Object = objCopy;
+            MapEditor.PropertyWindow.Position = pos;
+
+            if (MapEditor.PropertyWindow.ShowDialog(this) == DialogResult.OK)
+                Map.SetObject(objCopy, 0, pos.X, pos.Y);
         }
 
         private void Display_MouseMove(object sender, MouseEventArgs e)
@@ -161,6 +188,45 @@ namespace TileGameMaker.Component
                 InfoPanel.Hide();
             else
                 InfoPanel.Show();
+        }
+
+        private void CtxBtnSetProperties_Click(object sender, EventArgs e)
+        {
+            GameObject o = Map.GetObject(0, ContextMenuCell.X, ContextMenuCell.Y);
+            if (o != null)
+                ShowObjectProperties(o, ContextMenuCell);
+        }
+
+        private void CtxBtnDelete_Click(object sender, EventArgs e)
+        {
+            GameObject o = Map.GetObject(0, ContextMenuCell.X, ContextMenuCell.Y);
+            if (o != null)
+            {
+                o.SetEqual(new GameObject(new Tile(0, 0, 63)));
+                Refresh();
+            }
+        }
+
+        private void CtxBtnCancel_Click(object sender, EventArgs e)
+        {
+            ContextMenu.Close();
+        }
+
+        private void CtxBtnCopy_Click(object sender, EventArgs e)
+        {
+            GameObject o = Map.GetObject(0, ContextMenuCell.X, ContextMenuCell.Y);
+            if (o != null)
+                ClipboardObject.SetEqual(o);
+        }
+
+        private void CtxBtnPaste_Click(object sender, EventArgs e)
+        {
+            GameObject o = Map.GetObject(0, ContextMenuCell.X, ContextMenuCell.Y);
+            if (o != null)
+            {
+                o.SetEqual(ClipboardObject);
+                Refresh();
+            }
         }
     }
 }

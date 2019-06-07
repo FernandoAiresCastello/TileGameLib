@@ -59,6 +59,12 @@
     <Compile Include="Component\ColorEditorWindow.Designer.cs">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\GameObjectPropertyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\GameObjectPropertyWindow.Designer.cs">
+      <DependentUpon>GameObjectPropertyWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\TileEditor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Component\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\GameObjectPropertyWindow.resx">
+      <DependentUpon>GameObjectPropertyWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TileEditorWindow.resx">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
@@ -152,6 +161,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\table_edit.png" />
     <None Include="Resources\zoom_in.png" />
     <None Include="Resources\layouts_four_grid.png" />
     <None Include="Resources\camera.png" />
@@ -170,6 +180,9 @@
     <None Include="Resources\magnifier_zoom_out.png" />
     <None Include="Resources\magnifier_zoom_in.png" />
     <None Include="Resources\information.png" />
+    <None Include="Resources\page_white_copy.png" />
+    <None Include="Resources\page_white_paste.png" />
+    <None Include="Resources\draw_eraser1.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />
