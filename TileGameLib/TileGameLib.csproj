@@ -36,12 +36,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ObjectLayer.cs" />
     <Compile Include="Core\ObjectMap.cs" />
+    <Compile Include="Exception\FileException.cs" />
+    <Compile Include="Exception\RuntimeException.cs" />
+    <Compile Include="File\MemoryFile.cs" />
+    <Compile Include="File\Zip.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="Core\ObjectAnim.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />

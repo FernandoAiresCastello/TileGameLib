@@ -45,7 +45,7 @@ namespace TileGameMaker.Component
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CtxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TxtContextMenuCell = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CtxBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +57,7 @@ namespace TileGameMaker.Component
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.ContextMenu.SuspendLayout();
+            this.CtxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayoutPanel
@@ -220,7 +220,7 @@ namespace TileGameMaker.Component
             // 
             // ContextMenu
             // 
-            this.ContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TxtContextMenuCell,
             this.toolStripSeparator1,
             this.CtxBtnCopy,
@@ -228,8 +228,8 @@ namespace TileGameMaker.Component
             this.CtxBtnDelete,
             this.toolStripSeparator2,
             this.CtxBtnCancel});
-            this.ContextMenu.Name = "contextMenuStrip1";
-            this.ContextMenu.Size = new System.Drawing.Size(181, 150);
+            this.CtxMenu.Name = "contextMenuStrip1";
+            this.CtxMenu.Size = new System.Drawing.Size(181, 150);
             // 
             // TxtContextMenuCell
             // 
@@ -302,8 +302,8 @@ namespace TileGameMaker.Component
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.ContextMenu.ResumeLayout(false);
-            this.ContextMenu.PerformLayout();
+            this.CtxMenu.ResumeLayout(false);
+            this.CtxMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +325,7 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.ToolStripButton BtnZoomIn;
         private System.Windows.Forms.ToolStripButton BtnZoomOut;
         private System.Windows.Forms.ToolStripButton BtnInfo;
-        private System.Windows.Forms.ContextMenuStrip ContextMenu;
+        private System.Windows.Forms.ContextMenuStrip CtxMenu;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnCopy;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnPaste;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnDelete;

@@ -190,7 +190,7 @@ namespace TileGameMaker.Component
 
         private void CtxBtnCancel_Click(object sender, EventArgs e)
         {
-            ContextMenu.Close();
+            CtxMenu.Close();
         }
 
         private void CtxBtnCopy_Click(object sender, EventArgs e)
