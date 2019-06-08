@@ -34,12 +34,6 @@ namespace TileGameMaker.Component
             this.LayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
-            this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.BtnGrid = new System.Windows.Forms.ToolStripButton();
-            this.BtnInfo = new System.Windows.Forms.ToolStripButton();
-            this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -48,10 +42,17 @@ namespace TileGameMaker.Component
             this.CtxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TxtContextMenuCell = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
+            this.BtnGrid = new System.Windows.Forms.ToolStripButton();
+            this.BtnInfo = new System.Windows.Forms.ToolStripButton();
+            this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.CtxBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.CtxBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.CtxBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.CtxBtnCancel = new System.Windows.Forms.ToolStripMenuItem();
             this.LayoutPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -98,16 +99,93 @@ namespace TileGameMaker.Component
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnNew,
+            this.BtnAddText,
             this.BtnZoomIn,
             this.BtnZoomOut,
             this.BtnGrid,
-            this.BtnInfo,
-            this.BtnScreenshot});
+            this.BtnScreenshot,
+            this.BtnInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(754, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // MapPanel
+            // 
+            this.MapPanel.AutoScroll = true;
+            this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapPanel.Location = new System.Drawing.Point(3, 28);
+            this.MapPanel.Name = "MapPanel";
+            this.MapPanel.Size = new System.Drawing.Size(748, 402);
+            this.MapPanel.TabIndex = 1;
+            // 
+            // InfoPanel
+            // 
+            this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.InfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InfoPanel.Location = new System.Drawing.Point(3, 436);
+            this.InfoPanel.Name = "InfoPanel";
+            this.InfoPanel.Size = new System.Drawing.Size(748, 100);
+            this.InfoPanel.TabIndex = 1;
+            // 
+            // HoverLabel
+            // 
+            this.HoverLabel.Name = "HoverLabel";
+            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
+            this.HoverLabel.Text = "HoverLabel";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusLabel,
+            this.HoverLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(754, 24);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
+            this.StatusLabel.Text = "StatusLabel";
+            // 
+            // CtxMenu
+            // 
+            this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TxtContextMenuCell,
+            this.toolStripSeparator1,
+            this.CtxBtnCopy,
+            this.CtxBtnPaste,
+            this.CtxBtnDelete,
+            this.toolStripSeparator2,
+            this.CtxBtnCancel});
+            this.CtxMenu.Name = "contextMenuStrip1";
+            this.CtxMenu.Size = new System.Drawing.Size(161, 128);
+            // 
+            // TxtContextMenuCell
+            // 
+            this.TxtContextMenuCell.BackColor = System.Drawing.Color.White;
+            this.TxtContextMenuCell.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtContextMenuCell.Enabled = false;
+            this.TxtContextMenuCell.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtContextMenuCell.Name = "TxtContextMenuCell";
+            this.TxtContextMenuCell.ReadOnly = true;
+            this.TxtContextMenuCell.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(157, 6);
             // 
             // BtnNew
             // 
@@ -175,82 +253,22 @@ namespace TileGameMaker.Component
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // MapPanel
+            // BtnAddText
             // 
-            this.MapPanel.AutoScroll = true;
-            this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapPanel.Location = new System.Drawing.Point(3, 28);
-            this.MapPanel.Name = "MapPanel";
-            this.MapPanel.Size = new System.Drawing.Size(748, 402);
-            this.MapPanel.TabIndex = 1;
-            // 
-            // InfoPanel
-            // 
-            this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoPanel.Location = new System.Drawing.Point(3, 436);
-            this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(748, 100);
-            this.InfoPanel.TabIndex = 1;
-            // 
-            // HoverLabel
-            // 
-            this.HoverLabel.Name = "HoverLabel";
-            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
-            this.HoverLabel.Text = "HoverLabel";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel,
-            this.HoverLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(754, 24);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
-            this.StatusLabel.Text = "StatusLabel";
-            // 
-            // ContextMenu
-            // 
-            this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TxtContextMenuCell,
-            this.toolStripSeparator1,
-            this.CtxBtnCopy,
-            this.CtxBtnPaste,
-            this.CtxBtnDelete,
-            this.toolStripSeparator2,
-            this.CtxBtnCancel});
-            this.CtxMenu.Name = "contextMenuStrip1";
-            this.CtxMenu.Size = new System.Drawing.Size(181, 150);
-            // 
-            // TxtContextMenuCell
-            // 
-            this.TxtContextMenuCell.BackColor = System.Drawing.Color.White;
-            this.TxtContextMenuCell.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtContextMenuCell.Enabled = false;
-            this.TxtContextMenuCell.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtContextMenuCell.Name = "TxtContextMenuCell";
-            this.TxtContextMenuCell.ReadOnly = true;
-            this.TxtContextMenuCell.Size = new System.Drawing.Size(100, 16);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.BtnAddText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnAddText.Image = global::TileGameMaker.Properties.Resources.insert_text;
+            this.BtnAddText.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnAddText.Name = "BtnAddText";
+            this.BtnAddText.Size = new System.Drawing.Size(23, 22);
+            this.BtnAddText.Text = "toolStripButton1";
+            this.BtnAddText.ToolTipText = "Toggle text input mode";
+            this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
             // 
             // CtxBtnCopy
             // 
             this.CtxBtnCopy.Image = global::TileGameMaker.Properties.Resources.page_white_copy;
             this.CtxBtnCopy.Name = "CtxBtnCopy";
-            this.CtxBtnCopy.Size = new System.Drawing.Size(180, 22);
+            this.CtxBtnCopy.Size = new System.Drawing.Size(160, 22);
             this.CtxBtnCopy.Text = "Copy";
             this.CtxBtnCopy.Click += new System.EventHandler(this.CtxBtnCopy_Click);
             // 
@@ -258,7 +276,7 @@ namespace TileGameMaker.Component
             // 
             this.CtxBtnPaste.Image = global::TileGameMaker.Properties.Resources.page_white_paste;
             this.CtxBtnPaste.Name = "CtxBtnPaste";
-            this.CtxBtnPaste.Size = new System.Drawing.Size(180, 22);
+            this.CtxBtnPaste.Size = new System.Drawing.Size(160, 22);
             this.CtxBtnPaste.Text = "Paste";
             this.CtxBtnPaste.Click += new System.EventHandler(this.CtxBtnPaste_Click);
             // 
@@ -266,20 +284,15 @@ namespace TileGameMaker.Component
             // 
             this.CtxBtnDelete.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
             this.CtxBtnDelete.Name = "CtxBtnDelete";
-            this.CtxBtnDelete.Size = new System.Drawing.Size(180, 22);
+            this.CtxBtnDelete.Size = new System.Drawing.Size(160, 22);
             this.CtxBtnDelete.Text = "Delete";
             this.CtxBtnDelete.Click += new System.EventHandler(this.CtxBtnDelete_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // CtxBtnCancel
             // 
             this.CtxBtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
             this.CtxBtnCancel.Name = "CtxBtnCancel";
-            this.CtxBtnCancel.Size = new System.Drawing.Size(180, 22);
+            this.CtxBtnCancel.Size = new System.Drawing.Size(160, 22);
             this.CtxBtnCancel.Text = "Cancel";
             this.CtxBtnCancel.Click += new System.EventHandler(this.CtxBtnCancel_Click);
             // 
@@ -333,6 +346,7 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem CtxBtnCancel;
+        private System.Windows.Forms.ToolStripButton BtnAddText;
     }
 }
 

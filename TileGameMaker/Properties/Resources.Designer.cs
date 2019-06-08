@@ -153,6 +153,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap insert_text {
+            get {
+                object obj = ResourceManager.GetObject("insert_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap layouts_four_grid {
             get {
                 object obj = ResourceManager.GetObject("layouts_four_grid", resourceCulture);

@@ -27,9 +27,9 @@ namespace TileGameMaker.Modules
             Parent = parent;
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             MapWindow = new MapWindow(this, Map);
+            TemplateWindow = new TemplateWindow(this);
             TilePickerWindow = new TilePickerWindow(this, Map.Tileset);
             ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
-            TemplateWindow = new TemplateWindow(this);
 
             if (parent.IsMdiContainer)
             {

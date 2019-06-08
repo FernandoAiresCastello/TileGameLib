@@ -68,6 +68,12 @@
     <Compile Include="Component\TemplateWindow.Designer.cs">
       <DependentUpon>TemplateWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\TextInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\TextInputWindow.Designer.cs">
+      <DependentUpon>TextInputWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\TileEditor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TemplateWindow.resx">
       <DependentUpon>TemplateWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\TextInputWindow.resx">
+      <DependentUpon>TextInputWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TileEditorWindow.resx">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
@@ -186,6 +195,7 @@
     <None Include="Resources\page_white_copy.png" />
     <None Include="Resources\page_white_paste.png" />
     <None Include="Resources\draw_eraser1.png" />
+    <None Include="Resources\insert_text.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />

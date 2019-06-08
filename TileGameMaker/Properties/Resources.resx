@@ -139,6 +139,9 @@
   <data name="magnifier_zoom_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\magnifier_zoom_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="accept_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\accept_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,11 +154,8 @@
   <data name="copying_and_distribution" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copying_and_distribution.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape_flip_vertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape_flip_vertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shape_flip_horizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape_flip_horizontal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,8 +163,8 @@
   <data name="table_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\camera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bullet_arrow_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bullet_arrow_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +172,8 @@
   <data name="layouts_four_grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\layouts_four_grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="accept_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\accept_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shape_flip_vertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape_flip_vertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="draw_eraser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\draw_eraser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,5 +183,8 @@
   </data>
   <data name="page_white_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\page_white_paste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="insert_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\insert_text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

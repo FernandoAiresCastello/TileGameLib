@@ -33,6 +33,7 @@ namespace TileGameMaker.Component
             TileEditorWindow.Subscribe(this);
             TileEditorWindow.Subscribe(TilePicker);
             TileEditorWindow.Subscribe(editor.MapWindow);
+            TileEditorWindow.Subscribe(editor.TemplateWindow);
             SetHoverStatus("");
             UpdateStatus();
         }

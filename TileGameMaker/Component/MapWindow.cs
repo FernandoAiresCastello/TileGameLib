@@ -23,6 +23,9 @@ namespace TileGameMaker.Component
         private Point ContextMenuCell;
         private GameObject ClipboardObject;
 
+        private enum EditMode { Template, TextInput }
+        private EditMode Mode = EditMode.Template;
+
         public MapWindow(MapEditor editor, ObjectMap map)
         {
             InitializeComponent();
@@ -86,8 +89,10 @@ namespace TileGameMaker.Component
         {
             Point point = Disp.GetMouseToCellPos(e.Location);
             GameObject o = Map.GetObject(0, point.X, point.Y);
+            if (o == null)
+                return;
 
-            if (o != null)
+            if (Mode == EditMode.Template)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -99,6 +104,11 @@ namespace TileGameMaker.Component
                     TxtContextMenuCell.Text = point.X + ", " + point.Y;
                     CopyObjectToTemplate(o);
                 }
+            }
+            else if (Mode == EditMode.TextInput)
+            {
+                if (e.Button == MouseButtons.Left)
+                    InputText(point.X, point.Y);
             }
         }
 
@@ -214,15 +224,43 @@ namespace TileGameMaker.Component
         private void CopyObjectToTemplate(GameObject o)
         {
             MapEditor.TemplateWindow.Object.SetEqual(o);
-            //MapEditor.TemplateWindow.Animation.SetEqual(o.Animation);
-            //MapEditor.TemplateWindow.AnimationFrameCount = o.Animation.Size;
             MapEditor.TemplateWindow.UpdateAnimation(o.Animation);
             MapEditor.TemplateWindow.Refresh();
+        }
 
-            /*Tile tile = o.Animation.GetFirstFrame();
-            MapEditor.ColorPickerWindow.SetForeColorIndex(tile.ForeColorIx);
-            MapEditor.ColorPickerWindow.SetBackColorIndex(tile.BackColorIx);
-            MapEditor.TilePickerWindow.SetTileIndex(tile.TileIx);*/
+        private void BtnAddText_Click(object sender, EventArgs e)
+        {
+            if (Mode == EditMode.Template)
+                Mode = EditMode.TextInput;
+            else if (Mode == EditMode.TextInput)
+                Mode = EditMode.Template;
+
+            BtnAddText.Checked = Mode == EditMode.TextInput;
+        }
+
+        private void InputText(int x, int y)
+        {
+            TextInputWindow win = new TextInputWindow();
+            if (win.ShowDialog(this) == DialogResult.Cancel)
+                return;
+
+            string[] lines = win.GetText().Replace("\r", "").Split('\n');
+
+            foreach (string line in lines)
+            {
+                int px = x;
+                foreach (char ch in line)
+                {
+                    Tile tile = MapEditor.GetSelectedTile();
+                    tile.TileIx = ch;
+                    GameObject o = new GameObject(tile);
+                    Map.SetObject(o, 0, x++, y);
+                }
+                y++;
+                x = px;
+            }
+
+            Refresh();
         }
     }
 }

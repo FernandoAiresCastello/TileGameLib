@@ -31,6 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AnimationPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.TxtFrames = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
             this.TxtData = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,8 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtFrames = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,11 +56,12 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 263);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 253);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // AnimationPanel
             // 
+            this.AnimationPanel.BackColor = System.Drawing.Color.White;
             this.AnimationPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.AnimationPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AnimationPanel.Location = new System.Drawing.Point(3, 3);
@@ -86,9 +87,31 @@
             this.panel2.Size = new System.Drawing.Size(317, 223);
             this.panel2.TabIndex = 2;
             // 
+            // TxtFrames
+            // 
+            this.TxtFrames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtFrames.Location = new System.Drawing.Point(252, 7);
+            this.TxtFrames.MaxLength = 2;
+            this.TxtFrames.Name = "TxtFrames";
+            this.TxtFrames.Size = new System.Drawing.Size(58, 20);
+            this.TxtFrames.TabIndex = 8;
+            this.TxtFrames.Text = "0";
+            this.TxtFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
+            this.TxtFrames.Leave += new System.EventHandler(this.TxtFrames_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(206, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Frames";
+            // 
             // BtnClear
             // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnClear.Image = global::TileGameMaker.Properties.Resources.cross;
             this.BtnClear.Location = new System.Drawing.Point(7, 171);
             this.BtnClear.Name = "BtnClear";
@@ -164,37 +187,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Type";
             // 
-            // TxtFrames
-            // 
-            this.TxtFrames.Location = new System.Drawing.Point(252, 7);
-            this.TxtFrames.MaxLength = 2;
-            this.TxtFrames.Name = "TxtFrames";
-            this.TxtFrames.Size = new System.Drawing.Size(58, 20);
-            this.TxtFrames.TabIndex = 8;
-            this.TxtFrames.Text = "0";
-            this.TxtFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
-            this.TxtFrames.Leave += new System.EventHandler(this.TxtFrames_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Frames";
-            // 
             // TemplateWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 263);
+            this.ClientSize = new System.Drawing.Size(323, 253);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(339, 270);
+            this.MinimumSize = new System.Drawing.Size(339, 287);
             this.Name = "TemplateWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Template";

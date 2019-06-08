@@ -35,6 +35,7 @@ namespace TileGameMaker.Component
             ColorEditorWindow.Subscribe(this);
             ColorEditorWindow.Subscribe(ColorPicker);
             ColorEditorWindow.Subscribe(editor.MapWindow);
+            ColorEditorWindow.Subscribe(editor.TemplateWindow);
             UpdatePanelColors();
             UpdateStatus();
             SetHoverStatus("");

@@ -52,6 +52,8 @@ namespace TileGameMaker.Component
             MapEditor = editor;
             Object = new GameObject();
             AnimationStrip = new AnimationStrip(AnimationPanel, MaxFrames, 1, 3);
+            AnimationStrip.Graphics.Tileset = editor.Map.Tileset;
+            AnimationStrip.Graphics.Palette = editor.Map.Palette;
             AnimationStrip.MouseDown += AnimationStrip_MouseDown;
             TxtFrames.Text = 1.ToString();
             Shown += TemplateWindow_Shown;
