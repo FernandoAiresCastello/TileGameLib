@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\AnimationStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Component\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>

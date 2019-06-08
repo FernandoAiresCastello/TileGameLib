@@ -10,15 +10,17 @@ namespace TileGameLib.Core
     public class ObjectAnim
     {
         public List<Tile> Frames { set; get; } = new List<Tile>();
-
-        public Tile this[int index]
-        {
-            get { return GetFrame(index); }
-        }
+        public Tile this[int index] { get { return GetFrame(index); } }
+        public int Size { get { return Frames.Count; } }
 
         public ObjectAnim()
         {
             Clear();
+        }
+
+        public ObjectAnim(bool addEmptyFirstFrame)
+        {
+            Clear(addEmptyFirstFrame);
         }
 
         public ObjectAnim(ObjectAnim other)
@@ -26,10 +28,25 @@ namespace TileGameLib.Core
             SetEqual(other);
         }
 
+        public ObjectAnim CopyFrames(int frames)
+        {
+            ObjectAnim anim = new ObjectAnim(false);
+            for (int i = 0; i < frames && i < Frames.Count; i++)
+                anim.AddFrame(Frames[i]);
+
+            return anim;
+        }
+
         public void Clear()
         {
+            Clear(true);
+        }
+
+        public void Clear(bool addEmptyFirstFrame)
+        {
             Frames.Clear();
-            Frames.Add(new Tile());
+            if (addEmptyFirstFrame)
+                Frames.Add(new Tile());
         }
 
         public bool IsSingleFrame()

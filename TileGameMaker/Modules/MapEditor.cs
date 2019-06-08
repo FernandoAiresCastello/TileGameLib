@@ -29,7 +29,7 @@ namespace TileGameMaker.Modules
             MapWindow = new MapWindow(this, Map);
             TilePickerWindow = new TilePickerWindow(this, Map.Tileset);
             ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
-            TemplateWindow = new TemplateWindow();
+            TemplateWindow = new TemplateWindow(this);
 
             if (parent.IsMdiContainer)
             {
@@ -58,11 +58,11 @@ namespace TileGameMaker.Modules
 
         public GameObject GetSelectedObject()
         {
-            Tile tile = GetSelectedTile();
-            GameObject o = new GameObject(tile);
+            GameObject o = new GameObject();
             o.Type = TemplateWindow.Object.Type;
             o.Param = TemplateWindow.Object.Param;
             o.Data = TemplateWindow.Object.Data;
+            o.Animation.SetEqual(TemplateWindow.CroppedAnimation);
             return o;
         }
 

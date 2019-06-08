@@ -32,7 +32,6 @@ namespace TileGameMaker.Component
             Disp = new Display(MapPanel, map.Width, map.Height, 3);
             Disp.BorderStyle = BorderStyle.None;
             MapRenderer = new MapRenderer(Map, Disp, 256);
-            MapRenderer.AnimationEnabled = false;
             Disp.ShowGrid = true;
             Disp.MouseMove += Display_MouseMove;
             Disp.MouseDown += Disp_MouseDown;
@@ -215,12 +214,15 @@ namespace TileGameMaker.Component
         private void CopyObjectToTemplate(GameObject o)
         {
             MapEditor.TemplateWindow.Object.SetEqual(o);
+            //MapEditor.TemplateWindow.Animation.SetEqual(o.Animation);
+            //MapEditor.TemplateWindow.AnimationFrameCount = o.Animation.Size;
+            MapEditor.TemplateWindow.UpdateAnimation(o.Animation);
             MapEditor.TemplateWindow.Refresh();
 
-            Tile tile = o.Animation.GetFirstFrame();
+            /*Tile tile = o.Animation.GetFirstFrame();
             MapEditor.ColorPickerWindow.SetForeColorIndex(tile.ForeColorIx);
             MapEditor.ColorPickerWindow.SetBackColorIndex(tile.BackColorIx);
-            MapEditor.TilePickerWindow.SetTileIndex(tile.TileIx);
+            MapEditor.TilePickerWindow.SetTileIndex(tile.TileIx);*/
         }
     }
 }

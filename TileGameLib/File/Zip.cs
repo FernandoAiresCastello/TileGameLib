@@ -9,7 +9,7 @@ using TileGameLib.Exception;
 
 namespace TileGameLib.File
 {
-    public class Zip
+    public static class Zip
     {
         public static void Overwrite(string path)
         {
