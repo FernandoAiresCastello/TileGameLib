@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Core;
+using TileGameLib.File;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 using TileGameMaker.Component;
 using TileGameMaker.Modules;
 
@@ -43,8 +45,8 @@ namespace TileGameMaker.Component
             Text = Map.Name;
             HoverLabel.Text = "";
             UpdateStatusLabel();
-            FillBlankMap();
             ClipboardObject = new GameObject(new Tile(0, 0, 63));
+            ClearMap();
         }
 
         public void SetMap(ObjectMap map)
@@ -56,26 +58,14 @@ namespace TileGameMaker.Component
 
         private void UpdateStatusLabel()
         {
-            StatusLabel.Text = 
+            StatusLabel.Text =
                 "Size: " + Map.Width + " x " + Map.Height + " " +
                 "Zoom: " + Disp.GetZoom();
         }
 
-        private void FillBlankMap()
+        private void ClearMap()
         {
-            Map.Fill(new GameObject(new Tile(0, 0, 63)));
-            RenderMap();
-        }
-
-        private void FillTestMap()
-        {
-            GameObject o = new GameObject(new Tile('|', 0, 63));
-            o.Animation.AddFrame(new Tile('-', 0, 63));
-            o.Animation.AddFrame(new Tile('+', 63, 0));
-            for (int y = 0; y < Map.Height; y++)
-                for (int x = 0; x < Map.Width; x++)
-                    Map.SetObject(o, 0, x, y);
-
+            Map.Fill(new GameObject(new Tile(0, 0, Disp.Graphics.Palette.Size - 1)));
             RenderMap();
         }
 
@@ -133,29 +123,6 @@ namespace TileGameMaker.Component
             HoverLabel.Text = "";
         }
 
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-            Map.Fill(new GameObject(new Tile(0, 0, Disp.Graphics.Palette.Size - 1)));
-            RenderMap();
-        }
-
-        private void BtnScreenshot_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Title = "Save map image";
-            dialog.AddExtension = true;
-            dialog.DefaultExt = "png";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-                Disp.Graphics.SaveScreenshot(dialog.FileName);
-        }
-
-        private void BtnGrid_Click(object sender, EventArgs e)
-        {
-            Disp.ShowGrid = !Disp.ShowGrid;
-            Refresh();
-        }
-
         public override void Refresh()
         {
             MapRenderer.Render();
@@ -169,17 +136,32 @@ namespace TileGameMaker.Component
 
         private void BtnZoomIn_Click(object sender, EventArgs e)
         {
+            ZoomIn();
+        }
+
+        private void BtnZoomOut_Click(object sender, EventArgs e)
+        {
+            ZoomOut();
+        }
+
+        private void ZoomIn()
+        {
             Disp.ZoomIn();
             UpdateStatusLabel();
         }
 
-        private void BtnZoomOut_Click(object sender, EventArgs e)
+        private void ZoomOut()
         {
             Disp.ZoomOut();
             UpdateStatusLabel();
         }
 
         private void BtnInfo_Click(object sender, EventArgs e)
+        {
+            ToggleInfo();
+        }
+
+        private void ToggleInfo()
         {
             if (InfoPanel.Visible)
                 InfoPanel.Hide();
@@ -228,7 +210,44 @@ namespace TileGameMaker.Component
             MapEditor.TemplateWindow.Refresh();
         }
 
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            ConfirmClearMap();
+        }
+
+        private void BtnScreenshot_Click(object sender, EventArgs e)
+        {
+            SaveScreenshot();
+        }
+
+        private void SaveScreenshot()
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Title = "Save map image";
+            dialog.AddExtension = true;
+            dialog.DefaultExt = "png";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+                Disp.Graphics.SaveScreenshot(dialog.FileName);
+        }
+
+        private void BtnGrid_Click(object sender, EventArgs e)
+        {
+            ToggleGrid();
+        }
+
+        private void ToggleGrid()
+        {
+            Disp.ShowGrid = !Disp.ShowGrid;
+            Refresh();
+        }
+
         private void BtnAddText_Click(object sender, EventArgs e)
+        {
+            ToggleTextMode();
+        }
+
+        private void ToggleTextMode()
         {
             if (Mode == EditMode.Template)
                 Mode = EditMode.TextInput;
@@ -261,6 +280,101 @@ namespace TileGameMaker.Component
             }
 
             Refresh();
+        }
+
+        private void BtnSaveMap_Click(object sender, EventArgs e)
+        {
+            SaveMap();
+        }
+
+        private void BtnLoadMap_Click(object sender, EventArgs e)
+        {
+            LoadMap();
+        }
+
+        private void SaveMap()
+        {
+            ArchiveManager mgr = new ArchiveManager(MapEditor.ArchiveFile);
+
+            if (mgr.ShowDialog(this, ArchiveManager.Mode.Save) == DialogResult.OK)
+            {
+                string entry = mgr.SelectedEntry;
+
+                if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
+                    return;
+
+                ObjectMapFile file = new ObjectMapFile(Map, MapEditor.ArchiveFile, mgr.SelectedEntry);
+                file.Save();
+                DialogResult = DialogResult.OK;
+                Alert.Info("File saved successfully!");
+            }
+        }
+
+        private void LoadMap()
+        {
+            ArchiveManager mgr = new ArchiveManager(MapEditor.ArchiveFile);
+
+            if (mgr.ShowDialog(this, ArchiveManager.Mode.Load) == DialogResult.OK)
+            {
+                string entry = mgr.SelectedEntry;
+
+                if (!mgr.Contains(entry))
+                {
+                    Alert.Warning($"File \"{entry}\" not found");
+                    return;
+                }
+
+                Alert.Error("Not implemented");
+            }
+        }
+
+        private void ConfirmClearMap()
+        {
+            if (Alert.Confirm("Clear map?"))
+                ClearMap();
+        }
+
+        private void MapWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.O:
+                        LoadMap();
+                        break;
+                    case Keys.S:
+                        SaveMap();
+                        break;
+                    case Keys.N:
+                        ConfirmClearMap();
+                        break;
+                    case Keys.G:
+                        ToggleGrid();
+                        break;
+                    case Keys.T:
+                        ToggleTextMode();
+                        break;
+                    case Keys.P:
+                        SaveScreenshot();
+                        break;
+                    case Keys.I:
+                        ToggleInfo();
+                        break;
+                }
+            }
+            else
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.PageUp:
+                        ZoomIn();
+                        break;
+                    case Keys.PageDown:
+                        ZoomOut();
+                        break;
+                }
+            }
         }
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Exception\FileException.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
     <Compile Include="File\MemoryFile.cs" />
+    <Compile Include="File\ObjectMapFile.cs" />
     <Compile Include="File\Zip.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="Core\ObjectAnim.cs" />

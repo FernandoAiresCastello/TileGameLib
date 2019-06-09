@@ -1,2 +1,12 @@
 
-- Save/load maps to file
+TASKS:
+
+TileGameMaker
+- Load map from file
+- Rename map
+- Resize map
+- Object block select/copy/cut/paste
+- Search objects
+- Replace objects
+- Export map/tileset/palette
+- Add/remove/switch map layers

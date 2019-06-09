@@ -12,7 +12,6 @@ namespace TileGameLib.Graphics
         public static readonly int RowCount = 8;
         public static readonly int RowLength = 8;
         public static readonly int PixelCount = 64;
-        private TilePixels tilePixels;
 
         public byte[] PixelRows { set; get; } = new byte[RowCount];
 

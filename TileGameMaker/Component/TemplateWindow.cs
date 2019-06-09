@@ -70,6 +70,8 @@ namespace TileGameMaker.Component
             TxtType.Text = Object.Type.ToString();
             TxtParam.Text = Object.Param.ToString();
             TxtData.Text = Object.Data;
+            LblTypeHex.Text = "0x" + Object.Type.ToString("X2");
+            LblParamHex.Text = "0x" + Object.Param.ToString("X2");
         }
 
         private void TxtBox_TextChanged(object sender, EventArgs e)
@@ -77,9 +79,21 @@ namespace TileGameMaker.Component
             int.TryParse(TxtType.Text, out int type);
             int.TryParse(TxtParam.Text, out int param);
 
+            if (type < 0)
+                type = 0;
+            else if (type > byte.MaxValue)
+                type = byte.MaxValue;
+
+            if (param < 0)
+                param = 0;
+            else if (param > byte.MaxValue)
+                param = byte.MaxValue;
+
             Object.Type = type;
             Object.Param = param;
             Object.Data = TxtData.Text;
+
+            Refresh();
         }
 
         private void TxtBox_KeyPress(object sender, KeyPressEventArgs e)

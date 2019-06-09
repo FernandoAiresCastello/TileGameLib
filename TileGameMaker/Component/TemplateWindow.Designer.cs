@@ -40,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.LblTypeHex = new System.Windows.Forms.Label();
+            this.LblParamHex = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +58,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 253);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 271);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // AnimationPanel
@@ -71,6 +73,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.LblParamHex);
+            this.panel2.Controls.Add(this.LblTypeHex);
             this.panel2.Controls.Add(this.TxtFrames);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.BtnClear);
@@ -84,16 +88,17 @@
             this.panel2.Location = new System.Drawing.Point(3, 37);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(317, 223);
+            this.panel2.Size = new System.Drawing.Size(317, 231);
             this.panel2.TabIndex = 2;
             // 
             // TxtFrames
             // 
             this.TxtFrames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtFrames.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFrames.Location = new System.Drawing.Point(252, 7);
             this.TxtFrames.MaxLength = 2;
             this.TxtFrames.Name = "TxtFrames";
-            this.TxtFrames.Size = new System.Drawing.Size(58, 20);
+            this.TxtFrames.Size = new System.Drawing.Size(58, 23);
             this.TxtFrames.TabIndex = 8;
             this.TxtFrames.Text = "0";
             this.TxtFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
@@ -113,7 +118,7 @@
             // 
             this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnClear.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.BtnClear.Location = new System.Drawing.Point(7, 171);
+            this.BtnClear.Location = new System.Drawing.Point(7, 179);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(41, 30);
             this.BtnClear.TabIndex = 6;
@@ -127,13 +132,13 @@
             this.TxtData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtData.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtData.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtData.Location = new System.Drawing.Point(56, 59);
             this.TxtData.MaxLength = 65536;
             this.TxtData.Multiline = true;
             this.TxtData.Name = "TxtData";
             this.TxtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtData.Size = new System.Drawing.Size(255, 142);
+            this.TxtData.Size = new System.Drawing.Size(255, 150);
             this.TxtData.TabIndex = 5;
             this.TxtData.WordWrap = false;
             this.TxtData.Leave += new System.EventHandler(this.TxtBox_TextChanged);
@@ -149,10 +154,11 @@
             // 
             // TxtParam
             // 
+            this.TxtParam.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtParam.Location = new System.Drawing.Point(56, 33);
             this.TxtParam.MaxLength = 3;
             this.TxtParam.Name = "TxtParam";
-            this.TxtParam.Size = new System.Drawing.Size(58, 20);
+            this.TxtParam.Size = new System.Drawing.Size(58, 23);
             this.TxtParam.TabIndex = 3;
             this.TxtParam.Text = "0";
             this.TxtParam.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
@@ -169,10 +175,11 @@
             // 
             // TxtType
             // 
+            this.TxtType.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtType.Location = new System.Drawing.Point(56, 7);
             this.TxtType.MaxLength = 3;
             this.TxtType.Name = "TxtType";
-            this.TxtType.Size = new System.Drawing.Size(58, 20);
+            this.TxtType.Size = new System.Drawing.Size(58, 23);
             this.TxtType.TabIndex = 1;
             this.TxtType.Text = "0";
             this.TxtType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
@@ -187,11 +194,31 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Type";
             // 
+            // LblTypeHex
+            // 
+            this.LblTypeHex.AutoSize = true;
+            this.LblTypeHex.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTypeHex.Location = new System.Drawing.Point(120, 9);
+            this.LblTypeHex.Name = "LblTypeHex";
+            this.LblTypeHex.Size = new System.Drawing.Size(40, 17);
+            this.LblTypeHex.TabIndex = 9;
+            this.LblTypeHex.Text = "0x00";
+            // 
+            // LblParamHex
+            // 
+            this.LblParamHex.AutoSize = true;
+            this.LblParamHex.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblParamHex.Location = new System.Drawing.Point(120, 35);
+            this.LblParamHex.Name = "LblParamHex";
+            this.LblParamHex.Size = new System.Drawing.Size(40, 17);
+            this.LblParamHex.TabIndex = 10;
+            this.LblParamHex.Text = "0x00";
+            // 
             // TemplateWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 253);
+            this.ClientSize = new System.Drawing.Size(323, 271);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -221,5 +248,7 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.TextBox TxtFrames;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LblParamHex;
+        private System.Windows.Forms.Label LblTypeHex;
     }
 }

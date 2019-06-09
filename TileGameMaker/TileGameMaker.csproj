@@ -83,6 +83,12 @@
     <Compile Include="Component\TileEditorWindow.Designer.cs">
       <DependentUpon>TileEditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\ArchiveManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\ArchiveManager.Designer.cs">
+      <DependentUpon>ArchiveManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MapEditor.cs" />
     <Compile Include="Component\TilePicker.cs">
       <SubType>Component</SubType>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\ColorPickerWindow.resx">
       <DependentUpon>ColorPickerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\ArchiveManager.resx">
+      <DependentUpon>ArchiveManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -196,6 +205,11 @@
     <None Include="Resources\page_white_paste.png" />
     <None Include="Resources\draw_eraser1.png" />
     <None Include="Resources\insert_text.png" />
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\diskette1.png" />
+    <None Include="Resources\folder_vertical_open.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />

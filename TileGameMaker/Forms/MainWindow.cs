@@ -22,8 +22,8 @@ namespace TileGameMaker.Forms
             MapEditor editor = new MapEditor(this);
             editor.MapWindow.Location = new Point(0, 0);
             editor.ColorPickerWindow.Location = new Point(800, 0);
-            editor.TilePickerWindow.Location = new Point(1050, 0);
-            editor.TemplateWindow.Location = new Point(800, 370);
+            editor.TilePickerWindow.Location = new Point(1040, 0);
+            editor.TemplateWindow.Location = new Point(800, 365);
             editor.Show();
         }
 

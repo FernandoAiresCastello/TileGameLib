@@ -8,29 +8,33 @@ using TileGameLib.Exception;
 
 namespace TileGameLib.Util
 {
-    public class Alert
+    public static class Alert
     {
-        public static bool EnableAlerts { set; get; } = false;
+        public static void Info(string msg)
+        {
+            MessageBox.Show(msg, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         public static void Warning(string msg)
         {
-            if (EnableAlerts)
-                MessageBox.Show(msg, "TileGameLib Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static void Error(string msg)
         {
-            if (EnableAlerts)
-                MessageBox.Show(msg, "TileGameLib Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static void Except(string msg)
         {
-            if (EnableAlerts)
-            {
-                MessageBox.Show(msg, "TileGameLib Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw new RuntimeException(msg);
-            }
+            MessageBox.Show(msg, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            throw new RuntimeException(msg);
+        }
+
+        public static bool Confirm(string msg)
+        {
+            DialogResult result = MessageBox.Show(msg, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            return result == DialogResult.OK;
         }
     }
 }

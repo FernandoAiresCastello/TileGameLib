@@ -13,8 +13,6 @@ namespace TileGameLib.Core
         public int Type { set; get; }
         public int Param { set; get; }
         public string Data { set; get; }
-
-        [Browsable(false)]
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
 
         public GameObject()

@@ -56,6 +56,16 @@ namespace TileGameLib.Graphics
             Set(index, color.ToArgb());
         }
 
+        public int Get(int index)
+        {
+            return Colors[index];
+        }
+
+        public Color GetColorObject(int index)
+        {
+            return Color.FromArgb(Colors[index]);
+        }
+
         public void Clear()
         {
             Clear(DefaultSize, 0xFFffffff);

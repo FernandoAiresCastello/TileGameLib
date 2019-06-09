@@ -11,6 +11,12 @@ namespace TileGameLib.File
 {
     public static class Zip
     {
+        public static void CreateIfNotExists(string path)
+        {
+            if (!System.IO.File.Exists(path))
+                Create(path);
+        }
+
         public static void Overwrite(string path)
         {
             Create(path, true);

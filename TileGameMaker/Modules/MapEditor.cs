@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Core;
+using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameMaker.Component;
 
@@ -12,6 +13,8 @@ namespace TileGameMaker.Modules
 {
     public class MapEditor
     {
+        public static readonly string ArchiveFile = "maps.zip";
+
         public ObjectMap Map { get; private set; }
         public MapWindow MapWindow { get; private set; }
         public TilePickerWindow TilePickerWindow { get; private set; }
@@ -33,19 +36,21 @@ namespace TileGameMaker.Modules
 
             if (parent.IsMdiContainer)
             {
-                MapWindow.MdiParent = parent;
                 TilePickerWindow.MdiParent = parent;
                 ColorPickerWindow.MdiParent = parent;
                 TemplateWindow.MdiParent = parent;
+                MapWindow.MdiParent = parent;
             }
+
+            Zip.CreateIfNotExists(ArchiveFile);
         }
 
         public void Show()
         {
-            MapWindow.Show();
             TilePickerWindow.Show();
             ColorPickerWindow.Show();
             TemplateWindow.Show();
+            MapWindow.Show();
         }
 
         public Tile GetSelectedTile()
