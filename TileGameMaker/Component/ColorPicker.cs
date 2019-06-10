@@ -9,7 +9,7 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Component
 {
-    public class ColorPicker : Display
+    public class ColorPicker : TiledDisplay
     {
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
@@ -30,7 +30,7 @@ namespace TileGameMaker.Component
 
             for (int i = 0; i < Graphics.Palette.Size; i++)
             {
-                Graphics.DrawTile(x, y, SwatchTileIx, i, 0);
+                Graphics.PutTile(x, y, SwatchTileIx, i, 0);
                 x++;
                 if (x >= Graphics.Cols)
                 {

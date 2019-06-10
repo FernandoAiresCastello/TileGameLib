@@ -10,7 +10,7 @@ using TileGameMaker.Component;
 
 namespace TileGameMaker.Component
 {
-    public class TilePicker : Display
+    public class TilePicker : TiledDisplay
     {
         public int TileIndex { set; get; }
 
@@ -37,9 +37,9 @@ namespace TileGameMaker.Component
                 int selectedBgc = 3;
 
                 if (i == TileIndex)
-                    Graphics.DrawTile(x, y, i, selectedFgc, selectedBgc);
+                    Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
                 else
-                    Graphics.DrawTile(x, y, i, fgc, bgc);
+                    Graphics.PutTile(x, y, i, fgc, bgc);
 
                 x++;
                 if (x >= Graphics.Cols)

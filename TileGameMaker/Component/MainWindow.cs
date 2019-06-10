@@ -11,7 +11,7 @@ using TileGameLib.Core;
 using TileGameMaker.Modules;
 using TileGameMaker.Component;
 
-namespace TileGameMaker.Forms
+namespace TileGameMaker.Component
 {
     public partial class MainWindow : Form
     {

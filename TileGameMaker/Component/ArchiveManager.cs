@@ -92,14 +92,14 @@ namespace TileGameMaker.Component
             string entry = EntriesListBox.SelectedValue.ToString();
             if (Alert.Confirm($"Delete entry file \"{entry}\"?"))
             {
-                Zip.Delete(ArchiveFile, entry);
+                Archive.Delete(ArchiveFile, entry);
                 UpdateList();
             }
         }
 
         private void UpdateList()
         {
-            EntryFiles = Zip.List(ArchiveFile);
+            EntryFiles = Archive.List(ArchiveFile);
             EntriesListBox.DataSource = EntryFiles;
             EntriesListBox.Refresh();
         }

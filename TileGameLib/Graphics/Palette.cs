@@ -9,17 +9,9 @@ namespace TileGameLib.Graphics
 {
     public class Palette
     {
-        public List<int> Colors { get; private set; } = new List<int>();
-
         public static readonly int DefaultSize = 256;
-
-        public int this[int index]
-        {
-            get { return Colors[index]; }
-            set { Colors[index] = value; }
-        }
-
-        public int Size { get { return Colors.Count; } }
+        public List<int> Colors { get; private set; } = new List<int>();
+        public int Size => Colors.Count;
 
         public Palette()
         {
@@ -46,14 +38,19 @@ namespace TileGameLib.Graphics
             Set(index, (int)color);
         }
 
-        public void Set(int index, int color)
-        {
-            Colors[index] = color;
-        }
-
         public void Set(int index, Color color)
         {
             Set(index, color.ToArgb());
+        }
+
+        public void Set(int index, int r, int g, int b)
+        {
+            Set(index, Color.FromArgb(r, g, b));
+        }
+
+        public void Set(int index, int color)
+        {
+            Colors[index] = color;
         }
 
         public int Get(int index)
@@ -86,6 +83,11 @@ namespace TileGameLib.Graphics
         public void Clear(int count, Color color)
         {
             Clear(count, color.ToArgb());
+        }
+
+        public void SetEmpty()
+        {
+            Colors.Clear();
         }
 
         public void InitDefault()

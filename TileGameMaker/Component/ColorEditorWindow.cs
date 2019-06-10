@@ -22,6 +22,7 @@ namespace TileGameMaker.Component
         public ColorEditorWindow(Palette palette)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             Palette = palette;
 
             RedSlider.ValueChanged += Slider_ValueChanged;
@@ -34,7 +35,7 @@ namespace TileGameMaker.Component
 
             ColorHex.TextChanged += ColorHex_TextChanged;
         }
-
+            
         public void SetColor(int colorIx)
         {
             ColorIndex = colorIx;
@@ -121,7 +122,7 @@ namespace TileGameMaker.Component
 
         private void PostValueChanged()
         {
-            Palette[ColorIndex] = Color.ToArgb();
+            Palette.Set(ColorIndex, Color);
             ColorPanel.BackColor = Color;
             RefreshSubscribed();
         }
@@ -143,7 +144,7 @@ namespace TileGameMaker.Component
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Color = OriginalColor;
-            Palette[ColorIndex] = OriginalColor.ToArgb();
+            Palette.Set(ColorIndex, OriginalColor);
             Refresh();
             Close();
         }
@@ -151,7 +152,7 @@ namespace TileGameMaker.Component
         private void BtnUndo_Click(object sender, EventArgs e)
         {
             Color = OriginalColor;
-            Palette[ColorIndex] = OriginalColor.ToArgb();
+            Palette.Set(ColorIndex, OriginalColor);
             UpdateAllControls();
             Refresh();
         }

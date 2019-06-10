@@ -10,7 +10,7 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Component
 {
-    public class Display : PictureBox
+    public class TiledDisplay : PictureBox
     {
         public GraphicsAdapter Graphics { get; set; }
         public Bitmap Overlay { set; get; }
@@ -23,9 +23,10 @@ namespace TileGameMaker.Component
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
-        public Display(Control parent, int cols, int rows, int zoom)
+        public TiledDisplay(Control parent, int cols, int rows, int zoom)
         {
             Parent = parent;
+            DoubleBuffered = true;
             Graphics = new GraphicsAdapter(cols, rows);
             Image = Graphics.Bitmap;
             ShowGrid = false;
@@ -33,6 +34,21 @@ namespace TileGameMaker.Component
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
             SetZoom(zoom);
+        }
+
+        public Point GetMouseToCellPos(Point point)
+        {
+            return new Point
+            {
+                X = point.X / (Zoom * TilePixels.RowLength),
+                Y = point.Y / (Zoom * TilePixels.RowCount)
+            };
+        }
+
+        public int GetMouseToCellIndex(Point point)
+        {
+            Point p = GetMouseToCellPos(point);
+            return (p.Y * Graphics.Cols) + p.X;
         }
 
         public void ResizeGraphics(int cols, int rows)
@@ -92,46 +108,25 @@ namespace TileGameMaker.Component
 
             g.DrawImage(Graphics.Bitmap, 0, 0, Zoom * Graphics.Width, Zoom * Graphics.Height);
 
+            g.CompositingMode = CompositingMode.SourceOver;
             if (ShowGrid && Grid != null)
-            {
-                g.CompositingMode = CompositingMode.SourceOver;
                 g.DrawImage(Grid, 0, 0);
-            }
-
             if (ShowOverlay && Overlay != null)
-            {
-                g.CompositingMode = CompositingMode.SourceOver;
                 g.DrawImage(Overlay, 0, 0);
-            }
         }
 
         protected void MakeGrid()
         {
-            Graphics g = System.Drawing.Graphics.FromImage(Grid);
-            Pen pen = new Pen(GridColor);
-
-            for (int y = -1; y < Height; y += Zoom * TilePixels.RowCount)
-                g.DrawLine(pen, 0, y, Width, y);
-            for (int x = -1; x < Width; x += Zoom * TilePixels.RowLength)
-                g.DrawLine(pen, x, 0, x, Height);
-
-            pen.Dispose();
-            g.Dispose();
-        }
-
-        public Point GetMouseToCellPos(Point point)
-        {
-            return new Point
+            using (Graphics g = System.Drawing.Graphics.FromImage(Grid))
             {
-                X = point.X / (Zoom * TilePixels.RowLength),
-                Y = point.Y / (Zoom * TilePixels.RowCount)
-            };
-        }
-
-        public int GetMouseToCellIndex(Point point)
-        {
-            Point p = GetMouseToCellPos(point);
-            return (p.Y * Graphics.Cols) + p.X;
+                using (Pen pen = new Pen(GridColor))
+                {
+                    for (int y = -1; y < Height; y += Zoom * TilePixels.RowCount)
+                        g.DrawLine(pen, 0, y, Width, y);
+                    for (int x = -1; x < Width; x += Zoom * TilePixels.RowLength)
+                        g.DrawLine(pen, x, 0, x, Height);
+                }
+            }
         }
     }
 }

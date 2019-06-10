@@ -62,7 +62,7 @@ namespace TileGameMaker.Component
         public void SetTile(int index)
         {
             TileEditor.SetTile(Tileset, index);
-            OriginalPixels = new TilePixels(Tileset[index]);
+            OriginalPixels = new TilePixels(Tileset.Get(index));
             StatusLabel.Text = "IX: " + index;
         }
 

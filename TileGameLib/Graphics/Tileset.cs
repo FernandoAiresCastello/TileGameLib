@@ -8,15 +8,9 @@ namespace TileGameLib.Graphics
 {
     public class Tileset
     {
+        public static readonly int DefaultSize = 512;
         public List<TilePixels> Pixels { get; private set; } = new List<TilePixels>();
-
-        public TilePixels this[int index]
-        {
-            get { return Pixels[index]; }
-            set { Pixels[index] = value; }
-        }
-
-        public int Size { get { return Pixels.Count; } }
+        public int Size => Pixels.Count;
 
         public Tileset()
         {
@@ -36,12 +30,26 @@ namespace TileGameLib.Graphics
             Pixels[index].Set(row1, row2, row3, row4, row5, row6, row7, row8);
         }
 
+        public TilePixels Get(int index)
+        {
+            return Pixels[index];
+        }
+
         public void Clear()
         {
-            Pixels.Clear();
+            Clear(DefaultSize);
+        }
 
-            for (int ix = 0; ix < 512; ix++)
+        public void Clear(int count)
+        {
+            Pixels.Clear();
+            for (int i = 0; i < count; i++)
                 Add(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+        }
+
+        public void SetEmpty()
+        {
+            Pixels.Clear();
         }
 
         public void InitDefault()

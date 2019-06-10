@@ -9,7 +9,7 @@ using TileGameLib.Exception;
 
 namespace TileGameLib.File
 {
-    public static class Zip
+    public static class Archive
     {
         public static void CreateIfNotExists(string path)
         {
@@ -49,9 +49,9 @@ namespace TileGameLib.File
             Delete(path, emptyFileName);
         }
 
-        public static void Save(string zipPath, string entryFilename, MemoryFile file)
+        public static void Save(string archivePath, string entryFilename, MemoryFile file)
         {
-            using (var zipToOpen = new FileStream(zipPath, FileMode.Open))
+            using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
             {
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
@@ -62,11 +62,11 @@ namespace TileGameLib.File
             }
         }
 
-        public static MemoryFile Load(string zipPath, string entryFilename)
+        public static MemoryFile Load(string archivePath, string entryFilename)
         {
             byte[] data;
 
-            using (var zipToOpen = new FileStream(zipPath, FileMode.Open))
+            using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
             {
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
                 {
@@ -79,14 +79,14 @@ namespace TileGameLib.File
             return new MemoryFile(data);
         }
 
-        public static void Delete(string zipPath)
+        public static void Delete(string archivePath)
         {
-            System.IO.File.Delete(zipPath);
+            System.IO.File.Delete(archivePath);
         }
 
-        public static void Delete(string zipPath, string entryFilename)
+        public static void Delete(string archivePath, string entryFilename)
         {
-            using (var zipToOpen = new FileStream(zipPath, FileMode.Open))
+            using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
             {
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
@@ -102,11 +102,11 @@ namespace TileGameLib.File
             }
         }
 
-        public static List<string> List(string zipPath)
+        public static List<string> List(string archivePath)
         {
             List<string> list = new List<string>();
 
-            using (var zipToOpen = new FileStream(zipPath, FileMode.Open))
+            using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
             {
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
                 {

@@ -9,4 +9,5 @@ TileGameMaker
 - Search objects
 - Replace objects
 - Export map/tileset/palette
+- Import tileset/palette
 - Add/remove/switch map layers

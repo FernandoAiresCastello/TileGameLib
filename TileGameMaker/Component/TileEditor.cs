@@ -10,7 +10,7 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Component
 {
-    public class TileEditor : Display
+    public class TileEditor : TiledDisplay
     {
         private Tileset Tileset;
         private int TileIndex;
@@ -30,7 +30,7 @@ namespace TileGameMaker.Component
                 return;
             }
 
-            string pixels = Tileset[TileIndex].ToString();
+            string pixels = Tileset.Get(TileIndex).ToString();
             int pix = 0;
 
             for (int y = 0; y < Graphics.Rows; y++)
@@ -38,9 +38,9 @@ namespace TileGameMaker.Component
                 for (int x = 0; x < Graphics.Cols; x++)
                 {
                     if (pixels[pix] == '0')
-                        Graphics.DrawTile(x, y, 0xdb, 0, 1);
+                        Graphics.PutTile(x, y, 0xdb, 0, 1);
                     else if (pixels[pix] == '1')
-                        Graphics.DrawTile(x, y, 0xdb, 1, 0);
+                        Graphics.PutTile(x, y, 0xdb, 1, 0);
 
                     pix++;
                 }
@@ -60,44 +60,44 @@ namespace TileGameMaker.Component
             if (x < 0 || y < 0 || x >= TilePixels.RowLength || y >= TilePixels.RowCount)
                 return;
 
-            byte row = Tileset[TileIndex].PixelRows[y];
+            byte row = Tileset.Get(TileIndex).PixelRows[y];
 
             if (pixel > 0)
                 row = row.SetBit(x);
             else
                 row = row.UnsetBit(x);
             
-            Tileset[TileIndex].PixelRows[y] = row;
+            Tileset.Get(TileIndex).PixelRows[y] = row;
             Refresh();
         }
 
         public void SetTilePixels(TilePixels pixels)
         {
-            Tileset[TileIndex].SetEqual(pixels);
+            Tileset.Get(TileIndex).SetEqual(pixels);
             Refresh();
         }
 
         public void ClearTile()
         {
-            Tileset[TileIndex].Clear();
+            Tileset.Get(TileIndex).Clear();
             Refresh();
         }
 
         public void InvertTile()
         {
-            Tileset[TileIndex].Invert();
+            Tileset.Get(TileIndex).Invert();
             Refresh();
         }
 
         public void FlipHorizontal()
         {
-            Tileset[TileIndex].FlipHorizontal();
+            Tileset.Get(TileIndex).FlipHorizontal();
             Refresh();
         }
 
         public void FlipVertical()
         {
-            Tileset[TileIndex].FlipVertical();
+            Tileset.Get(TileIndex).FlipVertical();
             Refresh();
         }
     }

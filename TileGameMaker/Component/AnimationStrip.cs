@@ -9,7 +9,7 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Component
 {
-    public class AnimationStrip : Display
+    public class AnimationStrip : TiledDisplay
     {
         public ObjectAnim Animation { set; get; } = new ObjectAnim(false);
 
@@ -24,11 +24,11 @@ namespace TileGameMaker.Component
         protected override void OnPaint(PaintEventArgs e)
         {
             for (int i = 0; i < Graphics.Cols; i++)
-                Graphics.DrawTile(i, 0, 0, 0, Graphics.Palette.Size - 1);
+                Graphics.PutTile(i, 0, 0, 0, Graphics.Palette.Size - 1);
 
             int x = 0;
             foreach (Tile tile in Animation.Frames)
-                Graphics.DrawTile(x++, 0, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+                Graphics.PutTile(x++, 0, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
 
             base.OnPaint(e);
         }

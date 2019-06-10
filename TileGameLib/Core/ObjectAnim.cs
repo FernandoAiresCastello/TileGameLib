@@ -10,8 +10,7 @@ namespace TileGameLib.Core
     public class ObjectAnim
     {
         public List<Tile> Frames { set; get; } = new List<Tile>();
-        public Tile this[int index] { get { return GetFrame(index); } }
-        public int Size { get { return Frames.Count; } }
+        public int Size => Frames.Count;
 
         public ObjectAnim()
         {
@@ -89,6 +88,12 @@ namespace TileGameLib.Core
         public void AddFrame(Tile ch)
         {
             Frames.Add(ch.Copy());
+        }
+
+        public void AddFrames(int count, Tile ch)
+        {
+            for (int i = 0; i < count; i++)
+                AddFrame(ch);
         }
 
         public void SetFrame(int index, Tile ch)

@@ -17,17 +17,13 @@ namespace TileGameLib.Core
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        public ObjectLayer this[int layer]
+        public ObjectMap(int width, int height) : this("Undefined", width, height)
         {
-            get
-            {
-                return Layers[layer];
-            }
         }
 
-        public ObjectMap(int width, int height)
+        public ObjectMap(string name, int width, int height)
         {
-            Name = "Undefined";
+            Name = name;
             Width = width;
             Height = height;
             AddLayer();
@@ -38,10 +34,21 @@ namespace TileGameLib.Core
             Layers.Add(new ObjectLayer(Width, Height));
         }
 
+        public void AddLayers(int count)
+        {
+            for (int i = 0; i < count; i++)
+                AddLayer();
+        }
+
         public void Clear()
         {
             foreach (ObjectLayer layer in Layers)
                 layer.Clear();
+        }
+
+        public void Clear(int layer)
+        {
+            Layers[layer].Clear();
         }
 
         public void Fill(GameObject o)
@@ -50,48 +57,24 @@ namespace TileGameLib.Core
                 layer.Fill(o);
         }
 
-        public void SetObject(GameObject o, int layer, int x, int y)
+        public void Fill(GameObject o, int layer)
         {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-            {
-                Layers[layer].SetObject(o, x, y);
-            }
-            else
-            {
-                Alert.Error(
-                    "Invalid object layer index on SetObject\n" +
-                    "X: " + x + " Y: " + y + "\n" +
-                    "Object layer size: " + Width + "x" + Height
-                );
-            }
+            Layers[layer].Fill(o);
         }
 
-        public GameObject GetObject(int layer, int x, int y)
+        public void SetObject(GameObject o, int layer, int x, int y)
         {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Layers[layer].GetObject(x, y);
+            Layers[layer].SetObject(o, x, y);
+        }
 
-            Alert.Error(
-                "Invalid object layer index on GetObject\n" +
-                "X: " + x + " Y: " + y + "\n" +
-                "Object layer size: " + Width + "x" + Height
-            );
-
-            return null;
+        public ref GameObject GetObject(int layer, int x, int y)
+        {
+            return ref Layers[layer].GetObject(x, y);
         }
 
         public GameObject CopyObject(int layer, int x, int y)
         {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Layers[layer].CopyObject(x, y);
-
-            Alert.Error(
-                "Invalid object layer index on CopyObject\n" +
-                "X: " + x + " Y: " + y + "\n" +
-                "Object layer size: " + Width + "x" + Height
-            );
-
-            return null;
+            return Layers[layer].CopyObject(x, y);
         }
     }
 }

@@ -108,10 +108,10 @@
     <Compile Include="Component\ColorPickerWindow.Designer.cs">
       <DependentUpon>ColorPickerWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainWindow.cs">
+    <Compile Include="Component\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainWindow.Designer.cs">
+    <Compile Include="Component\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Component\MapWindow.cs">
@@ -143,7 +143,7 @@
     <EmbeddedResource Include="Component\ArchiveManager.resx">
       <DependentUpon>ArchiveManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainWindow.resx">
+    <EmbeddedResource Include="Component\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\MapWindow.resx">

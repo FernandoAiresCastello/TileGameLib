@@ -42,7 +42,7 @@ namespace TileGameMaker.Modules
                 MapWindow.MdiParent = parent;
             }
 
-            Zip.CreateIfNotExists(ArchiveFile);
+            Archive.CreateIfNotExists(ArchiveFile);
         }
 
         public void Show()

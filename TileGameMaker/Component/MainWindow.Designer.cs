@@ -1,4 +1,4 @@
-﻿namespace TileGameMaker.Forms
+﻿namespace TileGameMaker.Component
 {
     partial class MainWindow
     {

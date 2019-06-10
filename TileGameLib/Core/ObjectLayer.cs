@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exception;
 using TileGameLib.Util;
 
 namespace TileGameLib.Core
@@ -42,27 +43,30 @@ namespace TileGameLib.Core
         public void SetObject(GameObject o, int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-            {
                 Objects[x, y].SetEqual(o);
-            }
             else
-            {
-                Alert.Error(
-                    "Invalid object layer index on SetObject\n" +
-                    "X: " + x + " Y: " + y + "\n" +
-                    "Layer size: " + Width + "x" + Height
-                );
-            }
+                throw new InvalidMapAccessException(GetExceptionMessage(x, y));
         }
 
         public ref GameObject GetObject(int x, int y)
         {
-            return ref Objects[x, y];
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return ref Objects[x, y];
+
+            throw new InvalidMapAccessException(GetExceptionMessage(x, y));
         }
 
         public GameObject CopyObject(int x, int y)
         {
-            return Objects[x, y].Copy();
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return Objects[x, y].Copy();
+
+            throw new InvalidMapAccessException(GetExceptionMessage(x, y));
+        }
+
+        private string GetExceptionMessage(int x, int y)
+        {
+            return string.Format("Invalid object layer index. X:{0} Y:{1} Layer size:{2}x{3}", x, y, Width, Height);
         }
     }
 }

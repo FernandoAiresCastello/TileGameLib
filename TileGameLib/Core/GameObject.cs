@@ -31,6 +31,14 @@ namespace TileGameLib.Core
             Animation.SetFrame(0, singleAnimFrame);
         }
 
+        public GameObject(int type, int param, string data, Tile singleAnimFrame)
+        {
+            Type = type;
+            Param = param;
+            Data = data;
+            Animation.SetFrame(0, singleAnimFrame);
+        }
+
         public void SetNull()
         {
             Type = 0;
@@ -77,7 +85,7 @@ namespace TileGameLib.Core
 
         public override string ToString()
         {
-            Tile tile = Animation.Frames[0];
+            Tile tile = Animation.GetFirstFrame();
             return string.Format("T: {0} P: {1} A: {2} - IX: {3} FG: {4} BG: {5} - DL: {6}",
                 Type, Param, Animation.Frames.Count, tile.TileIx, tile.ForeColorIx, tile.BackColorIx, Data.Length);
         }

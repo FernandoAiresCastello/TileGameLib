@@ -13,11 +13,11 @@ namespace TileGameLib.Graphics
         public ObjectMap Map { set; get; }
         public bool AnimationEnabled { set; get; }
 
-        private Display Disp;
+        private TiledDisplay Disp;
         private Timer AnimationTimer;
         private int AnimationFrame;
 
-        public MapRenderer(ObjectMap map, Display disp, int animationInterval)
+        public MapRenderer(ObjectMap map, TiledDisplay disp, int animationInterval)
         {
             Map = map;
             Disp = disp;
@@ -63,7 +63,7 @@ namespace TileGameLib.Graphics
         public void RenderObject(GameObject o, int x, int y)
         {
             Tile ch = o.Animation.GetFrame(AnimationFrame);
-            Disp.Graphics.DrawTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
+            Disp.Graphics.PutTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
         }
     }
 }
