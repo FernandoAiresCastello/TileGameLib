@@ -17,15 +17,8 @@ namespace TileGameMaker.Component
     {
         public GameObject Object { set; get; }
         public AnimationStrip AnimationStrip { set; get; }
-        public ObjectAnim Animation { get { return AnimationStrip.Animation; } }
-
-        public ObjectAnim CroppedAnimation
-        {
-            get
-            {
-                return AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
-            }
-        }
+        public ObjectAnim Animation => AnimationStrip.Animation;
+        public ObjectAnim CroppedAnimation => AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
 
         public int AnimationFrameCount
         {

@@ -18,12 +18,17 @@ namespace TileGameMaker.Component
 {
     public partial class MapWindow : BaseWindow
     {
+        public string Filename
+        {
+            get { return TxtFilename.Text; }
+            set { TxtFilename.Text = value.Trim(); }
+        }
+
         private ObjectMap Map;
         private MapEditor MapEditor;
         private TiledDisplay Disp;
         private MapRenderer MapRenderer;
         private Point ContextMenuCell;
-        private GameObject ClipboardObject;
         private MapArchive Archive;
         private int Layer;
 
@@ -34,23 +39,22 @@ namespace TileGameMaker.Component
         {
             InitializeComponent();
             InfoPanel.Hide();
+
             MapEditor = editor;
             Map = map;
             Disp = new TiledDisplay(MapPanel, map.Width, map.Height, 3);
-            Disp.BorderStyle = BorderStyle.None;
             MapRenderer = new MapRenderer(Map, Disp, 256);
-            Disp.ShowGrid = true;
+            Archive = new MapArchive(MapEditor.ArchiveFile);
+            HoverLabel.Text = "";
+            Layer = 0;
+
             Disp.MouseMove += Display_MouseMove;
             Disp.MouseDown += Disp_MouseDown;
             Disp.MouseMove += Disp_MouseMove;
             Disp.MouseLeave += Disp_MouseLeave;
-            Text = Map.Name;
-            HoverLabel.Text = "";
-            Layer = 0;
-            Archive = new MapArchive(MapEditor.ArchiveFile);
-            UpdateStatusLabel();
-            ClipboardObject = MakeDefaultGameObject();
+
             ClearMap();
+            Refresh();
         }
 
         public void SetMap(ObjectMap map)
@@ -69,8 +73,17 @@ namespace TileGameMaker.Component
         private void UpdateStatusLabel()
         {
             StatusLabel.Text =
-                "Size: " + Map.Width + " x " + Map.Height + " " +
-                "Zoom: " + Disp.GetZoom();
+                string.Format("Size: {0}x{1} Layer: {2}/{3} Zoom: {4}",
+                    Map.Width, Map.Height, Layer, Map.Layers.Count, Disp.Zoom);
+        }
+
+        private void UpdateInfoPanel()
+        {
+            Text = Map.Name;
+            TxtMapName.Text = Map.Name;
+            TxtLayers.Text = Map.Layers.Count.ToString();
+            TxtMapWidth.Text = Map.Width.ToString();
+            TxtMapHeight.Text = Map.Height.ToString();
         }
 
         private void ClearMap()
@@ -136,6 +149,8 @@ namespace TileGameMaker.Component
         public override void Refresh()
         {
             MapRenderer.Render();
+            UpdateStatusLabel();
+            UpdateInfoPanel();
             base.Refresh();
         }
 
@@ -157,13 +172,13 @@ namespace TileGameMaker.Component
         private void ZoomIn()
         {
             Disp.ZoomIn();
-            UpdateStatusLabel();
+            Refresh();
         }
 
         private void ZoomOut()
         {
             Disp.ZoomOut();
-            UpdateStatusLabel();
+            Refresh();
         }
 
         private void BtnInfo_Click(object sender, EventArgs e)
@@ -314,8 +329,11 @@ namespace TileGameMaker.Component
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
                     return;
 
+                Map.Name = TxtMapName.Text.Trim();
                 Archive.Save(Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
+                Filename = entry;
+                Refresh();
                 Alert.Info("File saved successfully!");
             }
         }
@@ -336,6 +354,7 @@ namespace TileGameMaker.Component
 
                 SetMap(Archive.Load(mgr.SelectedEntry));
                 DialogResult = DialogResult.OK;
+                Filename = entry;
                 Refresh();
                 Alert.Info("File loaded successfully!");
             }

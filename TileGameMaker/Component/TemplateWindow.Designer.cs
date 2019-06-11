@@ -31,6 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AnimationPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LblParamHex = new System.Windows.Forms.Label();
+            this.LblTypeHex = new System.Windows.Forms.Label();
             this.TxtFrames = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
@@ -40,8 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.LblTypeHex = new System.Windows.Forms.Label();
-            this.LblParamHex = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +90,26 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
             this.panel2.Size = new System.Drawing.Size(317, 231);
             this.panel2.TabIndex = 2;
+            // 
+            // LblParamHex
+            // 
+            this.LblParamHex.AutoSize = true;
+            this.LblParamHex.Font = new System.Drawing.Font("Consolas", 9F);
+            this.LblParamHex.Location = new System.Drawing.Point(120, 36);
+            this.LblParamHex.Name = "LblParamHex";
+            this.LblParamHex.Size = new System.Drawing.Size(35, 14);
+            this.LblParamHex.TabIndex = 10;
+            this.LblParamHex.Text = "0x00";
+            // 
+            // LblTypeHex
+            // 
+            this.LblTypeHex.AutoSize = true;
+            this.LblTypeHex.Font = new System.Drawing.Font("Consolas", 9F);
+            this.LblTypeHex.Location = new System.Drawing.Point(120, 10);
+            this.LblTypeHex.Name = "LblTypeHex";
+            this.LblTypeHex.Size = new System.Drawing.Size(35, 14);
+            this.LblTypeHex.TabIndex = 9;
+            this.LblTypeHex.Text = "0x00";
             // 
             // TxtFrames
             // 
@@ -193,26 +213,6 @@
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Type";
-            // 
-            // LblTypeHex
-            // 
-            this.LblTypeHex.AutoSize = true;
-            this.LblTypeHex.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTypeHex.Location = new System.Drawing.Point(120, 9);
-            this.LblTypeHex.Name = "LblTypeHex";
-            this.LblTypeHex.Size = new System.Drawing.Size(40, 17);
-            this.LblTypeHex.TabIndex = 9;
-            this.LblTypeHex.Text = "0x00";
-            // 
-            // LblParamHex
-            // 
-            this.LblParamHex.AutoSize = true;
-            this.LblParamHex.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblParamHex.Location = new System.Drawing.Point(120, 35);
-            this.LblParamHex.Name = "LblParamHex";
-            this.LblParamHex.Size = new System.Drawing.Size(40, 17);
-            this.LblParamHex.TabIndex = 10;
-            this.LblParamHex.Text = "0x00";
             // 
             // TemplateWindow
             // 

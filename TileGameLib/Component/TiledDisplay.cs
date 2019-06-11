@@ -17,9 +17,9 @@ namespace TileGameMaker.Component
         public bool ShowGrid { set; get; }
         public bool ShowOverlay { set; get; }
         public Color GridColor { set; get; }
+        public int Zoom { get; protected set; }
 
         protected Bitmap Grid;
-        protected int Zoom;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
@@ -29,7 +29,7 @@ namespace TileGameMaker.Component
             DoubleBuffered = true;
             Graphics = new GraphicsAdapter(cols, rows);
             Image = Graphics.Bitmap;
-            ShowGrid = false;
+            ShowGrid = true;
             ShowOverlay = true;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
@@ -57,7 +57,7 @@ namespace TileGameMaker.Component
             Refresh();
         }
 
-        public void ShowBorder(bool show)
+        protected void ShowBorder(bool show)
         {
             BorderStyle = show ? BorderStyle.Fixed3D : BorderStyle.None;
         }
@@ -74,11 +74,6 @@ namespace TileGameMaker.Component
             Grid = new Bitmap(Width, Height);
             MakeGrid();
             Refresh();
-        }
-
-        public int GetZoom()
-        {
-            return Zoom;
         }
 
         public void ZoomIn()
