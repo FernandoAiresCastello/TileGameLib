@@ -24,6 +24,12 @@ namespace TileGameMaker.Component
             set { TxtFilename.Text = value.Trim(); }
         }
 
+        private readonly int EmptyTileIx;
+        private readonly int FirstPaletteColorIx;
+        private readonly int LastPaletteColorIx;
+        private readonly int DefaultZoom = 3;
+        private readonly int DefaultAnimationInterval = 256;
+
         private ObjectMap Map;
         private MapEditor MapEditor;
         private TiledDisplay Disp;
@@ -42,11 +48,14 @@ namespace TileGameMaker.Component
 
             MapEditor = editor;
             Map = map;
-            Disp = new TiledDisplay(MapPanel, map.Width, map.Height, 3);
-            MapRenderer = new MapRenderer(Map, Disp, 256);
+            Disp = new TiledDisplay(MapPanel, map.Width, map.Height, DefaultZoom);
+            MapRenderer = new MapRenderer(Map, Disp, DefaultAnimationInterval);
             Archive = new MapArchive(MapEditor.ArchiveFile);
             HoverLabel.Text = "";
             Layer = 0;
+            EmptyTileIx = 0;
+            FirstPaletteColorIx = 0;
+            LastPaletteColorIx = Map.Palette.Size - 1;
 
             Disp.MouseMove += Display_MouseMove;
             Disp.MouseDown += Disp_MouseDown;
@@ -67,7 +76,7 @@ namespace TileGameMaker.Component
 
         private GameObject MakeDefaultGameObject()
         {
-            return new GameObject(new Tile(0, 0, Map.Palette.Size - 1));
+            return new GameObject(new Tile(EmptyTileIx, FirstPaletteColorIx, LastPaletteColorIx));
         }
 
         private void UpdateStatusLabel()
