@@ -72,6 +72,12 @@ namespace TileGameLib.File
             Archive.Save(Path, filename, file);
         }
 
+        public void Load(ref ObjectMap map, string filename)
+        {
+            ObjectMap loadedMap = Load(filename);
+            map.SetEqual(loadedMap);
+        }
+
         public ObjectMap Load(string filename)
         {
             MemoryFile file = Archive.Load(Path, filename);

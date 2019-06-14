@@ -52,6 +52,13 @@ namespace TileGameLib.Graphics
             Pixels.Clear();
         }
 
+        public void SetEqual(Tileset other)
+        {
+            Clear(other.Size);
+            for (int i = 0; i < Size; i++)
+                Pixels[i].SetEqual(other.Pixels[i]);
+        }
+
         public void InitDefault()
         {
             Clear();

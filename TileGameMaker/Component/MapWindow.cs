@@ -41,14 +41,14 @@ namespace TileGameMaker.Component
         private enum EditMode { Template, TextInput }
         private EditMode Mode = EditMode.Template;
 
-        public MapWindow(MapEditor editor, ObjectMap map)
+        public MapWindow(MapEditor editor)
         {
             InitializeComponent();
             InfoPanel.Hide();
 
             MapEditor = editor;
-            Map = map;
-            Disp = new TiledDisplay(MapPanel, map.Width, map.Height, DefaultZoom);
+            Map = editor.Map;
+            Disp = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
             MapRenderer = new MapRenderer(Map, Disp, DefaultAnimationInterval);
             Archive = new MapArchive(MapEditor.ArchiveFile);
             HoverLabel.Text = "";
@@ -63,14 +63,6 @@ namespace TileGameMaker.Component
             Disp.MouseLeave += Disp_MouseLeave;
 
             ClearMap();
-            Refresh();
-        }
-
-        public void SetMap(ObjectMap map)
-        {
-            Map = map;
-            MapRenderer.Map = map;
-            Disp.ResizeGraphics(map.Width, map.Height);
             Refresh();
         }
 
@@ -136,7 +128,7 @@ namespace TileGameMaker.Component
 
         private void PutCurrentObject(GameObject o)
         {
-            o.SetEqual(MapEditor.GetSelectedObject());
+            o.SetEqual(MapEditor.SelectedObject);
             RenderMap();
         }
         private void Display_MouseMove(object sender, MouseEventArgs e)
@@ -232,16 +224,14 @@ namespace TileGameMaker.Component
 
             if (o != null)
             {
-                o.SetEqual(MapEditor.TemplateWindow.Object);
+                o.SetEqual(MapEditor.SelectedObject);
                 Refresh();
             }
         }
 
         private void CopyObjectToTemplate(GameObject o)
         {
-            MapEditor.TemplateWindow.Object.SetEqual(o);
-            MapEditor.TemplateWindow.UpdateAnimation(o.Animation);
-            MapEditor.TemplateWindow.Refresh();
+            MapEditor.SelectedObject = o;
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -306,7 +296,7 @@ namespace TileGameMaker.Component
                 int px = x;
                 foreach (char ch in line)
                 {
-                    Tile tile = MapEditor.GetSelectedTile();
+                    Tile tile = MapEditor.SelectedTile;
                     tile.TileIx = ch;
                     GameObject o = new GameObject(win.Type, win.Param, "", tile);
                     Map.SetObject(o, Layer, x++, y);
@@ -361,10 +351,10 @@ namespace TileGameMaker.Component
                     return;
                 }
 
-                SetMap(Archive.Load(mgr.SelectedEntry));
+                Archive.Load(ref Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
                 Filename = entry;
-                Refresh();
+                MapEditor.Refresh();
                 Alert.Info("File loaded successfully!");
             }
         }

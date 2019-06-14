@@ -115,7 +115,7 @@ namespace TileGameMaker.Component
         private void AnimationStrip_MouseDown(object sender, MouseEventArgs e)
         {
             Point p = AnimationStrip.GetMouseToCellPos(e.Location);
-            Animation.SetFrame(p.X, MapEditor.GetSelectedTile());
+            Animation.SetFrame(p.X, MapEditor.SelectedTile);
             AnimationStrip.Refresh();
         }
 

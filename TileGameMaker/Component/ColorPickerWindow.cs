@@ -18,12 +18,12 @@ namespace TileGameMaker.Component
         private ColorPicker ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        public ColorPickerWindow(MapEditor editor, Palette palette)
+        public ColorPickerWindow(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
             ColorPicker = new ColorPicker(ColorPickerPanel, 8, 32, 3);
-            ColorPicker.Graphics.Palette = palette;
+            ColorPicker.Graphics.Palette = editor.Palette;
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;
             ColorPicker.MouseLeave += ColorPicker_MouseLeave;

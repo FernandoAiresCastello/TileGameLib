@@ -18,18 +18,18 @@ namespace TileGameMaker.Component
         private TilePicker TilePicker;
         private TileEditorWindow TileEditorWindow;
 
-        public TilePickerWindow(MapEditor editor, Tileset tileset)
+        public TilePickerWindow(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
             TilePicker = new TilePicker(TilePickerPanel, 8, 64, 3);
-            TilePicker.Graphics.Tileset = tileset;
+            TilePicker.Graphics.Tileset = editor.Tileset;
             TilePicker.ShowGrid = true;
             TilePicker.MouseMove += TilePicker_MouseMove;
             TilePicker.MouseLeave += TilePicker_MouseLeave;
             TilePicker.MouseDown += TilePicker_MouseDown;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
-            TileEditorWindow = new TileEditorWindow(tileset);
+            TileEditorWindow = new TileEditorWindow(editor.Tileset);
             TileEditorWindow.Subscribe(this);
             TileEditorWindow.Subscribe(TilePicker);
             TileEditorWindow.Subscribe(editor.MapWindow);

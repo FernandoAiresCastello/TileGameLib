@@ -90,6 +90,13 @@ namespace TileGameLib.Graphics
             Colors.Clear();
         }
 
+        public void SetEqual(Palette other)
+        {
+            Clear(other.Size, Color.White);
+            for (int i = 0; i < Size; i++)
+                Colors[i] = other.Colors[i];
+        }
+
         public void InitDefault()
         {
             Clear();

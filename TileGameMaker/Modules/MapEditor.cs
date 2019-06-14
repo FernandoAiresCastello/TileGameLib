@@ -16,23 +16,59 @@ namespace TileGameMaker.Modules
         public static readonly string ArchiveFile = "maps.zip";
 
         public ObjectMap Map { get; private set; }
+
+        public GameObject SelectedObject
+        {
+            get
+            {
+                GameObject o = new GameObject();
+                o.Type = TemplateWindow.Object.Type;
+                o.Param = TemplateWindow.Object.Param;
+                o.Data = TemplateWindow.Object.Data;
+                o.Animation.SetEqual(TemplateWindow.CroppedAnimation);
+                return o;
+            }
+
+            set
+            {
+                TemplateWindow.Object.SetEqual(value);
+                TemplateWindow.UpdateAnimation(value.Animation);
+                TemplateWindow.Refresh();
+            }
+        }
+
+        public Tile SelectedTile
+        {
+            get
+            {
+                return new Tile(
+                    TilePickerWindow.GetTileIndex(),
+                    ColorPickerWindow.GetForeColorIndex(),
+                    ColorPickerWindow.GetBackColorIndex());
+            }
+        }
+
         public MapWindow MapWindow { get; private set; }
         public TilePickerWindow TilePickerWindow { get; private set; }
         public ColorPickerWindow ColorPickerWindow { get; private set; }
         public TemplateWindow TemplateWindow { get; private set; }
+        public Palette Palette { get; private set; }
+        public Tileset Tileset { get; private set; }
 
-        private readonly Form Parent;
         private readonly int DefaultMapWidth = 31;
         private readonly int DefaultMapHeight = 21;
+        private readonly Form Parent;
 
         public MapEditor(Form parent)
         {
             Parent = parent;
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
-            MapWindow = new MapWindow(this, Map);
+            Palette = Map.Palette;
+            Tileset = Map.Tileset;
+            MapWindow = new MapWindow(this);
             TemplateWindow = new TemplateWindow(this);
-            TilePickerWindow = new TilePickerWindow(this, Map.Tileset);
-            ColorPickerWindow = new ColorPickerWindow(this, Map.Palette);
+            TilePickerWindow = new TilePickerWindow(this);
+            ColorPickerWindow = new ColorPickerWindow(this);
 
             if (parent.IsMdiContainer)
             {
@@ -53,28 +89,12 @@ namespace TileGameMaker.Modules
             MapWindow.Show();
         }
 
-        public Tile GetSelectedTile()
+        public void Refresh()
         {
-            return new Tile(
-                TilePickerWindow.GetTileIndex(),
-                ColorPickerWindow.GetForeColorIndex(), 
-                ColorPickerWindow.GetBackColorIndex());
-        }
-
-        public GameObject GetSelectedObject()
-        {
-            GameObject o = new GameObject();
-            o.Type = TemplateWindow.Object.Type;
-            o.Param = TemplateWindow.Object.Param;
-            o.Data = TemplateWindow.Object.Data;
-            o.Animation.SetEqual(TemplateWindow.CroppedAnimation);
-            return o;
-        }
-
-        public void CreateNewMap(int width, int height)
-        {
-            Map = new ObjectMap(width, height);
-            MapWindow.SetMap(Map);
+            TilePickerWindow.Refresh();
+            ColorPickerWindow.Refresh();
+            TemplateWindow.Refresh();
+            MapWindow.Refresh();
         }
     }
 }

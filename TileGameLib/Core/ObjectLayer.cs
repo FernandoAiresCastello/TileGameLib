@@ -26,6 +26,18 @@ namespace TileGameLib.Core
                     Objects[col, row] = new GameObject();
         }
 
+        public void SetEqual(ObjectLayer other)
+        {
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    GameObject o = other.GetObject(col, row);
+                    Objects[col, row].SetEqual(o);
+                }
+            }
+        }
+
         public void Clear()
         {
             for (int row = 0; row < Height; row++)

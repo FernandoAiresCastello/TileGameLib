@@ -29,6 +29,23 @@ namespace TileGameLib.Core
             AddLayer();
         }
 
+        public void SetEqual(ObjectMap other)
+        {
+            Name = other.Name;
+            Width = other.Width;
+            Height = other.Height;
+            Tileset.SetEqual(other.Tileset);
+            Palette.SetEqual(other.Palette);
+            Layers.Clear();
+
+            foreach (ObjectLayer layer in other.Layers)
+            {
+                ObjectLayer newLayer = new ObjectLayer(Width, Height);
+                newLayer.SetEqual(layer);
+                Layers.Add(newLayer);
+            }
+        }
+
         public void AddLayer()
         {
             Layers.Add(new ObjectLayer(Width, Height));
