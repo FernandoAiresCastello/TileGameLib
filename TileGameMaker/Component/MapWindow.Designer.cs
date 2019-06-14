@@ -47,20 +47,6 @@ namespace TileGameMaker.Component
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnInfo = new System.Windows.Forms.ToolStripButton();
-            this.InfoPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtMapName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtFilename = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.TxtMapWidth = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtMapHeight = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TxtLayers = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -72,13 +58,9 @@ namespace TileGameMaker.Component
             this.CtxBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.CtxBtnCancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnResize = new System.Windows.Forms.Button();
             this.LayoutPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.InfoPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.CtxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -91,7 +73,6 @@ namespace TileGameMaker.Component
             this.LayoutPanel.ColumnCount = 1;
             this.LayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutPanel.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.LayoutPanel.Controls.Add(this.InfoPanel, 0, 1);
             this.LayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.LayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LayoutPanel.Name = "LayoutPanel";
@@ -114,7 +95,7 @@ namespace TileGameMaker.Component
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(754, 433);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(754, 539);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // MapPanel
@@ -124,7 +105,7 @@ namespace TileGameMaker.Component
             this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapPanel.Location = new System.Drawing.Point(3, 28);
             this.MapPanel.Name = "MapPanel";
-            this.MapPanel.Size = new System.Drawing.Size(748, 402);
+            this.MapPanel.Size = new System.Drawing.Size(748, 508);
             this.MapPanel.TabIndex = 1;
             // 
             // toolStrip1
@@ -259,181 +240,6 @@ namespace TileGameMaker.Component
             this.BtnInfo.Size = new System.Drawing.Size(23, 22);
             this.BtnInfo.Text = "toolStripButton1";
             this.BtnInfo.ToolTipText = "Show info";
-            this.BtnInfo.Click += new System.EventHandler(this.BtnInfo_Click);
-            // 
-            // InfoPanel
-            // 
-            this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.InfoPanel.Controls.Add(this.tableLayoutPanel1);
-            this.InfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InfoPanel.Location = new System.Drawing.Point(3, 436);
-            this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(748, 100);
-            this.InfoPanel.TabIndex = 1;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.82796F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.17204F));
-            this.tableLayoutPanel1.Controls.Add(this.TxtMapName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TxtFilename, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.45763F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.54237F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 96);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // TxtMapName
-            // 
-            this.TxtMapName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtMapName.Font = new System.Drawing.Font("Consolas", 10F);
-            this.TxtMapName.Location = new System.Drawing.Point(93, 37);
-            this.TxtMapName.Margin = new System.Windows.Forms.Padding(5);
-            this.TxtMapName.MaxLength = 256;
-            this.TxtMapName.Name = "TxtMapName";
-            this.TxtMapName.Size = new System.Drawing.Size(646, 23);
-            this.TxtMapName.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 72);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Map size";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(5, 37);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Map name";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 22);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Filename";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtFilename
-            // 
-            this.TxtFilename.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtFilename.Font = new System.Drawing.Font("Consolas", 10F);
-            this.TxtFilename.Location = new System.Drawing.Point(93, 5);
-            this.TxtFilename.Margin = new System.Windows.Forms.Padding(5);
-            this.TxtFilename.MaxLength = 100;
-            this.TxtFilename.Name = "TxtFilename";
-            this.TxtFilename.ReadOnly = true;
-            this.TxtFilename.Size = new System.Drawing.Size(646, 23);
-            this.TxtFilename.TabIndex = 3;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.label4);
-            this.flowLayoutPanel1.Controls.Add(this.TxtMapWidth);
-            this.flowLayoutPanel1.Controls.Add(this.label5);
-            this.flowLayoutPanel1.Controls.Add(this.TxtMapHeight);
-            this.flowLayoutPanel1.Controls.Add(this.label6);
-            this.flowLayoutPanel1.Controls.Add(this.TxtLayers);
-            this.flowLayoutPanel1.Controls.Add(this.BtnResize);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(91, 70);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(650, 23);
-            this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // TxtMapWidth
-            // 
-            this.TxtMapWidth.Font = new System.Drawing.Font("Consolas", 10F);
-            this.TxtMapWidth.Location = new System.Drawing.Point(45, 0);
-            this.TxtMapWidth.Margin = new System.Windows.Forms.Padding(0);
-            this.TxtMapWidth.MaxLength = 5;
-            this.TxtMapWidth.Name = "TxtMapWidth";
-            this.TxtMapWidth.Size = new System.Drawing.Size(104, 23);
-            this.TxtMapWidth.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 29);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Width";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtMapHeight
-            // 
-            this.TxtMapHeight.Font = new System.Drawing.Font("Consolas", 10F);
-            this.TxtMapHeight.Location = new System.Drawing.Point(197, 0);
-            this.TxtMapHeight.Margin = new System.Windows.Forms.Padding(0);
-            this.TxtMapHeight.MaxLength = 5;
-            this.TxtMapHeight.Name = "TxtMapHeight";
-            this.TxtMapHeight.Size = new System.Drawing.Size(104, 23);
-            this.TxtMapHeight.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(154, 0);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 29);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Height";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtLayers
-            // 
-            this.TxtLayers.Font = new System.Drawing.Font("Consolas", 10F);
-            this.TxtLayers.Location = new System.Drawing.Point(349, 0);
-            this.TxtLayers.Margin = new System.Windows.Forms.Padding(0);
-            this.TxtLayers.MaxLength = 2;
-            this.TxtLayers.Name = "TxtLayers";
-            this.TxtLayers.Size = new System.Drawing.Size(104, 23);
-            this.TxtLayers.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(306, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 29);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Layers";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // HoverLabel
             // 
@@ -524,15 +330,6 @@ namespace TileGameMaker.Component
             this.CtxBtnCancel.Text = "Cancel";
             this.CtxBtnCancel.Click += new System.EventHandler(this.CtxBtnCancel_Click);
             // 
-            // BtnResize
-            // 
-            this.BtnResize.Location = new System.Drawing.Point(456, 3);
-            this.BtnResize.Name = "BtnResize";
-            this.BtnResize.Size = new System.Drawing.Size(75, 23);
-            this.BtnResize.TabIndex = 9;
-            this.BtnResize.Text = "Resize";
-            this.BtnResize.UseVisualStyleBackColor = true;
-            // 
             // MapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -551,11 +348,6 @@ namespace TileGameMaker.Component
             this.tableLayoutPanel2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.InfoPanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.CtxMenu.ResumeLayout(false);
@@ -570,7 +362,6 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.TableLayoutPanel LayoutPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.Panel InfoPanel;
         private System.Windows.Forms.Panel MapPanel;
         private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -595,20 +386,6 @@ namespace TileGameMaker.Component
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton BtnLoadMap;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtMapName;
-        private System.Windows.Forms.TextBox TxtFilename;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox TxtMapHeight;
-        private System.Windows.Forms.TextBox TxtMapWidth;
-        private System.Windows.Forms.TextBox TxtLayers;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button BtnResize;
     }
 }
 

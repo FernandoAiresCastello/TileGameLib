@@ -18,12 +18,6 @@ namespace TileGameMaker.Component
 {
     public partial class MapWindow : BaseWindow
     {
-        public string Filename
-        {
-            get { return TxtFilename.Text; }
-            set { TxtFilename.Text = value.Trim(); }
-        }
-
         private readonly int EmptyTileIx;
         private readonly int FirstPaletteColorIx;
         private readonly int LastPaletteColorIx;
@@ -44,8 +38,6 @@ namespace TileGameMaker.Component
         public MapWindow(MapEditor editor)
         {
             InitializeComponent();
-            InfoPanel.Hide();
-
             MapEditor = editor;
             Map = editor.Map;
             Disp = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
@@ -78,15 +70,6 @@ namespace TileGameMaker.Component
                     Map.Width, Map.Height, Layer, Map.Layers.Count, Disp.Zoom);
         }
 
-        private void UpdateInfoPanel()
-        {
-            Text = Map.Name;
-            TxtMapName.Text = Map.Name;
-            TxtLayers.Text = Map.Layers.Count.ToString();
-            TxtMapWidth.Text = Map.Width.ToString();
-            TxtMapHeight.Text = Map.Height.ToString();
-        }
-
         private void ClearMap()
         {
             Map.Fill(MakeDefaultGameObject());
@@ -102,9 +85,10 @@ namespace TileGameMaker.Component
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
             Point point = Disp.GetMouseToCellPos(e.Location);
-            GameObject o = Map.GetObject(Layer, point.X, point.Y);
-            if (o == null)
+            if (IsOutOfBounds(point))
                 return;
+
+            GameObject o = Map.GetObject(Layer, point.X, point.Y);
 
             if (Mode == EditMode.Template)
             {
@@ -119,10 +103,9 @@ namespace TileGameMaker.Component
                     CopyObjectToTemplate(o);
                 }
             }
-            else if (Mode == EditMode.TextInput)
+            else if (Mode == EditMode.TextInput && e.Button == MouseButtons.Left)
             {
-                if (e.Button == MouseButtons.Left)
-                    InputText(point.X, point.Y);
+                InputText(point.X, point.Y);
             }
         }
 
@@ -131,15 +114,24 @@ namespace TileGameMaker.Component
             o.SetEqual(MapEditor.SelectedObject);
             RenderMap();
         }
+
         private void Display_MouseMove(object sender, MouseEventArgs e)
         {
             Point point = Disp.GetMouseToCellPos(e.Location);
+            if (IsOutOfBounds(point))
+                return;
+
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
 
             if (o != null)
                 HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " - " + o;
             else
                 HoverLabel.Text = "";
+        }
+
+        private bool IsOutOfBounds(Point point)
+        {
+            return point.X < 0 || point.Y < 0 || point.X >= Map.Width || point.Y >= Map.Height;
         }
 
         private void Disp_MouseLeave(object sender, EventArgs e)
@@ -151,7 +143,6 @@ namespace TileGameMaker.Component
         {
             MapRenderer.Render();
             UpdateStatusLabel();
-            UpdateInfoPanel();
             base.Refresh();
         }
 
@@ -180,19 +171,6 @@ namespace TileGameMaker.Component
         {
             Disp.ZoomOut();
             Refresh();
-        }
-
-        private void BtnInfo_Click(object sender, EventArgs e)
-        {
-            ToggleInfo();
-        }
-
-        private void ToggleInfo()
-        {
-            if (InfoPanel.Visible)
-                InfoPanel.Hide();
-            else
-                InfoPanel.Show();
         }
 
         private void CtxBtnDelete_Click(object sender, EventArgs e)
@@ -328,10 +306,10 @@ namespace TileGameMaker.Component
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
                     return;
 
-                Map.Name = TxtMapName.Text.Trim();
+                Map.Name = MapEditor.MapPropertyWindow.TxtName.Text.Trim();
                 Archive.Save(Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
-                Filename = entry;
+                MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
@@ -353,7 +331,7 @@ namespace TileGameMaker.Component
 
                 Archive.Load(ref Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
-                Filename = entry;
+                MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 MapEditor.Refresh();
                 Alert.Info("File loaded successfully!");
             }
@@ -388,9 +366,6 @@ namespace TileGameMaker.Component
                         break;
                     case Keys.P:
                         SaveScreenshot();
-                        break;
-                    case Keys.I:
-                        ToggleInfo();
                         break;
                 }
             }

@@ -62,6 +62,12 @@
     <Compile Include="Component\ColorEditorWindow.Designer.cs">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component\MapPropertyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component\MapPropertyWindow.Designer.cs">
+      <DependentUpon>MapPropertyWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\TemplateWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Component\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Component\MapPropertyWindow.resx">
+      <DependentUpon>MapPropertyWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\TemplateWindow.resx">
       <DependentUpon>TemplateWindow.cs</DependentUpon>

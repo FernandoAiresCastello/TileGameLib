@@ -24,6 +24,7 @@ namespace TileGameMaker.Component
             editor.ColorPickerWindow.Location = new Point(800, 0);
             editor.TilePickerWindow.Location = new Point(1040, 0);
             editor.TemplateWindow.Location = new Point(800, 365);
+            editor.MapPropertyWindow.Location = new Point(900, 365);
             editor.Show();
         }
 
