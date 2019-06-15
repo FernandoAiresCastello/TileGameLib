@@ -93,5 +93,14 @@ namespace TileGameLib.Core
         {
             return Layers[layer].CopyObject(x, y);
         }
+
+        public void Resize(int width, int height)
+        {
+            foreach (ObjectLayer layer in Layers)
+                layer.Resize(width, height);
+
+            Width = width;
+            Height = height;
+        }
     }
 }

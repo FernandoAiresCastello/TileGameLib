@@ -33,6 +33,10 @@ namespace TileGameMaker.Modules
             {
                 TemplateWindow.Object.SetEqual(value);
                 TemplateWindow.UpdateAnimation(value.Animation);
+                Tile firstFrame = value.Animation.GetFirstFrame();
+                TilePickerWindow.SetTileIndex(firstFrame.TileIx);
+                ColorPickerWindow.SetForeColorIndex(firstFrame.ForeColorIx);
+                ColorPickerWindow.SetBackColorIndex(firstFrame.BackColorIx);
                 TemplateWindow.Refresh();
             }
         }
@@ -53,6 +57,7 @@ namespace TileGameMaker.Modules
         public ColorPickerWindow ColorPickerWindow { get; private set; }
         public TemplateWindow TemplateWindow { get; private set; }
         public MapPropertyWindow MapPropertyWindow { get; private set; }
+
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
 
@@ -65,6 +70,7 @@ namespace TileGameMaker.Modules
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             Palette = Map.Palette;
             Tileset = Map.Tileset;
+            Tile.Null.SetEqual(new Tile(0, 0, Palette.Size - 1));
 
             MapWindow = new MapWindow(this);
             TemplateWindow = new TemplateWindow(this);
@@ -100,13 +106,18 @@ namespace TileGameMaker.Modules
                 form.Refresh();
         }
 
-        public void UpdateMapProperties(string file = "")
+        public void UpdateMapProperties(string file = null)
         {
-            MapPropertyWindow.TxtFile.Text = file;
-            MapPropertyWindow.TxtName.Text = Map.Name;
-            MapPropertyWindow.TxtWidth.Text = Map.Width.ToString();
-            MapPropertyWindow.TxtHeight.Text = Map.Height.ToString();
-            MapPropertyWindow.TxtLayers.Text = Map.Layers.Count.ToString();
+            MapPropertyWindow.UpdateProperties(file);
+        }
+
+        public void Resize(int width, int height)
+        {
+            if (width != Map.Width || height != Map.Height)
+                Map.Resize(width, height);
+
+            MapWindow.ResizeMapView(width, height);
+            Refresh();
         }
     }
 }

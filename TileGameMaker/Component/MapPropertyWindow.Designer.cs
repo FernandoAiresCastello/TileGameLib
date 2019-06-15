@@ -162,9 +162,11 @@
             this.TxtWidth.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtWidth.Location = new System.Drawing.Point(68, 94);
             this.TxtWidth.Margin = new System.Windows.Forms.Padding(10);
+            this.TxtWidth.MaxLength = 3;
             this.TxtWidth.Name = "TxtWidth";
             this.TxtWidth.Size = new System.Drawing.Size(172, 23);
             this.TxtWidth.TabIndex = 7;
+            this.TxtWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericTxtBox_KeyPress);
             // 
             // TxtHeight
             // 
@@ -172,9 +174,11 @@
             this.TxtHeight.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtHeight.Location = new System.Drawing.Point(68, 136);
             this.TxtHeight.Margin = new System.Windows.Forms.Padding(10);
+            this.TxtHeight.MaxLength = 3;
             this.TxtHeight.Name = "TxtHeight";
             this.TxtHeight.Size = new System.Drawing.Size(172, 23);
             this.TxtHeight.TabIndex = 8;
+            this.TxtHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericTxtBox_KeyPress);
             // 
             // TxtLayers
             // 
@@ -182,9 +186,11 @@
             this.TxtLayers.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtLayers.Location = new System.Drawing.Point(68, 178);
             this.TxtLayers.Margin = new System.Windows.Forms.Padding(10);
+            this.TxtLayers.MaxLength = 3;
             this.TxtLayers.Name = "TxtLayers";
             this.TxtLayers.Size = new System.Drawing.Size(172, 23);
             this.TxtLayers.TabIndex = 9;
+            this.TxtLayers.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericTxtBox_KeyPress);
             // 
             // tableLayoutPanel2
             // 
@@ -205,22 +211,24 @@
             // BtnApply
             // 
             this.BtnApply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnApply.Image = global::TileGameMaker.Properties.Resources.tick;
             this.BtnApply.Location = new System.Drawing.Point(3, 3);
             this.BtnApply.Name = "BtnApply";
             this.BtnApply.Size = new System.Drawing.Size(116, 35);
             this.BtnApply.TabIndex = 11;
-            this.BtnApply.Text = "Apply changes";
             this.BtnApply.UseVisualStyleBackColor = true;
+            this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // BtnDiscard
             // 
             this.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDiscard.Image = global::TileGameMaker.Properties.Resources.undo;
             this.BtnDiscard.Location = new System.Drawing.Point(125, 3);
             this.BtnDiscard.Name = "BtnDiscard";
             this.BtnDiscard.Size = new System.Drawing.Size(116, 35);
             this.BtnDiscard.TabIndex = 12;
-            this.BtnDiscard.Text = "Discard changes";
             this.BtnDiscard.UseVisualStyleBackColor = true;
+            this.BtnDiscard.Click += new System.EventHandler(this.BtnDiscard_Click);
             // 
             // MapPropertyWindow
             // 
@@ -253,10 +261,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnDiscard;
         private System.Windows.Forms.Button BtnApply;
-        public System.Windows.Forms.TextBox TxtLayers;
-        public System.Windows.Forms.TextBox TxtHeight;
-        public System.Windows.Forms.TextBox TxtWidth;
-        public System.Windows.Forms.TextBox TxtName;
-        public System.Windows.Forms.TextBox TxtFile;
+        private System.Windows.Forms.TextBox TxtLayers;
+        private System.Windows.Forms.TextBox TxtHeight;
+        private System.Windows.Forms.TextBox TxtWidth;
+        private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.TextBox TxtFile;
     }
 }

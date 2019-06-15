@@ -58,9 +58,9 @@ namespace TileGameMaker.Component
             Refresh();
         }
 
-        private GameObject MakeDefaultGameObject()
+        public void ResizeMapView(int width, int height)
         {
-            return new GameObject(new Tile(EmptyTileIx, FirstPaletteColorIx, LastPaletteColorIx));
+            Disp.ResizeGraphics(width, height);
         }
 
         private void UpdateStatusLabel()
@@ -72,7 +72,7 @@ namespace TileGameMaker.Component
 
         private void ClearMap()
         {
-            Map.Fill(MakeDefaultGameObject());
+            Map.Clear();
             RenderMap();
         }
 
@@ -306,7 +306,7 @@ namespace TileGameMaker.Component
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
                     return;
 
-                Map.Name = MapEditor.MapPropertyWindow.TxtName.Text.Trim();
+                Map.Name = MapEditor.MapPropertyWindow.MapName;
                 Archive.Save(Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
@@ -332,7 +332,8 @@ namespace TileGameMaker.Component
                 Archive.Load(ref Map, mgr.SelectedEntry);
                 DialogResult = DialogResult.OK;
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
-                MapEditor.Refresh();
+                MapEditor.Resize(Map.Width, Map.Height);
+                MapEditor.SelectedObject = new GameObject();
                 Alert.Info("File loaded successfully!");
             }
         }

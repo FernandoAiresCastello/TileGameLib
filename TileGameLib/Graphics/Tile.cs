@@ -12,6 +12,8 @@ namespace TileGameLib.Graphics
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
 
+        public static Tile Null { get; private set; } = new Tile(0, 0, 0);
+
         public Tile()
         {
             SetNull();
@@ -45,9 +47,9 @@ namespace TileGameLib.Graphics
 
         public void SetNull()
         {
-            TileIx = 0;
-            ForeColorIx = 0;
-            BackColorIx = 0;
+            TileIx = Null.TileIx;
+            ForeColorIx = Null.ForeColorIx;
+            BackColorIx = Null.BackColorIx;
         }
 
         public override bool Equals(object o)

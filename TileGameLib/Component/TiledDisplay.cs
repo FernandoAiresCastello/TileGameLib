@@ -36,6 +36,11 @@ namespace TileGameMaker.Component
             SetZoom(zoom);
         }
 
+        protected void ShowBorder(bool show)
+        {
+            BorderStyle = show ? BorderStyle.Fixed3D : BorderStyle.None;
+        }
+
         public Point GetMouseToCellPos(Point point)
         {
             return new Point
@@ -53,13 +58,8 @@ namespace TileGameMaker.Component
 
         public void ResizeGraphics(int cols, int rows)
         {
-            Graphics = new GraphicsAdapter(cols, rows);
-            Refresh();
-        }
-
-        protected void ShowBorder(bool show)
-        {
-            BorderStyle = show ? BorderStyle.Fixed3D : BorderStyle.None;
+            Graphics = new GraphicsAdapter(cols, rows, Graphics.Tileset, Graphics.Palette);
+            UpdateSize();
         }
 
         public void SetZoom(int zoom)
@@ -70,6 +70,11 @@ namespace TileGameMaker.Component
                 zoom = MaxZoom;
 
             Zoom = zoom;
+            UpdateSize();
+        }
+
+        private void UpdateSize()
+        {
             Size = new Size(Zoom * Graphics.Width, Zoom * Graphics.Height);
             Grid = new Bitmap(Width, Height);
             MakeGrid();

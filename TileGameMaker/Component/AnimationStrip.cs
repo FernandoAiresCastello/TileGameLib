@@ -18,7 +18,7 @@ namespace TileGameMaker.Component
         {
             ShowGrid = true;
             for (int i = 0; i < Graphics.Cols; i++)
-                Animation.AddFrame(new Tile(0, 0, Graphics.Palette.Size - 1));
+                Animation.AddFrame(Tile.Null);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -35,7 +35,7 @@ namespace TileGameMaker.Component
 
         public void Clear()
         {
-            Animation.Clear(false);
+            Animation.Clear();
             for (int i = 0; i < Graphics.Cols; i++)
                 Animation.AddFrame(new Tile(0, 0, Graphics.Palette.Size - 1));
         }

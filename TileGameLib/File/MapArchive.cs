@@ -106,7 +106,7 @@ namespace TileGameLib.File
                         o.Type = file.ReadByte();
                         o.Param = file.ReadByte();
                         int frameCount = file.ReadByte();
-                        o.Animation.Clear(false);
+                        o.Animation.Clear(null);
                         o.Animation.AddFrames(frameCount, new Tile());
 
                         foreach (Tile tile in o.Animation.Frames)

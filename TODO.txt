@@ -2,7 +2,6 @@
 TASKS:
 
 TileGameMaker
-- Resize map
 - Object block select/copy/cut/paste
 - Search objects
 - Replace objects

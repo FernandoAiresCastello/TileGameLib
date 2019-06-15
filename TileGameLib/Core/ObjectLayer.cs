@@ -80,5 +80,25 @@ namespace TileGameLib.Core
         {
             return string.Format("Invalid object layer index. X:{0} Y:{1} Layer size:{2}x{3}", x, y, Width, Height);
         }
+
+        public void Resize(int width, int height)
+        {
+            GameObject[,] newObjects = new GameObject[width, height];
+
+            for (int row = 0; row < height; row++)
+            {
+                for (int col = 0; col < width; col++)
+                {
+                    if (col < Width && row < Height)
+                        newObjects[col, row] = new GameObject(Objects[col, row]);
+                    else
+                        newObjects[col, row] = new GameObject();
+                }
+            }
+
+            Objects = newObjects;
+            Width = width;
+            Height = height;
+        }
     }
 }

@@ -14,12 +14,20 @@ namespace TileGameLib.Core
 
         public ObjectAnim()
         {
-            Clear();
+            Frames.Clear();
         }
 
-        public ObjectAnim(bool addEmptyFirstFrame)
+        public ObjectAnim(bool addFirstFrame)
         {
-            Clear(addEmptyFirstFrame);
+            Frames.Clear();
+            if (addFirstFrame)
+                Frames.Add(Tile.Null);
+        }
+
+        public ObjectAnim(Tile firstFrame)
+        {
+            Frames.Clear();
+            Frames.Add(firstFrame);
         }
 
         public ObjectAnim(ObjectAnim other)
@@ -27,25 +35,25 @@ namespace TileGameLib.Core
             SetEqual(other);
         }
 
+        public void Clear()
+        {
+            Frames.Clear();
+        }
+
+        public void Clear(Tile firstFrame)
+        {
+            Frames.Clear();
+            if (firstFrame != null)
+                Frames.Add(firstFrame);
+        }
+
         public ObjectAnim CopyFrames(int frames)
         {
-            ObjectAnim anim = new ObjectAnim(false);
+            ObjectAnim anim = new ObjectAnim();
             for (int i = 0; i < frames && i < Frames.Count; i++)
                 anim.AddFrame(Frames[i]);
 
             return anim;
-        }
-
-        public void Clear()
-        {
-            Clear(true);
-        }
-
-        public void Clear(bool addEmptyFirstFrame)
-        {
-            Frames.Clear();
-            if (addEmptyFirstFrame)
-                Frames.Add(new Tile());
         }
 
         public bool IsSingleFrame()

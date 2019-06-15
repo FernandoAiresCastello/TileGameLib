@@ -24,9 +24,14 @@ namespace TileGameLib.Graphics
         private readonly FastBitmap FastBitmap;
 
         public GraphicsAdapter(int cols, int rows)
+            : this(cols, rows, new Tileset(), new Palette())
         {
-            Tileset = new Tileset();
-            Palette = new Palette();
+        }
+
+        public GraphicsAdapter(int cols, int rows, Tileset tileset, Palette palette)
+        {
+            Tileset = tileset;
+            Palette = palette;
             TileBuffer = new TileBuffer(cols, rows);
 
             int width = cols * TilePixels.RowLength;

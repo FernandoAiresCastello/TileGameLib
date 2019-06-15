@@ -36,7 +36,7 @@ namespace TileGameLib.Core
             Type = type;
             Param = param;
             Data = data;
-            Animation.SetFrame(0, singleAnimFrame);
+            Animation.Clear(singleAnimFrame);
         }
 
         public void SetNull()
@@ -44,7 +44,7 @@ namespace TileGameLib.Core
             Type = 0;
             Param = 0;
             Data = "";
-            Animation.Clear();
+            Animation.Clear(Tile.Null);
         }
 
         public bool IsNull()
@@ -53,7 +53,8 @@ namespace TileGameLib.Core
                 Type == 0 && 
                 Param == 0 && 
                 Data == "" && 
-                Animation.IsSingleFrame();
+                Animation.IsSingleFrame() &&
+                Animation.GetFirstFrame().Equals(Tile.Null);
         }
 
         public void SetEqual(GameObject o)
@@ -64,12 +65,12 @@ namespace TileGameLib.Core
             Animation.SetEqual(o.Animation);
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other == null || GetType() != other.GetType())
+            if (obj == null || GetType() != obj.GetType())
                 return false;
 
-            GameObject o = (GameObject)other;
+            GameObject o = (GameObject)obj;
 
             return
                 Type == o.Type &&
