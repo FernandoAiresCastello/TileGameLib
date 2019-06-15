@@ -46,7 +46,10 @@ namespace TileGameMaker.Windows
 
         private void Debug()
         {
-            MapWindow win = new MapWindow(MapEditor.Map, 3);
+            DisplayWindow win = new DisplayWindow(31, 21);
+            win.Text = "Debug Window";
+            win.Graphics.Clear(5);
+            win.Graphics.PutString(0, 0, "Hello World!", 255, 5);
             win.ShowDialog(this);
         }
     }

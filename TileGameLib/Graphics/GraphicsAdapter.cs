@@ -55,6 +55,23 @@ namespace TileGameLib.Graphics
             return TileBuffer.Tiles[col, row].Copy();
         }
 
+        public void Clear(int palIndex0)
+        {
+            Fill(Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
+        }
+
+        public void Fill(Tile tile)
+        {
+            Fill(tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+        }
+
+        public void Fill(int charIndex, int palIndex1, int palIndex0)
+        {
+            for (int y = 0; y < Rows; y++)
+                for (int x = 0; x < Cols; x++)
+                    PutTile(x, y, charIndex, palIndex1, palIndex0);
+        }
+
         public void PutString(int x, int y, string str, int palIndex1, int palIndex0)
         {
             foreach (char ch in str)

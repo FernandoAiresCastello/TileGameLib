@@ -13,16 +13,14 @@ using TileGameLib.Util;
 
 namespace TileGameLib.Components
 {
-    public partial class MapWindow : Form
+    public partial class DisplayWindow : Form
     {
         protected TiledDisplay Display;
-        protected ObjectMap Map;
-        protected MapRenderer MapRenderer;
         protected Size OriginalSize;
         protected Point OriginalLocation;
         protected bool IsFullscreen;
 
-        protected static readonly int DefaultAnimationInterval = 256;
+        public GraphicsAdapter Graphics => Display.Graphics;
 
         public bool Fullscreen
         {
@@ -47,22 +45,21 @@ namespace TileGameLib.Components
             set { MapPanel.BorderStyle = value ? BorderStyle.Fixed3D : BorderStyle.None; }
         }
 
-        public MapWindow(ObjectMap map, int zoom)
-            : this(map, zoom, DefaultAnimationInterval, false, false, false)
+        public DisplayWindow(int cols, int rows)
+            : this(cols, rows, false, false)
         {
         }
 
-        public MapWindow(ObjectMap map, int zoom, int animationInterval, bool fullscreen, bool autoscroll, bool border)
+        public DisplayWindow(int cols, int rows, bool fullscreen, bool border)
         {
             InitializeComponent();
-            Map = map;
-            Display = new TiledDisplay(MapPanel, map.Width, map.Height, zoom);
-            MapRenderer = new MapRenderer(map, Display, animationInterval);
+            Display = new TiledDisplay(MapPanel, cols, rows, 1);
+            Display.StretchImage = true;
+            Display.Dock = DockStyle.Fill;
             OriginalSize = Size;
             OriginalLocation = Location;
             Fullscreen = fullscreen;
             Border = border;
-            MapPanel.AutoScroll = autoscroll;
             StartPosition = FormStartPosition.CenterScreen;
             KeyDown += MapDisplayWindow_KeyDown;
         }
@@ -85,6 +82,7 @@ namespace TileGameLib.Components
             WindowState = FormWindowState.Normal;
             Size = OriginalSize;
             Location = OriginalLocation;
+            TopMost = false;
         }
 
         protected void SwitchToFullscreenMode()
@@ -97,6 +95,7 @@ namespace TileGameLib.Components
             WindowState = FormWindowState.Maximized;
             Size = Screen.PrimaryScreen.Bounds.Size;
             Location = Screen.PrimaryScreen.Bounds.Location;
+            TopMost = true;
         }
 
         protected void ToggleFullscreen()
@@ -105,6 +104,12 @@ namespace TileGameLib.Components
                 SwitchToWindowedMode();
             else
                 SwitchToFullscreenMode();
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            Refresh();
         }
     }
 }

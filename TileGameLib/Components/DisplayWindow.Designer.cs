@@ -1,6 +1,6 @@
 ﻿namespace TileGameLib.Components
 {
-    partial class MapWindow
+    partial class DisplayWindow
     {
         /// <summary>
         /// Required designer variable.

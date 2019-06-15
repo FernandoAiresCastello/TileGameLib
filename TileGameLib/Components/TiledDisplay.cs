@@ -18,6 +18,7 @@ namespace TileGameLib.Components
         public bool ShowOverlay { set; get; }
         public Color GridColor { set; get; }
         public int Zoom { get; protected set; }
+        public bool StretchImage { set; get; }
 
         protected Bitmap Grid;
         protected int MinZoom = 1;
@@ -31,6 +32,7 @@ namespace TileGameLib.Components
             Image = Graphics.Bitmap;
             ShowGrid = true;
             ShowOverlay = true;
+            StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
             SetZoom(zoom);
@@ -106,13 +108,19 @@ namespace TileGameLib.Components
             g.CompositingQuality = CompositingQuality.HighSpeed;
             g.CompositingMode = CompositingMode.SourceCopy;
 
-            g.DrawImage(Graphics.Bitmap, 0, 0, Zoom * Graphics.Width, Zoom * Graphics.Height);
-
-            g.CompositingMode = CompositingMode.SourceOver;
-            if (ShowGrid && Grid != null)
-                g.DrawImage(Grid, 0, 0);
-            if (ShowOverlay && Overlay != null)
-                g.DrawImage(Overlay, 0, 0);
+            if (StretchImage)
+            {
+                g.DrawImage(Graphics.Bitmap, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
+            }
+            else
+            {
+                g.DrawImage(Graphics.Bitmap, 0, 0, Zoom * Graphics.Width, Zoom * Graphics.Height);
+                g.CompositingMode = CompositingMode.SourceOver;
+                if (ShowGrid && Grid != null)
+                    g.DrawImage(Grid, 0, 0);
+                if (ShowOverlay && Overlay != null)
+                    g.DrawImage(Overlay, 0, 0);
+            }
         }
 
         protected void MakeGrid()

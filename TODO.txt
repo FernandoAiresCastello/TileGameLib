@@ -2,6 +2,7 @@
 TASKS:
 
 TileGameMaker
+- MapRenderer render specified map area only
 - Object block select/copy/cut/paste
 - Search objects
 - Replace objects

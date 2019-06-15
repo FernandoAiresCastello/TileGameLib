@@ -42,11 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\MapWindow.cs">
+    <Compile Include="Components\DisplayWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Components\MapWindow.Designer.cs">
-      <DependentUpon>MapWindow.cs</DependentUpon>
+    <Compile Include="Components\DisplayWindow.Designer.cs">
+      <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\ObjectLayer.cs" />
     <Compile Include="Core\ObjectMap.cs" />
@@ -74,8 +74,8 @@
     <Compile Include="Util\ByteExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Components\MapWindow.resx">
-      <DependentUpon>MapWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Components\DisplayWindow.resx">
+      <DependentUpon>DisplayWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

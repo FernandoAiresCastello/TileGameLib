@@ -135,7 +135,7 @@
             this.MiExit.Name = "MiExit";
             this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.X)));
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Size = new System.Drawing.Size(156, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -150,7 +150,8 @@
             // MiCallDebugFunc
             // 
             this.MiCallDebugFunc.Name = "MiCallDebugFunc";
-            this.MiCallDebugFunc.Size = new System.Drawing.Size(180, 22);
+            this.MiCallDebugFunc.ShortcutKeys = System.Windows.Forms.Keys.F12;
+            this.MiCallDebugFunc.Size = new System.Drawing.Size(204, 22);
             this.MiCallDebugFunc.Text = "Call debug function";
             this.MiCallDebugFunc.Click += new System.EventHandler(this.MiCallDebugFunc_Click);
             // 
