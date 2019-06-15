@@ -77,6 +77,7 @@
             // 
             this.BtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.BtnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(23, 22);
@@ -85,9 +86,12 @@
             // 
             // TxtData
             // 
+            this.TxtData.AcceptsReturn = true;
+            this.TxtData.AcceptsTab = true;
             this.TxtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtData.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtData.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtData.Location = new System.Drawing.Point(3, 28);
+            this.TxtData.MaxLength = 65536;
             this.TxtData.Multiline = true;
             this.TxtData.Name = "TxtData";
             this.TxtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
