@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.Components;
 using TileGameMaker.Modules;
 
 namespace TileGameMaker.Windows
@@ -36,6 +37,17 @@ namespace TileGameMaker.Windows
         private void MiExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MiCallDebugFunc_Click(object sender, EventArgs e)
+        {
+            Debug();
+        }
+
+        private void Debug()
+        {
+            MapWindow win = new MapWindow(MapEditor.Map, 3);
+            win.ShowDialog(this);
         }
     }
 }

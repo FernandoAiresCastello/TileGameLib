@@ -19,12 +19,13 @@ namespace TileGameMaker.Panels
 {
     public partial class MapEditorPanel : BasePanel
     {
+        public TiledDisplay Display { get; private set; }
+
         private readonly int DefaultZoom = 3;
         private readonly int DefaultAnimationInterval = 256;
 
         private ObjectMap Map;
         private MapEditor MapEditor;
-        private TiledDisplay Disp;
         private MapRenderer MapRenderer;
         private MapArchive Archive;
         private int Layer;
@@ -42,16 +43,15 @@ namespace TileGameMaker.Panels
             InitializeComponent();
             MapEditor = editor;
             Map = editor.Map;
-            Disp = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
-            MapRenderer = new MapRenderer(Map, Disp, DefaultAnimationInterval);
+            Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
+            MapRenderer = new MapRenderer(Map, Display, DefaultAnimationInterval);
             Archive = new MapArchive(MapEditor.ArchiveFile);
             HoverLabel.Text = "";
             Layer = 0;
 
-            Disp.MouseMove += Display_MouseMove;
-            Disp.MouseDown += Disp_MouseDown;
-            Disp.MouseMove += Disp_MouseMove;
-            Disp.MouseLeave += Disp_MouseLeave;
+            Display.MouseMove += Disp_MouseMove;
+            Display.MouseDown += Disp_MouseDown;
+            Display.MouseLeave += Disp_MouseLeave;
 
             ClearMap();
             Refresh();
@@ -59,14 +59,14 @@ namespace TileGameMaker.Panels
 
         public void ResizeMapView(int width, int height)
         {
-            Disp.ResizeGraphics(width, height);
+            Display.ResizeGraphics(width, height);
         }
 
         private void UpdateStatusLabel()
         {
             StatusLabel.Text =
                 string.Format("Size: {0}x{1} Layer: {2}/{3} Zoom: {4}",
-                    Map.Width, Map.Height, Layer, Map.Layers.Count, Disp.Zoom);
+                    Map.Width, Map.Height, Layer, Map.Layers.Count, Display.Zoom);
         }
 
         private void ClearMap()
@@ -77,18 +77,34 @@ namespace TileGameMaker.Panels
 
         private void Disp_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-                OnClick(e);
+            if (e.Button == MouseButtons.None)
+                OnDisplayMouseMove(e);
+            else if (e.Button == MouseButtons.Left)
+                OnDisplayMouseClick(e);
         }
 
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
-            OnClick(e);
+            OnDisplayMouseClick(e);
         }
 
-        private void OnClick(MouseEventArgs e)
+        private void OnDisplayMouseMove(MouseEventArgs e)
         {
-            Point point = Disp.GetMouseToCellPos(e.Location);
+            Point point = Display.GetMouseToCellPos(e.Location);
+            if (IsOutOfBounds(point))
+                return;
+
+            GameObject o = Map.GetObject(Layer, point.X, point.Y);
+
+            if (o != null)
+                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " - " + o;
+            else
+                HoverLabel.Text = "";
+        }
+
+        private void OnDisplayMouseClick(MouseEventArgs e)
+        {
+            Point point = Display.GetMouseToCellPos(e.Location);
             if (IsOutOfBounds(point))
                 return;
 
@@ -117,20 +133,6 @@ namespace TileGameMaker.Panels
         {
             o.SetEqual(MapEditor.SelectedObject);
             RenderMap();
-        }
-
-        private void Display_MouseMove(object sender, MouseEventArgs e)
-        {
-            Point point = Disp.GetMouseToCellPos(e.Location);
-            if (IsOutOfBounds(point))
-                return;
-
-            GameObject o = Map.GetObject(Layer, point.X, point.Y);
-
-            if (o != null)
-                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " - " + o;
-            else
-                HoverLabel.Text = "";
         }
 
         private bool IsOutOfBounds(Point point)
@@ -167,13 +169,13 @@ namespace TileGameMaker.Panels
 
         private void ZoomIn()
         {
-            Disp.ZoomIn();
+            Display.ZoomIn();
             Refresh();
         }
 
         private void ZoomOut()
         {
-            Disp.ZoomOut();
+            Display.ZoomOut();
             Refresh();
         }
 
@@ -202,7 +204,7 @@ namespace TileGameMaker.Panels
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
-                Disp.Graphics.SaveAsImage(dialog.FileName);
+                Display.Graphics.SaveAsImage(dialog.FileName);
         }
 
         private void BtnGrid_Click(object sender, EventArgs e)
@@ -212,7 +214,7 @@ namespace TileGameMaker.Panels
 
         private void ToggleGrid()
         {
-            Disp.ShowGrid = !Disp.ShowGrid;
+            Display.ShowGrid = !Display.ShowGrid;
             Refresh();
         }
 
