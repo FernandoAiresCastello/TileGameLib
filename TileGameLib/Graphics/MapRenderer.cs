@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TileGameLib.Core;
-using TileGameMaker.Component;
+using TileGameLib.Component;
 
 namespace TileGameLib.Graphics
 {

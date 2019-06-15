@@ -273,6 +273,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap scroll_pane_text {
+            get {
+                object obj = ResourceManager.GetObject("scroll_pane_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shape_flip_horizontal {
             get {
                 object obj = ResourceManager.GetObject("shape_flip_horizontal", resourceCulture);

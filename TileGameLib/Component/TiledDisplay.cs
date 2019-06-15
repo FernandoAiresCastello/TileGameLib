@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
 
-namespace TileGameMaker.Component
+namespace TileGameLib.Component
 {
     public class TiledDisplay : PictureBox
     {
@@ -99,7 +99,7 @@ namespace TileGameMaker.Component
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            System.Drawing.Graphics g = e.Graphics;
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.SmoothingMode = SmoothingMode.None;
             g.PixelOffsetMode = PixelOffsetMode.Half;
@@ -117,7 +117,7 @@ namespace TileGameMaker.Component
 
         protected void MakeGrid()
         {
-            using (Graphics g = System.Drawing.Graphics.FromImage(Grid))
+            using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(Grid))
             {
                 using (Pen pen = new Pen(GridColor))
                 {

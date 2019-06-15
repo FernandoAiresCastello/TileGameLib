@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using TileGameLib.Core;
 using TileGameLib.File;
 using TileGameLib.Graphics;
-using TileGameMaker.Component;
+using TileGameLib.Component;
+using TileGameMaker.Panels;
 
 namespace TileGameMaker.Modules
 {
@@ -22,22 +23,22 @@ namespace TileGameMaker.Modules
             get
             {
                 GameObject o = new GameObject();
-                o.Type = TemplateWindow.Object.Type;
-                o.Param = TemplateWindow.Object.Param;
-                o.Data = TemplateWindow.Object.Data;
-                o.Animation.SetEqual(TemplateWindow.CroppedAnimation);
+                o.Type = TemplateControl.Object.Type;
+                o.Param = TemplateControl.Object.Param;
+                o.Data = TemplateControl.Object.Data;
+                o.Animation.SetEqual(TemplateControl.CroppedAnimation);
                 return o;
             }
 
             set
             {
-                TemplateWindow.Object.SetEqual(value);
-                TemplateWindow.UpdateAnimation(value.Animation);
+                TemplateControl.Object.SetEqual(value);
+                TemplateControl.UpdateAnimation(value.Animation);
                 Tile firstFrame = value.Animation.GetFirstFrame();
-                TilePickerWindow.SetTileIndex(firstFrame.TileIx);
-                ColorPickerWindow.SetForeColorIndex(firstFrame.ForeColorIx);
-                ColorPickerWindow.SetBackColorIndex(firstFrame.BackColorIx);
-                TemplateWindow.Refresh();
+                TilePickerControl.SetTileIndex(firstFrame.TileIx);
+                ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
+                ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
+                TemplateControl.Refresh();
             }
         }
 
@@ -46,24 +47,24 @@ namespace TileGameMaker.Modules
             get
             {
                 return new Tile(
-                    TilePickerWindow.GetTileIndex(),
-                    ColorPickerWindow.GetForeColorIndex(),
-                    ColorPickerWindow.GetBackColorIndex());
+                    TilePickerControl.GetTileIndex(),
+                    ColorPickerControl.GetForeColorIndex(),
+                    ColorPickerControl.GetBackColorIndex());
             }
         }
 
-        public MapWindow MapWindow { get; private set; }
-        public TilePickerWindow TilePickerWindow { get; private set; }
-        public ColorPickerWindow ColorPickerWindow { get; private set; }
-        public TemplateWindow TemplateWindow { get; private set; }
-        public MapPropertyWindow MapPropertyWindow { get; private set; }
+        public MapEditorControl MapEditorControl { get; private set; }
+        public TilePickerControl TilePickerControl { get; private set; }
+        public ColorPickerControl ColorPickerControl { get; private set; }
+        public TemplateControl TemplateControl { get; private set; }
+        public MapPropertyControl MapPropertyControl { get; private set; }
 
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
 
         private readonly int DefaultMapWidth = 31;
         private readonly int DefaultMapHeight = 21;
-        private readonly List<Form> Children = new List<Form>();
+        private readonly List<Control> Children = new List<Control>();
 
         public MapEditor(Form parent)
         {
@@ -72,43 +73,37 @@ namespace TileGameMaker.Modules
             Tileset = Map.Tileset;
             Tile.Null.SetEqual(new Tile(0, 0, Palette.Size - 1));
 
-            MapWindow = new MapWindow(this);
-            TemplateWindow = new TemplateWindow(this);
-            TilePickerWindow = new TilePickerWindow(this);
-            ColorPickerWindow = new ColorPickerWindow(this);
-            MapPropertyWindow = new MapPropertyWindow(this);
+            MapEditorControl = new MapEditorControl(this);
+            TemplateControl = new TemplateControl(this);
+            TilePickerControl = new TilePickerControl(this);
+            ColorPickerControl = new ColorPickerControl(this);
+            MapPropertyControl = new MapPropertyControl(this);
             UpdateMapProperties();
 
-            Children.Add(TilePickerWindow);
-            Children.Add(TemplateWindow);
-            Children.Add(ColorPickerWindow);
-            Children.Add(MapPropertyWindow);
-            Children.Add(MapWindow);
-
-            if (parent.IsMdiContainer)
-            {
-                foreach (Form form in Children)
-                    form.MdiParent = parent;
-            }
+            Children.Add(TilePickerControl);
+            Children.Add(TemplateControl);
+            Children.Add(ColorPickerControl);
+            Children.Add(MapPropertyControl);
+            Children.Add(MapEditorControl);
 
             Archive.CreateIfNotExists(ArchiveFile);
         }
 
         public void Show()
         {
-            foreach (Form form in Children)
-                form.Show();
+            foreach (Control ctl in Children)
+                ctl.Show();
         }
 
         public void Refresh()
         {
-            foreach (Form form in Children)
-                form.Refresh();
+            foreach (Control ctl in Children)
+                ctl.Refresh();
         }
 
         public void UpdateMapProperties(string file = null)
         {
-            MapPropertyWindow.UpdateProperties(file);
+            MapPropertyControl.UpdateProperties(file);
         }
 
         public void Resize(int width, int height)
@@ -116,7 +111,7 @@ namespace TileGameMaker.Modules
             if (width != Map.Width || height != Map.Height)
                 Map.Resize(width, height);
 
-            MapWindow.ResizeMapView(width, height);
+            MapEditorControl.ResizeMapView(width, height);
             Refresh();
         }
     }

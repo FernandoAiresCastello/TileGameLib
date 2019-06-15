@@ -51,113 +51,128 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\AnimationStrip.cs">
+    <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Component\BaseWindow.cs">
+    <Compile Include="Panels\BasePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\ColorEditorWindow.cs">
+    <Compile Include="Windows\ColorEditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\ColorEditorWindow.Designer.cs">
+    <Compile Include="Windows\ColorEditorWindow.Designer.cs">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Component\MapPropertyWindow.cs">
+    <Compile Include="Panels\ColorPickerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\ColorPickerPanel.Designer.cs">
+      <DependentUpon>ColorPickerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DataInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\MapPropertyWindow.Designer.cs">
-      <DependentUpon>MapPropertyWindow.cs</DependentUpon>
+    <Compile Include="Windows\DataInputWindow.Designer.cs">
+      <DependentUpon>DataInputWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Component\TemplateWindow.cs">
+    <Compile Include="Windows\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\TemplateWindow.Designer.cs">
-      <DependentUpon>TemplateWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Component\TextInputWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\TextInputWindow.Designer.cs">
-      <DependentUpon>TextInputWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Component\TileEditor.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component\TileEditorWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\TileEditorWindow.Designer.cs">
-      <DependentUpon>TileEditorWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Component\ArchiveManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\ArchiveManager.Designer.cs">
-      <DependentUpon>ArchiveManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\MapEditor.cs" />
-    <Compile Include="Component\TilePicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component\TilePickerWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\TilePickerWindow.Designer.cs">
-      <DependentUpon>TilePickerWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Component\ColorPicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Component\ColorPickerWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\ColorPickerWindow.Designer.cs">
-      <DependentUpon>ColorPickerWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Component\MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Component\MainWindow.Designer.cs">
+    <Compile Include="Windows\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Component\MapWindow.cs">
+    <Compile Include="Panels\MapEditorPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\MapEditorPanel.Designer.cs">
+      <DependentUpon>MapEditorPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\MapPropertyPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\MapPropertyPanel.Designer.cs">
+      <DependentUpon>MapPropertyPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\TemplatePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\TemplatePanel.Designer.cs">
+      <DependentUpon>TemplatePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Component\MapWindow.Designer.cs">
-      <DependentUpon>MapWindow.cs</DependentUpon>
+    <Compile Include="Windows\TextInputWindow.Designer.cs">
+      <DependentUpon>TextInputWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiledDisplays\TileEditorDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\TileEditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\TileEditorWindow.Designer.cs">
+      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ArchiveWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ArchiveWindow.Designer.cs">
+      <DependentUpon>ArchiveWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\TilePickerPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\TilePickerPanel.Designer.cs">
+      <DependentUpon>TilePickerPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\MapEditor.cs" />
+    <Compile Include="TiledDisplays\TilePickerDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TiledDisplays\ColorPickerDisplay.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Component\ColorEditorWindow.resx">
+    <EmbeddedResource Include="Panels\BasePanel.resx">
+      <DependentUpon>BasePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Component\MapPropertyWindow.resx">
-      <DependentUpon>MapPropertyWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\ColorPickerPanel.resx">
+      <DependentUpon>ColorPickerPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Component\TemplateWindow.resx">
-      <DependentUpon>TemplateWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\DataInputWindow.resx">
+      <DependentUpon>DataInputWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Component\TextInputWindow.resx">
-      <DependentUpon>TextInputWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Component\TileEditorWindow.resx">
-      <DependentUpon>TileEditorWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Component\TilePickerWindow.resx">
-      <DependentUpon>TilePickerWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Component\ColorPickerWindow.resx">
-      <DependentUpon>ColorPickerWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Component\ArchiveManager.resx">
-      <DependentUpon>ArchiveManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Component\MainWindow.resx">
+    <EmbeddedResource Include="Windows\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Component\MapWindow.resx">
-      <DependentUpon>MapWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\MapEditorPanel.resx">
+      <DependentUpon>MapEditorPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\MapPropertyPanel.resx">
+      <DependentUpon>MapPropertyPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\TemplatePanel.resx">
+      <DependentUpon>TemplatePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\TextInputWindow.resx">
+      <DependentUpon>TextInputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\TileEditorWindow.resx">
+      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\TilePickerPanel.resx">
+      <DependentUpon>TilePickerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ArchiveWindow.resx">
+      <DependentUpon>ArchiveWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -220,6 +235,7 @@
     <None Include="Resources\folder_vertical_open.png" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\delete.png" />
+    <None Include="Resources\scroll_pane_text.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup />

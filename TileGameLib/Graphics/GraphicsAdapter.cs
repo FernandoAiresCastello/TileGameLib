@@ -61,6 +61,11 @@ namespace TileGameLib.Graphics
                 PutTile(x++, y, ch, palIndex1, palIndex0);
         }
 
+        public void PutTile(int col, int row, Tile tile)
+        {
+            PutTile(col, row, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+        }
+
         public void PutTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
         {
             if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
