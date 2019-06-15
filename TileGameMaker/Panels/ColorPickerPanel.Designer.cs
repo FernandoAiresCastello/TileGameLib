@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Panels
 {
-    partial class ColorPickerControl
+    partial class ColorPickerPanel
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.ToolStripAndColorPicker = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.ColorPickerPanel = new System.Windows.Forms.Panel();
+            this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
@@ -95,7 +95,7 @@
             this.ToolStripAndColorPicker.ColumnCount = 1;
             this.ToolStripAndColorPicker.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ToolStripAndColorPicker.Controls.Add(this.toolStrip1, 0, 0);
-            this.ToolStripAndColorPicker.Controls.Add(this.ColorPickerPanel, 0, 1);
+            this.ToolStripAndColorPicker.Controls.Add(this.PnlColorPicker, 0, 1);
             this.ToolStripAndColorPicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ToolStripAndColorPicker.Location = new System.Drawing.Point(0, 0);
             this.ToolStripAndColorPicker.Margin = new System.Windows.Forms.Padding(0);
@@ -130,14 +130,14 @@
             // 
             // ColorPickerPanel
             // 
-            this.ColorPickerPanel.AutoScroll = true;
-            this.ColorPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ColorPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ColorPickerPanel.Location = new System.Drawing.Point(3, 28);
-            this.ColorPickerPanel.Name = "ColorPickerPanel";
-            this.ColorPickerPanel.Size = new System.Drawing.Size(213, 212);
-            this.ColorPickerPanel.TabIndex = 1;
-            this.ColorPickerPanel.MouseLeave += new System.EventHandler(this.ColorPicker_MouseLeave);
+            this.PnlColorPicker.AutoScroll = true;
+            this.PnlColorPicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PnlColorPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlColorPicker.Location = new System.Drawing.Point(3, 28);
+            this.PnlColorPicker.Name = "ColorPickerPanel";
+            this.PnlColorPicker.Size = new System.Drawing.Size(213, 212);
+            this.PnlColorPicker.TabIndex = 1;
+            this.PnlColorPicker.MouseLeave += new System.EventHandler(this.ColorPicker_MouseLeave);
             // 
             // ForeBackColorPanels
             // 
@@ -195,7 +195,7 @@
         private System.Windows.Forms.TableLayoutPanel ToolStripAndColorPicker;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton BtnNew;
-        private System.Windows.Forms.Panel ColorPickerPanel;
+        private System.Windows.Forms.Panel PnlColorPicker;
         private System.Windows.Forms.Panel ForeBackColorPanels;
         private System.Windows.Forms.Panel BackColorPanel;
         private System.Windows.Forms.Panel ForeColorPanel;

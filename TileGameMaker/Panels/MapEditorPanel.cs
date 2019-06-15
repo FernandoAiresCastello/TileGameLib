@@ -17,7 +17,7 @@ using TileGameLib.Component;
 
 namespace TileGameMaker.Panels
 {
-    public partial class MapEditorControl : BaseControl
+    public partial class MapEditorPanel : BasePanel
     {
         private readonly int DefaultZoom = 3;
         private readonly int DefaultAnimationInterval = 256;
@@ -32,12 +32,12 @@ namespace TileGameMaker.Panels
         private enum EditMode { Template, TextInput }
         private EditMode Mode = EditMode.Template;
 
-        public MapEditorControl()
+        public MapEditorPanel()
         {
             InitializeComponent();
         }
 
-        public MapEditorControl(MapEditor editor)
+        public MapEditorPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;

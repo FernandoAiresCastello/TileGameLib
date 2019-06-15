@@ -12,13 +12,13 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Panels
 {
-    public partial class MapPropertyControl : UserControl
+    public partial class MapPropertyPanel : BasePanel
     {
         private MapEditor MapEditor;
 
         public string MapName => TxtName.Text.Trim();
 
-        public MapPropertyControl(MapEditor editor)
+        public MapPropertyPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;

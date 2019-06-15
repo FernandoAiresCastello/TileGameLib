@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Panels
 {
-    partial class TemplateControl
+    partial class TemplatePanel
     {
         /// <summary> 
         /// Required designer variable.

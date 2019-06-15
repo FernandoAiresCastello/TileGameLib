@@ -7,18 +7,18 @@ using System.Windows.Forms;
 
 namespace TileGameMaker.Panels
 {
-    public class BaseControl : UserControl
+    public class BasePanel : UserControl
     {
+        public BasePanel()
+        {
+            InitializeComponent();
+        }
 
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // BaseControl
-            // 
-            this.Name = "BaseControl";
+            this.Name = "BasePanel";
             this.ResumeLayout(false);
-
         }
     }
 }

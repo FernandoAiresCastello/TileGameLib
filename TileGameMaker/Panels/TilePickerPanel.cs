@@ -14,22 +14,22 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Panels
 {
-    public partial class TilePickerControl : BaseControl
+    public partial class TilePickerPanel : BasePanel
     {
         private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
         private TileEditorWindow TileEditorWindow;
 
-        public TilePickerControl()
+        public TilePickerPanel()
         {
             InitializeComponent();
         }
 
-        public TilePickerControl(MapEditor editor)
+        public TilePickerPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
-            TilePicker = new TilePickerDisplay(TilePickerPanel, 8, 64, 3);
+            TilePicker = new TilePickerDisplay(PnlTilePicker, 8, 64, 3);
             TilePicker.Graphics.Tileset = editor.Tileset;
             TilePicker.ShowGrid = true;
             TilePicker.MouseMove += TilePicker_MouseMove;

@@ -14,22 +14,22 @@ using TileGameLib.Util;
 
 namespace TileGameMaker.Panels
 {
-    public partial class ColorPickerControl : BaseControl
+    public partial class ColorPickerPanel : BasePanel
     {
         private MapEditor MapEditor;
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        public ColorPickerControl()
+        public ColorPickerPanel()
         {
             InitializeComponent();
         }
 
-        public ColorPickerControl(MapEditor editor)
+        public ColorPickerPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
-            ColorPicker = new ColorPickerDisplay(ColorPickerPanel, 8, 32, 3);
+            ColorPicker = new ColorPickerDisplay(PnlColorPicker, 8, 32, 3);
             ColorPicker.Graphics.Palette = editor.Palette;
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;

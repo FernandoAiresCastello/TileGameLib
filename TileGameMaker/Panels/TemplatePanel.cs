@@ -15,7 +15,7 @@ using TileGameMaker.Windows;
 
 namespace TileGameMaker.Panels
 {
-    public partial class TemplateControl : BaseControl
+    public partial class TemplatePanel : BasePanel
     {
         public GameObject Object { set; get; }
         public AnimationStripDisplay AnimationStrip { set; get; }
@@ -40,12 +40,12 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
         private readonly int MaxFrames = 8;
 
-        public TemplateControl()
+        public TemplatePanel()
         {
             InitializeComponent();
         }
 
-        public TemplateControl(MapEditor editor)
+        public TemplatePanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
@@ -120,8 +120,17 @@ namespace TileGameMaker.Panels
         private void AnimationStrip_MouseDown(object sender, MouseEventArgs e)
         {
             Point p = AnimationStrip.GetMouseToCellPos(e.Location);
-            Animation.SetFrame(p.X, MapEditor.SelectedTile);
-            AnimationStrip.Refresh();
+
+            if (e.Button == MouseButtons.Left)
+            {
+                Animation.SetFrame(p.X, MapEditor.SelectedTile);
+                AnimationStrip.Refresh();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                Tile tile = Animation.GetFrame(p.X);
+                MapEditor.SelectedTile = tile;
+            }
         }
 
         public void UpdateAnimation(ObjectAnim anim)

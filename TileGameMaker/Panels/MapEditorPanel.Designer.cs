@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Panels
 {
-    partial class MapEditorControl
+    partial class MapEditorPanel
     {
         /// <summary> 
         /// Required designer variable.

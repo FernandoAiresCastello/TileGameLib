@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Panels
 {
-    partial class TilePickerControl
+    partial class TilePickerPanel
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.TilePickerPanel = new System.Windows.Forms.Panel();
+            this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,7 +45,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TilePickerPanel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.PnlTilePicker, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -80,15 +80,15 @@
             // 
             // TilePickerPanel
             // 
-            this.TilePickerPanel.AutoScroll = true;
-            this.TilePickerPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TilePickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.TilePickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePickerPanel.Location = new System.Drawing.Point(3, 28);
-            this.TilePickerPanel.Name = "TilePickerPanel";
-            this.TilePickerPanel.Size = new System.Drawing.Size(229, 325);
-            this.TilePickerPanel.TabIndex = 1;
-            this.TilePickerPanel.MouseLeave += new System.EventHandler(this.TilePicker_MouseLeave);
+            this.PnlTilePicker.AutoScroll = true;
+            this.PnlTilePicker.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PnlTilePicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PnlTilePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTilePicker.Location = new System.Drawing.Point(3, 28);
+            this.PnlTilePicker.Name = "TilePickerPanel";
+            this.PnlTilePicker.Size = new System.Drawing.Size(229, 325);
+            this.PnlTilePicker.TabIndex = 1;
+            this.PnlTilePicker.MouseLeave += new System.EventHandler(this.TilePicker_MouseLeave);
             // 
             // statusStrip1
             // 
@@ -137,7 +137,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton BtnNew;
-        private System.Windows.Forms.Panel TilePickerPanel;
+        private System.Windows.Forms.Panel PnlTilePicker;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
