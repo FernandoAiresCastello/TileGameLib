@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Core;
-using TileGameLib.Exception;
+using TileGameLib.Exceptions;
 using TileGameLib.Graphics;
 
 namespace TileGameLib.File

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using System.IO;
-using TileGameLib.Exception;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.File
 {

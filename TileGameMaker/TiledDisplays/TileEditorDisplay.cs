@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
-using TileGameLib.Component;
+using TileGameLib.Components;
 
 namespace TileGameMaker.TiledDisplays
 {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.Component
+namespace TileGameLib.Components
 {
     public class TiledDisplay : PictureBox
     {

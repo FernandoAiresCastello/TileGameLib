@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameLib.Exception
+namespace TileGameLib.Exceptions
 {
     public class InvalidMapAccessException : RuntimeException
     {

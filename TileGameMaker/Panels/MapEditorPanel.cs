@@ -13,7 +13,7 @@ using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.Windows;
-using TileGameLib.Component;
+using TileGameLib.Components;
 
 namespace TileGameMaker.Panels
 {

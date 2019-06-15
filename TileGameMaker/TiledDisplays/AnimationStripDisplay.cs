@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameLib.Component;
+using TileGameLib.Components;
 using TileGameLib.Core;
 using TileGameLib.Graphics;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameLib.Exception;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.File
 {

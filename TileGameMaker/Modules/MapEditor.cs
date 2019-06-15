@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using TileGameLib.Core;
 using TileGameLib.File;
 using TileGameLib.Graphics;
-using TileGameLib.Component;
+using TileGameLib.Components;
 using TileGameMaker.Panels;
 
 namespace TileGameMaker.Modules

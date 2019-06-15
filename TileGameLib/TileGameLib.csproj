@@ -44,9 +44,9 @@
   <ItemGroup>
     <Compile Include="Core\ObjectLayer.cs" />
     <Compile Include="Core\ObjectMap.cs" />
-    <Compile Include="Exception\FileException.cs" />
-    <Compile Include="Exception\InvalidMapAccessException.cs" />
-    <Compile Include="Exception\RuntimeException.cs" />
+    <Compile Include="Exceptions\FileException.cs" />
+    <Compile Include="Exceptions\InvalidMapAccessException.cs" />
+    <Compile Include="Exceptions\RuntimeException.cs" />
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="Graphics\Tile.cs" />
     <Compile Include="Graphics\MapRenderer.cs" />
     <Compile Include="Graphics\Palette.cs" />
-    <Compile Include="Component\TiledDisplay.cs">
+    <Compile Include="Components\TiledDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
