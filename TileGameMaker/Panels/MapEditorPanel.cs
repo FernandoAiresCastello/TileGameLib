@@ -19,10 +19,9 @@ namespace TileGameMaker.Panels
 {
     public partial class MapEditorPanel : BasePanel
     {
-        public TiledDisplay Display { get; private set; }
+        private static readonly int DefaultZoom = 3;
 
-        private readonly int DefaultZoom = 3;
-        private readonly int DefaultAnimationInterval = 256;
+        public TiledDisplay Display { get; private set; }
 
         private ObjectMap Map;
         private MapEditor MapEditor;
@@ -44,7 +43,7 @@ namespace TileGameMaker.Panels
             MapEditor = editor;
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
-            MapRenderer = new MapRenderer(Map, Display, DefaultAnimationInterval);
+            MapRenderer = new MapRenderer(Map, Display);
             Archive = new MapArchive(MapEditor.ArchiveFile);
             HoverLabel.Text = "";
             Layer = 0;

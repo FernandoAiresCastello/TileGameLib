@@ -31,18 +31,18 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AnimationPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnExpandData = new System.Windows.Forms.Button();
             this.LblParamHex = new System.Windows.Forms.Label();
             this.LblTypeHex = new System.Windows.Forms.Label();
             this.TxtFrames = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.BtnClear = new System.Windows.Forms.Button();
             this.TxtData = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TxtParam = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnExpandData = new System.Windows.Forms.Button();
-            this.BtnClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,17 @@
             this.panel2.Size = new System.Drawing.Size(282, 277);
             this.panel2.TabIndex = 2;
             // 
+            // BtnExpandData
+            // 
+            this.BtnExpandData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnExpandData.Image = global::TileGameMaker.Properties.Resources.scroll_pane_text;
+            this.BtnExpandData.Location = new System.Drawing.Point(7, 198);
+            this.BtnExpandData.Name = "BtnExpandData";
+            this.BtnExpandData.Size = new System.Drawing.Size(41, 30);
+            this.BtnExpandData.TabIndex = 11;
+            this.BtnExpandData.UseVisualStyleBackColor = true;
+            this.BtnExpandData.Click += new System.EventHandler(this.BtnExpandData_Click);
+            // 
             // LblParamHex
             // 
             this.LblParamHex.AutoSize = true;
@@ -134,6 +145,17 @@
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 7;
             this.label4.Text = "Frames";
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnClear.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.BtnClear.Location = new System.Drawing.Point(7, 234);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(41, 30);
+            this.BtnClear.TabIndex = 6;
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // TxtData
             // 
@@ -204,34 +226,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Type";
             // 
-            // BtnExpandData
-            // 
-            this.BtnExpandData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnExpandData.Image = global::TileGameMaker.Properties.Resources.scroll_pane_text;
-            this.BtnExpandData.Location = new System.Drawing.Point(7, 198);
-            this.BtnExpandData.Name = "BtnExpandData";
-            this.BtnExpandData.Size = new System.Drawing.Size(41, 30);
-            this.BtnExpandData.TabIndex = 11;
-            this.BtnExpandData.UseVisualStyleBackColor = true;
-            this.BtnExpandData.Click += new System.EventHandler(this.BtnExpandData_Click);
-            // 
-            // BtnClear
-            // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnClear.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.BtnClear.Location = new System.Drawing.Point(7, 234);
-            this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(41, 30);
-            this.BtnClear.TabIndex = 6;
-            this.BtnClear.UseVisualStyleBackColor = true;
-            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // TemplateControl
+            // TemplatePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "TemplateControl";
+            this.Name = "TemplatePanel";
             this.Size = new System.Drawing.Size(288, 317);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

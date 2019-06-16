@@ -144,6 +144,11 @@ namespace TileGameMaker.Panels
 
         private void BtnExpandData_Click(object sender, EventArgs e)
         {
+            ShowDataInputWindow();
+        }
+
+        public void ShowDataInputWindow()
+        {
             DataInputWindow win = new DataInputWindow();
             if (win.ShowDialog(this, TxtData.Text) == DialogResult.OK)
                 TxtData.Text = win.Data;

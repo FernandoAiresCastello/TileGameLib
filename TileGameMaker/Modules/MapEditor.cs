@@ -81,7 +81,7 @@ namespace TileGameMaker.Modules
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             Palette = Map.Palette;
             Tileset = Map.Tileset;
-            Tile.Null.SetEqual(new Tile(0, 0, Palette.Size - 1));
+            Tile.DefineNull(0, 0, Palette.Size - 1);
 
             MapEditorControl = new MapEditorPanel(this);
             TemplateControl = new TemplatePanel(this);

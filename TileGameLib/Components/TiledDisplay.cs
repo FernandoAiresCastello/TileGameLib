@@ -20,6 +20,9 @@ namespace TileGameLib.Components
         public int Zoom { get; protected set; }
         public bool StretchImage { set; get; }
 
+        public int Cols => Graphics.Cols;
+        public int Rows => Graphics.Rows;
+
         protected Bitmap Grid;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;

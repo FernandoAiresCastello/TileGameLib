@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtArchive = new System.Windows.Forms.TextBox();
             this.TxtEntry = new System.Windows.Forms.TextBox();
             this.EntriesListBox = new System.Windows.Forms.ListBox();
             this.ButtonLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -38,6 +37,7 @@
             this.BtnLoad = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
+            this.TxtArchive = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.ButtonLayout.SuspendLayout();
             this.SuspendLayout();
@@ -60,37 +60,31 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 427);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // TxtArchive
-            // 
-            this.TxtArchive.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtArchive.Location = new System.Drawing.Point(8, 8);
-            this.TxtArchive.Name = "TxtArchive";
-            this.TxtArchive.ReadOnly = true;
-            this.TxtArchive.Size = new System.Drawing.Size(288, 21);
-            this.TxtArchive.TabIndex = 4;
             // 
             // TxtEntry
             // 
             this.TxtEntry.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtEntry.Location = new System.Drawing.Point(8, 346);
+            this.TxtEntry.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEntry.Location = new System.Drawing.Point(8, 344);
             this.TxtEntry.Name = "TxtEntry";
-            this.TxtEntry.Size = new System.Drawing.Size(288, 21);
+            this.TxtEntry.Size = new System.Drawing.Size(288, 23);
             this.TxtEntry.TabIndex = 3;
             this.TxtEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEntry_KeyDown);
             // 
             // EntriesListBox
             // 
             this.EntriesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EntriesListBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EntriesListBox.FormattingEnabled = true;
             this.EntriesListBox.ItemHeight = 15;
-            this.EntriesListBox.Location = new System.Drawing.Point(10, 32);
+            this.EntriesListBox.Location = new System.Drawing.Point(10, 34);
             this.EntriesListBox.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.EntriesListBox.Name = "EntriesListBox";
             this.EntriesListBox.ScrollAlwaysVisible = true;
-            this.EntriesListBox.Size = new System.Drawing.Size(284, 311);
+            this.EntriesListBox.Size = new System.Drawing.Size(284, 307);
             this.EntriesListBox.TabIndex = 1;
             this.EntriesListBox.SelectedValueChanged += new System.EventHandler(this.EntriesListBox_SelectedValueChanged);
             this.EntriesListBox.DoubleClick += new System.EventHandler(this.EntriesListBox_DoubleClick);
@@ -172,7 +166,17 @@
             this.BtnSave.TabIndex = 0;
             this.BtnSave.UseVisualStyleBackColor = true;
             // 
-            // ArchiveManager
+            // TxtArchive
+            // 
+            this.TxtArchive.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtArchive.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtArchive.Location = new System.Drawing.Point(8, 8);
+            this.TxtArchive.Name = "TxtArchive";
+            this.TxtArchive.ReadOnly = true;
+            this.TxtArchive.Size = new System.Drawing.Size(288, 23);
+            this.TxtArchive.TabIndex = 5;
+            // 
+            // ArchiveWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,10 +185,9 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ArchiveManager";
+            this.Name = "ArchiveWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Archive";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -201,10 +204,10 @@
         private System.Windows.Forms.TableLayoutPanel ButtonLayout;
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.TextBox TxtArchive;
         private System.Windows.Forms.TextBox TxtEntry;
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnLoad;
         private System.Windows.Forms.Button BtnOk;
+        private System.Windows.Forms.TextBox TxtArchive;
     }
 }

@@ -15,19 +15,12 @@ namespace TileGameLib.Components
 {
     public partial class DisplayWindow : Form
     {
-        protected TiledDisplay Display;
-        protected Size OriginalSize;
-        protected Point OriginalLocation;
-        protected bool IsFullscreen;
-
+        public TiledDisplay Display { get; private set; }
         public GraphicsAdapter Graphics => Display.Graphics;
 
         public bool Fullscreen
         {
-            get
-            {
-                return IsFullscreen;
-            }
+            get { return IsFullscreen; }
 
             set
             {
@@ -44,6 +37,10 @@ namespace TileGameLib.Components
             get { return MapPanel.BorderStyle == BorderStyle.Fixed3D; }
             set { MapPanel.BorderStyle = value ? BorderStyle.Fixed3D : BorderStyle.None; }
         }
+
+        protected Size OriginalSize;
+        protected Point OriginalLocation;
+        protected bool IsFullscreen;
 
         public DisplayWindow(int cols, int rows)
             : this(cols, rows, false, false)

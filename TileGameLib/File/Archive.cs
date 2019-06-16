@@ -51,6 +51,10 @@ namespace TileGameLib.File
 
         public static void Save(string archivePath, string entryFilename, MemoryFile file)
         {
+            bool fileAlreadyExists = Contains(archivePath, entryFilename);
+            if (fileAlreadyExists)
+                Delete(archivePath, entryFilename);
+
             using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
             {
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
@@ -77,6 +81,21 @@ namespace TileGameLib.File
             }
 
             return new MemoryFile(data);
+        }
+
+        public static bool Contains(string archivePath, string entryFilename)
+        {
+            bool contains = false;
+
+            using (var zipToOpen = new FileStream(archivePath, FileMode.Open))
+            {
+                using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
+                {
+                    contains = archive.GetEntry(entryFilename) != null;
+                }
+            }
+
+            return contains;
         }
 
         public static void Delete(string archivePath)
@@ -115,6 +134,7 @@ namespace TileGameLib.File
                 }
             }
 
+            list.Sort();
             return list;
         }
     }

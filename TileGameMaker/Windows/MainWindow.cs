@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
+using TileGameLib.Graphics;
 using TileGameMaker.Modules;
 
 namespace TileGameMaker.Windows
@@ -48,8 +49,12 @@ namespace TileGameMaker.Windows
         {
             DisplayWindow win = new DisplayWindow(31, 21);
             win.Text = "Debug Window";
+
             win.Graphics.Clear(5);
             win.Graphics.PutString(0, 0, "Hello World!", 255, 5);
+            MapRenderer rend = new MapRenderer(MapEditor.Map, win.Display,
+                new Rectangle(3, 3, 20, 10), new Point(0, 0));
+
             win.ShowDialog(this);
         }
     }
