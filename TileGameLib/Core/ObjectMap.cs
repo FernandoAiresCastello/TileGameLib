@@ -16,6 +16,8 @@ namespace TileGameLib.Core
         public Palette Palette { get; set; } = new Palette();
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public int ImageWidth => Width * TilePixels.RowLength;
+        public int ImageHeight => Height * TilePixels.RowCount;
 
         public ObjectMap(int width, int height) : this("Undefined", width, height)
         {

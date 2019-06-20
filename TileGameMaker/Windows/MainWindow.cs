@@ -20,6 +20,7 @@ namespace TileGameMaker.Windows
         public MainWindow()
         {
             InitializeComponent();
+            Shown += MainWindow_Shown;
 
             MapEditor = new MapEditor(this);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);
@@ -27,6 +28,12 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);
             AddControl(MapEditor.TemplateControl, TemplatePanel);
             AddControl(MapEditor.MapPropertyControl, MapPropertiesPanel);
+        }
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            SplashWindow splash = new SplashWindow();
+            splash.Show(this);
         }
 
         private void AddControl(Control control, Control panel)
@@ -47,7 +54,7 @@ namespace TileGameMaker.Windows
 
         private void Debug()
         {
-            DisplayWindow win = new DisplayWindow(31, 21);
+            DisplayWindow win = new DisplayWindow(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
             win.Text = "Debug Window";
 
             win.Graphics.Clear(5);

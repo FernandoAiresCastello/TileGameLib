@@ -38,6 +38,7 @@
             this.BtnLoadMap = new System.Windows.Forms.ToolStripButton();
             this.BtnSaveMap = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
@@ -45,7 +46,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnInfo = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -110,14 +110,14 @@
             this.BtnLoadMap,
             this.BtnSaveMap,
             this.toolStripSeparator3,
+            this.BtnSelect,
             this.BtnAddText,
             this.toolStripSeparator4,
             this.BtnZoomIn,
             this.BtnZoomOut,
             this.BtnGrid,
             this.BtnScreenshot,
-            this.toolStripSeparator5,
-            this.BtnInfo});
+            this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(646, 25);
@@ -143,6 +143,7 @@
             this.BtnLoadMap.Name = "BtnLoadMap";
             this.BtnLoadMap.Size = new System.Drawing.Size(23, 22);
             this.BtnLoadMap.Text = "toolStripButton1";
+            this.BtnLoadMap.ToolTipText = "Load map";
             this.BtnLoadMap.Click += new System.EventHandler(this.BtnLoadMap_Click);
             // 
             // BtnSaveMap
@@ -160,6 +161,16 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // BtnSelect
+            // 
+            this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSelect.Image = global::TileGameMaker.Properties.Resources.select;
+            this.BtnSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.Size = new System.Drawing.Size(23, 22);
+            this.BtnSelect.Text = "toolStripButton1";
+            this.BtnSelect.ToolTipText = "Toggle block selection mode";
             // 
             // BtnAddText
             // 
@@ -226,22 +237,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // BtnInfo
-            // 
-            this.BtnInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnInfo.Image = global::TileGameMaker.Properties.Resources.information;
-            this.BtnInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnInfo.Name = "BtnInfo";
-            this.BtnInfo.Size = new System.Drawing.Size(23, 22);
-            this.BtnInfo.Text = "toolStripButton1";
-            this.BtnInfo.ToolTipText = "Show info";
-            // 
-            // MapEditorControl
+            // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Name = "MapEditorControl";
+            this.Name = "MapEditorPanel";
             this.Size = new System.Drawing.Size(646, 490);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MapEditorControl_KeyDown);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -273,6 +274,6 @@
         private System.Windows.Forms.ToolStripButton BtnGrid;
         private System.Windows.Forms.ToolStripButton BtnScreenshot;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton BtnInfo;
+        private System.Windows.Forms.ToolStripButton BtnSelect;
     }
 }

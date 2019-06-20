@@ -59,13 +59,15 @@ namespace TileGameMaker.Panels
         public void ResizeMapView(int width, int height)
         {
             Display.ResizeGraphics(width, height);
+            MapRenderer.SetViewport(0, 0, width, height);
         }
 
         private void UpdateStatusLabel()
         {
             StatusLabel.Text =
-                string.Format("Size: {0}x{1} Layer: {2}/{3} Zoom: {4}",
-                    Map.Width, Map.Height, Layer, Map.Layers.Count, Display.Zoom);
+                string.Format("Size: {0}x{1} Image size: {2}x{3} Layer: {4}/{5} Zoom: {6}",
+                    Map.Width, Map.Height, Map.ImageWidth, Map.ImageHeight, 
+                    Layer, Map.Layers.Count, Display.Zoom);
         }
 
         private void ClearMap()
@@ -301,7 +303,7 @@ namespace TileGameMaker.Panels
 
                 Archive.Load(ref Map, mgr.SelectedEntry);
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
-                MapEditor.Resize(Map.Width, Map.Height);
+                MapEditor.ResizeMap(Map.Width, Map.Height);
                 MapEditor.SelectedObject = new GameObject();
                 Alert.Info("File loaded successfully!");
             }

@@ -34,6 +34,7 @@ namespace TileGameMaker.Panels
             if (file != null)
                 TxtFile.Text = file;
 
+            TxtArchive.Text = MapEditor.ArchiveFile;
             TxtName.Text = MapEditor.Map.Name;
             TxtWidth.Text = MapEditor.Map.Width.ToString();
             TxtHeight.Text = MapEditor.Map.Height.ToString();
@@ -54,7 +55,7 @@ namespace TileGameMaker.Panels
             if (width != MapEditor.Map.Width || height != MapEditor.Map.Height)
             {
                 if (Alert.Confirm("Resize map?"))
-                    MapEditor.Resize(width, height);
+                    MapEditor.ResizeMap(width, height);
             }
         }
     }

@@ -61,6 +61,11 @@ namespace TileGameLib.Graphics
             }
         }
 
+        public void SetViewport(int x, int y, int width, int height)
+        {
+            Viewport = new Rectangle(x, y, width, height);
+        }
+
         public void AdvanceAnimation()
         {
             AnimationFrame++;
