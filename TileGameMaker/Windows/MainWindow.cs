@@ -54,9 +54,7 @@ namespace TileGameMaker.Windows
 
         private void Debug()
         {
-            DisplayWindow win = new DisplayWindow(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
-            win.Text = "Debug Window";
-
+            DebugWindow win = new DebugWindow(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
             win.Graphics.Clear(5);
             win.Graphics.PutString(0, 0, "Hello World!", 255, 5);
             MapRenderer rend = new MapRenderer(MapEditor.Map, win.Display,

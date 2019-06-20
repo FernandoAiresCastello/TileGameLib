@@ -92,6 +92,9 @@
     <Compile Include="Windows\DataInputWindow.Designer.cs">
       <DependentUpon>DataInputWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DebugWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Windows\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

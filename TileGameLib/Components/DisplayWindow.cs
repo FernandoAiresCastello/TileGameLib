@@ -58,17 +58,38 @@ namespace TileGameLib.Components
             Fullscreen = fullscreen;
             Border = border;
             StartPosition = FormStartPosition.CenterScreen;
-            KeyDown += MapDisplayWindow_KeyDown;
+            KeyDown += DisplayWindow_KeyDown;
+            Display.MouseDown += DisplayWindow_MouseDown;
         }
 
-        protected void MapDisplayWindow_KeyDown(object sender, KeyEventArgs e)
+        protected virtual void HandleKeyEvent(KeyEventArgs e)
         {
-            if (e.Alt && e.KeyCode == Keys.Enter)
+            throw new NotImplementedException();
+        }
+
+        protected virtual void HandleMouseEvent(MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void DisplayWindow_MouseDown(object sender, MouseEventArgs e)
+        {
+            HandleMouseEvent(e);
+        }
+
+        protected void DisplayWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt)
             {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                ToggleFullscreen();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    ToggleFullscreen();
+                }
             }
+            else
+                HandleKeyEvent(e);
         }
 
         protected void SwitchToWindowedMode()
