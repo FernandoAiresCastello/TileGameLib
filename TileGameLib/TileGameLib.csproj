@@ -51,7 +51,7 @@
     <Compile Include="Core\ObjectLayer.cs" />
     <Compile Include="Core\ObjectMap.cs" />
     <Compile Include="Exceptions\FileException.cs" />
-    <Compile Include="Exceptions\InvalidMapAccessException.cs" />
+    <Compile Include="Exceptions\OutOfBoundsException.cs" />
     <Compile Include="Exceptions\RuntimeException.cs" />
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />

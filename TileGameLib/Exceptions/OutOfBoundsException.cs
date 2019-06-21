@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TileGameLib.Exceptions
 {
-    public class InvalidMapAccessException : RuntimeException
+    public class OutOfBoundsException : RuntimeException
     {
-        public InvalidMapAccessException(string msg) : base(msg)
+        public OutOfBoundsException(string msg) : base(msg)
         {
         }
     }

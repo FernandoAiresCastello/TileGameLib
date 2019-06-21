@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 using TileGameLib.Util;
 
 namespace TileGameLib.Graphics
@@ -92,11 +93,12 @@ namespace TileGameLib.Graphics
             }
             else
             {
-                Alert.Error(
+                string msg =
                     "Invalid tile buffer index on DrawTile\n" +
                     "Col: " + col + " Row: " + row + "\n" +
-                    "Tile buffer size: " + TileBuffer.Cols + "x" + TileBuffer.Rows
-                );
+                    "Tile buffer size: " + TileBuffer.Cols + "x" + TileBuffer.Rows;
+
+                throw new OutOfBoundsException(msg);
             }
         }
 

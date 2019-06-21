@@ -57,7 +57,7 @@ namespace TileGameLib.Core
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 Objects[x, y].SetEqual(o);
             else
-                throw new InvalidMapAccessException(GetExceptionMessage(x, y));
+                throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
 
         public ref GameObject GetObject(int x, int y)
@@ -65,7 +65,7 @@ namespace TileGameLib.Core
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 return ref Objects[x, y];
 
-            throw new InvalidMapAccessException(GetExceptionMessage(x, y));
+            throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
 
         public GameObject CopyObject(int x, int y)
@@ -73,7 +73,7 @@ namespace TileGameLib.Core
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 return Objects[x, y].Copy();
 
-            throw new InvalidMapAccessException(GetExceptionMessage(x, y));
+            throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
 
         private string GetExceptionMessage(int x, int y)
