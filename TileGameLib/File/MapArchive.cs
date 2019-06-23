@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.Exceptions;
 using TileGameLib.Graphics;
 
@@ -37,8 +37,6 @@ namespace TileGameLib.File
                     for (int x = 0; x < layer.Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        file.WriteByte((byte)o.Type);
-                        file.WriteByte((byte)o.Param);
                         file.WriteByte((byte)o.Animation.Size);
 
                         foreach (Tile tile in o.Animation.Frames)
@@ -103,8 +101,6 @@ namespace TileGameLib.File
                     for (int x = 0; x < layer.Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        o.Type = file.ReadByte();
-                        o.Param = file.ReadByte();
                         int frameCount = file.ReadByte();
                         o.Animation.Clear(null);
                         o.Animation.AddFrames(frameCount, new Tile());

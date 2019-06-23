@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.Modules;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Util;

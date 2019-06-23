@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 
-namespace TileGameLib.Core
+namespace TileGameLib.GameElements
 {
     public class ObjectMap
     {

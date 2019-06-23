@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.Components;
 using System.Drawing;
 

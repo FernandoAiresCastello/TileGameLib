@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 

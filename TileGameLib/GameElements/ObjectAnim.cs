@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.Core
+namespace TileGameLib.GameElements
 {
     public class ObjectAnim
     {

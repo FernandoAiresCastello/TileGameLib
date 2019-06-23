@@ -6,14 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.Core
+namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public int Type { set; get; }
-        public int Param { set; get; }
-        public string Data { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
+        public string Data { set; get; }
 
         public GameObject()
         {
@@ -33,16 +31,12 @@ namespace TileGameLib.Core
 
         public GameObject(int type, int param, string data, Tile singleAnimFrame)
         {
-            Type = type;
-            Param = param;
             Data = data;
             Animation.Clear(singleAnimFrame);
         }
 
         public void SetNull()
         {
-            Type = 0;
-            Param = 0;
             Data = "";
             Animation.Clear(Tile.Null);
         }
@@ -50,8 +44,6 @@ namespace TileGameLib.Core
         public bool IsNull()
         {
             return 
-                Type == 0 && 
-                Param == 0 && 
                 Data == "" && 
                 Animation.IsSingleFrame() &&
                 Animation.GetFirstFrame().Equals(Tile.Null);
@@ -59,8 +51,6 @@ namespace TileGameLib.Core
 
         public void SetEqual(GameObject o)
         {
-            Type = o.Type;
-            Param = o.Param;
             Data = o.Data;
             Animation.SetEqual(o.Animation);
         }
@@ -73,8 +63,6 @@ namespace TileGameLib.Core
             GameObject o = (GameObject)obj;
 
             return
-                Type == o.Type &&
-                Param == o.Param &&
                 Data.Equals(o.Data) &&
                 Animation.Equals(o.Animation);
         }
@@ -86,9 +74,9 @@ namespace TileGameLib.Core
 
         public override string ToString()
         {
-            Tile tile = Animation.GetFirstFrame();
-            return string.Format("T: {0} P: {1} A: {2} - IX: {3} FG: {4} BG: {5} - DL: {6}",
-                Type, Param, Animation.Frames.Count, tile.TileIx, tile.ForeColorIx, tile.BackColorIx, Data.Length);
+            int maxLength = 100;
+            string data = Data.Length <= maxLength ? Data : Data.Substring(0, maxLength) + "...";
+            return $"Data: {data}";
         }
     }
 }

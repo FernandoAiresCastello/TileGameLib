@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.Modules;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameMaker.TiledDisplays;
 using TileGameMaker.Windows;
@@ -65,32 +65,12 @@ namespace TileGameMaker.Panels
         public override void Refresh()
         {
             base.Refresh();
-            TxtType.Text = Object.Type.ToString();
-            TxtParam.Text = Object.Param.ToString();
             TxtData.Text = Object.Data;
-            LblTypeHex.Text = "0x" + Object.Type.ToString("X2");
-            LblParamHex.Text = "0x" + Object.Param.ToString("X2");
         }
 
         private void TxtBox_TextChanged(object sender, EventArgs e)
         {
-            int.TryParse(TxtType.Text, out int type);
-            int.TryParse(TxtParam.Text, out int param);
-
-            if (type < 0)
-                type = 0;
-            else if (type > byte.MaxValue)
-                type = byte.MaxValue;
-
-            if (param < 0)
-                param = 0;
-            else if (param > byte.MaxValue)
-                param = byte.MaxValue;
-
-            Object.Type = type;
-            Object.Param = param;
             Object.Data = TxtData.Text;
-
             Refresh();
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameLib.Core;
+using TileGameLib.GameElements;
 using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Components;
@@ -37,8 +37,6 @@ namespace TileGameMaker.Modules
             get
             {
                 GameObject o = new GameObject();
-                o.Type = TemplateControl.Object.Type;
-                o.Param = TemplateControl.Object.Param;
                 o.Data = TemplateControl.Object.Data;
                 o.Animation.SetEqual(TemplateControl.CroppedAnimation);
                 return o;
