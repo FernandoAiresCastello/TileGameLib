@@ -48,6 +48,8 @@
     <Compile Include="Components\DisplayWindow.Designer.cs">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Engine\Stack.cs" />
+    <Compile Include="Engine\Variables.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
     <Compile Include="Exceptions\FileException.cs" />
