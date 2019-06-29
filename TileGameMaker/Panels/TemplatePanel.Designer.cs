@@ -149,9 +149,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 34);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 15);
+            this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Data";
+            this.label3.Text = "Script";
             // 
             // TemplatePanel
             // 

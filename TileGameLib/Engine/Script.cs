@@ -10,9 +10,20 @@ namespace TileGameLib.Engine
     {
         public List<Command> Commands { get; private set; } = new List<Command>();
 
-        public void AddCommand(Command cmd)
+        private static readonly char LineSeparator = '\n';
+        private static readonly char NameParamSeparator = ' ';
+
+        public Script(string script)
         {
-            Commands.Add(cmd);
+            Commands.Clear();
+
+            string[] lines = script.Split(LineSeparator);
+
+            foreach (string line in lines)
+            {
+                string[] nameParam = line.Split(NameParamSeparator);
+                Commands.Add(new Command(line));
+            }
         }
     }
 }

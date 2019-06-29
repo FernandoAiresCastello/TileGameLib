@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace TileGameMaker.Windows
 {
-    public partial class DataInputWindow : Form
+    public partial class ScriptInputWindow : Form
     {
         public string Data { set; get; }
 
-        public DataInputWindow()
+        public ScriptInputWindow()
         {
             InitializeComponent();
         }

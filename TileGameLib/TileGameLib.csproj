@@ -49,9 +49,11 @@
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine\Command.cs" />
+    <Compile Include="Engine\GameContext.cs" />
     <Compile Include="Engine\Interpreter.cs" />
-    <Compile Include="Engine\Machine.cs" />
+    <Compile Include="Engine\MapEngine.cs" />
     <Compile Include="Engine\Script.cs" />
+    <Compile Include="Engine\ScriptedGameObject.cs" />
     <Compile Include="Engine\Stack.cs" />
     <Compile Include="Engine\Variables.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />

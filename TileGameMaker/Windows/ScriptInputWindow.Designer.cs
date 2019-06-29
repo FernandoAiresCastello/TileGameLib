@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class DataInputWindow
+    partial class ScriptInputWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -99,15 +99,15 @@
             this.TxtData.TabIndex = 1;
             this.TxtData.WordWrap = false;
             // 
-            // DataInputWindow
+            // ScriptInputWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 341);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "DataInputWindow";
+            this.Name = "ScriptInputWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Input Data";
+            this.Text = "Object Script";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

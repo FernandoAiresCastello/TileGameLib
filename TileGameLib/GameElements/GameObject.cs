@@ -11,7 +11,9 @@ namespace TileGameLib.GameElements
     public class GameObject
     {
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
-        public string Data { set; get; }
+        public string Script { set; get; }
+
+        public bool HasScript => !string.IsNullOrWhiteSpace(Script);
 
         public GameObject()
         {
@@ -29,29 +31,29 @@ namespace TileGameLib.GameElements
             Animation.SetFrame(0, singleAnimFrame);
         }
 
-        public GameObject(int type, int param, string data, Tile singleAnimFrame)
+        public GameObject(int type, int param, string script, Tile singleAnimFrame)
         {
-            Data = data;
+            Script = script;
             Animation.Clear(singleAnimFrame);
         }
 
         public void SetNull()
         {
-            Data = "";
+            Script = "";
             Animation.Clear(Tile.Null);
         }
 
         public bool IsNull()
         {
             return 
-                Data == "" && 
+                Script == "" && 
                 Animation.IsSingleFrame() &&
                 Animation.GetFirstFrame().Equals(Tile.Null);
         }
 
         public void SetEqual(GameObject o)
         {
-            Data = o.Data;
+            Script = o.Script;
             Animation.SetEqual(o.Animation);
         }
 
@@ -63,7 +65,7 @@ namespace TileGameLib.GameElements
             GameObject o = (GameObject)obj;
 
             return
-                Data.Equals(o.Data) &&
+                Script.Equals(o.Script) &&
                 Animation.Equals(o.Animation);
         }
 
@@ -75,8 +77,8 @@ namespace TileGameLib.GameElements
         public override string ToString()
         {
             int maxLength = 100;
-            string data = Data.Length <= maxLength ? Data : Data.Substring(0, maxLength) + "...";
-            return $"Data: {data}";
+            string script = Script.Length <= maxLength ? Script : Script.Substring(0, maxLength) + "...";
+            return $"Script: {script}";
         }
     }
 }
