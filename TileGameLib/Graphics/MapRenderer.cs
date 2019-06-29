@@ -11,11 +11,15 @@ namespace TileGameLib.Graphics
 {
     public class MapRenderer
     {
-        public static readonly int DefaultAnimationInterval = 256;
-
         public ObjectMap Map { set; get; }
         public bool AnimationEnabled { set; get; }
         public Tile OutOfBoundsTile { set; get; }
+
+        public int RefreshInterval
+        {
+            set { RefreshTimer.Interval = value; }
+            get { return RefreshTimer.Interval; }
+        }
 
         public int AnimationInterval
         {
@@ -26,8 +30,12 @@ namespace TileGameLib.Graphics
         private TiledDisplay Disp;
         private Rectangle Viewport;
         private Point MapOffset;
+        private Timer RefreshTimer;
         private Timer AnimationTimer;
         private int AnimationFrame;
+
+        private static readonly int DefaultRefreshInterval = 60;
+        private static readonly int DefaultAnimationInterval = 256;
 
         public MapRenderer(ObjectMap map, TiledDisplay disp)
             : this(map, disp, new Rectangle(0, 0, disp.Cols, disp.Rows), new Point(0, 0))
@@ -43,22 +51,29 @@ namespace TileGameLib.Graphics
             Viewport = viewport;
             MapOffset = mapOffset;
             OutOfBoundsTile = new Tile(0, 0, 0);
+
+            RefreshTimer = new Timer();
+            RefreshTimer.Interval = DefaultRefreshInterval;
+            RefreshTimer.Tick += RefreshTimer_Tick;
+            RefreshTimer.Start();
+
             AnimationFrame = 0;
             AnimationEnabled = true;
             AnimationTimer = new Timer();
             AnimationTimer.Interval = DefaultAnimationInterval;
             AnimationTimer.Tick += AnimationTimer_Tick;
             AnimationTimer.Start();
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
             Render();
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
         {
             if (AnimationEnabled)
-            {
-                Render();
                 AdvanceAnimation();
-            }
         }
 
         public void SetViewport(int x, int y, int width, int height)

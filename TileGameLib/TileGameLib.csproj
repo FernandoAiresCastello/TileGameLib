@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="Engine\Command.cs" />
     <Compile Include="Engine\GameContext.cs" />
+    <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Engine\Interpreter.cs" />
     <Compile Include="Engine\MapEngine.cs" />
     <Compile Include="Engine\Script.cs" />

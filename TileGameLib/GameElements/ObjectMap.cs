@@ -31,6 +31,11 @@ namespace TileGameLib.GameElements
             AddLayer();
         }
 
+        public ObjectMap(ObjectMap other)
+        {
+            SetEqual(other);
+        }
+
         public void SetEqual(ObjectMap other)
         {
             Name = other.Name;

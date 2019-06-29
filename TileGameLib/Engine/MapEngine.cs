@@ -10,31 +10,30 @@ namespace TileGameLib.Engine
     public class MapEngine
     {
         private GameContext GameContext;
-        private ObjectMap Map;
         private Interpreter Interpreter;
         private List<ScriptedGameObject> ScriptedObjects = new List<ScriptedGameObject>();
         private readonly Stack ParamStack = new Stack();
         private readonly Variables LocalVars = new Variables();
 
-        public MapEngine(GameContext ctx, ObjectMap map)
+        public MapEngine(GameContext ctx, Interpreter interpreter)
         {
             GameContext = ctx;
-            Map = map;
-            Interpreter = new Interpreter(ctx, map);
+            Interpreter = interpreter;
             FindScriptedObjects();
         }
 
         private void FindScriptedObjects()
         {
             ScriptedObjects.Clear();
+            ObjectMap map = GameContext.CurrentMap;
 
-            for (int layer = 0; layer < Map.Layers.Count; layer++)
+            for (int layer = 0; layer < map.Layers.Count; layer++)
             {
-                for (int y = 0; y < Map.Height; y++)
+                for (int y = 0; y < map.Height; y++)
                 {
-                    for (int x = 0; x < Map.Width; x++)
+                    for (int x = 0; x < map.Width; x++)
                     {
-                        GameObject o = Map.GetObject(layer, x, y);
+                        GameObject o = map.GetObject(layer, x, y);
                         if (o.HasScript)
                             ScriptedObjects.Add(new ScriptedGameObject(o));
                     }

@@ -9,20 +9,24 @@ namespace TileGameLib.Engine
 {
     public class Interpreter
     {
-        private readonly GameContext GameContext;
-        private readonly ObjectMap Map;
-        private ScriptedGameObject ScriptedGameObject;
-        private int CommandPointer = 0;
-        private bool Branching;
+        public GameContext GameContext { set; get; }
+        public ObjectMap Map { set; get; }
 
-        public Interpreter(GameContext ctx, ObjectMap map)
+        protected ScriptedGameObject ScriptedGameObject;
+        protected int CommandPointer = 0;
+        protected bool Branching;
+
+        public Interpreter()
         {
-            GameContext = ctx;
-            Map = map;
+            GameContext = null;
+            Map = null;
         }
 
         public void Run(ScriptedGameObject o)
         {
+            if (GameContext == null || Map == null)
+                throw new InvalidOperationException();
+
             CommandPointer = 0;
             ScriptedGameObject = o;
             List<Command> commands = o.Script.Commands;
@@ -36,9 +40,9 @@ namespace TileGameLib.Engine
             }
         }
 
-        private void InterpretCommand(Command cmd)
+        protected virtual void InterpretCommand(Command cmd)
         {
-            // todo
+            throw new NotImplementedException();
         }
     }
 }

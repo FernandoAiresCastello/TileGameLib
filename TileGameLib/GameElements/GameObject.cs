@@ -31,7 +31,7 @@ namespace TileGameLib.GameElements
             Animation.SetFrame(0, singleAnimFrame);
         }
 
-        public GameObject(int type, int param, string script, Tile singleAnimFrame)
+        public GameObject(Tile singleAnimFrame, string script)
         {
             Script = script;
             Animation.Clear(singleAnimFrame);

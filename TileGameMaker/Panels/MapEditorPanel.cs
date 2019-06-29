@@ -227,9 +227,15 @@ namespace TileGameMaker.Panels
         private void ToggleTextMode()
         {
             if (Mode == EditMode.Template)
+            {
                 Mode = EditMode.TextInput;
+                Display.Cursor = Cursors.IBeam;
+            }
             else if (Mode == EditMode.TextInput)
+            {
                 Mode = EditMode.Template;
+                Display.Cursor = Cursors.Arrow;
+            }
 
             BtnAddText.Checked = Mode == EditMode.TextInput;
         }
@@ -249,7 +255,7 @@ namespace TileGameMaker.Panels
                 {
                     Tile tile = MapEditor.SelectedTile;
                     tile.TileIx = ch;
-                    GameObject o = new GameObject(win.Type, win.Param, "", tile);
+                    GameObject o = new GameObject(tile);
                     Map.SetObject(o, Layer, x++, y);
                 }
                 y++;

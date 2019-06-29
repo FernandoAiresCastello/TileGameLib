@@ -38,7 +38,7 @@ namespace TileGameMaker.Panels
         }
 
         private MapEditor MapEditor;
-        private readonly int MaxFrames = 8;
+        private readonly int MaxFrames = 9;
 
         public TemplatePanel()
         {
