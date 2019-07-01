@@ -57,6 +57,18 @@ namespace TileGameLib.GameElements
             Animation.SetEqual(o.Animation);
         }
 
+        public GameObject Copy()
+        {
+            return new GameObject(this);
+        }
+
+        public override string ToString()
+        {
+            int maxLength = 100;
+            string script = Script.Length <= maxLength ? Script : Script.Substring(0, maxLength) + "...";
+            return $"Script: {script}";
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -69,16 +81,9 @@ namespace TileGameLib.GameElements
                 Animation.Equals(o.Animation);
         }
 
-        public GameObject Copy()
+        public override int GetHashCode()
         {
-            return new GameObject(this);
-        }
-
-        public override string ToString()
-        {
-            int maxLength = 100;
-            string script = Script.Length <= maxLength ? Script : Script.Substring(0, maxLength) + "...";
-            return $"Script: {script}";
+            return Tuple.Create(Animation, Script).GetHashCode();
         }
     }
 }

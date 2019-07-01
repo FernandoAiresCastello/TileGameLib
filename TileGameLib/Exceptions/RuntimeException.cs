@@ -16,7 +16,7 @@ namespace TileGameLib.Exceptions
         {
         }
 
-        public RuntimeException(string msg, System.Exception inner) : base(msg, inner)
+        public RuntimeException(string msg, Exception inner) : base(msg, inner)
         {
         }
     }

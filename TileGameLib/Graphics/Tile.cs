@@ -13,6 +13,7 @@ namespace TileGameLib.Graphics
         public int BackColorIx { set; get; }
 
         public static Tile Null => NullTile.Copy();
+
         private static readonly Tile NullTile = new Tile(0, 0, 0);
 
         public Tile()
@@ -53,6 +54,18 @@ namespace TileGameLib.Graphics
             BackColorIx = Null.BackColorIx;
         }
 
+        public Tile Copy()
+        {
+            return new Tile(this);
+        }
+
+        public static void DefineNull(int tileIx, int foreColorIx, int backColorIx)
+        {
+            NullTile.TileIx = tileIx;
+            NullTile.ForeColorIx = foreColorIx;
+            NullTile.BackColorIx = backColorIx;
+        }
+
         public override bool Equals(object o)
         {
             if (o == null || GetType() != o.GetType())
@@ -66,16 +79,9 @@ namespace TileGameLib.Graphics
                 BackColorIx == other.BackColorIx;
         }
 
-        public Tile Copy()
+        public override int GetHashCode()
         {
-            return new Tile(this);
-        }
-
-        public static void DefineNull(int tileIx, int foreColorIx, int backColorIx)
-        {
-            NullTile.TileIx = tileIx;
-            NullTile.ForeColorIx = foreColorIx;
-            NullTile.BackColorIx = backColorIx;
+            return Tuple.Create(TileIx, ForeColorIx, BackColorIx).GetHashCode();
         }
     }
 }

@@ -8,6 +8,10 @@ namespace TileGameLib.Exceptions
 {
     public class OutOfBoundsException : RuntimeException
     {
+        public OutOfBoundsException() : base("Out of bounds access")
+        {
+        }
+
         public OutOfBoundsException(string msg) : base(msg)
         {
         }

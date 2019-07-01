@@ -76,23 +76,6 @@ namespace TileGameLib.GameElements
                 Frames.Add(new Tile(ch.TileIx, ch.ForeColorIx, ch.BackColorIx));
         }
 
-        public override bool Equals(object o)
-        {
-            if (o == null || GetType() != o.GetType())
-                return false;
-
-            ObjectAnim other = (ObjectAnim)o;
-
-            if (Frames.Count != other.Frames.Count)
-                return false;
-
-            for (int i = 0; i < Frames.Count; i++)
-                if (!Frames[i].Equals(other.Frames[i]))
-                    return false;
-
-            return true;
-        }
-
         public void AddFrame(Tile ch)
         {
             Frames.Add(ch.Copy());
@@ -112,6 +95,28 @@ namespace TileGameLib.GameElements
         public Tile GetFrame(int index)
         {
             return Frames[index % Frames.Count];
+        }
+
+        public override bool Equals(object o)
+        {
+            if (o == null || GetType() != o.GetType())
+                return false;
+
+            ObjectAnim other = (ObjectAnim)o;
+
+            if (Frames.Count != other.Frames.Count)
+                return false;
+
+            for (int i = 0; i < Frames.Count; i++)
+                if (!Frames[i].Equals(other.Frames[i]))
+                    return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(Frames).GetHashCode();
         }
     }
 }
