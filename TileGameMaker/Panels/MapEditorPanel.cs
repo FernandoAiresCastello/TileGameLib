@@ -43,6 +43,7 @@ namespace TileGameMaker.Panels
             MapEditor = editor;
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
+            Display.ShowGrid = true;
             MapRenderer = new MapRenderer(Map, Display);
             Archive = new MapArchive(MapEditor.ArchiveFile);
             HoverLabel.Text = "";

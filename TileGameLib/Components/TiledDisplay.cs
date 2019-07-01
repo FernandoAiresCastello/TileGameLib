@@ -33,8 +33,8 @@ namespace TileGameLib.Components
             DoubleBuffered = true;
             Graphics = new GraphicsAdapter(cols, rows);
             Image = Graphics.Bitmap;
-            ShowGrid = true;
-            ShowOverlay = true;
+            ShowGrid = false;
+            ShowOverlay = false;
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
@@ -102,6 +102,11 @@ namespace TileGameLib.Components
             return Overlay;
         }
 
+        public System.Drawing.Graphics GetOverlayGraphics()
+        {
+            return System.Drawing.Graphics.FromImage(Overlay);
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             System.Drawing.Graphics g = e.Graphics;
@@ -111,19 +116,16 @@ namespace TileGameLib.Components
             g.CompositingQuality = CompositingQuality.HighSpeed;
             g.CompositingMode = CompositingMode.SourceCopy;
 
-            if (StretchImage)
-            {
-                g.DrawImage(Graphics.Bitmap, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
-            }
-            else
-            {
-                g.DrawImage(Graphics.Bitmap, 0, 0, Zoom * Graphics.Width, Zoom * Graphics.Height);
-                g.CompositingMode = CompositingMode.SourceOver;
-                if (ShowGrid && Grid != null)
-                    g.DrawImage(Grid, 0, 0);
-                if (ShowOverlay && Overlay != null)
-                    g.DrawImage(Overlay, 0, 0);
-            }
+            g.DrawImage(Graphics.Bitmap, 0, 0, 
+                StretchImage ? ClientRectangle.Width : Zoom * Graphics.Width,
+                StretchImage ? ClientRectangle.Height : Zoom * Graphics.Height);
+
+            g.CompositingMode = CompositingMode.SourceOver;
+
+            if (ShowGrid && Grid != null)
+                g.DrawImage(Grid, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
+            if (ShowOverlay && Overlay != null)
+                g.DrawImage(Overlay, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
         }
 
         protected void MakeGrid()

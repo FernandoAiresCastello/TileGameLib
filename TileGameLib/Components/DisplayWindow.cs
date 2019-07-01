@@ -62,6 +62,11 @@ namespace TileGameLib.Components
             Display.MouseDown += DisplayWindow_MouseDown;
         }
 
+        public override string ToString()
+        {
+            return Text;
+        }
+
         protected virtual void HandleKeyEvent(KeyEventArgs e)
         {
             throw new NotImplementedException();
