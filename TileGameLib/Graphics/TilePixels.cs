@@ -11,7 +11,7 @@ namespace TileGameLib.Graphics
     {
         public static readonly int RowCount = 8;
         public static readonly int RowLength = 8;
-        public static readonly int PixelCount = 64;
+        public static readonly int PixelCount = RowCount * RowLength;
 
         public byte[] PixelRows { set; get; } = new byte[RowCount];
 
@@ -72,6 +72,36 @@ namespace TileGameLib.Graphics
             SetEqual(flipped);
         }
 
+        public void RotateRight()
+        {
+            for (int i = 0; i < PixelRows.Length; i++)
+                PixelRows[i] = PixelRows[i].RotateRight();
+        }
+
+        public void RotateLeft()
+        {
+            for (int i = 0; i < PixelRows.Length; i++)
+                PixelRows[i] = PixelRows[i].RotateLeft();
+        }
+
+        public void RotateUp()
+        {
+            byte firstRow = PixelRows[0];
+            for (int row = PixelRows.Length - 2; row > 0 ; row--)
+                PixelRows[row] = PixelRows[row + 1];
+
+            PixelRows[PixelRows.Length - 1] = firstRow;
+        }
+
+        public void RotateDown()
+        {
+            byte lastRow = PixelRows[PixelRows.Length - 1];
+            for (int row = 1; row < PixelRows.Length - 2; row++)
+                PixelRows[row] = PixelRows[row - 1];
+
+            PixelRows[0] = lastRow;
+        }
+
         public void SetEqual(TilePixels pixels)
         {
             for (int i = 0; i < PixelRows.Length; i++)
@@ -85,6 +115,11 @@ namespace TileGameLib.Graphics
                 str.Append(row.ToBinaryString());
                 
             return str.ToString();
+        }
+
+        public override int GetHashCode()
+        {
+            return PixelRows.GetHashCode();
         }
     }
 }

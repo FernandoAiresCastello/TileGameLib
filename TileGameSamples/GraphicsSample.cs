@@ -18,7 +18,7 @@ namespace TileGameSamples
         private new readonly int DefaultForeColor = 255;
         private new readonly int DefaultBackColor = 2;
 
-        private enum SampleMode { Menu, Tileset, Palette }
+        private enum SampleMode { Menu, Tileset, Palette, Scrolling }
         private SampleMode Sample = SampleMode.Menu;
 
         public GraphicsSample() : base(32, 24, false, false)
@@ -28,6 +28,7 @@ namespace TileGameSamples
             Display.ShowOverlay = false;
             Display.CreateOverlay();
             DrawScanlines();
+            ClearDisplay();
             ShowMenu();
         }
 
@@ -37,19 +38,45 @@ namespace TileGameSamples
 
         protected override void HandleKeyEvent(KeyEventArgs e)
         {
+            bool globalKey = true;
+
             switch (e.KeyCode)
             {
-                case Keys.Escape: Close(); break;
-                case Keys.F: ToggleScanlines(); break;
-                case Keys.D0: ShowMenu(); break;
+                case Keys.Escape:
+                    Close();
+                    break;
+                case Keys.F:
+                    ToggleScanlines();
+                    break;
+                case Keys.D0:
+                    Sample = SampleMode.Menu;
+                    ClearDisplay();
+                    ShowMenu();
+                    break;
+                default:
+                    globalKey = false;
+                    break;
             }
 
-            if (Sample == SampleMode.Menu)
+            if (!globalKey)
             {
-                switch (e.KeyCode)
+                if (Sample == SampleMode.Menu)
                 {
-                    case Keys.D1: ShowTileset(); break;
-                    case Keys.D2: ShowPalette(); break;
+                    ClearDisplay();
+
+                    switch (e.KeyCode)
+                    {
+                        case Keys.D1: Sample = SampleMode.Tileset; ShowTileset(); break;
+                        case Keys.D2: Sample = SampleMode.Palette; ShowPalette(); break;
+                        case Keys.D3: Sample = SampleMode.Scrolling; ShowScrollingDemo(); break;
+                    }
+                }
+                else if (Sample == SampleMode.Scrolling)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.Right: Gr.TileBuffer.ScrollRight(); Gr.Refresh(); break;
+                    }
                 }
             }
 
@@ -80,9 +107,6 @@ namespace TileGameSamples
 
         private void ShowMenu()
         {
-            Sample = SampleMode.Menu;
-            ClearDisplay();
-
             int y = 1;
 
             PrintMenuItem(y++, "Graphics Sample", "");
@@ -93,6 +117,7 @@ namespace TileGameSamples
             PrintMenuItem(y++, "[0]", "Back to this menu");
             PrintMenuItem(y++, "[1]", "View tileset");
             PrintMenuItem(y++, "[2]", "View palette");
+            PrintMenuItem(y++, "[3]", "View scrolling demo");
         }
 
         private void PrintMenuItem(int row, string keys, string description)
@@ -106,9 +131,6 @@ namespace TileGameSamples
 
         private void ShowTileset()
         {
-            Sample = SampleMode.Tileset;
-            ClearDisplay();
-
             int x = 1;
             int y = 1;
 
@@ -126,9 +148,6 @@ namespace TileGameSamples
 
         private void ShowPalette()
         {
-            Sample = SampleMode.Palette;
-            ClearDisplay();
-
             int x = 0;
             int y = 0;
             const int SwatchTile = 0xdb;
@@ -145,6 +164,11 @@ namespace TileGameSamples
                     y++;
                 }
             }
+        }
+
+        private void ShowScrollingDemo()
+        {
+            Gr.PutString(10, 10, "Hello World!", DefaultForeColor, DefaultBackColor);
         }
     }
 }

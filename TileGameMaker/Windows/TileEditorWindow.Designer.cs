@@ -198,7 +198,6 @@
             this.BtnShift.Size = new System.Drawing.Size(23, 22);
             this.BtnShift.Text = "toolStripButton1";
             this.BtnShift.ToolTipText = "Shift pixels";
-            this.BtnShift.Click += new System.EventHandler(this.BtnShift_Click);
             // 
             // TilePanel
             // 

@@ -102,6 +102,19 @@ namespace TileGameLib.Graphics
             }
         }
 
+        public void Refresh()
+        {
+            for (int row = 0; row < Rows; row++)
+            {
+                for (int col = 0; col < Cols; col++)
+                {
+                    Tile tile = TileBuffer.Tiles[col, row];
+                    DrawTile(col, row, Palette.Get(tile.ForeColorIx), 
+                        Palette.Get(tile.BackColorIx), Tileset.Get(tile.TileIx).PixelRows);
+                }
+            }
+        }
+
         private void DrawTile(int col, int row, int color1, int color0, byte[] rows)
         {
             col *= TilePixels.RowLength;

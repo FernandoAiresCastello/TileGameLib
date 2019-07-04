@@ -64,5 +64,17 @@ namespace TileGameLib.Util
         {
             return Convert.ToString(b, 2).PadLeft(8, '0');
         }
+
+        public static byte RotateLeft(this byte b)
+        {
+            const byte mask = 0xff;
+            return (byte)(((b << 2) | (b >> 6)) & mask);
+        }
+
+        public static byte RotateRight(this byte b)
+        {
+            const byte mask = 0xff;
+            return (byte)(((b >> 2) | (b << 6)) & mask);
+        }
     }
 }

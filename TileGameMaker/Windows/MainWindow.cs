@@ -56,10 +56,7 @@ namespace TileGameMaker.Windows
         {
             DebugWindow win = new DebugWindow(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
             win.Graphics.Clear(5);
-            win.Graphics.PutString(0, 0, "Hello World!", 255, 5);
-            MapRenderer rend = new MapRenderer(MapEditor.Map, win.Display,
-                new Rectangle(3, 3, 20, 10), new Point(0, 0));
-
+            win.Graphics.PutString(10, 10, "Hello World!", 255, 5);
             win.ShowDialog(this);
         }
     }

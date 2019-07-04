@@ -11,6 +11,7 @@ using TileGameMaker.Modules;
 using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
+using TileGameLib.Graphics;
 
 namespace TileGameMaker.Panels
 {
@@ -19,6 +20,7 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
         private TileEditorWindow TileEditorWindow;
+        private TilePixels ClipboardTile = new TilePixels();
 
         public TilePickerPanel()
         {
@@ -57,6 +59,16 @@ namespace TileGameMaker.Panels
             return TilePicker.TileIndex;
         }
 
+        private void CopyTile(int tileIx)
+        {
+            ClipboardTile = TilePicker.Graphics.Tileset.Copy(tileIx);
+        }
+
+        private void PasteTile(int tileIx)
+        {
+            TilePicker.Graphics.Tileset.Set(tileIx, ClipboardTile);
+        }
+
         private void TilePicker_MouseDown(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
@@ -65,22 +77,23 @@ namespace TileGameMaker.Panels
 
             if (e.Button == MouseButtons.Left)
             {
-                TilePicker.SelectTiileIndex(tileIx);
+                TilePicker.SelectTileIndex(tileIx);
                 UpdateStatus();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                // TODO: Show context menu to copy/paste tile
             }
         }
 
         private void TilePicker_MouseMove(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+
             if (tileIx >= 0 && tileIx < TilePicker.Graphics.Tileset.Size)
-            {
                 SetHoverStatus("IX: " + tileIx);
-            }
             else
-            {
                 SetHoverStatus("");
-            }
         }
 
         private void TilePicker_MouseDoubleClick(object sender, MouseEventArgs e)

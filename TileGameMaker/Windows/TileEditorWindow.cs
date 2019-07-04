@@ -113,9 +113,28 @@ namespace TileGameMaker.Windows
             RefreshSubscribed();
         }
 
-        private void BtnShift_Click(object sender, EventArgs e)
+        private void BtnRotateRight_Click(object sender, EventArgs e)
         {
-            Alert.Warning("Function not implemented");
+            TileEditor.RotateRight();
+            RefreshSubscribed();
+        }
+
+        private void BtnRotateLeft_Click(object sender, EventArgs e)
+        {
+            TileEditor.RotateLeft();
+            RefreshSubscribed();
+        }
+
+        private void BtnRotateUp_Click(object sender, EventArgs e)
+        {
+            TileEditor.RotateUp();
+            RefreshSubscribed();
+        }
+
+        private void BtnRotateDown_Click(object sender, EventArgs e)
+        {
+            TileEditor.RotateDown();
+            RefreshSubscribed();
         }
     }
 }

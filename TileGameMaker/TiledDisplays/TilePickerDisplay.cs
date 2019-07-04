@@ -17,7 +17,7 @@ namespace TileGameMaker.TiledDisplays
         public TilePickerDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            TileIndex = 0xdb;
+            TileIndex = 0;
             Graphics.Palette.Set(0, SystemColors.WindowText);
             Graphics.Palette.Set(1, SystemColors.Window);
             Graphics.Palette.Set(2, SystemColors.HighlightText);
@@ -42,6 +42,7 @@ namespace TileGameMaker.TiledDisplays
                     Graphics.PutTile(x, y, i, fgc, bgc);
 
                 x++;
+
                 if (x >= Graphics.Cols)
                 {
                     x = 0;
@@ -52,7 +53,7 @@ namespace TileGameMaker.TiledDisplays
             base.OnPaint(e);
         }
 
-        internal void SelectTiileIndex(int tileIx)
+        public void SelectTileIndex(int tileIx)
         {
             TileIndex = tileIx;
             Refresh();

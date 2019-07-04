@@ -69,40 +69,40 @@ namespace TileGameLib.Graphics
 
         public void ScrollRight()
         {
-            Tile[] lastCol = GetLastCol();
+            Tile[] lastCol = CopyLastCol();
 
-            for (int x = 0; x < Cols - 1; x++)
-                SetColumn(x + 1, GetColumn(x));
+            for (int x = Cols - 2; x > 0; x--)
+                SetColumn(x + 1, CopyColumn(x));
 
             SetColumn(0, lastCol);
         }
 
         public void ScrollLeft()
         {
-            Tile[] firstCol = GetFirstCol();
+            Tile[] firstCol = CopyFirstCol();
 
-            for (int x = Cols - 1; x > 1; x--)
-                SetColumn(x - 1, GetColumn(x));
+            for (int x = 1; x < Cols - 2; x++)
+                SetColumn(x - 1, CopyColumn(x));
 
             SetColumn(Cols - 1, firstCol);
         }
 
         public void ScrollDown()
         {
-            Tile[] lastRow = GetLastRow();
+            Tile[] lastRow = CopyLastRow();
 
             for (int y = 0; y < Rows - 1; y++)
-                SetRow(y + 1, GetRow(y));
+                SetRow(y + 1, CopyRow(y));
 
             SetColumn(0, lastRow);
         }
 
         public void ScrollUp()
         {
-            Tile[] firstRow = GetFirstRow();
+            Tile[] firstRow = CopyFirstRow();
 
             for (int y = Rows - 1; y > 1; y--)
-                SetRow(y - 1, GetRow(y));
+                SetRow(y - 1, CopyRow(y));
 
             SetColumn(Rows - 1, firstRow);
         }
@@ -113,7 +113,7 @@ namespace TileGameLib.Graphics
                 throw new ArgumentException();
 
             for (int row = 0; row < Rows; row++)
-                Tiles[col, row] = tiles[row];
+                Tiles[col, row].SetEqual(tiles[row]);
         }
 
         public void SetRow(int row, Tile[] tiles)
@@ -122,51 +122,51 @@ namespace TileGameLib.Graphics
                 throw new ArgumentException();
 
             for (int col = 0; col < Cols; col++)
-                Tiles[col, row] = tiles[col];
+                Tiles[col, row].SetEqual(tiles[col]);
         }
 
-        public Tile[] GetColumn(int col)
+        public Tile[] CopyColumn(int col)
         {
             if (col < 0 || col >= Cols)
                 throw new ArgumentException();
 
             Tile[] tiles = new Tile[Rows];
             for (int row = 0; row < Rows; row++)
-                tiles[row] = Tiles[col, row];
+                tiles[row] = new Tile(Tiles[col, row]);
 
             return tiles;
         }
 
-        public Tile[] GetRow(int row)
+        public Tile[] CopyRow(int row)
         {
             if (row < 0 || row >= Rows)
                 throw new ArgumentException();
 
             Tile[] tiles = new Tile[Cols];
             for (int col = 0; col < Cols; col++)
-                tiles[col] = Tiles[col, row];
+                tiles[col] = new Tile(Tiles[col, row]);
 
             return tiles;
         }
 
-        public Tile[] GetFirstCol()
+        public Tile[] CopyFirstCol()
         {
-            return GetColumn(0);
+            return CopyColumn(0);
         }
 
-        public Tile[] GetLastCol()
+        public Tile[] CopyLastCol()
         {
-            return GetColumn(Cols - 1);
+            return CopyColumn(Cols - 1);
         }
 
-        public Tile[] GetFirstRow()
+        public Tile[] CopyFirstRow()
         {
-            return GetRow(0);
+            return CopyRow(0);
         }
 
-        public Tile[] GetLastRow()
+        public Tile[] CopyLastRow()
         {
-            return GetRow(Rows - 1);
+            return CopyRow(Rows - 1);
         }
     }
 }

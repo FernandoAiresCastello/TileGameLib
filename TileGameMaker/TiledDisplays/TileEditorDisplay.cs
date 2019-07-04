@@ -101,5 +101,29 @@ namespace TileGameMaker.TiledDisplays
             Tileset.Get(TileIndex).FlipVertical();
             Refresh();
         }
+
+        public void RotateRight()
+        {
+            Tileset.Get(TileIndex).RotateRight();
+            Refresh();
+        }
+
+        public void RotateLeft()
+        {
+            Tileset.Get(TileIndex).RotateLeft();
+            Refresh();
+        }
+
+        public void RotateUp()
+        {
+            Tileset.Get(TileIndex).RotateUp();
+            Refresh();
+        }
+
+        public void RotateDown()
+        {
+            Tileset.Get(TileIndex).RotateDown();
+            Refresh();
+        }
     }
 }
