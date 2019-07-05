@@ -71,7 +71,7 @@ namespace TileGameLib.Graphics
         {
             Tile[] lastCol = CopyLastCol();
 
-            for (int x = Cols - 2; x > 0; x--)
+            for (int x = Cols - 2; x >= 0; x--)
                 SetColumn(x + 1, CopyColumn(x));
 
             SetColumn(0, lastCol);
@@ -81,7 +81,7 @@ namespace TileGameLib.Graphics
         {
             Tile[] firstCol = CopyFirstCol();
 
-            for (int x = 1; x < Cols - 2; x++)
+            for (int x = 1; x < Cols; x++)
                 SetColumn(x - 1, CopyColumn(x));
 
             SetColumn(Cols - 1, firstCol);
@@ -91,20 +91,20 @@ namespace TileGameLib.Graphics
         {
             Tile[] lastRow = CopyLastRow();
 
-            for (int y = 0; y < Rows - 1; y++)
+            for (int y = Rows - 2; y >= 0; y--)
                 SetRow(y + 1, CopyRow(y));
 
-            SetColumn(0, lastRow);
+            SetRow(0, lastRow);
         }
 
         public void ScrollUp()
         {
             Tile[] firstRow = CopyFirstRow();
 
-            for (int y = Rows - 1; y > 1; y--)
+            for (int y = 1; y < Rows; y++)
                 SetRow(y - 1, CopyRow(y));
 
-            SetColumn(Rows - 1, firstRow);
+            SetRow(Rows - 1, firstRow);
         }
 
         public void SetColumn(int col, Tile[] tiles)

@@ -62,8 +62,6 @@ namespace TileGameSamples
             {
                 if (Sample == SampleMode.Menu)
                 {
-                    ClearDisplay();
-
                     switch (e.KeyCode)
                     {
                         case Keys.D1: Sample = SampleMode.Tileset; ShowTileset(); break;
@@ -76,6 +74,9 @@ namespace TileGameSamples
                     switch (e.KeyCode)
                     {
                         case Keys.Right: Gr.TileBuffer.ScrollRight(); Gr.Refresh(); break;
+                        case Keys.Left: Gr.TileBuffer.ScrollLeft(); Gr.Refresh(); break;
+                        case Keys.Up: Gr.TileBuffer.ScrollUp(); Gr.Refresh(); break;
+                        case Keys.Down: Gr.TileBuffer.ScrollDown(); Gr.Refresh(); break;
                     }
                 }
             }
@@ -107,6 +108,8 @@ namespace TileGameSamples
 
         private void ShowMenu()
         {
+            ClearDisplay();
+
             int y = 1;
 
             PrintMenuItem(y++, "Graphics Sample", "");
@@ -131,6 +134,8 @@ namespace TileGameSamples
 
         private void ShowTileset()
         {
+            ClearDisplay();
+
             int x = 1;
             int y = 1;
 
@@ -148,6 +153,8 @@ namespace TileGameSamples
 
         private void ShowPalette()
         {
+            ClearDisplay();
+
             int x = 0;
             int y = 0;
             const int SwatchTile = 0xdb;
@@ -168,7 +175,9 @@ namespace TileGameSamples
 
         private void ShowScrollingDemo()
         {
+            ClearDisplay();
             Gr.PutString(10, 10, "Hello World!", DefaultForeColor, DefaultBackColor);
+            Gr.PutString(3, 12, "Press arrow keys to scroll", DefaultForeColor, DefaultBackColor);
         }
     }
 }
