@@ -12,8 +12,6 @@ namespace TileGameLib.Engine
         private GameContext GameContext;
         private Interpreter Interpreter;
         private List<ScriptedGameObject> ScriptedObjects = new List<ScriptedGameObject>();
-        private readonly Stack ParamStack = new Stack();
-        private readonly Variables LocalVars = new Variables();
 
         public MapEngine(GameContext ctx, Interpreter interpreter)
         {
@@ -44,9 +42,7 @@ namespace TileGameLib.Engine
         public void ExecuteCycle()
         {
             foreach (ScriptedGameObject o in ScriptedObjects)
-            {
-                Interpreter.Run(o);
-            }
+                Interpreter.ExecuteObject(o);
         }
     }
 }

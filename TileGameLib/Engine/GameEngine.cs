@@ -22,7 +22,7 @@ namespace TileGameLib.Engine
 
             set
             {
-                if (value == true)
+                if (value)
                     StartAutoCycle();
                 else
                     StopAutoCycle();

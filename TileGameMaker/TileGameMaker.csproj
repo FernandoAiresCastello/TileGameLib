@@ -264,6 +264,12 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\scroll_pane_text.png" />
     <None Include="Resources\select.png" />
+    <None Include="Resources\arrow_right.png" />
+    <None Include="Resources\arrow_left.png" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\arrow_down.png" />
+    <None Include="Resources\page_white_copy1.png" />
+    <None Include="Resources\page_white_paste1.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

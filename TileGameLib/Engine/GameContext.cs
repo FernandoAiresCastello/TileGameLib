@@ -27,7 +27,6 @@ namespace TileGameLib.Engine
             else
                 CurrentMap.SetEqual(map);
 
-            Interpreter.Map = map;
             Interpreter.GameContext = this;
             MapEngine = new MapEngine(this, Interpreter);
         }
