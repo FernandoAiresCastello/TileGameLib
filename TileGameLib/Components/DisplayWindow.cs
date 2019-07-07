@@ -69,12 +69,12 @@ namespace TileGameLib.Components
 
         protected virtual void HandleKeyEvent(KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("HandleKeyEvent must be implemented in a subclass");
         }
 
         protected virtual void HandleMouseEvent(MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("HandleMouseEvent must be implemented in a subclass");
         }
 
         protected void DisplayWindow_MouseDown(object sender, MouseEventArgs e)
