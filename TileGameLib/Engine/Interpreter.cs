@@ -11,9 +11,9 @@ namespace TileGameLib.Engine
     {
         public GameContext GameContext { set; get; }
 
-        protected ScriptedGameObject ScriptedGameObject;
-        protected int CommandPointer = 0;
         protected bool Branching;
+        protected int CommandPointer = 0;
+        protected ScriptedGameObject ScriptedGameObject;
         protected readonly Stack ParamStack = new Stack();
         protected readonly Variables LocalVars = new Variables();
 

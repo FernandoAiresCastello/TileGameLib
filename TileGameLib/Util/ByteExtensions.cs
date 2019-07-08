@@ -68,13 +68,13 @@ namespace TileGameLib.Util
         public static byte RotateLeft(this byte b)
         {
             const byte mask = 0xff;
-            return (byte)(((b << 2) | (b >> 6)) & mask);
+            return (byte)(((b << 1) | (b >> 7)) & mask);
         }
 
         public static byte RotateRight(this byte b)
         {
             const byte mask = 0xff;
-            return (byte)(((b >> 2) | (b << 6)) & mask);
+            return (byte)(((b >> 1) | (b << 7)) & mask);
         }
     }
 }

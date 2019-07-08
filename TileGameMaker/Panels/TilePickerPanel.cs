@@ -127,5 +127,17 @@ namespace TileGameMaker.Panels
                 UpdateStatus();
             }
         }
+
+        private void BtnCopy_Click(object sender, EventArgs e)
+        {
+            CopyTile(TilePicker.TileIndex);
+        }
+
+        private void BtnPaste_Click(object sender, EventArgs e)
+        {
+            PasteTile(TilePicker.TileIndex);
+            Refresh();
+            MapEditor.TemplateControl.Refresh();
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 
 namespace TileGameSamples
 {
@@ -17,8 +18,9 @@ namespace TileGameSamples
         private GraphicsAdapter Gr;
         private new readonly int DefaultForeColor = 255;
         private new readonly int DefaultBackColor = 2;
+        private Timer MosaicTimer;
 
-        private enum SampleMode { Menu, Tileset, Palette, Scrolling }
+        private enum SampleMode { Menu, Tileset, Palette, Scrolling, Mosaic }
         private SampleMode Sample = SampleMode.Menu;
 
         public GraphicsSample() : base(32, 24, false, false)
@@ -29,6 +31,11 @@ namespace TileGameSamples
             Display.CreateOverlay();
             DrawScanlines();
             ClearDisplay();
+
+            MosaicTimer = new Timer();
+            MosaicTimer.Interval = 100;
+            MosaicTimer.Tick += TimerDrawMosaic;
+
             ShowMenu();
         }
 
@@ -67,6 +74,7 @@ namespace TileGameSamples
                         case Keys.D1: Sample = SampleMode.Tileset; ShowTileset(); break;
                         case Keys.D2: Sample = SampleMode.Palette; ShowPalette(); break;
                         case Keys.D3: Sample = SampleMode.Scrolling; ShowScrollingDemo(); break;
+                        case Keys.D4: Sample = SampleMode.Mosaic; ShowMosaicDemo(); break;
                     }
                 }
                 else if (Sample == SampleMode.Scrolling)
@@ -109,6 +117,7 @@ namespace TileGameSamples
         private void ShowMenu()
         {
             ClearDisplay();
+            MosaicTimer.Stop();
 
             int y = 1;
 
@@ -120,7 +129,8 @@ namespace TileGameSamples
             PrintMenuItem(y++, "[0]", "Back to this menu");
             PrintMenuItem(y++, "[1]", "View tileset");
             PrintMenuItem(y++, "[2]", "View palette");
-            PrintMenuItem(y++, "[3]", "View scrolling demo");
+            PrintMenuItem(y++, "[3]", "Scrolling demo");
+            PrintMenuItem(y++, "[4]", "Mosaic demo");
         }
 
         private void PrintMenuItem(int row, string keys, string description)
@@ -178,6 +188,27 @@ namespace TileGameSamples
             ClearDisplay();
             Gr.PutString(10, 10, "Hello World!", DefaultForeColor, DefaultBackColor);
             Gr.PutString(3, 12, "Press arrow keys to scroll", DefaultForeColor, DefaultBackColor);
+        }
+
+        private void ShowMosaicDemo()
+        {
+            MosaicTimer.Start();
+        }
+
+        private void TimerDrawMosaic(object sender, EventArgs e)
+        {
+            for (int y = 0; y < Gr.Rows; y++)
+            {
+                for (int x = 0; x < Gr.Cols; x++)
+                {
+                    int tile = RandomNumber.Get(255);
+                    int fgc = RandomNumber.Get(64);
+                    int bgc = RandomNumber.Get(64);
+                    Gr.PutTile(x, y, new Tile(tile, fgc, bgc));
+                }
+            }
+
+            Refresh();
         }
     }
 }

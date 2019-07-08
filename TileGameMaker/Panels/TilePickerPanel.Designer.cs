@@ -30,11 +30,14 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnCopy = new System.Windows.Forms.ToolStripButton();
+            this.BtnPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,32 +63,24 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnNew});
+            this.BtnNew,
+            this.toolStripSeparator1,
+            this.BtnCopy,
+            this.BtnPaste});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(235, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // BtnNew
-            // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 22);
-            this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear tileset";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // TilePickerPanel
+            // PnlTilePicker
             // 
             this.PnlTilePicker.AutoScroll = true;
             this.PnlTilePicker.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PnlTilePicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlTilePicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlTilePicker.Location = new System.Drawing.Point(3, 28);
-            this.PnlTilePicker.Name = "TilePickerPanel";
+            this.PnlTilePicker.Name = "PnlTilePicker";
             this.PnlTilePicker.Size = new System.Drawing.Size(229, 325);
             this.PnlTilePicker.TabIndex = 1;
             this.PnlTilePicker.MouseLeave += new System.EventHandler(this.TilePicker_MouseLeave);
@@ -115,12 +110,50 @@
             this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
             // 
-            // TilePickerControl
+            // BtnNew
+            // 
+            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
+            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(23, 22);
+            this.BtnNew.Text = "toolStripButton1";
+            this.BtnNew.ToolTipText = "Clear tileset";
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnCopy
+            // 
+            this.BtnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnCopy.Image = global::TileGameMaker.Properties.Resources.page_white_copy1;
+            this.BtnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnCopy.Name = "BtnCopy";
+            this.BtnCopy.Size = new System.Drawing.Size(23, 22);
+            this.BtnCopy.Text = "toolStripButton1";
+            this.BtnCopy.ToolTipText = "Copy selected tile";
+            this.BtnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
+            // 
+            // BtnPaste
+            // 
+            this.BtnPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnPaste.Image = global::TileGameMaker.Properties.Resources.page_white_paste1;
+            this.BtnPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnPaste.Name = "BtnPaste";
+            this.BtnPaste.Size = new System.Drawing.Size(23, 22);
+            this.BtnPaste.Text = "toolStripButton1";
+            this.BtnPaste.ToolTipText = "Paste tile";
+            this.BtnPaste.Click += new System.EventHandler(this.BtnPaste_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // TilePickerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "TilePickerControl";
+            this.Name = "TilePickerPanel";
             this.Size = new System.Drawing.Size(235, 380);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -141,5 +174,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
+        private System.Windows.Forms.ToolStripButton BtnCopy;
+        private System.Windows.Forms.ToolStripButton BtnPaste;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

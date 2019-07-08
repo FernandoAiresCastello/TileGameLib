@@ -87,17 +87,19 @@ namespace TileGameLib.Graphics
         public void RotateUp()
         {
             byte firstRow = PixelRows[0];
-            for (int row = PixelRows.Length - 2; row > 0 ; row--)
-                PixelRows[row] = PixelRows[row + 1];
 
-            PixelRows[PixelRows.Length - 1] = firstRow;
+            for (int i = 1; i < RowCount; i++)
+                PixelRows[i - 1] = PixelRows[i];
+
+            PixelRows[RowCount - 1] = firstRow;
         }
 
         public void RotateDown()
         {
-            byte lastRow = PixelRows[PixelRows.Length - 1];
-            for (int row = 1; row < PixelRows.Length - 2; row++)
-                PixelRows[row] = PixelRows[row - 1];
+            byte lastRow = PixelRows[RowCount - 1];
+
+            for (int i = RowCount - 2; i >= 0; i--)
+                PixelRows[i + 1] = PixelRows[i];
 
             PixelRows[0] = lastRow;
         }
