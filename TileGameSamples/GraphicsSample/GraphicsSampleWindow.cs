@@ -13,7 +13,7 @@ using TileGameLib.Util;
 
 namespace TileGameSamples
 {
-    public class GraphicsSample : DisplayWindow
+    public class GraphicsSampleWindow : DisplayWindow
     {
         private GraphicsAdapter Gr;
         private new readonly int DefaultForeColor = 255;
@@ -23,7 +23,7 @@ namespace TileGameSamples
         private enum SampleMode { Menu, Tileset, Palette, Scrolling, Mosaic }
         private SampleMode Sample = SampleMode.Menu;
 
-        public GraphicsSample() : base(32, 24, false, false)
+        public GraphicsSampleWindow() : base(32, 24, false, false)
         {
             Text = "Graphics Sample";
             Gr = Display.Graphics;

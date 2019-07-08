@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GraphicsSample.cs">
+    <Compile Include="GraphicsSample\GraphicsSampleWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -59,6 +59,11 @@
     </Compile>
     <Compile Include="MainMenuWindow.Designer.cs">
       <DependentUpon>MainMenuWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoguelikeSample\Game.cs" />
+    <Compile Include="RoguelikeSample\GameInterpreter.cs" />
+    <Compile Include="RoguelikeSample\GameWindow.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

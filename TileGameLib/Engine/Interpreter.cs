@@ -15,11 +15,6 @@ namespace TileGameLib.Engine
         protected int CommandPointer = 0;
         protected ScriptedGameObject ScriptedGameObject;
         protected readonly Stack ParamStack = new Stack();
-        protected readonly Variables LocalVars = new Variables();
-
-        public Interpreter()
-        {
-        }
 
         public void ExecuteObject(ScriptedGameObject o)
         {
@@ -30,16 +25,16 @@ namespace TileGameLib.Engine
             ScriptedGameObject = o;
             List<Command> commands = o.Script.Commands;
 
-            while (CommandPointer != commands.Count)
+            while (CommandPointer >= 0 && CommandPointer < commands.Count)
             {
                 Branching = false;
-                InterpretCommand(commands[CommandPointer]);
+                InterpretCommand(commands[CommandPointer], o.GameObject);
                 if (!Branching)
                     CommandPointer++;
             }
         }
 
-        protected virtual void InterpretCommand(Command cmd)
+        protected virtual void InterpretCommand(Command cmd, GameObject obj)
         {
             throw new NotImplementedException("InterpretCommand must be overriden by a subclass");
         }

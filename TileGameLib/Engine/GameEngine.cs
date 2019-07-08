@@ -13,6 +13,10 @@ namespace TileGameLib.Engine
     {
         public GameContext Context { get; private set; }
 
+        private MapEngine MapEngine;
+        private readonly Interpreter Interpreter;
+        private static readonly int DefaultCycleInterval = 500;
+
         public bool AutoCycleEnabled
         {
             get
@@ -38,23 +42,35 @@ namespace TileGameLib.Engine
         private readonly MapArchive MapArchive;
         private readonly Timer CycleTimer;
 
-        public GameEngine(Interpreter interpreter, string mapArchivePath)
+        public GameEngine(Interpreter interpreter, string mapArchivePath, string firstMapFilename)
         {
-            Context = new GameContext(interpreter);
+            Context = new GameContext();
+
+            Interpreter = interpreter;
+            Interpreter.GameContext = Context;
+
             MapArchive = new MapArchive(mapArchivePath);
+            LoadMap(firstMapFilename);
+
             CycleTimer = new Timer();
             CycleTimer.Tick += Timer_Tick;
+            CycleTimer.Interval = DefaultCycleInterval;
         }
 
         public void ExecuteCycle()
         {
-            Context.ExecuteCycle();
+            MapEngine.ExecuteCycle();
         }
 
         public void LoadMap(string filename)
         {
-            ObjectMap loadedMap = MapArchive.Load(filename);
-            Context.SetCurrentMap(loadedMap);
+            SetMap(MapArchive.Load(filename));
+        }
+
+        public void SetMap(ObjectMap map)
+        {
+            Context.CurrentMap = map;
+            MapEngine = new MapEngine(Context, Interpreter);
         }
 
         private void StartAutoCycle()

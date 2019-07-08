@@ -22,7 +22,14 @@ namespace TileGameLib.Engine
             foreach (string line in lines)
             {
                 string[] nameParam = line.Split(NameParamSeparator);
-                Commands.Add(new Command(line));
+
+                if (nameParam.Length > 0)
+                {
+                    if (nameParam.Length == 1)
+                        Commands.Add(new Command(nameParam[0]));
+                    else if (nameParam.Length == 2)
+                        Commands.Add(new Command(nameParam[0], nameParam[1]));
+                }
             }
         }
     }

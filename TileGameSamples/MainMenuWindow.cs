@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
+using TileGameSamples.RoguelikeSample;
 
 namespace TileGameSamples
 {
@@ -19,7 +20,8 @@ namespace TileGameSamples
         {
             InitializeComponent();
 
-            Samples.Add(new GraphicsSample());
+            Samples.Add(new GraphicsSampleWindow());
+            Samples.Add(new GameWindow());
 
             SampleListBox.DataSource = Samples;
             SampleListBox.DisplayMember = "Text";

@@ -10,30 +10,19 @@ namespace TileGameLib.Engine
     public class GameContext
     {
         public Variables GlobalVars { get; private set; } = new Variables();
-        public ObjectMap CurrentMap { get; private set; }
+        public Variables LocalVars { get; private set; } = new Variables();
 
-        private readonly Interpreter Interpreter;
-        private MapEngine MapEngine;
-
-        public GameContext(Interpreter interpreter)
+        public ObjectMap CurrentMap
         {
-            Interpreter = interpreter;
+            get { return Map; }
+
+            set
+            {
+                Map = value;
+                LocalVars.Clear();
+            }
         }
 
-        public void SetCurrentMap(ObjectMap map)
-        {
-            if (CurrentMap == null)
-                CurrentMap = new ObjectMap(map);
-            else
-                CurrentMap.SetEqual(map);
-
-            Interpreter.GameContext = this;
-            MapEngine = new MapEngine(this, Interpreter);
-        }
-
-        public void ExecuteCycle()
-        {
-            MapEngine.ExecuteCycle();
-        }
+        private ObjectMap Map;
     }
 }
