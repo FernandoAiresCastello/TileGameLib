@@ -10,22 +10,21 @@ namespace TileGameLib.Engine
     public class Interpreter
     {
         public GameContext GameContext { set; get; }
-        public ObjectMap Map { set; get; }
 
         protected ScriptedGameObject ScriptedGameObject;
         protected int CommandPointer = 0;
         protected bool Branching;
+        protected readonly Stack ParamStack = new Stack();
+        protected readonly Variables LocalVars = new Variables();
 
         public Interpreter()
         {
-            GameContext = null;
-            Map = null;
         }
 
-        public void Run(ScriptedGameObject o)
+        public void ExecuteObject(ScriptedGameObject o)
         {
-            if (GameContext == null || Map == null)
-                throw new InvalidOperationException();
+            if (GameContext == null)
+                throw new InvalidOperationException("GameContext cannot be null");
 
             CommandPointer = 0;
             ScriptedGameObject = o;
@@ -42,7 +41,7 @@ namespace TileGameLib.Engine
 
         protected virtual void InterpretCommand(Command cmd)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("InterpretCommand must be overriden by a subclass");
         }
     }
 }

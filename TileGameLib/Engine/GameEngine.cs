@@ -22,7 +22,7 @@ namespace TileGameLib.Engine
 
             set
             {
-                if (value == true)
+                if (value)
                     StartAutoCycle();
                 else
                     StopAutoCycle();
@@ -35,8 +35,8 @@ namespace TileGameLib.Engine
             set { CycleTimer.Interval = value; }
         }
 
-        private MapArchive MapArchive;
-        private Timer CycleTimer;
+        private readonly MapArchive MapArchive;
+        private readonly Timer CycleTimer;
 
         public GameEngine(Interpreter interpreter, string mapArchivePath)
         {

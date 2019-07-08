@@ -18,6 +18,7 @@ namespace TileGameLib.Graphics
         public int Height => FastBitmap.Height;
         public int Cols => FastBitmap.Width / TilePixels.RowLength;
         public int Rows => FastBitmap.Height / TilePixels.RowCount;
+
         public Tileset Tileset { set; get; }
         public Palette Palette { set; get; }
         public TileBuffer TileBuffer { get; private set; }
@@ -31,13 +32,18 @@ namespace TileGameLib.Graphics
 
         public GraphicsAdapter(int cols, int rows, Tileset tileset, Palette palette)
         {
-            Tileset = tileset;
-            Palette = palette;
-            TileBuffer = new TileBuffer(cols, rows);
+            if (cols <= 0)
+                throw new ArgumentOutOfRangeException("rows");
+            if (cols <= 0)
+                throw new ArgumentOutOfRangeException("cols");
+
+            Tileset = tileset ?? throw new ArgumentNullException("tileset");
+            Palette = palette ?? throw new ArgumentNullException("palette");
 
             int width = cols * TilePixels.RowLength;
             int height = rows * TilePixels.RowCount;
 
+            TileBuffer = new TileBuffer(cols, rows);
             FastBitmap = new FastBitmap(width, height);
         }
 
@@ -48,11 +54,17 @@ namespace TileGameLib.Graphics
 
         public ref Tile GetTile(int col, int row)
         {
+            if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
+                throw new OutOfBoundsException();
+
             return ref TileBuffer.Tiles[col, row];
         }
 
         public Tile CopyTile(int col, int row)
         {
+            if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
+                throw new OutOfBoundsException();
+
             return TileBuffer.Tiles[col, row].Copy();
         }
 

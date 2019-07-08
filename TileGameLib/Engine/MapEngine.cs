@@ -9,11 +9,9 @@ namespace TileGameLib.Engine
 {
     public class MapEngine
     {
-        private GameContext GameContext;
-        private Interpreter Interpreter;
-        private List<ScriptedGameObject> ScriptedObjects = new List<ScriptedGameObject>();
-        private readonly Stack ParamStack = new Stack();
-        private readonly Variables LocalVars = new Variables();
+        private readonly GameContext GameContext;
+        private readonly Interpreter Interpreter;
+        private readonly List<ScriptedGameObject> ScriptedObjects = new List<ScriptedGameObject>();
 
         public MapEngine(GameContext ctx, Interpreter interpreter)
         {
@@ -44,9 +42,7 @@ namespace TileGameLib.Engine
         public void ExecuteCycle()
         {
             foreach (ScriptedGameObject o in ScriptedObjects)
-            {
-                Interpreter.Run(o);
-            }
+                Interpreter.ExecuteObject(o);
         }
     }
 }

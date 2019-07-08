@@ -12,7 +12,7 @@ namespace TileGameLib.Engine
         public Variables GlobalVars { get; private set; } = new Variables();
         public ObjectMap CurrentMap { get; private set; }
 
-        private Interpreter Interpreter;
+        private readonly Interpreter Interpreter;
         private MapEngine MapEngine;
 
         public GameContext(Interpreter interpreter)
@@ -27,7 +27,6 @@ namespace TileGameLib.Engine
             else
                 CurrentMap.SetEqual(map);
 
-            Interpreter.Map = map;
             Interpreter.GameContext = this;
             MapEngine = new MapEngine(this, Interpreter);
         }
