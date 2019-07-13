@@ -23,6 +23,7 @@ namespace TileGameMaker.Modules
         public ObjectMap Clipboard { get; private set; }
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
+        public GameObject NullGameObject { get; private set; }
 
         public MapEditorPanel MapEditorControl { get; private set; }
         public TilePickerPanel TilePickerControl { get; private set; }
@@ -82,7 +83,9 @@ namespace TileGameMaker.Modules
             Clipboard = null;
             Palette = Map.Palette;
             Tileset = Map.Tileset;
-            Tile.DefineNull(0, 0, Palette.Size - 1);
+
+            NullGameObject = new GameObject(new Tile(0, 0, Palette.Size - 1));
+            Map.Fill(NullGameObject);
 
             MapEditorControl = new MapEditorPanel(this);
             TemplateControl = new TemplatePanel(this);

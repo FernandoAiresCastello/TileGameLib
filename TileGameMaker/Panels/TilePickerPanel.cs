@@ -80,10 +80,6 @@ namespace TileGameMaker.Panels
                 TilePicker.SelectTileIndex(tileIx);
                 UpdateStatus();
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                // TODO: Show context menu to copy/paste tile
-            }
         }
 
         private void TilePicker_MouseMove(object sender, MouseEventArgs e)
@@ -111,7 +107,9 @@ namespace TileGameMaker.Panels
 
         private void UpdateStatus()
         {
-            StatusLabel.Text = "SEL: " + TilePicker.TileIndex;
+            StatusLabel.Text = 
+                "C: " + TilePicker.Graphics.Tileset.Size + 
+                " SEL: " + TilePicker.TileIndex;
         }
 
         private void SetHoverStatus(string status)

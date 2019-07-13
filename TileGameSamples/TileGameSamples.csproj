@@ -60,11 +60,6 @@
     <Compile Include="MainMenuWindow.Designer.cs">
       <DependentUpon>MainMenuWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="RoguelikeSample\Game.cs" />
-    <Compile Include="RoguelikeSample\GameInterpreter.cs" />
-    <Compile Include="RoguelikeSample\GameWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

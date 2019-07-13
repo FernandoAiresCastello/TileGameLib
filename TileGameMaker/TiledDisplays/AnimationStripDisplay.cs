@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,7 @@ namespace TileGameMaker.TiledDisplays
             : base(parent, cols, rows, zoom)
         {
             ShowGrid = true;
-            for (int i = 0; i < Graphics.Cols; i++)
-                Animation.AddFrame(Tile.Null);
+            Clear();
         }
 
         protected override void OnPaint(PaintEventArgs e)

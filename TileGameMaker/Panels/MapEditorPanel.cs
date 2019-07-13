@@ -29,6 +29,7 @@ namespace TileGameMaker.Panels
         private MapArchive Archive;
         private int Layer;
 
+        private static readonly int MaxLayers = 2;
         private enum EditMode { Template, TextInput }
         private EditMode Mode = EditMode.Template;
 
@@ -55,6 +56,7 @@ namespace TileGameMaker.Panels
 
             ClearMap();
             Refresh();
+            UpdateLayerComboBox();
         }
 
         public void ResizeMapView(int width, int height)
@@ -63,17 +65,27 @@ namespace TileGameMaker.Panels
             MapRenderer.SetViewport(0, 0, width, height);
         }
 
+        public void UpdateLayerComboBox()
+        {
+            CbLayer.Items.Clear();
+            for (int i = 0; i < Map.Layers.Count; i++)
+                CbLayer.Items.Add("Layer " + i);
+
+            if (CbLayer.SelectedIndex < 0)
+                CbLayer.SelectedIndex = 0;
+        }
+
         private void UpdateStatusLabel()
         {
             StatusLabel.Text =
-                string.Format("Size: {0}x{1} Image size: {2}x{3} Layer: {4}/{5} Zoom: {6}",
+                string.Format("Size: {0}x{1} Image size: {2}x{3} Layers: {4} Zoom: {5}",
                     Map.Width, Map.Height, Map.ImageWidth, Map.ImageHeight, 
-                    Layer, Map.Layers.Count, Display.Zoom);
+                    Map.Layers.Count, Display.Zoom);
         }
 
         private void ClearMap()
         {
-            Map.Clear();
+            Map.Fill(MapEditor.NullGameObject);
             RenderMap();
         }
 
@@ -99,7 +111,7 @@ namespace TileGameMaker.Panels
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
 
             if (o != null)
-                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " - " + o;
+                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y;
             else
                 HoverLabel.Text = "";
         }
@@ -312,6 +324,7 @@ namespace TileGameMaker.Panels
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 MapEditor.ResizeMap(Map.Width, Map.Height);
                 MapEditor.SelectedObject = new GameObject();
+                UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }
         }
@@ -359,6 +372,62 @@ namespace TileGameMaker.Panels
                         ZoomOut();
                         break;
                 }
+            }
+        }
+
+        private void CbLayer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Layer = CbLayer.SelectedIndex;
+            UpdateStatusLabel();
+            MapRenderer.SetSingleLayerToRender(Layer);
+            Refresh();
+        }
+
+        private void BtnAddLayer_Click(object sender, EventArgs e)
+        {
+            if (Map.Layers.Count < MaxLayers)
+            {
+                Map.AddLayer(MapEditor.NullGameObject);
+                Refresh();
+                UpdateLayerComboBox();
+                UpdateStatusLabel();
+                CbLayer.SelectedIndex = CbLayer.SelectedIndex + 1;
+            }
+            else
+            {
+                Alert.Warning("Maximum number of layers is " + MaxLayers);
+            }
+        }
+
+        private void BtnRemoveLayer_Click(object sender, EventArgs e)
+        {
+            if (CbLayer.SelectedIndex > 0)
+            {
+                Map.RemoveLayer(CbLayer.SelectedIndex);
+                MapRenderer.SetSingleLayerToRender(CbLayer.SelectedIndex - 1);
+                Refresh();
+                UpdateLayerComboBox();
+                UpdateStatusLabel();
+            }
+            else
+            {
+                Alert.Warning("Cannot remove layer 0");
+            }
+        }
+
+        private void BtnViewAll_Click(object sender, EventArgs e)
+        {
+            BtnViewAll.Checked = !BtnViewAll.Checked;
+            MapRenderer.SetRenderSingleLayer(!BtnViewAll.Checked, Layer);
+            Refresh();
+        }
+
+        private void BtnClearLayer_Click(object sender, EventArgs e)
+        {
+            if (Alert.Confirm("Clear layer " + Layer + "?"))
+            {
+                Map.Fill(MapEditor.NullGameObject, Layer);
+                Refresh();
             }
         }
     }

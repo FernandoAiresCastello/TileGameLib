@@ -54,7 +54,7 @@ namespace TileGameLib.Graphics
 
         public ref Tile GetTile(int col, int row)
         {
-            if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
+            if (col < 0 || row < 0 || col >= TileBuffer.Cols || row >= TileBuffer.Rows)
                 throw new OutOfBoundsException();
 
             return ref TileBuffer.Tiles[col, row];
@@ -62,7 +62,7 @@ namespace TileGameLib.Graphics
 
         public Tile CopyTile(int col, int row)
         {
-            if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
+            if (col < 0 || row < 0 || col >= TileBuffer.Cols || row >= TileBuffer.Rows)
                 throw new OutOfBoundsException();
 
             return TileBuffer.Tiles[col, row].Copy();

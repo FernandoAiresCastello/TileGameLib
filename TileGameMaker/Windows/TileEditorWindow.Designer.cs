@@ -33,12 +33,10 @@
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TilePanel = new System.Windows.Forms.Panel();
             this.BtnOk = new System.Windows.Forms.ToolStripButton();
             this.BtnUndo = new System.Windows.Forms.ToolStripButton();
             this.BtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnClear = new System.Windows.Forms.ToolStripButton();
             this.BtnInvert = new System.Windows.Forms.ToolStripButton();
             this.BtnFlipH = new System.Windows.Forms.ToolStripButton();
@@ -47,6 +45,8 @@
             this.BtnRotateRight = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateDown = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateUp = new System.Windows.Forms.ToolStripButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TilePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -115,30 +115,6 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.TilePanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(50);
-            this.panel1.Size = new System.Drawing.Size(310, 328);
-            this.panel1.TabIndex = 2;
-            // 
-            // TilePanel
-            // 
-            this.TilePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.TilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePanel.Location = new System.Drawing.Point(50, 50);
-            this.TilePanel.Name = "TilePanel";
-            this.TilePanel.Size = new System.Drawing.Size(210, 228);
-            this.TilePanel.TabIndex = 3;
-            // 
             // BtnOk
             // 
             this.BtnOk.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -171,6 +147,11 @@
             this.BtnCancel.Text = "toolStripButton1";
             this.BtnCancel.ToolTipText = "Cancel";
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // BtnClear
             // 
@@ -259,6 +240,26 @@
             this.BtnRotateUp.Text = "toolStripButton1";
             this.BtnRotateUp.ToolTipText = "Rotate up";
             this.BtnRotateUp.Click += new System.EventHandler(this.BtnRotateUp_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.TilePanel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(50);
+            this.panel1.Size = new System.Drawing.Size(310, 328);
+            this.panel1.TabIndex = 2;
+            // 
+            // TilePanel
+            // 
+            this.TilePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TilePanel.Location = new System.Drawing.Point(50, 50);
+            this.TilePanel.Name = "TilePanel";
+            this.TilePanel.Size = new System.Drawing.Size(208, 226);
+            this.TilePanel.TabIndex = 3;
             // 
             // TileEditorWindow
             // 

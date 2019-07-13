@@ -27,12 +27,15 @@ namespace TileGameLib.Graphics
             get { return AnimationTimer.Interval; }
         }
 
-        private TiledDisplay Disp;
         private Rectangle Viewport;
         private Point MapOffset;
-        private Timer RefreshTimer;
-        private Timer AnimationTimer;
         private int AnimationFrame;
+        private bool RenderSingleLayer;
+        private int SingleLayerToRender;
+
+        private readonly TiledDisplay Disp;
+        private readonly Timer RefreshTimer;
+        private readonly Timer AnimationTimer;
 
         private static readonly int DefaultRefreshInterval = 60;
         private static readonly int DefaultAnimationInterval = 256;
@@ -51,6 +54,8 @@ namespace TileGameLib.Graphics
             Viewport = viewport;
             MapOffset = mapOffset;
             OutOfBoundsTile = new Tile(0, 0, 0);
+            RenderSingleLayer = false;
+            SingleLayerToRender = 0;
 
             RefreshTimer = new Timer();
             RefreshTimer.Interval = DefaultRefreshInterval;
@@ -63,6 +68,17 @@ namespace TileGameLib.Graphics
             AnimationTimer.Interval = DefaultAnimationInterval;
             AnimationTimer.Tick += AnimationTimer_Tick;
             AnimationTimer.Start();
+        }
+
+        public void SetRenderSingleLayer(bool renderSingleLayer, int layer)
+        {
+            RenderSingleLayer = renderSingleLayer;
+            SingleLayerToRender = layer;
+        }
+
+        public void SetSingleLayerToRender(int layer)
+        {
+            SingleLayerToRender = layer;
         }
 
         private void RefreshTimer_Tick(object sender, EventArgs e)
@@ -88,13 +104,20 @@ namespace TileGameLib.Graphics
 
         public void Render()
         {
-            foreach (ObjectLayer layer in Map.Layers)
-                RenderLayer(layer);
+            if (RenderSingleLayer)
+            {
+                RenderLayer(Map.Layers[SingleLayerToRender], true);
+            }
+            else
+            {
+                for (int i = 0; i < Map.Layers.Count; i++)
+                    RenderLayer(Map.Layers[i], i == 0);
+            }
 
             Disp.Refresh();
         }
 
-        public void RenderLayer(ObjectLayer layer)
+        private void RenderLayer(ObjectLayer layer, bool renderNull)
         {
             for (int y = 0; y < Viewport.Height; y++)
             {
@@ -106,17 +129,19 @@ namespace TileGameLib.Graphics
                     int destY = Viewport.Y + y;
 
                     if (sourceX >= 0 && sourceY >= 0 && sourceX < Map.Width && sourceY < Map.Height)
-                        RenderObject(layer.GetObject(sourceX, sourceY), destX, destY);
+                        RenderObject(layer.GetObject(sourceX, sourceY), destX, destY, renderNull);
                     else
-                        RenderObject(null, destX, destY);
+                        RenderObject(null, destX, destY, renderNull);
                 }
             }
         }
 
-        public void RenderObject(GameObject o, int x, int y)
+        private void RenderObject(GameObject o, int x, int y, bool renderNull)
         {
             Tile ch = o != null ? o.Animation.GetFrame(AnimationFrame) : OutOfBoundsTile;
-            Disp.Graphics.PutTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
+            bool isNull = ch.IsNull();
+            if (!isNull || renderNull)
+                Disp.Graphics.PutTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
         }
     }
 }

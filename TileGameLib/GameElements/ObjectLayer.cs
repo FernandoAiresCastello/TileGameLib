@@ -14,7 +14,7 @@ namespace TileGameLib.GameElements
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        public ObjectLayer(int width, int height)
+        public ObjectLayer(int width, int height, GameObject defaultObject)
         {
             Width = width;
             Height = height;
@@ -23,7 +23,11 @@ namespace TileGameLib.GameElements
 
             for (int row = 0; row < height; row++)
                 for (int col = 0; col < width; col++)
-                    Objects[col, row] = new GameObject();
+                    Objects[col, row] = defaultObject.Copy();
+        }
+
+        public ObjectLayer(int width, int height) : this(width, height, new GameObject())
+        {
         }
 
         public void SetEqual(ObjectLayer other)

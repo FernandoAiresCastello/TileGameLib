@@ -10,6 +10,7 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
+        public string Id { get; private set; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
         public string Script { set; get; }
 
@@ -17,22 +18,26 @@ namespace TileGameLib.GameElements
 
         public GameObject()
         {
+            GenerateId();
             SetNull();
         }
 
         public GameObject(GameObject other)
         {
+            GenerateId();
             SetEqual(other);
         }
 
         public GameObject(Tile singleAnimFrame)
         {
+            GenerateId();
             SetNull();
             Animation.SetFrame(0, singleAnimFrame);
         }
 
         public GameObject(Tile singleAnimFrame, string script)
         {
+            GenerateId();
             Script = script;
             Animation.Clear(singleAnimFrame);
         }
@@ -64,9 +69,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            int maxLength = 100;
-            string script = Script.Length <= maxLength ? Script : Script.Substring(0, maxLength) + "...";
-            return $"Script: {script}";
+            return "ID: " + Id;
         }
 
         public override bool Equals(object obj)
@@ -84,6 +87,11 @@ namespace TileGameLib.GameElements
         public override int GetHashCode()
         {
             return Tuple.Create(Animation, Script).GetHashCode();
+        }
+
+        private void GenerateId()
+        {
+            Id = Guid.NewGuid().ToString("N");
         }
     }
 }

@@ -23,6 +23,11 @@ namespace TileGameLib.GameElements
         {
         }
 
+        public ObjectMap(int width, int height, GameObject defaultObject) : this("Undefined", width, height)
+        {
+            Layers[0].Fill(defaultObject);
+        }
+
         public ObjectMap(string name, int width, int height)
         {
             Name = name;
@@ -56,6 +61,16 @@ namespace TileGameLib.GameElements
         public void AddLayer()
         {
             Layers.Add(new ObjectLayer(Width, Height));
+        }
+
+        public void AddLayer(GameObject defaultObject)
+        {
+            Layers.Add(new ObjectLayer(Width, Height, defaultObject));
+        }
+
+        public void RemoveLayer(int layer)
+        {
+            Layers.RemoveAt(layer);
         }
 
         public void AddLayers(int count)

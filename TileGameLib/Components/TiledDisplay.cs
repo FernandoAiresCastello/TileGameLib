@@ -16,7 +16,6 @@ namespace TileGameLib.Components
         public Bitmap Overlay { set; get; }
         public bool ShowGrid { set; get; }
         public bool ShowOverlay { set; get; }
-        public Color GridColor { set; get; }
         public int Zoom { get; protected set; }
         public bool StretchImage { set; get; }
 
@@ -24,6 +23,7 @@ namespace TileGameLib.Components
         public int Rows => Graphics.Rows;
 
         protected Bitmap Grid;
+        protected Color GridColor;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
@@ -39,6 +39,12 @@ namespace TileGameLib.Components
             GridColor = Color.FromArgb(50, 0, 0, 0);
             ShowBorder(false);
             SetZoom(zoom);
+        }
+
+        public TiledDisplay(Control parent, int cols, int rows, int zoom, Tile defaultTile)
+            : this(parent, cols, rows, zoom)
+        {
+            Graphics.Fill(defaultTile);
         }
 
         protected void ShowBorder(bool show)
@@ -76,6 +82,12 @@ namespace TileGameLib.Components
 
             Zoom = zoom;
             UpdateSize();
+        }
+
+        public void SetGridColor(Color color)
+        {
+            GridColor = color;
+            MakeGrid();
         }
 
         private void UpdateSize()

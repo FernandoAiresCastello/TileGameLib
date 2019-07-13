@@ -270,6 +270,12 @@
     <None Include="Resources\arrow_down.png" />
     <None Include="Resources\page_white_copy1.png" />
     <None Include="Resources\page_white_paste1.png" />
+    <None Include="Resources\layer_add.png" />
+    <None Include="Resources\layer_delete.png" />
+    <None Include="Resources\eye.png" />
+    <None Include="Resources\draw_eraser2.png" />
+    <None Include="Resources\layers_map.png" />
+    <None Include="Resources\layers.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup>
