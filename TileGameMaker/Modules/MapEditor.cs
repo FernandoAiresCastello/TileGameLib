@@ -16,7 +16,7 @@ namespace TileGameMaker.Modules
     {
         public static readonly int DefaultMapWidth = 32;
         public static readonly int DefaultMapHeight = 24;
-        public static readonly string DefaultArchiveFile = "maps.zip";
+        public static readonly string DefaultArchiveFile = "TileGameMaker.dat";
 
         public string ArchiveFile { get; set; }
         public ObjectMap Map { get; private set; }

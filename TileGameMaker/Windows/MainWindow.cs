@@ -46,18 +46,5 @@ namespace TileGameMaker.Windows
         {
             Application.Exit();
         }
-
-        private void MiCallDebugFunc_Click(object sender, EventArgs e)
-        {
-            Debug();
-        }
-
-        private void Debug()
-        {
-            DebugWindow win = new DebugWindow(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
-            win.Graphics.Clear(5);
-            win.Graphics.PutString(10, 10, "Hello World!", 255, 5);
-            win.ShowDialog(this);
-        }
     }
 }

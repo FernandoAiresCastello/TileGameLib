@@ -43,14 +43,24 @@ namespace TileGameLib.Engine
         private readonly Timer CycleTimer;
 
         public GameEngine(Interpreter interpreter, string mapArchivePath, string firstMapFilename)
+            : this(interpreter)
+        {
+            MapArchive = new MapArchive(mapArchivePath);
+            LoadMap(firstMapFilename);
+        }
+
+        public GameEngine(Interpreter interpreter, ObjectMap map)
+            : this(interpreter)
+        {
+            SetMap(map);
+        }
+
+        public GameEngine(Interpreter interpreter)
         {
             Context = new GameContext();
 
             Interpreter = interpreter;
             Interpreter.GameContext = Context;
-
-            MapArchive = new MapArchive(mapArchivePath);
-            LoadMap(firstMapFilename);
 
             CycleTimer = new Timer();
             CycleTimer.Tick += Timer_Tick;
