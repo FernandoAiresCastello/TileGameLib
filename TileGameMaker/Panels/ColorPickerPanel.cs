@@ -11,6 +11,7 @@ using TileGameMaker.Modules;
 using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Panels
 {
@@ -29,7 +30,12 @@ namespace TileGameMaker.Panels
         {
             InitializeComponent();
             MapEditor = editor;
-            ColorPicker = new ColorPickerDisplay(PnlColorPicker, 8, 32, 3);
+
+            ColorPicker = new ColorPickerDisplay(PnlColorPicker, 
+                Config.ReadInt("ColorPickerCols"), 
+                Config.ReadInt("ColorPickerRows"), 
+                Config.ReadInt("ColorPickerZoom"));
+
             ColorPicker.Graphics.Palette = editor.Palette;
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;

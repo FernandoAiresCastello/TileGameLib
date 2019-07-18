@@ -9,16 +9,14 @@ using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Components;
 using TileGameMaker.Panels;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Modules
 {
     public class MapEditor
     {
-        public static readonly int DefaultMapWidth = 32;
-        public static readonly int DefaultMapHeight = 24;
-        public static readonly string DefaultArchiveFile = "maps.zip";
+        public string ProjectPath => WorkspacePath + "/" + ProjectFile;
 
-        public string ArchiveFile { get; set; }
         public ObjectMap Map { get; private set; }
         public ObjectMap Clipboard { get; private set; }
         public Palette Palette { get; private set; }
@@ -30,6 +28,14 @@ namespace TileGameMaker.Modules
         public ColorPickerPanel ColorPickerControl { get; private set; }
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyPanel MapPropertyControl { get; private set; }
+
+        private static readonly string DefaultProjectFile = Config.ReadString("DefaultProjectFile");
+        private static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
+        private static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
+        private static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
+
+        private string ProjectFile { get; set; }
+        private string WorkspacePath { get; set; }
 
         private readonly List<Control> Children = new List<Control>();
 
@@ -78,13 +84,19 @@ namespace TileGameMaker.Modules
 
         public MapEditor(Form parent)
         {
-            ArchiveFile = DefaultArchiveFile;
+            WorkspacePath = DefaultWorkspacePath;
+            ProjectFile = DefaultProjectFile;
+
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             Clipboard = null;
             Palette = Map.Palette;
             Tileset = Map.Tileset;
 
-            NullGameObject = new GameObject(new Tile(0, 0, Palette.Size - 1));
+            NullGameObject = new GameObject(new Tile(
+                Config.ReadInt("DefaultTileIndex"),
+                Config.ReadInt("DefaultTileForeColor"),
+                Config.ReadInt("DefaultTileBackColor")));
+
             Map.Fill(NullGameObject);
 
             MapEditorControl = new MapEditorPanel(this);
@@ -100,7 +112,7 @@ namespace TileGameMaker.Modules
             Children.Add(MapPropertyControl);
             Children.Add(MapEditorControl);
 
-            Archive.CreateIfNotExists(ArchiveFile);
+            Archive.CreateIfNotExists(ProjectPath);
         }
 
         public void Show()

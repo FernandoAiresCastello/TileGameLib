@@ -12,6 +12,7 @@ using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameMaker.TiledDisplays;
 using TileGameMaker.Windows;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Panels
 {
@@ -37,8 +38,8 @@ namespace TileGameMaker.Panels
             }
         }
 
+        private readonly int MaxFrames = Config.ReadInt("MaxAnimationFrames");
         private MapEditor MapEditor;
-        private readonly int MaxFrames = 9;
 
         public TemplatePanel()
         {
@@ -119,7 +120,12 @@ namespace TileGameMaker.Panels
             AnimationFrameCount = anim.Size;
 
             while (Animation.Size < MaxFrames)
-                Animation.AddFrame(new Tile(0, 0, AnimationStrip.Graphics.Palette.Size - 1));
+            {
+                Animation.AddFrame(new Tile(
+                    Config.ReadInt("DefaultTileIndex"),
+                    Config.ReadInt("DefaultTileForeColor"),
+                    Config.ReadInt("DefaultTileBackColor")));
+            }
         }
 
         private void BtnExpandData_Click(object sender, EventArgs e)

@@ -34,7 +34,7 @@ namespace TileGameMaker.Panels
             if (file != null)
                 TxtFile.Text = file;
 
-            TxtArchive.Text = MapEditor.ArchiveFile;
+            TxtArchive.Text = MapEditor.ProjectPath;
             TxtName.Text = MapEditor.Map.Name;
             TxtWidth.Text = MapEditor.Map.Width.ToString();
             TxtHeight.Text = MapEditor.Map.Height.ToString();

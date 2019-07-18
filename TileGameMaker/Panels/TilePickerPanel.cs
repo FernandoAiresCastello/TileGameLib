@@ -12,6 +12,7 @@ using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
 using TileGameLib.Graphics;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Panels
 {
@@ -31,7 +32,12 @@ namespace TileGameMaker.Panels
         {
             InitializeComponent();
             MapEditor = editor;
-            TilePicker = new TilePickerDisplay(PnlTilePicker, 8, 64, 3);
+
+            TilePicker = new TilePickerDisplay(PnlTilePicker,
+                Config.ReadInt("TilePickerCols"),
+                Config.ReadInt("TilePickerRows"),
+                Config.ReadInt("TilePickerZoom"));
+
             TilePicker.Graphics.Tileset = editor.Tileset;
             TilePicker.ShowGrid = true;
             TilePicker.MouseMove += TilePicker_MouseMove;

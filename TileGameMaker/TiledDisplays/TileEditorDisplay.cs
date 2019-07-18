@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameLib.Components;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.TiledDisplays
 {
@@ -15,12 +16,15 @@ namespace TileGameMaker.TiledDisplays
     {
         private Tileset Tileset;
         private int TileIndex;
+        private readonly int PixelIndicator = Config.ReadInt("TileEditorPixelIndicator");
+        private readonly char PixelOn = Config.ReadChar("TileEditorPixelOnValue");
+        private readonly char PixelOff = Config.ReadChar("TileEditorPixelOffValue");
 
         public TileEditorDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            Graphics.Palette.Set(0, Color.White);
-            Graphics.Palette.Set(1, Color.Black);
+            Graphics.Palette.Set(0, Config.ReadInt("TileEditorPixelOffColor"));
+            Graphics.Palette.Set(1, Config.ReadInt("TileEditorPixelOnColor"));
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -38,10 +42,10 @@ namespace TileGameMaker.TiledDisplays
             {
                 for (int x = 0; x < Graphics.Cols; x++)
                 {
-                    if (pixels[pix] == '0')
-                        Graphics.PutTile(x, y, 0xdb, 0, 1);
-                    else if (pixels[pix] == '1')
-                        Graphics.PutTile(x, y, 0xdb, 1, 0);
+                    if (pixels[pix] == PixelOff)
+                        Graphics.PutTile(x, y, PixelIndicator, 0, 1);
+                    else if (pixels[pix] == PixelOn)
+                        Graphics.PutTile(x, y, PixelIndicator, 1, 0);
 
                     pix++;
                 }

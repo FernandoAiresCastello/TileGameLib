@@ -14,13 +14,12 @@ using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.Windows;
 using TileGameLib.Components;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Panels
 {
     public partial class MapEditorPanel : BasePanel
     {
-        private static readonly int DefaultZoom = 3;
-
         public TiledDisplay Display { get; private set; }
 
         private ObjectMap Map;
@@ -29,9 +28,11 @@ namespace TileGameMaker.Panels
         private MapArchive Archive;
         private int Layer;
 
-        private static readonly int MaxLayers = 2;
         private enum EditMode { Template, TextInput }
         private EditMode Mode = EditMode.Template;
+
+        private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
+        private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
 
         public MapEditorPanel()
         {
@@ -46,7 +47,7 @@ namespace TileGameMaker.Panels
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
             Display.ShowGrid = true;
             MapRenderer = new MapRenderer(Map, Display);
-            Archive = new MapArchive(MapEditor.ArchiveFile);
+            Archive = new MapArchive(MapEditor.ProjectPath);
             HoverLabel.Text = "";
             Layer = 0;
 
@@ -290,7 +291,7 @@ namespace TileGameMaker.Panels
 
         private void SaveMap()
         {
-            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ArchiveFile);
+            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
             if (mgr.ShowDialog(this, ArchiveWindow.Mode.Save) == DialogResult.OK)
             {
@@ -308,7 +309,7 @@ namespace TileGameMaker.Panels
 
         private void LoadMap()
         {
-            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ArchiveFile);
+            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
             if (mgr.ShowDialog(this, ArchiveWindow.Mode.Load) == DialogResult.OK)
             {
