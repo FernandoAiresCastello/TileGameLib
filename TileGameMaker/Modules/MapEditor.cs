@@ -140,5 +140,16 @@ namespace TileGameMaker.Modules
             MapEditorControl.ResizeMapView(width, height);
             Refresh();
         }
+
+        public void CreateNewProject(string filename)
+        {
+            string fileExtension = Config.ReadString("ProjectFileExt");
+            if (!filename.EndsWith(fileExtension))
+                filename += "." + fileExtension;
+
+            Archive.CreateIfNotExists(WorkspacePath + "\\" + filename);
+
+            ProjectFile = filename;
+        }
     }
 }

@@ -144,6 +144,8 @@ namespace TileGameLib.Components
         {
             using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(Grid))
             {
+                g.Clear(Color.FromArgb(0));
+
                 using (Pen pen = new Pen(GridColor))
                 {
                     for (int y = -1; y < Height; y += Zoom * TilePixels.RowCount)

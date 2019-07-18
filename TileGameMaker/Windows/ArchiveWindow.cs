@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.File;
 using TileGameLib.Util;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {

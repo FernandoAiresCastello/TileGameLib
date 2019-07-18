@@ -38,6 +38,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiNewProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.MainLayout.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +125,9 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiNewProject,
+            this.MiOpenProject,
+            this.toolStripSeparator1,
             this.MiExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -130,11 +136,27 @@
             // MiExit
             // 
             this.MiExit.Name = "MiExit";
-            this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.X)));
             this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
+            // 
+            // MiNewProject
+            // 
+            this.MiNewProject.Name = "MiNewProject";
+            this.MiNewProject.Size = new System.Drawing.Size(180, 22);
+            this.MiNewProject.Text = "New Project";
+            this.MiNewProject.Click += new System.EventHandler(this.MiNewProject_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // MiOpenProject
+            // 
+            this.MiOpenProject.Name = "MiOpenProject";
+            this.MiOpenProject.Size = new System.Drawing.Size(180, 22);
+            this.MiOpenProject.Text = "Open Project";
             // 
             // MainWindow
             // 
@@ -168,5 +190,8 @@
         private System.Windows.Forms.Panel TilePickerPanel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
+        private System.Windows.Forms.ToolStripMenuItem MiNewProject;
+        private System.Windows.Forms.ToolStripMenuItem MiOpenProject;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

@@ -55,5 +55,13 @@ namespace TileGameMaker.Windows
         private void Debug()
         {
         }
+
+        private void MiNewProject_Click(object sender, EventArgs e)
+        {
+            NewProjectWindow win = new NewProjectWindow();
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+                MapEditor.CreateNewProject(win.Filename);
+        }
     }
 }

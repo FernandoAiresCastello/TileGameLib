@@ -30,6 +30,9 @@ namespace TileGameLib.File
         private static void Create(string path, bool overwrite)
         {
             const string emptyFileName = "EMPTY";
+            FileInfo file = new FileInfo(path);
+            if (!file.Directory.Exists)
+                Directory.CreateDirectory(file.Directory.Name);
 
             if (!overwrite && System.IO.File.Exists(path))
                 throw new FileException($"File {path} already exists");

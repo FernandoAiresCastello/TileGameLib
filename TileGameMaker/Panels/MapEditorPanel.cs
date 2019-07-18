@@ -46,6 +46,7 @@ namespace TileGameMaker.Panels
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
             Display.ShowGrid = true;
+            Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
             Archive = new MapArchive(MapEditor.ProjectPath);
             HoverLabel.Text = "";

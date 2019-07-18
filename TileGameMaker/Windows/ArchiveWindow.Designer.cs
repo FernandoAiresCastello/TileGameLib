@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtArchive = new System.Windows.Forms.TextBox();
             this.TxtEntry = new System.Windows.Forms.TextBox();
             this.EntriesListBox = new System.Windows.Forms.ListBox();
             this.ButtonLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -37,7 +38,6 @@
             this.BtnLoad = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.TxtArchive = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.ButtonLayout.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 427);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // TxtArchive
+            // 
+            this.TxtArchive.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtArchive.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtArchive.Location = new System.Drawing.Point(8, 8);
+            this.TxtArchive.Name = "TxtArchive";
+            this.TxtArchive.ReadOnly = true;
+            this.TxtArchive.Size = new System.Drawing.Size(288, 23);
+            this.TxtArchive.TabIndex = 5;
             // 
             // TxtEntry
             // 
@@ -166,16 +176,6 @@
             this.BtnSave.TabIndex = 0;
             this.BtnSave.UseVisualStyleBackColor = true;
             // 
-            // TxtArchive
-            // 
-            this.TxtArchive.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtArchive.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtArchive.Location = new System.Drawing.Point(8, 8);
-            this.TxtArchive.Name = "TxtArchive";
-            this.TxtArchive.ReadOnly = true;
-            this.TxtArchive.Size = new System.Drawing.Size(288, 23);
-            this.TxtArchive.TabIndex = 5;
-            // 
             // ArchiveWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -189,7 +189,7 @@
             this.MinimizeBox = false;
             this.Name = "ArchiveWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Archive";
+            this.Text = "Project Archive";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ButtonLayout.ResumeLayout(false);
