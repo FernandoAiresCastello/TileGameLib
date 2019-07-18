@@ -46,5 +46,14 @@ namespace TileGameMaker.Windows
         {
             Application.Exit();
         }
+
+        private void MiCallDebugFunc_Click(object sender, EventArgs e)
+        {
+            Debug();
+        }
+
+        private void Debug()
+        {
+        }
     }
 }

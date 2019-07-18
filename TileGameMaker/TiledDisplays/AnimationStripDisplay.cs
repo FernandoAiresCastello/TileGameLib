@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.TiledDisplays
 {
@@ -37,8 +38,14 @@ namespace TileGameMaker.TiledDisplays
         public void Clear()
         {
             Animation.Clear();
+
             for (int i = 0; i < Graphics.Cols; i++)
-                Animation.AddFrame(new Tile(0, 0, Graphics.Palette.Size - 1));
+            {
+                Animation.AddFrame(new Tile(
+                    Config.ReadInt("DefaultTileIndex"),
+                    Config.ReadInt("DefaultTileForeColor"),
+                    Config.ReadInt("DefaultTileBackColor")));
+            }
         }
     }
 }

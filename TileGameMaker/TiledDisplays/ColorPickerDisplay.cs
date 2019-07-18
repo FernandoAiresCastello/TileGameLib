@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.TiledDisplays
 {
@@ -15,13 +16,13 @@ namespace TileGameMaker.TiledDisplays
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
 
-        private readonly int SwatchTileIx = 0xdb;
+        private readonly int SwatchTileIx = Config.ReadInt("ColorPickerSwatchTile");
 
         public ColorPickerDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            ForeColorIx = 0;
-            BackColorIx = Graphics.Palette.Size - 1;
+            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
+            BackColorIx = Config.ReadInt("DefaultTileBackColor");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -76,11 +77,11 @@ namespace TileGameMaker.TiledDisplays
             return Color.FromArgb(Graphics.Palette.Colors[BackColorIx]);
         }
 
-        internal void Clear()
+        public void Clear()
         {
             Graphics.Palette.Clear();
-            ForeColorIx = 0;
-            BackColorIx = Graphics.Palette.Size - 1;
+            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
+            BackColorIx = Config.ReadInt("DefaultTileBackColor");
             Refresh();
         }
     }

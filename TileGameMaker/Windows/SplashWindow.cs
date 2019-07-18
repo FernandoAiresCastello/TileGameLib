@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
@@ -20,7 +21,7 @@ namespace TileGameMaker.Windows
             KeyDown += OnClick;
 
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            string build = "20190620";
+            string build = Config.ReadString("BuildNumber");
 
             MainLabel.Text = MainLabel.Text
                 .Replace("{version}", version)

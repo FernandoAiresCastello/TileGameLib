@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.TiledDisplays;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
@@ -18,12 +19,17 @@ namespace TileGameMaker.Windows
         private readonly TileEditorDisplay TileEditor;
         private readonly Tileset Tileset;
         private TilePixels OriginalPixels;
+        private readonly int PixelOn = Config.ReadInt("TileEditorPixelOnValue");
+        private readonly int PixelOff = Config.ReadInt("TileEditorPixelOffValue");
 
         public TileEditorWindow(Tileset tileset)
         {
             InitializeComponent();
             Tileset = tileset;
-            TileEditor = new TileEditorDisplay(TilePanel, 8, 8, 3);
+
+            TileEditor = new TileEditorDisplay(TilePanel, 
+                TilePixels.RowLength, TilePixels.RowCount, Config.ReadInt("TileEditorZoom"));
+
             TileEditor.ShowGrid = true;
             TileEditor.MouseMove += TileEditor_MouseMove;
             TileEditor.MouseLeave += TileEditor_MouseLeave;
@@ -35,9 +41,9 @@ namespace TileGameMaker.Windows
         {
             Point p = TileEditor.GetMouseToCellPos(e.Location);
             if (e.Button == MouseButtons.Left)
-                TileEditor.SetTilePixel(p.X, p.Y, 1);
+                TileEditor.SetTilePixel(p.X, p.Y, PixelOn);
             else if (e.Button == MouseButtons.Right)
-                TileEditor.SetTilePixel(p.X, p.Y, 0);
+                TileEditor.SetTilePixel(p.X, p.Y, PixelOff);
 
             RefreshSubscribed();
         }
