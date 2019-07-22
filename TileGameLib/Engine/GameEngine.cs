@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.Components;
 using TileGameLib.File;
 using TileGameLib.GameElements;
+using TileGameLib.Graphics;
 
 namespace TileGameLib.Engine
 {
@@ -17,21 +19,10 @@ namespace TileGameLib.Engine
         private readonly Interpreter Interpreter;
         private readonly MapArchive MapArchive;
         private readonly Timer CycleTimer;
+        private readonly TiledDisplay Display;
+        private MapRenderer MapRenderer;
 
-        public GameEngine(Interpreter interpreter, string mapArchivePath, string firstMapFilename)
-            : this(interpreter)
-        {
-            MapArchive = new MapArchive(mapArchivePath);
-            LoadMap(firstMapFilename);
-        }
-
-        public GameEngine(Interpreter interpreter, ObjectMap map)
-            : this(interpreter)
-        {
-            SetMap(map);
-        }
-
-        public GameEngine(Interpreter interpreter)
+        public GameEngine(Interpreter interpreter, string projectPath, string firstMapFilename, TiledDisplay display)
         {
             Context = new GameContext();
 
@@ -41,11 +32,16 @@ namespace TileGameLib.Engine
             CycleTimer = new Timer();
             CycleTimer.Tick += Timer_Tick;
             CycleTimer.Interval = 0;
+
+            Display = display;
+            MapArchive = new MapArchive(projectPath);
+            LoadMap(firstMapFilename);
         }
 
         public void ExecuteCycle()
         {
             MapEngine.ExecuteCycle();
+            MapRenderer.Render();
         }
 
         public void LoadMap(string filename)
@@ -57,6 +53,7 @@ namespace TileGameLib.Engine
         {
             Context.CurrentMap = map;
             MapEngine = new MapEngine(Context, Interpreter);
+            MapRenderer = new MapRenderer(map, Display);
         }
 
         public void StartAutoCycle(int cycleInterval)

@@ -15,6 +15,8 @@ using TileGameLib.Util;
 using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
+using TileGameLib.Engine;
+using TileGameMaker.Engine;
 
 namespace TileGameMaker.Panels
 {
@@ -300,7 +302,7 @@ namespace TileGameMaker.Panels
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
                     return;
 
-                Map.Name = MapEditor.MapPropertyControl.MapName;
+                Map.Name = MapEditor.MapName;
                 Archive.Save(Map, mgr.SelectedEntry);
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 Refresh();
@@ -431,6 +433,17 @@ namespace TileGameMaker.Panels
                 Map.Fill(MapEditor.NullGameObject, Layer);
                 Refresh();
             }
+        }
+
+        private void BtnTestMap_Click(object sender, EventArgs e)
+        {
+            RunEngine();
+        }
+
+        private void RunEngine()
+        {
+            GameWindow window = new GameWindow(32, 24, MapEditor.ProjectPath, MapEditor.MapName);
+            window.ShowDialog(MapEditor.MainWindow);
         }
     }
 }

@@ -10,12 +10,16 @@ using TileGameLib.Graphics;
 using TileGameLib.Components;
 using TileGameMaker.Panels;
 using TileGameMaker.Util;
+using TileGameMaker.Windows;
 
 namespace TileGameMaker.Modules
 {
     public class MapEditor
     {
+        public string ProjectFile { get; private set; }
+        public string WorkspacePath { get; private set; }
         public string ProjectPath => WorkspacePath + "/" + ProjectFile;
+        public string MapName => MapPropertyControl.MapName;
 
         public ObjectMap Map { get; private set; }
         public ObjectMap Clipboard { get; private set; }
@@ -23,6 +27,7 @@ namespace TileGameMaker.Modules
         public Tileset Tileset { get; private set; }
         public GameObject NullGameObject { get; private set; }
 
+        public MainWindow MainWindow { get; private set; }
         public MapEditorPanel MapEditorControl { get; private set; }
         public TilePickerPanel TilePickerControl { get; private set; }
         public ColorPickerPanel ColorPickerControl { get; private set; }
@@ -33,9 +38,6 @@ namespace TileGameMaker.Modules
         private static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
         private static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
         private static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
-
-        private string ProjectFile { get; set; }
-        private string WorkspacePath { get; set; }
 
         private readonly List<Control> Children = new List<Control>();
 
@@ -82,8 +84,9 @@ namespace TileGameMaker.Modules
             }
         }
 
-        public MapEditor(Form parent)
+        public MapEditor(MainWindow mainWindow)
         {
+            MainWindow = mainWindow;
             WorkspacePath = DefaultWorkspacePath;
             ProjectFile = DefaultProjectFile;
 
