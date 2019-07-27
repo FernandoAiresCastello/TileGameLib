@@ -9,6 +9,6 @@ This repository contains a Visual Studio solution comprised of three C# projects
 
 - **TileGameMaker** is a Windows desktop application project built using TileGameLib that generates a .NET executable file. It contains several tools mainly focused on graphics editing and map design. It does not implement any game logic, but it will provide a simple scripting language for its programming.
 
-- **TileGameRunner** is another Windows desktop application which contains the implementation of an engine that can run game projects created with the TileGameMaker tool.
+- **TileGameRunner** is another Windows desktop application which contains the implementation of an engine that can run game projects created with the TileGameMaker tool. It serves as a standalone application for distributing TileGameMaker games.
 
 This project is a spiritual successor of [TBRLGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
