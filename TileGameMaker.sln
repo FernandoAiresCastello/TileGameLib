@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{73F1D060-1CF7-4C79-A7CC-D2BC8E798A07}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		TGM Language Spec.txt = TGM Language Spec.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameRunner", "TileGameRunner\TileGameRunner.csproj", "{CB891C01-E972-4DEC-8C02-CDF0749172A2}"
