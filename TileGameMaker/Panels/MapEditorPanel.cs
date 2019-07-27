@@ -28,8 +28,8 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
 
-        private enum EditMode { Template, TextInput }
-        private EditMode Mode = EditMode.Template;
+        private enum EditMode { Template, Script, TextInput }
+        private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
@@ -55,6 +55,7 @@ namespace TileGameMaker.Panels
             Display.MouseDown += Disp_MouseDown;
             Display.MouseLeave += Disp_MouseLeave;
 
+            SetMode(EditMode.Template);
             ClearMap();
             RenderMap();
             Refresh();
@@ -138,9 +139,19 @@ namespace TileGameMaker.Panels
                     CopyObjectToTemplate(o);
                 }
             }
-            else if (Mode == EditMode.TextInput && e.Button == MouseButtons.Left)
+            else if (Mode == EditMode.Script)
             {
-                InputText(point.X, point.Y);
+                if (e.Button == MouseButtons.Left)
+                {
+                    InputScript(point.X, point.Y);
+                }
+            }
+            else if (Mode == EditMode.TextInput)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    InputText(point.X, point.Y);
+                }
             }
         }
 
@@ -235,23 +246,55 @@ namespace TileGameMaker.Panels
 
         private void BtnAddText_Click(object sender, EventArgs e)
         {
-            ToggleTextMode();
+            SetMode(EditMode.TextInput);
         }
 
-        private void ToggleTextMode()
+        private void BtnSetScript_Click(object sender, EventArgs e)
         {
+            SetMode(EditMode.Script);
+        }
+
+        private void BtnPutTemplate_Click(object sender, EventArgs e)
+        {
+            SetMode(EditMode.Template);
+        }
+
+        private void SetMode(EditMode mode)
+        {
+            Mode = mode;
+
             if (Mode == EditMode.Template)
             {
-                Mode = EditMode.TextInput;
-                Display.Cursor = Cursors.IBeam;
+                Display.Cursor = Cursors.Arrow;
+
+                BtnSetScript.Checked = false;
+                BtnAddText.Checked = false;
+                BtnPutTemplate.Checked = true;
             }
             else if (Mode == EditMode.TextInput)
             {
-                Mode = EditMode.Template;
-                Display.Cursor = Cursors.Arrow;
-            }
+                Display.Cursor = Cursors.IBeam;
 
-            BtnAddText.Checked = Mode == EditMode.TextInput;
+                BtnSetScript.Checked = false;
+                BtnAddText.Checked = true;
+                BtnPutTemplate.Checked = false;
+            }
+            else if (Mode == EditMode.Script)
+            {
+                Display.Cursor = Cursors.Hand;
+
+                BtnSetScript.Checked = true;
+                BtnAddText.Checked = false;
+                BtnPutTemplate.Checked = false;
+            }
+        }
+
+        private void InputScript(int x, int y)
+        {
+            GameObject o = Map.GetObject(Layer, x, y);
+            ScriptInputWindow win = new ScriptInputWindow();
+            if (win.ShowDialog(this, o.Script) == DialogResult.OK)
+                o.Script = win.Script;
         }
 
         private void InputText(int x, int y)
@@ -376,7 +419,7 @@ namespace TileGameMaker.Panels
                         ToggleGrid();
                         break;
                     case Keys.T:
-                        ToggleTextMode();
+                        SetMode(EditMode.TextInput);
                         break;
                     case Keys.P:
                         SaveScreenshot();

@@ -137,7 +137,7 @@ namespace TileGameMaker.Panels
         {
             ScriptInputWindow win = new ScriptInputWindow();
             if (win.ShowDialog(this, TxtData.Text) == DialogResult.OK)
-                TxtData.Text = win.Data;
+                TxtData.Text = win.Script;
         }
     }
 }

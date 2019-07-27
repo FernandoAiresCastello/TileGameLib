@@ -12,23 +12,23 @@ namespace TileGameMaker.Windows
 {
     public partial class ScriptInputWindow : Form
     {
-        public string Data { set; get; }
+        public string Script { private set; get; }
 
         public ScriptInputWindow()
         {
             InitializeComponent();
         }
 
-        public DialogResult ShowDialog(Control parent, string data)
+        public DialogResult ShowDialog(Control parent, string script)
         {
-            Data = data;
-            TxtData.Text = data;
+            Script = script;
+            TxtData.Text = script;
             return ShowDialog(parent);
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)
         {
-            Data = TxtData.Text;
+            Script = TxtData.Text;
             DialogResult = DialogResult.OK;
             Close();
         }

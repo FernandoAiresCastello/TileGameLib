@@ -393,6 +393,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap script_binary {
+            get {
+                object obj = ResourceManager.GetObject("script_binary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap scroll_pane_text {
             get {
                 object obj = ResourceManager.GetObject("scroll_pane_text", resourceCulture);
@@ -406,6 +416,16 @@ namespace TileGameMaker.Properties {
         internal static System.Drawing.Bitmap select {
             get {
                 object obj = ResourceManager.GetObject("select", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap select_by_color {
+            get {
+                object obj = ResourceManager.GetObject("select_by_color", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
