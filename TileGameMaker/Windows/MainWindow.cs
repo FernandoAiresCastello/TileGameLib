@@ -47,21 +47,20 @@ namespace TileGameMaker.Windows
             Application.Exit();
         }
 
-        private void MiCallDebugFunc_Click(object sender, EventArgs e)
-        {
-            Debug();
-        }
-
-        private void Debug()
-        {
-        }
-
         private void MiNewProject_Click(object sender, EventArgs e)
         {
-            NewProjectWindow win = new NewProjectWindow();
+            ProjectWindow win = new ProjectWindow(MapEditor.WorkspacePath);
 
-            if (win.ShowDialog(this) == DialogResult.OK)
+            if (win.ShowNewProjectDialog(this) == DialogResult.OK)
                 MapEditor.CreateNewProject(win.Filename);
+        }
+
+        private void MiOpenProject_Click(object sender, EventArgs e)
+        {
+            ProjectWindow win = new ProjectWindow(MapEditor.WorkspacePath);
+
+            if (win.ShowOpenProjectDialog(this) == DialogResult.OK)
+                MapEditor.OpenProject(win.Filename);
         }
     }
 }

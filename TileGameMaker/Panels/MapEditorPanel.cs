@@ -16,7 +16,6 @@ using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
 using TileGameLib.Engine;
-using TileGameMaker.Engine;
 
 namespace TileGameMaker.Panels
 {
@@ -27,7 +26,6 @@ namespace TileGameMaker.Panels
         private ObjectMap Map;
         private MapEditor MapEditor;
         private MapRenderer MapRenderer;
-        private MapArchive Archive;
         private int Layer;
 
         private enum EditMode { Template, TextInput }
@@ -50,7 +48,6 @@ namespace TileGameMaker.Panels
             Display.ShowGrid = true;
             Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
-            Archive = new MapArchive(MapEditor.ProjectPath);
             HoverLabel.Text = "";
             Layer = 0;
 
@@ -59,6 +56,7 @@ namespace TileGameMaker.Panels
             Display.MouseLeave += Disp_MouseLeave;
 
             ClearMap();
+            RenderMap();
             Refresh();
             UpdateLayerComboBox();
         }
@@ -90,7 +88,6 @@ namespace TileGameMaker.Panels
         private void ClearMap()
         {
             Map.Fill(MapEditor.NullGameObject);
-            RenderMap();
         }
 
         private void Disp_MouseMove(object sender, MouseEventArgs e)
@@ -204,7 +201,7 @@ namespace TileGameMaker.Panels
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            ConfirmClearMap();
+            ConfirmNewMap();
         }
 
         private void BtnScreenshot_Click(object sender, EventArgs e)
@@ -292,7 +289,7 @@ namespace TileGameMaker.Panels
             LoadMap();
         }
 
-        private void SaveMap()
+        public void SaveMap()
         {
             ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
@@ -303,14 +300,15 @@ namespace TileGameMaker.Panels
                     return;
 
                 Map.Name = MapEditor.MapName;
-                Archive.Save(Map, mgr.SelectedEntry);
+                MapArchive arch = new MapArchive(MapEditor.ProjectPath);
+                arch.Save(Map, mgr.SelectedEntry);
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
         }
 
-        private void LoadMap()
+        public void LoadMap()
         {
             ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
@@ -324,7 +322,8 @@ namespace TileGameMaker.Panels
                     return;
                 }
 
-                Archive.Load(ref Map, mgr.SelectedEntry);
+                MapArchive arch = new MapArchive(MapEditor.ProjectPath);
+                arch.Load(ref Map, mgr.SelectedEntry);
                 MapEditor.UpdateMapProperties(mgr.SelectedEntry);
                 MapEditor.ResizeMap(Map.Width, Map.Height);
                 MapEditor.SelectedObject = new GameObject();
@@ -333,10 +332,29 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void ConfirmClearMap()
+        public void NewMap(string name, int width, int height)
         {
-            if (Alert.Confirm("Clear map?"))
-                ClearMap();
+            Layer = 0;
+
+            if (Map.Layers.Count > 1)
+            {
+                for (int i = Map.Layers.Count - 1; i != 0; i--)
+                    Map.RemoveLayer(i);
+            }
+            
+            Map.Name = name;
+            MapEditor.ResizeMap(width, height);
+            MapEditor.UpdateMapProperties("");
+            ClearMap();
+            RenderMap();
+            UpdateStatusLabel();
+            UpdateLayerComboBox();
+        }
+
+        private void ConfirmNewMap()
+        {
+            if (Alert.Confirm("Create new map?"))
+                NewMap(MapEditor.DefaultMapName, MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
         }
 
         private void MapEditorControl_KeyDown(object sender, KeyEventArgs e)
@@ -352,7 +370,7 @@ namespace TileGameMaker.Panels
                         SaveMap();
                         break;
                     case Keys.N:
-                        ConfirmClearMap();
+                        ConfirmNewMap();
                         break;
                     case Keys.G:
                         ToggleGrid();
@@ -442,8 +460,8 @@ namespace TileGameMaker.Panels
 
         private void RunEngine()
         {
-            GameWindow window = new GameWindow(32, 24, MapEditor.ProjectPath, MapEditor.MapName);
-            window.ShowDialog(MapEditor.MainWindow);
+            //GameWindow window = new GameWindow(32, 24, MapEditor.ProjectPath, MapEditor.MapName);
+            //window.ShowDialog(MapEditor.MainWindow);
         }
     }
 }

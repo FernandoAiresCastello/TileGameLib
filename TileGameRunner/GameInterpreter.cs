@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TileGameLib.Engine;
 using TileGameLib.GameElements;
 
-namespace TileGameMaker.Engine
+namespace TileGameRunner
 {
     public class GameInterpreter : Interpreter
     {

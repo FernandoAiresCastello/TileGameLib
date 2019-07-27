@@ -34,10 +34,11 @@ namespace TileGameMaker.Modules
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyPanel MapPropertyControl { get; private set; }
 
-        private static readonly string DefaultProjectFile = Config.ReadString("DefaultProjectFile");
-        private static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
-        private static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
-        private static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
+        public static readonly string DefaultProjectFile = Config.ReadString("DefaultProjectFile");
+        public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
+        public static readonly string DefaultMapName = Config.ReadString("DefaultMapName");
+        public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
+        public static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
 
         private readonly List<Control> Children = new List<Control>();
 
@@ -153,6 +154,13 @@ namespace TileGameMaker.Modules
             Archive.CreateIfNotExists(WorkspacePath + "\\" + filename);
 
             ProjectFile = filename;
+            MapEditorControl.NewMap(DefaultMapName, DefaultMapWidth, DefaultMapHeight);
+        }
+
+        public void OpenProject(string filename)
+        {
+            ProjectFile = filename;
+            MapEditorControl.LoadMap();
         }
     }
 }

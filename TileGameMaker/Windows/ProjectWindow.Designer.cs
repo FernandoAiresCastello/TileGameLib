@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class ArchiveWindow
+    partial class ProjectWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtArchive = new System.Windows.Forms.TextBox();
-            this.TxtEntry = new System.Windows.Forms.TextBox();
-            this.EntriesListBox = new System.Windows.Forms.ListBox();
+            this.TxtWorkspace = new System.Windows.Forms.TextBox();
+            this.TxtProject = new System.Windows.Forms.TextBox();
+            this.ProjectsListBox = new System.Windows.Forms.ListBox();
             this.ButtonLayout = new System.Windows.Forms.TableLayoutPanel();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
@@ -46,9 +46,9 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.TxtArchive, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TxtEntry, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.EntriesListBox, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.TxtWorkspace, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TxtProject, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ProjectsListBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ButtonLayout, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -61,45 +61,46 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 427);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(303, 441);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // TxtArchive
+            // TxtWorkspace
             // 
-            this.TxtArchive.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtArchive.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtArchive.Location = new System.Drawing.Point(8, 8);
-            this.TxtArchive.Name = "TxtArchive";
-            this.TxtArchive.ReadOnly = true;
-            this.TxtArchive.Size = new System.Drawing.Size(288, 23);
-            this.TxtArchive.TabIndex = 99;
-            this.TxtArchive.TabStop = false;
+            this.TxtWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtWorkspace.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtWorkspace.Location = new System.Drawing.Point(8, 8);
+            this.TxtWorkspace.Name = "TxtWorkspace";
+            this.TxtWorkspace.ReadOnly = true;
+            this.TxtWorkspace.Size = new System.Drawing.Size(287, 23);
+            this.TxtWorkspace.TabIndex = 5;
+            this.TxtWorkspace.TabStop = false;
             // 
-            // TxtEntry
+            // TxtProject
             // 
-            this.TxtEntry.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtEntry.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEntry.Location = new System.Drawing.Point(8, 344);
-            this.TxtEntry.Name = "TxtEntry";
-            this.TxtEntry.Size = new System.Drawing.Size(288, 23);
-            this.TxtEntry.TabIndex = 0;
-            this.TxtEntry.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtEntry_KeyDown);
+            this.TxtProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtProject.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProject.Location = new System.Drawing.Point(8, 358);
+            this.TxtProject.Name = "TxtProject";
+            this.TxtProject.Size = new System.Drawing.Size(287, 23);
+            this.TxtProject.TabIndex = 0;
+            this.TxtProject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtProject_KeyDown);
             // 
-            // EntriesListBox
+            // ProjectsListBox
             // 
-            this.EntriesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EntriesListBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EntriesListBox.FormattingEnabled = true;
-            this.EntriesListBox.ItemHeight = 15;
-            this.EntriesListBox.Location = new System.Drawing.Point(10, 34);
-            this.EntriesListBox.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.EntriesListBox.Name = "EntriesListBox";
-            this.EntriesListBox.ScrollAlwaysVisible = true;
-            this.EntriesListBox.Size = new System.Drawing.Size(284, 307);
-            this.EntriesListBox.TabIndex = 1;
-            this.EntriesListBox.SelectedValueChanged += new System.EventHandler(this.EntriesListBox_SelectedValueChanged);
-            this.EntriesListBox.DoubleClick += new System.EventHandler(this.EntriesListBox_DoubleClick);
-            this.EntriesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EntriesListBox_KeyDown);
+            this.ProjectsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProjectsListBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProjectsListBox.FormattingEnabled = true;
+            this.ProjectsListBox.ItemHeight = 15;
+            this.ProjectsListBox.Location = new System.Drawing.Point(10, 34);
+            this.ProjectsListBox.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.ProjectsListBox.Name = "ProjectsListBox";
+            this.ProjectsListBox.ScrollAlwaysVisible = true;
+            this.ProjectsListBox.Size = new System.Drawing.Size(283, 321);
+            this.ProjectsListBox.TabIndex = 1;
+            this.ProjectsListBox.TabStop = false;
+            this.ProjectsListBox.SelectedValueChanged += new System.EventHandler(this.ProjectsListBox_SelectedValueChanged);
+            this.ProjectsListBox.DoubleClick += new System.EventHandler(this.ProjectsListBox_DoubleClick);
+            this.ProjectsListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProjectsListBox_KeyDown);
             // 
             // ButtonLayout
             // 
@@ -115,11 +116,11 @@
             this.ButtonLayout.Controls.Add(this.BtnCancel, 4, 0);
             this.ButtonLayout.Controls.Add(this.BtnSave, 2, 0);
             this.ButtonLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLayout.Location = new System.Drawing.Point(8, 373);
+            this.ButtonLayout.Location = new System.Drawing.Point(8, 387);
             this.ButtonLayout.Name = "ButtonLayout";
             this.ButtonLayout.RowCount = 1;
             this.ButtonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ButtonLayout.Size = new System.Drawing.Size(288, 46);
+            this.ButtonLayout.Size = new System.Drawing.Size(287, 46);
             this.ButtonLayout.TabIndex = 2;
             // 
             // BtnOk
@@ -162,7 +163,7 @@
             this.BtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
             this.BtnCancel.Location = new System.Drawing.Point(231, 3);
             this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(54, 40);
+            this.BtnCancel.Size = new System.Drawing.Size(53, 40);
             this.BtnCancel.TabIndex = 5;
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
@@ -177,20 +178,19 @@
             this.BtnSave.TabIndex = 3;
             this.BtnSave.UseVisualStyleBackColor = true;
             // 
-            // ArchiveWindow
+            // ProjectWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 427);
+            this.ClientSize = new System.Drawing.Size(303, 441);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ArchiveWindow";
+            this.Name = "ProjectWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Project Archive";
+            this.Text = "Workspace";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ButtonLayout.ResumeLayout(false);
@@ -201,14 +201,14 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListBox EntriesListBox;
+        private System.Windows.Forms.TextBox TxtWorkspace;
+        private System.Windows.Forms.TextBox TxtProject;
+        private System.Windows.Forms.ListBox ProjectsListBox;
         private System.Windows.Forms.TableLayoutPanel ButtonLayout;
-        private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Button BtnCancel;
-        private System.Windows.Forms.TextBox TxtEntry;
+        private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnLoad;
-        private System.Windows.Forms.Button BtnOk;
-        private System.Windows.Forms.TextBox TxtArchive;
+        private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.Button BtnSave;
     }
 }

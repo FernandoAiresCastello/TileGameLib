@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Engine;
-using TileGameMaker.Engine;
 
-namespace TileGameMaker.Windows
+namespace TileGameRunner
 {
     public class GameWindow : DisplayWindow
     {
         private readonly GameEngine GameEngine;
+
+        public GameWindow() : base(32, 24)
+        {
+            GameEngine = null;
+        }
 
         public GameWindow(int cols, int rows, string projectPath, string initialMapName) : base(cols, rows)
         {

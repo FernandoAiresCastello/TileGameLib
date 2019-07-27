@@ -37,10 +37,10 @@
             this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.MiNewProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.MainLayout.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -133,13 +133,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // MiExit
-            // 
-            this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
-            this.MiExit.Text = "Exit";
-            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
-            // 
             // MiNewProject
             // 
             this.MiNewProject.Name = "MiNewProject";
@@ -147,16 +140,24 @@
             this.MiNewProject.Text = "New Project";
             this.MiNewProject.Click += new System.EventHandler(this.MiNewProject_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
             // MiOpenProject
             // 
             this.MiOpenProject.Name = "MiOpenProject";
             this.MiOpenProject.Size = new System.Drawing.Size(180, 22);
             this.MiOpenProject.Text = "Open Project";
+            this.MiOpenProject.Click += new System.EventHandler(this.MiOpenProject_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // MiExit
+            // 
+            this.MiExit.Name = "MiExit";
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Text = "Exit";
+            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
             // MainWindow
             // 
