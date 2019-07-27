@@ -7,8 +7,8 @@ This repository contains a Visual Studio solution comprised of three C# projects
 
 - **TileGameLib** (TGL for short) is a library project that generates a .NET DLL file, which can be used in other projects. It contains several classes designed to aid in the programming of pseudo-8-bit tile-based games.
 
-- **TileGameMaker** is a Windows desktop application project built using TileGameLib that generates a .NET executable file. It contains several tools mainly focused on graphics editing and map design. It does not implement any game logic, which must be programmed separately.
+- **TileGameMaker** is a Windows desktop application project built using TileGameLib that generates a .NET executable file. It contains several tools mainly focused on graphics editing and map design. It does not implement any game logic, but it will provide a simple scripting language for its programming.
 
-- **TileGameSamples** is another Windows desktop application which will contain sample games made with TileGameLib in order to showcase its features and also serve as an example of how to effectively use the library.
+- **TileGameRunner** is another Windows desktop application which contains the implementation of an engine that can run game projects created with the TileGameMaker tool.
 
 This project is a spiritual successor of [TBRLGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
