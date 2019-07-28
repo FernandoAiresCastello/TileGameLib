@@ -32,6 +32,8 @@ namespace TileGameLib.Graphics
         private int AnimationFrame;
         private bool RenderSingleLayer;
         private int SingleLayerToRender;
+        private Tileset DispTileset;
+        private Palette DispPalette;
 
         private readonly TiledDisplay Disp;
         private readonly Timer RefreshTimer;
@@ -49,8 +51,6 @@ namespace TileGameLib.Graphics
         {
             Map = map;
             Disp = disp;
-            Disp.Graphics.Tileset = Map.Tileset;
-            Disp.Graphics.Palette = Map.Palette;
             Viewport = viewport;
             MapOffset = mapOffset;
             OutOfBoundsTile = new Tile(0, 0, 0);
@@ -104,6 +104,12 @@ namespace TileGameLib.Graphics
 
         public void Render()
         {
+            DispTileset = Disp.Graphics.Tileset;
+            DispPalette = Disp.Graphics.Palette;
+
+            Disp.Graphics.Tileset = Map.Tileset;
+            Disp.Graphics.Palette = Map.Palette;
+
             if (RenderSingleLayer)
             {
                 RenderLayer(Map.Layers[SingleLayerToRender], true);
@@ -115,6 +121,8 @@ namespace TileGameLib.Graphics
             }
 
             Disp.Refresh();
+            Disp.Graphics.Tileset = DispTileset;
+            Disp.Graphics.Palette = DispPalette;
         }
 
         private void RenderLayer(ObjectLayer layer, bool renderNull)
