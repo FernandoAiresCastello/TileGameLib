@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameLib.Engine
+namespace TileGameRunner
 {
     public class Variables
     {

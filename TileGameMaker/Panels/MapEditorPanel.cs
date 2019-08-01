@@ -15,7 +15,6 @@ using TileGameLib.Util;
 using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
-using TileGameLib.Engine;
 
 namespace TileGameMaker.Panels
 {
