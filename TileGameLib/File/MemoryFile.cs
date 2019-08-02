@@ -94,6 +94,18 @@ namespace TileGameLib.File
             return str.ToString();
         }
 
+        public string ReadAllText()
+        {
+            StringBuilder str = new StringBuilder();
+
+            ReadPtr = 0;
+            while (ReadPtr < Length)
+                str.Append(Bytes[ReadPtr++]);
+
+            ReadPtr = 0;
+            return str.ToString();
+        }
+
         public int ReadShort()
         {
             byte byte1 = ReadByte();

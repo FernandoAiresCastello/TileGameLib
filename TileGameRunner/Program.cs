@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameRunner.Windows;
 
 namespace TileGameRunner
 {
@@ -13,7 +14,7 @@ namespace TileGameRunner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoaderWindow());
+            Application.Run(new BootloaderWindow());
         }
     }
 }

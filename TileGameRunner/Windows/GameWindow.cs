@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 
-namespace TileGameRunner
+namespace TileGameRunner.Windows
 {
     public class GameWindow : DisplayWindow
     {

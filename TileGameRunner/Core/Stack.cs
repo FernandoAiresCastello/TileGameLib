@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameRunner
+namespace TileGameRunner.Core
 {
     public class Stack
     {

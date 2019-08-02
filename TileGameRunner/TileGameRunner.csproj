@@ -46,24 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
-    <Compile Include="GameWindow.cs">
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Core\CommandDictionary.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\ScriptLine.cs" />
+    <Compile Include="Core\Environment.cs" />
+    <Compile Include="Exceptions\EngineException.cs" />
+    <Compile Include="Exceptions\InterpreterException.cs" />
+    <Compile Include="Exceptions\ScriptException.cs" />
+    <Compile Include="Windows\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interpreter.cs" />
-    <Compile Include="LoaderWindow.cs">
+    <Compile Include="Core\Interpreter.cs" />
+    <Compile Include="Windows\BootloaderWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoaderWindow.Designer.cs">
-      <DependentUpon>LoaderWindow.cs</DependentUpon>
+    <Compile Include="Windows\BootloaderWindow.Designer.cs">
+      <DependentUpon>BootloaderWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\ScriptLabels.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Core\ProjectArchive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Script.cs" />
-    <Compile Include="Stack.cs" />
-    <Compile Include="Variables.cs" />
-    <EmbeddedResource Include="LoaderWindow.resx">
-      <DependentUpon>LoaderWindow.cs</DependentUpon>
+    <Compile Include="Core\Script.cs" />
+    <Compile Include="Core\Stack.cs" />
+    <Compile Include="Core\Variables.cs" />
+    <EmbeddedResource Include="Windows\BootloaderWindow.resx">
+      <DependentUpon>BootloaderWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,5 +103,6 @@
       <Name>TileGameLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

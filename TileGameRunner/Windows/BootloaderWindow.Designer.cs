@@ -1,6 +1,6 @@
-﻿namespace TileGameRunner
+﻿namespace TileGameRunner.Windows
 {
-    partial class LoaderWindow
+    partial class BootloaderWindow
     {
         /// <summary>
         /// Required designer variable.
