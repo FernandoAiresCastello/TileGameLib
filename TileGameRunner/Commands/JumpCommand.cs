@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace TileGameRunner.Commands
 {
-    public class ExitCommand : CommandBase
+    public class JumpCommand : CommandBase
     {
         public override void Execute(List<string> paramList)
         {
-            Interpreter.Running = false;
+            string label = paramList[0];
+            Jump(label);
         }
     }
 }

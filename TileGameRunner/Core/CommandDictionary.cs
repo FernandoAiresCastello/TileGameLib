@@ -46,11 +46,11 @@ namespace TileGameRunner.Core
             Add("CMP", new CommandBase());
             Add("INC", new CommandBase());
             Add("DEC", new CommandBase());
-            Add("CALL", new CommandBase());
+            Add("CALL", new CallCommand());
             Add("CALLZ", new CommandBase());
             Add("CALLNZ", new CommandBase());
-            Add("RET", new CommandBase());
-            Add("JP", new CommandBase());
+            Add("RET", new ReturnCommand());
+            Add("JP", new JumpCommand());
             Add("JZ", new CommandBase());
             Add("JNZ", new CommandBase());
             Add("INKEY", new CommandBase());

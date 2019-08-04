@@ -18,13 +18,33 @@ namespace TileGameRunner.Commands
         {
         }
 
+        public virtual void Execute(List<string> paramList)
+        {
+            FatalError("Command not implemented");
+        }
+
         public void FatalError(string msg)
         {
             Interpreter.FatalError(msg);
         }
 
-        public virtual void Execute(List<string> paramList)
+        public void Jump(string label)
         {
+            if (!Interpreter.Labels.HasLabel(label))
+                FatalError($"Label {label} not found");
+
+            Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
+            Interpreter.Branching = true;
+        }
+
+        public void Call(string label)
+        {
+            if (!Interpreter.Labels.HasLabel(label))
+                FatalError($"Label {label} not found");
+
+            Interpreter.CallStack.Push(Interpreter.ProgramPtr);
+            Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
+            Interpreter.Branching = true;
         }
     }
 }

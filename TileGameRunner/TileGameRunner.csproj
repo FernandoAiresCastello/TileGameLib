@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\appicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CallCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\JumpCommand.cs" />
+    <Compile Include="Commands\ReturnCommand.cs" />
     <Compile Include="Core\CommandDictionary.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\ScriptLine.cs" />
@@ -55,6 +61,12 @@
     <Compile Include="Exceptions\EngineException.cs" />
     <Compile Include="Exceptions\InterpreterException.cs" />
     <Compile Include="Exceptions\ScriptException.cs" />
+    <Compile Include="Windows\DebuggerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\DebuggerWindow.Designer.cs">
+      <DependentUpon>DebuggerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,7 +95,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Windows\DebuggerWindow.resx">
+      <DependentUpon>DebuggerWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,6 +119,10 @@
       <Name>TileGameLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\appicon.ico" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\rocket.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

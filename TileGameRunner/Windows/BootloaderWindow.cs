@@ -15,11 +15,27 @@ namespace TileGameRunner.Windows
 {
     public partial class BootloaderWindow : Form
     {
+        private static readonly string SettingsFile = "TileGameRunner.ini";
+
         private Engine Engine;
+        private string InitialPath;
 
         public BootloaderWindow()
         {
             InitializeComponent();
+            InitialPath = Application.StartupPath;
+            if (File.Exists(SettingsFile))
+                ReadSettings();
+        }
+
+        private void ReadSettings()
+        {
+            string[] settings = File.ReadAllLines(SettingsFile);
+
+            if (settings.Length > 0)
+            {
+                InitialPath = settings[0];
+            }
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -29,16 +45,23 @@ namespace TileGameRunner.Windows
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = Application.StartupPath;
-            dialog.Filter = "Tile Game Maker project (*.tgm)|*.tgm";
-            if (dialog.ShowDialog(this) != DialogResult.OK)
-                return;
-
-            LoadProject(dialog.FileName);
+            string file = LoadProject();
+            if (file != null)
+                RunProject(file);
         }
 
-        private void LoadProject(string path)
+        private string LoadProject()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = InitialPath;
+            dialog.Filter = "Tile Game Maker project (*.tgm)|*.tgm";
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return null;
+
+            return dialog.FileName;
+        }
+
+        private void RunProject(string path)
         {
             Hide();
             Engine = new Engine(path);
