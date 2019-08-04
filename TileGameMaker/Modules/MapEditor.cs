@@ -36,6 +36,7 @@ namespace TileGameMaker.Modules
 
         public static readonly string DefaultProjectFile = Config.ReadString("DefaultProjectFile");
         public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
+        public static readonly string MainScriptFile = Config.ReadString("MainScriptFile");
         public static readonly string DefaultMapName = Config.ReadString("DefaultMapName");
         public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
         public static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
@@ -161,6 +162,24 @@ namespace TileGameMaker.Modules
         {
             ProjectFile = filename;
             MapEditorControl.LoadMap();
+        }
+
+        public string GetMainScript()
+        {
+            if (Archive.Contains(ProjectPath, MainScriptFile))
+            {
+                MemoryFile file = Archive.Load(ProjectPath, MainScriptFile);
+                return file.ReadAllText();
+            }
+
+            return "";
+        }
+
+        public void SetMainScript(string script)
+        {
+            MemoryFile file = new MemoryFile();
+            file.WriteString(script);
+            Archive.Save(ProjectPath, MainScriptFile, file);
         }
     }
 }

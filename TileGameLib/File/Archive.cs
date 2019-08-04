@@ -124,7 +124,7 @@ namespace TileGameLib.File
             }
         }
 
-        public static List<string> List(string archivePath)
+        public static List<string> List(string archivePath, string filter = null)
         {
             List<string> list = new List<string>();
 
@@ -133,7 +133,10 @@ namespace TileGameLib.File
                 using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
                 {
                     foreach (var entry in archive.Entries)
-                        list.Add(entry.Name);
+                    {
+                        if (filter == null || entry.Name.EndsWith("." + filter))
+                            list.Add(entry.Name);
+                    }
                 }
             }
 

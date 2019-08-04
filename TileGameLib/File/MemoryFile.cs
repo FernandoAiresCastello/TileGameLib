@@ -100,7 +100,7 @@ namespace TileGameLib.File
 
             ReadPtr = 0;
             while (ReadPtr < Length)
-                str.Append(Bytes[ReadPtr++]);
+                str.Append((char)Bytes[ReadPtr++]);
 
             ReadPtr = 0;
             return str.ToString();

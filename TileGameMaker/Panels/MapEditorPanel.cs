@@ -32,6 +32,7 @@ namespace TileGameMaker.Panels
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
+        private static readonly string MapFileExt = Config.ReadString("MapFileExt");
 
         public MapEditorPanel()
         {
@@ -335,7 +336,7 @@ namespace TileGameMaker.Panels
         {
             ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
-            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Save) == DialogResult.OK)
+            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Save, MapFileExt) == DialogResult.OK)
             {
                 string entry = mgr.SelectedEntry;
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
@@ -343,8 +344,9 @@ namespace TileGameMaker.Panels
 
                 Map.Name = MapEditor.MapName;
                 MapArchive arch = new MapArchive(MapEditor.ProjectPath);
-                arch.Save(Map, mgr.SelectedEntry);
-                MapEditor.UpdateMapProperties(mgr.SelectedEntry);
+                string file = mgr.SelectedEntry + "." + MapFileExt;
+                arch.Save(Map, file);
+                MapEditor.UpdateMapProperties(file);
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
@@ -354,7 +356,7 @@ namespace TileGameMaker.Panels
         {
             ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
 
-            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Load) == DialogResult.OK)
+            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Load, MapFileExt) == DialogResult.OK)
             {
                 string entry = mgr.SelectedEntry;
 

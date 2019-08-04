@@ -21,17 +21,19 @@ namespace TileGameMaker.Windows
         public Mode OperationMode { get; set; } = Mode.Browse;
         public string SelectedEntry { get { return TxtEntry.Text.Trim(); } }
 
+        private string Filter;
+
         public ArchiveWindow(string archiveFile)
         {
             InitializeComponent();
             ArchiveFile = archiveFile;
             TxtArchive.Text = archiveFile;
-            UpdateList();
         }
 
-        public DialogResult ShowDialog(Control owner, Mode mode)
+        public DialogResult ShowDialog(Control owner, Mode mode, string filter = null)
         {
             OperationMode = mode;
+            Filter = filter;
 
             switch (mode)
             {
@@ -61,6 +63,7 @@ namespace TileGameMaker.Windows
                     break;
             }
 
+            UpdateList();
             return ShowDialog(owner);
         }
 
@@ -100,7 +103,7 @@ namespace TileGameMaker.Windows
 
         private void UpdateList()
         {
-            EntryFiles = Archive.List(ArchiveFile);
+            EntryFiles = Archive.List(ArchiveFile, Filter);
             EntriesListBox.DataSource = EntryFiles;
             EntriesListBox.Refresh();
         }

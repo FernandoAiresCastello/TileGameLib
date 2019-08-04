@@ -14,15 +14,21 @@ namespace TileGameMaker.Windows
     {
         public string Script { private set; get; }
 
-        public ScriptInputWindow()
+        public ScriptInputWindow() : this("")
+        {
+        }
+
+        public ScriptInputWindow(string title)
         {
             InitializeComponent();
+            Text = title;
         }
 
         public DialogResult ShowDialog(Control parent, string script)
         {
             Script = script;
             TxtData.Text = script;
+            TxtData.Select(0, 0);
             return ShowDialog(parent);
         }
 
