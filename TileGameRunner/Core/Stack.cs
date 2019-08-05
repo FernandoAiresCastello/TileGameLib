@@ -33,8 +33,15 @@ namespace TileGameRunner.Core
 
         public int PopInt()
         {
+            int value = TopInt();
+            Values.Pop();
+            return value;
+        }
+
+        public int TopInt()
+        {
             int number = 0;
-            string value = Values.Pop().Trim();
+            string value = Values.Peek().Trim();
 
             if (value.StartsWith("0x", StringComparison.InvariantCultureIgnoreCase))
                 number = Convert.ToInt32(value, 16);

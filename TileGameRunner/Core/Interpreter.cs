@@ -41,9 +41,9 @@ namespace TileGameRunner.Core
 
                 if (line.IsLabel())
                 {
-                    string label = line.CommandName.Substring(1);
+                    string label = line.Command.Substring(1);
                     if (Labels.HasLabel(label))
-                        FatalError($"Duplicate label {label}");
+                        throw new ScriptException($"Duplicate label {label}");
 
                     Labels.Add(label, i + 1);
                 }
@@ -81,6 +81,9 @@ namespace TileGameRunner.Core
                         else
                             ProgramPtr++;
                     }
+
+                    if (ProgramPtr < 0 || ProgramPtr >= Script.Lines.Count)
+                        Running = false;
                 }
             }
             catch (ScriptException e)
@@ -97,16 +100,11 @@ namespace TileGameRunner.Core
 
         private void InterpretCommand(ScriptLine line)
         {
-            string command = line.CommandName.ToUpper();
+            string command = line.Command.ToUpper();
             if (!CommandDict.HasCommand(command))
-                FatalError($"Unknown command: {command}");
+                throw new ScriptException($"Unknown command: {command}");
 
             CommandDict.Get(command).Execute(line.Params);
-        }
-
-        public void FatalError(string msg)
-        {
-            throw new ScriptException(msg);
         }
     }
 }

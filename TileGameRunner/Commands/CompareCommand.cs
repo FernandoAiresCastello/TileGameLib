@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace TileGameRunner.Commands
 {
-    public class CallCommand : CommandBase
+    public class CompareCommand : CommandBase
     {
         public override void Execute(List<string> param)
         {
-            string label = param[0];
-            Call(label);
+            int value2 = PopInt();
+            int value1 = PopInt();
+            int result = value1 - value2;
+
+            Interpreter.ParamStack.Push(result.ToString());
         }
     }
 }

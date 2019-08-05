@@ -8,9 +8,9 @@ namespace TileGameRunner.Commands
 {
     public class JumpCommand : CommandBase
     {
-        public override void Execute(List<string> paramList)
+        public override void Execute(List<string> param)
         {
-            string label = paramList[0];
+            string label = param[0];
             Jump(label);
         }
     }

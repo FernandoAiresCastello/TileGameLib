@@ -8,14 +8,14 @@ namespace TileGameRunner.Core
 {
     public class ScriptLine
     {
-        public string CommandName { set; get; }
+        public string Command { set; get; }
         public List<string> Params { get; private set; } = new List<string>();
         public string Param => Params.Count > 0 ? Params[0] : null;
         public int SourceLineNumber { set; get; }
 
         public ScriptLine(string commandName, int sourceLineNumber)
         {
-            CommandName = commandName;
+            Command = commandName;
             SourceLineNumber = sourceLineNumber;
         }
 
@@ -25,17 +25,17 @@ namespace TileGameRunner.Core
             for (int i = 0; i < Param.Length; i++)
                 paramList.Append(Param[i] + (i < Param.Length - 1 ? ", " : ""));
 
-            return "[line " + SourceLineNumber + "] " + CommandName + " " + paramList;
+            return "[line " + SourceLineNumber + "] " + Command + " " + paramList;
         }
 
         public bool IsLabel()
         {
-            return CommandName.StartsWith(":");
+            return Command.StartsWith(":");
         }
 
         public bool IsComment()
         {
-            return CommandName.StartsWith("#");
+            return Command.StartsWith("#");
         }
     }
 }

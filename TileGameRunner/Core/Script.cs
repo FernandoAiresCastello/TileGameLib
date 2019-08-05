@@ -22,17 +22,17 @@ namespace TileGameRunner.Core
             foreach (string line in lines)
             {
                 string trimmedLine = line.Trim();
-                string[] nameParam = trimmedLine.Split(NameParamSeparator);
+                string[] commandParam = trimmedLine.Split(NameParamSeparator);
 
-                if (nameParam.Length > 0)
+                if (commandParam.Length > 0)
                 {
-                    string name = nameParam[0].Trim();
+                    string name = commandParam[0].Trim();
                     ScriptLine scriptLine = new ScriptLine(name, lineNumber);
 
                     if (!scriptLine.IsComment())
                     {
-                        for (int i = 1; i < nameParam.Length; i++)
-                            scriptLine.Params.Add(nameParam[i].Trim());
+                        for (int i = 1; i < commandParam.Length; i++)
+                            scriptLine.Params.Add(commandParam[i].Trim());
 
                         Lines.Add(scriptLine);
                     }

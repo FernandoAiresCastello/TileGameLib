@@ -50,10 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CallCommand.cs" />
+    <Compile Include="Commands\CallNotZeroCommand.cs" />
+    <Compile Include="Commands\CallZeroCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CompareCommand.cs" />
+    <Compile Include="Commands\DecrementCommand.cs" />
     <Compile Include="Commands\ExitCommand.cs" />
+    <Compile Include="Commands\IncrementCommand.cs" />
     <Compile Include="Commands\JumpCommand.cs" />
+    <Compile Include="Commands\JumpNotZeroCommand.cs" />
+    <Compile Include="Commands\JumpZeroCommand.cs" />
+    <Compile Include="Commands\LoadCommand.cs" />
+    <Compile Include="Commands\PushCommand.cs" />
     <Compile Include="Commands\ReturnCommand.cs" />
+    <Compile Include="Commands\StoreCommand.cs" />
+    <Compile Include="Commands\WindowCommand.cs" />
     <Compile Include="Core\CommandDictionary.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\ScriptLine.cs" />

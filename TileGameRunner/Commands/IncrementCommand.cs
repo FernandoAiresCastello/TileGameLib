@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TileGameRunner.Commands
 {
-    public class CallCommand : CommandBase
+    public class IncrementCommand : CommandBase
     {
         public override void Execute(List<string> param)
         {
-            string label = param[0];
-            Call(label);
+            int value = PopInt();
+            Interpreter.ParamStack.Push((value + 1).ToString());
         }
     }
 }

@@ -8,9 +8,11 @@ namespace TileGameRunner.Commands
 {
     public class ExitCommand : CommandBase
     {
-        public override void Execute(List<string> paramList)
+        public override void Execute(List<string> param)
         {
             Interpreter.Running = false;
+            if (Environment.Window != null)
+                Environment.Window.Close();
         }
     }
 }

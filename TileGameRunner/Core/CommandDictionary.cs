@@ -40,22 +40,25 @@ namespace TileGameRunner.Core
         private void InitializeCommands()
         {
             Add("EXIT", new ExitCommand());
-            Add("PUSH", new CommandBase());
-            Add("LOAD", new CommandBase());
-            Add("STORE", new CommandBase());
-            Add("CMP", new CommandBase());
-            Add("INC", new CommandBase());
-            Add("DEC", new CommandBase());
-            Add("CALL", new CallCommand());
-            Add("CALLZ", new CommandBase());
-            Add("CALLNZ", new CommandBase());
-            Add("RET", new ReturnCommand());
+            Add("PUSH", new PushCommand());
             Add("JP", new JumpCommand());
-            Add("JZ", new CommandBase());
-            Add("JNZ", new CommandBase());
-            Add("INKEY", new CommandBase());
+            Add("CALL", new CallCommand());
+            Add("RET", new ReturnCommand());
+            Add("STORE", new StoreCommand());
+            Add("LOAD", new LoadCommand());
+            Add("CMP", new CompareCommand());
+            Add("INC", new IncrementCommand());
+            Add("DEC", new DecrementCommand());
+            Add("JZ", new JumpZeroCommand());
+            Add("JNZ", new JumpNotZeroCommand());
+            Add("CALLZ", new CallZeroCommand());
+            Add("CALLNZ", new CallNotZeroCommand());
+            Add("WINDOW", new WindowCommand());
+
+            Add("MAPLOAD", new CommandBase());
             Add("MAPVIEW", new CommandBase());
             Add("MAPRENDER", new CommandBase());
+            Add("INKEY", new CommandBase());
         }
     }
 }

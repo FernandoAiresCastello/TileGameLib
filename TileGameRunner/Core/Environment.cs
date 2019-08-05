@@ -9,7 +9,7 @@ namespace TileGameRunner.Core
 {
     public class Environment
     {
-        public GameWindow Window { get; private set; }
+        public GameWindow Window { get; set; }
         public Variables Variables { get; private set; } = new Variables();
 
         public Environment()
