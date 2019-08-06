@@ -12,14 +12,13 @@ namespace TileGameRunner.Commands
     {
         public override void Execute(List<string> param)
         {
-            if (Environment.Window != null)
+            if (Environment.HasWindow())
                 throw new ScriptException("Window already opened");
 
             int rows = PopInt();
             int cols = PopInt();
 
-            Environment.Window = new GameWindow(cols, rows);
-            Environment.Window.Show();
+            Environment.CreateWindow(cols, rows);
         }
     }
 }

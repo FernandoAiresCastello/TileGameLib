@@ -25,41 +25,26 @@ namespace TileGameRunner.Commands
 
         public void Jump(string label)
         {
-            AssertParamLabel(label);
+            AssertLabel(label);
             Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
             Interpreter.Branching = true;
         }
 
         public void Call(string label)
         {
-            AssertParamLabel(label);
+            AssertLabel(label);
             Interpreter.CallStack.Push(Interpreter.ProgramPtr);
             Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
             Interpreter.Branching = true;
         }
 
-        public void AssertParamVariable(string param)
+        public void AssertVariable(string param)
         {
             if (!param.StartsWith("$"))
                 throw new ScriptException("Expected a variable name");
         }
 
-        public void AssertParamInt(string param)
-        {
-            bool ok = true;
-
-            if (param.StartsWith("0x"))
-                ok = param.ToUpper().All(c => (c >= '0' && c <= '9') || c >= 'A' && c <= 'F');
-            else if (param.StartsWith("0b"))
-                ok = param.All(c => c == '0' || c == '1');
-            else
-                ok = param.All(c => c >= '0' || c <= '9');
-
-            if (!ok)
-                throw new ScriptException("Expected an integer number");
-        }
-
-        public void AssertParamLabel(string param)
+        public void AssertLabel(string param)
         {
             if (!Interpreter.Labels.HasLabel(param))
                 throw new ScriptException($"Label {param} not found");

@@ -54,11 +54,12 @@ namespace TileGameRunner.Core
             Add("CALLZ", new CallZeroCommand());
             Add("CALLNZ", new CallNotZeroCommand());
             Add("WINDOW", new WindowCommand());
-
+            
             Add("MAPLOAD", new CommandBase());
             Add("MAPVIEW", new CommandBase());
-            Add("MAPRENDER", new CommandBase());
-            Add("INKEY", new CommandBase());
+            Add("MAPOFF", new CommandBase());
+            Add("SHOWMAP", new CommandBase());
+            Add("HIDEMAP", new CommandBase());
         }
     }
 }

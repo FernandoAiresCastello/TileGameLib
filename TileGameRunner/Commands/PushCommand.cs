@@ -11,7 +11,6 @@ namespace TileGameRunner.Commands
         public override void Execute(List<string> param)
         {
             string value = param[0];
-            AssertParamInt(value);
             Interpreter.ParamStack.Push(value);
         }
     }

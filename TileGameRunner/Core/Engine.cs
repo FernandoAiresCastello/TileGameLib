@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TileGameRunner.Exceptions;
 
 namespace TileGameRunner.Core
@@ -11,10 +12,9 @@ namespace TileGameRunner.Core
     public class Engine
     {
         private readonly string MainScriptFile = "main.prg";
+        private readonly int CycleInterval = 100;
 
-        private ProjectArchive ProjectArchive;
-        private Interpreter Interpreter;
-        private Environment Environment;
+        private readonly ProjectArchive ProjectArchive;
         private bool Started = false;
 
         public Engine(string projectPath)
@@ -34,10 +34,8 @@ namespace TileGameRunner.Core
                 throw new EngineException("Engine has already started");
 
             Started = true;
-            Environment = new Environment();
-            Script mainScript = ProjectArchive.LoadScript(MainScriptFile);
-            Interpreter = new Interpreter(Environment, mainScript);
-            Interpreter.Run();
+
+            new Interpreter(new Environment(ProjectArchive), ProjectArchive.LoadScript(MainScriptFile), CycleInterval).Run();
         }
     }
 }

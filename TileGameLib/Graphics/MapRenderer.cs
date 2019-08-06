@@ -13,6 +13,7 @@ namespace TileGameLib.Graphics
     {
         public ObjectMap Map { set; get; }
         public bool AnimationEnabled { set; get; }
+        public bool AutoRefresh { set; get; }
         public Tile OutOfBoundsTile { set; get; }
 
         public int RefreshInterval
@@ -57,6 +58,7 @@ namespace TileGameLib.Graphics
             RenderSingleLayer = false;
             SingleLayerToRender = 0;
 
+            AutoRefresh = true;
             RefreshTimer = new Timer();
             RefreshTimer.Interval = DefaultRefreshInterval;
             RefreshTimer.Tick += RefreshTimer_Tick;
@@ -83,7 +85,8 @@ namespace TileGameLib.Graphics
 
         private void RefreshTimer_Tick(object sender, EventArgs e)
         {
-            Render();
+            if (AutoRefresh)
+                Render();
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)

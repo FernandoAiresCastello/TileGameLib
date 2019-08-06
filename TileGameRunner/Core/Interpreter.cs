@@ -18,17 +18,22 @@ namespace TileGameRunner.Core
         public bool Running { get; set; } = false;
         public bool Branching { get; set; } = false;
         public int ProgramPtr { get; set; } = 0;
+        public Script Script { get; set; }
 
+        private readonly Timer CycleTimer;
         private readonly Environment Environment;
-        private readonly Script Script;
         private readonly CommandDictionary CommandDict;
 
-        public Interpreter(Environment env, Script script)
+        public Interpreter(Environment env, Script script, int cycleInterval)
         {
             Script = script;
             Environment = env;
             CommandDict = new CommandDictionary(this, env);
             FindLabels();
+
+            CycleTimer = new Timer();
+            CycleTimer.Interval = cycleInterval;
+            CycleTimer.Tick += CycleTimer_Tick;
         }
 
         private void FindLabels()
@@ -65,35 +70,44 @@ namespace TileGameRunner.Core
 
             Running = true;
             Branching = false;
+            CycleTimer.Start();
+        }
 
+        private void CycleTimer_Tick(object sender, EventArgs e)
+        {
+            ExecuteCycle();
+
+            if (!Running)
+                CycleTimer.Stop();
+        }
+
+        private void ExecuteCycle()
+        {
             try
             {
-                while (Running)
+                ScriptLine line = Script.Lines[ProgramPtr];
+                if (!line.IsLabel() && !line.IsComment())
+                    InterpretCommand(line);
+
+                if (Running)
                 {
-                    ScriptLine line = Script.Lines[ProgramPtr];
-                    if (!line.IsLabel() && !line.IsComment())
-                        InterpretCommand(line);
-
-                    if (Running)
-                    {
-                        if (Branching)
-                            Branching = false;
-                        else
-                            ProgramPtr++;
-                    }
-
-                    if (ProgramPtr < 0 || ProgramPtr >= Script.Lines.Count)
-                        Running = false;
+                    if (Branching)
+                        Branching = false;
+                    else
+                        ProgramPtr++;
                 }
+
+                if (ProgramPtr < 0 || ProgramPtr >= Script.Lines.Count)
+                    Running = false;
             }
-            catch (ScriptException e)
+            catch (ScriptException ex)
             {
-                Alert.Error(e.Message + "\n" + Script.Lines[ProgramPtr].ToString());
+                Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPtr].ToString());
                 Application.Exit();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Alert.Error(e.Message);
+                Alert.Error(ex.Message);
                 Application.Exit();
             }
         }

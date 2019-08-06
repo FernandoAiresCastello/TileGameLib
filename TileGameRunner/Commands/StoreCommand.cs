@@ -11,7 +11,7 @@ namespace TileGameRunner.Commands
         public override void Execute(List<string> param)
         {
             string variable = param[0];
-            AssertParamVariable(variable);
+            AssertVariable(variable);
             Environment.Variables.Set(VariableName(variable), PopStr());
         }
     }
