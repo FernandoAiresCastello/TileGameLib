@@ -17,7 +17,6 @@ namespace TileGameRunner.Windows
     {
         private static readonly string SettingsFile = "TileGameRunner.ini";
 
-        private Engine Engine;
         private string InitialPath;
 
         public BootloaderWindow()
@@ -50,6 +49,13 @@ namespace TileGameRunner.Windows
                 RunProject(file);
         }
 
+        private void BtnDebug_Click(object sender, EventArgs e)
+        {
+            string file = LoadScript();
+            if (file != null)
+                DebugScript(file);
+        }
+
         private string LoadProject()
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -64,8 +70,24 @@ namespace TileGameRunner.Windows
         private void RunProject(string path)
         {
             Hide();
-            Engine = new Engine(path);
-            Engine.Start();
+            new Engine().Run(new ProjectArchive(path));
+        }
+
+        private string LoadScript()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = InitialPath;
+            dialog.Filter = "Tile Game Maker script (*.prg)|*.prg";
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return null;
+
+            return dialog.FileName;
+        }
+
+        private void DebugScript(string path)
+        {
+            Hide();
+            new Engine().DebugScript(path);
         }
     }
 }

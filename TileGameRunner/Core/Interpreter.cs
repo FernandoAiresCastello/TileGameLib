@@ -55,14 +55,6 @@ namespace TileGameRunner.Core
             }
         }
 
-        public void Reset()
-        {
-            Environment.Reset();
-            ParamStack.Clear();
-            CallStack.Clear();
-            ProgramPtr = 0;
-        }
-
         public void Run()
         {
             if (Running)

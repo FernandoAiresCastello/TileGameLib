@@ -36,6 +36,12 @@ namespace TileGameRunner.Core
             Window.Show();
         }
 
+        public void CloseWindow()
+        {
+            if (Window != null)
+                Window.Close();
+        }
+
         public bool HasWindow()
         {
             return Window != null;

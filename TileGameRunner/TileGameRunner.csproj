@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\appicon.ico" />
+    <None Include="Resources\script_binary.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />
   </ItemGroup>

@@ -14,28 +14,32 @@ namespace TileGameRunner.Core
         private readonly string MainScriptFile = "main.prg";
         private readonly int CycleInterval = 100;
 
-        private readonly ProjectArchive ProjectArchive;
         private bool Started = false;
 
-        public Engine(string projectPath)
+        public Engine()
         {
-            if (!File.Exists(projectPath))
-                throw new EngineException($"Project file not found in {projectPath}");
-
-            ProjectArchive = new ProjectArchive(projectPath);
-
-            if (!ProjectArchive.Contains(MainScriptFile))
-                throw new EngineException($"Main script {MainScriptFile} not found");
         }
 
-        public void Start()
+        public void Run(ProjectArchive project)
+        {
+            if (Started)
+                throw new EngineException("Engine has already started");
+            if (!project.Contains(MainScriptFile))
+                throw new EngineException($"Main script {MainScriptFile} not found");
+
+            Started = true;
+
+            new Interpreter(new Environment(project), project.LoadScript(MainScriptFile), CycleInterval).Run();
+        }
+
+        public void DebugScript(string scriptFile)
         {
             if (Started)
                 throw new EngineException("Engine has already started");
 
             Started = true;
 
-            new Interpreter(new Environment(ProjectArchive), ProjectArchive.LoadScript(MainScriptFile), CycleInterval).Run();
+            new Interpreter(new Environment(null), new Script(scriptFile), CycleInterval).Run();
         }
     }
 }

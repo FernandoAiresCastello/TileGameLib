@@ -11,8 +11,8 @@ namespace TileGameRunner.Commands
         public override void Execute(List<string> param)
         {
             Interpreter.Running = false;
-            if (Environment.Window != null)
-                Environment.Window.Close();
+            if (Environment.HasWindow())
+                Environment.CloseWindow();
         }
     }
 }
