@@ -8,9 +8,9 @@ namespace TileGameRunner.Commands
 {
     public class PushCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
-            string value = param[0];
+            string value = immediateParams[0];
             Interpreter.ParamStack.Push(value);
         }
     }

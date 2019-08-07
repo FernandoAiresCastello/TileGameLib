@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace TileGameRunner.Commands
 {
-    public class StoreCommand : CommandBase
+    public class PrintCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string variable = immediateParams[0];
-            AssertVariable(variable);
-            Environment.SetVariable(variable, PopStr());
+            string text = Interpreter.ParamStack.PopStr();
+            Environment.Print(text);
         }
     }
 }

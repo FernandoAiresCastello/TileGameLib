@@ -10,7 +10,7 @@ namespace TileGameRunner.Core
 {
     public class ProjectArchive
     {
-        private readonly string Path;
+        public string Path { get; private set; }
 
         public ProjectArchive(string path)
         {

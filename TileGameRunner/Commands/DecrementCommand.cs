@@ -8,7 +8,7 @@ namespace TileGameRunner.Commands
 {
     public class DecrementCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
             int value = PopInt();
             Interpreter.ParamStack.Push((value - 1).ToString());

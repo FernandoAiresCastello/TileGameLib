@@ -8,7 +8,7 @@ namespace TileGameRunner.Commands
 {
     public class ExitCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
             Interpreter.Running = false;
             if (Environment.HasWindow())

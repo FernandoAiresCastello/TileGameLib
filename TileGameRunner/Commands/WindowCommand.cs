@@ -10,7 +10,7 @@ namespace TileGameRunner.Commands
 {
     public class WindowCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
             if (Environment.HasWindow())
                 throw new ScriptException("Window already opened");

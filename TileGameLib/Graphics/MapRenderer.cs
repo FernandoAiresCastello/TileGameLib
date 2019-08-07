@@ -72,6 +72,18 @@ namespace TileGameLib.Graphics
             AnimationTimer.Start();
         }
 
+        public void Start()
+        {
+            RefreshTimer.Start();
+            AnimationTimer.Start();
+        }
+
+        public void Stop()
+        {
+            RefreshTimer.Stop();
+            AnimationTimer.Stop();
+        }
+
         public void SetRenderSingleLayer(bool renderSingleLayer, int layer)
         {
             RenderSingleLayer = renderSingleLayer;

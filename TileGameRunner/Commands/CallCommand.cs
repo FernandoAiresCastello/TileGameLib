@@ -8,9 +8,9 @@ namespace TileGameRunner.Commands
 {
     public class CallCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
-            string label = param[0];
+            string label = immediateParams[0];
             Call(label);
         }
     }

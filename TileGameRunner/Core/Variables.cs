@@ -21,12 +21,12 @@ namespace TileGameRunner.Core
             Vars.Clear();
         }
 
-        public void Set(string name, string value)
+        public void Set(string name, object value)
         {
             if (Vars.ContainsKey(name))
                 Vars.Remove(name);
 
-            Vars.Add(name, value);
+            Vars.Add(name, value.ToString());
         }
 
         public string GetStr(string name)

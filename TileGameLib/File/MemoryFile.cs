@@ -27,6 +27,11 @@ namespace TileGameLib.File
             }
         }
 
+        public MemoryFile(string path)
+        {
+            Bytes = System.IO.File.ReadAllBytes(path).ToList();
+        }
+
         public byte[] ToByteArray()
         {
             return Bytes.ToArray();

@@ -106,9 +106,6 @@
     <Compile Include="Windows\ScriptInputWindow.Designer.cs">
       <DependentUpon>ScriptInputWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\DebugWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Windows\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MapLoadCommand.cs" />
+    <Compile Include="Commands\PrintCommand.cs" />
+    <Compile Include="Commands\ProjectCommand.cs" />
+    <Compile Include="Commands\NopCommand.cs" />
     <Compile Include="Commands\CallCommand.cs" />
     <Compile Include="Commands\CallNotZeroCommand.cs" />
     <Compile Include="Commands\CallZeroCommand.cs" />
@@ -72,6 +76,12 @@
     <Compile Include="Exceptions\EngineException.cs" />
     <Compile Include="Exceptions\InterpreterException.cs" />
     <Compile Include="Exceptions\ScriptException.cs" />
+    <Compile Include="Windows\DebuggerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\DebuggerWindow.Designer.cs">
+      <DependentUpon>DebuggerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +112,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Windows\DebuggerWindow.resx">
+      <DependentUpon>DebuggerWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

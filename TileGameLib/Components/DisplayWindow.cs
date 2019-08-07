@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
@@ -16,6 +17,7 @@ namespace TileGameLib.Components
     public partial class DisplayWindow : Form
     {
         public TiledDisplay Display { get; private set; }
+        public HashSet<Keys> KeysPressed { get; private set; } = new HashSet<Keys>();
         public GraphicsAdapter Graphics => Display.Graphics;
 
         public bool Fullscreen
@@ -42,8 +44,7 @@ namespace TileGameLib.Components
         protected Point OriginalLocation;
         protected bool IsFullscreen;
 
-        public DisplayWindow(int cols, int rows)
-            : this(cols, rows, false, false)
+        public DisplayWindow(int cols, int rows) : this(cols, rows, false, false)
         {
         }
 
@@ -59,6 +60,7 @@ namespace TileGameLib.Components
             Border = border;
             StartPosition = FormStartPosition.CenterScreen;
             KeyDown += DisplayWindow_KeyDown;
+            KeyUp += DisplayWindow_KeyUp;
             Display.MouseDown += DisplayWindow_MouseDown;
         }
 
@@ -67,19 +69,26 @@ namespace TileGameLib.Components
             return Text;
         }
 
-        protected virtual void HandleKeyEvent(KeyEventArgs e)
+        public bool IsKeyPressed(Keys key)
         {
-            throw new NotImplementedException("HandleKeyEvent must be implemented in a subclass");
+            return KeysPressed.Contains(key);
         }
 
-        protected virtual void HandleMouseEvent(MouseEventArgs e)
+        protected virtual void HandleKeyDownEvent(KeyEventArgs e)
         {
-            throw new NotImplementedException("HandleMouseEvent must be implemented in a subclass");
+        }
+
+        protected virtual void HandleKeyUpEvent(KeyEventArgs e)
+        {
+        }
+
+        protected virtual void HandleMouseDownEvent(MouseEventArgs e)
+        {
         }
 
         protected void DisplayWindow_MouseDown(object sender, MouseEventArgs e)
         {
-            HandleMouseEvent(e);
+            HandleMouseDownEvent(e);
         }
 
         protected void DisplayWindow_KeyDown(object sender, KeyEventArgs e)
@@ -94,7 +103,16 @@ namespace TileGameLib.Components
                 }
             }
             else
-                HandleKeyEvent(e);
+            {
+                KeysPressed.Add(e.KeyCode);
+                HandleKeyDownEvent(e);
+            }
+        }
+
+        private void DisplayWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            KeysPressed.Remove(e.KeyCode);
+            HandleKeyUpEvent(e);
         }
 
         protected void SwitchToWindowedMode()

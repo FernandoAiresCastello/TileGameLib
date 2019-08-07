@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameRunner.Exceptions;
+using TileGameRunner.Windows;
 
 namespace TileGameRunner.Core
 {
@@ -39,7 +40,7 @@ namespace TileGameRunner.Core
 
             Started = true;
 
-            new Interpreter(new Environment(null), new Script(scriptFile), CycleInterval).Run();
+            new DebuggerWindow(new Interpreter(new Environment(null), new Script(scriptFile))).Show();
         }
     }
 }

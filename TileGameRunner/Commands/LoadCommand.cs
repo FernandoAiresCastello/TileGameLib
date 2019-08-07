@@ -8,11 +8,11 @@ namespace TileGameRunner.Commands
 {
     public class LoadCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
-            string variable = param[0];
+            string variable = immediateParams[0];
             AssertVariable(variable);
-            string value = Environment.Variables.GetStr(VariableName(variable));
+            string value = Environment.GetVariable(variable);
             Interpreter.ParamStack.Push(value);
         }
     }

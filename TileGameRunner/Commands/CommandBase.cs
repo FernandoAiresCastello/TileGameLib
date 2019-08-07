@@ -13,12 +13,13 @@ namespace TileGameRunner.Commands
     {
         public Interpreter Interpreter { set; get; }
         public Environment Environment { set; get; }
+        public Stack ParamStack => Interpreter.ParamStack;
 
         public CommandBase()
         {
         }
 
-        public virtual void Execute(List<string> param)
+        public virtual void Execute(List<string> immediateParams)
         {
             throw new ScriptException("Command not implemented");
         }
@@ -48,11 +49,6 @@ namespace TileGameRunner.Commands
         {
             if (!Interpreter.Labels.HasLabel(param))
                 throw new ScriptException($"Label {param} not found");
-        }
-
-        public string VariableName(string param)
-        {
-            return param.Substring(1);
         }
 
         public int PopInt()

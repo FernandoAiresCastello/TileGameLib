@@ -9,7 +9,7 @@ namespace TileGameRunner.Commands
 {
     public class ReturnCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
             if (Interpreter.CallStack.Count == 0)
                 throw new ScriptException("Can't return. Call stack empty");

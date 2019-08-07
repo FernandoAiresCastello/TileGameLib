@@ -8,7 +8,7 @@ namespace TileGameRunner.Commands
 {
     public class CompareCommand : CommandBase
     {
-        public override void Execute(List<string> param)
+        public override void Execute(List<string> immediateParams)
         {
             int value2 = PopInt();
             int value1 = PopInt();

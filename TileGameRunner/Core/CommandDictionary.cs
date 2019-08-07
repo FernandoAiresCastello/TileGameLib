@@ -30,7 +30,7 @@ namespace TileGameRunner.Core
             return Commands[name];
         }
 
-        private void Add(string name, CommandBase command)
+        private void Set(string name, CommandBase command)
         {
             command.Interpreter = Interpreter;
             command.Environment = Environment;
@@ -39,27 +39,25 @@ namespace TileGameRunner.Core
 
         private void InitializeCommands()
         {
-            Add("EXIT", new ExitCommand());
-            Add("PUSH", new PushCommand());
-            Add("JP", new JumpCommand());
-            Add("CALL", new CallCommand());
-            Add("RET", new ReturnCommand());
-            Add("STORE", new StoreCommand());
-            Add("LOAD", new LoadCommand());
-            Add("CMP", new CompareCommand());
-            Add("INC", new IncrementCommand());
-            Add("DEC", new DecrementCommand());
-            Add("JZ", new JumpZeroCommand());
-            Add("JNZ", new JumpNotZeroCommand());
-            Add("CALLZ", new CallZeroCommand());
-            Add("CALLNZ", new CallNotZeroCommand());
-            Add("WINDOW", new WindowCommand());
-            
-            Add("MAPLOAD", new CommandBase());
-            Add("MAPVIEW", new CommandBase());
-            Add("MAPOFF", new CommandBase());
-            Add("SHOWMAP", new CommandBase());
-            Add("HIDEMAP", new CommandBase());
+            Set("NOP", new NopCommand());
+            Set("PROJECT", new ProjectCommand());
+            Set("EXIT", new ExitCommand());
+            Set("JP", new JumpCommand());
+            Set("JZ", new JumpZeroCommand());
+            Set("JNZ", new JumpNotZeroCommand());
+            Set("CALL", new CallCommand());
+            Set("CALLZ", new CallZeroCommand());
+            Set("CALLNZ", new CallNotZeroCommand());
+            Set("RET", new ReturnCommand());
+            Set("PUSH", new PushCommand());
+            Set("STORE", new StoreCommand());
+            Set("LOAD", new LoadCommand());
+            Set("INC", new IncrementCommand());
+            Set("DEC", new DecrementCommand());
+            Set("CMP", new CompareCommand());
+            Set("WINDOW", new WindowCommand());
+            Set("MAPLOAD", new MapLoadCommand());
+            Set("PRINT", new PrintCommand());
         }
     }
 }

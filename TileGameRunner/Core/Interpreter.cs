@@ -7,11 +7,13 @@ using System.Windows.Forms;
 using TileGameLib.GameElements;
 using TileGameLib.Util;
 using TileGameRunner.Exceptions;
+using TileGameRunner.Windows;
 
 namespace TileGameRunner.Core
 {
     public class Interpreter
     {
+        public Environment Environment { get; private set; }
         public ScriptLabels Labels { get; private set; } = new ScriptLabels();
         public Stack<int> CallStack { get; private set; } = new Stack<int>();
         public Stack ParamStack { get; private set; } = new Stack();
@@ -21,10 +23,9 @@ namespace TileGameRunner.Core
         public Script Script { get; set; }
 
         private readonly Timer CycleTimer;
-        private readonly Environment Environment;
         private readonly CommandDictionary CommandDict;
 
-        public Interpreter(Environment env, Script script, int cycleInterval)
+        public Interpreter(Environment env, Script script, int cycleInterval = 0)
         {
             Script = script;
             Environment = env;
@@ -55,13 +56,21 @@ namespace TileGameRunner.Core
             }
         }
 
+        public void Reset()
+        {
+            Environment.Reset();
+            CallStack.Clear();
+            ParamStack.Clear();
+            Branching = false;
+            ProgramPtr = 0;
+        }
+
         public void Run()
         {
             if (Running)
                 throw new InterpreterException("Interpreter is already running");
 
             Running = true;
-            Branching = false;
             CycleTimer.Start();
         }
 
@@ -73,7 +82,7 @@ namespace TileGameRunner.Core
                 CycleTimer.Stop();
         }
 
-        private void ExecuteCycle()
+        public void ExecuteCycle()
         {
             try
             {
