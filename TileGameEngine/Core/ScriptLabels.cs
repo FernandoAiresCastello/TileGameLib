@@ -33,5 +33,15 @@ namespace TileGameEngine.Core
         {
             return Labels.ContainsKey(label);
         }
+
+        public List<string> ToList()
+        {
+            List<string> list = new List<string>();
+
+            foreach (var label in Labels.AsEnumerable())
+                list.Add(label.Value + " " + label.Key);
+
+            return list;
+        }
     }
 }

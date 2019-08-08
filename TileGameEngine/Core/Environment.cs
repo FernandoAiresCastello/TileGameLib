@@ -14,12 +14,16 @@ namespace TileGameEngine.Core
 {
     public class Environment
     {
-        private readonly Variables Variables = new Variables();
+        public Variables Variables { get; private set; } = new Variables();
 
         private ProjectArchive ProjectArchive;
         private GameWindow Window;
         private ObjectMap Map;
         private MapRenderer MapRenderer;
+
+        public Environment() : this(null)
+        {
+        }
 
         public Environment(ProjectArchive archive)
         {
@@ -32,13 +36,13 @@ namespace TileGameEngine.Core
             Variables.Set("env.current_map_file", "");
             Variables.Set("env.map_viewport_x", 0);
             Variables.Set("env.map_viewport_y", 0);
-            Variables.Set("env.map_viewport_width", Window.Graphics.Cols);
-            Variables.Set("env.map_viewport_height", Window.Graphics.Rows);
+            Variables.Set("env.map_viewport_width", 0);
+            Variables.Set("env.map_viewport_height", 0);
             Variables.Set("env.map_offset_x", 0);
             Variables.Set("env.map_offset_y", 0);
             Variables.Set("env.text_cursor_x", 0);
             Variables.Set("env.text_cursor_y", 0);
-            Variables.Set("env.text_forecolor", Window.Graphics.Palette.Size - 1);
+            Variables.Set("env.text_forecolor", 0);
             Variables.Set("env.text_backcolor", 0);
         }
 
@@ -64,7 +68,11 @@ namespace TileGameEngine.Core
         public void SetProjectArchive(ProjectArchive archive)
         {
             ProjectArchive = archive;
-            Variables.Set("env.project_file", ProjectArchive != null ? ProjectArchive.Path : "");
+
+            if (ProjectArchive == null)
+                Variables.Delete("env.project_file");
+            else
+                Variables.Set("env.project_file", ProjectArchive.Path);
         }
 
         public bool HasProjectArchive()

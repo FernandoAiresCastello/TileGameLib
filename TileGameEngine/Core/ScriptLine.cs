@@ -10,22 +10,34 @@ namespace TileGameEngine.Core
     {
         public string Command { set; get; }
         public List<string> Params { get; private set; } = new List<string>();
-        public string Param => Params.Count > 0 ? Params[0] : null;
+        public int LineNumber { set; get; }
         public int SourceLineNumber { set; get; }
 
-        public ScriptLine(string commandName, int sourceLineNumber)
+        public ScriptLine(string commandName, int lineNumber, int sourceLineNumber)
         {
             Command = commandName;
+            LineNumber = lineNumber;
             SourceLineNumber = sourceLineNumber;
         }
 
         public override string ToString()
         {
-            StringBuilder paramList = new StringBuilder();
-            for (int i = 0; i < Param.Length; i++)
-                paramList.Append(Param[i] + (i < Param.Length - 1 ? ", " : ""));
+            return "[line " + SourceLineNumber + "] " + Command + " " + ParamsToString();
+        }
 
-            return "[line " + SourceLineNumber + "] " + Command + " " + paramList;
+        public string ToDebuggerString()
+        {
+            return LineNumber + " " + Command + " " + ParamsToString();
+        }
+
+        private string ParamsToString()
+        {
+            StringBuilder paramList = new StringBuilder();
+
+            for (int i = 0; i < Params.Count; i++)
+                paramList.Append(Params[i] + (i < Params.Count - 1 ? ", " : ""));
+
+            return paramList.ToString();
         }
 
         public bool IsLabel()

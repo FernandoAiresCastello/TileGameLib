@@ -9,36 +9,47 @@ namespace TileGameEngine.Core
     public class Script
     {
         public List<ScriptLine> Lines { get; private set; } = new List<ScriptLine>();
+        public string SourceCode { get; private set; }
 
         public static readonly char LineSeparator = '\n';
         public static readonly char NameParamSeparator = ' ';
 
-        public Script(string script)
+        public Script(string sourceCode)
         {
+            SourceCode = sourceCode;
+
             Lines.Clear();
-            string[] lines = script.Split(LineSeparator);
+
             int lineNumber = 0;
+            int sourceLineNumber = 0;
+            string[] lines = sourceCode.Split(LineSeparator);
 
             foreach (string line in lines)
             {
+                sourceLineNumber++;
+
                 string trimmedLine = line.Trim();
                 string[] commandParam = trimmedLine.Split(NameParamSeparator);
 
                 if (commandParam.Length > 0)
                 {
                     string name = commandParam[0].Trim();
-                    ScriptLine scriptLine = new ScriptLine(name, lineNumber);
 
-                    if (!scriptLine.IsComment())
+                    if (name.Length > 0)
                     {
-                        for (int i = 1; i < commandParam.Length; i++)
-                            scriptLine.Params.Add(commandParam[i].Trim());
+                        ScriptLine scriptLine = new ScriptLine(name, lineNumber, sourceLineNumber);
 
-                        Lines.Add(scriptLine);
+                        if (!scriptLine.IsComment())
+                        {
+                            for (int i = 1; i < commandParam.Length; i++)
+                                scriptLine.Params.Add(commandParam[i].Trim());
+
+                            Lines.Add(scriptLine);
+
+                            lineNumber++;
+                        }
                     }
                 }
-
-                lineNumber++;
             }
         }
     }

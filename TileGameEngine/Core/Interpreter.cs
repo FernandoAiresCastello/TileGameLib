@@ -22,6 +22,8 @@ namespace TileGameEngine.Core
         public int ProgramPtr { get; set; } = 0;
         public Script Script { get; set; }
 
+        public string CurrentLine => Script.Lines[ProgramPtr].ToDebuggerString();
+
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
 
@@ -30,11 +32,21 @@ namespace TileGameEngine.Core
             Script = script;
             Environment = env;
             CommandDict = new CommandDictionary(this, env);
-            FindLabels();
+
+            try
+            {
+                FindLabels();
+            }
+            catch (ScriptException ex)
+            {
+                Alert.Error(ex.Message);
+                Application.Exit();
+            }
 
             CycleTimer = new Timer();
-            CycleTimer.Interval = cycleInterval;
             CycleTimer.Tick += CycleTimer_Tick;
+            if (cycleInterval > 0)
+                CycleTimer.Interval = cycleInterval;
         }
 
         private void FindLabels()
@@ -48,10 +60,11 @@ namespace TileGameEngine.Core
                 if (line.IsLabel())
                 {
                     string label = line.Command.Substring(1);
-                    if (Labels.HasLabel(label))
-                        throw new ScriptException($"Duplicate label {label}");
 
-                    Labels.Add(label, i + 1);
+                    if (Labels.HasLabel(label))
+                        throw new ScriptException("Duplicate label: " + label);
+
+                    Labels.Add(label, i);
                 }
             }
         }
@@ -72,6 +85,14 @@ namespace TileGameEngine.Core
 
             Running = true;
             CycleTimer.Start();
+        }
+
+        public void Debug()
+        {
+            if (Running)
+                throw new InterpreterException("Interpreter is already running");
+
+            Running = true;
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)
@@ -104,12 +125,10 @@ namespace TileGameEngine.Core
             catch (ScriptException ex)
             {
                 Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPtr].ToString());
-                Application.Exit();
             }
             catch (Exception ex)
             {
                 Alert.Error(ex.Message);
-                Application.Exit();
             }
         }
 

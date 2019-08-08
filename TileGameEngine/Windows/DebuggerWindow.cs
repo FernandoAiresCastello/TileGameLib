@@ -16,15 +16,19 @@ namespace TileGameEngine.Windows
     {
         private Interpreter Interpreter;
 
-        public DebuggerWindow()
+        public DebuggerWindow() : this(null)
         {
-            InitializeComponent();
-            Shown += DebuggerWindow_Shown;
         }
 
         public DebuggerWindow(Interpreter interpreter)
         {
-            Interpreter = interpreter;
+            InitializeComponent();
+
+            if (interpreter != null)
+            {
+                Interpreter = interpreter;
+                Shown += DebuggerWindow_Shown;
+            }
         }
 
         private void DebuggerWindow_Shown(object sender, EventArgs e)
@@ -34,10 +38,10 @@ namespace TileGameEngine.Windows
 
         private void MiExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
         }
 
-        private void MiReset_Click(object sender, EventArgs e)
+        private void BtnReset_Click(object sender, EventArgs e)
         {
             Reset();
         }
@@ -47,19 +51,32 @@ namespace TileGameEngine.Windows
             ExecuteCycle();
         }
 
-        private void MiExecute_Click(object sender, EventArgs e)
+        private void BtnSkip_Click(object sender, EventArgs e)
         {
-            ExecuteCycle();
+            SkipCurrentLine();
         }
 
-        private void BtnReset_Click(object sender, EventArgs e)
+        private void BtnJump_Click(object sender, EventArgs e)
         {
-            Reset();
+            JumpToSelectedLine();
         }
 
         public void Reset()
         {
             Interpreter.Reset();
+            Refresh();
+        }
+
+        public void SkipCurrentLine()
+        {
+            Interpreter.ProgramPtr++;
+            Refresh();
+        }
+
+        public void JumpToSelectedLine()
+        {
+            int line = LstScript.SelectedIndex;
+            Interpreter.ProgramPtr = line;
             Refresh();
         }
 
@@ -99,31 +116,50 @@ namespace TileGameEngine.Windows
         private void UpdateScriptView()
         {
             LstScript.Items.Clear();
+
+            foreach (ScriptLine line in Interpreter.Script.Lines)
+                LstScript.Items.Add(line.ToDebuggerString());
+
+            LstScript.SelectedIndex = Interpreter.ProgramPtr;
         }
 
         private void UpdateLabelsView()
         {
             LstLabels.Items.Clear();
+
+            foreach (string label in Interpreter.Labels.ToList())
+                LstLabels.Items.Add(label);
         }
 
         private void UpdateCurrentLineView()
         {
-            TxtCurrentLine.Text = "";
+            TxtCurrentLine.Text = Interpreter.CurrentLine;
         }
 
         private void UpdateParamStackView()
         {
             LstParamStack.Items.Clear();
+
+            foreach (string param in Interpreter.ParamStack.ToList())
+                LstParamStack.Items.Add(param);
         }
 
         private void UpdateCallStackView()
         {
             LstCallStack.Items.Clear();
+
+            foreach (int returnPtr in Interpreter.CallStack.ToList())
+                LstCallStack.Items.Add(returnPtr.ToString());
         }
 
         private void UpdateVariablesView()
         {
-            TxtVariables.Text = "";
+            StringBuilder vars = new StringBuilder();
+
+            foreach (string var in Interpreter.Environment.Variables.ToList())
+                vars.Append(var + "\r\n");
+
+            TxtVariables.Text = vars.ToString();
         }
     }
 }

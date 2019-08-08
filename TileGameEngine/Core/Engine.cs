@@ -12,6 +12,8 @@ namespace TileGameEngine.Core
 {
     public class Engine
     {
+        public Form ParentForm { set; get; }
+
         private readonly string MainScriptFile = "main.prg";
         private readonly int CycleInterval = 100;
 
@@ -30,7 +32,11 @@ namespace TileGameEngine.Core
 
             Started = true;
 
-            new Interpreter(new Environment(project), project.LoadScript(MainScriptFile), CycleInterval).Run();
+            Environment environment = new Environment(project);
+            Script mainScript = project.LoadScript(MainScriptFile);
+            Interpreter interpreter = new Interpreter(environment, mainScript, CycleInterval);
+
+            interpreter.Run();
         }
 
         public void DebugScript(string scriptFile)
@@ -40,7 +46,18 @@ namespace TileGameEngine.Core
 
             Started = true;
 
-            new DebuggerWindow(new Interpreter(new Environment(null), new Script(scriptFile))).Show();
+            string sourceCode = File.ReadAllText(scriptFile);
+            Script mainScript = new Script(sourceCode);
+            Environment environment = new Environment();
+            Interpreter interpreter = new Interpreter(environment, mainScript);
+            DebuggerWindow debugger = new DebuggerWindow(interpreter);
+
+            interpreter.Debug();
+
+            if (ParentForm != null)
+                debugger.ShowDialog(ParentForm);
+            else
+                debugger.Show();
         }
     }
 }

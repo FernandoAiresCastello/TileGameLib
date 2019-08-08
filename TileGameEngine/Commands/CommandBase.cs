@@ -34,7 +34,7 @@ namespace TileGameEngine.Commands
         public void Call(string label)
         {
             AssertLabel(label);
-            Interpreter.CallStack.Push(Interpreter.ProgramPtr);
+            Interpreter.CallStack.Push(Interpreter.ProgramPtr + 1);
             Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
             Interpreter.Branching = true;
         }

@@ -52,5 +52,15 @@ namespace TileGameEngine.Core
 
             return number;
         }
+
+        public List<string> ToList()
+        {
+            List<string> list = new List<string>();
+
+            foreach (string value in Values.AsEnumerable())
+                list.Add(value);
+
+            return list;
+        }
     }
 }
