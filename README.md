@@ -9,6 +9,18 @@ This repository contains a Visual Studio solution comprised of three C# projects
 
 - **TileGameMaker** is a Windows desktop application project built using TileGameLib that generates a .NET executable file. It contains several tools mainly focused on graphics editing and map design. It does not contain any game logic, which must be programmed separately.
 
-- **TileGameEngine** is another Windows desktop application which contains the implementation of an engine that can run game projects created with the TileGameMaker tool. It serves as a standalone application for distributing TileGameMaker games.
+- **TileGameEngine** is another Windows desktop application which contains the implementation of an engine that can run and debug game projects created with the TileGameMaker tool. Its core consists of an interpreter for TGML (TileGameMaker Language), which is a low-level, stack-based scripting language. This serves as a standalone application for distributing TileGameMaker games.
 
-This project is a spiritual successor of [TBRLGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
+#### Screenshots:
+
+*Tile Game Maker main window*
+
+<img src="/Screenshots/tile_game_maker.png?raw=true" />
+
+*Tile Game Engine start window*
+
+<img src="/Screenshots/engine_start.png?raw=true" />
+
+*Tile Game Engine debugger*
+
+<img src="/Screenshots/engine_debugger.png?raw=true" />
