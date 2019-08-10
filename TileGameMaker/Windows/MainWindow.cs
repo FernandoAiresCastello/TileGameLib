@@ -65,9 +65,9 @@ namespace TileGameMaker.Windows
 
         private void MiEditMainScript_Click(object sender, EventArgs e)
         {
-            ScriptInputWindow win = new ScriptInputWindow(MapEditor.MainScriptFile);
+            TextInputWindow win = new TextInputWindow(MapEditor.MainScriptFile);
             if (win.ShowDialog(this, MapEditor.GetMainScript()) == DialogResult.OK)
-                MapEditor.SetMainScript(win.Script);
+                MapEditor.SetMainScript(win.Text);
         }
     }
 }

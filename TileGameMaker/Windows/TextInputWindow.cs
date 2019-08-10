@@ -12,33 +12,37 @@ namespace TileGameMaker.Windows
 {
     public partial class TextInputWindow : Form
     {
-        public string String => TxtString.Text;
+        public new string Text { get; private set; }
 
-        public TextInputWindow()
+        public TextInputWindow() : this("")
+        {
+        }
+
+        public TextInputWindow(string title)
         {
             InitializeComponent();
-            Shown += TextInputWindow_Shown;
+            base.Text = title;
         }
 
-        private void TextInputWindow_Shown(object sender, EventArgs e)
+        public DialogResult ShowDialog(Control parent, string text)
         {
-            TxtString.Focus();
-        }
-
-        private void TxtBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            Text = text;
+            TxtText.Text = text;
+            TxtText.Select(0, 0);
+            return ShowDialog(parent);
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)
         {
+            Text = TxtText.Text;
             DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

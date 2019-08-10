@@ -292,18 +292,18 @@ namespace TileGameMaker.Panels
         private void InputScript(int x, int y)
         {
             GameObject o = Map.GetObject(Layer, x, y);
-            ScriptInputWindow win = new ScriptInputWindow();
-            if (win.ShowDialog(this, o.Script) == DialogResult.OK)
-                o.Script = win.Script;
+            TextInputWindow win = new TextInputWindow($"Script / Data @{x},{y}");
+            if (win.ShowDialog(this, o.Extra) == DialogResult.OK)
+                o.Extra = win.Text;
         }
 
         private void InputText(int x, int y)
         {
-            TextInputWindow win = new TextInputWindow();
+            TextInputWindow win = new TextInputWindow($"Enter text to insert @{x},{y}");
             if (win.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            string[] lines = win.String.Replace("\r", "").Split('\n');
+            string[] lines = win.Text.Replace("\r", "").Split('\n');
 
             foreach (string line in lines)
             {
