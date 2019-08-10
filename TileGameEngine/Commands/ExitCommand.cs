@@ -10,9 +10,7 @@ namespace TileGameEngine.Commands
     {
         public override void Execute(List<string> immediateParams)
         {
-            Interpreter.Running = false;
-            if (Environment.HasWindow())
-                Environment.CloseWindow();
+            Interpreter.Stop();
         }
     }
 }

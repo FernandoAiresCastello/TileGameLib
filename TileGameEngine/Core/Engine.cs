@@ -43,6 +43,8 @@ namespace TileGameEngine.Core
         {
             if (Started)
                 throw new EngineException("Engine has already started");
+            if (!File.Exists(scriptFile))
+                throw new EngineException($"Script file {scriptFile} not found");
 
             Started = true;
 

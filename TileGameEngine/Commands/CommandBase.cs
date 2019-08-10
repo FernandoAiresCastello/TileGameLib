@@ -27,16 +27,14 @@ namespace TileGameEngine.Commands
         public void Jump(string label)
         {
             AssertLabel(label);
-            Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
-            Interpreter.Branching = true;
+            Interpreter.Branch(Interpreter.Labels.Get(label));
         }
 
         public void Call(string label)
         {
             AssertLabel(label);
-            Interpreter.CallStack.Push(Interpreter.ProgramPtr + 1);
-            Interpreter.ProgramPtr = Interpreter.Labels.Get(label);
-            Interpreter.Branching = true;
+            Interpreter.CallStack.Push(Interpreter.ProgramPointer + 1);
+            Interpreter.Branch(Interpreter.Labels.Get(label));
         }
 
         public void AssertVariable(string param)

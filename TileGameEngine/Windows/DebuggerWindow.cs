@@ -38,6 +38,11 @@ namespace TileGameEngine.Windows
 
         private void MiExit_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
+
+        private void MiBackToStart_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
@@ -63,21 +68,42 @@ namespace TileGameEngine.Windows
 
         public void Reset()
         {
-            Interpreter.Reset();
-            Refresh();
+            if (Alert.Confirm("Reset engine?"))
+            {
+                Interpreter.Reset();
+                Refresh();
+            }
         }
 
         public void SkipCurrentLine()
         {
-            Interpreter.ProgramPtr++;
-            Refresh();
+            if (Interpreter.Running)
+            {
+                Interpreter.Skip();
+                Refresh();
+            }
+            else
+            {
+                AlertExecutionFinishedThenSuggestReset();
+            }
         }
 
         public void JumpToSelectedLine()
         {
-            int line = LstScript.SelectedIndex;
-            Interpreter.ProgramPtr = line;
-            Refresh();
+            if (Interpreter.Running)
+            {
+                int line = LstScript.SelectedIndex;
+
+                if (line >= 0)
+                {
+                    Interpreter.SetProgramPointer(line);
+                    Refresh();
+                }
+            }
+            else
+            {
+                AlertExecutionFinishedThenSuggestReset();
+            }
         }
 
         public void ExecuteCycle()
@@ -89,11 +115,16 @@ namespace TileGameEngine.Windows
             }
             else
             {
-                if (Alert.Confirm("Execution finished. Reset?"))
-                {
-                    Interpreter.Reset();
-                    Refresh();
-                }
+                AlertExecutionFinishedThenSuggestReset();
+            }
+        }
+
+        private void AlertExecutionFinishedThenSuggestReset()
+        {
+            if (Alert.Confirm("Execution finished. Reset?"))
+            {
+                Interpreter.Reset();
+                Refresh();
             }
         }
 
@@ -116,11 +147,12 @@ namespace TileGameEngine.Windows
         private void UpdateScriptView()
         {
             LstScript.Items.Clear();
+            LstScript.Items.AddRange(Interpreter.ScriptLinesForDebugger.ToArray());
 
-            foreach (ScriptLine line in Interpreter.Script.Lines)
-                LstScript.Items.Add(line.ToDebuggerString());
-
-            LstScript.SelectedIndex = Interpreter.ProgramPtr;
+            if (LstScript.Items.Count > 0 && Interpreter.Running)
+                LstScript.SelectedIndex = Interpreter.ProgramPointer;
+            else
+                LstScript.SelectedIndex = -1;
         }
 
         private void UpdateLabelsView()
@@ -133,7 +165,7 @@ namespace TileGameEngine.Windows
 
         private void UpdateCurrentLineView()
         {
-            TxtCurrentLine.Text = Interpreter.CurrentLine;
+            TxtCurrentLine.Text = Interpreter.CurrentLineForDebugger;
         }
 
         private void UpdateParamStackView()

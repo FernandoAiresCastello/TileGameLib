@@ -32,6 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LstScript = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.BtnJump = new System.Windows.Forms.Button();
+            this.BtnSkip = new System.Windows.Forms.Button();
             this.BtnExecute = new System.Windows.Forms.Button();
             this.TxtCurrentLine = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -44,16 +47,14 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.LstLabels = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiExecute = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSkip = new System.Windows.Forms.Button();
-            this.BtnJump = new System.Windows.Forms.Button();
-            this.BtnReset = new System.Windows.Forms.Button();
-            this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiExecute = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiBackToStart = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -104,6 +105,37 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Current line";
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnReset.Location = new System.Drawing.Point(433, 48);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(84, 28);
+            this.BtnReset.TabIndex = 4;
+            this.BtnReset.Text = "Reset";
+            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // BtnJump
+            // 
+            this.BtnJump.Location = new System.Drawing.Point(193, 49);
+            this.BtnJump.Name = "BtnJump";
+            this.BtnJump.Size = new System.Drawing.Size(84, 28);
+            this.BtnJump.TabIndex = 3;
+            this.BtnJump.Text = "Jump";
+            this.BtnJump.UseVisualStyleBackColor = true;
+            this.BtnJump.Click += new System.EventHandler(this.BtnJump_Click);
+            // 
+            // BtnSkip
+            // 
+            this.BtnSkip.Location = new System.Drawing.Point(103, 49);
+            this.BtnSkip.Name = "BtnSkip";
+            this.BtnSkip.Size = new System.Drawing.Size(84, 28);
+            this.BtnSkip.TabIndex = 2;
+            this.BtnSkip.Text = "Skip";
+            this.BtnSkip.UseVisualStyleBackColor = true;
+            this.BtnSkip.Click += new System.EventHandler(this.BtnSkip_Click);
             // 
             // BtnExecute
             // 
@@ -251,6 +283,24 @@
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiBackToStart,
+            this.MiExit});
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // MiExit
+            // 
+            this.MiExit.Name = "MiExit";
+            this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.X)));
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Text = "Quit";
+            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
+            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -259,8 +309,8 @@
             this.MiJump,
             this.MiReset});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.fileToolStripMenuItem.Text = "Control";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.fileToolStripMenuItem.Text = "Debug";
             // 
             // MiExecute
             // 
@@ -269,44 +319,6 @@
             this.MiExecute.Size = new System.Drawing.Size(196, 22);
             this.MiExecute.Text = "Execute current line";
             this.MiExecute.Click += new System.EventHandler(this.BtnExecute_Click);
-            // 
-            // MiReset
-            // 
-            this.MiReset.Name = "MiReset";
-            this.MiReset.Size = new System.Drawing.Size(196, 22);
-            this.MiReset.Text = "Reset";
-            this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // BtnSkip
-            // 
-            this.BtnSkip.Location = new System.Drawing.Point(103, 49);
-            this.BtnSkip.Name = "BtnSkip";
-            this.BtnSkip.Size = new System.Drawing.Size(84, 28);
-            this.BtnSkip.TabIndex = 2;
-            this.BtnSkip.Text = "Skip";
-            this.BtnSkip.UseVisualStyleBackColor = true;
-            this.BtnSkip.Click += new System.EventHandler(this.BtnSkip_Click);
-            // 
-            // BtnJump
-            // 
-            this.BtnJump.Location = new System.Drawing.Point(193, 49);
-            this.BtnJump.Name = "BtnJump";
-            this.BtnJump.Size = new System.Drawing.Size(84, 28);
-            this.BtnJump.TabIndex = 3;
-            this.BtnJump.Text = "Jump";
-            this.BtnJump.UseVisualStyleBackColor = true;
-            this.BtnJump.Click += new System.EventHandler(this.BtnJump_Click);
-            // 
-            // BtnReset
-            // 
-            this.BtnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnReset.Location = new System.Drawing.Point(433, 48);
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(84, 28);
-            this.BtnReset.TabIndex = 4;
-            this.BtnReset.Text = "Reset";
-            this.BtnReset.UseVisualStyleBackColor = true;
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // MiSkip
             // 
@@ -324,20 +336,20 @@
             this.MiJump.Text = "Jump to line";
             this.MiJump.Click += new System.EventHandler(this.BtnJump_Click);
             // 
-            // fileToolStripMenuItem1
+            // MiReset
             // 
-            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiExit});
-            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem1.Text = "File";
+            this.MiReset.Name = "MiReset";
+            this.MiReset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.MiReset.Size = new System.Drawing.Size(196, 22);
+            this.MiReset.Text = "Reset";
+            this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
-            // MiExit
+            // MiBackToStart
             // 
-            this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
-            this.MiExit.Text = "Exit";
-            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
+            this.MiBackToStart.Name = "MiBackToStart";
+            this.MiBackToStart.Size = new System.Drawing.Size(180, 22);
+            this.MiBackToStart.Text = "Close";
+            this.MiBackToStart.Click += new System.EventHandler(this.MiBackToStart_Click);
             // 
             // DebuggerWindow
             // 
@@ -355,7 +367,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DebuggerWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Debugger";
+            this.Text = "Tile Game Debugger";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -398,5 +410,6 @@
         private System.Windows.Forms.ToolStripMenuItem MiJump;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
+        private System.Windows.Forms.ToolStripMenuItem MiBackToStart;
     }
 }

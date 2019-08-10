@@ -11,10 +11,12 @@ using System.Windows.Forms;
 using TileGameLib.File;
 using TileGameEngine.Core;
 using TileGameEngine.Util;
+using TileGameEngine.Exceptions;
+using TileGameLib.Util;
 
 namespace TileGameEngine.Windows
 {
-    public partial class BootloaderWindow : Form
+    public partial class StartWindow : Form
     {
         private static readonly string SettingsFile = Config.ReadString("SettingsFile");
         private static readonly string ProjectFileFilter = "*." + Config.ReadString("ProjectFileExt");
@@ -24,12 +26,15 @@ namespace TileGameEngine.Windows
         private string ScriptToDebug;
         private string ProjectToLaunch;
 
-        public BootloaderWindow()
+        public StartWindow()
         {
             InitializeComponent();
             InitialPath = Application.StartupPath;
             if (File.Exists(SettingsFile))
                 ReadSettings();
+
+            if (ScriptToDebug != null)
+                DebugScript(ScriptToDebug);
         }
 
         private void ReadSettings()
@@ -67,7 +72,7 @@ namespace TileGameEngine.Windows
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = InitialPath;
-            dialog.Filter = $"Tile Game Maker project (${ProjectFileFilter})|${ProjectFileFilter}";
+            dialog.Filter = $"Tile Game Maker project ({ProjectFileFilter})|{ProjectFileFilter}";
 
             if (dialog.ShowDialog(this) != DialogResult.OK)
                 return null;
@@ -79,14 +84,21 @@ namespace TileGameEngine.Windows
         {
             Close();
 
-            new Engine().Run(new ProjectArchive(path));
+            try
+            {
+                new Engine().Run(new ProjectArchive(path));
+            }
+            catch (EngineException ex)
+            {
+                Alert.Error(ex.Message);
+            }
         }
 
         private string LoadScript()
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = InitialPath;
-            dialog.Filter = $"Tile Game Maker script (${ScriptFileFilter})|${ScriptFileFilter}";
+            dialog.Filter = $"Tile Game Maker script ({ScriptFileFilter})|{ScriptFileFilter}";
 
             if (dialog.ShowDialog(this) != DialogResult.OK)
                 return null;
@@ -96,9 +108,16 @@ namespace TileGameEngine.Windows
 
         private void DebugScript(string path)
         {
-            Engine engine = new Engine();
-            engine.ParentForm = this;
-            engine.DebugScript(path);
+            try
+            {
+                Engine engine = new Engine();
+                engine.ParentForm = this;
+                engine.DebugScript(path);
+            }
+            catch (EngineException ex)
+            {
+                Alert.Error(ex.Message);
+            }
         }
     }
 }

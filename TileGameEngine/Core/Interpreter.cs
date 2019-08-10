@@ -17,13 +17,14 @@ namespace TileGameEngine.Core
         public ScriptLabels Labels { get; private set; } = new ScriptLabels();
         public Stack<int> CallStack { get; private set; } = new Stack<int>();
         public Stack ParamStack { get; private set; } = new Stack();
-        public bool Running { get; set; } = false;
-        public bool Branching { get; set; } = false;
-        public int ProgramPtr { get; set; } = 0;
-        public Script Script { get; set; }
+        public bool Running { get; private set; } = false;
+        public bool Branching { get; private set; } = false;
+        public int ProgramPointer { get; private set; } = 0;
 
-        public string CurrentLine => Script.Lines[ProgramPtr].ToDebuggerString();
+        public List<string> ScriptLinesForDebugger => GetScriptLinesForDebugger();
+        public string CurrentLineForDebugger => GetCurrentLineForDebugger();
 
+        private readonly Script Script;
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
 
@@ -47,6 +48,34 @@ namespace TileGameEngine.Core
             CycleTimer.Tick += CycleTimer_Tick;
             if (cycleInterval > 0)
                 CycleTimer.Interval = cycleInterval;
+        }
+
+        private List<string> GetScriptLinesForDebugger()
+        {
+            List<string> lines = new List<string>();
+
+            foreach (ScriptLine line in Script.Lines)
+                lines.Add(line.ToDebuggerString());
+
+            return lines;
+        }
+
+        private string GetCurrentLineForDebugger()
+        {
+            if (Running)
+            {
+                if (ProgramPointer >= 0)
+                {
+                    if (ProgramPointer < Script.Lines.Count)
+                        return Script.Lines[ProgramPointer].ToDebuggerString();
+                    if (ProgramPointer >= Script.Lines.Count)
+                        return "Program pointer past end of script";
+                }
+
+                return "Invalid program pointer";
+            }
+
+            return "Execution finished";
         }
 
         private void FindLabels()
@@ -75,7 +104,8 @@ namespace TileGameEngine.Core
             CallStack.Clear();
             ParamStack.Clear();
             Branching = false;
-            ProgramPtr = 0;
+            Running = true;
+            ProgramPointer = 0;
         }
 
         public void Run()
@@ -107,7 +137,10 @@ namespace TileGameEngine.Core
         {
             try
             {
-                ScriptLine line = Script.Lines[ProgramPtr];
+                if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
+                    throw new InterpreterException("Program pointer past end of script");
+                    
+                ScriptLine line = Script.Lines[ProgramPointer];
                 if (!line.IsLabel() && !line.IsComment())
                     InterpretCommand(line);
 
@@ -116,15 +149,15 @@ namespace TileGameEngine.Core
                     if (Branching)
                         Branching = false;
                     else
-                        ProgramPtr++;
+                        ProgramPointer++;
                 }
 
-                if (ProgramPtr < 0 || ProgramPtr >= Script.Lines.Count)
+                if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
                     Running = false;
             }
             catch (ScriptException ex)
             {
-                Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPtr].ToString());
+                Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
             }
             catch (Exception ex)
             {
@@ -139,6 +172,34 @@ namespace TileGameEngine.Core
                 throw new ScriptException($"Unknown command: {command}");
 
             CommandDict.Get(command).Execute(line.Params);
+        }
+
+        public void Branch(int line)
+        {
+            SetProgramPointer(line);
+            Branching = true;
+        }
+
+        public void SetProgramPointer(int line)
+        {
+            if (line < 0 || line >= Script.Lines.Count)
+                throw new InterpreterException($"Can't branch to invalid script line {line}");
+
+            ProgramPointer = line;
+        }
+
+        public void Skip()
+        {
+            ProgramPointer++;
+            if (ProgramPointer >= Script.Lines.Count)
+                Running = false;
+        }
+
+        public void Stop()
+        {
+            Running = false;
+            if (Environment.HasWindow())
+                Environment.CloseWindow();
         }
     }
 }

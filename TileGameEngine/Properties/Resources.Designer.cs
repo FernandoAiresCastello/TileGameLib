@@ -73,6 +73,16 @@ namespace TileGameEngine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap handheld {
+            get {
+                object obj = ResourceManager.GetObject("handheld", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rocket {
             get {
                 object obj = ResourceManager.GetObject("rocket", resourceCulture);

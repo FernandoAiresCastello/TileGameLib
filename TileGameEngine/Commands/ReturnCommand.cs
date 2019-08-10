@@ -14,8 +14,7 @@ namespace TileGameEngine.Commands
             if (Interpreter.CallStack.Count == 0)
                 throw new ScriptException("Can't return. Call stack empty");
 
-            Interpreter.ProgramPtr = Interpreter.CallStack.Pop();
-            Interpreter.Branching = true;
+            Interpreter.Branch(Interpreter.CallStack.Pop());
         }
     }
 }

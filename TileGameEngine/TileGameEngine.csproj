@@ -88,11 +88,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Interpreter.cs" />
-    <Compile Include="Windows\BootloaderWindow.cs">
+    <Compile Include="Windows\StartWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\BootloaderWindow.Designer.cs">
-      <DependentUpon>BootloaderWindow.cs</DependentUpon>
+    <Compile Include="Windows\StartWindow.Designer.cs">
+      <DependentUpon>StartWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\ScriptLabels.cs" />
     <Compile Include="Program.cs" />
@@ -101,8 +101,8 @@
     <Compile Include="Core\Script.cs" />
     <Compile Include="Core\Stack.cs" />
     <Compile Include="Core\Variables.cs" />
-    <EmbeddedResource Include="Windows\BootloaderWindow.resx">
-      <DependentUpon>BootloaderWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\StartWindow.resx">
+      <DependentUpon>StartWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\appicon.ico" />
+    <None Include="Resources\handheld.png" />
     <None Include="Resources\script_binary.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />

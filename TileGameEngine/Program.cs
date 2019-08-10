@@ -14,7 +14,7 @@ namespace TileGameEngine
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BootloaderWindow());
+            Application.Run(new StartWindow());
         }
     }
 }
