@@ -11,4 +11,16 @@ This repository contains a Visual Studio solution comprised of three C# projects
 
 - **TileGameEngine** is another Windows desktop application which contains the implementation of an engine that can run game projects created with the TileGameMaker tool. It serves as a standalone application for distributing TileGameMaker games.
 
-This project is a spiritual successor of [TBRLGPT](https://github.com/FernandoAiresCastello/TBRLGPT).
+#### Screenshots:
+
+*Tile Game Maker main window*
+
+<img src="/Screenshots/tile_game_maker.png?raw=true" />
+
+*Tile Game Engine start window*
+
+<img src="/Screenshots/engine_start.png?raw=true" />
+
+*Tile Game Engine debugger*
+
+<img src="/Screenshots/engine_debugger.png?raw=true" />
