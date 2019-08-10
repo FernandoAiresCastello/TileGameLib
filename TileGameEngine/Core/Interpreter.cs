@@ -155,14 +155,23 @@ namespace TileGameEngine.Core
                 if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
                     Running = false;
             }
-            catch (ScriptException ex)
-            {
-                Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
-            }
-            catch (Exception ex)
+            catch (InterpreterException ex)
             {
                 Alert.Error(ex.Message);
             }
+            catch (ScriptException ex)
+            {
+                AlertCurrentLineException(ex);
+            }
+            catch (EnvironmentException ex)
+            {
+                AlertCurrentLineException(ex);
+            }
+        }
+
+        private void AlertCurrentLineException(Exception ex)
+        {
+            Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
         }
 
         private void InterpretCommand(ScriptLine line)
@@ -198,7 +207,7 @@ namespace TileGameEngine.Core
         public void Stop()
         {
             Running = false;
-            if (Environment.HasWindow())
+            if (Environment.HasWindow)
                 Environment.CloseWindow();
         }
     }

@@ -48,13 +48,13 @@
             this.LstLabels = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiClose = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExecute = new System.Windows.Forms.ToolStripMenuItem();
             this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
             this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
             this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiBackToStart = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -286,11 +286,18 @@
             // fileToolStripMenuItem1
             // 
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiBackToStart,
+            this.MiClose,
             this.MiExit});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // MiClose
+            // 
+            this.MiClose.Name = "MiClose";
+            this.MiClose.Size = new System.Drawing.Size(180, 22);
+            this.MiClose.Text = "Close";
+            this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
             // 
             // MiExit
             // 
@@ -298,7 +305,7 @@
             this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.X)));
             this.MiExit.Size = new System.Drawing.Size(180, 22);
-            this.MiExit.Text = "Quit";
+            this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
             // fileToolStripMenuItem
@@ -343,13 +350,6 @@
             this.MiReset.Size = new System.Drawing.Size(196, 22);
             this.MiReset.Text = "Reset";
             this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // MiBackToStart
-            // 
-            this.MiBackToStart.Name = "MiBackToStart";
-            this.MiBackToStart.Size = new System.Drawing.Size(180, 22);
-            this.MiBackToStart.Text = "Close";
-            this.MiBackToStart.Click += new System.EventHandler(this.MiBackToStart_Click);
             // 
             // DebuggerWindow
             // 
@@ -410,6 +410,6 @@
         private System.Windows.Forms.ToolStripMenuItem MiJump;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
-        private System.Windows.Forms.ToolStripMenuItem MiBackToStart;
+        private System.Windows.Forms.ToolStripMenuItem MiClose;
     }
 }

@@ -13,7 +13,7 @@ namespace TileGameEngine.Commands
         {
             string filename = ParamStack.PopStr();
 
-            if (Environment.HasProjectArchive())
+            if (Environment.HasProjectArchive)
                 Environment.LoadMapFromProjectArchive(filename);
             else
                 Environment.LoadMapFromCurrentFolder(filename);

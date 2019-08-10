@@ -39,8 +39,13 @@ namespace TileGameEngine.Core
 
         private void InitializeCommands()
         {
+            // Misc
             Set("NOP", new NopCommand());
-            Set("PROJECT", new ProjectCommand());
+
+            // Project
+            Set("PRJLOAD", new ProjectLoadCommand());
+
+            // Control flow
             Set("EXIT", new ExitCommand());
             Set("JP", new JumpCommand());
             Set("JZ", new JumpZeroCommand());
@@ -49,14 +54,23 @@ namespace TileGameEngine.Core
             Set("CALLZ", new CallZeroCommand());
             Set("CALLNZ", new CallNotZeroCommand());
             Set("RET", new ReturnCommand());
+
+            // Parameter stack
             Set("PUSH", new PushCommand());
             Set("STORE", new StoreCommand());
             Set("LOAD", new LoadCommand());
+
+            // Arithmetic
             Set("INC", new IncrementCommand());
             Set("DEC", new DecrementCommand());
             Set("CMP", new CompareCommand());
-            Set("WINDOW", new WindowCommand());
+            
+            // Object map
             Set("MAPLOAD", new MapLoadCommand());
+
+            // Graphics
+            Set("WINDOW", new WindowCommand());
+            Set("REFRESH", new RefreshCommand());
             Set("PRINT", new PrintCommand());
         }
     }

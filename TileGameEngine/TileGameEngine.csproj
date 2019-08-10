@@ -51,8 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\MapLoadCommand.cs" />
+    <Compile Include="Commands\RefreshCommand.cs" />
     <Compile Include="Commands\PrintCommand.cs" />
-    <Compile Include="Commands\ProjectCommand.cs" />
+    <Compile Include="Commands\ProjectLoadCommand.cs" />
     <Compile Include="Commands\NopCommand.cs" />
     <Compile Include="Commands\CallCommand.cs" />
     <Compile Include="Commands\CallNotZeroCommand.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Core\ScriptLine.cs" />
     <Compile Include="Core\Environment.cs" />
     <Compile Include="Exceptions\EngineException.cs" />
+    <Compile Include="Exceptions\EnvironmentException.cs" />
     <Compile Include="Exceptions\InterpreterException.cs" />
     <Compile Include="Exceptions\ScriptException.cs" />
     <Compile Include="Util\Config.cs" />

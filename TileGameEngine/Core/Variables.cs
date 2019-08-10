@@ -32,9 +32,6 @@ namespace TileGameEngine.Core
 
         public string GetStr(string name)
         {
-            if (!Contains(name))
-                throw new ScriptException("Variable not found: " + name);
-
             Vars.TryGetValue(name, out string value);
             return value;
         }

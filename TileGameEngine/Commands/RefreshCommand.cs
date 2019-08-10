@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands
 {
-    public class ProjectCommand : CommandBase
+    public class RefreshCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string archivePath = ParamStack.PopStr();
-            Environment.SetProjectArchive(archivePath);
+            Environment.RefreshWindow();
         }
     }
 }

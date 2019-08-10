@@ -9,12 +9,16 @@ using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameEngine.Windows;
+using TileGameEngine.Exceptions;
 
 namespace TileGameEngine.Core
 {
     public class Environment
     {
         public Variables Variables { get; private set; } = new Variables();
+
+        public bool HasProjectArchive => ProjectArchive != null;
+        public bool HasWindow => Window != null;
 
         private ProjectArchive ProjectArchive;
         private GameWindow Window;
@@ -55,6 +59,66 @@ namespace TileGameEngine.Core
             MapRenderer = null;
         }
 
+        private Point GetTextCursor()
+        {
+            return new Point(Variables.GetInt("env.text_cursor_x"), Variables.GetInt("env.text_cursor_y"));
+        }
+
+        private int GetTextForeColor()
+        {
+            return Variables.GetInt("env.text_forecolor");
+        }
+
+        private int GetTextBackColor()
+        {
+            return Variables.GetInt("env.text_backcolor");
+        }
+
+        private Rectangle GetMapViewport()
+        {
+            return new Rectangle(
+                Variables.GetInt("env.map_viewport_x"),
+                Variables.GetInt("env.map_viewport_y"),
+                Variables.GetInt("env.map_viewport_width"),
+                Variables.GetInt("env.map_viewport_height"));
+        }
+
+        private Point GetMapOffset()
+        {
+            return new Point(Variables.GetInt("env.map_offset_x"), Variables.GetInt("env.map_offset_y"));
+        }
+
+        private void AssertWindowIsOpen()
+        {
+            if (!HasWindow)
+                throw new EnvironmentException("Game window is closed");
+        }
+
+        private void AssertWindowIsNotOpen()
+        {
+            if (HasWindow)
+                throw new EnvironmentException("Game window is already open");
+        }
+
+        private void AssertTextColorIsWithinPalette()
+        {
+            int fgc = GetTextForeColor();
+            int bgc = GetTextBackColor();
+
+            if (fgc < 0 || bgc < 0 || fgc >= Window.Graphics.Palette.Size || bgc >= Window.Graphics.Palette.Size)
+                throw new EnvironmentException("Color palette index out of range");
+        }
+
+        private void AssertTextCursorIsWithinBounds()
+        {
+            Point textCursor = GetTextCursor();
+            int x = textCursor.X;
+            int y = textCursor.Y;
+
+            if (x < 0 || y < 0 || x >= Window.Graphics.Cols || y >= Window.Graphics.Rows)
+                throw new EnvironmentException("Text cursor out of bounds");
+        }
+
         public void SetVariable(string variable, object value)
         {
             Variables.Set(variable.Substring(1), value);
@@ -62,7 +126,11 @@ namespace TileGameEngine.Core
 
         public string GetVariable(string variable)
         {
-            return Variables.GetStr(variable.Substring(1));
+            string name = variable.Substring(1);
+            if (!Variables.Contains(name))
+                throw new EnvironmentException("Variable not found: " + name);
+
+            return Variables.GetStr(name);
         }
 
         public void SetProjectArchive(ProjectArchive archive)
@@ -75,11 +143,6 @@ namespace TileGameEngine.Core
                 Variables.Set("env.project_file", ProjectArchive.Path);
         }
 
-        public bool HasProjectArchive()
-        {
-            return ProjectArchive != null;
-        }
-
         public void SetProjectArchive(string path)
         {
             SetProjectArchive(new ProjectArchive(path));
@@ -87,28 +150,23 @@ namespace TileGameEngine.Core
 
         public void CreateWindow(int cols, int rows)
         {
+            AssertWindowIsNotOpen();
             Window = new GameWindow(cols, rows);
             Window.Show();
         }
 
         public void CloseWindow()
         {
-            if (Window != null)
+            AssertWindowIsOpen();
+
+            if (MapRenderer != null)
             {
-                if (MapRenderer != null)
-                {
-                    MapRenderer.Stop();
-                    MapRenderer.AutoRefresh = false;
-                }
-
-                Window.Close();
-                Window = null;
+                MapRenderer.Stop();
+                MapRenderer.AutoRefresh = false;
             }
-        }
 
-        public bool HasWindow()
-        {
-            return Window != null;
+            Window.Close();
+            Window = null;
         }
 
         public void LoadMapFromProjectArchive(string filename)
@@ -125,65 +183,45 @@ namespace TileGameEngine.Core
             UpdateMapRenderer();
         }
 
-        private void UpdateMapRenderer()
+        public void UpdateMapRenderer()
         {
-            if (Window != null)
-                MapRenderer = new MapRenderer(Map, Window.Display, GetMapViewport(), GetMapOffset());
-        }
-
-        private Rectangle GetMapViewport()
-        {
-            return new Rectangle(
-                Variables.GetInt("env.map_viewport_x"), 
-                Variables.GetInt("env.map_viewport_y"),
-                Variables.GetInt("env.map_viewport_width"),
-                Variables.GetInt("env.map_viewport_height"));
-        }
-
-        private Point GetMapOffset()
-        {
-            return new Point(Variables.GetInt("env.map_offset_x"), Variables.GetInt("env.map_offset_y"));
+            AssertWindowIsOpen();
+            MapRenderer = new MapRenderer(Map, Window.Display, GetMapViewport(), GetMapOffset());
         }
 
         public void StartMapRenderer()
         {
+            AssertWindowIsOpen();
             if (MapRenderer != null)
                 MapRenderer.AutoRefresh = true;
         }
 
         public void StopMapRenderer()
         {
+            AssertWindowIsOpen();
+
             if (MapRenderer != null)
             {
                 MapRenderer.AutoRefresh = false;
-                Refresh();
+                RefreshWindow();
             }
         }
 
         public void Print(string text)
         {
+            AssertWindowIsOpen();
+            AssertTextColorIsWithinPalette();
+            AssertTextCursorIsWithinBounds();
+
             Point textCursor = GetTextCursor();
+
             Window.Graphics.PutString(textCursor.X, textCursor.Y, text, GetTextForeColor(), GetTextBackColor());
         }
 
-        private Point GetTextCursor()
+        public void RefreshWindow()
         {
-            return new Point(Variables.GetInt("env.text_cursor_x"), Variables.GetInt("env.text_cursor_y"));
-        }
-
-        private int GetTextForeColor()
-        {
-            return Variables.GetInt("env.text_forecolor");
-        }
-
-        private int GetTextBackColor()
-        {
-            return Variables.GetInt("env.text_backcolor");
-        }
-
-        public void Refresh()
-        {
-            Window.Graphics.Refresh();
+            AssertWindowIsOpen();
+            Window.Refresh();
         }
     }
 }

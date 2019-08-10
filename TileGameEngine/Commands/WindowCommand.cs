@@ -12,7 +12,7 @@ namespace TileGameEngine.Commands
     {
         public override void Execute(List<string> immediateParams)
         {
-            if (Environment.HasWindow())
+            if (Environment.HasWindow)
                 throw new ScriptException("Window already opened");
 
             int rows = PopInt();

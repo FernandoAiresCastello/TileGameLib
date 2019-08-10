@@ -18,7 +18,7 @@ namespace TileGameLib.Components
     {
         public TiledDisplay Display { get; private set; }
         public HashSet<Keys> KeysPressed { get; private set; } = new HashSet<Keys>();
-        public GraphicsAdapter Graphics => Display.Graphics;
+        public GraphicsAdapter Graphics => Display?.Graphics;
 
         public bool Fullscreen
         {
@@ -151,6 +151,14 @@ namespace TileGameLib.Components
         {
             base.OnResize(e);
             Refresh();
+        }
+
+        public override void Refresh()
+        {
+            if (Graphics != null)
+                Graphics.Refresh();
+
+            base.Refresh();
         }
     }
 }

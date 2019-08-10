@@ -28,6 +28,7 @@ namespace TileGameEngine.Windows
             {
                 Interpreter = interpreter;
                 Shown += DebuggerWindow_Shown;
+                FormClosed += DebuggerWindow_FormClosed;
             }
         }
 
@@ -36,12 +37,17 @@ namespace TileGameEngine.Windows
             Refresh();
         }
 
+        private void DebuggerWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Interpreter.Stop();
+        }
+
         private void MiExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void MiBackToStart_Click(object sender, EventArgs e)
+        private void MiClose_Click(object sender, EventArgs e)
         {
             Close();
         }
