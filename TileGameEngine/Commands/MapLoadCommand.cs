@@ -12,11 +12,7 @@ namespace TileGameEngine.Commands
         public override void Execute(List<string> immediateParams)
         {
             string filename = ParamStack.PopStr();
-
-            if (Environment.HasProjectArchive)
-                Environment.LoadMapFromProjectArchive(filename);
-            else
-                Environment.LoadMapFromCurrentFolder(filename);
+            Environment.LoadMapFromCurrentFolder(filename);
         }
     }
 }

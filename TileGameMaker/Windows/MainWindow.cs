@@ -46,28 +46,5 @@ namespace TileGameMaker.Windows
         {
             Application.Exit();
         }
-
-        private void MiNewProject_Click(object sender, EventArgs e)
-        {
-            ProjectWindow win = new ProjectWindow(MapEditor.WorkspacePath);
-
-            if (win.ShowNewProjectDialog(this) == DialogResult.OK)
-                MapEditor.CreateNewProject(win.Filename);
-        }
-
-        private void MiOpenProject_Click(object sender, EventArgs e)
-        {
-            ProjectWindow win = new ProjectWindow(MapEditor.WorkspacePath);
-
-            if (win.ShowOpenProjectDialog(this) == DialogResult.OK)
-                MapEditor.OpenProject(win.Filename);
-        }
-
-        private void MiEditMainScript_Click(object sender, EventArgs e)
-        {
-            TextInputWindow win = new TextInputWindow(MapEditor.MainScriptFile);
-            if (win.ShowDialog(this, MapEditor.GetMainScript()) == DialogResult.OK)
-                MapEditor.SetMainScript(win.Text);
-        }
     }
 }

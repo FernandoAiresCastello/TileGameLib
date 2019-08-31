@@ -16,9 +16,8 @@ namespace TileGameMaker.Modules
 {
     public class MapEditor
     {
-        public string ProjectFile { get; private set; }
         public string WorkspacePath { get; private set; }
-        public string ProjectPath => WorkspacePath + "/" + ProjectFile;
+        public string MapFile { get; set; }
         public string MapName => MapPropertyControl.MapName;
 
         public ObjectMap Map { get; private set; }
@@ -34,9 +33,7 @@ namespace TileGameMaker.Modules
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyPanel MapPropertyControl { get; private set; }
 
-        public static readonly string DefaultProjectFile = Config.ReadString("DefaultProjectFile");
         public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
-        public static readonly string MainScriptFile = Config.ReadString("MainScriptFile");
         public static readonly string DefaultMapName = Config.ReadString("DefaultMapName");
         public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
         public static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
@@ -90,7 +87,6 @@ namespace TileGameMaker.Modules
         {
             MainWindow = mainWindow;
             WorkspacePath = DefaultWorkspacePath;
-            ProjectFile = DefaultProjectFile;
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             Clipboard = null;
@@ -116,8 +112,6 @@ namespace TileGameMaker.Modules
             Children.Add(ColorPickerControl);
             Children.Add(MapPropertyControl);
             Children.Add(MapEditorControl);
-
-            Archive.CreateIfNotExists(ProjectPath);
         }
 
         public void Show()
@@ -132,9 +126,9 @@ namespace TileGameMaker.Modules
                 ctl.Refresh();
         }
 
-        public void UpdateMapProperties(string file = null)
+        public void UpdateMapProperties()
         {
-            MapPropertyControl.UpdateProperties(file);
+            MapPropertyControl.UpdateProperties();
         }
 
         public void ResizeMap(int width, int height)
@@ -144,42 +138,6 @@ namespace TileGameMaker.Modules
 
             MapEditorControl.ResizeMapView(width, height);
             Refresh();
-        }
-
-        public void CreateNewProject(string filename)
-        {
-            string fileExtension = Config.ReadString("ProjectFileExt");
-            if (!filename.EndsWith(fileExtension))
-                filename += "." + fileExtension;
-
-            Archive.CreateIfNotExists(WorkspacePath + "\\" + filename);
-
-            ProjectFile = filename;
-            MapEditorControl.NewMap(DefaultMapName, DefaultMapWidth, DefaultMapHeight);
-        }
-
-        public void OpenProject(string filename)
-        {
-            ProjectFile = filename;
-            MapEditorControl.LoadMap();
-        }
-
-        public string GetMainScript()
-        {
-            if (Archive.Contains(ProjectPath, MainScriptFile))
-            {
-                MemoryFile file = Archive.Load(ProjectPath, MainScriptFile);
-                return file.ReadAllText();
-            }
-
-            return "";
-        }
-
-        public void SetMainScript(string script)
-        {
-            MemoryFile file = new MemoryFile();
-            file.WriteString(script);
-            Archive.Save(ProjectPath, MainScriptFile, file);
         }
     }
 }

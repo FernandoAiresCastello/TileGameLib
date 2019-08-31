@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.Modules;
 using TileGameLib.Util;
+using System.IO;
 
 namespace TileGameMaker.Panels
 {
@@ -26,15 +27,23 @@ namespace TileGameMaker.Panels
 
         private void BtnDiscard_Click(object sender, EventArgs e)
         {
-            UpdateProperties(null);
+            UpdateProperties();
         }
 
-        public void UpdateProperties(string file)
+        public void UpdateProperties()
         {
-            if (file != null)
-                TxtFile.Text = file;
+            if (MapEditor.MapFile != null)
+            {
+                FileInfo info = new FileInfo(MapEditor.MapFile);
+                TxtPath.Text = info.Directory.FullName;
+                TxtFile.Text = info.Name;
+            }
+            else
+            {
+                TxtPath.Text = "";
+                TxtFile.Text = "";
+            }
 
-            TxtArchive.Text = MapEditor.ProjectFile;
             TxtName.Text = MapEditor.Map.Name;
             TxtWidth.Text = MapEditor.Map.Width.ToString();
             TxtHeight.Text = MapEditor.Map.Height.ToString();

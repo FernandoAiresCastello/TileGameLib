@@ -14,6 +14,12 @@ namespace TileGameLib.File
     {
         private static readonly string Header = "TGLMAP01";
 
+        public static void Save(ObjectMap map, string path)
+        {
+            MemoryFile file = Save(map);
+            file.SaveToPhysicalFile(path);
+        }
+
         public static MemoryFile Save(ObjectMap map)
         {
             MemoryFile file = new MemoryFile();
@@ -35,7 +41,7 @@ namespace TileGameLib.File
 
                         foreach (Tile tile in o.Animation.Frames)
                         {
-                            file.WriteByte((byte)tile.TileIx);
+                            file.WriteShort((short)tile.TileIx);
                             file.WriteByte((byte)tile.ForeColorIx);
                             file.WriteByte((byte)tile.BackColorIx);
                         }
@@ -104,7 +110,7 @@ namespace TileGameLib.File
 
                         foreach (Tile tile in o.Animation.Frames)
                         {
-                            tile.TileIx = file.ReadByte();
+                            tile.TileIx = file.ReadShort();
                             tile.ForeColorIx = file.ReadByte();
                             tile.BackColorIx = file.ReadByte();
                         }

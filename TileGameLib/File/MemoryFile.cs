@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace TileGameLib.File
 
         public MemoryFile(string path)
         {
-            Bytes = System.IO.File.ReadAllBytes(path).ToList();
+            LoadFromPhysicalFile(path);
         }
 
         public byte[] ToByteArray()
@@ -131,6 +132,16 @@ namespace TileGameLib.File
         {
             if (ReadPtr >= Length)
                 throw new FileException($"Cannot read past file length: index = {ReadPtr}, length = {Length}");
+        }
+
+        public void SaveToPhysicalFile(string path)
+        {
+            System.IO.File.WriteAllBytes(path, Bytes.ToArray());
+        }
+
+        public void LoadFromPhysicalFile(string path)
+        {
+            Bytes = System.IO.File.ReadAllBytes(path).ToList();
         }
     }
 }

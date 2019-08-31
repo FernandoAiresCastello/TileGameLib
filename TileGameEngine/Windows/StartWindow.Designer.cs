@@ -110,7 +110,7 @@
             this.BtnLoad.Name = "BtnLoad";
             this.BtnLoad.Size = new System.Drawing.Size(311, 65);
             this.BtnLoad.TabIndex = 0;
-            this.BtnLoad.Text = "Launch project";
+            this.BtnLoad.Text = "Launch script";
             this.BtnLoad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnLoad.UseVisualStyleBackColor = true;
             this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);

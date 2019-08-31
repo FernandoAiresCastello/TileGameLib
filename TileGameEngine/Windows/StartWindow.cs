@@ -19,22 +19,18 @@ namespace TileGameEngine.Windows
     public partial class StartWindow : Form
     {
         private static readonly string SettingsFile = Config.ReadString("SettingsFile");
-        private static readonly string ProjectFileFilter = "*." + Config.ReadString("ProjectFileExt");
         private static readonly string ScriptFileFilter = "*." + Config.ReadString("ScriptFileExt");
 
-        private string InitialPath;
-        private string ScriptToDebug;
-        private string ProjectToLaunch;
+        private string MainScript;
 
         public StartWindow()
         {
             InitializeComponent();
-            InitialPath = Application.StartupPath;
             if (File.Exists(SettingsFile))
                 ReadSettings();
 
-            if (ScriptToDebug != null)
-                DebugScript(ScriptToDebug);
+            if (MainScript != null)
+                RunScript(MainScript);
         }
 
         private void ReadSettings()
@@ -42,11 +38,7 @@ namespace TileGameEngine.Windows
             string[] settings = File.ReadAllLines(SettingsFile);
 
             if (settings.Length > 0)
-                InitialPath = settings[0];
-            if (settings.Length > 1)
-                ScriptToDebug = settings[1];
-            if (settings.Length > 2)
-                ProjectToLaunch = settings[2];
+                MainScript = settings[0];
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -56,9 +48,9 @@ namespace TileGameEngine.Windows
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            string file = LoadProject();
+            string file = LoadScript();
             if (file != null)
-                RunProject(file);
+                RunScript(file);
         }
 
         private void BtnDebug_Click(object sender, EventArgs e)
@@ -68,11 +60,11 @@ namespace TileGameEngine.Windows
                 DebugScript(file);
         }
 
-        private string LoadProject()
+        private string LoadScript()
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = InitialPath;
-            dialog.Filter = $"Tile Game Maker project ({ProjectFileFilter})|{ProjectFileFilter}";
+            dialog.InitialDirectory = Application.StartupPath;
+            dialog.Filter = $"TileGameMaker script ({ScriptFileFilter})|{ScriptFileFilter}";
 
             if (dialog.ShowDialog(this) != DialogResult.OK)
                 return null;
@@ -80,30 +72,18 @@ namespace TileGameEngine.Windows
             return dialog.FileName;
         }
 
-        private void RunProject(string path)
+        private void RunScript(string path)
         {
-            Close();
+            Hide();
 
             try
             {
-                new Engine().Run(new ProjectArchive(path));
+                new Engine().Run(path);
             }
             catch (EngineException ex)
             {
                 Alert.Error(ex.Message);
             }
-        }
-
-        private string LoadScript()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = InitialPath;
-            dialog.Filter = $"Tile Game Maker script ({ScriptFileFilter})|{ScriptFileFilter}";
-
-            if (dialog.ShowDialog(this) != DialogResult.OK)
-                return null;
-
-            return dialog.FileName;
         }
 
         private void DebugScript(string path)

@@ -10,28 +10,22 @@ using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameEngine.Windows;
 using TileGameEngine.Exceptions;
+using System.Windows.Forms;
 
 namespace TileGameEngine.Core
 {
     public class Environment
     {
         public Variables Variables { get; private set; } = new Variables();
-
-        public bool HasProjectArchive => ProjectArchive != null;
+        public bool ExitIfGameWindowClosed { get; set; } = false;
         public bool HasWindow => Window != null;
 
-        private ProjectArchive ProjectArchive;
         private GameWindow Window;
         private ObjectMap Map;
         private MapRenderer MapRenderer;
 
-        public Environment() : this(null)
+        public Environment()
         {
-        }
-
-        public Environment(ProjectArchive archive)
-        {
-            SetProjectArchive(archive);
             SetupEnvironmentVariables();
         }
 
@@ -133,26 +127,20 @@ namespace TileGameEngine.Core
             return Variables.GetStr(name);
         }
 
-        public void SetProjectArchive(ProjectArchive archive)
-        {
-            ProjectArchive = archive;
-
-            if (ProjectArchive == null)
-                Variables.Delete("env.project_file");
-            else
-                Variables.Set("env.project_file", ProjectArchive.Path);
-        }
-
-        public void SetProjectArchive(string path)
-        {
-            SetProjectArchive(new ProjectArchive(path));
-        }
-
         public void CreateWindow(int cols, int rows)
         {
             AssertWindowIsNotOpen();
             Window = new GameWindow(cols, rows);
+            Window.FormClosed += Window_FormClosed;
             Window.Show();
+        }
+
+        private void Window_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (ExitIfGameWindowClosed)
+                Application.Exit();
+
+            Window = null;
         }
 
         public void CloseWindow()
@@ -167,13 +155,6 @@ namespace TileGameEngine.Core
 
             Window.Close();
             Window = null;
-        }
-
-        public void LoadMapFromProjectArchive(string filename)
-        {
-            ProjectArchive.LoadMap(ref Map, filename);
-            Variables.Set("env.current_map_file", filename);
-            UpdateMapRenderer();
         }
 
         public void LoadMapFromCurrentFolder(string filename)
@@ -222,6 +203,11 @@ namespace TileGameEngine.Core
         {
             AssertWindowIsOpen();
             Window.Refresh();
+        }
+
+        public GameObject GetObjectAt(int layer, int x, int y)
+        {
+            return Map.GetObject(layer, x, y);
         }
     }
 }

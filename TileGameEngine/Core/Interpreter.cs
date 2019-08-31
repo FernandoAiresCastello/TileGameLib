@@ -27,6 +27,7 @@ namespace TileGameEngine.Core
         private readonly Script Script;
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
+        private bool ExitOnException;
 
         public Interpreter(Environment env, Script script, int cycleInterval = 0)
         {
@@ -113,6 +114,8 @@ namespace TileGameEngine.Core
             if (Running)
                 throw new InterpreterException("Interpreter is already running");
 
+            ExitOnException = true;
+            Environment.ExitIfGameWindowClosed = true;
             Running = true;
             CycleTimer.Start();
         }
@@ -122,6 +125,8 @@ namespace TileGameEngine.Core
             if (Running)
                 throw new InterpreterException("Interpreter is already running");
 
+            ExitOnException = false;
+            Environment.ExitIfGameWindowClosed = false;
             Running = true;
         }
 
@@ -157,15 +162,24 @@ namespace TileGameEngine.Core
             }
             catch (InterpreterException ex)
             {
+                CycleTimer.Stop();
                 Alert.Error(ex.Message);
+                if (ExitOnException)
+                    Application.Exit();
             }
             catch (ScriptException ex)
             {
+                CycleTimer.Stop();
                 AlertCurrentLineException(ex);
+                if (ExitOnException)
+                    Application.Exit();
             }
             catch (EnvironmentException ex)
             {
+                CycleTimer.Stop();
                 AlertCurrentLineException(ex);
+                if (ExitOnException)
+                    Application.Exit();
             }
         }
 

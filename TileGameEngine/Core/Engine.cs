@@ -13,9 +13,7 @@ namespace TileGameEngine.Core
     public class Engine
     {
         public Form ParentForm { set; get; }
-
-        private readonly string MainScriptFile = "main.prg";
-        private readonly int CycleInterval = 100;
+        public int CycleInterval { set; get; } = 100;
 
         private bool Started = false;
 
@@ -23,17 +21,24 @@ namespace TileGameEngine.Core
         {
         }
 
-        public void Run(ProjectArchive project)
+        public void Run(string mainScriptFile, int cycleInterval)
+        {
+            CycleInterval = cycleInterval;
+            Run(mainScriptFile);
+        }
+
+        public void Run(string mainScriptFile)
         {
             if (Started)
                 throw new EngineException("Engine has already started");
-            if (!project.Contains(MainScriptFile))
-                throw new EngineException($"Main script {MainScriptFile} not found");
+            if (!File.Exists(mainScriptFile))
+                throw new EngineException($"Script file {mainScriptFile} not found");
 
             Started = true;
 
-            Environment environment = new Environment(project);
-            Script mainScript = project.LoadScript(MainScriptFile);
+            string sourceCode = File.ReadAllText(mainScriptFile);
+            Script mainScript = new Script(sourceCode);
+            Environment environment = new Environment();
             Interpreter interpreter = new Interpreter(environment, mainScript, CycleInterval);
 
             interpreter.Run();

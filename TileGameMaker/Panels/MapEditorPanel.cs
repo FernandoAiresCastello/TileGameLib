@@ -334,7 +334,42 @@ namespace TileGameMaker.Panels
 
         public void SaveMap()
         {
-            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = "TileGameMaker map file (*.map)|*.map";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Map.Name = MapEditor.MapName;
+                MapFile.Save(Map, dialog.FileName);
+                MapEditor.MapFile = dialog.FileName;
+                MapEditor.UpdateMapProperties();
+                Refresh();
+                Alert.Info("File saved successfully!");
+            }
+        }
+
+        public void LoadMap()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = "TileGameMaker map file (*.map)|*.map";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                MapFile.Load(ref Map, dialog.FileName);
+                MapEditor.MapFile = dialog.FileName;
+                MapEditor.UpdateMapProperties();
+                MapEditor.ResizeMap(Map.Width, Map.Height);
+                MapEditor.SelectedObject = new GameObject();
+                UpdateLayerComboBox();
+                Alert.Info("File loaded successfully!");
+            }
+        }
+
+        public void SaveMapToArchive(string path)
+        {
+            ArchiveWindow mgr = new ArchiveWindow(path);
 
             if (mgr.ShowDialog(this, ArchiveWindow.Mode.Save, MapFileExt) == DialogResult.OK)
             {
@@ -343,18 +378,19 @@ namespace TileGameMaker.Panels
                     return;
 
                 Map.Name = MapEditor.MapName;
-                MapArchive arch = new MapArchive(MapEditor.ProjectPath);
+                MapArchive arch = new MapArchive(path);
                 string file = mgr.SelectedEntry + "." + MapFileExt;
                 arch.Save(Map, file);
-                MapEditor.UpdateMapProperties(file);
+                MapEditor.MapFile = file;
+                MapEditor.UpdateMapProperties();
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
         }
 
-        public void LoadMap()
+        public void LoadMapFromArchive(string path)
         {
-            ArchiveWindow mgr = new ArchiveWindow(MapEditor.ProjectPath);
+            ArchiveWindow mgr = new ArchiveWindow(path);
 
             if (mgr.ShowDialog(this, ArchiveWindow.Mode.Load, MapFileExt) == DialogResult.OK)
             {
@@ -366,9 +402,11 @@ namespace TileGameMaker.Panels
                     return;
                 }
 
-                MapArchive arch = new MapArchive(MapEditor.ProjectPath);
-                arch.Load(ref Map, mgr.SelectedEntry);
-                MapEditor.UpdateMapProperties(mgr.SelectedEntry);
+                MapArchive arch = new MapArchive(path);
+                string file = mgr.SelectedEntry;
+                arch.Load(ref Map, file);
+                MapEditor.MapFile = file;
+                MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
                 MapEditor.SelectedObject = new GameObject();
                 UpdateLayerComboBox();
@@ -388,7 +426,8 @@ namespace TileGameMaker.Panels
             
             Map.Name = name;
             MapEditor.ResizeMap(width, height);
-            MapEditor.UpdateMapProperties("");
+            MapEditor.MapFile = null;
+            MapEditor.UpdateMapProperties();
             ClearMap();
             RenderMap();
             UpdateStatusLabel();
@@ -457,6 +496,7 @@ namespace TileGameMaker.Panels
                 Refresh();
                 UpdateLayerComboBox();
                 UpdateStatusLabel();
+                MapEditor.UpdateMapProperties();
                 CbLayer.SelectedIndex = CbLayer.SelectedIndex + 1;
             }
             else
@@ -499,13 +539,6 @@ namespace TileGameMaker.Panels
 
         private void BtnTestMap_Click(object sender, EventArgs e)
         {
-            RunEngine();
-        }
-
-        private void RunEngine()
-        {
-            //GameWindow window = new GameWindow(32, 24, MapEditor.ProjectPath, MapEditor.MapName);
-            //window.ShowDialog(MapEditor.MainWindow);
         }
     }
 }
