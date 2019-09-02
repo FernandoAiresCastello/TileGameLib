@@ -13,7 +13,7 @@ namespace TileGameEngine.Core
     public class Engine
     {
         public Form ParentForm { set; get; }
-        public int CycleInterval { set; get; } = 100;
+        public int CycleInterval { set; get; }
 
         private bool Started = false;
 
@@ -21,30 +21,25 @@ namespace TileGameEngine.Core
         {
         }
 
-        public void Run(string mainScriptFile, int cycleInterval)
-        {
-            CycleInterval = cycleInterval;
-            Run(mainScriptFile);
-        }
-
         public void Run(string mainScriptFile)
         {
-            if (Started)
-                throw new EngineException("Engine has already started");
-            if (!File.Exists(mainScriptFile))
-                throw new EngineException($"Script file {mainScriptFile} not found");
-
-            Started = true;
-
-            string sourceCode = File.ReadAllText(mainScriptFile);
-            Script mainScript = new Script(sourceCode);
-            Environment environment = new Environment();
-            Interpreter interpreter = new Interpreter(environment, mainScript, CycleInterval);
-
-            interpreter.Run();
+            Initialize(mainScriptFile).Run();
         }
 
-        public void DebugScript(string scriptFile)
+        public void Debug(string scriptFile)
+        {
+            Interpreter interpreter = Initialize(scriptFile);
+            DebuggerWindow debugger = new DebuggerWindow(interpreter);
+
+            interpreter.Debug();
+
+            if (ParentForm != null)
+                debugger.ShowDialog(ParentForm);
+            else
+                debugger.Show();
+        }
+
+        private Interpreter Initialize(string scriptFile)
         {
             if (Started)
                 throw new EngineException("Engine has already started");
@@ -56,15 +51,7 @@ namespace TileGameEngine.Core
             string sourceCode = File.ReadAllText(scriptFile);
             Script mainScript = new Script(sourceCode);
             Environment environment = new Environment();
-            Interpreter interpreter = new Interpreter(environment, mainScript);
-            DebuggerWindow debugger = new DebuggerWindow(interpreter);
-
-            interpreter.Debug();
-
-            if (ParentForm != null)
-                debugger.ShowDialog(ParentForm);
-            else
-                debugger.Show();
+            return new Interpreter(environment, mainScript);
         }
     }
 }

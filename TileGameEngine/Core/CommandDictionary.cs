@@ -9,6 +9,11 @@ namespace TileGameEngine.Core
 {
     public class CommandDictionary
     {
+        private readonly Dictionary<string, CommandBase> Commands = new Dictionary<string, CommandBase>();
+
+        private readonly Interpreter Interpreter;
+        private readonly Environment Environment;
+
         private void InitializeCommands()
         {
             // Misc
@@ -23,6 +28,7 @@ namespace TileGameEngine.Core
             Set("CALLZ", new CallZeroCommand());
             Set("CALLNZ", new CallNotZeroCommand());
             Set("RET", new ReturnCommand());
+            Set("SLEEP", new SleepCommand());
 
             // Parameter stack
             Set("PUSH", new PushCommand());
@@ -66,9 +72,5 @@ namespace TileGameEngine.Core
             command.Environment = Environment;
             Commands[name] = command;
         }
-
-        private readonly Dictionary<string, CommandBase> Commands = new Dictionary<string, CommandBase>();
-        private readonly Interpreter Interpreter;
-        private readonly Environment Environment;
     }
 }

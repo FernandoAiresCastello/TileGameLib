@@ -8,6 +8,7 @@ using TileGameLib.GameElements;
 using TileGameLib.Util;
 using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
+using TileGameEngine.Util;
 
 namespace TileGameEngine.Core
 {
@@ -29,7 +30,9 @@ namespace TileGameEngine.Core
         private readonly CommandDictionary CommandDict;
         private bool ExitOnException;
 
-        public Interpreter(Environment env, Script script, int cycleInterval = 0)
+        private static readonly int CycleInterval = Config.ReadInt("InterpreterCycleInterval");
+
+        public Interpreter(Environment env, Script script)
         {
             Script = script;
             Environment = env;
@@ -47,8 +50,7 @@ namespace TileGameEngine.Core
 
             CycleTimer = new Timer();
             CycleTimer.Tick += CycleTimer_Tick;
-            if (cycleInterval > 0)
-                CycleTimer.Interval = cycleInterval;
+            CycleTimer.Interval = CycleInterval;
         }
 
         private List<string> GetScriptLinesForDebugger()

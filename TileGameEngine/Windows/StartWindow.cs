@@ -92,7 +92,7 @@ namespace TileGameEngine.Windows
             {
                 Engine engine = new Engine();
                 engine.ParentForm = this;
-                engine.DebugScript(path);
+                engine.Debug(path);
             }
             catch (EngineException ex)
             {

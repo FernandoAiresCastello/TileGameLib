@@ -38,6 +38,11 @@ namespace TileGameEngine.Core
             return value;
         }
 
+        public string TopStr()
+        {
+            return Values.Peek();
+        }
+
         public int TopInt()
         {
             int number = 0;

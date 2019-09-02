@@ -72,7 +72,10 @@ namespace TileGameLib.File
 
         public static void Load(ref ObjectMap map, string path)
         {
-            map.SetEqual(Load(path));
+            if (map != null)
+                map.SetEqual(Load(path));
+            else
+                map = Load(path);
         }
 
         public static ObjectMap Load(string path)
