@@ -18,48 +18,44 @@ namespace TileGameLib.GameElements
 
         public GameObject()
         {
-            GenerateId();
             SetNull();
         }
 
         public GameObject(GameObject other)
         {
-            GenerateId();
             SetEqual(other);
         }
 
         public GameObject(Tile singleAnimFrame)
         {
-            GenerateId();
             SetNull();
             Animation.SetFrame(0, singleAnimFrame);
         }
 
         public GameObject(Tile singleAnimFrame, string script)
         {
-            GenerateId();
             Data = script;
             Animation.Clear(singleAnimFrame);
         }
 
         public void SetNull()
         {
+            Id = "";
             Data = "";
             Animation.Clear(Tile.Null);
         }
 
-        public bool IsNull()
-        {
-            return 
-                Data == "" && 
-                Animation.IsSingleFrame() &&
-                Animation.GetFirstFrame().Equals(Tile.Null);
-        }
-
         public void SetEqual(GameObject o)
         {
-            Data = o.Data;
-            Animation.SetEqual(o.Animation);
+            if (o != null)
+            {
+                Data = o.Data;
+                Animation.SetEqual(o.Animation);
+            }
+            else
+            {
+                SetNull();
+            }
         }
 
         public GameObject Copy()
@@ -87,11 +83,6 @@ namespace TileGameLib.GameElements
         public override int GetHashCode()
         {
             return Tuple.Create(Animation, Data).GetHashCode();
-        }
-
-        private void GenerateId()
-        {
-            Id = Guid.NewGuid().ToString("N");
         }
     }
 }

@@ -49,6 +49,7 @@
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="File\MapFile.cs" />
+    <Compile Include="GameElements\LayerCell.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
     <Compile Include="Exceptions\FileException.cs" />

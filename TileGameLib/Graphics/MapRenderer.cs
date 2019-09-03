@@ -14,7 +14,6 @@ namespace TileGameLib.Graphics
         public ObjectMap Map { set; get; }
         public bool AnimationEnabled { set; get; }
         public bool AutoRefresh { set; get; }
-        public Tile OutOfBoundsTile { set; get; }
 
         public int RefreshInterval
         {
@@ -52,7 +51,6 @@ namespace TileGameLib.Graphics
             Disp = disp;
             Viewport = viewport;
             MapOffset = mapOffset;
-            OutOfBoundsTile = new Tile(0, 0, 0);
             RenderSingleLayer = false;
             SingleLayerToRender = 0;
 
@@ -117,28 +115,29 @@ namespace TileGameLib.Graphics
 
         public void Render()
         {
-            Tileset dispTileset = Disp.Graphics.Tileset;
-            Palette dispPalette = Disp.Graphics.Palette;
+            Tileset originalTileset = Disp.Graphics.Tileset;
+            Palette originalPalette = Disp.Graphics.Palette;
 
             Disp.Graphics.Tileset = Map.Tileset;
             Disp.Graphics.Palette = Map.Palette;
+            Disp.Graphics.Clear(Map.BackColor);
 
             if (RenderSingleLayer)
             {
-                RenderLayer(Map.Layers[SingleLayerToRender], true);
+                RenderLayer(Map.Layers[SingleLayerToRender]);
             }
             else
             {
                 for (int i = 0; i < Map.Layers.Count; i++)
-                    RenderLayer(Map.Layers[i], i == 0);
+                    RenderLayer(Map.Layers[i]);
             }
 
             Disp.Refresh();
-            Disp.Graphics.Tileset = dispTileset;
-            Disp.Graphics.Palette = dispPalette;
+            Disp.Graphics.Tileset = originalTileset;
+            Disp.Graphics.Palette = originalPalette;
         }
 
-        private void RenderLayer(ObjectLayer layer, bool renderNull)
+        private void RenderLayer(ObjectLayer layer)
         {
             for (int y = 0; y < Viewport.Height; y++)
             {
@@ -150,19 +149,20 @@ namespace TileGameLib.Graphics
                     int destY = Viewport.Y + y;
 
                     if (sourceX >= 0 && sourceY >= 0 && sourceX < Map.Width && sourceY < Map.Height)
-                        RenderObject(layer.GetObject(sourceX, sourceY), destX, destY, renderNull);
-                    else
-                        RenderObject(null, destX, destY, renderNull);
+                        RenderCell(layer.GetCell(sourceX, sourceY), destX, destY);
                 }
             }
         }
 
-        private void RenderObject(GameObject o, int x, int y, bool renderNull)
+        private void RenderCell(LayerCell cell, int x, int y)
         {
-            Tile ch = o != null ? o.Animation.GetFrame(AnimationFrame) : OutOfBoundsTile;
-            bool isNull = ch.IsNull();
-            if (!isNull || renderNull)
-                Disp.Graphics.PutTile(x, y, ch.TileIx, ch.ForeColorIx, ch.BackColorIx);
+            GameObject o = cell.GetObject();
+
+            if (o != null)
+            {
+                Tile tile = o.Animation.GetFrame(AnimationFrame);
+                Disp.Graphics.PutTile(x, y, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+            }
         }
     }
 }

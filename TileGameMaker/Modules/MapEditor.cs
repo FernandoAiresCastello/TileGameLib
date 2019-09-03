@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,6 @@ namespace TileGameMaker.Modules
         public ObjectMap Clipboard { get; private set; }
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
-        public GameObject NullGameObject { get; private set; }
 
         public MainWindow MainWindow { get; private set; }
         public MapEditorPanel MapEditorControl { get; private set; }
@@ -50,13 +50,16 @@ namespace TileGameMaker.Modules
 
             set
             {
-                TemplateControl.Object.SetEqual(value);
-                TemplateControl.UpdateAnimation(value.Animation);
-                Tile firstFrame = value.Animation.GetFirstFrame();
-                TilePickerControl.SetTileIndex(firstFrame.TileIx);
-                ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
-                ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
-                TemplateControl.Refresh();
+                if (value != null)
+                {
+                    TemplateControl.Object.SetEqual(value);
+                    TemplateControl.UpdateAnimation(value.Animation);
+                    Tile firstFrame = value.Animation.GetFirstFrame();
+                    TilePickerControl.SetTileIndex(firstFrame.TileIx);
+                    ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
+                    ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
+                    TemplateControl.Refresh();
+                }
             }
         }
 
@@ -84,19 +87,15 @@ namespace TileGameMaker.Modules
         public MapEditor(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
+
             WorkspacePath = DefaultWorkspacePath;
+            if (!Directory.Exists(WorkspacePath))
+                Directory.CreateDirectory(WorkspacePath);
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
             Clipboard = null;
             Palette = Map.Palette;
             Tileset = Map.Tileset;
-
-            NullGameObject = new GameObject(new Tile(
-                Config.ReadInt("DefaultTileIndex"),
-                Config.ReadInt("DefaultTileForeColor"),
-                Config.ReadInt("DefaultTileBackColor")));
-
-            Map.Fill(NullGameObject);
 
             MapEditorControl = new MapEditorPanel(this);
             TemplateControl = new TemplatePanel(this);

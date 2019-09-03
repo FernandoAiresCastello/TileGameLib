@@ -88,7 +88,7 @@ namespace TileGameMaker.Panels
 
         private void ClearMap()
         {
-            Map.Fill(MapEditor.NullGameObject);
+            Map.Clear();
         }
 
         private void Disp_MouseMove(object sender, MouseEventArgs e)
@@ -126,17 +126,17 @@ namespace TileGameMaker.Panels
 
             Focus();
 
-            GameObject o = Map.GetObject(Layer, point.X, point.Y);
+            LayerCell cell = Map.GetCell(Layer, point.X, point.Y);
 
             if (Mode == EditMode.Template)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    PutCurrentObject(o);
+                    PutCurrentObject(cell);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    CopyObjectToTemplate(o);
+                    CopyObjectToTemplate(cell);
                 }
             }
             else if (Mode == EditMode.Data)
@@ -155,9 +155,9 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void PutCurrentObject(GameObject o)
+        private void PutCurrentObject(LayerCell cell)
         {
-            o.SetEqual(MapEditor.SelectedObject);
+            cell.SetObjectEqual(MapEditor.SelectedObject);
             RenderMap();
         }
 
@@ -205,9 +205,10 @@ namespace TileGameMaker.Panels
             Refresh();
         }
 
-        private void CopyObjectToTemplate(GameObject o)
+        private void CopyObjectToTemplate(LayerCell cell)
         {
-            MapEditor.SelectedObject = o;
+            if (!cell.IsEmpty())
+                MapEditor.SelectedObject = cell.GetObject();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -292,6 +293,9 @@ namespace TileGameMaker.Panels
         private void InputData(int x, int y)
         {
             GameObject o = Map.GetObject(Layer, x, y);
+            if (o == null)
+                return;
+
             ObjectDataInputWindow win = new ObjectDataInputWindow($"Enter object data @{x},{y}");
 
             if (win.ShowDialog(this, o.Id, o.Data) == DialogResult.OK)
@@ -496,7 +500,7 @@ namespace TileGameMaker.Panels
         {
             if (Map.Layers.Count < MaxLayers)
             {
-                Map.AddLayer(MapEditor.NullGameObject);
+                Map.AddLayer();
                 Refresh();
                 UpdateLayerComboBox();
                 UpdateStatusLabel();
@@ -536,13 +540,15 @@ namespace TileGameMaker.Panels
         {
             if (Alert.Confirm("Clear layer " + Layer + "?"))
             {
-                Map.Fill(MapEditor.NullGameObject, Layer);
+                Map.Clear(Layer);
                 Refresh();
             }
         }
 
-        private void BtnTestMap_Click(object sender, EventArgs e)
+        private void BtnSetBackColor_Click(object sender, EventArgs e)
         {
+            // TODO
+            throw new NotImplementedException();
         }
     }
 }

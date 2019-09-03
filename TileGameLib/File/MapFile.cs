@@ -14,11 +14,8 @@ namespace TileGameLib.File
     {
         private static readonly string Header = "TGLMAP01";
 
-        public static void Save(ObjectMap map, string path)
-        {
-            MemoryFile file = Save(map);
-            file.SaveToPhysicalFile(path);
-        }
+        private static readonly byte EmptyCell = 0;
+        private static readonly byte OccupiedCell = 1;
 
         public static MemoryFile Save(ObjectMap map)
         {
@@ -28,6 +25,7 @@ namespace TileGameLib.File
             file.WriteString(map.Name);
             file.WriteShort(map.Width);
             file.WriteShort(map.Height);
+            file.WriteShort(map.BackColor);
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -37,16 +35,25 @@ namespace TileGameLib.File
                     for (int x = 0; x < layer.Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        file.WriteByte((byte)o.Animation.Size);
 
-                        foreach (Tile tile in o.Animation.Frames)
+                        if (o != null)
                         {
-                            file.WriteShort((short)tile.TileIx);
-                            file.WriteByte((byte)tile.ForeColorIx);
-                            file.WriteByte((byte)tile.BackColorIx);
-                        }
+                            file.WriteByte(OccupiedCell);
+                            file.WriteByte((byte)o.Animation.Size);
 
-                        file.WriteString(o.Data);
+                            foreach (Tile tile in o.Animation.Frames)
+                            {
+                                file.WriteShort((short)tile.TileIx);
+                                file.WriteByte((byte)tile.ForeColorIx);
+                                file.WriteByte((byte)tile.BackColorIx);
+                            }
+
+                            file.WriteString(o.Data);
+                        }
+                        else
+                        {
+                            file.WriteByte(EmptyCell);
+                        }
                     }
                 }
             }
@@ -70,20 +77,6 @@ namespace TileGameLib.File
             return file;
         }
 
-        public static void Load(ref ObjectMap map, string path)
-        {
-            if (map != null)
-                map.SetEqual(Load(path));
-            else
-                map = Load(path);
-        }
-
-        public static ObjectMap Load(string path)
-        {
-            MemoryFile file = new MemoryFile(path);
-            return Load(file);
-        }
-
         public static ObjectMap Load(MemoryFile file)
         {
             string header = file.ReadString();
@@ -93,8 +86,9 @@ namespace TileGameLib.File
             string name = file.ReadString();
             int width = file.ReadShort();
             int height = file.ReadShort();
+            int backColor = file.ReadShort();
 
-            ObjectMap map = new ObjectMap(name, width, height);
+            ObjectMap map = new ObjectMap(name, width, height, backColor);
 
             int layerCount = file.ReadByte();
             map.Layers.Clear();
@@ -106,19 +100,31 @@ namespace TileGameLib.File
                 {
                     for (int x = 0; x < layer.Width; x++)
                     {
-                        GameObject o = layer.GetObject(x, y);
-                        int frameCount = file.ReadByte();
-                        o.Animation.Clear(null);
-                        o.Animation.AddFrames(frameCount, new Tile());
+                        byte cellState = file.ReadByte();
 
-                        foreach (Tile tile in o.Animation.Frames)
+                        if (cellState == OccupiedCell)
                         {
-                            tile.TileIx = file.ReadShort();
-                            tile.ForeColorIx = file.ReadByte();
-                            tile.BackColorIx = file.ReadByte();
-                        }
+                            int frameCount = file.ReadByte();
 
-                        o.Data = file.ReadString();
+                            GameObject o = new GameObject();
+                            o.Animation.Clear(null);
+                            o.Animation.AddFrames(frameCount, new Tile());
+
+                            foreach (Tile tile in o.Animation.Frames)
+                            {
+                                tile.TileIx = file.ReadShort();
+                                tile.ForeColorIx = file.ReadByte();
+                                tile.BackColorIx = file.ReadByte();
+                            }
+
+                            o.Data = file.ReadString();
+
+                            layer.SetObject(o, x, y);
+                        }
+                        else
+                        {
+                            layer.DeleteObject(x, y);
+                        }
                     }
                 }
             }
@@ -142,6 +148,26 @@ namespace TileGameLib.File
             }
 
             return map;
+        }
+
+        public static void Save(ObjectMap map, string path)
+        {
+            MemoryFile file = Save(map);
+            file.SaveToPhysicalFile(path);
+        }
+
+        public static ObjectMap Load(string path)
+        {
+            MemoryFile file = new MemoryFile(path);
+            return Load(file);
+        }
+
+        public static void Load(ref ObjectMap map, string path)
+        {
+            if (map != null)
+                map.SetEqual(Load(path));
+            else
+                map = Load(path);
         }
     }
 }

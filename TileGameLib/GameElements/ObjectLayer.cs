@@ -10,24 +10,20 @@ namespace TileGameLib.GameElements
 {
     public class ObjectLayer
     {
-        public GameObject[,] Objects { set; get; }
+        public LayerCell[,] Cells { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        public ObjectLayer(int width, int height, GameObject defaultObject)
+        public ObjectLayer(int width, int height)
         {
             Width = width;
             Height = height;
 
-            Objects = new GameObject[width, height];
+            Cells = new LayerCell[width, height];
 
             for (int row = 0; row < height; row++)
                 for (int col = 0; col < width; col++)
-                    Objects[col, row] = defaultObject.Copy();
-        }
-
-        public ObjectLayer(int width, int height) : this(width, height, new GameObject())
-        {
+                    Cells[col, row] = new LayerCell();
         }
 
         public void SetEqual(ObjectLayer other)
@@ -37,7 +33,11 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     GameObject o = other.GetObject(col, row);
-                    Objects[col, row].SetEqual(o);
+
+                    if (o != null)
+                        Cells[col, row].SetObjectEqual(o);
+                    else
+                        Cells[col, row].DeleteObject();
                 }
             }
         }
@@ -46,28 +46,38 @@ namespace TileGameLib.GameElements
         {
             for (int row = 0; row < Height; row++)
                 for (int col = 0; col < Width; col++)
-                    Objects[col, row].SetNull();
+                    Cells[col, row].DeleteObject();
         }
 
         public void Fill(GameObject o)
         {
             for (int row = 0; row < Height; row++)
                 for (int col = 0; col < Width; col++)
-                    Objects[col, row].SetEqual(o);
+                    Cells[col, row].SetObjectEqual(o);
         }
 
         public void SetObject(GameObject o, int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                Objects[x, y].SetEqual(o);
+                Cells[x, y].SetObjectEqual(o);
             else
                 throw new OutOfBoundsException(GetExceptionMessage(x, y));
+        }
+
+        public void DeleteObject(int x, int y)
+        {
+            Cells[x, y].DeleteObject();
+        }
+
+        public ref LayerCell GetCell(int x, int y)
+        {
+            return ref Cells[x, y];
         }
 
         public ref GameObject GetObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return ref Objects[x, y];
+                return ref Cells[x, y].GetObject();
 
             throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
@@ -75,7 +85,7 @@ namespace TileGameLib.GameElements
         public GameObject CopyObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Objects[x, y].Copy();
+                return Cells[x, y].CopyObject();
 
             throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
@@ -87,20 +97,20 @@ namespace TileGameLib.GameElements
 
         public void Resize(int width, int height)
         {
-            GameObject[,] newObjects = new GameObject[width, height];
+            LayerCell[,] newCells = new LayerCell[width, height];
 
             for (int row = 0; row < height; row++)
             {
                 for (int col = 0; col < width; col++)
                 {
                     if (col < Width && row < Height)
-                        newObjects[col, row] = new GameObject(Objects[col, row]);
+                        newCells[col, row] = new LayerCell(Cells[col, row]);
                     else
-                        newObjects[col, row] = new GameObject();
+                        newCells[col, row] = new LayerCell();
                 }
             }
 
-            Objects = newObjects;
+            Cells = newCells;
             Width = width;
             Height = height;
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapEditorPanel));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -54,6 +55,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -123,6 +125,7 @@
             this.BtnAddLayer,
             this.BtnRemoveLayer,
             this.BtnClearLayer,
+            this.BtnSetBackColor,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
             this.BtnSetData,
@@ -335,6 +338,17 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // BtnSetBackColor
+            // 
+            this.BtnSetBackColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetBackColor.Image = ((System.Drawing.Image)(resources.GetObject("BtnSetBackColor.Image")));
+            this.BtnSetBackColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetBackColor.Name = "BtnSetBackColor";
+            this.BtnSetBackColor.Size = new System.Drawing.Size(23, 22);
+            this.BtnSetBackColor.Text = "toolStripButton1";
+            this.BtnSetBackColor.ToolTipText = "Set map background color";
+            this.BtnSetBackColor.Click += new System.EventHandler(this.BtnSetBackColor_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,5 +395,6 @@
         private System.Windows.Forms.ToolStripButton BtnClearLayer;
         private System.Windows.Forms.ToolStripButton BtnSetData;
         private System.Windows.Forms.ToolStripButton BtnPutTemplate;
+        private System.Windows.Forms.ToolStripButton BtnSetBackColor;
     }
 }

@@ -53,11 +53,6 @@ namespace TileGameLib.Graphics
             BackColorIx = Null.BackColorIx;
         }
 
-        public bool IsNull()
-        {
-            return TileIx == NullTile.TileIx;
-        }
-
         public Tile Copy()
         {
             return new Tile(this);

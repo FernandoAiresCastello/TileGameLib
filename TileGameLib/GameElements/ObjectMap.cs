@@ -14,25 +14,26 @@ namespace TileGameLib.GameElements
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
         public Tileset Tileset { get; set; } = new Tileset();
         public Palette Palette { get; set; } = new Palette();
+        public int BackColor { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
 
-        public ObjectMap(int width, int height) : this("Undefined", width, height)
+        private static readonly string UndefinedMapName = "Undefined";
+
+        public ObjectMap(int width, int height) : this(UndefinedMapName, width, height, 0)
         {
+            BackColor = Palette.Size - 1;
         }
 
-        public ObjectMap(int width, int height, GameObject defaultObject) : this("Undefined", width, height)
-        {
-            Layers[0].Fill(defaultObject);
-        }
-
-        public ObjectMap(string name, int width, int height)
+        public ObjectMap(string name, int width, int height, int backColor)
         {
             Name = name;
             Width = width;
             Height = height;
+            BackColor = backColor;
+
             AddLayer();
         }
 
@@ -61,11 +62,6 @@ namespace TileGameLib.GameElements
         public void AddLayer()
         {
             Layers.Add(new ObjectLayer(Width, Height));
-        }
-
-        public void AddLayer(GameObject defaultObject)
-        {
-            Layers.Add(new ObjectLayer(Width, Height, defaultObject));
         }
 
         public void RemoveLayer(int layer)
@@ -99,6 +95,11 @@ namespace TileGameLib.GameElements
         public void Fill(GameObject o, int layer)
         {
             Layers[layer].Fill(o);
+        }
+
+        public LayerCell GetCell(int layer, int x, int y)
+        {
+            return Layers[layer].Cells[x, y];
         }
 
         public void SetObject(GameObject o, int layer, int x, int y)
