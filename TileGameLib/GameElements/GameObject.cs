@@ -49,6 +49,7 @@ namespace TileGameLib.GameElements
         {
             if (o != null)
             {
+                Id = o.Id;
                 Data = o.Data;
                 Animation.SetEqual(o.Animation);
             }

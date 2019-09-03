@@ -110,12 +110,12 @@ namespace TileGameMaker.Panels
             if (IsOutOfBounds(point))
                 return;
 
+            HoverLabel.Text = "X: " + point.X + " Y: " + point.Y;
+
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
 
             if (o != null)
-                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " ID: " + o.Id;
-            else
-                HoverLabel.Text = "";
+                HoverLabel.Text += " ID: " + o.Id;
         }
 
         private void OnDisplayMouseClick(MouseEventArgs e)
@@ -547,8 +547,10 @@ namespace TileGameMaker.Panels
 
         private void BtnSetBackColor_Click(object sender, EventArgs e)
         {
-            // TODO
-            throw new NotImplementedException();
+            ColorPickerWindow win = new ColorPickerWindow(MapEditor, "Select map background");
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+                Map.BackColor = win.SelectedColor;
         }
     }
 }

@@ -47,6 +47,7 @@ namespace TileGameLib.GameElements
             Name = other.Name;
             Width = other.Width;
             Height = other.Height;
+            BackColor = other.BackColor;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();
