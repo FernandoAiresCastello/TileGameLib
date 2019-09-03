@@ -27,7 +27,7 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
 
-        private enum EditMode { Template, Script, TextInput }
+        private enum EditMode { Template, Data, TextInput }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -113,7 +113,7 @@ namespace TileGameMaker.Panels
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
 
             if (o != null)
-                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y;
+                HoverLabel.Text = "X: " + point.X + " Y: " + point.Y + " ID: " + o.Id;
             else
                 HoverLabel.Text = "";
         }
@@ -139,11 +139,11 @@ namespace TileGameMaker.Panels
                     CopyObjectToTemplate(o);
                 }
             }
-            else if (Mode == EditMode.Script)
+            else if (Mode == EditMode.Data)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    InputScript(point.X, point.Y);
+                    InputData(point.X, point.Y);
                 }
             }
             else if (Mode == EditMode.TextInput)
@@ -251,7 +251,7 @@ namespace TileGameMaker.Panels
 
         private void BtnSetScript_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.Script);
+            SetMode(EditMode.Data);
         }
 
         private void BtnPutTemplate_Click(object sender, EventArgs e)
@@ -267,7 +267,7 @@ namespace TileGameMaker.Panels
             {
                 Display.Cursor = Cursors.Arrow;
 
-                BtnSetScript.Checked = false;
+                BtnSetData.Checked = false;
                 BtnAddText.Checked = false;
                 BtnPutTemplate.Checked = true;
             }
@@ -275,26 +275,30 @@ namespace TileGameMaker.Panels
             {
                 Display.Cursor = Cursors.IBeam;
 
-                BtnSetScript.Checked = false;
+                BtnSetData.Checked = false;
                 BtnAddText.Checked = true;
                 BtnPutTemplate.Checked = false;
             }
-            else if (Mode == EditMode.Script)
+            else if (Mode == EditMode.Data)
             {
                 Display.Cursor = Cursors.Hand;
 
-                BtnSetScript.Checked = true;
+                BtnSetData.Checked = true;
                 BtnAddText.Checked = false;
                 BtnPutTemplate.Checked = false;
             }
         }
 
-        private void InputScript(int x, int y)
+        private void InputData(int x, int y)
         {
             GameObject o = Map.GetObject(Layer, x, y);
-            TextInputWindow win = new TextInputWindow($"Script / Data @{x},{y}");
-            if (win.ShowDialog(this, o.Extra) == DialogResult.OK)
-                o.Extra = win.Text;
+            ObjectDataInputWindow win = new ObjectDataInputWindow($"Enter object data @{x},{y}");
+
+            if (win.ShowDialog(this, o.Id, o.Data) == DialogResult.OK)
+            {
+                o.Id = win.ObjectId;
+                o.Data = win.ObjectData;
+            }
         }
 
         private void InputText(int x, int y)

@@ -88,6 +88,12 @@
     <Compile Include="Panels\ColorPickerPanel.Designer.cs">
       <DependentUpon>ColorPickerPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ObjectDataInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ObjectDataInputWindow.Designer.cs">
+      <DependentUpon>ObjectDataInputWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\ColorPickerPanel.resx">
       <DependentUpon>ColorPickerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ObjectDataInputWindow.resx">
+      <DependentUpon>ObjectDataInputWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>

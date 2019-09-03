@@ -66,12 +66,12 @@ namespace TileGameMaker.Panels
         public override void Refresh()
         {
             base.Refresh();
-            TxtData.Text = Object.Extra;
+            TxtData.Text = Object.Data;
         }
 
         private void TxtBox_TextChanged(object sender, EventArgs e)
         {
-            Object.Extra = TxtData.Text;
+            Object.Data = TxtData.Text;
             Refresh();
         }
 
@@ -135,7 +135,7 @@ namespace TileGameMaker.Panels
 
         public void ShowDataInputWindow()
         {
-            TextInputWindow win = new TextInputWindow("Template Script / Data");
+            TextInputWindow win = new TextInputWindow("Template Data");
             if (win.ShowDialog(this, TxtData.Text) == DialogResult.OK)
                 TxtData.Text = win.Text;
         }

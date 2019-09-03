@@ -21,12 +21,12 @@ namespace TileGameEngine.Core
 
             // Control flow
             Set("EXIT", new ExitCommand());
-            Set("JP", new JumpCommand());
+            Set("JMP", new JumpCommand());
             Set("JZ", new JumpZeroCommand());
             Set("JNZ", new JumpNotZeroCommand());
             Set("CALL", new CallCommand());
-            Set("CALLZ", new CallZeroCommand());
-            Set("CALLNZ", new CallNotZeroCommand());
+            Set("CLZ", new CallZeroCommand());
+            Set("CLNZ", new CallNotZeroCommand());
             Set("RET", new ReturnCommand());
             Set("SLEEP", new SleepCommand());
 
@@ -41,12 +41,12 @@ namespace TileGameEngine.Core
             Set("CMP", new CompareCommand());
 
             // Object map
-            Set("MAPLOAD", new MapLoadCommand());
+            Set("MAP.LOAD", new MapLoadCommand());
 
             // Graphics
-            Set("WINDOW", new WindowCommand());
-            Set("REFRESH", new RefreshCommand());
-            Set("PRINT", new PrintCommand());
+            Set("WINDOW.OPEN", new WindowCommand());
+            Set("WINDOW.REFRESH", new RefreshCommand());
+            Set("WINDOW.PRINT", new PrintCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

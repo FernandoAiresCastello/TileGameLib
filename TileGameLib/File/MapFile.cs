@@ -46,7 +46,7 @@ namespace TileGameLib.File
                             file.WriteByte((byte)tile.BackColorIx);
                         }
 
-                        file.WriteString(o.Extra);
+                        file.WriteString(o.Data);
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace TileGameLib.File
                             tile.BackColorIx = file.ReadByte();
                         }
 
-                        o.Extra = file.ReadString();
+                        o.Data = file.ReadString();
                     }
                 }
             }

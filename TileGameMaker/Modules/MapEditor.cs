@@ -43,7 +43,7 @@ namespace TileGameMaker.Modules
             get
             {
                 GameObject o = new GameObject();
-                o.Extra = TemplateControl.Object.Extra;
+                o.Data = TemplateControl.Object.Data;
                 o.Animation.SetEqual(TemplateControl.CroppedAnimation);
                 return o;
             }

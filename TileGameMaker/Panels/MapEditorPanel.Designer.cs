@@ -34,26 +34,26 @@
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnLoadMap = new System.Windows.Forms.ToolStripButton();
             this.BtnSaveMap = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
             this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetScript = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetData = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -125,7 +125,7 @@
             this.BtnClearLayer,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
-            this.BtnSetScript,
+            this.BtnSetData,
             this.BtnAddText,
             this.BtnSelect,
             this.toolStripSeparator4,
@@ -139,35 +139,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(646, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // CbLayer
-            // 
-            this.CbLayer.CausesValidation = false;
-            this.CbLayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbLayer.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.CbLayer.Name = "CbLayer";
-            this.CbLayer.Size = new System.Drawing.Size(121, 25);
-            this.CbLayer.SelectedIndexChanged += new System.EventHandler(this.CbLayer_SelectedIndexChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // BtnNew
             // 
@@ -201,6 +172,20 @@
             this.BtnSaveMap.Text = "toolStripButton1";
             this.BtnSaveMap.ToolTipText = "Save map";
             this.BtnSaveMap.Click += new System.EventHandler(this.BtnSaveMap_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // CbLayer
+            // 
+            this.CbLayer.CausesValidation = false;
+            this.CbLayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbLayer.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.CbLayer.Name = "CbLayer";
+            this.CbLayer.Size = new System.Drawing.Size(121, 25);
+            this.CbLayer.SelectedIndexChanged += new System.EventHandler(this.CbLayer_SelectedIndexChanged);
             // 
             // BtnViewAll
             // 
@@ -248,6 +233,11 @@
             this.BtnClearLayer.ToolTipText = "Clear layer";
             this.BtnClearLayer.Click += new System.EventHandler(this.BtnClearLayer_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // BtnPutTemplate
             // 
             this.BtnPutTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -259,16 +249,16 @@
             this.BtnPutTemplate.ToolTipText = "Draw mode";
             this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
             // 
-            // BtnSetScript
+            // BtnSetData
             // 
-            this.BtnSetScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetScript.Image = global::TileGameMaker.Properties.Resources.script_binary;
-            this.BtnSetScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetScript.Name = "BtnSetScript";
-            this.BtnSetScript.Size = new System.Drawing.Size(23, 22);
-            this.BtnSetScript.Text = "toolStripButton1";
-            this.BtnSetScript.ToolTipText = "Script edit mode";
-            this.BtnSetScript.Click += new System.EventHandler(this.BtnSetScript_Click);
+            this.BtnSetData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetData.Image = global::TileGameMaker.Properties.Resources.script_binary;
+            this.BtnSetData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetData.Name = "BtnSetData";
+            this.BtnSetData.Size = new System.Drawing.Size(23, 22);
+            this.BtnSetData.Text = "toolStripButton1";
+            this.BtnSetData.ToolTipText = "Data input mode";
+            this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
             // 
@@ -290,6 +280,11 @@
             this.BtnSelect.Size = new System.Drawing.Size(23, 22);
             this.BtnSelect.Text = "toolStripButton1";
             this.BtnSelect.ToolTipText = "Selection mode";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // BtnZoomIn
             // 
@@ -335,6 +330,11 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,7 +379,7 @@
         private System.Windows.Forms.ToolStripButton BtnRemoveLayer;
         private System.Windows.Forms.ToolStripButton BtnViewAll;
         private System.Windows.Forms.ToolStripButton BtnClearLayer;
-        private System.Windows.Forms.ToolStripButton BtnSetScript;
+        private System.Windows.Forms.ToolStripButton BtnSetData;
         private System.Windows.Forms.ToolStripButton BtnPutTemplate;
     }
 }

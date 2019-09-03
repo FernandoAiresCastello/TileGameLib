@@ -10,11 +10,11 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public string Id { get; private set; }
+        public string Id { get; set; }
+        public string Data { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
-        public string Extra { set; get; }
 
-        public bool HasExtra => !string.IsNullOrWhiteSpace(Extra);
+        public bool HasData => !string.IsNullOrWhiteSpace(Data);
 
         public GameObject()
         {
@@ -38,27 +38,27 @@ namespace TileGameLib.GameElements
         public GameObject(Tile singleAnimFrame, string script)
         {
             GenerateId();
-            Extra = script;
+            Data = script;
             Animation.Clear(singleAnimFrame);
         }
 
         public void SetNull()
         {
-            Extra = "";
+            Data = "";
             Animation.Clear(Tile.Null);
         }
 
         public bool IsNull()
         {
             return 
-                Extra == "" && 
+                Data == "" && 
                 Animation.IsSingleFrame() &&
                 Animation.GetFirstFrame().Equals(Tile.Null);
         }
 
         public void SetEqual(GameObject o)
         {
-            Extra = o.Extra;
+            Data = o.Data;
             Animation.SetEqual(o.Animation);
         }
 
@@ -80,13 +80,13 @@ namespace TileGameLib.GameElements
             GameObject o = (GameObject)obj;
 
             return
-                Extra.Equals(o.Extra) &&
+                Data.Equals(o.Data) &&
                 Animation.Equals(o.Animation);
         }
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Animation, Extra).GetHashCode();
+            return Tuple.Create(Animation, Data).GetHashCode();
         }
 
         private void GenerateId()

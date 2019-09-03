@@ -33,8 +33,6 @@ namespace TileGameLib.Graphics
         private int AnimationFrame;
         private bool RenderSingleLayer;
         private int SingleLayerToRender;
-        private Tileset DispTileset;
-        private Palette DispPalette;
 
         private readonly TiledDisplay Disp;
         private readonly Timer RefreshTimer;
@@ -119,8 +117,8 @@ namespace TileGameLib.Graphics
 
         public void Render()
         {
-            DispTileset = Disp.Graphics.Tileset;
-            DispPalette = Disp.Graphics.Palette;
+            Tileset dispTileset = Disp.Graphics.Tileset;
+            Palette dispPalette = Disp.Graphics.Palette;
 
             Disp.Graphics.Tileset = Map.Tileset;
             Disp.Graphics.Palette = Map.Palette;
@@ -136,8 +134,8 @@ namespace TileGameLib.Graphics
             }
 
             Disp.Refresh();
-            Disp.Graphics.Tileset = DispTileset;
-            Disp.Graphics.Palette = DispPalette;
+            Disp.Graphics.Tileset = dispTileset;
+            Disp.Graphics.Palette = dispPalette;
         }
 
         private void RenderLayer(ObjectLayer layer, bool renderNull)
