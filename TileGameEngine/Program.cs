@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameEngine.Windows;
+using TileGameLib.Util;
 
 namespace TileGameEngine
 {
@@ -22,7 +23,7 @@ namespace TileGameEngine
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                Alert.Error(ex.ToString());
                 Application.Exit();
             }
         }

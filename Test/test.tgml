@@ -1,0 +1,60 @@
+
+# This line is a comment
+
+:main
+	CALL test_string
+	CALL test_math
+
+:end
+	SYSTEM.EXIT
+	
+:test_string
+	PUSH Left
+	PUSH Right
+	PUSH 0xff0d
+	STRING.JOIN
+	POP
+	PUSH Hello
+	PUSH world!
+	PUSH 0x20
+	STRING.JOIN
+	POP
+	PUSH 255
+	PUSH X
+	STRING.FORMAT
+	POP
+	RET
+	
+:test_math
+	PUSH 22
+	PUSH 3
+	MATH.POW
+	POP
+	PUSH 44
+	MATH.SQRT
+	POP
+	PUSH 1
+	MATH.INC
+	MATH.DEC
+	POP
+	PUSH 50
+	PUSH 20
+	MATH.ADD
+	POP
+	PUSH 30
+	PUSH 10
+	MATH.SUB
+	POP
+	PUSH 10
+	PUSH 5
+	MATH.MUL
+	POP
+	PUSH 30
+	PUSH 2
+	MATH.DIV
+	POP
+	PUSH 100
+	PUSH 88
+	MATH.MOD
+	POP
+	RET

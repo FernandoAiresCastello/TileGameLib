@@ -59,6 +59,11 @@ namespace TileGameEngine.Core
             return number;
         }
 
+        public void DiscardTop()
+        {
+            Values.Pop();
+        }
+
         public List<string> ToList()
         {
             List<string> list = new List<string>();

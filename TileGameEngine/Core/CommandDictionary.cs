@@ -9,6 +9,7 @@ using TileGameEngine.Commands.Map;
 using TileGameEngine.Commands.Math;
 using TileGameEngine.Commands.Misc;
 using TileGameEngine.Commands.Stack;
+using TileGameEngine.Commands.String;
 using TileGameEngine.Commands.System;
 using TileGameEngine.Commands.Window;
 
@@ -23,10 +24,10 @@ namespace TileGameEngine.Core
 
         private void InitializeCommands()
         {
-            // Misc
+            // MISC
             Set("NOP", new NopCommand());
 
-            // Control flow
+            // CONTROL FLOW
             Set("JMP", new JumpCommand());
             Set("JZ", new JumpZeroCommand());
             Set("JNZ", new JumpNotZeroCommand());
@@ -35,33 +36,39 @@ namespace TileGameEngine.Core
             Set("CLNZ", new CallNotZeroCommand());
             Set("RET", new ReturnCommand());
 
-            // Stack
+            // STACK
             Set("PUSH", new PushCommand());
+            Set("POP", new PopCommand());
             Set("STORE", new StoreCommand());
             Set("LOAD", new LoadCommand());
 
-            // System
+            // SYSTEM
             Set("SYSTEM.EXIT", new ExitCommand());
             Set("SYSTEM.SLEEP", new SleepCommand());
 
-            // Arithmetic
+            // MATH
             Set("MATH.INC", new IncrementCommand());
             Set("MATH.DEC", new DecrementCommand());
             Set("MATH.ADD", new AddCommand());
-            Set("MATH.SUBTR", new SubtractCommand());
-            Set("MATH.COMPARE", new CompareCommand());
-            Set("MATH.MULT", new MultiplyCommand());
-            Set("MATH.DIVIDE", new DivideCommand());
-            Set("MATH.MODULO", new ModuloCommand());
+            Set("MATH.SUB", new SubtractCommand());
+            Set("MATH.CMP", new CompareCommand());
+            Set("MATH.MUL", new MultiplyCommand());
+            Set("MATH.DIV", new DivideCommand());
+            Set("MATH.MOD", new ModuloCommand());
             Set("MATH.SQRT", new SquareRootCommand());
-            Set("MATH.POWER", new PowerCommand());
+            Set("MATH.POW", new PowerCommand());
 
-            // Graphics
+            // STRING
+            Set("STRING.FORMAT", new FormatCommand());
+            Set("STRING.CONCAT", new ConcatCommand());
+            Set("STRING.JOIN", new JoinCommand());
+
+            // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PRINT", new PrintCommand());
 
-            // Map
+            // MAP
             Set("MAP.LOAD", new MapLoadCommand());
         }
 
