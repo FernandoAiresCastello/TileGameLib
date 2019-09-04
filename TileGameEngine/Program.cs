@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,8 +20,9 @@ namespace TileGameEngine
             {
                 Application.Run(new StartWindow());
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 Application.Exit();
             }
         }

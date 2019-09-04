@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.System
 {
     public class ExitCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Interpreter.Stop();
+            Interpreter.Exit();
         }
     }
 }

@@ -50,29 +50,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\MapLoadCommand.cs" />
-    <Compile Include="Commands\SleepCommand.cs" />
-    <Compile Include="Commands\RefreshCommand.cs" />
-    <Compile Include="Commands\PrintCommand.cs" />
-    <Compile Include="Commands\NopCommand.cs" />
-    <Compile Include="Commands\CallCommand.cs" />
-    <Compile Include="Commands\CallNotZeroCommand.cs" />
-    <Compile Include="Commands\CallZeroCommand.cs" />
+    <Compile Include="Commands\Math\DivideCommand.cs" />
+    <Compile Include="Commands\Math\PowerCommand.cs" />
+    <Compile Include="Commands\Math\SquareRootCommand.cs" />
+    <Compile Include="Commands\Math\MultiplyCommand.cs" />
+    <Compile Include="Commands\Math\ModuloCommand.cs" />
+    <Compile Include="Commands\Math\SubtractCommand.cs" />
+    <Compile Include="Commands\Map\MapLoadCommand.cs" />
+    <Compile Include="Commands\Math\AddCommand.cs" />
+    <Compile Include="Commands\System\SleepCommand.cs" />
+    <Compile Include="Commands\Window\RefreshCommand.cs" />
+    <Compile Include="Commands\Window\PrintCommand.cs" />
+    <Compile Include="Commands\Misc\NopCommand.cs" />
+    <Compile Include="Commands\ControlFlow\CallCommand.cs" />
+    <Compile Include="Commands\ControlFlow\CallNotZeroCommand.cs" />
+    <Compile Include="Commands\ControlFlow\CallZeroCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\CompareCommand.cs" />
-    <Compile Include="Commands\DecrementCommand.cs" />
-    <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Commands\IncrementCommand.cs" />
-    <Compile Include="Commands\JumpCommand.cs" />
-    <Compile Include="Commands\JumpNotZeroCommand.cs" />
-    <Compile Include="Commands\JumpZeroCommand.cs" />
-    <Compile Include="Commands\LoadCommand.cs" />
-    <Compile Include="Commands\PushCommand.cs" />
-    <Compile Include="Commands\ReturnCommand.cs" />
-    <Compile Include="Commands\StoreCommand.cs" />
-    <Compile Include="Commands\WindowCommand.cs" />
+    <Compile Include="Commands\Math\CompareCommand.cs" />
+    <Compile Include="Commands\Math\DecrementCommand.cs" />
+    <Compile Include="Commands\System\ExitCommand.cs" />
+    <Compile Include="Commands\Math\IncrementCommand.cs" />
+    <Compile Include="Commands\ControlFlow\JumpCommand.cs" />
+    <Compile Include="Commands\ControlFlow\JumpNotZeroCommand.cs" />
+    <Compile Include="Commands\ControlFlow\JumpZeroCommand.cs" />
+    <Compile Include="Commands\Stack\LoadCommand.cs" />
+    <Compile Include="Commands\Stack\PushCommand.cs" />
+    <Compile Include="Commands\ControlFlow\ReturnCommand.cs" />
+    <Compile Include="Commands\Stack\StoreCommand.cs" />
+    <Compile Include="Commands\Window\OpenCommand.cs" />
+    <Compile Include="Core\CallStack.cs" />
     <Compile Include="Core\CommandDictionary.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\EnvironmentAssertions.cs" />
     <Compile Include="Core\ScriptLine.cs" />
     <Compile Include="Core\Environment.cs" />
     <Compile Include="Exceptions\EngineException.cs" />
@@ -100,7 +109,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Script.cs" />
-    <Compile Include="Core\Stack.cs" />
+    <Compile Include="Core\ParameterStack.cs" />
     <Compile Include="Core\Variables.cs" />
     <EmbeddedResource Include="Windows\StartWindow.resx">
       <DependentUpon>StartWindow.cs</DependentUpon>
@@ -144,5 +153,6 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

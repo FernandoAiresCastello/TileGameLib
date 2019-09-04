@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Math
 {
     public class CompareCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int value2 = PopInt();
-            int value1 = PopInt();
-            int result = value1 - value2;
+            int number2 = PopInt();
+            int number1 = PopInt();
+            int result = number1 - number2;
 
-            Interpreter.ParamStack.Push(result.ToString());
+            ParamStack.Push(result);
         }
     }
 }

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.ControlFlow
 {
-    public class CallNotZeroCommand : CommandBase
+    public class JumpZeroCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            if (TopInt() != 0)
+            if (TopInt() == 0)
             {
                 string label = immediateParams[0];
-                Call(label);
+                Jump(label);
             }
         }
     }

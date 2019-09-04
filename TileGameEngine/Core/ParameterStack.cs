@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Core
 {
-    public class Stack
+    public class ParameterStack
     {
         private readonly Stack<string> Values = new Stack<string>();
 
         public int Size => Values.Count;
+        public bool IsEmpty => Size == 0;
 
-        public Stack()
+        public ParameterStack()
         {
         }
 
@@ -21,9 +22,9 @@ namespace TileGameEngine.Core
             Values.Clear();
         }
 
-        public void Push(string value)
+        public void Push(object value)
         {
-            Values.Push(value);
+            Values.Push(value.ToString());
         }
 
         public string PopStr()

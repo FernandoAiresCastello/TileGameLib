@@ -4,6 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Commands;
+using TileGameEngine.Commands.ControlFlow;
+using TileGameEngine.Commands.Map;
+using TileGameEngine.Commands.Math;
+using TileGameEngine.Commands.Misc;
+using TileGameEngine.Commands.Stack;
+using TileGameEngine.Commands.System;
+using TileGameEngine.Commands.Window;
 
 namespace TileGameEngine.Core
 {
@@ -20,7 +27,6 @@ namespace TileGameEngine.Core
             Set("NOP", new NopCommand());
 
             // Control flow
-            Set("EXIT", new ExitCommand());
             Set("JMP", new JumpCommand());
             Set("JZ", new JumpZeroCommand());
             Set("JNZ", new JumpNotZeroCommand());
@@ -28,25 +34,35 @@ namespace TileGameEngine.Core
             Set("CLZ", new CallZeroCommand());
             Set("CLNZ", new CallNotZeroCommand());
             Set("RET", new ReturnCommand());
-            Set("SLEEP", new SleepCommand());
 
-            // Parameter stack
+            // Stack
             Set("PUSH", new PushCommand());
             Set("STORE", new StoreCommand());
             Set("LOAD", new LoadCommand());
 
-            // Arithmetic
-            Set("INC", new IncrementCommand());
-            Set("DEC", new DecrementCommand());
-            Set("CMP", new CompareCommand());
+            // System
+            Set("SYSTEM.EXIT", new ExitCommand());
+            Set("SYSTEM.SLEEP", new SleepCommand());
 
-            // Object map
-            Set("MAP.LOAD", new MapLoadCommand());
+            // Arithmetic
+            Set("MATH.INC", new IncrementCommand());
+            Set("MATH.DEC", new DecrementCommand());
+            Set("MATH.ADD", new AddCommand());
+            Set("MATH.SUBTR", new SubtractCommand());
+            Set("MATH.COMPARE", new CompareCommand());
+            Set("MATH.MULT", new MultiplyCommand());
+            Set("MATH.DIVIDE", new DivideCommand());
+            Set("MATH.MODULO", new ModuloCommand());
+            Set("MATH.SQRT", new SquareRootCommand());
+            Set("MATH.POWER", new PowerCommand());
 
             // Graphics
-            Set("WINDOW.OPEN", new WindowCommand());
+            Set("WINDOW.OPEN", new OpenCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PRINT", new PrintCommand());
+
+            // Map
+            Set("MAP.LOAD", new MapLoadCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

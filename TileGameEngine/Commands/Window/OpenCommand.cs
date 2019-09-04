@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Window
 {
-    public class WindowCommand : CommandBase
+    public class OpenCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {

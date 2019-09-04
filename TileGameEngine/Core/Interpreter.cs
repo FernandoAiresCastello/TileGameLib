@@ -16,8 +16,8 @@ namespace TileGameEngine.Core
     {
         public Environment Environment { get; private set; }
         public ScriptLabels Labels { get; private set; } = new ScriptLabels();
-        public Stack<int> CallStack { get; private set; } = new Stack<int>();
-        public Stack ParamStack { get; private set; } = new Stack();
+        public CallStack CallStack { get; private set; } = new CallStack();
+        public ParameterStack ParamStack { get; private set; } = new ParameterStack();
         public bool Running { get; private set; } = false;
         public bool Branching { get; private set; } = false;
         public int ProgramPointer { get; private set; } = 0;
@@ -28,7 +28,7 @@ namespace TileGameEngine.Core
         private readonly Script Script;
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
-        private bool ExitOnException;
+        private bool DebugMode;
 
         private static readonly int CycleInterval = Config.ReadInt("InterpreterCycleInterval");
 
@@ -45,7 +45,7 @@ namespace TileGameEngine.Core
             catch (ScriptException ex)
             {
                 Alert.Error(ex.Message);
-                Application.Exit();
+                Environment.ExitApplication();
             }
 
             CycleTimer = new Timer();
@@ -116,9 +116,9 @@ namespace TileGameEngine.Core
             if (Running)
                 throw new InterpreterException("Interpreter is already running");
 
-            ExitOnException = true;
             Environment.ExitIfGameWindowClosed = true;
             Running = true;
+            DebugMode = false;
             CycleTimer.Start();
         }
 
@@ -127,9 +127,9 @@ namespace TileGameEngine.Core
             if (Running)
                 throw new InterpreterException("Interpreter is already running");
 
-            ExitOnException = false;
             Environment.ExitIfGameWindowClosed = false;
             Running = true;
+            DebugMode = true;
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)
@@ -166,22 +166,22 @@ namespace TileGameEngine.Core
             {
                 CycleTimer.Stop();
                 Alert.Error(ex.Message);
-                if (ExitOnException)
-                    Application.Exit();
+                if (!DebugMode)
+                    Environment.ExitApplication();
             }
             catch (ScriptException ex)
             {
                 CycleTimer.Stop();
                 AlertCurrentLineException(ex);
-                if (ExitOnException)
-                    Application.Exit();
+                if (!DebugMode)
+                    Environment.ExitApplication();
             }
             catch (EnvironmentException ex)
             {
                 CycleTimer.Stop();
                 AlertCurrentLineException(ex);
-                if (ExitOnException)
-                    Application.Exit();
+                if (!DebugMode)
+                    Environment.ExitApplication();
             }
         }
 
@@ -225,6 +225,13 @@ namespace TileGameEngine.Core
             Running = false;
             if (Environment.HasWindow)
                 Environment.CloseWindow();
+        }
+
+        public void Exit()
+        {
+            Stop();
+            if (!DebugMode)
+                Environment.ExitApplication();
         }
     }
 }

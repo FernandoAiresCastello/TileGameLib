@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.ControlFlow
 {
-    public class RefreshCommand : CommandBase
+    public class CallCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Environment.RefreshWindow();
+            string label = immediateParams[0];
+            Call(label);
         }
     }
 }

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Math
 {
-    public class NopCommand : CommandBase
+    public class IncrementCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            // No operation
+            int value = PopInt();
+            ParamStack.Push(value + 1);
         }
     }
 }

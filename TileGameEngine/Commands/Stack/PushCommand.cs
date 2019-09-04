@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Stack
 {
-    public class DecrementCommand : CommandBase
+    public class PushCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int value = PopInt();
-            Interpreter.ParamStack.Push((value - 1).ToString());
+            string value = immediateParams[0];
+            ParamStack.Push(value);
         }
     }
 }

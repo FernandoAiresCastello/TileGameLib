@@ -13,7 +13,8 @@ namespace TileGameEngine.Commands
     {
         public Interpreter Interpreter { set; get; }
         public Environment Environment { set; get; }
-        public Stack ParamStack => Interpreter.ParamStack;
+        public ParameterStack ParamStack => Interpreter.ParamStack;
+        public CallStack CallStack => Interpreter.CallStack;
 
         public CommandBase()
         {
@@ -33,7 +34,7 @@ namespace TileGameEngine.Commands
         public void Call(string label)
         {
             AssertLabel(label);
-            Interpreter.CallStack.Push(Interpreter.ProgramPointer + 1);
+            CallStack.Push(Interpreter.ProgramPointer + 1);
             Interpreter.Branch(Interpreter.Labels.Get(label));
         }
 
@@ -51,26 +52,26 @@ namespace TileGameEngine.Commands
 
         public int PopInt()
         {
-            if (Interpreter.ParamStack.Size == 0)
+            if (ParamStack.IsEmpty)
                 throw new ScriptException("Parameter stack is empty");
 
-            return Interpreter.ParamStack.PopInt();
+            return ParamStack.PopInt();
         }
 
         public string PopStr()
         {
-            if (Interpreter.ParamStack.Size == 0)
+            if (ParamStack.IsEmpty)
                 throw new ScriptException("Parameter stack is empty");
 
-            return Interpreter.ParamStack.PopStr();
+            return ParamStack.PopStr();
         }
 
         public int TopInt()
         {
-            if (Interpreter.ParamStack.Size == 0)
+            if (ParamStack.IsEmpty)
                 throw new ScriptException("Parameter stack is empty");
 
-            return Interpreter.ParamStack.TopInt();
+            return ParamStack.TopInt();
         }
     }
 }

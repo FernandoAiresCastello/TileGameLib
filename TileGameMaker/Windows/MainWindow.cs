@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
 using TileGameMaker.Modules;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
@@ -17,10 +19,21 @@ namespace TileGameMaker.Windows
     {
         private MapEditor MapEditor;
 
+        private static readonly int BestWidth = Config.ReadInt("MapEditorWindowBestWidth");
+        private static readonly int BestHeight = Config.ReadInt("MapEditorWindowBestHeight");
+
         public MainWindow()
         {
             InitializeComponent();
             Shown += MainWindow_Shown;
+
+            Rectangle screenArea = Screen.PrimaryScreen.Bounds;
+            Size = new Size(BestWidth, BestHeight);
+
+            if (screenArea.Width > BestWidth && screenArea.Height > BestHeight)
+                WindowState = FormWindowState.Normal;
+            else
+                WindowState = FormWindowState.Maximized;
 
             MapEditor = new MapEditor(this);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);

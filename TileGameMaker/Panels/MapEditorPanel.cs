@@ -34,6 +34,8 @@ namespace TileGameMaker.Panels
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
         private static readonly string MapFileExt = Config.ReadString("MapFileExt");
 
+        private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
+
         public MapEditorPanel()
         {
             InitializeComponent();
@@ -344,7 +346,7 @@ namespace TileGameMaker.Panels
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = "TileGameMaker map file (*.map)|*.map";
+            dialog.Filter = MapFileFilter;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -361,7 +363,7 @@ namespace TileGameMaker.Panels
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = "TileGameMaker map file (*.map)|*.map";
+            dialog.Filter = MapFileFilter;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {

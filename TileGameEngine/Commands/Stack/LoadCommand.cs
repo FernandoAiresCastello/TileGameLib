@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Stack
 {
-    public class StoreCommand : CommandBase
+    public class LoadCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
             string variable = immediateParams[0];
             AssertVariable(variable);
-            Environment.SetVariable(variable, PopStr());
+            string value = Environment.GetVariable(variable);
+            ParamStack.Push(value);
         }
     }
 }

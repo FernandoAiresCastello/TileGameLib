@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.ControlFlow
 {
-    public class IncrementCommand : CommandBase
+    public class JumpCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int value = PopInt();
-            Interpreter.ParamStack.Push((value + 1).ToString());
+            string label = immediateParams[0];
+            Jump(label);
         }
     }
 }

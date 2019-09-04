@@ -19,7 +19,8 @@ namespace TileGameEngine.Windows
     public partial class StartWindow : Form
     {
         private static readonly string SettingsFile = Config.ReadString("SettingsFile");
-        private static readonly string ScriptFileFilter = "*." + Config.ReadString("ScriptFileExt");
+        private static readonly string ScriptFileExt = Config.ReadString("ScriptFileExt");
+        private static readonly string ScriptFileFilter = $"TileGameMaker script (*.{ScriptFileExt})|*.{ScriptFileExt}";
 
         private string MainScript;
 
@@ -64,7 +65,7 @@ namespace TileGameEngine.Windows
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = Application.StartupPath;
-            dialog.Filter = $"TileGameMaker script ({ScriptFileFilter})|{ScriptFileFilter}";
+            dialog.Filter = ScriptFileFilter;
 
             if (dialog.ShowDialog(this) != DialogResult.OK)
                 return null;

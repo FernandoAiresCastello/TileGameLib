@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace TileGameEngine.Core
 {
-    public class Environment
+    public partial class Environment
     {
         public Variables Variables { get; private set; } = new Variables();
         public bool ExitIfGameWindowClosed { get; set; } = false;
@@ -44,11 +44,22 @@ namespace TileGameEngine.Core
             Variables.Set("env.text_backcolor", 0);
         }
 
+        public void ExitApplication()
+        {
+            if (HasWindow)
+                CloseWindow();
+
+            Application.Exit();
+        }
+
         public void Reset()
         {
             Variables.Clear();
             SetupEnvironmentVariables();
-            CloseWindow();
+
+            if (HasWindow)
+                CloseWindow();
+
             Map = null;
             MapRenderer = null;
         }
@@ -80,37 +91,6 @@ namespace TileGameEngine.Core
         private Point GetMapOffset()
         {
             return new Point(Variables.GetInt("env.map_offset_x"), Variables.GetInt("env.map_offset_y"));
-        }
-
-        private void AssertWindowIsOpen()
-        {
-            if (!HasWindow)
-                throw new EnvironmentException("Game window is closed");
-        }
-
-        private void AssertWindowIsNotOpen()
-        {
-            if (HasWindow)
-                throw new EnvironmentException("Game window is already open");
-        }
-
-        private void AssertTextColorIsWithinPalette()
-        {
-            int fgc = GetTextForeColor();
-            int bgc = GetTextBackColor();
-
-            if (fgc < 0 || bgc < 0 || fgc >= Window.Graphics.Palette.Size || bgc >= Window.Graphics.Palette.Size)
-                throw new EnvironmentException("Color palette index out of range");
-        }
-
-        private void AssertTextCursorIsWithinBounds()
-        {
-            Point textCursor = GetTextCursor();
-            int x = textCursor.X;
-            int y = textCursor.Y;
-
-            if (x < 0 || y < 0 || x >= Window.Graphics.Cols || y >= Window.Graphics.Rows)
-                throw new EnvironmentException("Text cursor out of bounds");
         }
 
         public void SetVariable(string variable, object value)

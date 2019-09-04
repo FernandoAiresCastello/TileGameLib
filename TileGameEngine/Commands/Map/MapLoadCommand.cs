@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Exceptions;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Map
 {
     public class MapLoadCommand : CommandBase
     {

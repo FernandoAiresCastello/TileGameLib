@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Misc
 {
-    public class PushCommand : CommandBase
+    public class NopCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string value = immediateParams[0];
-            Interpreter.ParamStack.Push(value);
+            // No operation
         }
     }
 }

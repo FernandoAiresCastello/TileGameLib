@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands
+namespace TileGameEngine.Commands.Window
 {
-    public class PrintCommand : CommandBase
+    public class RefreshCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string text = Interpreter.ParamStack.PopStr();
-            Environment.Print(text);
+            Environment.RefreshWindow();
         }
     }
 }
