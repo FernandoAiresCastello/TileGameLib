@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using TileGameEngine.Exceptions;
 
-namespace TileGameEngine.Commands.System
+namespace TileGameEngine.Commands.Stack
 {
-    public class SleepCommand : CommandBase
+    public class DuplicateCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int ms = PopInt();
-            Interpreter.Sleep(ms);
+            AssertParamStackNotEmpty();
+            ParamStack.DuplicateTop();
         }
     }
 }

@@ -75,8 +75,8 @@ namespace TileGameLib.Graphics
 
         public void ClearRect(int palIndex0, int x, int y, int width, int height)
         {
-            for (int px = x; px < width; px++)
-                for (int py = y; py < height; py++)
+            for (int px = x; px < x + width; px++)
+                for (int py = y; py < y + height; py++)
                     PutTile(px, py, Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
         }
 

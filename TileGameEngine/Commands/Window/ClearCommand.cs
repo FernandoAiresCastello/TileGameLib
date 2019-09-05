@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands.System
+namespace TileGameEngine.Commands.Window
 {
-    public class SleepCommand : CommandBase
+    public class ClearCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int ms = PopInt();
-            Interpreter.Sleep(ms);
+            Environment.ClearWindow();
         }
     }
 }

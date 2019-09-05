@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using TileGameEngine.Exceptions;
 
-namespace TileGameEngine.Commands.System
+namespace TileGameEngine.Commands.Map
 {
-    public class SleepCommand : CommandBase
+    public class MapShowCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int ms = PopInt();
-            Interpreter.Sleep(ms);
+            Environment.StartMapRenderer();
         }
     }
 }

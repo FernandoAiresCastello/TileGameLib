@@ -42,6 +42,7 @@ namespace TileGameEngine.Core
             Variables.Set("env.map_viewport_height", 0);
             Variables.Set("env.map_offset_x", 0);
             Variables.Set("env.map_offset_y", 0);
+            Variables.Set("env.screen_backcolor", 0);
             Variables.Set("env.text_cursor_x", 0);
             Variables.Set("env.text_cursor_y", 0);
             Variables.Set("env.text_forecolor", 0);
@@ -94,6 +95,11 @@ namespace TileGameEngine.Core
         private int GetTextBackColor()
         {
             return Variables.GetInt("env.text_backcolor");
+        }
+
+        private int GetScreenBackColor()
+        {
+            return Variables.GetInt("env.screen_backcolor");
         }
 
         private Rectangle GetMapViewport()
@@ -183,6 +189,19 @@ namespace TileGameEngine.Core
                 MapRenderer.AutoRefresh = false;
                 RefreshWindow();
             }
+        }
+
+        public void ClearWindow()
+        {
+            AssertWindowIsOpen();
+            Window.Graphics.Clear(GetScreenBackColor());
+        }
+
+        public void ClearMapViewport()
+        {
+            AssertWindowIsOpen();
+            Rectangle view = GetMapViewport();
+            Window.Graphics.ClearRect(GetScreenBackColor(), view.X, view.Y, view.Width, view.Height);
         }
 
         public void Print(string text)

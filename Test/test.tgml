@@ -14,9 +14,13 @@
 	PUSH 40
 	PUSH 30
 	WINDOW.OPEN
-	PUSH 0
+	PUSH 1
+	STORE $env.screen_backcolor
+	WINDOW.CLEAR
+	WINDOW.REFRESH
+	PUSH 1
 	STORE $env.map_viewport_x
-	PUSH 0
+	PUSH 3
 	STORE $env.map_viewport_y
 	PUSH 32
 	STORE $env.map_viewport_width
@@ -24,6 +28,20 @@
 	STORE $env.map_viewport_height
 	PUSH ../../../Test/test.tgmap
 	MAP.LOAD
+	PUSH 64
+	STORE $env.text_forecolor
+	PUSH 1
+	DUP
+	STORE $env.text_cursor_x
+	STORE $env.text_cursor_y
+	PUSH Hello World!
+	WINDOW.PRINT
+	PUSH 1000
+	SYSTEM.SLEEP
+	MAP.HIDE
+	PUSH 1000
+	SYSTEM.SLEEP
+	MAP.SHOW
 	RET
 
 :test_logging

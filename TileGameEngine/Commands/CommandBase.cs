@@ -50,27 +50,27 @@ namespace TileGameEngine.Commands
                 throw new ScriptException($"Label {param} not found");
         }
 
-        public int PopInt()
+        public void AssertParamStackNotEmpty()
         {
             if (ParamStack.IsEmpty)
                 throw new ScriptException("Parameter stack is empty");
+        }
 
+        public int PopInt()
+        {
+            AssertParamStackNotEmpty();
             return ParamStack.PopInt();
         }
 
         public string PopStr()
         {
-            if (ParamStack.IsEmpty)
-                throw new ScriptException("Parameter stack is empty");
-
+            AssertParamStackNotEmpty();
             return ParamStack.PopStr();
         }
 
         public int TopInt()
         {
-            if (ParamStack.IsEmpty)
-                throw new ScriptException("Parameter stack is empty");
-
+            AssertParamStackNotEmpty();
             return ParamStack.TopInt();
         }
     }

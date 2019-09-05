@@ -41,6 +41,7 @@ namespace TileGameEngine.Core
             Set("POP", new PopCommand());
             Set("STORE", new StoreCommand());
             Set("LOAD", new LoadCommand());
+            Set("DUP", new DuplicateCommand());
 
             // SYSTEM
             Set("SYSTEM.EXIT", new ExitCommand());
@@ -68,11 +69,14 @@ namespace TileGameEngine.Core
 
             // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());
+            Set("WINDOW.CLEAR", new ClearCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PRINT", new PrintCommand());
 
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
+            Set("MAP.SHOW", new MapShowCommand());
+            Set("MAP.HIDE", new MapHideCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

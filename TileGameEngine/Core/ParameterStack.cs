@@ -64,6 +64,11 @@ namespace TileGameEngine.Core
             Values.Pop();
         }
 
+        public void DuplicateTop()
+        {
+            Values.Push(Values.Peek());
+        }
+
         public List<string> ToList()
         {
             List<string> list = new List<string>();

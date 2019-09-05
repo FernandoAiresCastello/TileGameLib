@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Map\MapShowCommand.cs" />
+    <Compile Include="Commands\Map\MapHideCommand.cs" />
+    <Compile Include="Commands\Stack\DuplicateCommand.cs" />
     <Compile Include="Commands\System\HaltCommand.cs" />
     <Compile Include="Commands\Math\DivideCommand.cs" />
     <Compile Include="Commands\Math\PowerCommand.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Commands\System\ResetCommand.cs" />
     <Compile Include="Commands\System\LogCommand.cs" />
     <Compile Include="Commands\System\SleepCommand.cs" />
+    <Compile Include="Commands\Window\ClearCommand.cs" />
     <Compile Include="Commands\Window\RefreshCommand.cs" />
     <Compile Include="Commands\Window\PrintCommand.cs" />
     <Compile Include="Commands\Misc\NopCommand.cs" />

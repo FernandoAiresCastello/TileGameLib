@@ -9,6 +9,8 @@ using TileGameLib.Util;
 using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
 using TileGameEngine.Util;
+using System.Threading;
+using Timer = System.Windows.Forms.Timer;
 
 namespace TileGameEngine.Core
 {
@@ -29,6 +31,8 @@ namespace TileGameEngine.Core
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
         private bool DebugMode;
+
+        private int SleepTime = 0;
 
         private static readonly int CycleInterval = Config.ReadInt("InterpreterCycleInterval");
 
@@ -138,12 +142,32 @@ namespace TileGameEngine.Core
 
             if (!Running)
                 CycleTimer.Stop();
+
+            SleepIfRequested();
+        }
+
+        private void SleepIfRequested()
+        {
+            if (Running && SleepTime > 0)
+            {
+                CycleTimer.Stop();
+                CycleTimer.Interval = SleepTime;
+                CycleTimer.Start();
+                SleepTime = 0;
+            }
+        }
+
+        private void WakeUpIfSleeping()
+        {
+            CycleTimer.Interval = CycleInterval;
         }
 
         public void ExecuteCycle()
         {
             try
             {
+                WakeUpIfSleeping();
+
                 if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
                     throw new InterpreterException("Program pointer past end of script");
                     
@@ -243,6 +267,11 @@ namespace TileGameEngine.Core
         {
             Stop();
             Environment.ExitApplication();
+        }
+
+        public void Sleep(int ms)
+        {
+            SleepTime = ms;
         }
     }
 }
