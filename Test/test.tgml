@@ -2,6 +2,7 @@
 # This line is a comment
 
 	CALL test_maprender
+	CALL test_object_manip
 	SYSTEM.HALT
 	CALL test_logging
 	CALL test_string
@@ -9,6 +10,9 @@
 
 :exit
 	SYSTEM.EXIT
+
+:test_object_manip
+	RET
 
 :test_maprender
 	PUSH 40
