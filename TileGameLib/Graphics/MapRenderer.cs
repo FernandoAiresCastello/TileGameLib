@@ -120,7 +120,8 @@ namespace TileGameLib.Graphics
 
             Disp.Graphics.Tileset = Map.Tileset;
             Disp.Graphics.Palette = Map.Palette;
-            Disp.Graphics.Clear(Map.BackColor);
+            Disp.Graphics.ClearRect(Map.BackColor, 
+                Viewport.X, Viewport.Y, Viewport.Width, Viewport.Height);
 
             if (RenderSingleLayer)
             {

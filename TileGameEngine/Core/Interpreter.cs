@@ -227,6 +227,11 @@ namespace TileGameEngine.Core
                 Environment.CloseWindow();
         }
 
+        public void SoftLock()
+        {
+            Running = false;
+        }
+
         public void Exit()
         {
             Stop();

@@ -1,14 +1,31 @@
 
 # This line is a comment
 
+	CALL test_maprender
+	SYSTEM.HALT
 	CALL test_logging
-	SYSTEM.RESET
 	CALL test_string
 	CALL test_math
 
-:end
+:exit
 	SYSTEM.EXIT
-	
+
+:test_maprender
+	PUSH 40
+	PUSH 30
+	WINDOW.OPEN
+	PUSH 0
+	STORE $env.map_viewport_x
+	PUSH 0
+	STORE $env.map_viewport_y
+	PUSH 32
+	STORE $env.map_viewport_width
+	PUSH 24
+	STORE $env.map_viewport_height
+	PUSH ../../../Test/test.tgmap
+	MAP.LOAD
+	RET
+
 :test_logging
 	PUSH This is a test log message
 	SYSTEM.LOG

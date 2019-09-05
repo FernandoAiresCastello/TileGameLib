@@ -26,16 +26,16 @@ OBJECT.DATA.SET (layer, x, y, data)
 OBJECT.DATA.GET (layer, x, y)
 	Set or get object data
 
-OBJECT.TILE.INDEX.SET (layer, x, y, frame, index)
-OBJECT.TILE.INDEX.GET (layer, x, y, frame)
+OBJECT.TILE.IX.SET (layer, x, y, frame, index)
+OBJECT.TILE.IX.GET (layer, x, y, frame)
 	Set or get object tile index
 	
-OBJECT.TILE.FORECOLOR.SET (layer, x, y, frame, forecolor)
-OBJECT.TILE.FORECOLOR.GET (layer, x, y, frame)
+OBJECT.TILE.FG.SET (layer, x, y, frame, forecolor)
+OBJECT.TILE.FG.GET (layer, x, y, frame)
 	Set or get object tile foreground color
 
-OBJECT.TILE.BACKCOLOR.SET (layer, x, y, frame, backcolor)
-OBJECT.TILE.BACKCOLOR.GET (layer, x, y, frame)
+OBJECT.TILE.BG.SET (layer, x, y, frame, backcolor)
+OBJECT.TILE.BG.GET (layer, x, y, frame)
 	Set or get object tile background color
 
 OBJECT.MOVE (src_layer, src_x, src_y, dest_layer, dest_x, dest_y)

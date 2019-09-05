@@ -73,6 +73,13 @@ namespace TileGameLib.Graphics
             Fill(Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
         }
 
+        public void ClearRect(int palIndex0, int x, int y, int width, int height)
+        {
+            for (int px = x; px < width; px++)
+                for (int py = y; py < height; py++)
+                    PutTile(px, py, Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
+        }
+
         public void Fill(Tile tile)
         {
             Fill(tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
