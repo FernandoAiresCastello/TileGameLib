@@ -44,7 +44,7 @@ namespace TileGameEngine.Windows
 
         private void MiExit_Click(object sender, EventArgs e)
         {
-            Interpreter.Exit();
+            Interpreter.ForceExit();
         }
 
         private void MiClose_Click(object sender, EventArgs e)

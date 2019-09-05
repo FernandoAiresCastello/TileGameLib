@@ -91,6 +91,7 @@
     <Compile Include="Exceptions\EngineException.cs" />
     <Compile Include="Exceptions\EnvironmentException.cs" />
     <Compile Include="Exceptions\InterpreterException.cs" />
+    <Compile Include="Exceptions\StartupException.cs" />
     <Compile Include="Exceptions\ScriptException.cs" />
     <Compile Include="Util\Config.cs" />
     <Compile Include="Windows\DebuggerWindow.cs">

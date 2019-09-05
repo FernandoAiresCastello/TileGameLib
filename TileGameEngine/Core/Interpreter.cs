@@ -233,5 +233,11 @@ namespace TileGameEngine.Core
             if (!DebugMode)
                 Environment.ExitApplication();
         }
+
+        public void ForceExit()
+        {
+            Stop();
+            Environment.ExitApplication();
+        }
     }
 }

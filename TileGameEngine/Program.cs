@@ -17,15 +17,10 @@ namespace TileGameEngine
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            try
-            {
-                Application.Run(new StartWindow());
-            }
-            catch (Exception ex)
-            {
-                Alert.Error(ex.ToString());
-                Application.Exit();
-            }
+            StartWindow window = new StartWindow();
+            window.Start();
+
+            Application.Run(window);
         }
     }
 }

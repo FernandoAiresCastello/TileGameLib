@@ -36,6 +36,10 @@ namespace TileGameEngine.Commands.String
             {
                 result = Convert.ToString(number, 2).PadLeft(length, '0');
             }
+            else if (notation.ToUpper() == "D")
+            {
+                result = number.ToString().PadLeft(length, '0');
+            }
             else
             {
                 throw formatException;

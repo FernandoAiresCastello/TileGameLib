@@ -73,7 +73,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(429, 310);
+            this.groupBox1.Size = new System.Drawing.Size(429, 249);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Script";
@@ -87,7 +87,7 @@
             "00 SCRIPT test"});
             this.LstScript.Location = new System.Drawing.Point(10, 23);
             this.LstScript.Name = "LstScript";
-            this.LstScript.Size = new System.Drawing.Size(409, 277);
+            this.LstScript.Size = new System.Drawing.Size(409, 216);
             this.LstScript.TabIndex = 0;
             // 
             // groupBox2
@@ -109,11 +109,11 @@
             // BtnReset
             // 
             this.BtnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnReset.Location = new System.Drawing.Point(433, 48);
+            this.BtnReset.Location = new System.Drawing.Point(412, 48);
             this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(84, 28);
+            this.BtnReset.Size = new System.Drawing.Size(105, 28);
             this.BtnReset.TabIndex = 4;
-            this.BtnReset.Text = "Reset";
+            this.BtnReset.Text = "Reset [CTRL+R]";
             this.BtnReset.UseVisualStyleBackColor = true;
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
@@ -123,7 +123,7 @@
             this.BtnJump.Name = "BtnJump";
             this.BtnJump.Size = new System.Drawing.Size(84, 28);
             this.BtnJump.TabIndex = 3;
-            this.BtnJump.Text = "Jump";
+            this.BtnJump.Text = "Jump [F7]";
             this.BtnJump.UseVisualStyleBackColor = true;
             this.BtnJump.Click += new System.EventHandler(this.BtnJump_Click);
             // 
@@ -133,7 +133,7 @@
             this.BtnSkip.Name = "BtnSkip";
             this.BtnSkip.Size = new System.Drawing.Size(84, 28);
             this.BtnSkip.TabIndex = 2;
-            this.BtnSkip.Text = "Skip";
+            this.BtnSkip.Text = "Skip [F6]";
             this.BtnSkip.UseVisualStyleBackColor = true;
             this.BtnSkip.Click += new System.EventHandler(this.BtnSkip_Click);
             // 
@@ -143,7 +143,7 @@
             this.BtnExecute.Name = "BtnExecute";
             this.BtnExecute.Size = new System.Drawing.Size(84, 28);
             this.BtnExecute.TabIndex = 1;
-            this.BtnExecute.Text = "Execute";
+            this.BtnExecute.Text = "Execute [F5]";
             this.BtnExecute.UseVisualStyleBackColor = true;
             this.BtnExecute.Click += new System.EventHandler(this.BtnExecute_Click);
             // 
@@ -168,7 +168,7 @@
             this.groupBox3.Location = new System.Drawing.Point(447, 133);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Size = new System.Drawing.Size(530, 494);
+            this.groupBox3.Size = new System.Drawing.Size(530, 553);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Environment";
@@ -194,7 +194,7 @@
             this.TxtVariables.Name = "TxtVariables";
             this.TxtVariables.ReadOnly = true;
             this.TxtVariables.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtVariables.Size = new System.Drawing.Size(504, 432);
+            this.TxtVariables.Size = new System.Drawing.Size(504, 491);
             this.TxtVariables.TabIndex = 2;
             this.TxtVariables.Text = "env.variable_test = 0";
             this.TxtVariables.WordWrap = false;
@@ -204,10 +204,10 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.LstParamStack);
-            this.groupBox4.Location = new System.Drawing.Point(339, 354);
+            this.groupBox4.Location = new System.Drawing.Point(12, 293);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox4.Size = new System.Drawing.Size(102, 273);
+            this.groupBox4.Size = new System.Drawing.Size(429, 206);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Parameter stack";
@@ -221,17 +221,17 @@
             "test"});
             this.LstParamStack.Location = new System.Drawing.Point(10, 23);
             this.LstParamStack.Name = "LstParamStack";
-            this.LstParamStack.Size = new System.Drawing.Size(82, 240);
+            this.LstParamStack.Size = new System.Drawing.Size(409, 173);
             this.LstParamStack.TabIndex = 0;
             // 
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.LstCallStack);
-            this.groupBox5.Location = new System.Drawing.Point(231, 354);
+            this.groupBox5.Location = new System.Drawing.Point(313, 505);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(102, 273);
+            this.groupBox5.Size = new System.Drawing.Size(128, 181);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Call stack";
@@ -245,17 +245,17 @@
             "test"});
             this.LstCallStack.Location = new System.Drawing.Point(10, 23);
             this.LstCallStack.Name = "LstCallStack";
-            this.LstCallStack.Size = new System.Drawing.Size(82, 240);
+            this.LstCallStack.Size = new System.Drawing.Size(108, 148);
             this.LstCallStack.TabIndex = 0;
             // 
             // groupBox6
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox6.Controls.Add(this.LstLabels);
-            this.groupBox6.Location = new System.Drawing.Point(12, 354);
+            this.groupBox6.Location = new System.Drawing.Point(12, 505);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox6.Size = new System.Drawing.Size(213, 273);
+            this.groupBox6.Size = new System.Drawing.Size(295, 181);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Labels";
@@ -269,7 +269,7 @@
             "test"});
             this.LstLabels.Location = new System.Drawing.Point(10, 23);
             this.LstLabels.Name = "LstLabels";
-            this.LstLabels.Size = new System.Drawing.Size(193, 240);
+            this.LstLabels.Size = new System.Drawing.Size(275, 148);
             this.LstLabels.TabIndex = 0;
             // 
             // menuStrip1
@@ -302,7 +302,7 @@
             // MiExit
             // 
             this.MiExit.Name = "MiExit";
-            this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.X)));
             this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Exit";
@@ -355,7 +355,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 639);
+            this.ClientSize = new System.Drawing.Size(990, 698);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
