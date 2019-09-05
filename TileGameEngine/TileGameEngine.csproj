@@ -62,6 +62,7 @@
     <Compile Include="Commands\String\JoinCommand.cs" />
     <Compile Include="Commands\String\ConcatCommand.cs" />
     <Compile Include="Commands\String\FormatCommand.cs" />
+    <Compile Include="Commands\System\ResetCommand.cs" />
     <Compile Include="Commands\System\LogCommand.cs" />
     <Compile Include="Commands\System\SleepCommand.cs" />
     <Compile Include="Commands\Window\RefreshCommand.cs" />

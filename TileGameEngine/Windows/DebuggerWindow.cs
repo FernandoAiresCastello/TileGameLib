@@ -31,18 +31,28 @@ namespace TileGameEngine.Windows
                 Interpreter = interpreter;
                 Shown += DebuggerWindow_Shown;
                 FormClosed += DebuggerWindow_FormClosed;
-
-                TxtLog.Text = "";
-                FileWatcher = new FileSystemWatcher(new FileInfo(Core.Environment.LogFile).DirectoryName, Core.Environment.LogFile);
-                FileWatcher.NotifyFilter = NotifyFilters.LastWrite;
-                FileWatcher.Changed += FileWatcher_Changed;
-                FileWatcher.EnableRaisingEvents = true;
+                SetupLogFileWatcher();
             }
         }
 
         ~DebuggerWindow()
         {
             FileWatcher.Dispose();
+        }
+
+        private void SetupLogFileWatcher()
+        {
+            TxtLog.Text = "";
+            FileWatcher = new FileSystemWatcher(new FileInfo(Core.Environment.LogFile).DirectoryName, Core.Environment.LogFile);
+            FileWatcher.NotifyFilter =
+                NotifyFilters.LastWrite |
+                NotifyFilters.LastAccess |
+                NotifyFilters.FileName |
+                NotifyFilters.DirectoryName;
+
+            FileWatcher.Changed += FileWatcher_Changed;
+            FileWatcher.Deleted += FileWatcher_Changed;
+            FileWatcher.EnableRaisingEvents = true;
         }
 
         private void FileWatcher_Changed(object sender, FileSystemEventArgs e)
@@ -103,7 +113,6 @@ namespace TileGameEngine.Windows
             if (Alert.Confirm("Reset engine?"))
             {
                 Interpreter.Reset();
-                TxtLog.Text = "";
                 Refresh();
             }
         }

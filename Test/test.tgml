@@ -1,8 +1,8 @@
 
 # This line is a comment
 
-:main
 	CALL test_logging
+	SYSTEM.RESET
 	CALL test_string
 	CALL test_math
 

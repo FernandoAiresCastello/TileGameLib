@@ -46,6 +46,7 @@ namespace TileGameEngine.Core
             Set("SYSTEM.EXIT", new ExitCommand());
             Set("SYSTEM.SLEEP", new SleepCommand());
             Set("SYSTEM.LOG", new LogCommand());
+            Set("SYSTEM.RESET", new ResetCommand());
 
             // MATH
             Set("MATH.INC", new IncrementCommand());

@@ -106,7 +106,7 @@ namespace TileGameEngine.Core
             Environment.Reset();
             CallStack.Clear();
             ParamStack.Clear();
-            Branching = false;
+            Branching = true;
             Running = true;
             ProgramPointer = 0;
         }
