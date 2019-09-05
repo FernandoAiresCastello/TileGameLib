@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 
 namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
+        public string Tag { set; get; }
         public string Data { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
 
-        public bool HasData => !string.IsNullOrWhiteSpace(Data);
+        public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
 
         public GameObject()
         {
@@ -40,16 +43,17 @@ namespace TileGameLib.GameElements
 
         public void SetNull()
         {
-            Id = "";
+            Tag = "";
             Data = "";
             Animation.Clear(Tile.Null);
+            Id = IdGenerator.Generate(8);
         }
 
         public void SetEqual(GameObject o)
         {
             if (o != null)
             {
-                Id = o.Id;
+                Tag = o.Tag;
                 Data = o.Data;
                 Animation.SetEqual(o.Animation);
             }
@@ -66,7 +70,8 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return "ID: " + Id;
+            string tag = HasTag ? $"Tag: {Tag}" : "";
+            return $"ID: {Id} {tag}";
         }
 
         public override bool Equals(object obj)
@@ -83,7 +88,7 @@ namespace TileGameLib.GameElements
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Animation, Data).GetHashCode();
+            return Tuple.Create(Tag, Data, Animation).GetHashCode();
         }
     }
 }

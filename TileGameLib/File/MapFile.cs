@@ -39,7 +39,7 @@ namespace TileGameLib.File
                         if (o != null)
                         {
                             file.WriteByte(OccupiedCell);
-                            file.WriteString(o.Id);
+                            file.WriteString(o.Tag);
                             file.WriteByte((byte)o.Animation.Size);
 
                             foreach (Tile tile in o.Animation.Frames)
@@ -109,7 +109,7 @@ namespace TileGameLib.File
                             int frameCount = file.ReadByte();
 
                             GameObject o = new GameObject();
-                            o.Id = id;
+                            o.Tag = id;
                             o.Animation.Clear(null);
                             o.Animation.AddFrames(frameCount, new Tile());
 

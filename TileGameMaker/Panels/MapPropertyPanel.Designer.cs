@@ -116,6 +116,7 @@
             this.TxtLayers.Margin = new System.Windows.Forms.Padding(5);
             this.TxtLayers.MaxLength = 1;
             this.TxtLayers.Name = "TxtLayers";
+            this.TxtLayers.ReadOnly = true;
             this.TxtLayers.Size = new System.Drawing.Size(210, 23);
             this.TxtLayers.TabIndex = 9;
             this.TxtLayers.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericTxtBox_KeyPress);
@@ -239,11 +240,11 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnDiscard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 267);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 265);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 42);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 44);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // BtnDiscard
@@ -252,7 +253,7 @@
             this.BtnDiscard.Image = global::TileGameMaker.Properties.Resources.undo;
             this.BtnDiscard.Location = new System.Drawing.Point(139, 3);
             this.BtnDiscard.Name = "BtnDiscard";
-            this.BtnDiscard.Size = new System.Drawing.Size(130, 36);
+            this.BtnDiscard.Size = new System.Drawing.Size(130, 38);
             this.BtnDiscard.TabIndex = 12;
             this.BtnDiscard.UseVisualStyleBackColor = true;
             this.BtnDiscard.Click += new System.EventHandler(this.BtnDiscard_Click);
@@ -263,7 +264,7 @@
             this.BtnApply.Image = global::TileGameMaker.Properties.Resources.tick;
             this.BtnApply.Location = new System.Drawing.Point(3, 3);
             this.BtnApply.Name = "BtnApply";
-            this.BtnApply.Size = new System.Drawing.Size(130, 36);
+            this.BtnApply.Size = new System.Drawing.Size(130, 38);
             this.BtnApply.TabIndex = 11;
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);

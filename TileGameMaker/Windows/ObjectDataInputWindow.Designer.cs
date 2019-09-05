@@ -108,7 +108,7 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.TxtId, 1, 0);
@@ -125,17 +125,18 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 26);
+            this.label1.Size = new System.Drawing.Size(34, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ID:";
+            this.label1.Text = "Tag:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TxtId
             // 
             this.TxtId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtId.Location = new System.Drawing.Point(33, 3);
+            this.TxtId.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(43, 3);
             this.TxtId.Name = "TxtId";
-            this.TxtId.Size = new System.Drawing.Size(497, 20);
+            this.TxtId.Size = new System.Drawing.Size(487, 23);
             this.TxtId.TabIndex = 1;
             // 
             // ObjectDataInputWindow

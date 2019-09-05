@@ -35,6 +35,7 @@ namespace TileGameMaker.Panels
         private static readonly string MapFileExt = Config.ReadString("MapFileExt");
 
         private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
+        private static readonly string MessageCellEmpty = "This cell is empty";
 
         public MapEditorPanel()
         {
@@ -112,12 +113,11 @@ namespace TileGameMaker.Panels
             if (IsOutOfBounds(point))
                 return;
 
-            HoverLabel.Text = "X: " + point.X + " Y: " + point.Y;
+            HoverLabel.Text = $"X: {point.X} Y: {point.Y} ";
 
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
-
             if (o != null)
-                HoverLabel.Text += " ID: " + o.Id;
+                HoverLabel.Text += o.ToString();
         }
 
         private void OnDisplayMouseClick(MouseEventArgs e)
@@ -211,6 +211,8 @@ namespace TileGameMaker.Panels
         {
             if (!cell.IsEmpty())
                 MapEditor.SelectedObject = cell.GetObject();
+            else
+                Alert.Warning(MessageCellEmpty);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -229,7 +231,8 @@ namespace TileGameMaker.Panels
             {
                 Title = "Save map image",
                 AddExtension = true,
-                DefaultExt = "png"
+                DefaultExt = "png",
+                Filter = "PNG image files (*.png)|*.png"
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -295,14 +298,18 @@ namespace TileGameMaker.Panels
         private void InputData(int x, int y)
         {
             GameObject o = Map.GetObject(Layer, x, y);
+
             if (o == null)
+            {
+                Alert.Warning(MessageCellEmpty);
                 return;
+            }
 
             ObjectDataInputWindow win = new ObjectDataInputWindow($"Enter object data @{x},{y}");
 
-            if (win.ShowDialog(this, o.Id, o.Data) == DialogResult.OK)
+            if (win.ShowDialog(this, o.Tag, o.Data) == DialogResult.OK)
             {
-                o.Id = win.ObjectId;
+                o.Tag = win.ObjectId;
                 o.Data = win.ObjectData;
             }
         }
@@ -524,6 +531,7 @@ namespace TileGameMaker.Panels
                 Refresh();
                 UpdateLayerComboBox();
                 UpdateStatusLabel();
+                MapEditor.UpdateMapProperties();
             }
             else
             {
