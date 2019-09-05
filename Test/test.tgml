@@ -2,12 +2,18 @@
 # This line is a comment
 
 :main
+	CALL test_logging
 	CALL test_string
 	CALL test_math
 
 :end
 	SYSTEM.EXIT
 	
+:test_logging
+	PUSH This is a test log message
+	SYSTEM.LOG
+	RET
+
 :test_string
 	PUSH 255
 	PUSH 6,d

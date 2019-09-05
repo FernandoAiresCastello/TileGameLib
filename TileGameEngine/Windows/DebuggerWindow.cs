@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Util;
 using TileGameEngine.Core;
+using System.IO;
 
 namespace TileGameEngine.Windows
 {
     public partial class DebuggerWindow : Form
     {
         private Interpreter Interpreter;
+        private FileSystemWatcher FileWatcher;
 
         public DebuggerWindow() : this(null)
         {
@@ -29,7 +31,31 @@ namespace TileGameEngine.Windows
                 Interpreter = interpreter;
                 Shown += DebuggerWindow_Shown;
                 FormClosed += DebuggerWindow_FormClosed;
+
+                TxtLog.Text = "";
+                FileWatcher = new FileSystemWatcher(new FileInfo(Core.Environment.LogFile).DirectoryName, Core.Environment.LogFile);
+                FileWatcher.NotifyFilter = NotifyFilters.LastWrite;
+                FileWatcher.Changed += FileWatcher_Changed;
+                FileWatcher.EnableRaisingEvents = true;
             }
+        }
+
+        ~DebuggerWindow()
+        {
+            FileWatcher.Dispose();
+        }
+
+        private void FileWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            if (File.Exists(Core.Environment.LogFile))
+                UpdateLogViewAsync(File.ReadAllText(Core.Environment.LogFile));
+            else
+                UpdateLogViewAsync("");
+        }
+
+        private void UpdateLogViewAsync(string log)
+        {
+            BeginInvoke(new MethodInvoker(() => TxtLog.Text = log));
         }
 
         private void DebuggerWindow_Shown(object sender, EventArgs e)
@@ -77,6 +103,7 @@ namespace TileGameEngine.Windows
             if (Alert.Confirm("Reset engine?"))
             {
                 Interpreter.Reset();
+                TxtLog.Text = "";
                 Refresh();
             }
         }

@@ -11,6 +11,7 @@ using TileGameLib.Graphics;
 using TileGameEngine.Windows;
 using TileGameEngine.Exceptions;
 using System.Windows.Forms;
+using TileGameEngine.Util;
 
 namespace TileGameEngine.Core
 {
@@ -24,8 +25,11 @@ namespace TileGameEngine.Core
         private ObjectMap Map;
         private MapRenderer MapRenderer;
 
+        public static readonly string LogFile = Config.ReadString("LogFile");
+
         public Environment()
         {
+            DeleteLogFile();
             SetupEnvironmentVariables();
         }
 
@@ -54,6 +58,7 @@ namespace TileGameEngine.Core
 
         public void Reset()
         {
+            DeleteLogFile();
             Variables.Clear();
             SetupEnvironmentVariables();
 
@@ -62,6 +67,18 @@ namespace TileGameEngine.Core
 
             Map = null;
             MapRenderer = null;
+        }
+
+        public void DeleteLogFile()
+        {
+            if (File.Exists(LogFile))
+                File.Delete(LogFile);
+        }
+
+        public void WriteLog(string message)
+        {
+            using (var stream = File.AppendText(LogFile))
+                stream.WriteLine(message);
         }
 
         private Point GetTextCursor()

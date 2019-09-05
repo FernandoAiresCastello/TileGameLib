@@ -134,7 +134,7 @@ namespace TileGameEngine.Windows
             {
                 new Engine().Run(path);
             }
-            catch (EngineException ex)
+            catch (Exception ex)
             {
                 Alert.Error(ex.Message);
             }
@@ -148,7 +148,7 @@ namespace TileGameEngine.Windows
                 engine.ParentForm = this;
                 engine.Debug(path);
             }
-            catch (EngineException ex)
+            catch (Exception ex)
             {
                 Alert.Error(ex.Message);
             }

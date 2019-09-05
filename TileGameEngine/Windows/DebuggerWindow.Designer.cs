@@ -55,6 +55,8 @@
             this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
             this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
             this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtLog = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -163,6 +165,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.TxtLog);
+            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.TxtVariables);
             this.groupBox3.Location = new System.Drawing.Point(447, 133);
@@ -189,12 +193,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtVariables.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtVariables.Location = new System.Drawing.Point(13, 49);
+            this.TxtVariables.Location = new System.Drawing.Point(13, 46);
+            this.TxtVariables.MaxLength = 65536;
             this.TxtVariables.Multiline = true;
             this.TxtVariables.Name = "TxtVariables";
             this.TxtVariables.ReadOnly = true;
             this.TxtVariables.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtVariables.Size = new System.Drawing.Size(504, 491);
+            this.TxtVariables.Size = new System.Drawing.Size(504, 307);
             this.TxtVariables.TabIndex = 2;
             this.TxtVariables.Text = "env.variable_test = 0";
             this.TxtVariables.WordWrap = false;
@@ -226,7 +231,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.LstCallStack);
             this.groupBox5.Location = new System.Drawing.Point(313, 505);
             this.groupBox5.Name = "groupBox5";
@@ -250,7 +255,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.LstLabels);
             this.groupBox6.Location = new System.Drawing.Point(12, 505);
             this.groupBox6.Name = "groupBox6";
@@ -295,7 +301,7 @@
             // MiClose
             // 
             this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(180, 22);
+            this.MiClose.Size = new System.Drawing.Size(165, 22);
             this.MiClose.Text = "Close";
             this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
             // 
@@ -304,7 +310,7 @@
             this.MiExit.Name = "MiExit";
             this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.X)));
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Size = new System.Drawing.Size(165, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -350,6 +356,33 @@
             this.MiReset.Size = new System.Drawing.Size(196, 22);
             this.MiReset.Text = "Reset";
             this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 372);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Log";
+            // 
+            // TxtLog
+            // 
+            this.TxtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtLog.Location = new System.Drawing.Point(13, 395);
+            this.TxtLog.MaxLength = 65536;
+            this.TxtLog.Multiline = true;
+            this.TxtLog.Name = "TxtLog";
+            this.TxtLog.ReadOnly = true;
+            this.TxtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtLog.Size = new System.Drawing.Size(504, 145);
+            this.TxtLog.TabIndex = 5;
+            this.TxtLog.Text = "This is a log message";
+            this.TxtLog.WordWrap = false;
             // 
             // DebuggerWindow
             // 
@@ -411,5 +444,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
         private System.Windows.Forms.ToolStripMenuItem MiClose;
+        private System.Windows.Forms.TextBox TxtLog;
+        private System.Windows.Forms.Label label2;
     }
 }
