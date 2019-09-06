@@ -82,13 +82,27 @@ namespace TileGameEngine.Core
             Set("WINDOW.OPEN", new OpenCommand());
             Set("WINDOW.CLEAR", new ClearCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
-            Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.PALETTE.SET", new WindowPaletteSetCommand());
             Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
+            Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
+            Set("WINDOW.BACKCOLOR.SET", new CommandBase());
+            Set("WINDOW.CURSOR.X.SET", new CommandBase());
+            Set("WINDOW.CURSOR.Y.SET", new CommandBase());
+            Set("WINDOW.FORECOLOR.SET", new CommandBase());
+            Set("WINDOW.BACKCOLOR.SET", new CommandBase());
+            
+            // MAP VIEW
+            Set("VIEW.X.SET", new CommandBase());
+            Set("VIEW.Y.SET", new CommandBase());
+            Set("VIEW.WIDTH.SET", new CommandBase());
+            Set("VIEW.HEIGHT.SET", new CommandBase());
+            Set("VIEW.SCROLL.X.SET", new CommandBase());
+            Set("VIEW.SCROLL.Y.SET", new CommandBase());
 
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
+            Set("MAP.FILE.GET", new CommandBase());
             Set("MAP.SHOW", new MapShowCommand());
             Set("MAP.HIDE", new MapHideCommand());
             Set("MAP.NAME.SET", new MapNameSetCommand());

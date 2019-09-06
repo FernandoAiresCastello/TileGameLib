@@ -178,6 +178,8 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\View\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
