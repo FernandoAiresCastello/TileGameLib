@@ -35,18 +35,18 @@ namespace TileGameEngine.Core
 
         private void SetupEnvironmentVariables()
         {
-            Variables.Set("env.current_map_file", "");
-            Variables.Set("env.map_viewport_x", 0);
-            Variables.Set("env.map_viewport_y", 0);
-            Variables.Set("env.map_viewport_width", 0);
-            Variables.Set("env.map_viewport_height", 0);
-            Variables.Set("env.map_offset_x", 0);
-            Variables.Set("env.map_offset_y", 0);
-            Variables.Set("env.screen_backcolor", 0);
-            Variables.Set("env.text_cursor_x", 0);
-            Variables.Set("env.text_cursor_y", 0);
-            Variables.Set("env.text_forecolor", 0);
-            Variables.Set("env.text_backcolor", 0);
+            Variables.Set("env.map.file", "");
+            Variables.Set("env.map.view.x", 0);
+            Variables.Set("env.map.view.y", 0);
+            Variables.Set("env.map.view.width", 0);
+            Variables.Set("env.map.view.height", 0);
+            Variables.Set("env.map.offset.x", 0);
+            Variables.Set("env.map.offset.y", 0);
+            Variables.Set("env.window.backcolor", 0);
+            Variables.Set("env.text.cursor.x", 0);
+            Variables.Set("env.text.cursor.y", 0);
+            Variables.Set("env.text.forecolor", 0);
+            Variables.Set("env.text.backcolor", 0);
         }
 
         public void ExitApplication()
@@ -84,36 +84,36 @@ namespace TileGameEngine.Core
 
         private Point GetTextCursor()
         {
-            return new Point(Variables.GetInt("env.text_cursor_x"), Variables.GetInt("env.text_cursor_y"));
+            return new Point(Variables.GetInt("env.text.cursor.x"), Variables.GetInt("env.text.cursor.y"));
         }
 
         private int GetTextForeColor()
         {
-            return Variables.GetInt("env.text_forecolor");
+            return Variables.GetInt("env.text.forecolor");
         }
 
         private int GetTextBackColor()
         {
-            return Variables.GetInt("env.text_backcolor");
+            return Variables.GetInt("env.text.backcolor");
         }
 
-        private int GetScreenBackColor()
+        private int GetWindowBackColor()
         {
-            return Variables.GetInt("env.screen_backcolor");
+            return Variables.GetInt("env.window.backcolor");
         }
 
         private Rectangle GetMapViewport()
         {
             return new Rectangle(
-                Variables.GetInt("env.map_viewport_x"),
-                Variables.GetInt("env.map_viewport_y"),
-                Variables.GetInt("env.map_viewport_width"),
-                Variables.GetInt("env.map_viewport_height"));
+                Variables.GetInt("env.map.view.x"),
+                Variables.GetInt("env.map.view.y"),
+                Variables.GetInt("env.map.view.width"),
+                Variables.GetInt("env.map.view.height"));
         }
 
         private Point GetMapOffset()
         {
-            return new Point(Variables.GetInt("env.map_offset_x"), Variables.GetInt("env.map_offset_y"));
+            return new Point(Variables.GetInt("env.map.offset.x"), Variables.GetInt("env.map.offset.y"));
         }
 
         public void SetVariable(string variable, object value)
@@ -163,7 +163,7 @@ namespace TileGameEngine.Core
         public void LoadMapFromCurrentFolder(string filename)
         {
             MapFile.Load(ref Map, filename);
-            Variables.Set("env.current_map_file", filename);
+            Variables.Set("env.map.file", filename);
             UpdateMapRenderer();
         }
 
@@ -194,14 +194,14 @@ namespace TileGameEngine.Core
         public void ClearWindow()
         {
             AssertWindowIsOpen();
-            Window.Graphics.Clear(GetScreenBackColor());
+            Window.Graphics.Clear(GetWindowBackColor());
         }
 
         public void ClearMapViewport()
         {
             AssertWindowIsOpen();
             Rectangle view = GetMapViewport();
-            Window.Graphics.ClearRect(GetScreenBackColor(), view.X, view.Y, view.Width, view.Height);
+            Window.Graphics.ClearRect(GetWindowBackColor(), view.X, view.Y, view.Width, view.Height);
         }
 
         public void Print(string text)
@@ -211,7 +211,6 @@ namespace TileGameEngine.Core
             AssertTextCursorIsWithinBounds();
 
             Point textCursor = GetTextCursor();
-
             Window.Graphics.PutString(textCursor.X, textCursor.Y, text, GetTextForeColor(), GetTextBackColor());
         }
 
@@ -224,6 +223,50 @@ namespace TileGameEngine.Core
         public GameObject GetObjectAt(int layer, int x, int y)
         {
             return Map.GetObject(layer, x, y);
+        }
+
+        public void SetMapBackColor(int color)
+        {
+            Map.BackColor = color;
+        }
+
+        public void SetWindowPalette(int index, int rgb)
+        {
+            Window.Graphics.Palette.Set(index, rgb);
+        }
+
+        public void SetWindowTileset(int index, byte[] pattern)
+        {
+            Window.Graphics.Tileset.Set(index,
+                pattern[0], pattern[1], pattern[2], pattern[3],
+                pattern[4], pattern[5], pattern[6], pattern[7]);
+        }
+
+        public void SetMapPalette(int index, int rgb)
+        {
+            Map.Palette.Set(index, rgb);
+        }
+
+        public void SetMapTileset(int index, byte[] pattern)
+        {
+            Map.Tileset.Set(index,
+                pattern[0], pattern[1], pattern[2], pattern[3],
+                pattern[4], pattern[5], pattern[6], pattern[7]);
+        }
+
+        public void SetMapName(string name)
+        {
+            Map.Name = name;
+        }
+
+        public string GetMapName()
+        {
+            return Map.Name;
+        }
+
+        public bool IsKeyPressed(string keyname)
+        {
+            return Window.IsKeyPressed(keyname);
         }
     }
 }

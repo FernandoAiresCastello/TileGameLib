@@ -12,33 +12,6 @@
 -------------------------------------------------------------------------------
 	TGML COMMANDS
 -------------------------------------------------------------------------------
-WINDOW.KEY.IS_PRESSED (key)
-	Get 1 if key is pressed, 0 otherwise
-
-WINDOW.PALETTE.SET (index, rgb)
-WINDOW.PALETTE.GET (index)
-	Set or get window palette color
-
-WINDOW.TILESET.SET (index, pattern)
-WINDOW.TILESET.GET (index)
-	Set or get window tileset pattern
-
-MAP.NAME.SET (name)
-MAP.NAME.GET
-	Set or get map name
-
-MAP.BACKCOLOR.SET (color)
-MAP.BACKCOLOR.GET
-	Set or get map background color
-
-MAP.PALETTE.SET (index, rgb)
-MAP.PALETTE.GET (index)
-	Set or get map palette color
-
-MAP.TILESET.SET (index, pattern)
-MAP.TILESET.GET (index)
-	Set or get map tileset pattern
-
 OBJECT.FIND (id)
 	Find object with id and get layer, x, y
 

@@ -193,14 +193,7 @@ namespace TileGameEngine.Core
                 if (!DebugMode)
                     Environment.ExitApplication();
             }
-            catch (ScriptException ex)
-            {
-                CycleTimer.Stop();
-                AlertCurrentLineException(ex);
-                if (!DebugMode)
-                    Environment.ExitApplication();
-            }
-            catch (EnvironmentException ex)
+            catch (Exception ex)
             {
                 CycleTimer.Stop();
                 AlertCurrentLineException(ex);

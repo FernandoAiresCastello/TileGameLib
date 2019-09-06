@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Commands;
 using TileGameEngine.Commands.ControlFlow;
+using TileGameEngine.Commands.LogicalOperators;
 using TileGameEngine.Commands.Map;
 using TileGameEngine.Commands.Math;
 using TileGameEngine.Commands.Misc;
+using TileGameEngine.Commands.NumericConversions;
 using TileGameEngine.Commands.Stack;
 using TileGameEngine.Commands.String;
 using TileGameEngine.Commands.System;
@@ -43,6 +45,12 @@ namespace TileGameEngine.Core
             Set("LOAD", new LoadCommand());
             Set("DUP", new DuplicateCommand());
 
+            // LOGICAL OPERATORS
+            Set("AND", new LogicalAndCommand());
+            Set("OR", new LogicalOrCommand());
+            Set("XOR", new LogicalXorCommand());
+            Set("NOT", new LogicalNotCommand());
+
             // SYSTEM
             Set("SYSTEM.EXIT", new ExitCommand());
             Set("SYSTEM.SLEEP", new SleepCommand());
@@ -62,6 +70,9 @@ namespace TileGameEngine.Core
             Set("MATH.SQRT", new SquareRootCommand());
             Set("MATH.POW", new PowerCommand());
 
+            // CONVERT
+            Set("CONVERT.BYTE", new ConvertToByteCommand());
+
             // STRING
             Set("STRING.FORMAT", new FormatCommand());
             Set("STRING.CONCAT", new ConcatCommand());
@@ -72,11 +83,19 @@ namespace TileGameEngine.Core
             Set("WINDOW.CLEAR", new ClearCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PRINT", new PrintCommand());
+            Set("WINDOW.PALETTE.SET", new WindowPaletteSetCommand());
+            Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
+            Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
 
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
             Set("MAP.SHOW", new MapShowCommand());
             Set("MAP.HIDE", new MapHideCommand());
+            Set("MAP.NAME.SET", new MapNameSetCommand());
+            Set("MAP.NAME.GET", new MapNameGetCommand());
+            Set("MAP.BACKCOLOR.SET", new MapBackColorSetCommand());
+            Set("MAP.PALETTE.SET", new MapPaletteSetCommand());
+            Set("MAP.TILESET.SET", new MapTilesetSetCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

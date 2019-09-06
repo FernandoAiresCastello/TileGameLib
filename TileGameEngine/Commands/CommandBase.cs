@@ -73,5 +73,10 @@ namespace TileGameEngine.Commands
             AssertParamStackNotEmpty();
             return ParamStack.TopInt();
         }
+
+        public void Push(object value)
+        {
+            ParamStack.Push(value);
+        }
     }
 }

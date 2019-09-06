@@ -74,6 +74,12 @@ namespace TileGameLib.Components
             return KeysPressed.Contains(key);
         }
 
+        public bool IsKeyPressed(string keyname)
+        {
+            Keys key = (Keys)new KeysConverter().ConvertFrom(keyname);
+            return KeysPressed.Contains(key);
+        }
+
         protected virtual void HandleKeyDownEvent(KeyEventArgs e)
         {
         }

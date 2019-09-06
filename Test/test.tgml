@@ -1,51 +1,163 @@
 
 # This line is a comment
 
+	CALL test_logical_ops
+	SYSTEM.EXIT
+
+	CALL init_window
+	CALL test_key_input
 	CALL test_maprender
 	CALL test_object_manip
-	SYSTEM.HALT
 	CALL test_logging
 	CALL test_string
 	CALL test_math
 
 :exit
 	SYSTEM.EXIT
+	
+:to_binary
+	PUSH 8,b
+	STRING.FORMAT
+	RET
+
+:test_logical_ops
+	# === NOT ===
+	PUSH 0b11100011
+	NOT
+	CONVERT.BYTE
+	CALL to_binary
+	POP
+	PUSH 0
+	NOT
+	POP
+	PUSH 1
+	NOT
+	POP
+	# === XOR ===
+	PUSH 1
+	PUSH 1
+	XOR
+	POP
+	PUSH 0
+	PUSH 0
+	XOR
+	POP
+	PUSH 1
+	PUSH 0
+	XOR
+	POP
+	PUSH 0b11100011
+	PUSH 0b11001001
+	XOR
+	CALL to_binary
+	POP
+	# === OR ===
+	PUSH 1
+	PUSH 1
+	OR
+	POP
+	PUSH 0
+	PUSH 0
+	OR
+	POP
+	PUSH 1
+	PUSH 0
+	OR
+	POP
+	PUSH 0b11100011
+	PUSH 0b11001001
+	OR
+	CALL to_binary
+	POP
+	# === AND ===
+	PUSH 1
+	PUSH 1
+	AND
+	POP
+	PUSH 0
+	PUSH 1
+	AND
+	POP
+	PUSH 0
+	PUSH 0
+	AND
+	POP
+	PUSH 0b11100011
+	PUSH 0b11001001
+	AND
+	CALL to_binary
+	POP
+	RET
+
+:test_key_input
+	PUSH Space
+	WINDOW.KEY.PRESSED
+	WINDOW.PRINT
+	WINDOW.REFRESH
+	PUSH Escape
+	WINDOW.KEY.PRESSED
+	JZ test_key_input
+	RET
 
 :test_object_manip
 	RET
 
-:test_maprender
+:init_window
 	PUSH 40
 	PUSH 30
 	WINDOW.OPEN
 	PUSH 1
-	STORE $env.screen_backcolor
+	STORE $env.window.backcolor
 	WINDOW.CLEAR
 	WINDOW.REFRESH
-	PUSH 1
-	STORE $env.map_viewport_x
-	PUSH 3
-	STORE $env.map_viewport_y
-	PUSH 32
-	STORE $env.map_viewport_width
-	PUSH 24
-	STORE $env.map_viewport_height
-	PUSH ../../../Test/test.tgmap
-	MAP.LOAD
 	PUSH 64
-	STORE $env.text_forecolor
+	STORE $env.text.forecolor
 	PUSH 1
 	DUP
-	STORE $env.text_cursor_x
-	STORE $env.text_cursor_y
-	PUSH Hello World!
+	DUP
+	STORE $env.text.backcolor
+	STORE $env.text.cursor.x
+	STORE $env.text.cursor.y
+	RET
+
+:test_window
+	PUSH 1
+	PUSH 0x800080
+	WINDOW.PALETTE.SET
+	WINDOW.CLEAR
+	WINDOW.REFRESH
+	RET
+
+:test_maprender
+	PUSH 1
+	STORE $env.map.view.x
+	PUSH 3
+	STORE $env.map.view.y
+	PUSH 32
+	STORE $env.map.view.width
+	PUSH 24
+	STORE $env.map.view.height
+	PUSH ../../../Test/test.tgmap
+	MAP.LOAD
+	MAP.NAME.GET
 	WINDOW.PRINT
-	PUSH 1000
-	SYSTEM.SLEEP
+	PUSH 1
+	MAP.BACKCOLOR.SET
+	PUSH 1
+	PUSH 0xff0000
+	MAP.PALETTE.SET
 	MAP.HIDE
-	PUSH 1000
-	SYSTEM.SLEEP
 	MAP.SHOW
+	PUSH 8
+	PUSH 0b10000001
+	PUSH 0b01000010
+	PUSH 0b00100100
+	PUSH 0b00011000
+	PUSH 0b00011000
+	PUSH 0b00100100
+	PUSH 0b01000010
+	PUSH 0b10000001
+	MAP.TILESET.SET
 	RET
 
 :test_logging
