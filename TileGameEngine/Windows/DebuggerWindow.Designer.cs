@@ -38,6 +38,8 @@
             this.BtnExecute = new System.Windows.Forms.Button();
             this.TxtCurrentLine = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.TxtLog = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtVariables = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -55,8 +57,6 @@
             this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
             this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
             this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtLog = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -75,7 +75,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(429, 249);
+            this.groupBox1.Size = new System.Drawing.Size(429, 193);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Script";
@@ -89,7 +89,7 @@
             "00 SCRIPT test"});
             this.LstScript.Location = new System.Drawing.Point(10, 23);
             this.LstScript.Name = "LstScript";
-            this.LstScript.Size = new System.Drawing.Size(409, 216);
+            this.LstScript.Size = new System.Drawing.Size(409, 160);
             this.LstScript.TabIndex = 0;
             // 
             // groupBox2
@@ -172,10 +172,37 @@
             this.groupBox3.Location = new System.Drawing.Point(447, 133);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Size = new System.Drawing.Size(530, 553);
+            this.groupBox3.Size = new System.Drawing.Size(530, 497);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Environment";
+            // 
+            // TxtLog
+            // 
+            this.TxtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtLog.Location = new System.Drawing.Point(13, 339);
+            this.TxtLog.MaxLength = 65536;
+            this.TxtLog.Multiline = true;
+            this.TxtLog.Name = "TxtLog";
+            this.TxtLog.ReadOnly = true;
+            this.TxtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtLog.Size = new System.Drawing.Size(504, 145);
+            this.TxtLog.TabIndex = 5;
+            this.TxtLog.Text = "This is a log message";
+            this.TxtLog.WordWrap = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 316);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Log";
             // 
             // label1
             // 
@@ -199,7 +226,7 @@
             this.TxtVariables.Name = "TxtVariables";
             this.TxtVariables.ReadOnly = true;
             this.TxtVariables.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtVariables.Size = new System.Drawing.Size(504, 307);
+            this.TxtVariables.Size = new System.Drawing.Size(504, 251);
             this.TxtVariables.TabIndex = 2;
             this.TxtVariables.Text = "env.variable_test = 0";
             this.TxtVariables.WordWrap = false;
@@ -209,7 +236,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.LstParamStack);
-            this.groupBox4.Location = new System.Drawing.Point(12, 293);
+            this.groupBox4.Location = new System.Drawing.Point(12, 237);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox4.Size = new System.Drawing.Size(429, 206);
@@ -233,7 +260,7 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.LstCallStack);
-            this.groupBox5.Location = new System.Drawing.Point(313, 505);
+            this.groupBox5.Location = new System.Drawing.Point(313, 449);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox5.Size = new System.Drawing.Size(128, 181);
@@ -258,7 +285,7 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.LstLabels);
-            this.groupBox6.Location = new System.Drawing.Point(12, 505);
+            this.groupBox6.Location = new System.Drawing.Point(12, 449);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(10);
             this.groupBox6.Size = new System.Drawing.Size(295, 181);
@@ -357,38 +384,11 @@
             this.MiReset.Text = "Reset";
             this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 372);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Log";
-            // 
-            // TxtLog
-            // 
-            this.TxtLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtLog.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLog.Location = new System.Drawing.Point(13, 395);
-            this.TxtLog.MaxLength = 65536;
-            this.TxtLog.Multiline = true;
-            this.TxtLog.Name = "TxtLog";
-            this.TxtLog.ReadOnly = true;
-            this.TxtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtLog.Size = new System.Drawing.Size(504, 145);
-            this.TxtLog.TabIndex = 5;
-            this.TxtLog.Text = "This is a log message";
-            this.TxtLog.WordWrap = false;
-            // 
             // DebuggerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 698);
+            this.ClientSize = new System.Drawing.Size(990, 642);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);

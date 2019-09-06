@@ -45,18 +45,23 @@ namespace TileGameEngine.Windows
                     ApplySettings();
 
                     if (SettingsExecMode == ExecModeDebug)
-                        Opacity = 100;
+                        SetVisible(true);
                 }
                 catch (Exception ex)
                 {
                     Alert.Error($"Error in settings file {SettingsFile}:\n\n{ex.Message}");
-                    Exit();
+                    SetVisible(true);
                 }
             }
             else
             {
-                Opacity = 100;
+                SetVisible(true);
             }
+        }
+
+        private void SetVisible(bool visible)
+        {
+            Opacity = visible ? 100 : 0;
         }
 
         private void LoadSettings()
