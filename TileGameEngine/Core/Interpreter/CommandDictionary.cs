@@ -87,12 +87,12 @@ namespace TileGameEngine.Core
             Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
             Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
-            Set("WINDOW.BACKCOLOR.SET", new WindowBackColorSetCommand());
+            Set("WINDOW.BG.SET", new WindowBackColorSetCommand());
 
             Set("WINDOW.TILE.X.SET", new TileXSetCommand());
             Set("WINDOW.TILE.Y.SET", new TileYSetCommand());
-            Set("WINDOW.TILE.FORECOLOR.SET", new TileForeColorSetCommand());
-            Set("WINDOW.TILE.BACKCOLOR.SET", new TileBackColorSetCommand());
+            Set("WINDOW.TILE.FG.SET", new TileForeColorSetCommand());
+            Set("WINDOW.TILE.BG.SET", new TileBackColorSetCommand());
 
             // MAP VIEW
             Set("MAPVIEW.X.SET", new MapViewXSetCommand());
@@ -109,13 +109,13 @@ namespace TileGameEngine.Core
             Set("MAP.HIDE", new MapHideCommand());
             Set("MAP.NAME.SET", new MapNameSetCommand());
             Set("MAP.NAME.GET", new MapNameGetCommand());
-            Set("MAP.BACKCOLOR.SET", new MapBackColorSetCommand());
+            Set("MAP.BG.SET", new MapBackColorSetCommand());
             Set("MAP.PALETTE.SET", new MapPaletteSetCommand());
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
 
             // OBJECT
             Set("OBJ.EXISTS", new ObjectExistsCommand());
-            Set("OBJ.AT", new ObjectAtCommand());
+            Set("OBJ.IS_AT", new ObjectAtCommand());
             Set("OBJ.FIND", new ObjectFindCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());

@@ -4,13 +4,19 @@
 
 
 -------------------------------------------------------------------------------
-	MAP EDITOR
+	TILE GAME MAKER - MAP EDITOR
 -------------------------------------------------------------------------------
 - Implement block selection
 - Implement block copy/paste
 
 -------------------------------------------------------------------------------
-	TGML COMMANDS
+	TILE GAME MAKER - TILE GAME ENGINE INTEGRATION
+-------------------------------------------------------------------------------
+- Implement TGML script editor
+- Run TileGameEngine directly from TileGameMaker
+
+-------------------------------------------------------------------------------
+	TILE GAME ENGINE - TGML COMMANDS
 -------------------------------------------------------------------------------
 OBJ.ID.SET (layer, x, y, id)
 OBJ.ID.GET (layer, x, y)
@@ -24,15 +30,12 @@ OBJ.TILE.INDEX.SET (layer, x, y, frame, index)
 OBJ.TILE.INDEX.GET (layer, x, y, frame)
 	Set or get object tile index
 	
-OBJ.TILE.FORECOLOR.SET (layer, x, y, frame, forecolor)
-OBJ.TILE.FORECOLOR.GET (layer, x, y, frame)
+OBJ.TILE.FG.SET (layer, x, y, frame, forecolor)
+OBJ.TILE.FG.GET (layer, x, y, frame)
 	Set or get object tile foreground color
 
-OBJ.TILE.BACKCOLOR.SET (layer, x, y, frame, backcolor)
-OBJ.TILE.BACKCOLOR.GET (layer, x, y, frame)
+OBJ.TILE.BG.SET (layer, x, y, frame, backcolor)
+OBJ.TILE.BG.GET (layer, x, y, frame)
 	Set or get object tile background color
-
-OBJ.SWAP (layer1, x1, y1, layer2, x2, y2)
-	Swap location of two objects
 
 -------------------------------------------------------------------------------
