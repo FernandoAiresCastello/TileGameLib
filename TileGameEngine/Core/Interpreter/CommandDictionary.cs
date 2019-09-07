@@ -112,6 +112,14 @@ namespace TileGameEngine.Core
             Set("MAP.BACKCOLOR.SET", new MapBackColorSetCommand());
             Set("MAP.PALETTE.SET", new MapPaletteSetCommand());
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
+
+            // OBJECT
+            Set("OBJ.EXISTS", new ObjectExistsCommand());
+            Set("OBJ.AT", new ObjectAtCommand());
+            Set("OBJ.FIND", new ObjectFindCommand());
+            Set("OBJ.COPY", new ObjectCopyCommand());
+            Set("OBJ.MOVE", new ObjectMoveCommand());
+            Set("OBJ.DELETE", new ObjectDeleteCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

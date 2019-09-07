@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Util;
+using TileGameLib.GameElements;
 
 namespace TileGameEngine.Core
 {

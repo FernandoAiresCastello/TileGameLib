@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace TileGameLib.GameElements
 {
     public class ObjectLayer
     {
-        public LayerCell[,] Cells { set; get; }
+        public ObjectCell[,] Cells { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
 
@@ -19,11 +20,11 @@ namespace TileGameLib.GameElements
             Width = width;
             Height = height;
 
-            Cells = new LayerCell[width, height];
+            Cells = new ObjectCell[width, height];
 
             for (int row = 0; row < height; row++)
                 for (int col = 0; col < width; col++)
-                    Cells[col, row] = new LayerCell();
+                    Cells[col, row] = new ObjectCell();
         }
 
         public void SetEqual(ObjectLayer other)
@@ -69,7 +70,7 @@ namespace TileGameLib.GameElements
             Cells[x, y].DeleteObject();
         }
 
-        public ref LayerCell GetCell(int x, int y)
+        public ref ObjectCell GetCell(int x, int y)
         {
             return ref Cells[x, y];
         }
@@ -97,22 +98,37 @@ namespace TileGameLib.GameElements
 
         public void Resize(int width, int height)
         {
-            LayerCell[,] newCells = new LayerCell[width, height];
+            ObjectCell[,] newCells = new ObjectCell[width, height];
 
             for (int row = 0; row < height; row++)
             {
                 for (int col = 0; col < width; col++)
                 {
                     if (col < Width && row < Height)
-                        newCells[col, row] = new LayerCell(Cells[col, row]);
+                        newCells[col, row] = new ObjectCell(Cells[col, row]);
                     else
-                        newCells[col, row] = new LayerCell();
+                        newCells[col, row] = new ObjectCell();
                 }
             }
 
             Cells = newCells;
             Width = width;
             Height = height;
+        }
+
+        public Point? FindObjectPositionByTag(string tag)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    GameObject o = Cells[x, y].GetObject();
+                    if (o != null && o.HasTag && o.Tag.Equals(tag))
+                        return new Point(x, y);
+                }
+            }
+
+            return null;
         }
     }
 }

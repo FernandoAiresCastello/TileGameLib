@@ -153,7 +153,7 @@ namespace TileGameLib.Graphics
             }
         }
 
-        private void RenderCell(LayerCell cell, int x, int y)
+        private void RenderCell(ObjectCell cell, int x, int y)
         {
             GameObject o = cell.GetObject();
 

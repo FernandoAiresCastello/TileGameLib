@@ -124,7 +124,7 @@ namespace TileGameMaker.Panels
 
             Focus();
 
-            LayerCell cell = Map.GetCell(Layer, point.X, point.Y);
+            ObjectCell cell = Map.GetCell(Layer, point.X, point.Y);
 
             if (Mode == EditMode.Template)
             {
@@ -178,14 +178,14 @@ namespace TileGameMaker.Panels
             if (IsOutOfBounds(point))
                 return;
 
-            HoverLabel.Text = $"X: {point.X} Y: {point.Y} ";
+            HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
 
             GameObject o = Map.GetObject(Layer, point.X, point.Y);
             if (o != null)
                 HoverLabel.Text += o.ToString();
         }
 
-        private void PutCurrentObject(LayerCell cell)
+        private void PutCurrentObject(ObjectCell cell)
         {
             cell.SetObjectEqual(MapEditor.SelectedObject);
             RenderMap();
@@ -235,7 +235,7 @@ namespace TileGameMaker.Panels
             Refresh();
         }
 
-        private void CopyObjectToTemplate(LayerCell cell)
+        private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty())
                 MapEditor.SelectedObject = cell.GetObject();

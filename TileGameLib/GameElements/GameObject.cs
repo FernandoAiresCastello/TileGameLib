@@ -70,7 +70,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            string tag = HasTag ? $"Tag: {Tag}" : "";
+            string tag = HasTag ? $"[{Tag}]" : "";
             return $"ID: {Id} {tag}";
         }
 

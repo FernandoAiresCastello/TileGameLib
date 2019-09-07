@@ -3,14 +3,71 @@
 
 	CALL init_window
 	CALL test_maprender
+	CALL test_objmanip
 
 :exit
 	SYSTEM.EXIT
 	
+:test_objmanip
+	PUSH 0
+	PUSH 15
+	PUSH 12
+	PUSH 0
+	PUSH 16
+	PUSH 12
+	OBJ.MOVE
+
+	PUSH 0
+	PUSH 16
+	PUSH 12
+	PUSH 0
+	PUSH 16
+	PUSH 13
+	OBJ.COPY
+
+	PUSH 0
+	PUSH 16
+	PUSH 13
+	OBJ.DELETE
+	PUSH 0
+	PUSH 16
+	PUSH 12
+	OBJ.DELETE
+
+	PUSH TestObject
+	PUSH 0
+	PUSH 15
+	PUSH 12
+	OBJ.AT
+	POP
+	PUSH Dummy
+	PUSH 0
+	PUSH 15
+	PUSH 12
+	OBJ.AT
+	POP
+	PUSH TestObject
+	DUP
+	OBJ.EXISTS
+	POP
+	OBJ.FIND
+	POP
+	POP
+	POP
+	PUSH FooBar
+	OBJ.EXISTS
+	POP
+	PUSH InexistentObject
+	OBJ.FIND
+	RET
+
 :init_window
 	PUSH 40
 	PUSH 30
 	WINDOW.OPEN
+
+	RET
+
 	PUSH 1
 	WINDOW.BACKCOLOR.SET
 	WINDOW.CLEAR
@@ -36,6 +93,9 @@
 	MAPVIEW.HEIGHT.SET
 	PUSH ../../../Test/test.tgmap
 	MAP.LOAD
+
+	RET
+
 	MAP.NAME.GET
 	WINDOW.PRINT
 	PUSH 1

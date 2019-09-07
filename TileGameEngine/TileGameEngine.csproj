@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MapObject\ObjectDeleteCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectCopyCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectMoveCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectAtCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectExistsCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectFindCommand.cs" />
     <Compile Include="Commands\MapView\MapViewHeightSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewScrollYSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewWidthSetCommand.cs" />

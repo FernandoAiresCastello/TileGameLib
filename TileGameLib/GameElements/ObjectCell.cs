@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace TileGameLib.GameElements
 {
-    public class LayerCell
+    public class ObjectCell
     {
         private GameObject Object;
 
-        public LayerCell()
+        public ObjectCell()
         {
             Object = null;
         }
 
-        public LayerCell(LayerCell other)
+        public ObjectCell(ObjectCell other)
         {
             SetEqual(other);
         }
@@ -25,7 +25,7 @@ namespace TileGameLib.GameElements
             return ref Object;
         }
 
-        public void SetEqual(LayerCell other)
+        public void SetEqual(ObjectCell other)
         {
             if (other.Object == null)
             {

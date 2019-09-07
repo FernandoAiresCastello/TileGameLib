@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,7 +99,7 @@ namespace TileGameLib.GameElements
             Layers[layer].Fill(o);
         }
 
-        public LayerCell GetCell(int layer, int x, int y)
+        public ObjectCell GetCell(int layer, int x, int y)
         {
             return Layers[layer].Cells[x, y];
         }
@@ -125,6 +126,45 @@ namespace TileGameLib.GameElements
 
             Width = width;
             Height = height;
+        }
+
+        public ObjectPosition FindObjectPositionByTag(string tag)
+        {
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                Point? positionOnLayer = layer.FindObjectPositionByTag(tag);
+
+                if (positionOnLayer != null)
+                {
+                    return new ObjectPosition(
+                        layerIndex, positionOnLayer.Value.X, positionOnLayer.Value.Y);
+                }
+            }
+
+            return null;
+        }
+
+        public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            CopyObject(srcPos, destPos);
+            DeleteObject(srcPos);
+        }
+
+        public void CopyObject(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            ObjectCell srcCell = GetCell(srcPos.Layer, srcPos.X, srcPos.Y);
+            ObjectCell destCell = GetCell(destPos.Layer, destPos.X, destPos.Y);
+
+            GameObject o = srcCell.GetObject();
+            if (o != null)
+                destCell.SetObjectEqual(o);
+        }
+
+        public void DeleteObject(ObjectPosition pos)
+        {
+            ObjectCell srcCell = GetCell(pos.Layer, pos.X, pos.Y);
+            srcCell.DeleteObject();
         }
     }
 }

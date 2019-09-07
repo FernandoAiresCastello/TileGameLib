@@ -49,7 +49,7 @@
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="File\MapFile.cs" />
-    <Compile Include="GameElements\LayerCell.cs" />
+    <Compile Include="GameElements\ObjectCell.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
     <Compile Include="Exceptions\FileException.cs" />
@@ -58,6 +58,7 @@
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
+    <Compile Include="GameElements\ObjectPosition.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnim.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />

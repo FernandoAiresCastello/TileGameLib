@@ -52,9 +52,29 @@ namespace TileGameEngine.Core
                 pattern[4], pattern[5], pattern[6], pattern[7]);
         }
 
+        public ObjectPosition FindObjectPositionByTag(string tag)
+        {
+            return Map.FindObjectPositionByTag(tag);
+        }
+
         public GameObject GetObjectAt(int layer, int x, int y)
         {
             return Map.GetObject(layer, x, y);
+        }
+
+        public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            Map.MoveObject(srcPos, destPos);
+        }
+
+        public void CopyObject(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            Map.CopyObject(srcPos, destPos);
+        }
+
+        public void DeleteObject(ObjectPosition pos)
+        {
+            Map.DeleteObject(pos);
         }
     }
 }
