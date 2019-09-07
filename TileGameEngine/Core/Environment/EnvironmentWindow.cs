@@ -20,7 +20,13 @@ namespace TileGameEngine.Core
         {
             AssertWindowIsNotOpen();
             Window = new GameWindow(cols, rows);
+            Window.FormClosed += Window_FormClosed;
             Window.Show();
+        }
+
+        private void Window_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Window = null;
         }
 
         public void CloseWindow()
@@ -35,6 +41,11 @@ namespace TileGameEngine.Core
 
             Window.Close();
             Window = null;
+        }
+
+        public void SetWindowAlwaysOnTop(bool alwaysOnTop)
+        {
+            Window.TopMost = alwaysOnTop;
         }
 
         public void SetWindowBackColor(int color)

@@ -234,5 +234,19 @@ namespace TileGameEngine.Windows
 
             TxtVariables.Text = vars.ToString();
         }
+
+        private void BtnGameWinAlwaysOnTop_Click(object sender, EventArgs e)
+        {
+            if (Interpreter.Environment.HasWindow)
+            {
+                BtnGameWinAlwaysOnTop.Checked = !BtnGameWinAlwaysOnTop.Checked;
+                Interpreter.Environment.SetWindowAlwaysOnTop(BtnGameWinAlwaysOnTop.Checked);
+            }
+            else
+            {
+                BtnGameWinAlwaysOnTop.Checked = false;
+                Alert.Warning("Game window is not open");
+            }
+        }
     }
 }

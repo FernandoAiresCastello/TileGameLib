@@ -57,6 +57,8 @@
             this.MiSkip = new System.Windows.Forms.ToolStripMenuItem();
             this.MiJump = new System.Windows.Forms.ToolStripMenuItem();
             this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnGameWinAlwaysOnTop = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -309,7 +311,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.gameWindowToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(990, 24);
@@ -328,7 +331,7 @@
             // MiClose
             // 
             this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(165, 22);
+            this.MiClose.Size = new System.Drawing.Size(180, 22);
             this.MiClose.Text = "Close";
             this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
             // 
@@ -337,7 +340,7 @@
             this.MiExit.Name = "MiExit";
             this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.X)));
-            this.MiExit.Size = new System.Drawing.Size(165, 22);
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -383,6 +386,21 @@
             this.MiReset.Size = new System.Drawing.Size(196, 22);
             this.MiReset.Text = "Reset";
             this.MiReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // gameWindowToolStripMenuItem
+            // 
+            this.gameWindowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnGameWinAlwaysOnTop});
+            this.gameWindowToolStripMenuItem.Name = "gameWindowToolStripMenuItem";
+            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.gameWindowToolStripMenuItem.Text = "Game Window";
+            // 
+            // BtnGameWinAlwaysOnTop
+            // 
+            this.BtnGameWinAlwaysOnTop.Name = "BtnGameWinAlwaysOnTop";
+            this.BtnGameWinAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
+            this.BtnGameWinAlwaysOnTop.Text = "Always on top";
+            this.BtnGameWinAlwaysOnTop.Click += new System.EventHandler(this.BtnGameWinAlwaysOnTop_Click);
             // 
             // DebuggerWindow
             // 
@@ -446,5 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem MiClose;
         private System.Windows.Forms.TextBox TxtLog;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem gameWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BtnGameWinAlwaysOnTop;
     }
 }
