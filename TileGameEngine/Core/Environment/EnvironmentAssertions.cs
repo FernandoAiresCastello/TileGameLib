@@ -24,8 +24,8 @@ namespace TileGameEngine.Core
 
         private void AssertTextColorIsWithinPalette()
         {
-            int fgc = GetTextForeColor();
-            int bgc = GetTextBackColor();
+            int fgc = Window.TileForeColor;
+            int bgc = Window.TileBackColor;
 
             if (fgc < 0 || bgc < 0 || fgc >= Window.Graphics.Palette.Size || bgc >= Window.Graphics.Palette.Size)
                 throw new EnvironmentException("Color palette index out of range");
@@ -33,7 +33,7 @@ namespace TileGameEngine.Core
 
         private void AssertTextCursorIsWithinBounds()
         {
-            Point textCursor = GetTextCursor();
+            Point textCursor = Window.TileCursor;
             int x = textCursor.X;
             int y = textCursor.Y;
 

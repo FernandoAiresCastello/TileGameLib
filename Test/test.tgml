@@ -1,25 +1,114 @@
 
 # This line is a comment
 
-	CALL test_logical_ops
-	SYSTEM.EXIT
-
 	CALL init_window
-	CALL test_key_input
 	CALL test_maprender
-	CALL test_object_manip
-	CALL test_logging
-	CALL test_string
-	CALL test_math
 
 :exit
 	SYSTEM.EXIT
 	
-:to_binary
-	PUSH 8,b
-	STRING.FORMAT
+:init_window
+	PUSH 40
+	PUSH 30
+	WINDOW.OPEN
+	PUSH 1
+	WINDOW.BACKCOLOR.SET
+	WINDOW.CLEAR
+	WINDOW.REFRESH
+	PUSH 1
+	DUP
+	WINDOW.TILE.X.SET
+	WINDOW.TILE.Y.SET
+	PUSH 64
+	WINDOW.TILE.FORECOLOR.SET
+	PUSH 1
+	WINDOW.TILE.BACKCOLOR.SET
 	RET
 
+:test_maprender
+	PUSH 1
+	MAPVIEW.X.SET
+	PUSH 3
+	MAPVIEW.Y.SET
+	PUSH 32
+	MAPVIEW.WIDTH.SET
+	PUSH 24
+	MAPVIEW.HEIGHT.SET
+	PUSH ../../../Test/test.tgmap
+	MAP.LOAD
+	MAP.NAME.GET
+	WINDOW.PRINT
+	PUSH 1
+	MAP.BACKCOLOR.SET
+	PUSH 1
+	PUSH 0xff0000
+	MAP.PALETTE.SET
+	MAP.HIDE
+	MAP.SHOW
+	PUSH 1
+	DUP
+	MAPVIEW.SCROLL.X.SET
+	MAPVIEW.SCROLL.Y.SET
+	PUSH 0
+	DUP
+	MAPVIEW.SCROLL.Y.SET
+	MAPVIEW.SCROLL.X.SET
+	PUSH 8
+	PUSH 0b10000001
+	PUSH 0b01000010
+	PUSH 0b00100100
+	PUSH 0b00011000
+	PUSH 0b00011000
+	PUSH 0b00100100
+	PUSH 0b01000010
+	PUSH 0b10000001
+	MAP.TILESET.SET
+	RET
+
+:test_key_input
+	PUSH Space
+	WINDOW.KEY.PRESSED
+	WINDOW.PRINT
+	WINDOW.REFRESH
+	PUSH Escape
+	WINDOW.KEY.PRESSED
+	JZ test_key_input
+	RET
+
+:test_logging
+	PUSH This is a test log message
+	SYSTEM.LOG
+	RET
+
+:test_string
+	PUSH 255
+	PUSH 6,d
+	STRING.FORMAT
+	POP
+	PUSH 12
+	PUSH 2,x
+	STRING.FORMAT
+	POP
+	PUSH 12
+	PUSH 2,X
+	STRING.FORMAT
+	POP
+	PUSH 15
+	PUSH 8,b
+	STRING.FORMAT
+	POP
+	PUSH Left
+	PUSH Right
+	PUSH 0xff0d
+	STRING.JOIN
+	POP
+	PUSH Hello
+	PUSH world!
+	PUSH 0x20
+	STRING.JOIN
+	POP
+	RET
+	
 :test_logical_ops
 	# === NOT ===
 	PUSH 0b11100011
@@ -89,111 +178,11 @@
 	POP
 	RET
 
-:test_key_input
-	PUSH Space
-	WINDOW.KEY.PRESSED
-	WINDOW.PRINT
-	WINDOW.REFRESH
-	PUSH Escape
-	WINDOW.KEY.PRESSED
-	JZ test_key_input
-	RET
-
-:test_object_manip
-	RET
-
-:init_window
-	PUSH 40
-	PUSH 30
-	WINDOW.OPEN
-	PUSH 1
-	STORE $env.window.backcolor
-	WINDOW.CLEAR
-	WINDOW.REFRESH
-	PUSH 64
-	STORE $env.text.forecolor
-	PUSH 1
-	DUP
-	DUP
-	STORE $env.text.backcolor
-	STORE $env.text.cursor.x
-	STORE $env.text.cursor.y
-	RET
-
-:test_window
-	PUSH 1
-	PUSH 0x800080
-	WINDOW.PALETTE.SET
-	WINDOW.CLEAR
-	WINDOW.REFRESH
-	RET
-
-:test_maprender
-	PUSH 1
-	STORE $env.map.view.x
-	PUSH 3
-	STORE $env.map.view.y
-	PUSH 32
-	STORE $env.map.view.width
-	PUSH 24
-	STORE $env.map.view.height
-	PUSH ../../../Test/test.tgmap
-	MAP.LOAD
-	MAP.NAME.GET
-	WINDOW.PRINT
-	PUSH 1
-	MAP.BACKCOLOR.SET
-	PUSH 1
-	PUSH 0xff0000
-	MAP.PALETTE.SET
-	MAP.HIDE
-	MAP.SHOW
-	PUSH 8
-	PUSH 0b10000001
-	PUSH 0b01000010
-	PUSH 0b00100100
-	PUSH 0b00011000
-	PUSH 0b00011000
-	PUSH 0b00100100
-	PUSH 0b01000010
-	PUSH 0b10000001
-	MAP.TILESET.SET
-	RET
-
-:test_logging
-	PUSH This is a test log message
-	SYSTEM.LOG
-	RET
-
-:test_string
-	PUSH 255
-	PUSH 6,d
-	STRING.FORMAT
-	POP
-	PUSH 12
-	PUSH 2,x
-	STRING.FORMAT
-	POP
-	PUSH 12
-	PUSH 2,X
-	STRING.FORMAT
-	POP
-	PUSH 15
+:to_binary
 	PUSH 8,b
 	STRING.FORMAT
-	POP
-	PUSH Left
-	PUSH Right
-	PUSH 0xff0d
-	STRING.JOIN
-	POP
-	PUSH Hello
-	PUSH world!
-	PUSH 0x20
-	STRING.JOIN
-	POP
 	RET
-	
+
 :test_math
 	PUSH 22
 	PUSH 3

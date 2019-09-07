@@ -50,16 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MapView\MapViewHeightSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollYSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewWidthSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollXSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewYSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewXSetCommand.cs" />
     <Compile Include="Commands\NumericConversions\ConvertToByteCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalNotCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalXorCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalOrCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalAndCommand.cs" />
-    <Compile Include="Commands\Map\MapNameGet.cs" />
-    <Compile Include="Commands\Map\MapNameSet.cs" />
-    <Compile Include="Commands\Map\MapTilesetSet.cs" />
-    <Compile Include="Commands\Map\MapPaletteSet.cs" />
-    <Compile Include="Commands\Map\MapBackColorSet.cs" />
+    <Compile Include="Commands\Map\MapNameGetCommand.cs" />
+    <Compile Include="Commands\Map\MapNameSetCommand.cs" />
+    <Compile Include="Commands\Map\MapTilesetSetCommand.cs" />
+    <Compile Include="Commands\Map\MapPaletteSetCommand.cs" />
+    <Compile Include="Commands\Map\MapBackColorSetCommand.cs" />
     <Compile Include="Commands\Map\MapShowCommand.cs" />
     <Compile Include="Commands\Map\MapHideCommand.cs" />
     <Compile Include="Commands\Stack\DuplicateCommand.cs" />
@@ -81,8 +87,13 @@
     <Compile Include="Commands\System\SleepCommand.cs" />
     <Compile Include="Commands\Window\KeyPressedCommand.cs" />
     <Compile Include="Commands\Window\ClearCommand.cs" />
-    <Compile Include="Commands\Window\WindowTilesetSet.cs" />
-    <Compile Include="Commands\Window\WindowPaletteSet.cs" />
+    <Compile Include="Commands\Window\TileBackColorSetCommand.cs" />
+    <Compile Include="Commands\Window\TileForeColorSetCommand.cs" />
+    <Compile Include="Commands\Window\TileYSetCommand.cs" />
+    <Compile Include="Commands\Window\TileXSetCommand.cs" />
+    <Compile Include="Commands\Window\WindowBackColorSetCommand.cs" />
+    <Compile Include="Commands\Window\WindowTilesetSetCommand.cs" />
+    <Compile Include="Commands\Window\WindowPaletteSetCommand.cs" />
     <Compile Include="Commands\Window\RefreshCommand.cs" />
     <Compile Include="Commands\Window\PrintCommand.cs" />
     <Compile Include="Commands\Misc\NopCommand.cs" />
@@ -102,12 +113,16 @@
     <Compile Include="Commands\ControlFlow\ReturnCommand.cs" />
     <Compile Include="Commands\Stack\StoreCommand.cs" />
     <Compile Include="Commands\Window\OpenCommand.cs" />
-    <Compile Include="Core\CallStack.cs" />
-    <Compile Include="Core\CommandDictionary.cs" />
+    <Compile Include="Core\Interpreter\CallStack.cs" />
+    <Compile Include="Core\Interpreter\CommandDictionary.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Core\EnvironmentAssertions.cs" />
-    <Compile Include="Core\ScriptLine.cs" />
-    <Compile Include="Core\Environment.cs" />
+    <Compile Include="Core\Environment\EnvironmentAssertions.cs" />
+    <Compile Include="Core\Environment\EnvironmentLog.cs" />
+    <Compile Include="Core\Environment\EnvironmentMap.cs" />
+    <Compile Include="Core\Environment\EnvironmentMapRenderer.cs" />
+    <Compile Include="Core\Environment\EnvironmentWindow.cs" />
+    <Compile Include="Core\Interpreter\ScriptLine.cs" />
+    <Compile Include="Core\Environment\Environment.cs" />
     <Compile Include="Exceptions\EngineException.cs" />
     <Compile Include="Exceptions\EnvironmentException.cs" />
     <Compile Include="Exceptions\InterpreterException.cs" />
@@ -123,19 +138,19 @@
     <Compile Include="Windows\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Interpreter.cs" />
+    <Compile Include="Core\Interpreter\Interpreter.cs" />
     <Compile Include="Windows\StartWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Windows\StartWindow.Designer.cs">
       <DependentUpon>StartWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\ScriptLabels.cs" />
+    <Compile Include="Core\Interpreter\ScriptLabels.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\Script.cs" />
-    <Compile Include="Core\ParameterStack.cs" />
-    <Compile Include="Core\Variables.cs" />
+    <Compile Include="Core\Interpreter\Script.cs" />
+    <Compile Include="Core\Interpreter\ParameterStack.cs" />
+    <Compile Include="Core\Environment\Variables.cs" />
     <EmbeddedResource Include="Windows\StartWindow.resx">
       <DependentUpon>StartWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,8 +193,6 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

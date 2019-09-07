@@ -12,6 +12,8 @@ namespace TileGameLib.Graphics
     public class MapRenderer
     {
         public ObjectMap Map { set; get; }
+        public Point Scroll { set; get; }
+        public Rectangle Viewport { set; get; }
         public bool AnimationEnabled { set; get; }
         public bool AutoRefresh { set; get; }
 
@@ -27,8 +29,6 @@ namespace TileGameLib.Graphics
             get { return AnimationTimer.Interval; }
         }
 
-        private Rectangle Viewport;
-        private Point MapOffset;
         private int AnimationFrame;
         private bool RenderSingleLayer;
         private int SingleLayerToRender;
@@ -45,12 +45,12 @@ namespace TileGameLib.Graphics
         {
         }
 
-        public MapRenderer(ObjectMap map, TiledDisplay disp, Rectangle viewport, Point mapOffset)
+        public MapRenderer(ObjectMap map, TiledDisplay disp, Rectangle viewport, Point scroll)
         {
             Map = map;
             Disp = disp;
             Viewport = viewport;
-            MapOffset = mapOffset;
+            Scroll = scroll;
             RenderSingleLayer = false;
             SingleLayerToRender = 0;
 
@@ -103,11 +103,6 @@ namespace TileGameLib.Graphics
                 AdvanceAnimation();
         }
 
-        public void SetViewport(int x, int y, int width, int height)
-        {
-            Viewport = new Rectangle(x, y, width, height);
-        }
-
         public void AdvanceAnimation()
         {
             AnimationFrame++;
@@ -115,6 +110,9 @@ namespace TileGameLib.Graphics
 
         public void Render()
         {
+            if (Map == null)
+                return;
+
             Tileset originalTileset = Disp.Graphics.Tileset;
             Palette originalPalette = Disp.Graphics.Palette;
 
@@ -144,8 +142,8 @@ namespace TileGameLib.Graphics
             {
                 for (int x = 0; x < Viewport.Width; x++)
                 {
-                    int sourceX = x + MapOffset.X;
-                    int sourceY = y + MapOffset.Y;
+                    int sourceX = x + Scroll.X;
+                    int sourceY = y + Scroll.Y;
                     int destX = Viewport.X + x;
                     int destY = Viewport.Y + y;
 

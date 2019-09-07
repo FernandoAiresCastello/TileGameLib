@@ -7,6 +7,7 @@ using TileGameEngine.Commands;
 using TileGameEngine.Commands.ControlFlow;
 using TileGameEngine.Commands.LogicalOperators;
 using TileGameEngine.Commands.Map;
+using TileGameEngine.Commands.MapView;
 using TileGameEngine.Commands.Math;
 using TileGameEngine.Commands.Misc;
 using TileGameEngine.Commands.NumericConversions;
@@ -86,20 +87,21 @@ namespace TileGameEngine.Core
             Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
             Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
-            Set("WINDOW.BACKCOLOR.SET", new CommandBase());
-            Set("WINDOW.CURSOR.X.SET", new CommandBase());
-            Set("WINDOW.CURSOR.Y.SET", new CommandBase());
-            Set("WINDOW.FORECOLOR.SET", new CommandBase());
-            Set("WINDOW.BACKCOLOR.SET", new CommandBase());
-            
-            // MAP VIEW
-            Set("VIEW.X.SET", new CommandBase());
-            Set("VIEW.Y.SET", new CommandBase());
-            Set("VIEW.WIDTH.SET", new CommandBase());
-            Set("VIEW.HEIGHT.SET", new CommandBase());
-            Set("VIEW.SCROLL.X.SET", new CommandBase());
-            Set("VIEW.SCROLL.Y.SET", new CommandBase());
+            Set("WINDOW.BACKCOLOR.SET", new WindowBackColorSetCommand());
 
+            Set("WINDOW.TILE.X.SET", new TileXSetCommand());
+            Set("WINDOW.TILE.Y.SET", new TileYSetCommand());
+            Set("WINDOW.TILE.FORECOLOR.SET", new TileForeColorSetCommand());
+            Set("WINDOW.TILE.BACKCOLOR.SET", new TileBackColorSetCommand());
+
+            // MAP VIEW
+            Set("MAPVIEW.X.SET", new MapViewXSetCommand());
+            Set("MAPVIEW.Y.SET", new MapViewYSetCommand());
+            Set("MAPVIEW.WIDTH.SET", new MapViewWidthSetCommand());
+            Set("MAPVIEW.HEIGHT.SET", new MapViewHeightSetCommand());
+            Set("MAPVIEW.SCROLL.X.SET", new MapViewScrollXSetCommand());
+            Set("MAPVIEW.SCROLL.Y.SET", new MapViewScrollYSetCommand());
+            
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
             Set("MAP.FILE.GET", new CommandBase());

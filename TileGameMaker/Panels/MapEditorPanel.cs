@@ -68,7 +68,7 @@ namespace TileGameMaker.Panels
         public void ResizeMapView(int width, int height)
         {
             Display.ResizeGraphics(width, height);
-            MapRenderer.SetViewport(0, 0, width, height);
+            MapRenderer.Viewport = new Rectangle(0, 0, width, height);
         }
 
         public void UpdateLayerComboBox()
