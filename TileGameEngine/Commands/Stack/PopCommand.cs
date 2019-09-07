@@ -10,6 +10,7 @@ namespace TileGameEngine.Commands.Stack
     {
         public override void Execute(List<string> immediateParams)
         {
+            AssertParamStackNotEmpty();
             ParamStack.DiscardTop();
         }
     }

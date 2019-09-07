@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameEngine.Exceptions;
 
 namespace TileGameEngine.Commands.String
 {
@@ -14,15 +13,13 @@ namespace TileGameEngine.Commands.String
             string formatString = PopStr();
             int number = PopInt();
 
-            ScriptException formatException = new ScriptException("Invalid format: " + formatString);
-
             string[] format = formatString.Split(',');
             if (format.Length != 2)
-                throw formatException;
+                FormatError(formatString);
             if (!int.TryParse(format[0].Trim(), out int length))
-                throw formatException;
+                FormatError(formatString);
             if (length < 1)
-                throw formatException;
+                FormatError(formatString);
 
             string result = "";
             string notation = format[1].Trim();
@@ -42,10 +39,15 @@ namespace TileGameEngine.Commands.String
             }
             else
             {
-                throw formatException;
+                FormatError(formatString);
             }
 
             ParamStack.Push(result);
+        }
+
+        private void FormatError(string formatString)
+        {
+            TileGameEngineApplication.Error("SCRIPT ERROR", "Invalid format string: " + formatString);
         }
     }
 }

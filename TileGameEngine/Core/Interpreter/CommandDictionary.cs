@@ -115,7 +115,7 @@ namespace TileGameEngine.Core
 
             // OBJECT
             Set("OBJ.EXISTS", new ObjectExistsCommand());
-            Set("OBJ.IS_AT", new ObjectAtCommand());
+            Set("OBJ.AT", new ObjectAtCommand());
             Set("OBJ.FIND", new ObjectFindCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());

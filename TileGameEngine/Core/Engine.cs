@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
 
 namespace TileGameEngine.Core
@@ -17,8 +16,9 @@ namespace TileGameEngine.Core
 
         private bool Started = false;
 
-        public Engine()
+        public Engine(Form parent)
         {
+            ParentForm = parent;
         }
 
         public void Run(string mainScriptFile)
@@ -42,9 +42,9 @@ namespace TileGameEngine.Core
         private Interpreter Initialize(string scriptFile)
         {
             if (Started)
-                throw new EngineException("Engine has already started");
+                TileGameEngineApplication.Error("ENGINE ERROR", "Engine has already started");
             if (!File.Exists(scriptFile))
-                throw new EngineException($"Script file {scriptFile} not found");
+                TileGameEngineApplication.Error("ENGINE ERROR", "Main script file not found: " + scriptFile);
 
             Started = true;
 

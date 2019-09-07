@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
 
 namespace TileGameEngine.Commands.Window
@@ -13,7 +12,7 @@ namespace TileGameEngine.Commands.Window
         public override void Execute(List<string> immediateParams)
         {
             if (Environment.HasWindow)
-                throw new ScriptException("Window already opened");
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Window already opened");
 
             int rows = PopInt();
             int cols = PopInt();

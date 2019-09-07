@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using TileGameLib.File;
 using TileGameEngine.Core;
 using TileGameEngine.Util;
-using TileGameEngine.Exceptions;
 using TileGameLib.Util;
 using System.Threading;
 
@@ -19,87 +18,17 @@ namespace TileGameEngine.Windows
 {
     public partial class StartWindow : Form
     {
-        private static readonly string SettingsFile = Config.ReadString("SettingsFile");
         private static readonly string ScriptFileExt = Config.ReadString("ScriptFileExt");
         private static readonly string ScriptFileFilter = $"TileGameMaker script (*.{ScriptFileExt})|*.{ScriptFileExt}";
-
-        private static readonly string ExecModeRun = "run";
-        private static readonly string ExecModeDebug = "debug";
-
-        private string SettingsMainScript;
-        private string SettingsExecMode;
 
         public StartWindow()
         {
             InitializeComponent();
-            Shown += StartWindow_Shown;
-        }
-
-        public void Start()
-        {
-            if (File.Exists(SettingsFile))
-            {
-                try
-                {
-                    LoadSettings();
-                    ApplySettings();
-
-                    if (SettingsExecMode == ExecModeDebug)
-                        SetVisible(true);
-                }
-                catch (Exception ex)
-                {
-                    Alert.Error($"Error in settings file {SettingsFile}:\n\n{ex.Message}");
-                    SetVisible(true);
-                }
-            }
-            else
-            {
-                SetVisible(true);
-            }
-        }
-
-        private void SetVisible(bool visible)
-        {
-            Opacity = visible ? 100 : 0;
-        }
-
-        private void LoadSettings()
-        {
-            string file = File.ReadAllText(SettingsFile);
-            string[] settings = file.Split(';');
-
-            if (settings.Length == 2)
-            {
-                SettingsExecMode = settings[0].Trim().ToLower();
-                SettingsMainScript = settings[1].Trim();
-            }
-            else
-                throw new StartupException("Invalid settings file format");
-        }
-
-        private void ApplySettings()
-        {
-            if (SettingsMainScript != null)
-            {
-                if (SettingsExecMode == ExecModeRun)
-                    RunScript(SettingsMainScript);
-                else if (SettingsExecMode == ExecModeDebug)
-                    DebugScript(SettingsMainScript);
-                else
-                    throw new StartupException("Invalid execution mode: " + SettingsExecMode);
-            }
-        }
-
-        private void StartWindow_Shown(object sender, EventArgs e)
-        {
-            if (SettingsExecMode == ExecModeRun)
-                Hide();
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
         {
-            Exit();
+            Close();
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
@@ -116,16 +45,13 @@ namespace TileGameEngine.Windows
                 DebugScript(file);
         }
 
-        public void Exit()
-        {
-            Application.Exit();
-        }
-
         private string LoadScript()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = Application.StartupPath;
-            dialog.Filter = ScriptFileFilter;
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                InitialDirectory = Application.StartupPath,
+                Filter = ScriptFileFilter
+            };
 
             if (dialog.ShowDialog(this) != DialogResult.OK)
                 return null;
@@ -137,7 +63,7 @@ namespace TileGameEngine.Windows
         {
             try
             {
-                new Engine().Run(path);
+                new Engine(this).Run(path);
             }
             catch (Exception ex)
             {
@@ -149,9 +75,7 @@ namespace TileGameEngine.Windows
         {
             try
             {
-                Engine engine = new Engine();
-                engine.ParentForm = this;
-                engine.Debug(path);
+                new Engine(this).Debug(path);
             }
             catch (Exception ex)
             {

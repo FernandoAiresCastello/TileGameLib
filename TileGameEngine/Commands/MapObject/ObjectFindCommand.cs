@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameEngine.Exceptions;
 using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
@@ -17,7 +16,7 @@ namespace TileGameEngine.Commands.Map
             ObjectPosition pos = Environment.FindObjectPositionByTag(tag);
 
             if (pos == null)
-                throw new ScriptException("Object not found with tag: " + tag);
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Object not found with tag: " + tag);
 
             Push(pos.Y);
             Push(pos.X);

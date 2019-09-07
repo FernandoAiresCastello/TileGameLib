@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.GameElements;
 using TileGameLib.Util;
-using TileGameEngine.Exceptions;
 using TileGameEngine.Windows;
 using TileGameEngine.Util;
 using System.Threading;
@@ -30,7 +29,6 @@ namespace TileGameEngine.Core
         private readonly Script Script;
         private readonly Timer CycleTimer;
         private readonly CommandDictionary CommandDict;
-        private bool DebugMode;
 
         private int SleepTime = 0;
 
@@ -42,15 +40,7 @@ namespace TileGameEngine.Core
             Environment = env;
             CommandDict = new CommandDictionary(this, env);
 
-            try
-            {
-                FindLabels();
-            }
-            catch (ScriptException ex)
-            {
-                Alert.Error(ex.Message);
-                Environment.ExitApplication();
-            }
+            FindLabels();
 
             CycleTimer = new Timer();
             CycleTimer.Tick += CycleTimer_Tick;
@@ -82,7 +72,10 @@ namespace TileGameEngine.Core
                 return "Invalid program pointer";
             }
 
-            return "Execution finished";
+            if (TileGameEngineApplication.ErrorRaised)
+                return "Execution aborted due to script error";
+            else
+                return "Execution finished";
         }
 
         private void FindLabels()
@@ -98,7 +91,7 @@ namespace TileGameEngine.Core
                     string label = line.Command.Substring(1);
 
                     if (Labels.HasLabel(label))
-                        throw new ScriptException("Duplicate label: " + label);
+                        TileGameEngineApplication.Error("SCRIPT ERROR", "Duplicate label: " + label);
 
                     Labels.Add(label, i);
                 }
@@ -110,7 +103,7 @@ namespace TileGameEngine.Core
             Environment.Reset();
             CallStack.Clear();
             ParamStack.Clear();
-            Branching = true;
+            Branching = false;
             Running = true;
             ProgramPointer = 0;
         }
@@ -118,26 +111,25 @@ namespace TileGameEngine.Core
         public void Run()
         {
             if (Running)
-                throw new InterpreterException("Interpreter is already running");
+                TileGameEngineApplication.Error("INTERPRETER ERROR", "Interpreter is already running");
 
             Environment.ExitIfGameWindowClosed = true;
             Running = true;
-            DebugMode = false;
             CycleTimer.Start();
         }
 
         public void Debug()
         {
             if (Running)
-                throw new InterpreterException("Interpreter is already running");
+                TileGameEngineApplication.Error("INTERPRETER ERROR", "Interpreter is already debugging");
 
             Environment.ExitIfGameWindowClosed = false;
             Running = true;
-            DebugMode = true;
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)
         {
+            WakeUpIfSleeping();
             ExecuteCycle();
 
             if (!Running)
@@ -166,10 +158,8 @@ namespace TileGameEngine.Core
         {
             try
             {
-                WakeUpIfSleeping();
-
                 if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
-                    throw new InterpreterException("Program pointer past end of script");
+                    TileGameEngineApplication.Error("INTERPRETER ERROR", "Program pointer past end of script");
                     
                 ScriptLine line = Script.Lines[ProgramPointer];
                 if (!line.IsLabel() && !line.IsComment())
@@ -186,32 +176,18 @@ namespace TileGameEngine.Core
                 if (ProgramPointer < 0 || ProgramPointer >= Script.Lines.Count)
                     Running = false;
             }
-            catch (InterpreterException ex)
-            {
-                CycleTimer.Stop();
-                Alert.Error(ex.Message);
-                if (!DebugMode)
-                    Environment.ExitApplication();
-            }
             catch (Exception ex)
             {
-                CycleTimer.Stop();
-                AlertCurrentLineException(ex);
-                if (!DebugMode)
-                    Environment.ExitApplication();
+                Stop();
+                Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
             }
-        }
-
-        private void AlertCurrentLineException(Exception ex)
-        {
-            Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
         }
 
         private void InterpretCommand(ScriptLine line)
         {
             string command = line.Command.ToUpper();
             if (!CommandDict.HasCommand(command))
-                throw new ScriptException($"Unknown command: {command}");
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Unknown command: " + command);
 
             CommandDict.Get(command).Execute(line.Params);
         }
@@ -225,7 +201,7 @@ namespace TileGameEngine.Core
         public void SetProgramPointer(int line)
         {
             if (line < 0 || line >= Script.Lines.Count)
-                throw new InterpreterException($"Can't branch to invalid script line {line}");
+                TileGameEngineApplication.Error("INTERPRETER ERROR", "Can't branch to invalid script line: " + line);
 
             ProgramPointer = line;
         }
@@ -240,6 +216,8 @@ namespace TileGameEngine.Core
         public void Stop()
         {
             Running = false;
+            if (CycleTimer != null)
+                CycleTimer.Stop();
             if (Environment.HasWindow)
                 Environment.CloseWindow();
         }
@@ -247,19 +225,6 @@ namespace TileGameEngine.Core
         public void SoftLock()
         {
             Running = false;
-        }
-
-        public void Exit()
-        {
-            Stop();
-            if (!DebugMode)
-                Environment.ExitApplication();
-        }
-
-        public void ForceExit()
-        {
-            Stop();
-            Environment.ExitApplication();
         }
 
         public void Sleep(int ms)

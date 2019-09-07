@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Core;
-using TileGameEngine.Exceptions;
 using Environment = TileGameEngine.Core.Environment;
 
 namespace TileGameEngine.Commands
@@ -22,7 +21,7 @@ namespace TileGameEngine.Commands
 
         public virtual void Execute(List<string> immediateParams)
         {
-            throw new ScriptException("Command not implemented");
+            TileGameEngineApplication.Error("SCRIPT ERROR", "Command not implemented");
         }
 
         public void Jump(string label)
@@ -41,19 +40,19 @@ namespace TileGameEngine.Commands
         public void AssertVariable(string param)
         {
             if (!param.StartsWith("$"))
-                throw new ScriptException("Expected a variable name");
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Expected a variable name");
         }
 
         public void AssertLabel(string param)
         {
             if (!Interpreter.Labels.HasLabel(param))
-                throw new ScriptException($"Label {param} not found");
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Label not found: " + param);
         }
 
         public void AssertParamStackNotEmpty()
         {
             if (ParamStack.IsEmpty)
-                throw new ScriptException("Parameter stack is empty");
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Parameter stack is empty");
         }
 
         public int PopInt()

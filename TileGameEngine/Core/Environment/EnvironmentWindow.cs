@@ -20,16 +20,7 @@ namespace TileGameEngine.Core
         {
             AssertWindowIsNotOpen();
             Window = new GameWindow(cols, rows);
-            Window.FormClosed += Window_FormClosed;
             Window.Show();
-        }
-
-        private void Window_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (ExitIfGameWindowClosed)
-                Application.Exit();
-
-            Window = null;
         }
 
         public void CloseWindow()

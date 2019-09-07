@@ -14,13 +14,7 @@ namespace TileGameEngine
         [STAThread]
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            StartWindow window = new StartWindow();
-            window.Start();
-
-            Application.Run(window);
+            TileGameEngineApplication.Run();
         }
     }
 }

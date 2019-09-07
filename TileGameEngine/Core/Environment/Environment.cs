@@ -9,7 +9,6 @@ using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameEngine.Windows;
-using TileGameEngine.Exceptions;
 using System.Windows.Forms;
 using TileGameEngine.Util;
 
@@ -22,14 +21,6 @@ namespace TileGameEngine.Core
         public Environment()
         {
             DeleteLogFile();
-        }
-
-        public void ExitApplication()
-        {
-            if (HasWindow)
-                CloseWindow();
-
-            Application.Exit();
         }
 
         public void Reset()
@@ -53,7 +44,7 @@ namespace TileGameEngine.Core
         {
             string name = variable.Substring(1);
             if (!Variables.Contains(name))
-                throw new EnvironmentException("Variable not found: " + name);
+                TileGameEngineApplication.Error("SCRIPT ERROR", "Variable not found: " + name);
 
             return Variables.GetStr(name);
         }

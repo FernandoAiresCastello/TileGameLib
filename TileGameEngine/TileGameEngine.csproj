@@ -130,11 +130,8 @@
     <Compile Include="Core\Environment\EnvironmentWindow.cs" />
     <Compile Include="Core\Interpreter\ScriptLine.cs" />
     <Compile Include="Core\Environment\Environment.cs" />
-    <Compile Include="Exceptions\EngineException.cs" />
-    <Compile Include="Exceptions\EnvironmentException.cs" />
-    <Compile Include="Exceptions\InterpreterException.cs" />
-    <Compile Include="Exceptions\StartupException.cs" />
-    <Compile Include="Exceptions\ScriptException.cs" />
+    <Compile Include="TileGameEngineApplication.cs" />
+    <Compile Include="TileGameEngineException.cs" />
     <Compile Include="Util\Config.cs" />
     <Compile Include="Windows\DebuggerWindow.cs">
       <SubType>Form</SubType>

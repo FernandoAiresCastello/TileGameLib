@@ -1,9 +1,11 @@
 
 # This line is a comment
 
+:start
 	CALL init_window
 	CALL test_maprender
 	CALL test_objmanip
+	SYSTEM.HALT
 
 :exit
 	SYSTEM.EXIT
@@ -66,8 +68,6 @@
 	PUSH FooBar
 	OBJ.EXISTS
 	POP
-	PUSH InexistentObject
-	OBJ.FIND
 	RET
 
 :init_window

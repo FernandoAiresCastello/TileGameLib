@@ -10,7 +10,7 @@ namespace TileGameEngine.Commands.System
     {
         public override void Execute(List<string> immediateParams)
         {
-            Interpreter.Exit();
+            Interpreter.Stop();
         }
     }
 }
