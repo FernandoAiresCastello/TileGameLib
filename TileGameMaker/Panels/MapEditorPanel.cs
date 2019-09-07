@@ -15,6 +15,7 @@ using TileGameLib.Util;
 using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
+using System.Diagnostics;
 
 namespace TileGameMaker.Panels
 {
@@ -26,8 +27,9 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
         private MapRenderer MapRenderer;
         private int Layer;
+        private TileBlockSelection Selection;
 
-        private enum EditMode { Template, Data, TextInput }
+        private enum EditMode { Template, Data, TextInput, Selection }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -53,12 +55,14 @@ namespace TileGameMaker.Panels
             MapRenderer = new MapRenderer(Map, Display);
             HoverLabel.Text = "";
             Layer = 0;
+            Selection = new TileBlockSelection();
 
             Display.MouseMove += Disp_MouseMove;
             Display.MouseDown += Disp_MouseDown;
+            Display.MouseUp += Disp_MouseUp;
             Display.MouseLeave += Disp_MouseLeave;
 
-            SetMode(EditMode.Template);
+            SetMode(EditMode.Template, BtnPutTemplate);
             ClearMap();
             RenderMap();
             Refresh();
@@ -99,28 +103,20 @@ namespace TileGameMaker.Panels
             if (e.Button == MouseButtons.None)
                 OnDisplayMouseMove(e);
             else if (e.Button == MouseButtons.Left)
-                OnDisplayMouseClick(e);
+                OnDisplayMouseDown(e);
         }
 
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
-            OnDisplayMouseClick(e);
+            OnDisplayMouseDown(e);
         }
 
-        private void OnDisplayMouseMove(MouseEventArgs e)
+        private void Disp_MouseUp(object sender, MouseEventArgs e)
         {
-            Point point = Display.GetMouseToCellPos(e.Location);
-            if (IsOutOfBounds(point))
-                return;
-
-            HoverLabel.Text = $"X: {point.X} Y: {point.Y} ";
-
-            GameObject o = Map.GetObject(Layer, point.X, point.Y);
-            if (o != null)
-                HoverLabel.Text += o.ToString();
+            OnDisplayMouseUp(e);
         }
 
-        private void OnDisplayMouseClick(MouseEventArgs e)
+        private void OnDisplayMouseDown(MouseEventArgs e)
         {
             Point point = Display.GetMouseToCellPos(e.Location);
             if (IsOutOfBounds(point))
@@ -155,6 +151,38 @@ namespace TileGameMaker.Panels
                     InputText(point.X, point.Y);
                 }
             }
+            else if (Mode == EditMode.Selection)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    Selection.EndPoint = null;
+                    Selection.StartPoint = point;
+                }
+                else if (e.Button == MouseButtons.Right)
+                {
+                    Selection.EndPoint = point;
+                }
+
+                Debug.WriteLine(Selection);
+            }
+        }
+
+        private void OnDisplayMouseUp(MouseEventArgs e)
+        {
+            // Nothing here yet
+        }
+
+        private void OnDisplayMouseMove(MouseEventArgs e)
+        {
+            Point point = Display.GetMouseToCellPos(e.Location);
+            if (IsOutOfBounds(point))
+                return;
+
+            HoverLabel.Text = $"X: {point.X} Y: {point.Y} ";
+
+            GameObject o = Map.GetObject(Layer, point.X, point.Y);
+            if (o != null)
+                HoverLabel.Text += o.ToString();
         }
 
         private void PutCurrentObject(LayerCell cell)
@@ -252,47 +280,55 @@ namespace TileGameMaker.Panels
 
         private void BtnAddText_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.TextInput);
+            SetMode(EditMode.TextInput, sender);
         }
 
         private void BtnSetScript_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.Data);
+            SetMode(EditMode.Data, sender);
         }
 
         private void BtnPutTemplate_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.Template);
+            SetMode(EditMode.Template, sender);
         }
 
-        private void SetMode(EditMode mode)
+        private void BtnSelect_Click(object sender, EventArgs e)
+        {
+            SetMode(EditMode.Selection, sender);
+        }
+
+        private void SetMode(EditMode mode, object button)
         {
             Mode = mode;
 
-            if (Mode == EditMode.Template)
+            switch (mode)
             {
-                Display.Cursor = Cursors.Arrow;
-
-                BtnSetData.Checked = false;
-                BtnAddText.Checked = false;
-                BtnPutTemplate.Checked = true;
+                case EditMode.Template:
+                    Display.Cursor = Cursors.Arrow;
+                    break;
+                case EditMode.TextInput:
+                    Display.Cursor = Cursors.IBeam;
+                    break;
+                case EditMode.Data:
+                    Display.Cursor = Cursors.Hand;
+                    break;
+                case EditMode.Selection:
+                    Display.Cursor = Cursors.Cross;
+                    break;
             }
-            else if (Mode == EditMode.TextInput)
-            {
-                Display.Cursor = Cursors.IBeam;
 
-                BtnSetData.Checked = false;
-                BtnAddText.Checked = true;
-                BtnPutTemplate.Checked = false;
-            }
-            else if (Mode == EditMode.Data)
-            {
-                Display.Cursor = Cursors.Hand;
+            CheckModeButton(button as ToolStripButton);
+        }
 
-                BtnSetData.Checked = true;
-                BtnAddText.Checked = false;
-                BtnPutTemplate.Checked = false;
-            }
+        private void CheckModeButton(ToolStripButton button)
+        {
+            BtnSetData.Checked = false;
+            BtnAddText.Checked = false;
+            BtnPutTemplate.Checked = false;
+            BtnSelect.Checked = false;
+
+            button.Checked = true;
         }
 
         private void InputData(int x, int y)
@@ -476,7 +512,7 @@ namespace TileGameMaker.Panels
                         ToggleGrid();
                         break;
                     case Keys.T:
-                        SetMode(EditMode.TextInput);
+                        SetMode(EditMode.TextInput, BtnAddText);
                         break;
                     case Keys.P:
                         SaveScreenshot();
