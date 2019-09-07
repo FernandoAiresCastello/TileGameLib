@@ -20,9 +20,14 @@ namespace TileGameLib.GameElements
             SetEqual(other);
         }
 
-        public ref GameObject GetObject()
+        public ref GameObject GetObjectRef()
         {
             return ref Object;
+        }
+
+        public GameObject GetObjectCopy()
+        {
+            return Object.Copy();
         }
 
         public void SetEqual(ObjectCell other)
@@ -46,11 +51,6 @@ namespace TileGameLib.GameElements
                 Object = new GameObject();
 
             Object.SetEqual(other);
-        }
-
-        public GameObject CopyObject()
-        {
-            return Object.Copy();
         }
 
         public void DeleteObject()

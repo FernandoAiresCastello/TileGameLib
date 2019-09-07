@@ -119,6 +119,7 @@ namespace TileGameEngine.Core
             Set("OBJ.FIND", new ObjectFindCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());
+            Set("OBJ.SWAP", new ObjectSwapCommand());
             Set("OBJ.DELETE", new ObjectDeleteCommand());
         }
 

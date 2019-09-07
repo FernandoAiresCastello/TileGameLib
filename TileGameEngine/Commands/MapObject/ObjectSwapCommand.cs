@@ -8,7 +8,7 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectCopyCommand : CommandBase
+    public class ObjectSwapCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
@@ -19,7 +19,7 @@ namespace TileGameEngine.Commands.Map
             int srcX = PopInt();
             int srcLayer = PopInt();
 
-            Environment.DuplicateObject(
+            Environment.SwapObjects(
                 new ObjectPosition(srcLayer, srcX, srcY), 
                 new ObjectPosition(destLayer, destX, destY));
         }

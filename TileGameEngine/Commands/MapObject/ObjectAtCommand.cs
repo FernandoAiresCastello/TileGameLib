@@ -17,7 +17,7 @@ namespace TileGameEngine.Commands.Map
             int layer = PopInt();
             string tag = PopStr();
 
-            GameObject o = Environment.GetObjectAt(layer, x, y);
+            GameObject o = Environment.GetObjectRefAt(layer, x, y);
 
             if (o != null && o.HasTag && o.Tag.Equals(tag))
                 Push(1);

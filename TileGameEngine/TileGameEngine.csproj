@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Commands\MapObject\ObjectDeleteCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectCopyCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectSwapCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectMoveCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectAtCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectExistsCommand.cs" />

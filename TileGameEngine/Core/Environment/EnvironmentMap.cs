@@ -57,9 +57,9 @@ namespace TileGameEngine.Core
             return Map.FindObjectPositionByTag(tag);
         }
 
-        public GameObject GetObjectAt(int layer, int x, int y)
+        public GameObject GetObjectRefAt(int layer, int x, int y)
         {
-            return Map.GetObject(layer, x, y);
+            return Map.GetObjectRef(layer, x, y);
         }
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
@@ -67,9 +67,14 @@ namespace TileGameEngine.Core
             Map.MoveObject(srcPos, destPos);
         }
 
-        public void CopyObject(ObjectPosition srcPos, ObjectPosition destPos)
+        public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
-            Map.CopyObject(srcPos, destPos);
+            Map.DuplicateObject(srcPos, destPos);
+        }
+
+        public void SwapObjects(ObjectPosition pos1, ObjectPosition pos2)
+        {
+            Map.SwapObjects(pos1, pos2);
         }
 
         public void DeleteObject(ObjectPosition pos)

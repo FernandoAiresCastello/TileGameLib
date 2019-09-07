@@ -109,14 +109,14 @@ namespace TileGameLib.GameElements
             Layers[layer].SetObject(o, x, y);
         }
 
-        public ref GameObject GetObject(int layer, int x, int y)
+        public ref GameObject GetObjectRef(int layer, int x, int y)
         {
-            return ref Layers[layer].GetObject(x, y);
+            return ref Layers[layer].GetObjectRef(x, y);
         }
 
-        public GameObject CopyObject(int layer, int x, int y)
+        public GameObject GetObjectCopy(int layer, int x, int y)
         {
-            return Layers[layer].CopyObject(x, y);
+            return Layers[layer].GetObjectCopy(x, y);
         }
 
         public void Resize(int width, int height)
@@ -147,18 +147,34 @@ namespace TileGameLib.GameElements
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
-            CopyObject(srcPos, destPos);
+            DuplicateObject(srcPos, destPos);
             DeleteObject(srcPos);
         }
 
-        public void CopyObject(ObjectPosition srcPos, ObjectPosition destPos)
+        public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
             ObjectCell srcCell = GetCell(srcPos.Layer, srcPos.X, srcPos.Y);
             ObjectCell destCell = GetCell(destPos.Layer, destPos.X, destPos.Y);
 
-            GameObject o = srcCell.GetObject();
+            GameObject o = srcCell.GetObjectRef();
             if (o != null)
                 destCell.SetObjectEqual(o);
+        }
+
+        public void SwapObjects(ObjectPosition pos1, ObjectPosition pos2)
+        {
+            ObjectCell cell1 = GetCell(pos1.Layer, pos1.X, pos1.Y);
+            ObjectCell cell2 = GetCell(pos2.Layer, pos2.X, pos2.Y);
+
+            GameObject o1 = cell1.GetObjectRef();
+            GameObject o2 = cell2.GetObjectRef();
+
+            if (o1 != null && o2 != null)
+            {
+                GameObject temp = cell1.GetObjectCopy();
+                cell1.SetObjectEqual(o2);
+                cell2.SetObjectEqual(temp);
+            }
         }
 
         public void DeleteObject(ObjectPosition pos)

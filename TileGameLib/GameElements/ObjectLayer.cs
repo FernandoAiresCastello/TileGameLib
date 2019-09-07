@@ -33,7 +33,7 @@ namespace TileGameLib.GameElements
             {
                 for (int col = 0; col < Width; col++)
                 {
-                    GameObject o = other.GetObject(col, row);
+                    GameObject o = other.GetObjectRef(col, row);
 
                     if (o != null)
                         Cells[col, row].SetObjectEqual(o);
@@ -75,18 +75,18 @@ namespace TileGameLib.GameElements
             return ref Cells[x, y];
         }
 
-        public ref GameObject GetObject(int x, int y)
+        public ref GameObject GetObjectRef(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return ref Cells[x, y].GetObject();
+                return ref Cells[x, y].GetObjectRef();
 
             throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
 
-        public GameObject CopyObject(int x, int y)
+        public GameObject GetObjectCopy(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].CopyObject();
+                return Cells[x, y].GetObjectCopy();
 
             throw new OutOfBoundsException(GetExceptionMessage(x, y));
         }
@@ -122,7 +122,7 @@ namespace TileGameLib.GameElements
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    GameObject o = Cells[x, y].GetObject();
+                    GameObject o = Cells[x, y].GetObjectRef();
                     if (o != null && o.HasTag && o.Tag.Equals(tag))
                         return new Point(x, y);
                 }

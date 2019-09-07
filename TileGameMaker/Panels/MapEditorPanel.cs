@@ -180,7 +180,7 @@ namespace TileGameMaker.Panels
 
             HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
 
-            GameObject o = Map.GetObject(Layer, point.X, point.Y);
+            GameObject o = Map.GetObjectRef(Layer, point.X, point.Y);
             if (o != null)
                 HoverLabel.Text += o.ToString();
         }
@@ -238,7 +238,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty())
-                MapEditor.SelectedObject = cell.GetObject();
+                MapEditor.SelectedObject = cell.GetObjectRef();
             else
                 Alert.Warning(MessageCellEmpty);
         }
@@ -333,7 +333,7 @@ namespace TileGameMaker.Panels
 
         private void InputData(int x, int y)
         {
-            GameObject o = Map.GetObject(Layer, x, y);
+            GameObject o = Map.GetObjectRef(Layer, x, y);
 
             if (o == null)
             {

@@ -34,7 +34,7 @@ namespace TileGameLib.File
                 {
                     for (int x = 0; x < layer.Width; x++)
                     {
-                        GameObject o = layer.GetObject(x, y);
+                        GameObject o = layer.GetObjectRef(x, y);
 
                         if (o != null)
                         {
