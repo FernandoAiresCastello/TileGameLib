@@ -30,6 +30,11 @@ namespace TileGameEngine.Windows
             Graphics.ClearRect(BackColor, rect.X, rect.Y, rect.Width, rect.Height);
         }
 
+        public void PutTile(int index)
+        {
+            Graphics.PutTile(TileCursor.X, TileCursor.Y, index, TileForeColor, TileBackColor);
+        }
+
         public void Print(string text)
         {
             Graphics.PutString(TileCursor.X, TileCursor.Y, text, TileForeColor, TileBackColor);

@@ -102,6 +102,15 @@ namespace TileGameEngine.Core
             Window.ClearRect(MapRenderer.Viewport);
         }
 
+        public void PutTile(int index)
+        {
+            AssertWindowIsOpen();
+            AssertTextColorIsWithinPalette();
+            AssertTextCursorIsWithinBounds();
+
+            Window.PutTile(index);
+        }
+
         public void Print(string text)
         {
             AssertWindowIsOpen();

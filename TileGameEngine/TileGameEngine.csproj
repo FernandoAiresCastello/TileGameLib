@@ -103,6 +103,7 @@
     <Compile Include="Commands\System\SleepCommand.cs" />
     <Compile Include="Commands\Window\KeyPressedCommand.cs" />
     <Compile Include="Commands\Window\ClearCommand.cs" />
+    <Compile Include="Commands\Window\TilePutCommand.cs" />
     <Compile Include="Commands\Window\TileBackColorSetCommand.cs" />
     <Compile Include="Commands\Window\TileForeColorSetCommand.cs" />
     <Compile Include="Commands\Window\TileYSetCommand.cs" />

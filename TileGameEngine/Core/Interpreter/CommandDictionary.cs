@@ -86,13 +86,14 @@ namespace TileGameEngine.Core
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PALETTE.SET", new WindowPaletteSetCommand());
             Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
-            Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
             Set("WINDOW.BG.SET", new WindowBackColorSetCommand());
             Set("WINDOW.TILE.X.SET", new TileXSetCommand());
             Set("WINDOW.TILE.Y.SET", new TileYSetCommand());
             Set("WINDOW.TILE.FG.SET", new TileForeColorSetCommand());
             Set("WINDOW.TILE.BG.SET", new TileBackColorSetCommand());
+            Set("WINDOW.TILE.PUT", new TilePutCommand());
+            Set("WINDOW.PRINT", new PrintCommand());
 
             // MAP VIEW
             Set("MAPVIEW.X.SET", new MapViewXSetCommand());
