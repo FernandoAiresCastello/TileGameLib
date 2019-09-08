@@ -128,6 +128,11 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
+        public void CreateNewObject(int layer, int x, int y)
+        {
+            SetObject(new GameObject(), layer, x, y);
+        }
+
         public ObjectPosition FindObjectPositionByTag(string tag)
         {
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)

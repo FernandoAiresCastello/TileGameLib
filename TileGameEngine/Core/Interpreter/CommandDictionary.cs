@@ -70,6 +70,7 @@ namespace TileGameEngine.Core
             Set("MATH.MOD", new ModuloCommand());
             Set("MATH.SQRT", new SquareRootCommand());
             Set("MATH.POW", new PowerCommand());
+            Set("MATH.RANDOM", new RandomCommand());
 
             // CONVERT
             Set("CONVERT.BYTE", new ConvertToByteCommand());
@@ -88,7 +89,6 @@ namespace TileGameEngine.Core
             Set("WINDOW.PRINT", new PrintCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
             Set("WINDOW.BG.SET", new WindowBackColorSetCommand());
-
             Set("WINDOW.TILE.X.SET", new TileXSetCommand());
             Set("WINDOW.TILE.Y.SET", new TileYSetCommand());
             Set("WINDOW.TILE.FG.SET", new TileForeColorSetCommand());
@@ -114,6 +114,8 @@ namespace TileGameEngine.Core
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
 
             // OBJECT
+            Set("OBJ.CREATE", new ObjectCreateCommand());
+            Set("OBJ.ANY", new ObjectAnyCommand());
             Set("OBJ.EXISTS", new ObjectExistsCommand());
             Set("OBJ.AT", new ObjectAtCommand());
             Set("OBJ.FIND", new ObjectFindCommand());
@@ -121,6 +123,18 @@ namespace TileGameEngine.Core
             Set("OBJ.MOVE", new ObjectMoveCommand());
             Set("OBJ.SWAP", new ObjectSwapCommand());
             Set("OBJ.DELETE", new ObjectDeleteCommand());
+            Set("OBJ.ID.SET", new ObjectIdSetCommand());
+            Set("OBJ.ID.GET", new CommandBase());
+            Set("OBJ.TAG.SET", new ObjectTagSetCommand());
+            Set("OBJ.TAG.GET", new CommandBase());
+            Set("OBJ.DATA.SET", new ObjectDataSetCommand());
+            Set("OBJ.DATA.GET", new CommandBase());
+            Set("OBJ.TILE.IX.SET", new ObjectTileIxSetCommand());
+            Set("OBJ.TILE.IX.GET", new CommandBase());
+            Set("OBJ.TILE.FG.SET", new ObjectTileFgSetCommand());
+            Set("OBJ.TILE.FG.GET", new CommandBase());
+            Set("OBJ.TILE.BG.SET", new ObjectTileBgSetCommand());
+            Set("OBJ.TILE.BG.GET", new CommandBase());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

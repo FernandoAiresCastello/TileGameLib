@@ -52,6 +52,11 @@ namespace TileGameEngine.Core
                 pattern[4], pattern[5], pattern[6], pattern[7]);
         }
 
+        public void CreateNewObject(int layer, int x, int y)
+        {
+            Map.CreateNewObject(layer, x, y);
+        }
+
         public ObjectPosition FindObjectPositionByTag(string tag)
         {
             return Map.FindObjectPositionByTag(tag);
@@ -80,6 +85,48 @@ namespace TileGameEngine.Core
         public void DeleteObject(ObjectPosition pos)
         {
             Map.DeleteObject(pos);
+        }
+
+        public void SetObjectId(int layer, int x, int y, string id)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Id = id;
+        }
+
+        public void SetObjectTag(int layer, int x, int y, string tag)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Tag = tag;
+        }
+
+        public void SetObjectData(int layer, int x, int y, string data)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Data = data;
+        }
+
+        public void SetObjectTileIx(int layer, int x, int y, int frame, int ix)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Animation.GetFrame(frame).TileIx = ix;
+        }
+
+        public void SetObjectTileForeColor(int layer, int x, int y, int frame, int color)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Animation.GetFrame(frame).ForeColorIx = color;
+        }
+
+        public void SetObjectTileBackColor(int layer, int x, int y, int frame, int color)
+        {
+            GameObject o = Map.GetObjectRef(layer, x, y);
+            if (o != null)
+                o.Animation.GetFrame(frame).BackColorIx = color;
         }
     }
 }

@@ -26,24 +26,4 @@
 INCLUDE script
 	Include another script
 
-OBJ.ID.SET (layer, x, y, id)
-OBJ.ID.GET (layer, x, y)
-	Set or get object id
-
-OBJ.DATA.SET (layer, x, y, data)
-OBJ.DATA.GET (layer, x, y)
-	Set or get object data
-
-OBJ.TILE.INDEX.SET (layer, x, y, frame, index)
-OBJ.TILE.INDEX.GET (layer, x, y, frame)
-	Set or get object tile index
-	
-OBJ.TILE.FG.SET (layer, x, y, frame, forecolor)
-OBJ.TILE.FG.GET (layer, x, y, frame)
-	Set or get object tile foreground color
-
-OBJ.TILE.BG.SET (layer, x, y, frame, backcolor)
-OBJ.TILE.BG.GET (layer, x, y, frame)
-	Set or get object tile background color
-
 -------------------------------------------------------------------------------

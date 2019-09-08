@@ -50,6 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MapObject\ObjectCreateCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectTileBgSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectTileFgSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectTileIxSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectDataSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectTagSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectIdSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectAnyCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectDeleteCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectCopyCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectSwapCommand.cs" />
@@ -63,6 +71,7 @@
     <Compile Include="Commands\MapView\MapViewScrollXSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewYSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewXSetCommand.cs" />
+    <Compile Include="Commands\Math\RandomCommand.cs" />
     <Compile Include="Commands\NumericConversions\ConvertToByteCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalNotCommand.cs" />
     <Compile Include="Commands\LogicalOperators\LogicalXorCommand.cs" />
@@ -131,7 +140,7 @@
     <Compile Include="Core\Interpreter\ScriptLine.cs" />
     <Compile Include="Core\Environment\Environment.cs" />
     <Compile Include="TileGameEngineApplication.cs" />
-    <Compile Include="TileGameEngineException.cs" />
+    <Compile Include="Exceptions\TileGameEngineException.cs" />
     <Compile Include="Util\Config.cs" />
     <Compile Include="Windows\DebuggerWindow.cs">
       <SubType>Form</SubType>

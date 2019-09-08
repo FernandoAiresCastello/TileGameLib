@@ -11,6 +11,7 @@ using TileGameLib.Graphics;
 using TileGameEngine.Windows;
 using System.Windows.Forms;
 using TileGameEngine.Util;
+using TileGameLib.Util;
 
 namespace TileGameEngine.Core
 {
@@ -47,6 +48,11 @@ namespace TileGameEngine.Core
                 TileGameEngineApplication.Error("SCRIPT ERROR", "Variable not found: " + name);
 
             return Variables.GetStr(name);
+        }
+
+        public int GetRandomNumber(int min, int max)
+        {
+            return RandomNumber.Get(min, max);
         }
     }
 }
