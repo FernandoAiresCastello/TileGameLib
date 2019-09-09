@@ -13,6 +13,7 @@
 -------------------------------------------------------------------------------
 - Implement block selection
 - Implement block copy/paste
+- Remove GameObject.Data and create GameObject.Properties instead
 
 -------------------------------------------------------------------------------
 	TILE GAME MAKER - TILE GAME ENGINE INTEGRATION

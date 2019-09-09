@@ -10,7 +10,9 @@ namespace TileGameEngine.Commands.ControlFlow
     {
         public override void Execute(List<string> immediateParams)
         {
-            if (TopInt() != 0)
+            int top = PopInt();
+
+            if (top != 0)
             {
                 string label = immediateParams[0];
                 Call(label);

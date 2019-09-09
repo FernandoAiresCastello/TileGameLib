@@ -116,12 +116,16 @@ namespace TileGameEngine.Core
 
             // OBJECT
             Set("OBJ.CREATE", new ObjectCreateCommand());
-            Set("OBJ.ANY", new ObjectAnyCommand());
-            Set("OBJ.EXISTS", new ObjectExistsCommand());
-            Set("OBJ.AT", new ObjectAtCommand());
-            Set("OBJ.FIND", new ObjectFindCommand());
+            Set("OBJ.EXISTS_ANY_AT", new ObjectAnyCommand());
+            Set("OBJ.EXISTS_TAG_AT", new ObjectAtCommand());
+            Set("OBJ.EXISTS_TAG", new ObjectExistsCommand());
+            Set("OBJ.FIND_BY_TAG", new ObjectFindCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());
+            Set("OBJ.MOVE_UP", new CommandBase());
+            Set("OBJ.MOVE_DOWN", new CommandBase());
+            Set("OBJ.MOVE_RIGHT", new CommandBase());
+            Set("OBJ.MOVE_LEFT", new CommandBase());
             Set("OBJ.SWAP", new ObjectSwapCommand());
             Set("OBJ.DELETE", new ObjectDeleteCommand());
             Set("OBJ.ID.SET", new ObjectIdSetCommand());

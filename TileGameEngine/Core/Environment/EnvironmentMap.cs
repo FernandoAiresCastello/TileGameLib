@@ -62,9 +62,9 @@ namespace TileGameEngine.Core
             return Map.FindObjectPositionByTag(tag);
         }
 
-        public GameObject GetObjectRefAt(int layer, int x, int y)
+        public ref GameObject GetObjectRefAt(int layer, int x, int y)
         {
-            return Map.GetObjectRef(layer, x, y);
+            return ref Map.GetObjectRef(layer, x, y);
         }
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
