@@ -7,16 +7,17 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectDataSetCommand : CommandBase
+    public class ObjectPropertySetCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string data = PopStr();
+            string value = PopStr();
+            string property = PopStr();
             int y = PopInt();
             int x = PopInt();
             int layer = PopInt();
 
-            Environment.SetObjectData(layer, x, y, data);
+            Environment.SetObjectProperty(layer, x, y, property, value);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace TileGameMaker.Modules
             {
                 GameObject o = new GameObject();
                 o.Tag = TemplateControl.Object.Tag;
-                o.Data = TemplateControl.Object.Data;
+                o.Properties.SetEqual(TemplateControl.Object.Properties);
                 o.Animation.SetEqual(TemplateControl.CroppedAnimation);
                 return o;
             }

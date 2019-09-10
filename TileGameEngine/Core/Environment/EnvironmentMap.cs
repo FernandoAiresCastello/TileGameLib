@@ -101,11 +101,11 @@ namespace TileGameEngine.Core
                 o.Tag = tag;
         }
 
-        public void SetObjectData(int layer, int x, int y, string data)
+        public void SetObjectProperty(int layer, int x, int y, string property, string value)
         {
             GameObject o = Map.GetObjectRef(layer, x, y);
             if (o != null)
-                o.Data = data;
+                o.Properties.SetProperty(property, value);
         }
 
         public void SetObjectTileIx(int layer, int x, int y, int frame, int ix)

@@ -49,7 +49,13 @@ namespace TileGameLib.File
                                 file.WriteByte((byte)tile.BackColorIx);
                             }
 
-                            file.WriteString(o.Data);
+                            file.WriteInt(o.Properties.Entries.Count);
+
+                            foreach (var property in o.Properties.Entries)
+                            {
+                                file.WriteString(property.Key);
+                                file.WriteString(property.Value);
+                            }
                         }
                         else
                         {
@@ -120,7 +126,14 @@ namespace TileGameLib.File
                                 tile.BackColorIx = file.ReadByte();
                             }
 
-                            o.Data = file.ReadString();
+                            int propertyCount = file.ReadInt();
+
+                            for (int i = 0; i < propertyCount; i++)
+                            {
+                                string prop = file.ReadString();
+                                string value = file.ReadString();
+                                o.Properties.SetProperty(prop, value);
+                            }
 
                             layer.SetObject(o, x, y);
                         }

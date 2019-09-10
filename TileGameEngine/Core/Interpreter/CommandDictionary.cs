@@ -132,8 +132,8 @@ namespace TileGameEngine.Core
             Set("OBJ.ID.GET", new CommandBase());
             Set("OBJ.TAG.SET", new ObjectTagSetCommand());
             Set("OBJ.TAG.GET", new CommandBase());
-            Set("OBJ.DATA.SET", new ObjectDataSetCommand());
-            Set("OBJ.DATA.GET", new CommandBase());
+            Set("OBJ.PROP.SET", new ObjectPropertySetCommand());
+            Set("OBJ.PROP.GET", new CommandBase());
             Set("OBJ.TILE.IX.SET", new ObjectTileIxSetCommand());
             Set("OBJ.TILE.IX.GET", new CommandBase());
             Set("OBJ.TILE.FG.SET", new ObjectTileFgSetCommand());

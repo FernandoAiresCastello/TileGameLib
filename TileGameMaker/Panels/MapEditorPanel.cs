@@ -343,10 +343,11 @@ namespace TileGameMaker.Panels
 
             ObjectDataInputWindow win = new ObjectDataInputWindow($"Enter object data @{x},{y}");
 
-            if (win.ShowDialog(this, o.Tag, o.Data) == DialogResult.OK)
+            if (win.ShowDialog(this, o) == DialogResult.OK)
             {
-                o.Tag = win.ObjectId;
-                o.Data = win.ObjectData;
+                o.Id = win.ObjectId;
+                o.Tag = win.ObjectTag;
+                o.Properties = win.ObjectProperties;
             }
         }
 

@@ -5,6 +5,11 @@
 	PUSH level01
 	STORE $current_map
 	CALL load_current_map
+
+:init_vars
+	PUSH 0
+	STORE $score
+	RET
 	
 :game_loop
 	CALL process_input
@@ -81,9 +86,4 @@
 	MAPVIEW.WIDTH.SET
 	PUSH 24
 	MAPVIEW.HEIGHT.SET
-	RET
-
-:init_vars
-	PUSH 0
-	STORE $score
 	RET

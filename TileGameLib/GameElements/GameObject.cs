@@ -14,8 +14,8 @@ namespace TileGameLib.GameElements
     {
         public string Id { get; set; }
         public string Tag { set; get; }
-        public string Data { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
+        public ObjectProperties Properties { set; get; } = new ObjectProperties();
 
         public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
 
@@ -35,16 +35,10 @@ namespace TileGameLib.GameElements
             Animation.SetFrame(0, singleAnimFrame);
         }
 
-        public GameObject(Tile singleAnimFrame, string script)
-        {
-            Data = script;
-            Animation.Clear(singleAnimFrame);
-        }
-
         public void SetNull()
         {
             Tag = "";
-            Data = "";
+            Properties.RemoveAllProperties();
             Animation.Clear(Tile.Null);
             Id = IdGenerator.Generate(8);
         }
@@ -54,7 +48,7 @@ namespace TileGameLib.GameElements
             if (o != null)
             {
                 Tag = o.Tag;
-                Data = o.Data;
+                Properties.SetEqual(o.Properties);
                 Animation.SetEqual(o.Animation);
             }
             else
@@ -82,13 +76,13 @@ namespace TileGameLib.GameElements
             GameObject o = (GameObject)obj;
 
             return
-                Data.Equals(o.Data) &&
+                Properties.Equals(o.Properties) &&
                 Animation.Equals(o.Animation);
         }
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Tag, Data, Animation).GetHashCode();
+            return Tuple.Create(Tag, Properties, Animation).GetHashCode();
         }
     }
 }

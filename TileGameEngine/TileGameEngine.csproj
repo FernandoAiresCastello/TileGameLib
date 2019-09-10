@@ -54,7 +54,7 @@
     <Compile Include="Commands\MapObject\ObjectTileBgSetCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectTileFgSetCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectTileIxSetCommand.cs" />
-    <Compile Include="Commands\MapObject\ObjectDataSetCommand.cs" />
+    <Compile Include="Commands\MapObject\ObjectPropertySetCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectTagSetCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectIdSetCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectAnyCommand.cs" />

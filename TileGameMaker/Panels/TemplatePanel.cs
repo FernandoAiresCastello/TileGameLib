@@ -56,6 +56,7 @@ namespace TileGameMaker.Panels
             AnimationStrip.Graphics.Palette = editor.Map.Palette;
             AnimationStrip.MouseDown += AnimationStrip_MouseDown;
             TxtFrames.Text = 1.ToString();
+            TxtTag.Text = "";
         }
 
         private void TemplateControl_Shown(object sender, EventArgs e)
@@ -66,13 +67,8 @@ namespace TileGameMaker.Panels
         public override void Refresh()
         {
             base.Refresh();
-            TxtData.Text = Object.Data;
-        }
-
-        private void TxtBox_TextChanged(object sender, EventArgs e)
-        {
-            Object.Data = TxtData.Text;
-            Refresh();
+            TxtTag.Text = Object.Tag;
+            TxtProperties.Text = Object.Properties.ToString();
         }
 
         private void TxtBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -95,6 +91,7 @@ namespace TileGameMaker.Panels
             Object.SetNull();
             AnimationStrip.Clear();
             TxtFrames.Text = 1.ToString();
+            TxtTag.Text = "";
             Refresh();
         }
 
@@ -136,8 +133,19 @@ namespace TileGameMaker.Panels
         public void ShowDataInputWindow()
         {
             TextInputWindow win = new TextInputWindow("Template Data");
-            if (win.ShowDialog(this, TxtData.Text) == DialogResult.OK)
-                TxtData.Text = win.Text;
+            if (win.ShowDialog(this, TxtProperties.Text) == DialogResult.OK)
+                TxtProperties.Text = win.Text;
+        }
+
+        private void TxtProperties_TextChanged(object sender, EventArgs e)
+        {
+            Object.Properties.Parse(TxtProperties.Text);
+            Refresh();
+        }
+
+        private void TxtTag_Leave(object sender, EventArgs e)
+        {
+            Object.Tag = TxtTag.Text.Trim();
         }
     }
 }

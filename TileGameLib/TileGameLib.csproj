@@ -59,6 +59,7 @@
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
     <Compile Include="GameElements\ObjectPosition.cs" />
+    <Compile Include="GameElements\ObjectProperties.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnim.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />

@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.GameElements;
 
 namespace TileGameMaker.Windows
 {
     public partial class ObjectDataInputWindow : Form
     {
         public string ObjectId => TxtId.Text.Trim();
-        public string ObjectData => TxtData.Text;
+        public string ObjectTag => TxtTag.Text.Trim();
+        public ObjectProperties ObjectProperties { set; get; }
 
         public ObjectDataInputWindow() : this("")
         {
@@ -23,20 +25,25 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             Text = title;
+            ObjectProperties = new ObjectProperties();
         }
 
-        public DialogResult ShowDialog(Control parent, string id, string data)
+        public DialogResult ShowDialog(Control parent, GameObject o)
         {
-            TxtId.Text = id;
-            TxtData.Text = data;
+            TxtId.Text = o.Id;
             TxtId.Select(0, 0);
-            TxtData.Select(0, 0);
+            TxtTag.Text = o.Tag;
+            TxtTag.Select(0, 0);
+            ObjectProperties.SetEqual(o.Properties);
+            TxtProperties.Text = o.Properties.ToString();
+            TxtProperties.Select(0, 0);
             return ShowDialog(parent);
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+            ObjectProperties.Parse(TxtProperties.Text);
             Close();
         }
 
