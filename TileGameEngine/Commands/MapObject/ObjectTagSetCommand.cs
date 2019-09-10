@@ -12,11 +12,8 @@ namespace TileGameEngine.Commands.Map
         public override void Execute(List<string> immediateParams)
         {
             string tag = PopStr();
-            int y = PopInt();
-            int x = PopInt();
-            int layer = PopInt();
 
-            Environment.SetObjectTag(layer, x, y, tag);
+            Environment.SetObjectTag(tag);
         }
     }
 }

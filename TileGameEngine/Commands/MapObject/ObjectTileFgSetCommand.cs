@@ -13,11 +13,8 @@ namespace TileGameEngine.Commands.Map
         {
             int color = PopInt();
             int frame = PopInt();
-            int y = PopInt();
-            int x = PopInt();
-            int layer = PopInt();
 
-            Environment.SetObjectTileForeColor(layer, x, y, frame, color);
+            Environment.SetObjectTileForeColor(frame, color);
         }
     }
 }

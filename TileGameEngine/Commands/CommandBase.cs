@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Core;
-using Environment = TileGameEngine.Core.Environment;
+using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
 
 namespace TileGameEngine.Commands
 {

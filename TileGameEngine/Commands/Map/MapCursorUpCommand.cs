@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class MapBackColorSetCommand : CommandBase
+    public class MapCursorUpCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
-            Environment.SetMapBackColor(color);
+            int distance = PopInt();
+
+            Environment.MapCursor.Position.Y = Environment.MapCursor.Position.Y - distance;
         }
     }
 }

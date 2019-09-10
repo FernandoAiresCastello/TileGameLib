@@ -7,16 +7,13 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectIdSetCommand : CommandBase
+    public class ObjectMoveDownCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            string id = PopStr();
-            int y = PopInt();
-            int x = PopInt();
-            int layer = PopInt();
+            int distance = PopInt();
 
-            Environment.SetObjectId(layer, x, y, id);
+            Environment.MoveObjectDown(distance);
         }
     }
 }

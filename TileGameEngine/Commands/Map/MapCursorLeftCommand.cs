@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectTileBgSetCommand : CommandBase
+    public class MapCursorLeftCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
-            int frame = PopInt();
+            int distance = PopInt();
 
-            Environment.SetObjectTileBackColor(frame, color);
+            Environment.MapCursor.Position.X = Environment.MapCursor.Position.X - distance;
         }
     }
 }

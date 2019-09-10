@@ -12,7 +12,7 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
         public string Tag { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
         public ObjectProperties Properties { set; get; } = new ObjectProperties();

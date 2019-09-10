@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using TileGameLib.File;
 using TileGameLib.GameElements;
 
-namespace TileGameEngine.Core
+namespace TileGameEngine.Core.RuntimeEnvironment
 {
     public partial class Environment
     {
-        private ObjectMap Map;
-
         public string MapFilePath { get; private set; } = "";
+        public MapCursor MapCursor { get; private set; } = new MapCursor();
+        private ObjectMap Map;
 
         public void LoadMapFromCurrentFolder(string filename)
         {
             MapFile.Load(ref Map, filename);
             MapFilePath = filename;
+
+            MapCursor = new MapCursor(Map);
 
             if (MapRenderer == null)
                 StartMapRenderer();
@@ -52,81 +54,177 @@ namespace TileGameEngine.Core
                 pattern[4], pattern[5], pattern[6], pattern[7]);
         }
 
-        public void CreateNewObject(int layer, int x, int y)
+        public void CreateNewObject()
         {
-            Map.CreateNewObject(layer, x, y);
+            if (MapCursor.IsValid)
+                Map.CreateNewObject(MapCursor.Position);
         }
 
-        public ObjectPosition FindObjectPositionByTag(string tag)
+        public ref GameObject GetObjectRef()
         {
-            return Map.FindObjectPositionByTag(tag);
+            return ref Map.GetObjectRef(MapCursor.Position);
         }
 
-        public ref GameObject GetObjectRefAt(int layer, int x, int y)
+        public void MoveObject(ObjectPosition destPos)
         {
-            return ref Map.GetObjectRef(layer, x, y);
+            if (MapCursor.IsValid)
+                Map.MoveObject(MapCursor.Position, destPos);
         }
 
-        public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
+        public void MoveObjectRight(int distance)
         {
-            Map.MoveObject(srcPos, destPos);
+            if (MapCursor.IsValid)
+                Map.MoveObject(MapCursor.Position, new ObjectPosition(
+                    MapCursor.Position.Layer, MapCursor.Position.X + distance, MapCursor.Position.Y));
         }
 
-        public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
+        public void MoveObjectLeft(int distance)
         {
-            Map.DuplicateObject(srcPos, destPos);
+            if (MapCursor.IsValid)
+                Map.MoveObject(MapCursor.Position, new ObjectPosition(
+                    MapCursor.Position.Layer, MapCursor.Position.X - distance, MapCursor.Position.Y));
         }
 
-        public void SwapObjects(ObjectPosition pos1, ObjectPosition pos2)
+        public void MoveObjectUp(int distance)
         {
-            Map.SwapObjects(pos1, pos2);
+            if (MapCursor.IsValid)
+                Map.MoveObject(MapCursor.Position, new ObjectPosition(
+                    MapCursor.Position.Layer, MapCursor.Position.X, MapCursor.Position.Y - distance));
         }
 
-        public void DeleteObject(ObjectPosition pos)
+        public void MoveObjectDown(int distance)
         {
-            Map.DeleteObject(pos);
+            if (MapCursor.IsValid)
+                Map.MoveObject(MapCursor.Position, new ObjectPosition(
+                    MapCursor.Position.Layer, MapCursor.Position.X, MapCursor.Position.Y + distance));
         }
 
-        public void SetObjectId(int layer, int x, int y, string id)
+        public void DuplicateObject(ObjectPosition destPos)
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Id = id;
+            if (MapCursor.IsValid)
+                Map.DuplicateObject(MapCursor.Position, destPos);
         }
 
-        public void SetObjectTag(int layer, int x, int y, string tag)
+        public void SwapObjects(ObjectPosition destPos)
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Tag = tag;
+            if (MapCursor.IsValid)
+                Map.SwapObjects(MapCursor.Position, destPos);
         }
 
-        public void SetObjectProperty(int layer, int x, int y, string property, string value)
+        public void DeleteObject()
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Properties.SetProperty(property, value);
+            if (MapCursor.IsValid)
+                Map.DeleteObject(MapCursor.Position);
         }
 
-        public void SetObjectTileIx(int layer, int x, int y, int frame, int ix)
+        public void SetObjectTag(string tag)
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Animation.GetFrame(frame).TileIx = ix;
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null)
+                    o.Tag = tag;
+            }
         }
 
-        public void SetObjectTileForeColor(int layer, int x, int y, int frame, int color)
+        public string GetObjectTag()
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Animation.GetFrame(frame).ForeColorIx = color;
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null)
+                    return o.Tag;
+            }
+
+            return null;
         }
 
-        public void SetObjectTileBackColor(int layer, int x, int y, int frame, int color)
+        public void SetObjectProperty(string property, string value)
         {
-            GameObject o = Map.GetObjectRef(layer, x, y);
-            if (o != null)
-                o.Animation.GetFrame(frame).BackColorIx = color;
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null)
+                    o.Properties.SetProperty(property, value);
+            }
+        }
+
+        public string GetObjectProperty(string property)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null)
+                    return o.Properties.GetProperty(property);
+            }
+
+            return null;
+        }
+
+        public void SetObjectTileIx(int frame, int ix)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    o.Animation.GetFrame(frame).TileIx = ix;
+            }
+        }
+
+        public int? GetObjectTileIx(int frame)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    return o.Animation.GetFrame(frame).TileIx;
+            }
+
+            return null;
+        }
+
+        public void SetObjectTileForeColor(int frame, int color)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    o.Animation.GetFrame(frame).ForeColorIx = color;
+            }
+        }
+
+        public int? GetObjectTileForeColor(int frame)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    return o.Animation.GetFrame(frame).ForeColorIx;
+            }
+
+            return null;
+        }
+
+        public void SetObjectTileBackColor(int frame, int color)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    o.Animation.GetFrame(frame).BackColorIx = color;
+            }
+        }
+
+        public int? GetObjectTileBackColor(int frame)
+        {
+            if (MapCursor.IsValid)
+            {
+                GameObject o = Map.GetObjectRef(MapCursor.Position);
+                if (o != null && o.Animation.Frames.Count > frame)
+                    return o.Animation.GetFrame(frame).BackColorIx;
+            }
+
+            return null;
         }
     }
 }

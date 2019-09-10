@@ -13,7 +13,6 @@ namespace TileGameMaker.Windows
 {
     public partial class ObjectDataInputWindow : Form
     {
-        public string ObjectId => TxtId.Text.Trim();
         public string ObjectTag => TxtTag.Text.Trim();
         public ObjectProperties ObjectProperties { set; get; }
 

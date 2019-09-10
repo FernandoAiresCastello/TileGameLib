@@ -11,11 +11,15 @@ namespace TileGameEngine.Commands.Map
     {
         public override void Execute(List<string> immediateParams)
         {
-            string tag = PopStr();
-
-            ObjectPosition pos = Environment.FindObjectPositionByTag(tag);
-
-            Push(pos == null ? 0 : 1);
+            if (Environment.MapCursor.IsValid)
+            {
+                GameObject o = Environment.GetObjectRef();
+                Push(o != null ? 1 : 0);
+            }
+            else
+            {
+                Push(0);
+            }
         }
     }
 }

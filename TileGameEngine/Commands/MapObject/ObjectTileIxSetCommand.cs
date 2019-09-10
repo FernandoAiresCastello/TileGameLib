@@ -13,11 +13,8 @@ namespace TileGameEngine.Commands.Map
         {
             int ix = PopInt();
             int frame = PopInt();
-            int y = PopInt();
-            int x = PopInt();
-            int layer = PopInt();
 
-            Environment.SetObjectTileIx(layer, x, y, frame, ix);
+            Environment.SetObjectTileIx(frame, ix);
         }
     }
 }

@@ -7,14 +7,15 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectTileBgSetCommand : CommandBase
+    public class ObjectPropertyExistsCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
-            int frame = PopInt();
+            string property = PopStr();
 
-            Environment.SetObjectTileBackColor(frame, color);
+            string value = Environment.GetObjectProperty(property);
+
+            Push(value != null ? 1 : 0);
         }
     }
 }

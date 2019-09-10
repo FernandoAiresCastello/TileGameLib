@@ -14,13 +14,8 @@ namespace TileGameEngine.Commands.Map
             int destY = PopInt();
             int destX = PopInt();
             int destLayer = PopInt();
-            int srcY = PopInt();
-            int srcX = PopInt();
-            int srcLayer = PopInt();
 
-            Environment.MoveObject(
-                new ObjectPosition(srcLayer, srcX, srcY), 
-                new ObjectPosition(destLayer, destX, destY));
+            Environment.MoveObject(new ObjectPosition(destLayer, destX, destY));
         }
     }
 }

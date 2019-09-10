@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameEngine.Windows;
+using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
 
 namespace TileGameEngine.Core
 {

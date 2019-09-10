@@ -124,7 +124,7 @@ namespace TileGameMaker.Panels
 
             Focus();
 
-            ObjectCell cell = Map.GetCell(Layer, point.X, point.Y);
+            ObjectCell cell = Map.GetCell(new ObjectPosition(Layer, point.X, point.Y));
 
             if (Mode == EditMode.Template)
             {
@@ -180,7 +180,7 @@ namespace TileGameMaker.Panels
 
             HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
 
-            GameObject o = Map.GetObjectRef(Layer, point.X, point.Y);
+            GameObject o = Map.GetObjectRef(new ObjectPosition(Layer, point.X, point.Y));
             if (o != null)
                 HoverLabel.Text += o.ToString();
         }
@@ -333,7 +333,7 @@ namespace TileGameMaker.Panels
 
         private void InputData(int x, int y)
         {
-            GameObject o = Map.GetObjectRef(Layer, x, y);
+            GameObject o = Map.GetObjectRef(new ObjectPosition(Layer, x, y));
 
             if (o == null)
             {
@@ -345,7 +345,6 @@ namespace TileGameMaker.Panels
 
             if (win.ShowDialog(this, o) == DialogResult.OK)
             {
-                o.Id = win.ObjectId;
                 o.Tag = win.ObjectTag;
                 o.Properties = win.ObjectProperties;
             }
@@ -367,7 +366,7 @@ namespace TileGameMaker.Panels
                     Tile tile = MapEditor.SelectedTile;
                     tile.TileIx = ch;
                     GameObject o = new GameObject(tile);
-                    Map.SetObject(o, Layer, x++, y);
+                    Map.SetObject(o, new ObjectPosition(Layer, x++, y));
                 }
                 y++;
                 x = px;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TileGameEngine.Util;
 using TileGameLib.GameElements;
 
-namespace TileGameEngine.Core
+namespace TileGameEngine.Core.RuntimeEnvironment
 {
     public partial class Environment
     {

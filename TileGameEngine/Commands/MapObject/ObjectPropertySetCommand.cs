@@ -13,11 +13,8 @@ namespace TileGameEngine.Commands.Map
         {
             string value = PopStr();
             string property = PopStr();
-            int y = PopInt();
-            int x = PopInt();
-            int layer = PopInt();
 
-            Environment.SetObjectProperty(layer, x, y, property, value);
+            Environment.SetObjectProperty(property, value);
         }
     }
 }

@@ -10,6 +10,7 @@ using TileGameEngine.Windows;
 using TileGameEngine.Util;
 using System.Threading;
 using Timer = System.Windows.Forms.Timer;
+using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
 
 namespace TileGameEngine.Core
 {

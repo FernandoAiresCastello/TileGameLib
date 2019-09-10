@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using TileGameEngine.Util;
 using TileGameLib.Util;
 
-namespace TileGameEngine.Core
+namespace TileGameEngine.Core.RuntimeEnvironment
 {
     public partial class Environment
     {

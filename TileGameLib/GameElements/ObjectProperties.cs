@@ -32,6 +32,14 @@ namespace TileGameLib.GameElements
             return Entries.ContainsKey(property);
         }
 
+        public bool HasPropertyValue(string property, string value)
+        {
+            if (HasProperty(property) && GetProperty(property).Equals(value))
+                return true;
+
+            return false;
+        }
+
         public void RemoveAllProperties()
         {
             Entries.Clear();

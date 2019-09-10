@@ -33,7 +33,7 @@
 :player_try_move_right
 	PUSH Player
 	OBJ.FIND_BY_TAG
-	OBJ.FIND_AT_RIGHT
+	OBJ.FIND_RIGHT
 	OBJ.TAG.GET
 	PUSH Wall
 	STRING.EQUAL
@@ -42,7 +42,7 @@
 :player_move_right
 	PUSH Player
 	OBJ.FIND_BY_TAG
-	OBJ.FIND_AT_RIGHT
+	# OBJ.FIND_RIGHT
 	OBJ.TAG.GET
 	PUSH Food
 	STRING.EQUAL

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Core
+namespace TileGameEngine.Core.RuntimeEnvironment
 {
     public partial class Environment
     {

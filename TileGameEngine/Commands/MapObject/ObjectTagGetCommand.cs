@@ -7,14 +7,13 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectTileBgSetCommand : CommandBase
+    public class ObjectTagGetCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
-            int frame = PopInt();
+            string tag = Environment.GetObjectTag();
 
-            Environment.SetObjectTileBackColor(frame, color);
+            Push(tag);
         }
     }
 }

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using TileGameLib.Util;
 using TileGameEngine.Core;
 using System.IO;
+using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
+using TileGameEngine.Core.RuntimeEnvironment;
 
 namespace TileGameEngine.Windows
 {
@@ -43,7 +45,7 @@ namespace TileGameEngine.Windows
         private void SetupLogFileWatcher()
         {
             TxtLog.Text = "";
-            FileWatcher = new FileSystemWatcher(new FileInfo(Core.Environment.LogFile).DirectoryName, Core.Environment.LogFile);
+            FileWatcher = new FileSystemWatcher(new FileInfo(TileGameEngine.Core.RuntimeEnvironment.Environment.LogFile).DirectoryName, Environment.LogFile);
             FileWatcher.NotifyFilter =
                 NotifyFilters.LastWrite |
                 NotifyFilters.LastAccess |
@@ -57,8 +59,8 @@ namespace TileGameEngine.Windows
 
         private void FileWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            if (File.Exists(Core.Environment.LogFile))
-                UpdateLogViewAsync(File.ReadAllText(Core.Environment.LogFile));
+            if (File.Exists(Environment.LogFile))
+                UpdateLogViewAsync(File.ReadAllText(Environment.LogFile));
             else
                 UpdateLogViewAsync("");
         }
@@ -182,6 +184,7 @@ namespace TileGameEngine.Windows
             UpdateCurrentLineView();
             UpdateParamStackView();
             UpdateCallStackView();
+            UpdateMapCursorView();
             UpdateVariablesView();
         }
 
@@ -223,6 +226,21 @@ namespace TileGameEngine.Windows
 
             foreach (int returnPtr in Interpreter.CallStack.ToList())
                 LstCallStack.Items.Add(returnPtr.ToString());
+        }
+
+        private void UpdateMapCursorView()
+        {
+            MapCursor cursor = Interpreter.Environment.MapCursor;
+
+            TxtMapCursor.Text = "Valid: " + cursor.IsValid + "\r\n";
+
+            if (cursor.IsValid)
+            {
+                TxtMapCursor.Text +=
+                    "Layer: " + cursor.Position.Layer + "\r\n" +
+                    "X: " + cursor.Position.X + "\r\n" +
+                    "Y: " + cursor.Position.Y + "\r\n";
+            }
         }
 
         private void UpdateVariablesView()

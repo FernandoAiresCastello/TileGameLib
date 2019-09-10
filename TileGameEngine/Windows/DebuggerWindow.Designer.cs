@@ -59,6 +59,8 @@
             this.MiReset = new System.Windows.Forms.ToolStripMenuItem();
             this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnGameWinAlwaysOnTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.TxtMapCursor = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -167,6 +169,8 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.TxtMapCursor);
             this.groupBox3.Controls.Add(this.TxtLog);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
@@ -209,7 +213,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 23);
+            this.label1.Location = new System.Drawing.Point(167, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
@@ -222,13 +226,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtVariables.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtVariables.Location = new System.Drawing.Point(13, 46);
+            this.TxtVariables.Location = new System.Drawing.Point(170, 54);
             this.TxtVariables.MaxLength = 65536;
             this.TxtVariables.Multiline = true;
             this.TxtVariables.Name = "TxtVariables";
             this.TxtVariables.ReadOnly = true;
             this.TxtVariables.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtVariables.Size = new System.Drawing.Size(504, 251);
+            this.TxtVariables.Size = new System.Drawing.Size(341, 251);
             this.TxtVariables.TabIndex = 2;
             this.TxtVariables.Text = "env.variable_test = 0";
             this.TxtVariables.WordWrap = false;
@@ -331,7 +335,7 @@
             // MiClose
             // 
             this.MiClose.Name = "MiClose";
-            this.MiClose.Size = new System.Drawing.Size(180, 22);
+            this.MiClose.Size = new System.Drawing.Size(165, 22);
             this.MiClose.Text = "Close";
             this.MiClose.Click += new System.EventHandler(this.MiClose_Click);
             // 
@@ -340,7 +344,7 @@
             this.MiExit.Name = "MiExit";
             this.MiExit.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.X)));
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Size = new System.Drawing.Size(165, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -398,9 +402,35 @@
             // BtnGameWinAlwaysOnTop
             // 
             this.BtnGameWinAlwaysOnTop.Name = "BtnGameWinAlwaysOnTop";
-            this.BtnGameWinAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
+            this.BtnGameWinAlwaysOnTop.Size = new System.Drawing.Size(149, 22);
             this.BtnGameWinAlwaysOnTop.Text = "Always on top";
             this.BtnGameWinAlwaysOnTop.Click += new System.EventHandler(this.BtnGameWinAlwaysOnTop_Click);
+            // 
+            // TxtMapCursor
+            // 
+            this.TxtMapCursor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtMapCursor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMapCursor.Location = new System.Drawing.Point(13, 54);
+            this.TxtMapCursor.MaxLength = 65536;
+            this.TxtMapCursor.Multiline = true;
+            this.TxtMapCursor.Name = "TxtMapCursor";
+            this.TxtMapCursor.ReadOnly = true;
+            this.TxtMapCursor.Size = new System.Drawing.Size(151, 251);
+            this.TxtMapCursor.TabIndex = 6;
+            this.TxtMapCursor.Text = "Map cursor";
+            this.TxtMapCursor.WordWrap = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 28);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Map cursor";
             // 
             // DebuggerWindow
             // 
@@ -466,5 +496,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem gameWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BtnGameWinAlwaysOnTop;
+        private System.Windows.Forms.TextBox TxtMapCursor;
+        private System.Windows.Forms.Label label3;
     }
 }

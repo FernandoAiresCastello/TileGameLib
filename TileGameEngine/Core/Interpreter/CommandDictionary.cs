@@ -15,6 +15,7 @@ using TileGameEngine.Commands.Stack;
 using TileGameEngine.Commands.String;
 using TileGameEngine.Commands.System;
 using TileGameEngine.Commands.Window;
+using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
 
 namespace TileGameEngine.Core
 {
@@ -105,41 +106,46 @@ namespace TileGameEngine.Core
             
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
-            Set("MAP.FILE.GET", new CommandBase());
+            Set("MAP.FILE.GET", new MapFileGetCommand());
             Set("MAP.SHOW", new MapShowCommand());
             Set("MAP.HIDE", new MapHideCommand());
             Set("MAP.NAME.SET", new MapNameSetCommand());
             Set("MAP.NAME.GET", new MapNameGetCommand());
-            Set("MAP.BG.SET", new MapBackColorSetCommand());
+            Set("MAP.BG.SET", new MapBgSetCommand());
             Set("MAP.PALETTE.SET", new MapPaletteSetCommand());
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
+            Set("MAP.CURSOR.SET", new MapCursorSetCommand());
+            Set("MAP.CURSOR.LAYER.SET", new MapCursorLayerSetCommand());
+            Set("MAP.CURSOR.X.SET", new MapCursorXSetCommand());
+            Set("MAP.CURSOR.Y.SET", new MapCursorYSetCommand());
+            Set("MAP.CURSOR.RIGHT", new MapCursorRightCommand());
+            Set("MAP.CURSOR.LEFT", new MapCursorLeftCommand());
+            Set("MAP.CURSOR.UP", new MapCursorUpCommand());
+            Set("MAP.CURSOR.DOWN", new MapCursorDownCommand());
+            Set("MAP.CURSOR.IS_VALID", new MapCursorIsValidCommand());
 
             // OBJECT
             Set("OBJ.CREATE", new ObjectCreateCommand());
-            Set("OBJ.EXISTS_ANY_AT", new ObjectAnyCommand());
-            Set("OBJ.EXISTS_TAG_AT", new ObjectAtCommand());
-            Set("OBJ.EXISTS_TAG", new ObjectExistsCommand());
-            Set("OBJ.FIND_BY_TAG", new ObjectFindCommand());
+            Set("OBJ.EXISTS", new ObjectExistsCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());
-            Set("OBJ.MOVE_UP", new CommandBase());
-            Set("OBJ.MOVE_DOWN", new CommandBase());
-            Set("OBJ.MOVE_RIGHT", new CommandBase());
-            Set("OBJ.MOVE_LEFT", new CommandBase());
+            Set("OBJ.MOVE_UP", new ObjectMoveUpCommand());
+            Set("OBJ.MOVE_DOWN", new ObjectMoveDownCommand());
+            Set("OBJ.MOVE_RIGHT", new ObjectMoveRightCommand());
+            Set("OBJ.MOVE_LEFT", new ObjectMoveLeftCommand());
             Set("OBJ.SWAP", new ObjectSwapCommand());
             Set("OBJ.DELETE", new ObjectDeleteCommand());
-            Set("OBJ.ID.SET", new ObjectIdSetCommand());
-            Set("OBJ.ID.GET", new CommandBase());
             Set("OBJ.TAG.SET", new ObjectTagSetCommand());
-            Set("OBJ.TAG.GET", new CommandBase());
+            Set("OBJ.TAG.GET", new ObjectTagGetCommand());
             Set("OBJ.PROP.SET", new ObjectPropertySetCommand());
-            Set("OBJ.PROP.GET", new CommandBase());
+            Set("OBJ.PROP.GET", new ObjectPropertyGetCommand());
+            Set("OBJ.PROP.EXISTS", new ObjectPropertyExistsCommand());
             Set("OBJ.TILE.IX.SET", new ObjectTileIxSetCommand());
-            Set("OBJ.TILE.IX.GET", new CommandBase());
+            Set("OBJ.TILE.IX.GET", new ObjectTileIxGetCommand());
             Set("OBJ.TILE.FG.SET", new ObjectTileFgSetCommand());
-            Set("OBJ.TILE.FG.GET", new CommandBase());
+            Set("OBJ.TILE.FG.GET", new ObjectTileFgGetCommand());
             Set("OBJ.TILE.BG.SET", new ObjectTileBgSetCommand());
-            Set("OBJ.TILE.BG.GET", new CommandBase());
+            Set("OBJ.TILE.BG.GET", new ObjectTileBgGetCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)

@@ -99,24 +99,24 @@ namespace TileGameLib.GameElements
             Layers[layer].Fill(o);
         }
 
-        public ObjectCell GetCell(int layer, int x, int y)
+        public ObjectCell GetCell(ObjectPosition pos)
         {
-            return Layers[layer].Cells[x, y];
+            return Layers[pos.Layer].Cells[pos.X, pos.Y];
         }
 
-        public void SetObject(GameObject o, int layer, int x, int y)
+        public void SetObject(GameObject o, ObjectPosition pos)
         {
-            Layers[layer].SetObject(o, x, y);
+            Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
         }
 
-        public ref GameObject GetObjectRef(int layer, int x, int y)
+        public ref GameObject GetObjectRef(ObjectPosition pos)
         {
-            return ref Layers[layer].GetObjectRef(x, y);
+            return ref Layers[pos.Layer].GetObjectRef(pos.X, pos.Y);
         }
 
-        public GameObject GetObjectCopy(int layer, int x, int y)
+        public GameObject GetObjectCopy(ObjectPosition pos)
         {
-            return Layers[layer].GetObjectCopy(x, y);
+            return Layers[pos.Layer].GetObjectCopy(pos.X, pos.Y);
         }
 
         public void Resize(int width, int height)
@@ -128,26 +128,9 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
-        public void CreateNewObject(int layer, int x, int y)
+        public void CreateNewObject(ObjectPosition pos)
         {
-            SetObject(new GameObject(), layer, x, y);
-        }
-
-        public ObjectPosition FindObjectPositionByTag(string tag)
-        {
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
-            {
-                ObjectLayer layer = Layers[layerIndex];
-                Point? positionOnLayer = layer.FindObjectPositionByTag(tag);
-
-                if (positionOnLayer != null)
-                {
-                    return new ObjectPosition(
-                        layerIndex, positionOnLayer.Value.X, positionOnLayer.Value.Y);
-                }
-            }
-
-            return null;
+            SetObject(new GameObject(), pos);
         }
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
@@ -158,8 +141,8 @@ namespace TileGameLib.GameElements
 
         public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
-            ObjectCell srcCell = GetCell(srcPos.Layer, srcPos.X, srcPos.Y);
-            ObjectCell destCell = GetCell(destPos.Layer, destPos.X, destPos.Y);
+            ObjectCell srcCell = GetCell(srcPos);
+            ObjectCell destCell = GetCell(destPos);
 
             GameObject o = srcCell.GetObjectRef();
             if (o != null)
@@ -168,8 +151,8 @@ namespace TileGameLib.GameElements
 
         public void SwapObjects(ObjectPosition pos1, ObjectPosition pos2)
         {
-            ObjectCell cell1 = GetCell(pos1.Layer, pos1.X, pos1.Y);
-            ObjectCell cell2 = GetCell(pos2.Layer, pos2.X, pos2.Y);
+            ObjectCell cell1 = GetCell(pos1);
+            ObjectCell cell2 = GetCell(pos2);
 
             GameObject o1 = cell1.GetObjectRef();
             GameObject o2 = cell2.GetObjectRef();
@@ -184,7 +167,7 @@ namespace TileGameLib.GameElements
 
         public void DeleteObject(ObjectPosition pos)
         {
-            ObjectCell srcCell = GetCell(pos.Layer, pos.X, pos.Y);
+            ObjectCell srcCell = GetCell(pos);
             srcCell.DeleteObject();
         }
     }

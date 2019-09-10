@@ -7,14 +7,13 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectTileBgSetCommand : CommandBase
+    public class ObjectMoveUpCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
-            int frame = PopInt();
+            int distance = PopInt();
 
-            Environment.SetObjectTileBackColor(frame, color);
+            Environment.MoveObjectUp(distance);
         }
     }
 }

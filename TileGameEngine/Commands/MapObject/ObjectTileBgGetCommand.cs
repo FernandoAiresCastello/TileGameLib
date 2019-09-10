@@ -7,14 +7,18 @@ using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class ObjectTileBgSetCommand : CommandBase
+    public class ObjectTileBgGetCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int color = PopInt();
             int frame = PopInt();
 
-            Environment.SetObjectTileBackColor(frame, color);
+            int? color = Environment.GetObjectTileBackColor(frame);
+
+            if (color != null)
+                Push(color.Value);
+            else
+                TileGameEngineApplication.Error("SCRIPT ERROR", $"Object not found");
         }
     }
 }
