@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.Window
 {
-    public class TilePutCommand : CommandBase
+    public class TileBgGetCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int ix = PopInt();
-            Environment.PutTile(ix);
+            int color = Environment.GetWindowTileBackColor();
+            Push(color);
         }
     }
 }

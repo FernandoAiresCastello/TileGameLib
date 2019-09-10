@@ -88,12 +88,18 @@ namespace TileGameEngine.Core
             Set("WINDOW.PALETTE.SET", new WindowPaletteSetCommand());
             Set("WINDOW.TILESET.SET", new WindowTilesetSetCommand());
             Set("WINDOW.KEY.PRESSED", new KeyPressedCommand());
-            Set("WINDOW.BG.SET", new WindowBackColorSetCommand());
-            Set("WINDOW.TILE.X.SET", new TileXSetCommand());
-            Set("WINDOW.TILE.Y.SET", new TileYSetCommand());
-            Set("WINDOW.TILE.FG.SET", new TileForeColorSetCommand());
-            Set("WINDOW.TILE.BG.SET", new TileBackColorSetCommand());
-            Set("WINDOW.TILE.PUT", new TilePutCommand());
+            Set("WINDOW.BG.SET", new WindowBgSetCommand());
+            Set("WINDOW.BG.GET", new WindowBgGetCommand());
+            Set("WINDOW.CURSOR.X.SET", new WindowCursorXSetCommand());
+            Set("WINDOW.CURSOR.X.GET", new WindowCursorXGetCommand());
+            Set("WINDOW.CURSOR.Y.SET", new WindowCursorYSetCommand());
+            Set("WINDOW.CURSOR.Y.GET", new WindowCursorYGetCommand());
+            Set("WINDOW.TILE.IX.SET", new TileIxSetCommand());
+            Set("WINDOW.TILE.IX.GET", new TileIxGetCommand());
+            Set("WINDOW.TILE.FG.SET", new TileFgSetCommand());
+            Set("WINDOW.TILE.FG.GET", new TileFgGetCommand());
+            Set("WINDOW.TILE.BG.SET", new TileBgSetCommand());
+            Set("WINDOW.TILE.BG.GET", new TileBgGetCommand());
             Set("WINDOW.PRINT", new PrintCommand());
 
             // MAP VIEW

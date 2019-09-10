@@ -68,8 +68,6 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void StartMapRenderer()
         {
-            AssertWindowIsOpen();
-
             if (MapRenderer == null)
                 MapRenderer = new MapRenderer(Map, Window.Display, new Rectangle(0, 0, 0, 0), new Point(0, 0));
 
@@ -78,8 +76,6 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void StopMapRenderer()
         {
-            AssertWindowIsOpen();
-
             if (MapRenderer != null)
             {
                 MapRenderer.AutoRefresh = false;

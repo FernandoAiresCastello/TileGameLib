@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
+using TileGameLib.Graphics;
 
 namespace TileGameEngine.Windows
 {
@@ -13,8 +14,6 @@ namespace TileGameEngine.Windows
     {
         public new int BackColor { set; get; } = 0;
         public Point TileCursor { set; get; } = new Point(0, 0);
-        public int TileForeColor { set; get; } = 0;
-        public int TileBackColor { set; get; } = 0;
 
         public GameWindow(int cols, int rows) : base(cols, rows)
         {
@@ -30,14 +29,44 @@ namespace TileGameEngine.Windows
             Graphics.ClearRect(BackColor, rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        public void PutTile(int index)
-        {
-            Graphics.PutTile(TileCursor.X, TileCursor.Y, index, TileForeColor, TileBackColor);
-        }
-
         public void Print(string text)
         {
-            Graphics.PutString(TileCursor.X, TileCursor.Y, text, TileForeColor, TileBackColor);
+            Graphics.PutString(TileCursor.X, TileCursor.Y, text, GetTileForeColor(), GetTileBackColor());
+        }
+
+        public ref Tile GetTileRefAtCursor()
+        {
+            return ref Graphics.TileBuffer.Get(TileCursor.X, TileCursor.Y);
+        }
+
+        public void SetTileForeColor(int color)
+        {
+            GetTileRefAtCursor().ForeColorIx = color;
+        }
+
+        public void SetTileBackColor(int color)
+        {
+            GetTileRefAtCursor().BackColorIx = color;
+        }
+
+        public void SetTileIndex(int index)
+        {
+            GetTileRefAtCursor().TileIx = index;
+        }
+
+        public int GetTileForeColor()
+        {
+            return GetTileRefAtCursor().ForeColorIx;
+        }
+
+        public int GetTileBackColor()
+        {
+            return GetTileRefAtCursor().BackColorIx;
+        }
+
+        public int GetTileIndex()
+        {
+            return GetTileRefAtCursor().TileIx;
         }
     }
 }

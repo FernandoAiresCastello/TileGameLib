@@ -18,10 +18,12 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void CreateWindow(int cols, int rows)
         {
-            AssertWindowIsNotOpen();
-            Window = new GameWindow(cols, rows);
-            Window.FormClosed += Window_FormClosed;
-            Window.Show();
+            if (Window == null)
+            {
+                Window = new GameWindow(cols, rows);
+                Window.FormClosed += Window_FormClosed;
+                Window.Show();
+            }
         }
 
         private void Window_FormClosed(object sender, FormClosedEventArgs e)
@@ -31,16 +33,17 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void CloseWindow()
         {
-            AssertWindowIsOpen();
-
-            if (MapRenderer != null)
+            if (Window != null)
             {
-                MapRenderer.Stop();
-                MapRenderer.AutoRefresh = false;
-            }
+                if (MapRenderer != null)
+                {
+                    MapRenderer.Stop();
+                    MapRenderer.AutoRefresh = false;
+                }
 
-            Window.Close();
-            Window = null;
+                Window.Close();
+                Window = null;
+            }
         }
 
         public void SetWindowAlwaysOnTop(bool alwaysOnTop)
@@ -53,14 +56,39 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             Window.BackColor = color;
         }
 
+        public int GetWindowBackColor()
+        {
+            return Window.BackColor;
+        }
+
+        public void SetWindowTileIndex(int index)
+        {
+            Window.SetTileIndex(index);
+        }
+
+        public int GetWindowTileIndex()
+        {
+            return Window.GetTileIndex();
+        }
+
         public void SetWindowTileForeColor(int color)
         {
-            Window.TileForeColor = color;
+            Window.SetTileForeColor(color);
+        }
+
+        public int GetWindowTileForeColor()
+        {
+            return Window.GetTileForeColor();
         }
 
         public void SetWindowTileBackColor(int color)
         {
-            Window.TileBackColor = color;
+            Window.SetTileBackColor(color);
+        }
+
+        public int GetWindowTileBackColor()
+        {
+            return Window.GetTileBackColor();
         }
 
         public void SetWindowCursorX(int x)
@@ -68,9 +96,19 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             Window.TileCursor = new Point(x, Window.TileCursor.Y);
         }
 
+        public int GetWindowCursorY()
+        {
+            return Window.TileCursor.Y;
+        }
+
         public void SetWindowCursorY(int y)
         {
             Window.TileCursor = new Point(Window.TileCursor.X, y);
+        }
+
+        public int GetWindowCursorX()
+        {
+            return Window.TileCursor.X;
         }
 
         public void SetWindowPalette(int index, int rgb)
@@ -92,37 +130,21 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void ClearWindow()
         {
-            AssertWindowIsOpen();
             Window.Clear();
         }
 
         public void ClearMapViewport()
         {
-            AssertWindowIsOpen();
             Window.ClearRect(MapRenderer.Viewport);
-        }
-
-        public void PutTile(int index)
-        {
-            AssertWindowIsOpen();
-            AssertTextColorIsWithinPalette();
-            AssertTextCursorIsWithinBounds();
-
-            Window.PutTile(index);
         }
 
         public void Print(string text)
         {
-            AssertWindowIsOpen();
-            AssertTextColorIsWithinPalette();
-            AssertTextCursorIsWithinBounds();
-
             Window.Print(text);
         }
 
         public void RefreshWindow()
         {
-            AssertWindowIsOpen();
             Window.Refresh();
         }
     }
