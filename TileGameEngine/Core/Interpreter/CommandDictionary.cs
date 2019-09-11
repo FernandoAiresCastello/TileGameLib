@@ -11,6 +11,7 @@ using TileGameEngine.Commands.MapView;
 using TileGameEngine.Commands.Math;
 using TileGameEngine.Commands.Misc;
 using TileGameEngine.Commands.NumericConversions;
+using TileGameEngine.Commands.Sound;
 using TileGameEngine.Commands.Stack;
 using TileGameEngine.Commands.String;
 using TileGameEngine.Commands.System;
@@ -81,6 +82,12 @@ namespace TileGameEngine.Core
             Set("STRING.FORMAT", new FormatCommand());
             Set("STRING.CONCAT", new ConcatCommand());
             Set("STRING.JOIN", new JoinCommand());
+
+            // SOUND
+            Set("SOUND.PLAY.ONCE", new SoundPlayOnceCommand());
+            Set("SOUND.PLAY.LOOP", new SoundPlayLoopCommand());
+            Set("SOUND.PLAY.AWAIT", new SoundPlayAwaitCommand());
+            Set("SOUND.STOP", new SoundStopCommand());
 
             // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());

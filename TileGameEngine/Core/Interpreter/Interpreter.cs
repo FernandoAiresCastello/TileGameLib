@@ -23,7 +23,7 @@ namespace TileGameEngine.Core
         public bool Running { get; private set; } = false;
         public bool Branching { get; private set; } = false;
         public int ProgramPointer { get; private set; } = 0;
-        public int CyclesPerMillisecond { set; get; };
+        public int CyclesPerMillisecond { set; get; }
 
         public List<string> ScriptLinesForDebugger => GetScriptLinesForDebugger();
         public string CurrentLineForDebugger => GetCurrentLineForDebugger();

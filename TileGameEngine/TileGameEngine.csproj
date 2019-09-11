@@ -102,6 +102,10 @@
     <Compile Include="Commands\Map\MapBgSetCommand.cs" />
     <Compile Include="Commands\Map\MapShowCommand.cs" />
     <Compile Include="Commands\Map\MapHideCommand.cs" />
+    <Compile Include="Commands\Sound\SoundStopCommand.cs" />
+    <Compile Include="Commands\Sound\SoundPlayLoopCommand.cs" />
+    <Compile Include="Commands\Sound\SoundPlayAwaitCommand.cs" />
+    <Compile Include="Commands\Sound\SoundPlayOnceCommand.cs" />
     <Compile Include="Commands\Stack\DuplicateCommand.cs" />
     <Compile Include="Commands\System\HaltCommand.cs" />
     <Compile Include="Commands\Math\DivideCommand.cs" />
@@ -160,6 +164,7 @@
     <Compile Include="Commands\ControlFlow\ReturnCommand.cs" />
     <Compile Include="Commands\Stack\StoreCommand.cs" />
     <Compile Include="Commands\Window\OpenCommand.cs" />
+    <Compile Include="Core\Environment\EnvironmentSound.cs" />
     <Compile Include="Core\Environment\MapCursor.cs" />
     <Compile Include="Core\Interpreter\CallStack.cs" />
     <Compile Include="Core\Interpreter\CommandDictionary.cs" />
