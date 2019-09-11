@@ -11,6 +11,7 @@ namespace TileGameLib.File
     public class MemoryFile
     {
         public int Length { get { return Bytes.Count; } }
+        public bool EndOfFile => ReadPtr >= Length;
 
         private List<byte> Bytes = new List<byte>();
         private int ReadPtr = 0;
@@ -130,7 +131,7 @@ namespace TileGameLib.File
 
         private void AssertValidPtr()
         {
-            if (ReadPtr >= Length)
+            if (EndOfFile)
                 throw new FileException($"Cannot read past file length: index = {ReadPtr}, length = {Length}");
         }
 

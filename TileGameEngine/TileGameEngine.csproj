@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\FileIO\FileReadAllTextCommand.cs" />
+    <Compile Include="Commands\FileIO\FileReadByteCommand.cs" />
+    <Compile Include="Commands\FileIO\FileReadCharCommand.cs" />
+    <Compile Include="Commands\FileIO\FileWriteStringCommand.cs" />
+    <Compile Include="Commands\FileIO\FileWriteCharCommand.cs" />
+    <Compile Include="Commands\FileIO\FileWriteShortCommand.cs" />
+    <Compile Include="Commands\FileIO\FileWriteByteCommand.cs" />
+    <Compile Include="Commands\FileIO\FileWriteIntCommand.cs" />
+    <Compile Include="Commands\FileIO\FileReadShortCommand.cs" />
+    <Compile Include="Commands\FileIO\FileReadStringCommand.cs" />
+    <Compile Include="Commands\FileIO\FileReadIntCommand.cs" />
+    <Compile Include="Commands\FileIO\FileOpenCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectExistsCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectCreateCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectMoveDownCommand.cs" />
@@ -164,6 +176,7 @@
     <Compile Include="Commands\ControlFlow\ReturnCommand.cs" />
     <Compile Include="Commands\Stack\StoreCommand.cs" />
     <Compile Include="Commands\Window\OpenCommand.cs" />
+    <Compile Include="Core\Environment\EnvironmentFile.cs" />
     <Compile Include="Core\Environment\EnvironmentSound.cs" />
     <Compile Include="Core\Environment\MapCursor.cs" />
     <Compile Include="Core\Interpreter\CallStack.cs" />

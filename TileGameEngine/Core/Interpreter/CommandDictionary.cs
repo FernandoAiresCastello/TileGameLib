@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameEngine.Commands;
 using TileGameEngine.Commands.ControlFlow;
+using TileGameEngine.Commands.FileIO;
 using TileGameEngine.Commands.LogicalOperators;
 using TileGameEngine.Commands.Map;
 using TileGameEngine.Commands.MapView;
@@ -88,6 +89,21 @@ namespace TileGameEngine.Core
             Set("SOUND.PLAY.LOOP", new SoundPlayLoopCommand());
             Set("SOUND.PLAY.AWAIT", new SoundPlayAwaitCommand());
             Set("SOUND.STOP", new SoundStopCommand());
+
+            // FILE
+            Set("FILE.OPEN", new FileOpenCommand());
+            Set("FILE.EOF", new FileReadAllTextCommand());
+            Set("FILE.READ.INT", new FileReadIntCommand());
+            Set("FILE.READ.SHORT", new FileReadShortCommand());
+            Set("FILE.READ.CHAR", new FileReadCharCommand());
+            Set("FILE.READ.BYTE", new FileReadByteCommand());
+            Set("FILE.READ.STRING", new FileReadStringCommand());
+            Set("FILE.READ.ALL", new FileReadAllTextCommand());
+            Set("FILE.WRITE.INT", new FileWriteIntCommand());
+            Set("FILE.WRITE.SHORT", new FileWriteShortCommand());
+            Set("FILE.WRITE.CHAR", new FileWriteCharCommand());
+            Set("FILE.WRITE.BYTE", new FileWriteByteCommand());
+            Set("FILE.WRITE.STRING", new FileWriteStringCommand());
 
             // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());
