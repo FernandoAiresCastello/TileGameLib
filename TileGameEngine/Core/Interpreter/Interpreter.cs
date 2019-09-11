@@ -23,6 +23,7 @@ namespace TileGameEngine.Core
         public bool Running { get; private set; } = false;
         public bool Branching { get; private set; } = false;
         public int ProgramPointer { get; private set; } = 0;
+        public int CyclesPerMillisecond { set; get; };
 
         public List<string> ScriptLinesForDebugger => GetScriptLinesForDebugger();
         public string CurrentLineForDebugger => GetCurrentLineForDebugger();
@@ -33,14 +34,15 @@ namespace TileGameEngine.Core
 
         private int SleepTime = 0;
 
-        private static readonly int CycleTimerInterval = 1;
-        private static readonly int CyclesPerMillisecond = Config.ReadInt("CyclesPerMillisecond");
+        private readonly int CycleTimerInterval = 1;
+        private readonly int DefaultCyclesPerMillisecond = Config.ReadInt("DefaultCyclesPerMillisecond");
 
         public Interpreter(Environment env, Script script)
         {
             Script = script;
             Environment = env;
             CommandDict = new CommandDictionary(this, env);
+            CyclesPerMillisecond = DefaultCyclesPerMillisecond;
 
             FindLabels();
 

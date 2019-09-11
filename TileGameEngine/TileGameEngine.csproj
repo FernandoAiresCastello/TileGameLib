@@ -118,6 +118,7 @@
     <Compile Include="Commands\String\FormatCommand.cs" />
     <Compile Include="Commands\System\ResetCommand.cs" />
     <Compile Include="Commands\System\LogCommand.cs" />
+    <Compile Include="Commands\System\SpeedSetCommand.cs" />
     <Compile Include="Commands\System\SleepCommand.cs" />
     <Compile Include="Commands\Window\KeyPressedCommand.cs" />
     <Compile Include="Commands\Window\ClearCommand.cs" />
