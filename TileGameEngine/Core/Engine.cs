@@ -17,6 +17,11 @@ namespace TileGameEngine.Core
 
         private bool Started = false;
 
+        public Engine()
+        {
+            ParentForm = null;
+        }
+
         public Engine(Form parent)
         {
             ParentForm = parent;

@@ -61,16 +61,16 @@ namespace TileGameEngine.Core
             Set("SYSTEM.HALT", new HaltCommand());
 
             // MATH
-            Set("MATH.INC", new IncrementCommand());
-            Set("MATH.DEC", new DecrementCommand());
+            Set("MATH.INCREMENT", new IncrementCommand());
+            Set("MATH.DECREMENT", new DecrementCommand());
             Set("MATH.ADD", new AddCommand());
-            Set("MATH.SUB", new SubtractCommand());
-            Set("MATH.CMP", new CompareCommand());
-            Set("MATH.MUL", new MultiplyCommand());
-            Set("MATH.DIV", new DivideCommand());
-            Set("MATH.MOD", new ModuloCommand());
+            Set("MATH.SUBTRACT", new SubtractCommand());
+            Set("MATH.COMPARE", new CompareCommand());
+            Set("MATH.MULTIPLY", new MultiplyCommand());
+            Set("MATH.DIVIDE", new DivideCommand());
+            Set("MATH.MODULO", new ModuloCommand());
             Set("MATH.SQRT", new SquareRootCommand());
-            Set("MATH.POW", new PowerCommand());
+            Set("MATH.POWER", new PowerCommand());
             Set("MATH.RANDOM", new RandomCommand());
 
             // CONVERT
@@ -94,6 +94,11 @@ namespace TileGameEngine.Core
             Set("WINDOW.CURSOR.X.GET", new WindowCursorXGetCommand());
             Set("WINDOW.CURSOR.Y.SET", new WindowCursorYSetCommand());
             Set("WINDOW.CURSOR.Y.GET", new WindowCursorYGetCommand());
+            Set("WINDOW.CURSOR.MOVE", new WindowCursorMoveCommand());
+            Set("WINDOW.CURSOR.UP", new WindowCursorMoveUpCommand());
+            Set("WINDOW.CURSOR.DOWN", new WindowCursorMoveDownCommand());
+            Set("WINDOW.CURSOR.RIGHT", new WindowCursorMoveRightCommand());
+            Set("WINDOW.CURSOR.LEFT", new WindowCursorMoveLeftCommand());
             Set("WINDOW.TILE.IX.SET", new TileIxSetCommand());
             Set("WINDOW.TILE.IX.GET", new TileIxGetCommand());
             Set("WINDOW.TILE.FG.SET", new TileFgSetCommand());
@@ -113,6 +118,8 @@ namespace TileGameEngine.Core
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
             Set("MAP.FILE.GET", new MapFileGetCommand());
+            Set("MAP.WIDTH.GET", new MapWidthGetCommand());
+            Set("MAP.HEIGHT.GET", new MapHeightGetCommand());
             Set("MAP.SHOW", new MapShowCommand());
             Set("MAP.HIDE", new MapHideCommand());
             Set("MAP.NAME.SET", new MapNameSetCommand());
@@ -120,14 +127,14 @@ namespace TileGameEngine.Core
             Set("MAP.BG.SET", new MapBgSetCommand());
             Set("MAP.PALETTE.SET", new MapPaletteSetCommand());
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
-            Set("MAP.CURSOR.SET", new MapCursorSetCommand());
+            Set("MAP.CURSOR.MOVE", new MapCursorMoveCommand());
             Set("MAP.CURSOR.LAYER.SET", new MapCursorLayerSetCommand());
             Set("MAP.CURSOR.X.SET", new MapCursorXSetCommand());
             Set("MAP.CURSOR.Y.SET", new MapCursorYSetCommand());
-            Set("MAP.CURSOR.RIGHT", new MapCursorRightCommand());
-            Set("MAP.CURSOR.LEFT", new MapCursorLeftCommand());
-            Set("MAP.CURSOR.UP", new MapCursorUpCommand());
-            Set("MAP.CURSOR.DOWN", new MapCursorDownCommand());
+            Set("MAP.CURSOR.RIGHT", new MapCursorMoveRightCommand());
+            Set("MAP.CURSOR.LEFT", new MapCursorMoveLeftCommand());
+            Set("MAP.CURSOR.UP", new MapCursorMoveUpCommand());
+            Set("MAP.CURSOR.DOWN", new MapCursorMoveDownCommand());
             Set("MAP.CURSOR.IS_VALID", new MapCursorIsValidCommand());
 
             // OBJECT
@@ -135,10 +142,10 @@ namespace TileGameEngine.Core
             Set("OBJ.EXISTS", new ObjectExistsCommand());
             Set("OBJ.COPY", new ObjectCopyCommand());
             Set("OBJ.MOVE", new ObjectMoveCommand());
-            Set("OBJ.MOVE_UP", new ObjectMoveUpCommand());
-            Set("OBJ.MOVE_DOWN", new ObjectMoveDownCommand());
-            Set("OBJ.MOVE_RIGHT", new ObjectMoveRightCommand());
-            Set("OBJ.MOVE_LEFT", new ObjectMoveLeftCommand());
+            Set("OBJ.UP", new ObjectMoveUpCommand());
+            Set("OBJ.DOWN", new ObjectMoveDownCommand());
+            Set("OBJ.RIGHT", new ObjectMoveRightCommand());
+            Set("OBJ.LEFT", new ObjectMoveLeftCommand());
             Set("OBJ.SWAP", new ObjectSwapCommand());
             Set("OBJ.DELETE", new ObjectDeleteCommand());
             Set("OBJ.TAG.SET", new ObjectTagSetCommand());

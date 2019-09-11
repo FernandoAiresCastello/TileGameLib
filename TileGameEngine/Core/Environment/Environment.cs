@@ -19,6 +19,8 @@ namespace TileGameEngine.Core.RuntimeEnvironment
     {
         public Variables Variables { get; private set; } = new Variables();
 
+        private DebuggerWindow Debugger;
+
         public Environment()
         {
             DeleteLogFile();
@@ -53,6 +55,12 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         public int GetRandomNumber(int min, int max)
         {
             return RandomNumber.Get(min, max);
+        }
+
+        public void AttachDebugger()
+        {
+            Debugger = new DebuggerWindow();
+            Debugger.Show();
         }
     }
 }

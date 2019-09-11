@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\appicon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\app_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,12 +77,14 @@
     <Compile Include="Commands\MapView\MapViewScrollXSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewYSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewXSetCommand.cs" />
+    <Compile Include="Commands\Map\MapHeightGetCommand.cs" />
+    <Compile Include="Commands\Map\MapWidthGetCommand.cs" />
     <Compile Include="Commands\Map\MapCursorLayerSetCommand.cs" />
-    <Compile Include="Commands\Map\MapCursorDownCommand.cs" />
-    <Compile Include="Commands\Map\MapCursorUpCommand.cs" />
-    <Compile Include="Commands\Map\MapCursorLeftCommand.cs" />
-    <Compile Include="Commands\Map\MapCursorRightCommand.cs" />
-    <Compile Include="Commands\Map\MapCursorSetCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveDownCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveUpCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveLeftCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveRightCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveCommand.cs" />
     <Compile Include="Commands\Map\MapCursorYSetCommand.cs" />
     <Compile Include="Commands\Map\MapCursorXSetCommand.cs" />
     <Compile Include="Commands\Map\MapCursorIsValidCommand.cs" />
@@ -125,6 +127,11 @@
     <Compile Include="Commands\Window\TileFgGetCommand.cs" />
     <Compile Include="Commands\Window\TileBgSetCommand.cs" />
     <Compile Include="Commands\Window\TileFgSetCommand.cs" />
+    <Compile Include="Commands\Window\WindowCursorMoveLeftCommand.cs" />
+    <Compile Include="Commands\Window\WindowCursorMoveRightCommand.cs" />
+    <Compile Include="Commands\Window\WindowCursorMoveDownCommand.cs" />
+    <Compile Include="Commands\Window\WindowCursorMoveUpCommand.cs" />
+    <Compile Include="Commands\Window\WindowCursorMoveCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorYGetCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorXGetCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorYSetCommand.cs" />
@@ -162,6 +169,11 @@
     <Compile Include="Core\Environment\EnvironmentWindow.cs" />
     <Compile Include="Core\Interpreter\ScriptLine.cs" />
     <Compile Include="Core\Environment\Environment.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TileGameEngineApplication.cs" />
     <Compile Include="Exceptions\TileGameEngineException.cs" />
     <Compile Include="Util\Config.cs" />
@@ -192,14 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Windows\DebuggerWindow.resx">
       <DependentUpon>DebuggerWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,8 +230,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\appicon.ico" />
-    <None Include="Resources\handheld.png" />
+    <Content Include="Resources\app_icon.ico" />
+    <None Include="Resources\app_icon.png" />
     <None Include="Resources\script_binary.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\rocket.png" />

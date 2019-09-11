@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands.System
+namespace TileGameEngine.Commands.Map
 {
-    public class ExitCommand : CommandBase
+    public class MapCursorMoveUpCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Interpreter.StopAndCloseGameWindow();
+            int distance = PopInt();
+
+            Environment.MapCursor.Position.Y = Environment.MapCursor.Position.Y - distance;
         }
     }
 }

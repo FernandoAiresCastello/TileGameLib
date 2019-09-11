@@ -17,6 +17,7 @@ namespace TileGameEngine.Windows
 
         public GameWindow(int cols, int rows) : base(cols, rows)
         {
+            Icon = TileGameEngineApplication.ApplicationIcon;
         }
 
         public void Clear()

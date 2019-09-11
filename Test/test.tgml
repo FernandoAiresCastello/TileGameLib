@@ -3,9 +3,14 @@
 
 :start
 	CALL init_window
+	
+	PUSH 10
+	WINDOW.BG.SET
+	WINDOW.REFRESH
+	
+	SYSTEM.HALT
 	CALL test_maprender
 	CALL test_objmanip
-	SYSTEM.HALT
 
 :exit
 	SYSTEM.EXIT
@@ -14,7 +19,7 @@
 	PUSH 0
 	PUSH 0
 	PUSH 0
-	MAP.CURSOR.SET
+	MAP.CURSOR.MOVE
 	PUSH 0
 	PUSH 0
 	PUSH 0

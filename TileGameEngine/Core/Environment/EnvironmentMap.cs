@@ -42,6 +42,16 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             Map.BackColor = color;
         }
 
+        public int GetMapWidth()
+        {
+            return Map.Width;
+        }
+
+        public int GetMapHeight()
+        {
+            return Map.Height;
+        }
+
         public void SetMapPalette(int index, int rgb)
         {
             Map.Palette.Set(index, rgb);

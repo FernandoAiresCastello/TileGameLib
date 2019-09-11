@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class MapCursorLeftCommand : CommandBase
+    public class MapWidthGetCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int distance = PopInt();
-
-            Environment.MapCursor.Position.X = Environment.MapCursor.Position.X - distance;
+            int width = Environment.GetMapWidth();
+            Push(width);
         }
     }
 }

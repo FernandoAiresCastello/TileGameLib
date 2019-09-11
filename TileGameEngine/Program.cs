@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,10 @@ namespace TileGameEngine
         [STAThread]
         static void Main(string[] args)
         {
-            TileGameEngineApplication.Run();
+            if (File.Exists(TileGameEngineApplication.MainScriptFile))
+                TileGameEngineApplication.RunMainScript();
+            else
+                TileGameEngineApplication.Run();
         }
     }
 }

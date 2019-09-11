@@ -27,6 +27,7 @@ namespace TileGameEngine.Windows
         public DebuggerWindow(Interpreter interpreter)
         {
             InitializeComponent();
+            Icon = TileGameEngineApplication.ApplicationIcon;
 
             if (interpreter != null)
             {
@@ -45,7 +46,9 @@ namespace TileGameEngine.Windows
         private void SetupLogFileWatcher()
         {
             TxtLog.Text = "";
-            FileWatcher = new FileSystemWatcher(new FileInfo(TileGameEngine.Core.RuntimeEnvironment.Environment.LogFile).DirectoryName, Environment.LogFile);
+            FileWatcher = new FileSystemWatcher(
+                new FileInfo(Environment.LogFile).DirectoryName, Environment.LogFile);
+
             FileWatcher.NotifyFilter =
                 NotifyFilters.LastWrite |
                 NotifyFilters.LastAccess |
@@ -77,11 +80,12 @@ namespace TileGameEngine.Windows
 
         private void DebuggerWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Interpreter.Stop();
+            Interpreter.StopAndCloseGameWindow();
         }
 
         private void MiExit_Click(object sender, EventArgs e)
         {
+            TileGameEngineApplication.Exit();
         }
 
         private void MiClose_Click(object sender, EventArgs e)

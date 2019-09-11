@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameEngine.Windows;
@@ -14,7 +15,6 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         private GameWindow Window;
 
         public bool HasWindow => Window != null;
-        public bool ExitIfGameWindowClosed { get; set; } = false;
 
         public void CreateWindow(int cols, int rows)
         {
@@ -29,6 +29,9 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         private void Window_FormClosed(object sender, FormClosedEventArgs e)
         {
             Window = null;
+
+            if (TileGameEngineApplication.ExitIfGameWindowClosed)
+                TileGameEngineApplication.Exit();
         }
 
         public void CloseWindow()
@@ -109,6 +112,16 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         public int GetWindowCursorX()
         {
             return Window.TileCursor.X;
+        }
+
+        public void SetWindowCursorXY(int x, int y)
+        {
+            Window.TileCursor = new Point(x, y);
+        }
+
+        public void MoveWindowCursor(int distX, int distY)
+        {
+            Window.TileCursor = new Point(Window.TileCursor.X + distX, Window.TileCursor.Y + distY);
         }
 
         public void SetWindowPalette(int index, int rgb)

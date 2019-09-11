@@ -8,9 +8,9 @@ using TileGameLib.GameElements;
 using TileGameLib.Util;
 using TileGameEngine.Windows;
 using TileGameEngine.Util;
-using System.Threading;
 using Timer = System.Windows.Forms.Timer;
 using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
+using System.Threading;
 
 namespace TileGameEngine.Core
 {
@@ -114,7 +114,6 @@ namespace TileGameEngine.Core
             if (Running)
                 TileGameEngineApplication.Error("INTERPRETER ERROR", "Interpreter is already running");
 
-            Environment.ExitIfGameWindowClosed = true;
             Running = true;
             CycleTimer.Start();
         }
@@ -124,7 +123,6 @@ namespace TileGameEngine.Core
             if (Running)
                 TileGameEngineApplication.Error("INTERPRETER ERROR", "Interpreter is already debugging");
 
-            Environment.ExitIfGameWindowClosed = false;
             Running = true;
         }
 
@@ -181,6 +179,9 @@ namespace TileGameEngine.Core
             {
                 Stop();
                 Alert.Error(ex.Message + "\n" + Script.Lines[ProgramPointer].ToString());
+
+                if (TileGameEngineApplication.ExitIfErrorRaised)
+                    TileGameEngineApplication.Exit();
             }
         }
 
@@ -214,13 +215,19 @@ namespace TileGameEngine.Core
                 Running = false;
         }
 
+        public void StopAndCloseGameWindow()
+        {
+            Stop();
+            if (Environment.HasWindow)
+                Environment.CloseWindow();
+        }
+
         public void Stop()
         {
             Running = false;
             if (CycleTimer != null)
                 CycleTimer.Stop();
-            if (Environment.HasWindow)
-                Environment.CloseWindow();
+            
         }
 
         public void SoftLock()

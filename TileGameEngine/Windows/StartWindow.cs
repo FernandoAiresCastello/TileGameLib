@@ -21,9 +21,27 @@ namespace TileGameEngine.Windows
         private static readonly string ScriptFileExt = Config.ReadString("ScriptFileExt");
         private static readonly string ScriptFileFilter = $"TileGameMaker script (*.{ScriptFileExt})|*.{ScriptFileExt}";
 
-        public StartWindow()
+        public StartWindow() : this(null)
+        {
+        }
+
+        public StartWindow(string scriptFile)
         {
             InitializeComponent();
+
+            if (scriptFile != null)
+            {
+                Icon = TileGameEngineApplication.ApplicationIcon;
+                Hide();
+                RunScript(scriptFile);
+            }
+        }
+
+        private new void Hide()
+        {
+            Opacity = 0;
+            ShowInTaskbar = false;
+            TileGameEngineApplication.ExitIfGameWindowClosed = true;
         }
 
         private void BtnExit_Click(object sender, EventArgs e)

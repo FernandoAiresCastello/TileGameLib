@@ -12,12 +12,16 @@ namespace TileGameEngine.Commands.Window
         public override void Execute(List<string> immediateParams)
         {
             if (Environment.HasWindow)
+            {
                 TileGameEngineApplication.Error("SCRIPT ERROR", "Window already opened");
+            }
+            else
+            {
+                int rows = PopInt();
+                int cols = PopInt();
 
-            int rows = PopInt();
-            int cols = PopInt();
-
-            Environment.CreateWindow(cols, rows);
+                Environment.CreateWindow(cols, rows);
+            }
         }
     }
 }

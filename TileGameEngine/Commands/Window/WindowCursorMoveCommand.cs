@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands.System
+namespace TileGameEngine.Commands.Window
 {
-    public class ExitCommand : CommandBase
+    public class WindowCursorMoveCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Interpreter.StopAndCloseGameWindow();
+            int y = PopInt();
+            int x = PopInt();
+            Environment.SetWindowCursorXY(x, y);
         }
     }
 }

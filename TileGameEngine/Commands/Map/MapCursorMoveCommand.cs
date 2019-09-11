@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.GameElements;
 
 namespace TileGameEngine.Commands.Map
 {
-    public class MapCursorUpCommand : CommandBase
+    public class MapCursorMoveCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int distance = PopInt();
+            int y = PopInt();
+            int x = PopInt();
+            int layer = PopInt();
 
-            Environment.MapCursor.Position.Y = Environment.MapCursor.Position.Y - distance;
+            Environment.MapCursor.Position = new ObjectPosition(layer, x, y);
         }
     }
 }
