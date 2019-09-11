@@ -33,7 +33,8 @@ namespace TileGameEngine.Core
 
         private int SleepTime = 0;
 
-        private static readonly int CycleInterval = Config.ReadInt("InterpreterCycleInterval");
+        private static readonly int CycleTimerInterval = 1;
+        private static readonly int CyclesPerMillisecond = Config.ReadInt("CyclesPerMillisecond");
 
         public Interpreter(Environment env, Script script)
         {
@@ -45,7 +46,7 @@ namespace TileGameEngine.Core
 
             CycleTimer = new Timer();
             CycleTimer.Tick += CycleTimer_Tick;
-            CycleTimer.Interval = CycleInterval;
+            CycleTimer.Interval = CycleTimerInterval;
         }
 
         private List<string> GetScriptLinesForDebugger()
@@ -128,13 +129,15 @@ namespace TileGameEngine.Core
 
         private void CycleTimer_Tick(object sender, EventArgs e)
         {
-            WakeUpIfSleeping();
-            ExecuteCycle();
+            for (int cycle = 0; cycle < CyclesPerMillisecond; cycle++)
+            {
+                ExecuteCycle();
 
-            if (!Running)
-                CycleTimer.Stop();
+                if (!Running)
+                    CycleTimer.Stop();
 
-            SleepIfRequested();
+                SleepIfRequested();
+            }
         }
 
         private void SleepIfRequested()
@@ -142,15 +145,21 @@ namespace TileGameEngine.Core
             if (Running && SleepTime > 0)
             {
                 CycleTimer.Stop();
-                CycleTimer.Interval = SleepTime;
-                CycleTimer.Start();
+
+                Timer sleepTimer = new Timer();
+                sleepTimer.Interval = SleepTime;
+                sleepTimer.Tick += SleepTimer_Tick;
+                sleepTimer.Start();
+
                 SleepTime = 0;
             }
         }
 
-        private void WakeUpIfSleeping()
+        private void SleepTimer_Tick(object sender, EventArgs e)
         {
-            CycleTimer.Interval = CycleInterval;
+            CycleTimer.Start();
+            Timer sleepTimer = (Timer)sender;
+            sleepTimer.Stop();
         }
 
         public void ExecuteCycle()
