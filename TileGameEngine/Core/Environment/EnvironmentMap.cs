@@ -12,6 +12,7 @@ namespace TileGameEngine.Core.RuntimeEnvironment
     {
         public string MapFilePath { get; private set; } = "";
         public MapCursor MapCursor { get; private set; } = new MapCursor();
+
         private ObjectMap Map;
 
         public void LoadMapFromCurrentFolder(string filename)
@@ -235,6 +236,29 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             }
 
             return null;
+        }
+
+        public void CursorMoveNext()
+        {
+            int layer = MapCursor.Position.Layer;
+            int x = MapCursor.Position.X;
+            int y = MapCursor.Position.Y;
+
+            x++;
+
+            if (x >= Map.Width)
+            {
+                x = 0;
+                y++;
+
+                if (y >= Map.Height)
+                {
+                    y = 0;
+                    layer++;
+                }
+            }
+
+            MapCursor.Position = new ObjectPosition(layer, x, y);
         }
     }
 }

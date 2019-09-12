@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\FileIO\FileDeleteCommand.cs" />
+    <Compile Include="Commands\FileIO\FileCreateCommand.cs" />
+    <Compile Include="Commands\FileIO\FileSeekCommand.cs" />
+    <Compile Include="Commands\FileIO\FileFlushCommand.cs" />
     <Compile Include="Commands\FileIO\FileReadAllTextCommand.cs" />
     <Compile Include="Commands\FileIO\FileReadByteCommand.cs" />
     <Compile Include="Commands\FileIO\FileReadCharCommand.cs" />
@@ -83,12 +87,19 @@
     <Compile Include="Commands\MapObject\ObjectCopyCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectSwapCommand.cs" />
     <Compile Include="Commands\MapObject\ObjectMoveCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewAnimationStartCommand.cs" />
     <Compile Include="Commands\MapView\MapViewHeightSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollLeftCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollRightCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollDownCommand.cs" />
     <Compile Include="Commands\MapView\MapViewScrollYSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewAnimationStopCommand.cs" />
     <Compile Include="Commands\MapView\MapViewWidthSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewScrollXSetCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewScrollUpCommand.cs" />
     <Compile Include="Commands\MapView\MapViewYSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewXSetCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorMoveNextCommand.cs" />
     <Compile Include="Commands\Map\MapHeightGetCommand.cs" />
     <Compile Include="Commands\Map\MapWidthGetCommand.cs" />
     <Compile Include="Commands\Map\MapCursorLayerSetCommand.cs" />
@@ -112,8 +123,8 @@
     <Compile Include="Commands\Map\MapTilesetSetCommand.cs" />
     <Compile Include="Commands\Map\MapPaletteSetCommand.cs" />
     <Compile Include="Commands\Map\MapBgSetCommand.cs" />
-    <Compile Include="Commands\Map\MapShowCommand.cs" />
-    <Compile Include="Commands\Map\MapHideCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewShowCommand.cs" />
+    <Compile Include="Commands\MapView\MapViewHideCommand.cs" />
     <Compile Include="Commands\Sound\SoundStopCommand.cs" />
     <Compile Include="Commands\Sound\SoundPlayLoopCommand.cs" />
     <Compile Include="Commands\Sound\SoundPlayAwaitCommand.cs" />

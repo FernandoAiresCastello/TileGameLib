@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands.Map
+namespace TileGameEngine.Commands.FileIO
 {
-    public class MapHideCommand : CommandBase
+    public class FileFlushCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Environment.StopMapRenderer();
-            Environment.ClearMapViewport();
-            Environment.RefreshWindow();
+            Environment.FlushFile();
         }
     }
 }

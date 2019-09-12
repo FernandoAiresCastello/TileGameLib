@@ -10,7 +10,8 @@ namespace TileGameLib.File
 {
     public class MemoryFile
     {
-        public int Length { get { return Bytes.Count; } }
+        public string Path { set; get; }
+        public int Length => Bytes.Count;
         public bool EndOfFile => ReadPtr >= Length;
 
         private List<byte> Bytes = new List<byte>();
@@ -137,12 +138,20 @@ namespace TileGameLib.File
 
         public void SaveToPhysicalFile(string path)
         {
+            Path = path;
             System.IO.File.WriteAllBytes(path, Bytes.ToArray());
         }
 
         public void LoadFromPhysicalFile(string path)
         {
+            Path = path;
             Bytes = System.IO.File.ReadAllBytes(path).ToList();
+        }
+
+        public void Seek(int filePointer)
+        {
+            if (filePointer >= 0 && filePointer < Length)
+                ReadPtr = filePointer;
         }
     }
 }

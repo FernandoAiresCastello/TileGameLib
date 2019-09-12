@@ -19,9 +19,25 @@ namespace TileGameEngine.Core.RuntimeEnvironment
     {
         public MemoryFile MemoryFile { get; private set; }
 
+        public void CreateFile(string path)
+        {
+            File.Create(path);
+        }
+
+        public void DeleteFile(string path)
+        {
+            File.Delete(path);
+        }
+
         public void OpenFile(string path)
         {
             MemoryFile = new MemoryFile(path);
+        }
+
+        public void FlushFile()
+        {
+            if (MemoryFile != null)
+                MemoryFile.SaveToPhysicalFile(MemoryFile.Path);
         }
     }
 }

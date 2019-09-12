@@ -82,5 +82,39 @@ namespace TileGameEngine.Core.RuntimeEnvironment
                 RefreshWindow();
             }
         }
+
+        public void EnableMapAnimation(bool enable)
+        {
+            if (MapRenderer != null)
+            {
+                MapRenderer.AnimationEnabled = enable;
+                MapRenderer.AutoRefresh = enable;
+                RefreshWindow();
+            }
+        }
+
+        public void ScrollMapViewRight(int distance)
+        {
+            if (MapRenderer != null)
+                MapRenderer.Scroll = new Point(MapRenderer.Scroll.X + distance, MapRenderer.Scroll.Y);
+        }
+
+        public void ScrollMapViewLeft(int distance)
+        {
+            if (MapRenderer != null)
+                MapRenderer.Scroll = new Point(MapRenderer.Scroll.X - distance, MapRenderer.Scroll.Y);
+        }
+
+        public void ScrollMapViewUp(int distance)
+        {
+            if (MapRenderer != null)
+                MapRenderer.Scroll = new Point(MapRenderer.Scroll.X, MapRenderer.Scroll.Y - distance);
+        }
+
+        public void ScrollMapViewDown(int distance)
+        {
+            if (MapRenderer != null)
+                MapRenderer.Scroll = new Point(MapRenderer.Scroll.X, MapRenderer.Scroll.Y + distance);
+        }
     }
 }

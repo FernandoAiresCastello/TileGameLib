@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TileGameEngine.Commands.Map
+namespace TileGameEngine.Commands.MapView
 {
-    public class MapShowCommand : CommandBase
+    public class MapViewScrollDownCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            Environment.StartMapRenderer();
+            int distance = PopInt();
+            Environment.ScrollMapViewDown(distance);
         }
     }
 }

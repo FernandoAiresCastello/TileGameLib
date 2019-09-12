@@ -91,6 +91,8 @@ namespace TileGameEngine.Core
             Set("SOUND.STOP", new SoundStopCommand());
 
             // FILE
+            Set("FILE.CREATE", new FileCreateCommand());
+            Set("FILE.DELETE", new FileDeleteCommand());
             Set("FILE.OPEN", new FileOpenCommand());
             Set("FILE.EOF", new FileReadAllTextCommand());
             Set("FILE.READ.INT", new FileReadIntCommand());
@@ -104,6 +106,8 @@ namespace TileGameEngine.Core
             Set("FILE.WRITE.CHAR", new FileWriteCharCommand());
             Set("FILE.WRITE.BYTE", new FileWriteByteCommand());
             Set("FILE.WRITE.STRING", new FileWriteStringCommand());
+            Set("FILE.FLUSH", new FileFlushCommand());
+            Set("FILE.SEEK", new FileSeekCommand());
 
             // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());
@@ -138,14 +142,20 @@ namespace TileGameEngine.Core
             Set("MAPVIEW.HEIGHT.SET", new MapViewHeightSetCommand());
             Set("MAPVIEW.SCROLL.X.SET", new MapViewScrollXSetCommand());
             Set("MAPVIEW.SCROLL.Y.SET", new MapViewScrollYSetCommand());
-            
+            Set("MAPVIEW.SCROLL.UP", new MapViewScrollUpCommand());
+            Set("MAPVIEW.SCROLL.DOWN", new MapViewScrollDownCommand());
+            Set("MAPVIEW.SCROLL.RIGHT", new MapViewScrollRightCommand());
+            Set("MAPVIEW.SCROLL.LEFT", new MapViewScrollLeftCommand());
+            Set("MAPVIEW.SHOW", new MapViewShowCommand());
+            Set("MAPVIEW.HIDE", new MapViewHideCommand());
+            Set("MAPVIEW.ANIM.STOP", new MapViewAnimationStopCommand());
+            Set("MAPVIEW.ANIM.START", new MapViewAnimationStartCommand());
+
             // MAP
             Set("MAP.LOAD", new MapLoadCommand());
             Set("MAP.FILE.GET", new MapFileGetCommand());
             Set("MAP.WIDTH.GET", new MapWidthGetCommand());
             Set("MAP.HEIGHT.GET", new MapHeightGetCommand());
-            Set("MAP.SHOW", new MapShowCommand());
-            Set("MAP.HIDE", new MapHideCommand());
             Set("MAP.NAME.SET", new MapNameSetCommand());
             Set("MAP.NAME.GET", new MapNameGetCommand());
             Set("MAP.BG.SET", new MapBgSetCommand());
@@ -159,6 +169,7 @@ namespace TileGameEngine.Core
             Set("MAP.CURSOR.LEFT", new MapCursorMoveLeftCommand());
             Set("MAP.CURSOR.UP", new MapCursorMoveUpCommand());
             Set("MAP.CURSOR.DOWN", new MapCursorMoveDownCommand());
+            Set("MAP.CURSOR.NEXT", new MapCursorMoveNextCommand());
             Set("MAP.CURSOR.IS_VALID", new MapCursorIsValidCommand());
 
             // OBJECT
