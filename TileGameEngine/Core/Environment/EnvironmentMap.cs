@@ -260,5 +260,10 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
             MapCursor.Position = new ObjectPosition(layer, x, y);
         }
+
+        public void FindObjectByTag(string tag)
+        {
+            MapCursor.Position = Map.FindObjectPositionByTag(tag);
+        }
     }
 }

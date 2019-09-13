@@ -8,6 +8,8 @@ namespace TileGameLib.GameElements
 {
     public class ObjectCell
     {
+        public bool IsEmpty => Object == null;
+
         private GameObject Object;
 
         public ObjectCell()
@@ -56,11 +58,6 @@ namespace TileGameLib.GameElements
         public void DeleteObject()
         {
             Object = null;
-        }
-
-        public bool IsEmpty()
-        {
-            return Object == null;
         }
     }
 }

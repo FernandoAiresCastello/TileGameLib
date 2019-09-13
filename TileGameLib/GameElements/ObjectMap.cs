@@ -170,5 +170,19 @@ namespace TileGameLib.GameElements
             ObjectCell srcCell = GetCell(pos);
             srcCell.DeleteObject();
         }
+
+        public ObjectPosition FindObjectPositionByTag(string tag)
+        {
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                Point? layerXY = layer.FindObjectPositionByTag(tag);
+
+                if (layerXY.HasValue)
+                    return new ObjectPosition(layerIndex, layerXY.Value.X, layerXY.Value.Y);
+            }
+
+            return null;
+        }
     }
 }

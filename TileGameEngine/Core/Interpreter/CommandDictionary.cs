@@ -35,13 +35,25 @@ namespace TileGameEngine.Core
             Set("NOP", new NopCommand());
 
             // CONTROL FLOW
-            Set("JMP", new JumpCommand());
-            Set("JZ", new JumpZeroCommand());
-            Set("JNZ", new JumpNotZeroCommand());
+            Set("JUMP", new JumpCommand());
+            Set("JUMP.Z", new JumpZeroCommand());
+            Set("JUMP.NZ", new JumpNotZeroCommand());
+            Set("JUMP.EQ", new JumpEqualCommand());
+            Set("JUMP.NEQ", new JumpNotEqualCommand());
+            Set("JUMP.GT", new JumpGreaterThanCommand());
+            Set("JUMP.GTEQ", new JumpGreaterOrEqualCommand());
+            Set("JUMP.LT", new JumpLessThanCommand());
+            Set("JUMP.LTEQ", new JumpLessOrEqualCommand());
             Set("CALL", new CallCommand());
-            Set("CLZ", new CallZeroCommand());
-            Set("CLNZ", new CallNotZeroCommand());
-            Set("RET", new ReturnCommand());
+            Set("CALL.Z", new CallZeroCommand());
+            Set("CALL.NZ", new CallNotZeroCommand());
+            Set("CALL.EQ", new CallEqualCommand());
+            Set("CALL.NEQ", new CallNotEqualCommand());
+            Set("CALL.GT", new CallGreaterThanCommand());
+            Set("CALL.GTEQ", new CallGreaterOrEqualCommand());
+            Set("CALL.LT", new CallLessThanCommand());
+            Set("CALL.LTEQ", new CallLessOrEqualCommand());
+            Set("RETURN", new ReturnCommand());
 
             // STACK
             Set("PUSH", new PushCommand());
@@ -205,6 +217,7 @@ namespace TileGameEngine.Core
             Set("OBJ.TILE.FG.GET", new ObjectTileFgGetCommand());
             Set("OBJ.TILE.BG.SET", new ObjectTileBgSetCommand());
             Set("OBJ.TILE.BG.GET", new ObjectTileBgGetCommand());
+            Set("OBJ.FIND_TAG", new ObjectFindTagCommand());
         }
 
         public CommandDictionary(Interpreter interpreter, Environment environment)
@@ -212,6 +225,13 @@ namespace TileGameEngine.Core
             Interpreter = interpreter;
             Environment = environment;
             InitializeCommands();
+        }
+
+        private void Set(string name, CommandBase command)
+        {
+            command.Interpreter = Interpreter;
+            command.Environment = Environment;
+            Commands[name] = command;
         }
 
         public bool HasCommand(string name)
@@ -222,13 +242,6 @@ namespace TileGameEngine.Core
         public CommandBase Get(string name)
         {
             return Commands[name];
-        }
-
-        private void Set(string name, CommandBase command)
-        {
-            command.Interpreter = Interpreter;
-            command.Environment = Environment;
-            Commands[name] = command;
         }
     }
 }

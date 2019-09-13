@@ -115,5 +115,20 @@ namespace TileGameLib.GameElements
             Width = width;
             Height = height;
         }
+
+        public Point? FindObjectPositionByTag(string tag)
+        {
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    ObjectCell cell = Cells[col, row];
+                    if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
+                        return new Point(col, row);
+                }
+            }
+
+            return null;
+        }
     }
 }
