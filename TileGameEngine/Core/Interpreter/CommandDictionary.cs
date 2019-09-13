@@ -16,6 +16,7 @@ using TileGameEngine.Commands.Sound;
 using TileGameEngine.Commands.Stack;
 using TileGameEngine.Commands.String;
 using TileGameEngine.Commands.System;
+using TileGameEngine.Commands.Variable;
 using TileGameEngine.Commands.Window;
 using Environment = TileGameEngine.Core.RuntimeEnvironment.Environment;
 
@@ -76,13 +77,23 @@ namespace TileGameEngine.Core
             Set("MATH.POWER", new PowerCommand());
             Set("MATH.RANDOM", new RandomCommand());
 
+            // VARIABLES
+            Set("VAR.INCREMENT", new VariableIncrementCommand());
+            Set("VAR.DECREMENT", new VariableDecrementCommand());
+            Set("VAR.ADD", new VariableAddCommand());
+            Set("VAR.SUBTRACT", new VariableSubtractCommand());
+            Set("VAR.MULTIPLY", new VariableMultiplyCommand());
+            Set("VAR.DIVIDE", new VariableDivideCommand());
+
             // CONVERT
             Set("CONVERT.BYTE", new ConvertToByteCommand());
 
             // STRING
-            Set("STRING.FORMAT", new FormatCommand());
-            Set("STRING.CONCAT", new ConcatCommand());
-            Set("STRING.JOIN", new JoinCommand());
+            Set("STRING.FORMAT", new StringFormatCommand());
+            Set("STRING.CONCAT", new StringConcatCommand());
+            Set("STRING.JOIN", new StringJoinCommand());
+            Set("STRING.EQUALS", new StringEqualsCommand());
+            Set("STRING.CONTAINS", new StringContainsCommand());
 
             // SOUND
             Set("SOUND.PLAY.ONCE", new SoundPlayOnceCommand());

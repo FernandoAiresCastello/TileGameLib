@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.String
 {
-    public class JoinCommand : CommandBase
+    public class StringEqualsCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int joinCharacter = PopInt();
-            string string2 = PopStr();
             string string1 = PopStr();
-            string result = string1 + char.ConvertFromUtf32(joinCharacter) + string2;
+            string string2 = PopStr();
+            bool equals = string1.Equals(string2);
 
-            ParamStack.Push(result);
+            ParamStack.Push(equals ? 1 : 0);
         }
     }
 }

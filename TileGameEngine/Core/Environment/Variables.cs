@@ -61,5 +61,35 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
             return list;
         }
+
+        public void Add(string variable, int value)
+        {
+            if (Vars.ContainsKey(variable))
+            {
+                int originalValue = GetInt(variable);
+                int newValue = originalValue + value;
+                Set(variable, newValue);
+            }
+        }
+
+        public void Multiply(string variable, int value)
+        {
+            if (Vars.ContainsKey(variable))
+            {
+                int originalValue = GetInt(variable);
+                int newValue = originalValue * value;
+                Set(variable, newValue);
+            }
+        }
+
+        public void Divide(string variable, int value)
+        {
+            if (Vars.ContainsKey(variable))
+            {
+                int originalValue = GetInt(variable);
+                int newValue = originalValue / value;
+                Set(variable, newValue);
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.String
 {
-    public class FormatCommand : CommandBase
+    public class StringFormatCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {

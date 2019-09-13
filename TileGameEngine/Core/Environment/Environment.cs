@@ -54,5 +54,20 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         {
             return RandomNumber.Get(min, max);
         }
+
+        public void AddToVariable(string variable, int value)
+        {
+            Variables.Add(variable, value);
+        }
+
+        public void MultiplyVariable(string variable, int value)
+        {
+            Variables.Multiply(variable, value);
+        }
+
+        public void DivideVariable(string variable, int value)
+        {
+            Variables.Divide(variable, value);
+        }
     }
 }
