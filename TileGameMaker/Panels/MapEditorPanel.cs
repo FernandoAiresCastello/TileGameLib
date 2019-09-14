@@ -237,7 +237,7 @@ namespace TileGameMaker.Panels
 
         private void CopyObjectToTemplate(ObjectCell cell)
         {
-            if (!cell.IsEmpty())
+            if (!cell.IsEmpty)
                 MapEditor.SelectedObject = cell.GetObjectRef();
             else
                 Alert.Warning(MessageCellEmpty);

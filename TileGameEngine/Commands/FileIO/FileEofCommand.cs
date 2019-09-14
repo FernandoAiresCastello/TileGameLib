@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace TileGameEngine.Commands.FileIO
 {
-    public class FileWriteShortCommand : CommandBase
+    public class FileEofCommand : CommandBase
     {
         public override void Execute(List<string> immediateParams)
         {
-            int value = PopInt();
-            Environment.MemoryFile.WriteShort(value);
+            bool eof = Environment.MemoryFile.EndOfFile;
+
+            Push(eof ? 1 : 0);
         }
     }
 }

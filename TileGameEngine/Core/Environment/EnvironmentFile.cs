@@ -21,7 +21,7 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void CreateFile(string path)
         {
-            File.Create(path);
+            File.Create(path).Dispose();
         }
 
         public void DeleteFile(string path)

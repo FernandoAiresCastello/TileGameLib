@@ -64,6 +64,7 @@
     <Compile Include="Commands\ControlFlow\JumpLessOrEqualCommand.cs" />
     <Compile Include="Commands\FileIO\FileDeleteCommand.cs" />
     <Compile Include="Commands\FileIO\FileCreateCommand.cs" />
+    <Compile Include="Commands\FileIO\FileEofCommand.cs" />
     <Compile Include="Commands\FileIO\FileSeekCommand.cs" />
     <Compile Include="Commands\FileIO\FileFlushCommand.cs" />
     <Compile Include="Commands\FileIO\FileReadAllTextCommand.cs" />

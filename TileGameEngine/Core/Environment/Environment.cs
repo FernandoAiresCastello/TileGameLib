@@ -38,12 +38,12 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void SetVariable(string variable, object value)
         {
-            Variables.Set(variable.Substring(1), value);
+            Variables.Set(variable, value);
         }
 
         public string GetVariable(string variable)
         {
-            string name = variable.Substring(1);
+            string name = variable;
             if (!Variables.Contains(name))
                 TileGameEngineApplication.Error("SCRIPT ERROR", "Variable not found: " + name);
 

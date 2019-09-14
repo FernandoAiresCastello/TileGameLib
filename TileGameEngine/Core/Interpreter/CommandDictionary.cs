@@ -117,18 +117,18 @@ namespace TileGameEngine.Core
             Set("FILE.CREATE", new FileCreateCommand());
             Set("FILE.DELETE", new FileDeleteCommand());
             Set("FILE.OPEN", new FileOpenCommand());
-            Set("FILE.EOF", new FileReadAllTextCommand());
+            Set("FILE.EOF", new FileEofCommand());
             Set("FILE.READ.INT", new FileReadIntCommand());
             Set("FILE.READ.SHORT", new FileReadShortCommand());
             Set("FILE.READ.CHAR", new FileReadCharCommand());
             Set("FILE.READ.BYTE", new FileReadByteCommand());
             Set("FILE.READ.STRING", new FileReadStringCommand());
-            Set("FILE.READ.ALL", new FileReadAllTextCommand());
+            Set("FILE.READ.ALL", new FileReadAllTextCommand()); // todo: does not read cr/lf
             Set("FILE.WRITE.INT", new FileWriteIntCommand());
             Set("FILE.WRITE.SHORT", new FileWriteShortCommand());
             Set("FILE.WRITE.CHAR", new FileWriteCharCommand());
             Set("FILE.WRITE.BYTE", new FileWriteByteCommand());
-            Set("FILE.WRITE.STRING", new FileWriteStringCommand());
+            Set("FILE.WRITE.STRING", new FileWriteStringCommand()); // todo: puts 0 (null) at the end
             Set("FILE.FLUSH", new FileFlushCommand());
             Set("FILE.SEEK", new FileSeekCommand());
 

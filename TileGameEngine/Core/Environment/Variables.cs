@@ -21,8 +21,18 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             Vars.Clear();
         }
 
+        public string RemovePrefix(string variableIdentifier)
+        {
+            if (variableIdentifier.StartsWith("$"))
+                return variableIdentifier.Substring(1);
+
+            return variableIdentifier;
+        }
+
         public void Set(string name, object value)
         {
+            name = RemovePrefix(name);
+
             if (Vars.ContainsKey(name))
                 Vars.Remove(name);
 
@@ -31,24 +41,28 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public string GetStr(string name)
         {
+            name = RemovePrefix(name);
             Vars.TryGetValue(name, out string value);
             return value;
         }
 
         public int GetInt(string name)
         {
+            name = RemovePrefix(name);
             int.TryParse(GetStr(name), out int value);
             return value;
         }
 
         public void Delete(string name)
         {
+            name = RemovePrefix(name);
             if (Contains(name))
                 Vars.Remove(name);
         }
 
         public bool Contains(string name)
         {
+            name = RemovePrefix(name);
             return Vars.ContainsKey(name);
         }
 
@@ -64,6 +78,8 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void Add(string variable, int value)
         {
+            variable = RemovePrefix(variable);
+
             if (Vars.ContainsKey(variable))
             {
                 int originalValue = GetInt(variable);
@@ -74,6 +90,8 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void Multiply(string variable, int value)
         {
+            variable = RemovePrefix(variable);
+
             if (Vars.ContainsKey(variable))
             {
                 int originalValue = GetInt(variable);
@@ -84,6 +102,8 @@ namespace TileGameEngine.Core.RuntimeEnvironment
 
         public void Divide(string variable, int value)
         {
+            variable = RemovePrefix(variable);
+
             if (Vars.ContainsKey(variable))
             {
                 int originalValue = GetInt(variable);
