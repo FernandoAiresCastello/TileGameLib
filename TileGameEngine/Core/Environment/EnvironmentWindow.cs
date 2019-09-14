@@ -165,5 +165,10 @@ namespace TileGameEngine.Core.RuntimeEnvironment
         {
             Window.Refresh();
         }
+
+        public void FillWindowTiles(int ix, int fg, int bg)
+        {
+            Window.FillTiles(ix, fg, bg);
+        }
     }
 }

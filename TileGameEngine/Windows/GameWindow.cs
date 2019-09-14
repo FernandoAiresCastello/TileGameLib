@@ -69,5 +69,10 @@ namespace TileGameEngine.Windows
         {
             return GetTileRefAtCursor().TileIx;
         }
+
+        internal void FillTiles(int ix, int fg, int bg)
+        {
+            Graphics.Fill(ix, fg, bg);
+        }
     }
 }

@@ -157,6 +157,7 @@ namespace TileGameEngine.Core
             Set("WINDOW.TILE.FG.GET", new TileFgGetCommand());
             Set("WINDOW.TILE.BG.SET", new TileBgSetCommand());
             Set("WINDOW.TILE.BG.GET", new TileBgGetCommand());
+            Set("WINDOW.TILE.FILL", new TileFillCommand());
             Set("WINDOW.PRINT", new PrintCommand());
 
             // MAP VIEW
