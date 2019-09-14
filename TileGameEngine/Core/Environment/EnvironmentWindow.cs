@@ -49,6 +49,11 @@ namespace TileGameEngine.Core.RuntimeEnvironment
             }
         }
 
+        public void SetWindowTitle(string title)
+        {
+            Window.Text = title;
+        }
+
         public void SetWindowAlwaysOnTop(bool alwaysOnTop)
         {
             Window.TopMost = alwaysOnTop;

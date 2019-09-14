@@ -113,6 +113,9 @@
     <Compile Include="Commands\MapView\MapViewScrollUpCommand.cs" />
     <Compile Include="Commands\MapView\MapViewYSetCommand.cs" />
     <Compile Include="Commands\MapView\MapViewXSetCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorYGetCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorXGetCommand.cs" />
+    <Compile Include="Commands\Map\MapCursorLayerGetCommand.cs" />
     <Compile Include="Commands\Map\MapCursorMoveNextCommand.cs" />
     <Compile Include="Commands\Map\MapHeightGetCommand.cs" />
     <Compile Include="Commands\Map\MapWidthGetCommand.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="Commands\Window\TileFgGetCommand.cs" />
     <Compile Include="Commands\Window\TileBgSetCommand.cs" />
     <Compile Include="Commands\Window\TileFgSetCommand.cs" />
+    <Compile Include="Commands\Window\WindowTitleSetCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorMoveLeftCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorMoveRightCommand.cs" />
     <Compile Include="Commands\Window\WindowCursorMoveDownCommand.cs" />

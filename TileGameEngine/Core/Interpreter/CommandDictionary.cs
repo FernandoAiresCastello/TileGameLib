@@ -134,6 +134,7 @@ namespace TileGameEngine.Core
 
             // WINDOW
             Set("WINDOW.OPEN", new OpenCommand());
+            Set("WINDOW.TITLE.SET", new WindowTitleSetCommand());
             Set("WINDOW.CLEAR", new ClearCommand());
             Set("WINDOW.REFRESH", new RefreshCommand());
             Set("WINDOW.PALETTE.SET", new WindowPaletteSetCommand());
@@ -186,8 +187,11 @@ namespace TileGameEngine.Core
             Set("MAP.TILESET.SET", new MapTilesetSetCommand());
             Set("MAP.CURSOR.MOVE", new MapCursorMoveCommand());
             Set("MAP.CURSOR.LAYER.SET", new MapCursorLayerSetCommand());
+            Set("MAP.CURSOR.LAYER.GET", new MapCursorLayerGetCommand());
             Set("MAP.CURSOR.X.SET", new MapCursorXSetCommand());
+            Set("MAP.CURSOR.X.GET", new MapCursorXGetCommand());
             Set("MAP.CURSOR.Y.SET", new MapCursorYSetCommand());
+            Set("MAP.CURSOR.Y.GET", new MapCursorYGetCommand());
             Set("MAP.CURSOR.RIGHT", new MapCursorMoveRightCommand());
             Set("MAP.CURSOR.LEFT", new MapCursorMoveLeftCommand());
             Set("MAP.CURSOR.UP", new MapCursorMoveUpCommand());
