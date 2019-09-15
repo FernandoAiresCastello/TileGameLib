@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{73F1D060-1
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameEngine", "TileGameEngine\TileGameEngine.csproj", "{CB891C01-E972-4DEC-8C02-CDF0749172A2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB891C01-E972-4DEC-8C02-CDF0749172A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB891C01-E972-4DEC-8C02-CDF0749172A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB891C01-E972-4DEC-8C02-CDF0749172A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB891C01-E972-4DEC-8C02-CDF0749172A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
