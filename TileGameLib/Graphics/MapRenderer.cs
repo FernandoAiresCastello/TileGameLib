@@ -40,6 +40,11 @@ namespace TileGameLib.Graphics
         private static readonly int DefaultRefreshInterval = 60;
         private static readonly int DefaultAnimationInterval = 256;
 
+        public MapRenderer(TiledDisplay disp) 
+            : this(null, disp, new Rectangle(0, 0, 0, 0), new Point(0, 0))
+        {
+        }
+
         public MapRenderer(ObjectMap map, TiledDisplay disp)
             : this(map, disp, new Rectangle(0, 0, disp.Cols, disp.Rows), new Point(0, 0))
         {

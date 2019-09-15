@@ -48,11 +48,16 @@
     <Compile Include="Components\DisplayWindow.Designer.cs">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="EngineFramework\GameEngineBase.cs" />
+    <Compile Include="EngineFramework\GameWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EngineFramework\MapControllerBase.cs" />
     <Compile Include="File\MapFile.cs" />
     <Compile Include="GameElements\ObjectCell.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
-    <Compile Include="Exceptions\RuntimeException.cs" />
+    <Compile Include="Exceptions\TileGameLibException.cs" />
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
@@ -83,5 +88,6 @@
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
