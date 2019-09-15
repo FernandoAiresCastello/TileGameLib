@@ -88,7 +88,7 @@ namespace TileGameLib.File
         {
             string header = file.ReadString();
             if (!Header.Equals(header))
-                throw new FileException("Invalid file format");
+                throw new TileGameLibException("Invalid file format");
 
             string name = file.ReadString();
             int width = file.ReadShort();

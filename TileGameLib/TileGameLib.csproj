@@ -52,8 +52,6 @@
     <Compile Include="GameElements\ObjectCell.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
-    <Compile Include="Exceptions\FileException.cs" />
-    <Compile Include="Exceptions\OutOfBoundsException.cs" />
     <Compile Include="Exceptions\RuntimeException.cs" />
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />

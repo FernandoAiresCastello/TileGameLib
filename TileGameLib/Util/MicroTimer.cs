@@ -13,7 +13,7 @@ namespace TileGameLib.Util
         public MicroStopwatch()
         {
             if (!IsHighResolution)
-                throw new RuntimeException("On this system the high-resolution performance counter is not available");
+                throw new TileGameLibException("On this system the high-resolution performance counter is not available");
         }
     }
 

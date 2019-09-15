@@ -35,7 +35,7 @@ namespace TileGameLib.File
                 Directory.CreateDirectory(file.Directory.Name);
 
             if (!overwrite && System.IO.File.Exists(path))
-                throw new FileException($"File {path} already exists");
+                throw new TileGameLibException($"File {path} already exists");
 
             using (var memoryStream = new MemoryStream())
             {

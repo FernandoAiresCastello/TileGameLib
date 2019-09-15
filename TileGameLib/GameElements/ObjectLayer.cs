@@ -62,7 +62,7 @@ namespace TileGameLib.GameElements
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 Cells[x, y].SetObjectEqual(o);
             else
-                throw new OutOfBoundsException(GetExceptionMessage(x, y));
+                throw new TileGameLibException(GetExceptionMessage(x, y));
         }
 
         public void DeleteObject(int x, int y)
@@ -80,7 +80,7 @@ namespace TileGameLib.GameElements
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 return ref Cells[x, y].GetObjectRef();
 
-            throw new OutOfBoundsException(GetExceptionMessage(x, y));
+            throw new TileGameLibException(GetExceptionMessage(x, y));
         }
 
         public GameObject GetObjectCopy(int x, int y)
@@ -88,7 +88,7 @@ namespace TileGameLib.GameElements
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 return Cells[x, y].GetObjectCopy();
 
-            throw new OutOfBoundsException(GetExceptionMessage(x, y));
+            throw new TileGameLibException(GetExceptionMessage(x, y));
         }
 
         private string GetExceptionMessage(int x, int y)

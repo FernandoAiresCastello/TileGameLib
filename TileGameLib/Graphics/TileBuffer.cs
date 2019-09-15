@@ -38,7 +38,7 @@ namespace TileGameLib.Graphics
         public void Set(Tile tile, int x, int y)
         {
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-                throw new OutOfBoundsException();
+                throw new TileGameLibException();
 
             Tiles[x, y].SetEqual(tile);
         }
@@ -46,7 +46,7 @@ namespace TileGameLib.Graphics
         public ref Tile Get(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-                throw new OutOfBoundsException();
+                throw new TileGameLibException();
 
             return ref Tiles[x, y];
         }
@@ -54,7 +54,7 @@ namespace TileGameLib.Graphics
         public Tile Copy(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-                throw new OutOfBoundsException();
+                throw new TileGameLibException();
 
             return Tiles[x, y].Copy();
         }
@@ -62,7 +62,7 @@ namespace TileGameLib.Graphics
         public void SetNull(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-                throw new OutOfBoundsException();
+                throw new TileGameLibException();
 
             Tiles[x, y].SetNull();
         }

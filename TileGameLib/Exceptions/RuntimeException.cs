@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace TileGameLib.Exceptions
 {
-    public class RuntimeException : Exception
+    public class TileGameLibException : Exception
     {
-        public RuntimeException() : base("Unhandled runtime exception")
+        public TileGameLibException() : base("Unhandled TileGameLib exception")
         {
         }
 
-        public RuntimeException(string msg) : base(msg)
+        public TileGameLibException(string msg) : base(msg)
         {
         }
 
-        public RuntimeException(string msg, Exception inner) : base(msg, inner)
+        public TileGameLibException(string msg, Exception inner) : base(msg, inner)
         {
         }
     }
