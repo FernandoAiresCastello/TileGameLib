@@ -10,16 +10,16 @@ using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.EngineFramework
+namespace TileGameLib.Engine
 {
-    public class GameEngineBase
+    public class GameEngine
     {
-        public GameWindow Window { get; private set; }
+        protected readonly GameWindow Window;
 
         private readonly Timer CycleTimer;
         private MapController MapController;
 
-        public GameEngineBase(string winTitle, int winCols, int winRows, int cycleInterval)
+        public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
 
@@ -66,12 +66,8 @@ namespace TileGameLib.EngineFramework
         {
             MapController = controller;
             MapController.Engine = this;
+            MapController.Window = Window;
             Window.SetMap(MapController.Map);
-        }
-
-        public void ScrollMapViewport(int dx, int dy)
-        {
-            Window.ScrollMapViewport(dx, dy);
         }
     }
 }

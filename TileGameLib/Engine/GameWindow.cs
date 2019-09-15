@@ -9,7 +9,7 @@ using TileGameLib.Components;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.EngineFramework
+namespace TileGameLib.Engine
 {
     public class GameWindow : DisplayWindow
     {
@@ -18,10 +18,10 @@ namespace TileGameLib.EngineFramework
         public int TileForeColor { set; get; } = 64;
         public Point TileCursor { set; get; } = new Point(0, 0);
 
-        private readonly GameEngineBase Engine;
+        private readonly GameEngine Engine;
         private readonly MapRenderer MapRenderer;
 
-        public GameWindow(GameEngineBase engine, string title, int cols, int rows) 
+        public GameWindow(GameEngine engine, string title, int cols, int rows) 
             : base(cols, rows, false, false)
         {
             Text = title;

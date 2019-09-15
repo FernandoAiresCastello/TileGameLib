@@ -139,6 +139,12 @@ namespace TileGameLib.GameElements
             DeleteObject(srcPos);
         }
 
+        public void MoveObject(ObjectPosition srcPos, int dx, int dy)
+        {
+            DuplicateObject(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
+            DeleteObject(srcPos);
+        }
+
         public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
             ObjectCell srcCell = GetCell(srcPos);
@@ -169,6 +175,19 @@ namespace TileGameLib.GameElements
         {
             ObjectCell srcCell = GetCell(pos);
             srcCell.DeleteObject();
+        }
+
+        public GameObject FindObjectByTag(string tag)
+        {
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                GameObject o = layer.FindObjectByTag(tag);
+                if (o != null)
+                    return o;
+            }
+
+            return null;
         }
 
         public ObjectPosition FindObjectPositionByTag(string tag)

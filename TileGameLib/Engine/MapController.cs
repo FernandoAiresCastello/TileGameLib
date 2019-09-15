@@ -8,11 +8,12 @@ using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 
-namespace TileGameLib.EngineFramework
+namespace TileGameLib.Engine
 {
     public class MapController
     {
-        public GameEngineBase Engine { set; get; }
+        public GameEngine Engine { set; get; }
+        public GameWindow Window { set; get; }
         public ObjectMap Map { set; get; }
 
         public MapController(string mapfile)
@@ -30,6 +31,11 @@ namespace TileGameLib.EngineFramework
 
         public virtual void OnKeyUp(KeyEventArgs e)
         {
+        }
+
+        public void ScrollMapViewport(int dx, int dy)
+        {
+            Window.ScrollMapViewport(dx, dy);
         }
     }
 }
