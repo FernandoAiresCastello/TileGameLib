@@ -15,15 +15,3 @@
 - Implement block copy/paste
 
 -------------------------------------------------------------------------------
-	TILE GAME MAKER - TILE GAME ENGINE INTEGRATION
--------------------------------------------------------------------------------
-- Implement TGML script editor
-- Run TileGameEngine directly from TileGameMaker
-
--------------------------------------------------------------------------------
-	TILE GAME ENGINE - TGML COMMANDS
--------------------------------------------------------------------------------
-INCLUDE script
-	Include another script
-
--------------------------------------------------------------------------------
