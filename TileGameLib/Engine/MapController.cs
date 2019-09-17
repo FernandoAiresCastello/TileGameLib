@@ -33,9 +33,32 @@ namespace TileGameLib.Engine
         {
         }
 
-        public void ScrollMapViewport(int dx, int dy)
+        public void Exit(MapController mapController)
         {
-            Window.ScrollMapViewport(dx, dy);
+            Engine.SetMapController(mapController);
+        }
+
+        public void MoveObjectWithTag(string tag, int dx, int dy)
+        {
+            ObjectPosition pos = Map.FindObjectPositionByTag(tag);
+            if (pos != null)
+                Map.MoveObject(pos, dx, dy);
+        }
+
+        public GameObject GetObjectAtDistance(string tag, int distLayer, int distX, int distY)
+        {
+            ObjectPosition pos = Map.FindObjectPositionByTag(tag);
+
+            if (pos != null)
+            {
+                pos.Layer += distLayer;
+                pos.X += distX;
+                pos.Y += distY;
+
+                return Map.GetObjectRef(pos);
+            }
+
+            return null;
         }
     }
 }

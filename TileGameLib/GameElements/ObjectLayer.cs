@@ -116,32 +116,90 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
-        public GameObject FindObjectByTag(string tag)
+        public List<GameObject> FindObjectsByTag(string tag)
         {
+            List<GameObject> objects = new List<GameObject>();
+
             for (int row = 0; row < Height; row++)
             {
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
                     if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
-                        return cell.GetObjectRef();
+                        objects.Add(cell.GetObjectRef());
                 }
             }
+
+            return objects;
+        }
+
+        public List<GameObject> FindObjectsByProperty(string property)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    ObjectCell cell = Cells[col, row];
+                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasProperty(property))
+                        objects.Add(cell.GetObjectRef());
+                }
+            }
+
+            return objects;
+        }
+
+        public List<GameObject> FindObjectsByPropertyValue(string property, object value)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    ObjectCell cell = Cells[col, row];
+                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasPropertyValue(property, value.ToString()))
+                        objects.Add(cell.GetObjectRef());
+                }
+            }
+
+            return objects;
+        }
+
+        public List<Point> FindObjectPositionsByTag(string tag)
+        {
+            List<Point> positions = new List<Point>();
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    ObjectCell cell = Cells[col, row];
+                    if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
+                        positions.Add(new Point(col, row));
+                }
+            }
+
+            return positions;
+        }
+
+        public GameObject FindObjectByTag(string tag)
+        {
+            List<GameObject> objects = FindObjectsByTag(tag);
+
+            if (objects.Count >= 1)
+                return objects[0];
 
             return null;
         }
 
         public Point? FindObjectPositionByTag(string tag)
         {
-            for (int row = 0; row < Height; row++)
-            {
-                for (int col = 0; col < Width; col++)
-                {
-                    ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
-                        return new Point(col, row);
-                }
-            }
+            List<Point> positions = FindObjectPositionsByTag(tag);
+
+            if (positions.Count >= 1)
+                return positions[0];
 
             return null;
         }

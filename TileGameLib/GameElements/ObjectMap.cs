@@ -177,6 +177,20 @@ namespace TileGameLib.GameElements
             srcCell.DeleteObject();
         }
 
+        public List<GameObject> FindObjectsByTag(string tag)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<GameObject> layerObjects = layer.FindObjectsByTag(tag);
+                objects.AddRange(layerObjects);
+            }
+
+            return objects;
+        }
+
         public GameObject FindObjectByTag(string tag)
         {
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
@@ -188,6 +202,25 @@ namespace TileGameLib.GameElements
             }
 
             return null;
+        }
+
+        public List<ObjectPosition> FindObjectPositionsByTag(string tag)
+        {
+            List<ObjectPosition> positionsToReturn = new List<ObjectPosition>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<Point> layerPositions = layer.FindObjectPositionsByTag(tag);
+                List<ObjectPosition> positionsToAdd = new List<ObjectPosition>();
+
+                foreach (Point p in layerPositions)
+                    positionsToAdd.Add(new ObjectPosition(layerIndex, p.X, p.Y));
+
+                positionsToReturn.AddRange(positionsToAdd);
+            }
+
+            return positionsToReturn;
         }
 
         public ObjectPosition FindObjectPositionByTag(string tag)
@@ -202,6 +235,34 @@ namespace TileGameLib.GameElements
             }
 
             return null;
+        }
+
+        public List<GameObject> FindObjectsByProperty(string property)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<GameObject> layerObjects = layer.FindObjectsByProperty(property);
+                objects.AddRange(layerObjects);
+            }
+
+            return objects;
+        }
+
+        public List<GameObject> FindObjectsByPropertyValue(string property, object value)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<GameObject> layerObjects = layer.FindObjectsByPropertyValue(property, value.ToString());
+                objects.AddRange(layerObjects);
+            }
+
+            return objects;
         }
     }
 }
