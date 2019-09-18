@@ -264,5 +264,28 @@ namespace TileGameLib.GameElements
 
             return objects;
         }
+
+        public void MoveObjectWithTag(string tag, int dx, int dy)
+        {
+            ObjectPosition pos = FindObjectPositionByTag(tag);
+            if (pos != null)
+                MoveObject(pos, dx, dy);
+        }
+
+        public GameObject GetObjectAtDistance(string tag, int distLayer, int distX, int distY)
+        {
+            ObjectPosition pos = FindObjectPositionByTag(tag);
+
+            if (pos != null)
+            {
+                pos.Layer += distLayer;
+                pos.X += distX;
+                pos.Y += distY;
+
+                return GetObjectRef(pos);
+            }
+
+            return null;
+        }
     }
 }
