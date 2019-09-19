@@ -16,9 +16,8 @@ namespace TileGameLib.Engine
         public GameWindow Window { set; get; }
         public ObjectMap Map { set; get; }
 
-        public MapController(string mapfile)
+        public MapController()
         {
-            Map = MapFile.Load(mapfile);
         }
 
         public virtual void OnExecuteCycle()
@@ -33,9 +32,9 @@ namespace TileGameLib.Engine
         {
         }
 
-        public void Exit(MapController mapController)
+        public void EnterMap(string mapName)
         {
-            Engine.SetMapController(mapController);
+            Engine.EnterMap(mapName);
         }
     }
 }

@@ -14,14 +14,16 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
-        protected readonly GameWindow Window;
-
-        private readonly Timer CycleTimer;
         private MapController MapController;
+        private readonly MapControllerCollection MapControllerCollection;
+        private readonly GameWindow Window;
+        private readonly Timer CycleTimer;
 
         public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
+
+            MapControllerCollection = new MapControllerCollection();
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
@@ -62,7 +64,17 @@ namespace TileGameLib.Engine
             Window.SetMapViewport(x, y, width, height);
         }
 
-        public void SetMapController(MapController controller)
+        public void LoadMap(string mapFile, MapController controller)
+        {
+            MapControllerCollection.Set(mapFile, controller);
+        }
+
+        public void EnterMap(string mapName)
+        {
+            SetMapController(MapControllerCollection.Get(mapName));
+        }
+
+        private void SetMapController(MapController controller)
         {
             MapController = controller;
             MapController.Engine = this;
