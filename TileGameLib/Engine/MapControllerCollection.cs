@@ -29,11 +29,13 @@ namespace TileGameLib.Engine
             return null;
         }
 
-        public void Set(string mapFile, MapController controller)
+        public ObjectMap LoadMapSetController(string mapFile, MapController controller)
         {
-            ObjectMap map = MapFile.Load(mapFile + "." + Constants.FileMapExtension);
+            ObjectMap map = MapFile.Load(mapFile);
             controller.Map = map;
             Controllers.Add(map, controller);
+
+            return map;
         }
     }
 }

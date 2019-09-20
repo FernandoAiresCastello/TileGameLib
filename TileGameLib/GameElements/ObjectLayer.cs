@@ -116,6 +116,23 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
+        public List<GameObject> FindObjectsEqual(GameObject other)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            for (int row = 0; row < Height; row++)
+            {
+                for (int col = 0; col < Width; col++)
+                {
+                    ObjectCell cell = Cells[col, row];
+                    if (!cell.IsEmpty && cell.GetObjectRef().Equals(other))
+                        objects.Add(cell.GetObjectRef());
+                }
+            }
+
+            return objects;
+        }
+
         public List<GameObject> FindObjectsByTag(string tag)
         {
             List<GameObject> objects = new List<GameObject>();

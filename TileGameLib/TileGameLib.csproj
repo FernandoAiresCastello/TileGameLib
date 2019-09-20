@@ -54,8 +54,10 @@
     </Compile>
     <Compile Include="Engine\MapController.cs" />
     <Compile Include="Engine\MapControllerCollection.cs" />
+    <Compile Include="Engine\Variables.cs" />
     <Compile Include="File\MapFile.cs" />
-    <Compile Include="GameElements\MapCollection.cs" />
+    <Compile Include="File\PaletteFile.cs" />
+    <Compile Include="File\TilesetFile.cs" />
     <Compile Include="GameElements\ObjectCell.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
@@ -81,7 +83,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Alert.cs" />
     <Compile Include="Util\ByteExtensions.cs" />
-    <Compile Include="Util\Constants.cs" />
     <Compile Include="Util\IdGenerator.cs" />
     <Compile Include="Util\RandomNumber.cs" />
   </ItemGroup>

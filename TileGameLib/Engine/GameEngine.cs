@@ -14,14 +14,17 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
+        public GameWindow Window { get; private set; }
+        public Variables Variables { get; private set; }
+
         private MapController MapController;
         private readonly MapControllerCollection MapControllerCollection;
-        private readonly GameWindow Window;
         private readonly Timer CycleTimer;
 
         public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
+            Variables = new Variables();
 
             MapControllerCollection = new MapControllerCollection();
 
@@ -59,14 +62,9 @@ namespace TileGameLib.Engine
                 MapController.OnKeyUp(e);
         }
 
-        public void SetMapViewport(int x, int y, int width, int height)
+        public ObjectMap LoadMap(string mapFile, MapController controller)
         {
-            Window.SetMapViewport(x, y, width, height);
-        }
-
-        public void LoadMap(string mapFile, MapController controller)
-        {
-            MapControllerCollection.Set(mapFile, controller);
+            return MapControllerCollection.LoadMapSetController(mapFile, controller);
         }
 
         public void EnterMap(string mapName)

@@ -181,9 +181,8 @@ namespace TileGameLib.GameElements
         {
             List<GameObject> objects = new List<GameObject>();
 
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            foreach (ObjectLayer layer in Layers)
             {
-                ObjectLayer layer = Layers[layerIndex];
                 List<GameObject> layerObjects = layer.FindObjectsByTag(tag);
                 objects.AddRange(layerObjects);
             }
@@ -193,9 +192,8 @@ namespace TileGameLib.GameElements
 
         public GameObject FindObjectByTag(string tag)
         {
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            foreach (ObjectLayer layer in Layers)
             {
-                ObjectLayer layer = Layers[layerIndex];
                 GameObject o = layer.FindObjectByTag(tag);
                 if (o != null)
                     return o;
@@ -241,9 +239,8 @@ namespace TileGameLib.GameElements
         {
             List<GameObject> objects = new List<GameObject>();
 
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            foreach (ObjectLayer layer in Layers)
             {
-                ObjectLayer layer = Layers[layerIndex];
                 List<GameObject> layerObjects = layer.FindObjectsByProperty(property);
                 objects.AddRange(layerObjects);
             }
@@ -255,9 +252,8 @@ namespace TileGameLib.GameElements
         {
             List<GameObject> objects = new List<GameObject>();
 
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            foreach (ObjectLayer layer in Layers)
             {
-                ObjectLayer layer = Layers[layerIndex];
                 List<GameObject> layerObjects = layer.FindObjectsByPropertyValue(property, value.ToString());
                 objects.AddRange(layerObjects);
             }
@@ -286,6 +282,27 @@ namespace TileGameLib.GameElements
             }
 
             return null;
+        }
+
+        public List<GameObject> FindObjectsEqual(GameObject o)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            foreach (ObjectLayer layer in Layers)
+            {
+                List<GameObject> layerObjects = layer.FindObjectsEqual(o);
+                objects.AddRange(layerObjects);
+            }
+
+            return objects;
+        }
+
+        public void ReplaceObjects(GameObject original, GameObject replacement)
+        {
+            List<GameObject> originals = FindObjectsEqual(original);
+
+            foreach (GameObject o in originals)
+                o.SetEqual(replacement);
         }
     }
 }
