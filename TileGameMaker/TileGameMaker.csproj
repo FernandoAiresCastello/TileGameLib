@@ -288,6 +288,7 @@
     <None Include="Resources\script_binary.png" />
     <None Include="Resources\select_by_color.png" />
     <None Include="Resources\color_wheel.png" />
+    <None Include="Resources\broom.png" />
     <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

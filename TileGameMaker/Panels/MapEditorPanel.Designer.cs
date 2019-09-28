@@ -47,6 +47,7 @@
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
+            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
             this.BtnSetData = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
@@ -129,6 +130,7 @@
             this.BtnSetBackColor,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
+            this.BtnDelete,
             this.BtnSetData,
             this.BtnAddText,
             this.BtnSelect,
@@ -229,7 +231,7 @@
             // BtnClearLayer
             // 
             this.BtnClearLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnClearLayer.Image = global::TileGameMaker.Properties.Resources.draw_eraser1;
+            this.BtnClearLayer.Image = global::TileGameMaker.Properties.Resources.broom;
             this.BtnClearLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnClearLayer.Name = "BtnClearLayer";
             this.BtnClearLayer.Size = new System.Drawing.Size(23, 22);
@@ -268,6 +270,17 @@
             this.BtnPutTemplate.Text = "toolStripButton1";
             this.BtnPutTemplate.ToolTipText = "Draw mode";
             this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDelete.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
+            this.BtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(23, 22);
+            this.BtnDelete.Text = "toolStripButton1";
+            this.BtnDelete.ToolTipText = "Delete mode";
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
             // 
             // BtnSetData
             // 
@@ -404,5 +417,6 @@
         private System.Windows.Forms.ToolStripButton BtnPutTemplate;
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton BtnDelete;
     }
 }

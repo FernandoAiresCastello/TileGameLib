@@ -29,7 +29,7 @@ namespace TileGameMaker.Panels
         private int Layer;
         private TileBlockSelection Selection;
 
-        private enum EditMode { Template, Data, TextInput, Selection }
+        private enum EditMode { Template, Delete, Data, TextInput, Selection }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -151,6 +151,13 @@ namespace TileGameMaker.Panels
                     InputText(point.X, point.Y);
                 }
             }
+            else if (Mode == EditMode.Delete)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    DeleteObject(cell);
+                }
+            }
             else if (Mode == EditMode.Selection)
             {
                 if (e.Button == MouseButtons.Left)
@@ -188,6 +195,12 @@ namespace TileGameMaker.Panels
         private void PutCurrentObject(ObjectCell cell)
         {
             cell.SetObjectEqual(MapEditor.SelectedObject);
+            RenderMap();
+        }
+
+        private void DeleteObject(ObjectCell cell)
+        {
+            cell.DeleteObject();
             RenderMap();
         }
 
@@ -293,6 +306,11 @@ namespace TileGameMaker.Panels
             SetMode(EditMode.Template, sender);
         }
 
+        private void BtnDeleteMode_Click(object sender, EventArgs e)
+        {
+            SetMode(EditMode.Delete, sender);
+        }
+
         private void BtnSelect_Click(object sender, EventArgs e)
         {
             SetMode(EditMode.Selection, sender);
@@ -305,6 +323,7 @@ namespace TileGameMaker.Panels
             switch (mode)
             {
                 case EditMode.Template:
+                case EditMode.Delete:
                     Display.Cursor = Cursors.Arrow;
                     break;
                 case EditMode.TextInput:
@@ -327,6 +346,7 @@ namespace TileGameMaker.Panels
             BtnAddText.Checked = false;
             BtnPutTemplate.Checked = false;
             BtnSelect.Checked = false;
+            BtnDelete.Checked = false;
 
             button.Checked = true;
         }
