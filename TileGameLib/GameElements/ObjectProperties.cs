@@ -40,6 +40,12 @@ namespace TileGameLib.GameElements
             return false;
         }
 
+        public void RemoveProperty(string property)
+        {
+            if (HasProperty(property))
+                Entries.Remove(property);
+        }
+
         public void RemoveAllProperties()
         {
             Entries.Clear();

@@ -16,7 +16,19 @@ namespace TileGameLib.Engine
         public GameWindow Window { set; get; }
         public ObjectMap Map { set; get; }
 
-        public MapController()
+        protected readonly string MapFilename;
+
+        public MapController(string mapFilename)
+        {
+            MapFilename = mapFilename;
+            Map = MapFile.Load(mapFilename);
+        }
+
+        public virtual void OnEnter()
+        {
+        }
+
+        public virtual void OnLeave()
         {
         }
 
@@ -32,9 +44,19 @@ namespace TileGameLib.Engine
         {
         }
 
+        public void Log(object obj)
+        {
+            Engine.Log(obj);
+        }
+
         public void EnterMap(string mapName)
         {
             Engine.EnterMap(mapName);
+        }
+
+        public void PrintUi(string placeholderObjectTag, string text)
+        {
+            Engine.PrintUi(placeholderObjectTag, text);
         }
     }
 }

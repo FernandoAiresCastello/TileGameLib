@@ -29,13 +29,9 @@ namespace TileGameLib.Engine
             return null;
         }
 
-        public ObjectMap LoadMapSetController(string mapFile, MapController controller)
+        public void AddController(MapController controller)
         {
-            ObjectMap map = MapFile.Load(mapFile);
-            controller.Map = map;
-            Controllers.Add(map, controller);
-
-            return map;
+            Controllers.Add(controller.Map, controller);
         }
     }
 }
