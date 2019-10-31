@@ -40,20 +40,5 @@ namespace TileGameLib.Engine
         public virtual void OnKeyUp(KeyEventArgs e)
         {
         }
-
-        public void Log(object obj)
-        {
-            Engine.Log(obj);
-        }
-
-        public void EnterMap(string mapName)
-        {
-            Engine.EnterMap(mapName);
-        }
-
-        public void PrintUi(string placeholderObjectTag, string text)
-        {
-            Engine.PrintUi(placeholderObjectTag, text);
-        }
     }
 }

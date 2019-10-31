@@ -10,7 +10,7 @@ namespace TestPlayground
 {
     class TestGameEngine : GameEngine
     {
-        private const string WindowTitle = "Test Playground";
+        private const string WindowTitle = "";
         private const int WindowCols = 32;
         private const int WindowRows = 24;
         private const int CycleInterval = 500;

@@ -144,8 +144,65 @@ namespace TileGameLib.GameElements
 
         public void MoveObject(ObjectPosition srcPos, int dx, int dy)
         {
-            DuplicateObject(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
-            DeleteObject(srcPos);
+            MoveObject(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
+        }
+
+        public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (destCell.IsEmpty)
+            {
+                MoveObject(srcPos, destPos);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, int dx, int dy)
+        {
+            return MoveObjectIfDestinationIsEmpty(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
+        }
+
+        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            GameObject previousObject = null;
+            ObjectCell destCell = GetCell(destPos);
+            if (!destCell.IsEmpty)
+                previousObject = destCell.GetObjectCopy();
+
+            MoveObject(srcPos, destPos);
+
+            return previousObject;
+        }
+
+        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, int dx, int dy)
+        {
+            return MoveObjectGetPrevious(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
+        }
+
+        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, ObjectPosition destPos, string property)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (!destCell.IsEmpty)
+            {
+                GameObject o = destCell.GetObjectRef();
+
+                if (o.HasProperty(property))
+                {
+                    MoveObject(srcPos, destPos);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, int dx, int dy, string property)
+        {
+            return MoveObjectIfDestinationHasProperty(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy), property);
         }
 
         public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
