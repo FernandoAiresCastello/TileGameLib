@@ -112,9 +112,9 @@ namespace TileGameLib.GameElements
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
         }
 
-        public ref GameObject GetObjectRef(ObjectPosition pos)
+        public GameObject GetObject(ObjectPosition pos)
         {
-            return ref Layers[pos.Layer].GetObjectRef(pos.X, pos.Y);
+            return Layers[pos.Layer].GetObject(pos.X, pos.Y);
         }
 
         public GameObject GetObjectCopy(ObjectPosition pos)
@@ -129,7 +129,7 @@ namespace TileGameLib.GameElements
 
             ObjectCell cellUnder = GetCell(new ObjectPosition(pos.Layer - 1, pos.X, pos.Y));
 
-            return cellUnder.IsEmpty ? null : cellUnder.GetObjectRef();
+            return cellUnder.IsEmpty ? null : cellUnder.GetObject();
         }
 
         public GameObject GetObjectAbove(ObjectPosition pos)
@@ -139,7 +139,7 @@ namespace TileGameLib.GameElements
 
             ObjectCell cellAbove = GetCell(new ObjectPosition(pos.Layer + 1, pos.X, pos.Y));
 
-            return cellAbove.IsEmpty ? null : cellAbove.GetObjectRef();
+            return cellAbove.IsEmpty ? null : cellAbove.GetObject();
         }
 
         public void Resize(int width, int height)
@@ -161,7 +161,7 @@ namespace TileGameLib.GameElements
             ObjectCell srcCell = GetCell(srcPos);
             ObjectCell destCell = GetCell(destPos);
 
-            GameObject o = srcCell.GetObjectRef();
+            GameObject o = srcCell.GetObject();
             if (o != null)
                 destCell.SetObjectEqual(o);
         }
@@ -171,8 +171,8 @@ namespace TileGameLib.GameElements
             ObjectCell cell1 = GetCell(pos1);
             ObjectCell cell2 = GetCell(pos2);
 
-            GameObject o1 = cell1.GetObjectRef();
-            GameObject o2 = cell2.GetObjectRef();
+            GameObject o1 = cell1.GetObject();
+            GameObject o2 = cell2.GetObject();
 
             if (o1 != null && o2 != null)
             {
@@ -276,7 +276,7 @@ namespace TileGameLib.GameElements
         {
             ObjectCell cell = GetCell(ObjectPosition.AtDistance(pos, dx, dy));
 
-            return cell.IsEmpty ? null : cell.GetObjectRef();
+            return cell.IsEmpty ? null : cell.GetObject();
         }
 
         public List<GameObject> FindObjectsEqual(GameObject o)
@@ -344,7 +344,7 @@ namespace TileGameLib.GameElements
 
             if (!destCell.IsEmpty)
             {
-                GameObject o = destCell.GetObjectRef();
+                GameObject o = destCell.GetObject();
 
                 if (o.HasTag && o.Tag.Equals(tag))
                 {
@@ -362,7 +362,7 @@ namespace TileGameLib.GameElements
 
             if (!destCell.IsEmpty)
             {
-                GameObject o = destCell.GetObjectRef();
+                GameObject o = destCell.GetObject();
 
                 if (o.HasProperty(property))
                 {
@@ -380,7 +380,7 @@ namespace TileGameLib.GameElements
 
             if (!destCell.IsEmpty)
             {
-                GameObject o = destCell.GetObjectRef();
+                GameObject o = destCell.GetObject();
 
                 if (o.HasProperty(property) && o.GetProperty(property).Equals(value.ToString()))
                 {

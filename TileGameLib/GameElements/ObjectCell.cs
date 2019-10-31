@@ -22,9 +22,9 @@ namespace TileGameLib.GameElements
             SetEqual(other);
         }
 
-        public ref GameObject GetObjectRef()
+        public GameObject GetObject()
         {
-            return ref Object;
+            return Object;
         }
 
         public GameObject GetObjectCopy()

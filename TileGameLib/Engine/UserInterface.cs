@@ -81,7 +81,7 @@ namespace TileGameLib.Engine
             {
                 for (int x = 0; x < layer.Width; x++)
                 {
-                    GameObject o = layer.GetObjectRef(x, y);
+                    GameObject o = layer.GetObject(x, y);
                     if (o != null)
                         Graphics.PutTile(x, y, o.Animation.GetFirstFrame());
                 }
@@ -167,7 +167,7 @@ namespace TileGameLib.Engine
             {
                 for (int x = 0; x < layer.Width; x++)
                 {
-                    GameObject o = layer.GetObjectRef(x, y);
+                    GameObject o = layer.GetObject(x, y);
 
                     if (o != null && o.HasTag)
                     {

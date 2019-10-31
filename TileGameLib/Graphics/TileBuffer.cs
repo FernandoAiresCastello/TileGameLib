@@ -43,12 +43,12 @@ namespace TileGameLib.Graphics
             Tiles[x, y].SetEqual(tile);
         }
 
-        public ref Tile Get(int x, int y)
+        public Tile Get(int x, int y)
         {
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
                 throw new TileGameLibException();
 
-            return ref Tiles[x, y];
+            return Tiles[x, y];
         }
 
         public Tile Copy(int x, int y)

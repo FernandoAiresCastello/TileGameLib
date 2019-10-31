@@ -33,7 +33,7 @@ namespace TileGameLib.GameElements
             {
                 for (int col = 0; col < Width; col++)
                 {
-                    GameObject o = other.GetObjectRef(col, row);
+                    GameObject o = other.GetObject(col, row);
 
                     if (o != null)
                         Cells[col, row].SetObjectEqual(o);
@@ -70,15 +70,15 @@ namespace TileGameLib.GameElements
             Cells[x, y].DeleteObject();
         }
 
-        public ref ObjectCell GetCell(int x, int y)
+        public ObjectCell GetCell(int x, int y)
         {
-            return ref Cells[x, y];
+            return Cells[x, y];
         }
 
-        public ref GameObject GetObjectRef(int x, int y)
+        public GameObject GetObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return ref Cells[x, y].GetObjectRef();
+                return Cells[x, y].GetObject();
 
             throw new TileGameLibException(GetExceptionMessage(x, y));
         }
@@ -125,8 +125,8 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().Equals(other))
-                        objects.Add(cell.GetObjectRef());
+                    if (!cell.IsEmpty && cell.GetObject().Equals(other))
+                        objects.Add(cell.GetObject());
                 }
             }
 
@@ -142,8 +142,8 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
-                        objects.Add(cell.GetObjectRef());
+                    if (!cell.IsEmpty && cell.GetObject().HasTag && cell.GetObject().Tag.Equals(tag))
+                        objects.Add(cell.GetObject());
                 }
             }
 
@@ -159,8 +159,8 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasProperty(property))
-                        objects.Add(cell.GetObjectRef());
+                    if (!cell.IsEmpty && cell.GetObject().Properties.HasProperty(property))
+                        objects.Add(cell.GetObject());
                 }
             }
 
@@ -176,8 +176,8 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasPropertyValue(property, value))
-                        objects.Add(cell.GetObjectRef());
+                    if (!cell.IsEmpty && cell.GetObject().Properties.HasPropertyValue(property, value))
+                        objects.Add(cell.GetObject());
                 }
             }
 
@@ -193,7 +193,7 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().HasTag && cell.GetObjectRef().Tag.Equals(tag))
+                    if (!cell.IsEmpty && cell.GetObject().HasTag && cell.GetObject().Tag.Equals(tag))
                         positions.Add(new Point(col, row));
                 }
             }

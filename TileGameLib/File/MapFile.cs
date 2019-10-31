@@ -35,7 +35,7 @@ namespace TileGameLib.File
                 {
                     for (int x = 0; x < layer.Width; x++)
                     {
-                        GameObject o = layer.GetObjectRef(x, y);
+                        GameObject o = layer.GetObject(x, y);
 
                         if (o != null)
                         {
@@ -181,7 +181,7 @@ namespace TileGameLib.File
             return Load(file);
         }
 
-        public static void Load(ref ObjectMap map, string path)
+        public static void Load(ObjectMap map, string path)
         {
             if (map != null)
                 map.SetEqual(Load(path));

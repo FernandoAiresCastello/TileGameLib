@@ -160,7 +160,7 @@ namespace TileGameLib.Graphics
 
         private void RenderCell(ObjectCell cell, int x, int y)
         {
-            GameObject o = cell.GetObjectRef();
+            GameObject o = cell.GetObject();
 
             if (o != null)
             {

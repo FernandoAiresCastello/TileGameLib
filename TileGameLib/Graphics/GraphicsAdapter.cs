@@ -52,12 +52,12 @@ namespace TileGameLib.Graphics
             Bitmap.Save(file);
         }
 
-        public ref Tile GetTile(int col, int row)
+        public Tile GetTile(int col, int row)
         {
             if (col < 0 || row < 0 || col >= TileBuffer.Cols || row >= TileBuffer.Rows)
                 throw new TileGameLibException();
 
-            return ref TileBuffer.Tiles[col, row];
+            return TileBuffer.Tiles[col, row];
         }
 
         public Tile CopyTile(int col, int row)

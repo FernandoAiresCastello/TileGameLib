@@ -187,7 +187,7 @@ namespace TileGameMaker.Panels
 
             HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
 
-            GameObject o = Map.GetObjectRef(new ObjectPosition(Layer, point.X, point.Y));
+            GameObject o = Map.GetObject(new ObjectPosition(Layer, point.X, point.Y));
             if (o != null)
                 HoverLabel.Text += o.ToString();
         }
@@ -251,7 +251,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty)
-                MapEditor.SelectedObject = cell.GetObjectRef();
+                MapEditor.SelectedObject = cell.GetObject();
             else
                 Alert.Warning(MessageCellEmpty);
         }
@@ -353,7 +353,7 @@ namespace TileGameMaker.Panels
 
         private void InputData(int x, int y)
         {
-            GameObject o = Map.GetObjectRef(new ObjectPosition(Layer, x, y));
+            GameObject o = Map.GetObject(new ObjectPosition(Layer, x, y));
 
             if (o == null)
             {
@@ -431,7 +431,7 @@ namespace TileGameMaker.Panels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MapFile.Load(ref Map, dialog.FileName);
+                MapFile.Load(Map, dialog.FileName);
                 MapEditor.MapFile = dialog.FileName;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
@@ -478,7 +478,7 @@ namespace TileGameMaker.Panels
 
                 MapArchive arch = new MapArchive(path);
                 string file = mgr.SelectedEntry;
-                arch.Load(ref Map, file);
+                arch.Load(Map, file);
                 MapEditor.MapFile = file;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
