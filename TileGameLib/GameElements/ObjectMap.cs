@@ -156,75 +156,6 @@ namespace TileGameLib.GameElements
             SetObject(new GameObject(), pos);
         }
 
-        public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
-        {
-            DuplicateObject(srcPos, destPos);
-            DeleteObject(srcPos);
-        }
-
-        public void MoveObject(ObjectPosition srcPos, int dx, int dy)
-        {
-            MoveObject(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
-        }
-
-        public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, ObjectPosition destPos)
-        {
-            ObjectCell destCell = GetCell(destPos);
-
-            if (destCell.IsEmpty)
-            {
-                MoveObject(srcPos, destPos);
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, int dx, int dy)
-        {
-            return MoveObjectIfDestinationIsEmpty(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
-        }
-
-        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
-        {
-            GameObject previousObject = null;
-            ObjectCell destCell = GetCell(destPos);
-            if (!destCell.IsEmpty)
-                previousObject = destCell.GetObjectCopy();
-
-            MoveObject(srcPos, destPos);
-
-            return previousObject;
-        }
-
-        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, int dx, int dy)
-        {
-            return MoveObjectGetPrevious(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy));
-        }
-
-        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, ObjectPosition destPos, string property)
-        {
-            ObjectCell destCell = GetCell(destPos);
-
-            if (!destCell.IsEmpty)
-            {
-                GameObject o = destCell.GetObjectRef();
-
-                if (o.HasProperty(property))
-                {
-                    MoveObject(srcPos, destPos);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, int dx, int dy, string property)
-        {
-            return MoveObjectIfDestinationHasProperty(srcPos, new ObjectPosition(srcPos.Layer, srcPos.X + dx, srcPos.Y + dy), property);
-        }
-
         public void DuplicateObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
             ObjectCell srcCell = GetCell(srcPos);
@@ -341,27 +272,11 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
-        public void MoveObjectWithTag(string tag, int dx, int dy)
+        public GameObject GetObjectAtDistance(ObjectPosition pos, int dx, int dy)
         {
-            ObjectPosition pos = FindObjectPositionByTag(tag);
-            if (pos != null)
-                MoveObject(pos, dx, dy);
-        }
+            ObjectCell cell = GetCell(ObjectPosition.AtDistance(pos, dx, dy));
 
-        public GameObject GetObjectAtDistance(string tag, int distLayer, int distX, int distY)
-        {
-            ObjectPosition pos = FindObjectPositionByTag(tag);
-
-            if (pos != null)
-            {
-                pos.Layer += distLayer;
-                pos.X += distX;
-                pos.Y += distY;
-
-                return GetObjectRef(pos);
-            }
-
-            return null;
+            return cell.IsEmpty ? null : cell.GetObjectRef();
         }
 
         public List<GameObject> FindObjectsEqual(GameObject o)
@@ -383,6 +298,98 @@ namespace TileGameLib.GameElements
 
             foreach (GameObject o in originals)
                 o.SetEqual(replacement);
+        }
+
+        public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            DuplicateObject(srcPos, destPos);
+            DeleteObject(srcPos);
+        }
+
+        public void MoveObjectWithTag(ObjectPosition destPos, string tag)
+        {
+            ObjectPosition pos = FindObjectPositionByTag(tag);
+            if (pos != null)
+                MoveObject(pos, destPos);
+        }
+
+        public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (destCell.IsEmpty)
+            {
+                MoveObject(srcPos, destPos);
+                return true;
+            }
+
+            return false;
+        }
+
+        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
+        {
+            GameObject previousObject = null;
+            ObjectCell destCell = GetCell(destPos);
+            if (!destCell.IsEmpty)
+                previousObject = destCell.GetObjectCopy();
+
+            MoveObject(srcPos, destPos);
+
+            return previousObject;
+        }
+
+        public bool MoveObjectIfDestinationHasTag(ObjectPosition srcPos, ObjectPosition destPos, string tag)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (!destCell.IsEmpty)
+            {
+                GameObject o = destCell.GetObjectRef();
+
+                if (o.HasTag && o.Tag.Equals(tag))
+                {
+                    MoveObject(srcPos, destPos);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, ObjectPosition destPos, string property)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (!destCell.IsEmpty)
+            {
+                GameObject o = destCell.GetObjectRef();
+
+                if (o.HasProperty(property))
+                {
+                    MoveObject(srcPos, destPos);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool MoveObjectIfDestinationHasPropertyValue(ObjectPosition srcPos, ObjectPosition destPos, string property, object value)
+        {
+            ObjectCell destCell = GetCell(destPos);
+
+            if (!destCell.IsEmpty)
+            {
+                GameObject o = destCell.GetObjectRef();
+
+                if (o.HasProperty(property) && o.GetProperty(property).Equals(value.ToString()))
+                {
+                    MoveObject(srcPos, destPos);
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

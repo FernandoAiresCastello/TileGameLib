@@ -22,5 +22,15 @@ namespace TileGameLib.GameElements
             X = x;
             Y = y;
         }
+
+        public static ObjectPosition AtDistance(ObjectPosition pos, int dx, int dy)
+        {
+            return new ObjectPosition(pos.Layer, pos.X + dx, pos.Y + dy);
+        }
+
+        public int GetDistance(ObjectPosition otherPos)
+        {
+            return (int)Math.Truncate(Math.Sqrt(Math.Pow(otherPos.X - X, 2) + Math.Pow(otherPos.Y - Y, 2)));
+        }
     }
 }

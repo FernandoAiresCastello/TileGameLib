@@ -22,9 +22,9 @@ namespace TileGameLib.GameElements
             return null;
         }
 
-        public void SetProperty(string property, string value)
+        public void SetProperty(string property, object value)
         {
-            Entries[property] = value;
+            Entries[property] = value.ToString();
         }
 
         public bool HasProperty(string property)
@@ -32,9 +32,9 @@ namespace TileGameLib.GameElements
             return Entries.ContainsKey(property);
         }
 
-        public bool HasPropertyValue(string property, string value)
+        public bool HasPropertyValue(string property, object value)
         {
-            if (HasProperty(property) && GetProperty(property).Equals(value))
+            if (HasProperty(property) && GetProperty(property).Equals(value.ToString()))
                 return true;
 
             return false;

@@ -176,7 +176,7 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < Width; col++)
                 {
                     ObjectCell cell = Cells[col, row];
-                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasPropertyValue(property, value.ToString()))
+                    if (!cell.IsEmpty && cell.GetObjectRef().Properties.HasPropertyValue(property, value))
                         objects.Add(cell.GetObjectRef());
                 }
             }
