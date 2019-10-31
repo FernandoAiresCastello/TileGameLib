@@ -122,6 +122,26 @@ namespace TileGameLib.GameElements
             return Layers[pos.Layer].GetObjectCopy(pos.X, pos.Y);
         }
 
+        public GameObject GetObjectUnder(ObjectPosition pos)
+        {
+            if (pos.Layer <= 0)
+                return null;
+
+            ObjectCell cellUnder = GetCell(new ObjectPosition(pos.Layer - 1, pos.X, pos.Y));
+
+            return cellUnder.IsEmpty ? null : cellUnder.GetObjectRef();
+        }
+
+        public GameObject GetObjectAbove(ObjectPosition pos)
+        {
+            if (pos.Layer >= Layers.Count - 1)
+                return null;
+
+            ObjectCell cellAbove = GetCell(new ObjectPosition(pos.Layer + 1, pos.X, pos.Y));
+
+            return cellAbove.IsEmpty ? null : cellAbove.GetObjectRef();
+        }
+
         public void Resize(int width, int height)
         {
             foreach (ObjectLayer layer in Layers)
