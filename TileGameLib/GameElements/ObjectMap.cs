@@ -64,6 +64,15 @@ namespace TileGameLib.GameElements
             }
         }
 
+        public void Resize(int width, int height)
+        {
+            foreach (ObjectLayer layer in Layers)
+                layer.Resize(width, height);
+
+            Width = width;
+            Height = height;
+        }
+
         public void AddLayer()
         {
             Layers.Add(new ObjectLayer(Width, Height));
@@ -102,53 +111,9 @@ namespace TileGameLib.GameElements
             Layers[layer].Fill(o);
         }
 
-        public ObjectCell GetCell(ObjectPosition pos)
-        {
-            return Layers[pos.Layer].Cells[pos.X, pos.Y];
-        }
-
         public void SetObject(GameObject o, ObjectPosition pos)
         {
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
-        }
-
-        public GameObject GetObject(ObjectPosition pos)
-        {
-            return Layers[pos.Layer].GetObject(pos.X, pos.Y);
-        }
-
-        public GameObject GetObjectCopy(ObjectPosition pos)
-        {
-            return Layers[pos.Layer].GetObjectCopy(pos.X, pos.Y);
-        }
-
-        public GameObject GetObjectUnder(ObjectPosition pos)
-        {
-            if (pos.Layer <= 0)
-                return null;
-
-            ObjectCell cellUnder = GetCell(new ObjectPosition(pos.Layer - 1, pos.X, pos.Y));
-
-            return cellUnder.IsEmpty ? null : cellUnder.GetObject();
-        }
-
-        public GameObject GetObjectAbove(ObjectPosition pos)
-        {
-            if (pos.Layer >= Layers.Count - 1)
-                return null;
-
-            ObjectCell cellAbove = GetCell(new ObjectPosition(pos.Layer + 1, pos.X, pos.Y));
-
-            return cellAbove.IsEmpty ? null : cellAbove.GetObject();
-        }
-
-        public void Resize(int width, int height)
-        {
-            foreach (ObjectLayer layer in Layers)
-                layer.Resize(width, height);
-
-            Width = width;
-            Height = height;
         }
 
         public void CreateNewObject(ObjectPosition pos)
@@ -188,88 +153,39 @@ namespace TileGameLib.GameElements
             srcCell.DeleteObject();
         }
 
-        public List<GameObject> FindObjectsByTag(string tag)
+        public ObjectCell GetCell(ObjectPosition pos)
         {
-            List<GameObject> objects = new List<GameObject>();
-
-            foreach (ObjectLayer layer in Layers)
-            {
-                List<GameObject> layerObjects = layer.FindObjectsByTag(tag);
-                objects.AddRange(layerObjects);
-            }
-
-            return objects;
+            return Layers[pos.Layer].Cells[pos.X, pos.Y];
         }
 
-        public GameObject FindObjectByTag(string tag)
+        public GameObject GetObject(ObjectPosition pos)
         {
-            foreach (ObjectLayer layer in Layers)
-            {
-                GameObject o = layer.FindObjectByTag(tag);
-                if (o != null)
-                    return o;
-            }
-
-            return null;
+            return Layers[pos.Layer].GetObject(pos.X, pos.Y);
         }
 
-        public List<ObjectPosition> FindObjectPositionsByTag(string tag)
+        public GameObject GetObjectCopy(ObjectPosition pos)
         {
-            List<ObjectPosition> positionsToReturn = new List<ObjectPosition>();
-
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
-            {
-                ObjectLayer layer = Layers[layerIndex];
-                List<Point> layerPositions = layer.FindObjectPositionsByTag(tag);
-                List<ObjectPosition> positionsToAdd = new List<ObjectPosition>();
-
-                foreach (Point p in layerPositions)
-                    positionsToAdd.Add(new ObjectPosition(layerIndex, p.X, p.Y));
-
-                positionsToReturn.AddRange(positionsToAdd);
-            }
-
-            return positionsToReturn;
+            return Layers[pos.Layer].GetObjectCopy(pos.X, pos.Y);
         }
 
-        public ObjectPosition FindObjectPositionByTag(string tag)
+        public GameObject GetObjectUnder(ObjectPosition pos)
         {
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
-            {
-                ObjectLayer layer = Layers[layerIndex];
-                Point? layerXY = layer.FindObjectPositionByTag(tag);
+            if (pos.Layer <= 0)
+                return null;
 
-                if (layerXY.HasValue)
-                    return new ObjectPosition(layerIndex, layerXY.Value.X, layerXY.Value.Y);
-            }
+            ObjectCell cellUnder = GetCell(new ObjectPosition(pos.Layer - 1, pos.X, pos.Y));
 
-            return null;
+            return cellUnder.IsEmpty ? null : cellUnder.GetObject();
         }
 
-        public List<GameObject> FindObjectsByProperty(string property)
+        public GameObject GetObjectAbove(ObjectPosition pos)
         {
-            List<GameObject> objects = new List<GameObject>();
+            if (pos.Layer >= Layers.Count - 1)
+                return null;
 
-            foreach (ObjectLayer layer in Layers)
-            {
-                List<GameObject> layerObjects = layer.FindObjectsByProperty(property);
-                objects.AddRange(layerObjects);
-            }
+            ObjectCell cellAbove = GetCell(new ObjectPosition(pos.Layer + 1, pos.X, pos.Y));
 
-            return objects;
-        }
-
-        public List<GameObject> FindObjectsByPropertyValue(string property, object value)
-        {
-            List<GameObject> objects = new List<GameObject>();
-
-            foreach (ObjectLayer layer in Layers)
-            {
-                List<GameObject> layerObjects = layer.FindObjectsByPropertyValue(property, value.ToString());
-                objects.AddRange(layerObjects);
-            }
-
-            return objects;
+            return cellAbove.IsEmpty ? null : cellAbove.GetObject();
         }
 
         public GameObject GetObjectAtDistance(ObjectPosition pos, int dx, int dy)
@@ -279,14 +195,110 @@ namespace TileGameLib.GameElements
             return cell.IsEmpty ? null : cell.GetObject();
         }
 
-        public List<GameObject> FindObjectsEqual(GameObject o)
+        public ObjectPosition FindObjectByTag(string tag)
         {
-            List<GameObject> objects = new List<GameObject>();
+            List<ObjectPosition> objects = FindObjectsByTag(tag);
+            if (objects.Count > 0)
+                return objects[0];
 
-            foreach (ObjectLayer layer in Layers)
+            return null;
+        }
+
+        public List<ObjectPosition> FindObjectsByTag(string tag)
+        {
+            List<ObjectPosition> objects = new List<ObjectPosition>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
-                List<GameObject> layerObjects = layer.FindObjectsEqual(o);
-                objects.AddRange(layerObjects);
+                ObjectLayer layer = Layers[layerIndex];
+                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        if (o != null && o.HasTag && o.Tag.Equals(tag))
+                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                    }
+                }
+
+                objects.AddRange(layerPositions);
+            }
+
+            return objects;
+        }
+
+        public List<ObjectPosition> FindObjectsByProperty(string property)
+        {
+            List<ObjectPosition> objects = new List<ObjectPosition>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        if (o != null && o.HasProperty(property))
+                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                    }
+                }
+
+                objects.AddRange(layerPositions);
+            }
+
+            return objects;
+        }
+
+        public List<ObjectPosition> FindObjectsByPropertyValue(string property, object value)
+        {
+            List<ObjectPosition> objects = new List<ObjectPosition>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        if (o != null && o.HasProperty(property) && o.GetProperty(property).Equals(value.ToString()))
+                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                    }
+                }
+
+                objects.AddRange(layerPositions);
+            }
+
+            return objects;
+        }
+
+        public List<ObjectPosition> FindObjectsEqual(GameObject other)
+        {
+            List<ObjectPosition> objects = new List<ObjectPosition>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        if (o.Equals(other))
+                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                    }
+                }
+
+                objects.AddRange(layerPositions);
             }
 
             return objects;
@@ -294,10 +306,10 @@ namespace TileGameLib.GameElements
 
         public void ReplaceObjects(GameObject original, GameObject replacement)
         {
-            List<GameObject> originals = FindObjectsEqual(original);
+            List<ObjectPosition> originalPositions = FindObjectsEqual(original);
 
-            foreach (GameObject o in originals)
-                o.SetEqual(replacement);
+            foreach (ObjectPosition originalPos in originalPositions)
+                GetObject(originalPos).SetEqual(replacement);
         }
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
@@ -306,11 +318,16 @@ namespace TileGameLib.GameElements
             DeleteObject(srcPos);
         }
 
-        public void MoveObjectWithTag(ObjectPosition destPos, string tag)
+        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
         {
-            ObjectPosition pos = FindObjectPositionByTag(tag);
-            if (pos != null)
-                MoveObject(pos, destPos);
+            GameObject previousObject = null;
+            ObjectCell destCell = GetCell(destPos);
+            if (!destCell.IsEmpty)
+                previousObject = destCell.GetObjectCopy();
+
+            MoveObject(srcPos, destPos);
+
+            return previousObject;
         }
 
         public bool MoveObjectIfDestinationIsEmpty(ObjectPosition srcPos, ObjectPosition destPos)
@@ -324,18 +341,6 @@ namespace TileGameLib.GameElements
             }
 
             return false;
-        }
-
-        public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
-        {
-            GameObject previousObject = null;
-            ObjectCell destCell = GetCell(destPos);
-            if (!destCell.IsEmpty)
-                previousObject = destCell.GetObjectCopy();
-
-            MoveObject(srcPos, destPos);
-
-            return previousObject;
         }
 
         public bool MoveObjectIfDestinationHasTag(ObjectPosition srcPos, ObjectPosition destPos, string tag)

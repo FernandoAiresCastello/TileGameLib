@@ -18,7 +18,7 @@ namespace TileGameLib.GameElements
         public ObjectProperties Properties { set; get; } = new ObjectProperties();
 
         public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
-        public bool HasProperty(string value) => Properties.HasProperty(value);
+        public bool HasProperty(string prop) => Properties.HasProperty(prop);
         public void SetProperty(string prop, object value) => Properties.SetProperty(prop, value);
         public string GetProperty(string prop) => Properties.GetProperty(prop);
         public void RemoveProperty(string prop) => Properties.RemoveProperty(prop);

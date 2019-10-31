@@ -32,7 +32,20 @@ namespace TileGameLib.GameElements
             return Object.Copy();
         }
 
-        public void SetEqual(ObjectCell other)
+        public void DeleteObject()
+        {
+            Object = null;
+        }
+
+        public void SetObjectEqual(GameObject other)
+        {
+            if (Object == null)
+                Object = new GameObject();
+
+            Object.SetEqual(other);
+        }
+
+        private void SetEqual(ObjectCell other)
         {
             if (other.Object == null)
             {
@@ -45,19 +58,6 @@ namespace TileGameLib.GameElements
 
                 Object.SetEqual(other.Object);
             }
-        }
-
-        public void SetObjectEqual(GameObject other)
-        {
-            if (Object == null)
-                Object = new GameObject();
-
-            Object.SetEqual(other);
-        }
-
-        public void DeleteObject()
-        {
-            Object = null;
         }
     }
 }
