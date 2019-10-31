@@ -26,6 +26,7 @@ namespace TileGameLib.File
             file.WriteShort(map.Width);
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
+            file.WriteString(map.MusicFile);
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -94,12 +95,14 @@ namespace TileGameLib.File
             int width = file.ReadShort();
             int height = file.ReadShort();
             int backColor = file.ReadShort();
+            string musicFile = file.ReadString();
 
             ObjectMap map = new ObjectMap(name, width, height, backColor);
 
             int layerCount = file.ReadByte();
             map.Layers.Clear();
             map.AddLayers(layerCount);
+            map.MusicFile = musicFile;
 
             foreach (ObjectLayer layer in map.Layers)
             {

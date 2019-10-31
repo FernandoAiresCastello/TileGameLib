@@ -16,6 +16,7 @@ namespace TileGameLib.GameElements
         public Tileset Tileset { get; set; } = new Tileset();
         public Palette Palette { get; set; } = new Palette();
         public int BackColor { set; get; }
+        public string MusicFile { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int ImageWidth => Width * TilePixels.RowLength;
@@ -49,6 +50,7 @@ namespace TileGameLib.GameElements
             Width = other.Width;
             Height = other.Height;
             BackColor = other.BackColor;
+            MusicFile = other.MusicFile;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();

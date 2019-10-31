@@ -18,6 +18,7 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
 
         public string MapName => TxtName.Text.Trim();
+        public string MapMusic => TxtMusicFile.Text.Trim();
 
         public MapPropertyPanel(MapEditor editor)
         {
@@ -47,6 +48,7 @@ namespace TileGameMaker.Panels
             TxtName.Text = MapEditor.Map.Name;
             TxtWidth.Text = MapEditor.Map.Width.ToString();
             TxtHeight.Text = MapEditor.Map.Height.ToString();
+            TxtMusicFile.Text = MapEditor.Map.MusicFile;
             TxtLayers.Text = MapEditor.Map.Layers.Count.ToString();
         }
 

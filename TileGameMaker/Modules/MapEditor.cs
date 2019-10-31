@@ -18,6 +18,7 @@ namespace TileGameMaker.Modules
         public string WorkspacePath { get; private set; }
         public string MapFile { get; set; }
         public string MapName => MapPropertyControl.MapName;
+        public string MapMusic => MapPropertyControl.MapMusic;
 
         public ObjectMap Map { get; private set; }
         public ObjectMap Clipboard { get; private set; }

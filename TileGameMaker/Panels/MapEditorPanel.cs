@@ -414,6 +414,7 @@ namespace TileGameMaker.Panels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Map.Name = MapEditor.MapName;
+                Map.MusicFile = MapEditor.MapMusic;
                 MapFile.Save(Map, dialog.FileName);
                 MapEditor.MapFile = dialog.FileName;
                 MapEditor.UpdateMapProperties();
