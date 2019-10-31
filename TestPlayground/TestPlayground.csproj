@@ -80,6 +80,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)\maps\*.* $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>del $(TargetDir)\maps
+mkdir $(TargetDir)\maps
+copy $(ProjectDir)\maps\*.* $(TargetDir)\maps</PostBuildEvent>
   </PropertyGroup>
 </Project>

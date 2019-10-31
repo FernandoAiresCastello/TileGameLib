@@ -15,13 +15,10 @@ namespace TileGameLib.Engine
         public GameEngine Engine { set; get; }
         public GameWindow Window { set; get; }
         public ObjectMap Map { set; get; }
+        public string MapFile { set; get; }
 
-        protected readonly string MapFilename;
-
-        public MapController(string mapFilename)
+        public MapController()
         {
-            MapFilename = mapFilename;
-            Map = MapFile.Load(mapFilename);
         }
 
         public virtual void OnEnter()

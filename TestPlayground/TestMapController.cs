@@ -10,7 +10,7 @@ namespace TestPlayground
 {
     class TestMapController : MapController
     {
-        public TestMapController() : base("test01.tgmap")
+        public TestMapController()
         {
         }
 

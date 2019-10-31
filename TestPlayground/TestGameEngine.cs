@@ -17,10 +17,11 @@ namespace TestPlayground
 
         public TestGameEngine() : base(WindowTitle, WindowCols, WindowRows, CycleInterval)
         {
-            LoadUiMap("ui.tgmap");
+            LoadUiMap("maps/ui.tgmap");
             SetMapViewport("mapview-top-left", "mapview-bottom-right");
             DrawUi();
-            AddMapController(new TestMapController());
+            AddMapController("maps/test01.tgmap", new TestMapController());
+            AddMapController("maps/test02.tgmap", new TestMapController());
             EnterMap("test01");
         }
 

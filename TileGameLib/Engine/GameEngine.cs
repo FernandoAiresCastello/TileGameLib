@@ -116,9 +116,9 @@ namespace TileGameLib.Engine
             Window.Ui.SetMapViewport(x, y, width, height);
         }
 
-        public void AddMapController(MapController controller)
+        public void AddMapController(string mapFile, MapController controller)
         {
-            MapControllerCollection.AddController(controller);
+            MapControllerCollection.AddController(mapFile, controller);
         }
 
         public void EnterMap(string mapName)

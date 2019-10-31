@@ -29,8 +29,10 @@ namespace TileGameLib.Engine
             return null;
         }
 
-        public void AddController(MapController controller)
+        public void AddController(string mapFile, MapController controller)
         {
+            controller.Map = MapFile.Load(mapFile);
+            controller.MapFile = mapFile;
             Controllers.Add(controller.Map, controller);
         }
     }
