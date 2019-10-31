@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace TileGameLib.Engine
         private MapController MapController;
         private readonly MapControllerCollection MapControllerCollection;
         private readonly Timer CycleTimer;
+        private readonly SoundPlayer SoundPlayer = new SoundPlayer();
 
         public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
         {
@@ -101,6 +103,32 @@ namespace TileGameLib.Engine
             return false;
         }
 
+        public void PlayMusicOnce(string musicFile)
+        {
+            StopMusic();
+            SoundPlayer.SoundLocation = musicFile;
+            SoundPlayer.Play();
+        }
+
+        public void PlayMusicLoop(string musicFile)
+        {
+            StopMusic();
+            SoundPlayer.SoundLocation = musicFile;
+            SoundPlayer.PlayLooping();
+        }
+
+        public void AwaitPlayMusic(string musicFile)
+        {
+            StopMusic();
+            SoundPlayer.SoundLocation = musicFile;
+            SoundPlayer.PlaySync();
+        }
+
+        public void StopMusic()
+        {
+            SoundPlayer.Stop();
+        }
+
         public void LoadUiMap(string uiMapFile)
         {
             Window.Ui.LoadUiMap(uiMapFile);
@@ -132,6 +160,9 @@ namespace TileGameLib.Engine
 
             SetMapController(next);
             MapController.OnEnter();
+
+            if (MapController.Map.HasMusic)
+                PlayMusicLoop(MapController.Map.MusicFile);
         }
 
         private void SetMapController(MapController controller)

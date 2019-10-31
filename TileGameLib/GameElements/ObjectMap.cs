@@ -21,6 +21,7 @@ namespace TileGameLib.GameElements
         public int Height { get; private set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
+        public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
         private static readonly string UndefinedMapName = "Undefined";
 
