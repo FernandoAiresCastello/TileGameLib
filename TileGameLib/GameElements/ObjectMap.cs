@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 
@@ -198,7 +199,10 @@ namespace TileGameLib.GameElements
         public ObjectPosition FindObjectByTag(string tag)
         {
             List<ObjectPosition> objects = FindObjectsByTag(tag);
-            if (objects.Count > 0)
+
+            if (objects.Count > 1)
+                throw new TileGameLibException("Multiple objects found with tag " + tag);
+            if (objects.Count == 1)
                 return objects[0];
 
             return null;
