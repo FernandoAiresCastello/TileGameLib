@@ -265,7 +265,7 @@ namespace TileGameLib.GameElements
                     for (int x = 0; x < Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        if (o != null && o.HasProperty(property) && o.GetProperty(property).Equals(value.ToString()))
+                        if (o != null && o.HasPropertyValue(property, value))
                             layerPositions.Add(new ObjectPosition(layerIndex, x, y));
                     }
                 }
@@ -384,7 +384,7 @@ namespace TileGameLib.GameElements
             {
                 GameObject o = destCell.GetObject();
 
-                if (o.HasProperty(property) && o.GetProperty(property).Equals(value.ToString()))
+                if (o.HasPropertyValue(property, value))
                 {
                     MoveObject(srcPos, destPos);
                     return true;
