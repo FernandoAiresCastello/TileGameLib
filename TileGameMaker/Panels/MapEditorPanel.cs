@@ -122,7 +122,7 @@ namespace TileGameMaker.Panels
 
             Focus();
 
-            ObjectCell cell = Map.GetCell(new ObjectPosition(Layer, point.X, point.Y));
+            ObjectCell cell = Map.GetCell(new ObjectPosition(Layer, point));
 
             if (Mode == EditMode.Template)
             {
@@ -185,7 +185,7 @@ namespace TileGameMaker.Panels
 
             HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
 
-            GameObject o = Map.GetObject(new ObjectPosition(Layer, point.X, point.Y));
+            GameObject o = Map.GetObject(new ObjectPosition(Layer, point));
             if (o != null)
                 HoverLabel.Text += o.ToString();
         }

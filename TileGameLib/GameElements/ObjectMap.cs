@@ -167,7 +167,7 @@ namespace TileGameLib.GameElements
             if (pos.Layer <= 0)
                 return null;
 
-            ObjectCell cellUnder = GetCell(new ObjectPosition(pos.Layer - 1, pos.X, pos.Y));
+            ObjectCell cellUnder = GetCell(ObjectPosition.Under(pos));
 
             return cellUnder.IsEmpty ? null : cellUnder.GetObject();
         }
@@ -177,7 +177,7 @@ namespace TileGameLib.GameElements
             if (pos.Layer >= Layers.Count - 1)
                 return null;
 
-            ObjectCell cellAbove = GetCell(new ObjectPosition(pos.Layer + 1, pos.X, pos.Y));
+            ObjectCell cellAbove = GetCell(ObjectPosition.Above(pos));
 
             return cellAbove.IsEmpty ? null : cellAbove.GetObject();
         }
