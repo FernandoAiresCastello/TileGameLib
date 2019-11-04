@@ -11,6 +11,7 @@ namespace TileGameLib.GameElements
     {
         public List<Tile> Frames { set; get; } = new List<Tile>();
         public int Size => Frames.Count;
+        public Tile FirstFrame => Frames.Count > 0 ? Frames[0] : null;
 
         public ObjectAnim()
         {
@@ -59,14 +60,6 @@ namespace TileGameLib.GameElements
         public bool IsSingleFrame()
         {
             return Frames.Count == 1;
-        }
-
-        public Tile GetFirstFrame()
-        {
-            if (Frames.Count > 0)
-                return Frames[0];
-
-            return null;
         }
 
         public void SetEqual(ObjectAnim other)

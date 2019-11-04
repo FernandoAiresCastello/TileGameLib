@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 using TileGameMaker.Modules;
 using TileGameMaker.Util;
 
@@ -59,6 +60,11 @@ namespace TileGameMaker.Windows
         private void MiExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MiAbout_Click(object sender, EventArgs e)
+        {
+            Alert.Info("Tile Game Maker © 2019\n\nDeveloped by Fernando Aires Castello");
         }
     }
 }

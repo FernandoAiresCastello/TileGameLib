@@ -83,7 +83,7 @@ namespace TileGameLib.Engine
                 {
                     GameObject o = layer.GetObject(x, y);
                     if (o != null)
-                        Graphics.PutTile(x, y, o.Animation.GetFirstFrame());
+                        Graphics.PutTile(x, y, o.Animation.FirstFrame);
                 }
             }
 
@@ -175,7 +175,7 @@ namespace TileGameLib.Engine
                         if (isDuplicate)
                             throw new TileGameLibException("Duplicate placeholder " + o.Tag + " in UI map");
 
-                        Placeholders[o.Tag] = new UserInterfacePlaceholder(o.Animation.GetFirstFrame(), x, y);
+                        Placeholders[o.Tag] = new UserInterfacePlaceholder(o.Animation.FirstFrame, x, y);
                     }
                 }
             }

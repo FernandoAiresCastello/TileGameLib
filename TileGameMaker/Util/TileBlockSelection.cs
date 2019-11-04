@@ -31,7 +31,7 @@ namespace TileGameMaker.Util
 
         public override string ToString()
         {
-            return $"StartPoint={StartPoint} EndPoint={EndPoint} Block={Block}";
+            return $"StartPoint: {StartPoint} EndPoint: {EndPoint} Block: {Block}";
         }
     }
 }

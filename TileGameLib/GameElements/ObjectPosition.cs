@@ -12,6 +12,7 @@ namespace TileGameLib.GameElements
         public int Layer { set; get; }
         public int X { set; get; }
         public int Y { set; get; }
+        public Point Point => new Point(X, Y);
 
         public ObjectPosition() : this(0, 0, 0)
         {
@@ -30,6 +31,11 @@ namespace TileGameLib.GameElements
             Layer = layer;
             X = x;
             Y = y;
+        }
+
+        public override string ToString()
+        {
+            return $"Layer: {Layer} X: {X} Y: {Y}";
         }
 
         public int GetDistance(ObjectPosition otherPos)

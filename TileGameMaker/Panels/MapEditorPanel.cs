@@ -28,6 +28,9 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
         private TileBlockSelection Selection;
+        private ToolTip Tooltip;
+        private Point CurrentTooltipPoint;
+        private bool TooltipEnabled = false;
 
         private enum EditMode { Template, Delete, Data, TextInput, Selection }
         private EditMode Mode;
@@ -54,6 +57,9 @@ namespace TileGameMaker.Panels
             HoverLabel.Text = "";
             Layer = 0;
             Selection = new TileBlockSelection();
+
+            Tooltip = new ToolTip();
+            Tooltip.IsBalloon = true;
 
             Display.MouseMove += Disp_MouseMove;
             Display.MouseDown += Disp_MouseDown;
@@ -141,6 +147,10 @@ namespace TileGameMaker.Panels
                 {
                     InputData(point.X, point.Y);
                 }
+                else
+                {
+                    Alert.Warning("Can't copy object while in data edit mode");
+                }
             }
             else if (Mode == EditMode.TextInput)
             {
@@ -148,12 +158,20 @@ namespace TileGameMaker.Panels
                 {
                     InputText(point.X, point.Y);
                 }
+                else
+                {
+                    Alert.Warning("Can't copy object while in text input mode");
+                }
             }
             else if (Mode == EditMode.Delete)
             {
                 if (e.Button == MouseButtons.Left)
                 {
                     DeleteObject(cell);
+                }
+                else
+                {
+                    Alert.Warning("Can't copy object while in delete mode");
                 }
             }
             else if (Mode == EditMode.Selection)
@@ -168,7 +186,8 @@ namespace TileGameMaker.Panels
                     Selection.EndPoint = point;
                 }
 
-                Debug.WriteLine(Selection);
+                if (Selection.EndPoint.HasValue)
+                    Alert.Info(Selection.ToString());
             }
         }
 
@@ -183,11 +202,48 @@ namespace TileGameMaker.Panels
             if (IsOutOfBounds(point))
                 return;
 
-            HoverLabel.Text = $"Layer: {Layer} X: {point.X} Y: {point.Y} ";
+            ObjectPosition position = new ObjectPosition(Layer, point);
+            HoverLabel.Text = position.ToString();
+            GameObject o = Map.GetObject(position);
 
-            GameObject o = Map.GetObject(new ObjectPosition(Layer, point));
             if (o != null)
+            {
                 HoverLabel.Text += " → " + o.ToString();
+                ShowTooltip(o, position);
+            }
+            else
+            {
+                HideTooltip();
+            }
+        }
+
+        private void ShowTooltip(GameObject o, ObjectPosition position)
+        {
+            if (position.Point != CurrentTooltipPoint)
+            {
+                CurrentTooltipPoint = position.Point;
+                Tooltip.SetToolTip(Display, TooltipEnabled ? GetTooltipText(o, position) : null);
+            }
+        }
+
+        private void HideTooltip()
+        {
+            Tooltip.Hide(Display);
+            CurrentTooltipPoint = new Point(-1, -1);
+        }
+
+        private string GetTooltipText(GameObject o, ObjectPosition position)
+        {
+            StringBuilder properties = new StringBuilder();
+            foreach (KeyValuePair<string, string> prop in o.Properties.Entries)
+                properties.Append($"    {prop.Key} = {prop.Value}\n");
+
+            return 
+                $"{position}\n" +
+                $"Tag: {o.Tag}\n" +
+                $"Frames: {o.Animation.Frames.Count}\n" +
+                "Properties: \n" +
+                "{\n" + properties + "}";
         }
 
         private void PutCurrentObject(ObjectCell cell)
@@ -287,6 +343,12 @@ namespace TileGameMaker.Panels
         {
             Display.ShowGrid = !Display.ShowGrid;
             Refresh();
+        }
+
+        private void BtnToggleTooltip_Click(object sender, EventArgs e)
+        {
+            TooltipEnabled = !TooltipEnabled;
+            BtnToggleTooltip.Checked = TooltipEnabled;
         }
 
         private void BtnAddText_Click(object sender, EventArgs e)
@@ -434,7 +496,7 @@ namespace TileGameMaker.Panels
                 MapEditor.MapFile = dialog.FileName;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = MapEditor.CreateBlankObject();
+                MapEditor.SelectedObject = MapEditor.BlankObject;
                 UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }
@@ -481,7 +543,7 @@ namespace TileGameMaker.Panels
                 MapEditor.MapFile = file;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = MapEditor.CreateBlankObject();
+                MapEditor.SelectedObject = MapEditor.BlankObject;
                 UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }

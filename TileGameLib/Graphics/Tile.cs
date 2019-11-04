@@ -12,8 +12,7 @@ namespace TileGameLib.Graphics
         public int ForeColorIx { set; get; }
         public int BackColorIx { set; get; }
 
-        public static Tile Null => NullTile.Copy();
-        private static readonly Tile NullTile = new Tile(0, 0, 0);
+        public static Tile Null => new Tile(0, 0, 0);
 
         public Tile()
         {

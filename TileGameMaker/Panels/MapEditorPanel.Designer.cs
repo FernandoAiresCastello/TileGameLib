@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapEditorPanel));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -57,6 +58,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -138,6 +140,7 @@
             this.BtnZoomIn,
             this.BtnZoomOut,
             this.BtnGrid,
+            this.BtnToggleTooltip,
             this.BtnScreenshot,
             this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -290,7 +293,7 @@
             this.BtnSetData.Name = "BtnSetData";
             this.BtnSetData.Size = new System.Drawing.Size(23, 22);
             this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Data input mode";
+            this.BtnSetData.ToolTipText = "Data edit mode";
             this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
@@ -369,6 +372,17 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // BtnToggleTooltip
+            // 
+            this.BtnToggleTooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnToggleTooltip.Image = ((System.Drawing.Image)(resources.GetObject("BtnToggleTooltip.Image")));
+            this.BtnToggleTooltip.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnToggleTooltip.Name = "BtnToggleTooltip";
+            this.BtnToggleTooltip.Size = new System.Drawing.Size(23, 22);
+            this.BtnToggleTooltip.Text = "toolStripButton1";
+            this.BtnToggleTooltip.ToolTipText = "Toggle tooltips";
+            this.BtnToggleTooltip.Click += new System.EventHandler(this.BtnToggleTooltip_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,5 +432,6 @@
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton BtnDelete;
+        private System.Windows.Forms.ToolStripButton BtnToggleTooltip;
     }
 }

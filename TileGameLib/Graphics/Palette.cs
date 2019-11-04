@@ -13,6 +13,8 @@ namespace TileGameLib.Graphics
         public static readonly int DefaultSize = 256;
         public List<int> Colors { get; private set; } = new List<int>();
         public int Size => Colors.Count;
+        public int White => GetWhite();
+        public int Black => GetBlack();
 
         public Palette()
         {
@@ -59,30 +61,6 @@ namespace TileGameLib.Graphics
             return Colors[index];
         }
 
-        public int GetBlack()
-        {
-            for (int index = 0; index < Colors.Count; index++)
-            {
-                Color color = GetColorObject(index);
-                if (color.R == 0 && color.G == 0 && color.B == 0)
-                    return index;
-            }
-
-            throw new TileGameLibException("Black color (0x000000) not found");
-        }
-
-        public int GetWhite()
-        {
-            for (int index = 0; index < Colors.Count; index++)
-            {
-                Color color = GetColorObject(index);
-                if (color.R == 255 && color.G == 255 && color.B == 255)
-                    return index;
-            }
-
-            throw new TileGameLibException("White color (0xffffff) not found");
-        }
-
         public Color GetColorObject(int index)
         {
             return Color.FromArgb(Colors[index]);
@@ -120,6 +98,30 @@ namespace TileGameLib.Graphics
             Clear(other.Size, Color.White);
             for (int i = 0; i < Size; i++)
                 Colors[i] = other.Colors[i];
+        }
+
+        private int GetBlack()
+        {
+            for (int index = 0; index < Colors.Count; index++)
+            {
+                Color color = GetColorObject(index);
+                if (color.R == 0 && color.G == 0 && color.B == 0)
+                    return index;
+            }
+
+            throw new TileGameLibException("Black color (0x000000) not found");
+        }
+
+        private int GetWhite()
+        {
+            for (int index = 0; index < Colors.Count; index++)
+            {
+                Color color = GetColorObject(index);
+                if (color.R == 255 && color.G == 255 && color.B == 255)
+                    return index;
+            }
+
+            throw new TileGameLibException("White color (0xffffff) not found");
         }
 
         public void InitDefault()

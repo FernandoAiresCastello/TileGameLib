@@ -50,10 +50,11 @@ namespace TileGameMaker.Panels
         {
             InitializeComponent();
             MapEditor = editor;
-            Object = MapEditor.CreateBlankObject();
+            Object = MapEditor.BlankObject;
 
-            AnimationStrip = new AnimationStripDisplay(AnimationPanel, MaxFrames, 1, 3, 
-                MapEditor.CreateBlankObject().Animation.GetFirstFrame());
+            AnimationStrip = new AnimationStripDisplay(
+                AnimationPanel, MaxFrames, 1, 3, 
+                MapEditor.BlankObject.Animation.FirstFrame);
 
             AnimationStrip.Graphics.Tileset = editor.Map.Tileset;
             AnimationStrip.Graphics.Palette = editor.Map.Palette;

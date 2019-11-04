@@ -67,7 +67,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"GameObject [Frames: {Animation.Frames.Count}; Properties: {Properties.Entries.Count}; Tag: {Tag}]";
+            return $"Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Tag: {Tag}";
         }
 
         public override bool Equals(object obj)

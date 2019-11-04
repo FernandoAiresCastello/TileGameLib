@@ -19,6 +19,7 @@ namespace TileGameMaker.Modules
         public string MapFile { get; set; }
         public string MapName => MapPropertyControl.MapName;
         public string MapMusic => MapPropertyControl.MapMusic;
+        public GameObject BlankObject => CreateBlankObject();
 
         public ObjectMap Map { get; private set; }
         public ObjectMap Clipboard { get; private set; }
@@ -56,7 +57,7 @@ namespace TileGameMaker.Modules
                 {
                     TemplateControl.Object.SetEqual(value);
                     TemplateControl.UpdateAnimation(value.Animation);
-                    Tile firstFrame = value.Animation.GetFirstFrame();
+                    Tile firstFrame = value.Animation.FirstFrame;
                     TilePickerControl.SetTileIndex(firstFrame.TileIx);
                     ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
                     ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
@@ -139,9 +140,9 @@ namespace TileGameMaker.Modules
             Refresh();
         }
 
-        public GameObject CreateBlankObject()
+        private GameObject CreateBlankObject()
         {
-            return new GameObject(new Tile(0, Palette.GetBlack(), Palette.GetWhite()));
+            return new GameObject(new Tile(0, Palette.Black, Palette.White));
         }
     }
 }
