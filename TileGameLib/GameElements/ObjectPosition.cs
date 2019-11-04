@@ -41,6 +41,11 @@ namespace TileGameLib.GameElements
             );
         }
 
+        public static ObjectPosition AtDistance(ObjectPosition pos, int dx, int dy)
+        {
+            return new ObjectPosition(pos.Layer, pos.X + dx, pos.Y + dy);
+        }
+
         public static ObjectPosition Above(ObjectPosition pos)
         {
             return new ObjectPosition(pos.Layer + 1, pos.X, pos.Y);
@@ -51,9 +56,44 @@ namespace TileGameLib.GameElements
             return new ObjectPosition(pos.Layer - 1, pos.X, pos.Y);
         }
 
-        public static ObjectPosition AtDistance(ObjectPosition pos, int dx, int dy)
+        public static ObjectPosition North(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.X + dx, pos.Y + dy);
+            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X);
+        }
+
+        public static ObjectPosition South(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X);
+        }
+
+        public static ObjectPosition East(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y, pos.X + distance);
+        }
+
+        public static ObjectPosition West(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y, pos.X - distance);
+        }
+
+        public static ObjectPosition Northeast(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X + distance);
+        }
+
+        public static ObjectPosition Northwest(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X - distance);
+        }
+
+        public static ObjectPosition Southeast(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X + distance);
+        }
+
+        public static ObjectPosition Southwest(ObjectPosition pos, int distance = 1)
+        {
+            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X - distance);
         }
     }
 }
