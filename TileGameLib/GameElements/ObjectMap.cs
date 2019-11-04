@@ -24,9 +24,7 @@ namespace TileGameLib.GameElements
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
-        private static readonly string UndefinedMapName = "Undefined";
-
-        public ObjectMap(int width, int height) : this(UndefinedMapName, width, height, 0)
+        public ObjectMap(int width, int height) : this("Undefined " + IdGenerator.Generate(8), width, height, 0)
         {
             BackColor = Palette.Size - 1;
         }
