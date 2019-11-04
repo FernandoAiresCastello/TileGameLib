@@ -644,12 +644,15 @@ namespace TileGameMaker.Panels
         {
             if (CbLayer.SelectedIndex > 0)
             {
-                Map.RemoveLayer(CbLayer.SelectedIndex);
-                MapRenderer.SetSingleLayerToRender(CbLayer.SelectedIndex - 1);
-                Refresh();
-                UpdateLayerComboBox();
-                UpdateStatusLabel();
-                MapEditor.UpdateMapProperties();
+                if (Alert.Confirm("Delete layer " + CbLayer.SelectedIndex + "?"))
+                {
+                    Map.RemoveLayer(CbLayer.SelectedIndex);
+                    MapRenderer.SetSingleLayerToRender(CbLayer.SelectedIndex - 1);
+                    Refresh();
+                    UpdateLayerComboBox();
+                    UpdateStatusLabel();
+                    MapEditor.UpdateMapProperties();
+                }
             }
             else
             {
