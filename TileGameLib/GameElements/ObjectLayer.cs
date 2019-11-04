@@ -11,9 +11,10 @@ namespace TileGameLib.GameElements
 {
     public class ObjectLayer
     {
-        public ObjectCell[,] Cells { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+
+        private ObjectCell[,] Cells;
 
         public ObjectLayer(int width, int height)
         {
@@ -43,54 +44,6 @@ namespace TileGameLib.GameElements
             }
         }
 
-        public void Clear()
-        {
-            for (int row = 0; row < Height; row++)
-                for (int col = 0; col < Width; col++)
-                    Cells[col, row].DeleteObject();
-        }
-
-        public void Fill(GameObject o)
-        {
-            for (int row = 0; row < Height; row++)
-                for (int col = 0; col < Width; col++)
-                    Cells[col, row].SetObjectEqual(o);
-        }
-
-        public void SetObject(GameObject o, int x, int y)
-        {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                Cells[x, y].SetObjectEqual(o);
-            else
-                throw new TileGameLibException(GetExceptionMessage(x, y));
-        }
-
-        public void DeleteObject(int x, int y)
-        {
-            Cells[x, y].DeleteObject();
-        }
-
-        public ObjectCell GetCell(int x, int y)
-        {
-            return Cells[x, y];
-        }
-
-        public GameObject GetObject(int x, int y)
-        {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].GetObject();
-
-            throw new TileGameLibException(GetExceptionMessage(x, y));
-        }
-
-        public GameObject GetObjectCopy(int x, int y)
-        {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].GetObjectCopy();
-
-            throw new TileGameLibException(GetExceptionMessage(x, y));
-        }
-
         public void Resize(int width, int height)
         {
             ObjectCell[,] newCells = new ObjectCell[width, height];
@@ -111,9 +64,59 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
-        private string GetExceptionMessage(int x, int y)
+        public void Clear()
         {
-            return string.Format("Invalid object layer index. X:{0} Y:{1} Layer size:{2}x{3}", x, y, Width, Height);
+            for (int row = 0; row < Height; row++)
+                for (int col = 0; col < Width; col++)
+                    Cells[col, row].DeleteObject();
+        }
+
+        public void Fill(GameObject o)
+        {
+            for (int row = 0; row < Height; row++)
+                for (int col = 0; col < Width; col++)
+                    Cells[col, row].SetObjectEqual(o);
+        }
+
+        public void SetObject(GameObject o, int x, int y)
+        {
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                Cells[x, y].SetObjectEqual(o);
+            else
+                throw GetInvalidLayerPositionException(x, y);
+        }
+
+        public void DeleteObject(int x, int y)
+        {
+            Cells[x, y].DeleteObject();
+        }
+
+        public ObjectCell GetCell(int x, int y)
+        {
+            return Cells[x, y];
+        }
+
+        public GameObject GetObject(int x, int y)
+        {
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return Cells[x, y].GetObject();
+
+            throw GetInvalidLayerPositionException(x, y);
+        }
+
+        public GameObject GetObjectCopy(int x, int y)
+        {
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                return Cells[x, y].GetObjectCopy();
+
+            throw GetInvalidLayerPositionException(x, y);
+        }
+
+        private TileGameLibException GetInvalidLayerPositionException(int x, int y)
+        {
+            return new TileGameLibException(
+                string.Format("Invalid layer position X:{0} Y:{1}. Layer size is {2}x{3}", 
+                x, y, Width, Height));
         }
     }
 }

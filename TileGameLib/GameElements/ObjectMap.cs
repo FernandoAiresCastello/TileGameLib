@@ -154,7 +154,7 @@ namespace TileGameLib.GameElements
 
         public ObjectCell GetCell(ObjectPosition pos)
         {
-            return Layers[pos.Layer].Cells[pos.X, pos.Y];
+            return Layers[pos.Layer].GetCell(pos.X, pos.Y);
         }
 
         public GameObject GetObject(ObjectPosition pos)
