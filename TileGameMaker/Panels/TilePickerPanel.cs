@@ -13,6 +13,7 @@ using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
 using TileGameLib.Graphics;
 using TileGameMaker.Util;
+using TileGameLib.File;
 
 namespace TileGameMaker.Panels
 {
@@ -22,6 +23,9 @@ namespace TileGameMaker.Panels
         private TilePickerDisplay TilePicker;
         private TileEditorWindow TileEditorWindow;
         private TilePixels ClipboardTile = new TilePixels();
+
+        private static readonly string TilesetFileExt = Config.ReadString("TilesetFileExt");
+        private static readonly string TilesetFileFilter = $"TileGameMaker tileset file (*.{TilesetFileExt})|*.{TilesetFileExt}";
 
         public TilePickerPanel()
         {
@@ -155,12 +159,31 @@ namespace TileGameMaker.Panels
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = TilesetFileFilter;
 
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TilesetFile.Save(TilePicker.Graphics.Tileset, dialog.FileName);
+                Alert.Info("Tileset exported successfully!");
+            }
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = TilesetFileFilter;
 
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TilePicker.Graphics.Tileset.SetEqual(TilesetFile.Load(dialog.FileName));
+                TilePicker.Refresh();
+                UpdateStatus();
+
+                Alert.Info("Tileset imported successfully!");
+            }
         }
     }
 }

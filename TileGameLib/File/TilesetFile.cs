@@ -24,6 +24,12 @@ namespace TileGameLib.File
             return file;
         }
 
+        public static void Save(Tileset tileset, string path)
+        {
+            MemoryFile file = Save(tileset);
+            file.SaveToPhysicalFile(path);
+        }
+
         public static Tileset Load(MemoryFile file)
         {
             Tileset tileset = new Tileset();
@@ -39,12 +45,6 @@ namespace TileGameLib.File
             }
 
             return tileset;
-        }
-
-        public static void Save(Tileset tileset, string path)
-        {
-            MemoryFile file = Save(tileset);
-            file.SaveToPhysicalFile(path);
         }
 
         public static Tileset Load(string path)

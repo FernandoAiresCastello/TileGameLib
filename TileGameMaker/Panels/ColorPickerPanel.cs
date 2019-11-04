@@ -12,6 +12,7 @@ using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
 using TileGameMaker.Util;
+using TileGameLib.File;
 
 namespace TileGameMaker.Panels
 {
@@ -20,6 +21,9 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
+
+        private static readonly string PaletteFileExt = Config.ReadString("PaletteFileExt");
+        private static readonly string PaletteFileFilter = $"TileGameMaker palette file (*.{PaletteFileExt})|*.{PaletteFileExt}";
 
         public ColorPickerPanel()
         {
@@ -185,12 +189,32 @@ namespace TileGameMaker.Panels
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = PaletteFileFilter;
 
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                PaletteFile.Save(ColorPicker.Graphics.Palette, dialog.FileName);
+                Alert.Info("Palette exported successfully!");
+            }
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = PaletteFileFilter;
 
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                ColorPicker.Graphics.Palette.SetEqual(PaletteFile.Load(dialog.FileName));
+                ColorPicker.Refresh();
+                UpdatePanelColors();
+                UpdateStatus();
+
+                Alert.Info("Palette imported successfully!");
+            }
         }
     }
 }

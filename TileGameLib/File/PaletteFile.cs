@@ -27,6 +27,12 @@ namespace TileGameLib.File
             return file;
         }
 
+        public static void Save(Palette palette, string path)
+        {
+            MemoryFile file = Save(palette);
+            file.SaveToPhysicalFile(path);
+        }
+
         public static Palette Load(MemoryFile file)
         {
             Palette palette = new Palette();
@@ -44,12 +50,6 @@ namespace TileGameLib.File
             }
 
             return palette;
-        }
-
-        public static void Save(Palette palette, string path)
-        {
-            MemoryFile file = Save(palette);
-            file.SaveToPhysicalFile(path);
         }
 
         public static Palette Load(string path)
