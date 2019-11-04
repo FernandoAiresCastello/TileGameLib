@@ -138,5 +138,10 @@ namespace TileGameMaker.Modules
             MapEditorControl.ResizeMapView(width, height);
             Refresh();
         }
+
+        public GameObject CreateBlankObject()
+        {
+            return new GameObject(new Tile(0, Palette.GetBlack(), Palette.GetWhite()));
+        }
     }
 }

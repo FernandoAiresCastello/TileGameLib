@@ -140,7 +140,7 @@ namespace TileGameLib.GameElements
 
             if (o1 != null && o2 != null)
             {
-                GameObject temp = cell1.GetObjectCopy();
+                GameObject temp = cell1.GetObject();
                 cell1.SetObjectEqual(o2);
                 cell2.SetObjectEqual(temp);
             }
@@ -160,11 +160,6 @@ namespace TileGameLib.GameElements
         public GameObject GetObject(ObjectPosition pos)
         {
             return Layers[pos.Layer].GetObject(pos.X, pos.Y);
-        }
-
-        public GameObject GetObjectCopy(ObjectPosition pos)
-        {
-            return Layers[pos.Layer].GetObjectCopy(pos.X, pos.Y);
         }
 
         public GameObject GetObjectUnder(ObjectPosition pos)
@@ -325,7 +320,7 @@ namespace TileGameLib.GameElements
             GameObject previousObject = null;
             ObjectCell destCell = GetCell(destPos);
             if (!destCell.IsEmpty)
-                previousObject = destCell.GetObjectCopy();
+                previousObject = destCell.GetObject();
 
             MoveObject(srcPos, destPos);
 

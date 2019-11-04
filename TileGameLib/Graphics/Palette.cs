@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.Graphics
 {
@@ -56,6 +57,30 @@ namespace TileGameLib.Graphics
         public int Get(int index)
         {
             return Colors[index];
+        }
+
+        public int GetBlack()
+        {
+            for (int index = 0; index < Colors.Count; index++)
+            {
+                Color color = GetColorObject(index);
+                if (color.R == 0 && color.G == 0 && color.B == 0)
+                    return index;
+            }
+
+            throw new TileGameLibException("Black color (0x000000) not found");
+        }
+
+        public int GetWhite()
+        {
+            for (int index = 0; index < Colors.Count; index++)
+            {
+                Color color = GetColorObject(index);
+                if (color.R == 255 && color.G == 255 && color.B == 255)
+                    return index;
+            }
+
+            throw new TileGameLibException("White color (0xffffff) not found");
         }
 
         public Color GetColorObject(int index)

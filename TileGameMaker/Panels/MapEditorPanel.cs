@@ -35,9 +35,7 @@ namespace TileGameMaker.Panels
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
         private static readonly string MapFileExt = Config.ReadString("MapFileExt");
-
         private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
-        private static readonly string MessageCellEmpty = "This cell is empty";
 
         public MapEditorPanel()
         {
@@ -253,7 +251,7 @@ namespace TileGameMaker.Panels
             if (!cell.IsEmpty)
                 MapEditor.SelectedObject = cell.GetObject();
             else
-                Alert.Warning(MessageCellEmpty);
+                Alert.Warning("Can't copy from empty cell");
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -357,7 +355,7 @@ namespace TileGameMaker.Panels
 
             if (o == null)
             {
-                Alert.Warning(MessageCellEmpty);
+                Alert.Warning("There's no object in this cell");
                 return;
             }
 
@@ -435,7 +433,7 @@ namespace TileGameMaker.Panels
                 MapEditor.MapFile = dialog.FileName;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = new GameObject();
+                MapEditor.SelectedObject = MapEditor.CreateBlankObject();
                 UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }
@@ -482,7 +480,7 @@ namespace TileGameMaker.Panels
                 MapEditor.MapFile = file;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = new GameObject();
+                MapEditor.SelectedObject = MapEditor.CreateBlankObject();
                 UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }

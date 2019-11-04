@@ -104,14 +104,6 @@ namespace TileGameLib.GameElements
             throw GetInvalidLayerPositionException(x, y);
         }
 
-        public GameObject GetObjectCopy(int x, int y)
-        {
-            if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].GetObjectCopy();
-
-            throw GetInvalidLayerPositionException(x, y);
-        }
-
         private TileGameLibException GetInvalidLayerPositionException(int x, int y)
         {
             return new TileGameLibException(

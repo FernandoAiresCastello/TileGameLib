@@ -27,11 +27,6 @@ namespace TileGameLib.GameElements
             return Object;
         }
 
-        public GameObject GetObjectCopy()
-        {
-            return Object.Copy();
-        }
-
         public void DeleteObject()
         {
             Object = null;
@@ -48,16 +43,9 @@ namespace TileGameLib.GameElements
         private void SetEqual(ObjectCell other)
         {
             if (other.Object == null)
-            {
                 Object = null;
-            }
             else
-            {
-                if (Object == null)
-                    Object = new GameObject();
-
-                Object.SetEqual(other.Object);
-            }
+                SetObjectEqual(other.Object);
         }
     }
 }

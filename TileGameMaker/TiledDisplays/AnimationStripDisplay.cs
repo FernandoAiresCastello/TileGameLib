@@ -16,9 +16,12 @@ namespace TileGameMaker.TiledDisplays
     {
         public ObjectAnim Animation { set; get; } = new ObjectAnim(false);
 
-        public AnimationStripDisplay(Control parent, int cols, int rows, int zoom)
+        private readonly Tile BlankTile;
+
+        public AnimationStripDisplay(Control parent, int cols, int rows, int zoom, Tile blankTile)
             : base(parent, cols, rows, zoom)
         {
+            BlankTile = blankTile;
             ShowGrid = true;
             Clear();
         }
@@ -26,7 +29,7 @@ namespace TileGameMaker.TiledDisplays
         protected override void OnPaint(PaintEventArgs e)
         {
             for (int i = 0; i < Graphics.Cols; i++)
-                Graphics.PutTile(i, 0, Tile.Null);
+                Graphics.PutTile(i, 0, BlankTile.Copy());
 
             int x = 0;
             foreach (Tile tile in Animation.Frames)
