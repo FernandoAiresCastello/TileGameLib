@@ -12,7 +12,6 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public string Id { get; private set; }
         public string Tag { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
         public ObjectProperties Properties { set; get; } = new ObjectProperties();
@@ -45,7 +44,6 @@ namespace TileGameLib.GameElements
             Tag = "";
             Properties.RemoveAllProperties();
             Animation.Clear(Tile.Null);
-            Id = IdGenerator.Generate(8);
         }
 
         public void SetEqual(GameObject o)
@@ -69,8 +67,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            string tag = HasTag ? $"[{Tag}]" : "";
-            return $"ID: {Id} {tag}";
+            return $"GameObject [Frames: {Animation.Frames.Count}; Properties: {Properties.Entries.Count}; Tag: {Tag}]";
         }
 
         public override bool Equals(object obj)

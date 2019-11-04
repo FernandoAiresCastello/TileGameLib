@@ -128,18 +128,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void BtnExpandData_Click(object sender, EventArgs e)
-        {
-            ShowDataInputWindow();
-        }
-
-        public void ShowDataInputWindow()
-        {
-            TextInputWindow win = new TextInputWindow("Template Data");
-            if (win.ShowDialog(this, TxtProperties.Text) == DialogResult.OK)
-                TxtProperties.Text = win.Text;
-        }
-
         private void TxtProperties_TextChanged(object sender, EventArgs e)
         {
             Object.Properties.Parse(TxtProperties.Text);

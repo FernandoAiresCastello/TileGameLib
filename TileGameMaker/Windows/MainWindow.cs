@@ -29,6 +29,7 @@ namespace TileGameMaker.Windows
 
             Rectangle screenArea = Screen.PrimaryScreen.Bounds;
             Size = new Size(BestWidth, BestHeight);
+            MinimumSize = Size;
 
             if (screenArea.Width > BestWidth && screenArea.Height > BestHeight)
                 WindowState = FormWindowState.Normal;

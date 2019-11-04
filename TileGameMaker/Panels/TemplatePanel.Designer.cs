@@ -33,7 +33,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.TxtTag = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnExpandData = new System.Windows.Forms.Button();
             this.TxtFrames = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
@@ -56,7 +55,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(288, 324);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(288, 328);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // AnimationPanel
@@ -73,7 +72,6 @@
             // 
             this.panel2.Controls.Add(this.TxtTag);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.BtnExpandData);
             this.panel2.Controls.Add(this.TxtFrames);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.BtnClear);
@@ -83,7 +81,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 37);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(282, 284);
+            this.panel2.Size = new System.Drawing.Size(282, 288);
             this.panel2.TabIndex = 2;
             // 
             // TxtTag
@@ -107,17 +105,6 @@
             this.label1.Size = new System.Drawing.Size(28, 15);
             this.label1.TabIndex = 12;
             this.label1.Text = "Tag";
-            // 
-            // BtnExpandData
-            // 
-            this.BtnExpandData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnExpandData.Image = global::TileGameMaker.Properties.Resources.scroll_pane_text;
-            this.BtnExpandData.Location = new System.Drawing.Point(9, 241);
-            this.BtnExpandData.Name = "BtnExpandData";
-            this.BtnExpandData.Size = new System.Drawing.Size(41, 30);
-            this.BtnExpandData.TabIndex = 11;
-            this.BtnExpandData.UseVisualStyleBackColor = true;
-            this.BtnExpandData.Click += new System.EventHandler(this.BtnExpandData_Click);
             // 
             // TxtFrames
             // 
@@ -144,12 +131,14 @@
             // 
             // BtnClear
             // 
-            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnClear.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.BtnClear.Location = new System.Drawing.Point(56, 241);
+            this.BtnClear.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BtnClear.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
+            this.BtnClear.Location = new System.Drawing.Point(10, 248);
+            this.BtnClear.Margin = new System.Windows.Forms.Padding(0, 3, 0, 5);
             this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(41, 30);
+            this.BtnClear.Size = new System.Drawing.Size(262, 30);
             this.BtnClear.TabIndex = 6;
+            this.BtnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
@@ -161,12 +150,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtProperties.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProperties.Location = new System.Drawing.Point(9, 94);
+            this.TxtProperties.Location = new System.Drawing.Point(10, 94);
             this.TxtProperties.MaxLength = 65536;
             this.TxtProperties.Multiline = true;
             this.TxtProperties.Name = "TxtProperties";
             this.TxtProperties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtProperties.Size = new System.Drawing.Size(262, 141);
+            this.TxtProperties.Size = new System.Drawing.Size(261, 145);
             this.TxtProperties.TabIndex = 5;
             this.TxtProperties.WordWrap = false;
             this.TxtProperties.Leave += new System.EventHandler(this.TxtProperties_TextChanged);
@@ -186,7 +175,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "TemplatePanel";
-            this.Size = new System.Drawing.Size(288, 324);
+            this.Size = new System.Drawing.Size(288, 328);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -204,7 +193,6 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.TextBox TxtProperties;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button BtnExpandData;
         private System.Windows.Forms.TextBox TxtTag;
         private System.Windows.Forms.Label label1;
     }

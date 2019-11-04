@@ -187,7 +187,7 @@ namespace TileGameMaker.Panels
 
             GameObject o = Map.GetObject(new ObjectPosition(Layer, point));
             if (o != null)
-                HoverLabel.Text += o.ToString();
+                HoverLabel.Text += " → " + o.ToString();
         }
 
         private void PutCurrentObject(ObjectCell cell)
@@ -351,7 +351,8 @@ namespace TileGameMaker.Panels
 
         private void InputData(int x, int y)
         {
-            GameObject o = Map.GetObject(new ObjectPosition(Layer, x, y));
+            ObjectPosition position = new ObjectPosition(Layer, x, y);
+            GameObject o = Map.GetObject(position);
 
             if (o == null)
             {
@@ -359,9 +360,9 @@ namespace TileGameMaker.Panels
                 return;
             }
 
-            ObjectDataInputWindow win = new ObjectDataInputWindow($"Enter object data @{x},{y}");
+            ObjectDataInputWindow win = new ObjectDataInputWindow();
 
-            if (win.ShowDialog(this, o) == DialogResult.OK)
+            if (win.ShowDialog(this, o, position) == DialogResult.OK)
             {
                 o.Tag = win.ObjectTag;
                 o.Properties = win.ObjectProperties;

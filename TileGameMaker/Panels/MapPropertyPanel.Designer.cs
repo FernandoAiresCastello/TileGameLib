@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
             this.TxtPath = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtLayers = new System.Windows.Forms.TextBox();
@@ -42,10 +43,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtFile = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnDiscard = new System.Windows.Forms.Button();
             this.BtnApply = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.BtnDiscard = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -76,18 +76,30 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.0435F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.69553F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(288, 317);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 160);
+            this.label7.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 31);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Music";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TxtPath
             // 
@@ -247,6 +259,34 @@
             this.TxtFile.Size = new System.Drawing.Size(210, 23);
             this.TxtFile.TabIndex = 5;
             // 
+            // BtnApply
+            // 
+            this.BtnApply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnApply.Image = global::TileGameMaker.Properties.Resources.tick;
+            this.BtnApply.Location = new System.Drawing.Point(3, 3);
+            this.BtnApply.MaximumSize = new System.Drawing.Size(0, 45);
+            this.BtnApply.Name = "BtnApply";
+            this.BtnApply.Size = new System.Drawing.Size(130, 45);
+            this.BtnApply.TabIndex = 11;
+            this.BtnApply.Text = "Apply";
+            this.BtnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnApply.UseVisualStyleBackColor = true;
+            this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
+            // 
+            // BtnDiscard
+            // 
+            this.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDiscard.Image = global::TileGameMaker.Properties.Resources.undo;
+            this.BtnDiscard.Location = new System.Drawing.Point(139, 3);
+            this.BtnDiscard.MaximumSize = new System.Drawing.Size(0, 45);
+            this.BtnDiscard.Name = "BtnDiscard";
+            this.BtnDiscard.Size = new System.Drawing.Size(130, 45);
+            this.BtnDiscard.TabIndex = 12;
+            this.BtnDiscard.Text = "Revert";
+            this.BtnDiscard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnDiscard.UseVisualStyleBackColor = true;
+            this.BtnDiscard.Click += new System.EventHandler(this.BtnDiscard_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -256,47 +296,12 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnDiscard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 245);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 235);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 64);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 74);
             this.tableLayoutPanel2.TabIndex = 10;
-            // 
-            // BtnDiscard
-            // 
-            this.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnDiscard.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnDiscard.Location = new System.Drawing.Point(139, 3);
-            this.BtnDiscard.Name = "BtnDiscard";
-            this.BtnDiscard.Size = new System.Drawing.Size(130, 58);
-            this.BtnDiscard.TabIndex = 12;
-            this.BtnDiscard.UseVisualStyleBackColor = true;
-            this.BtnDiscard.Click += new System.EventHandler(this.BtnDiscard_Click);
-            // 
-            // BtnApply
-            // 
-            this.BtnApply.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnApply.Image = global::TileGameMaker.Properties.Resources.tick;
-            this.BtnApply.Location = new System.Drawing.Point(3, 3);
-            this.BtnApply.Name = "BtnApply";
-            this.BtnApply.Size = new System.Drawing.Size(130, 58);
-            this.BtnApply.TabIndex = 11;
-            this.BtnApply.UseVisualStyleBackColor = true;
-            this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 160);
-            this.label7.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 31);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Music";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MapPropertyPanel
             // 
@@ -328,9 +333,9 @@
         private System.Windows.Forms.TextBox TxtFile;
         private System.Windows.Forms.TextBox TxtPath;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnDiscard;
         private System.Windows.Forms.Button BtnApply;
-        private System.Windows.Forms.Label label7;
     }
 }

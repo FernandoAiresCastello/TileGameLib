@@ -16,21 +16,17 @@ namespace TileGameMaker.Windows
         public string ObjectTag => TxtTag.Text.Trim();
         public ObjectProperties ObjectProperties { set; get; }
 
-        public ObjectDataInputWindow() : this("")
-        {
-        }
-
-        public ObjectDataInputWindow(string title)
+        public ObjectDataInputWindow()
         {
             InitializeComponent();
-            Text = title;
+            Text = "Enter object data";
             ObjectProperties = new ObjectProperties();
         }
 
-        public DialogResult ShowDialog(Control parent, GameObject o)
+        public DialogResult ShowDialog(Control parent, GameObject o, ObjectPosition position)
         {
-            TxtId.Text = o.Id;
-            TxtId.Select(0, 0);
+            TxtPosition.Text = $"Layer:{position.Layer} X:{position.X} Y:{position.Y}";
+            TxtPosition.Select(0, 0);
             TxtTag.Text = o.Tag;
             TxtTag.Select(0, 0);
             ObjectProperties.SetEqual(o.Properties);

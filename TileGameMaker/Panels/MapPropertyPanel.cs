@@ -60,14 +60,19 @@ namespace TileGameMaker.Panels
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
+            MapEditor.Map.Name = TxtName.Text;
+            MapEditor.Map.MusicFile = TxtMusicFile.Text;
+
             int.TryParse(TxtWidth.Text, out int width);
             int.TryParse(TxtHeight.Text, out int height);
 
             if (width != MapEditor.Map.Width || height != MapEditor.Map.Height)
             {
-                if (Alert.Confirm("Resize map?"))
+                if (Alert.Confirm($"Resize map to {width}x{height}?"))
                     MapEditor.ResizeMap(width, height);
             }
+
+            Alert.Info("Map properties applied successfully");
         }
     }
 }
