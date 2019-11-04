@@ -24,9 +24,11 @@ namespace TileGameLib.GameElements
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
-        public ObjectMap(int width, int height) : this("Undefined " + IdGenerator.Generate(8), width, height, 0)
+        public static string DefaultName => "Undefined " + IdGenerator.Generate(8);
+
+        public ObjectMap(int width, int height) : this(DefaultName, width, height, 0)
         {
-            BackColor = Palette.Size - 1;
+            BackColor = Palette.White;
         }
 
         public ObjectMap(string name, int width, int height, int backColor)

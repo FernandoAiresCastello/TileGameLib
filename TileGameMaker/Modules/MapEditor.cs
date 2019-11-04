@@ -34,7 +34,6 @@ namespace TileGameMaker.Modules
         public MapPropertyPanel MapPropertyControl { get; private set; }
 
         public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
-        public static readonly string DefaultMapName = Config.ReadString("DefaultMapName");
         public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
         public static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
 

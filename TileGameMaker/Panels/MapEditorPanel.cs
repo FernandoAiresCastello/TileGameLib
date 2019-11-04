@@ -178,17 +178,68 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    Selection.EndPoint = null;
-                    Selection.StartPoint = point;
+                    StartSelection(point);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    Selection.EndPoint = point;
+                    EndSelection(point);
                 }
-
-                if (Selection.EndPoint.HasValue)
-                    Alert.Info(Selection.ToString());
             }
+        }
+
+        private void StartSelection(Point point)
+        {
+            SetSelectionModeInstructionLabel();
+            Selection.EndPoint = null;
+            Selection.StartPoint = point;
+            ClearTileSelection();
+            Display.SelectTile(point);
+        }
+
+        private void EndSelection(Point point)
+        {
+            SetSelectionModeInstructionLabel();
+            point.Offset(1, 1);
+            Selection.EndPoint = point;
+            ApplyTileSelection();
+        }
+
+        private void CancelSelection()
+        {
+            SetSelectionModeInstructionLabel();
+            Selection.StartPoint = null;
+            Selection.EndPoint = null;
+            ClearTileSelection();
+        }
+
+        private void ClearTileSelection()
+        {
+            Display.DeselectAllTiles();
+        }
+
+        private void ApplyTileSelection()
+        {
+            Display.DeselectAllTiles();
+            List<Point> selectedTiles = new List<Point>();
+
+            if (Selection.Block.HasValue)
+            {
+                Rectangle rect = Selection.Block.Value;
+                
+                for (int x = rect.X; x < rect.X + rect.Width; x++)
+                    for (int y = rect.Y; y < rect.Y + rect.Height; y++)
+                        selectedTiles.Add(new Point(x, y));
+            }
+            
+            if (selectedTiles.Count > 0)
+                Display.SelectTiles(selectedTiles);
+
+            Display.Refresh();
+        }
+
+        private void SetSelectionModeInstructionLabel()
+        {
+            HoverLabel.Text = "Selection mode: Left-click to set top left tile; Right-click to set bottom right tile";
         }
 
         private void OnDisplayMouseUp(MouseEventArgs e)
@@ -203,13 +254,21 @@ namespace TileGameMaker.Panels
                 return;
 
             ObjectPosition position = new ObjectPosition(Layer, point);
-            HoverLabel.Text = position.ToString();
+
+            if (Mode == EditMode.Selection)
+                SetSelectionModeInstructionLabel();
+            else
+                HoverLabel.Text = position.ToString();
+
             GameObject o = Map.GetObject(position);
 
             if (o != null)
             {
-                HoverLabel.Text += " → " + o.ToString();
-                ShowTooltip(o, position);
+                if (Mode != EditMode.Selection)
+                {
+                    HoverLabel.Text += " → " + o.ToString();
+                    ShowTooltip(o, position);
+                }
             }
             else
             {
@@ -380,6 +439,9 @@ namespace TileGameMaker.Panels
         {
             Mode = mode;
 
+            if (mode != EditMode.Selection)
+                CancelSelection();
+
             switch (mode)
             {
                 case EditMode.Template:
@@ -394,6 +456,7 @@ namespace TileGameMaker.Panels
                     break;
                 case EditMode.Selection:
                     Display.Cursor = Cursors.Cross;
+                    SetSelectionModeInstructionLabel();
                     break;
             }
 
@@ -549,7 +612,7 @@ namespace TileGameMaker.Panels
             }
         }
 
-        public void NewMap(string name, int width, int height)
+        public void CreateNewMap()
         {
             Layer = 0;
 
@@ -558,9 +621,11 @@ namespace TileGameMaker.Panels
                 for (int i = Map.Layers.Count - 1; i != 0; i--)
                     Map.RemoveLayer(i);
             }
-            
-            Map.Name = name;
-            MapEditor.ResizeMap(width, height);
+
+            Map.Name = ObjectMap.DefaultName;
+            Map.BackColor = Map.Palette.White;
+            Map.MusicFile = "";
+            MapEditor.ResizeMap(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
             MapEditor.MapFile = null;
             MapEditor.UpdateMapProperties();
             ClearMap();
@@ -572,7 +637,7 @@ namespace TileGameMaker.Panels
         private void ConfirmNewMap()
         {
             if (Alert.Confirm("Create new map?"))
-                NewMap(MapEditor.DefaultMapName, MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
+                CreateNewMap();
         }
 
         private void MapEditorControl_KeyDown(object sender, KeyEventArgs e)
