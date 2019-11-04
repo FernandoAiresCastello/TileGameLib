@@ -84,5 +84,13 @@ namespace TileGameMaker.TiledDisplays
             BackColorIx = Config.ReadInt("DefaultTileBackColor");
             Refresh();
         }
+
+        public void ResetToDefault()
+        {
+            Graphics.Palette.InitDefault();
+            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
+            BackColorIx = Config.ReadInt("DefaultTileBackColor");
+            Refresh();
+        }
     }
 }

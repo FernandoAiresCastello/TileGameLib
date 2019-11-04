@@ -72,5 +72,12 @@ namespace TileGameMaker.TiledDisplays
             TileIndex = 0;
             Refresh();
         }
+
+        public void ResetToDefault()
+        {
+            Graphics.Tileset.InitDefault();
+            TileIndex = 0;
+            Refresh();
+        }
     }
 }

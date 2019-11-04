@@ -172,5 +172,25 @@ namespace TileGameMaker.Panels
                 UpdateStatus();
             }
         }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            if (Alert.Confirm("Reset palette to default colors?"))
+            {
+                ColorPicker.ResetToDefault();
+                UpdatePanelColors();
+                UpdateStatus();
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorPickerPanel));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.LblStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -39,6 +40,9 @@
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
+            this.BtnReset = new System.Windows.Forms.ToolStripButton();
+            this.BtnExport = new System.Windows.Forms.ToolStripButton();
+            this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -109,7 +113,10 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnNew});
+            this.BtnNew,
+            this.BtnReset,
+            this.BtnExport,
+            this.BtnImport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -128,13 +135,13 @@
             this.BtnNew.ToolTipText = "Clear palette";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
-            // ColorPickerPanel
+            // PnlColorPicker
             // 
             this.PnlColorPicker.AutoScroll = true;
             this.PnlColorPicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlColorPicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlColorPicker.Location = new System.Drawing.Point(3, 28);
-            this.PnlColorPicker.Name = "ColorPickerPanel";
+            this.PnlColorPicker.Name = "PnlColorPicker";
             this.PnlColorPicker.Size = new System.Drawing.Size(213, 212);
             this.PnlColorPicker.TabIndex = 1;
             this.PnlColorPicker.MouseLeave += new System.EventHandler(this.ColorPicker_MouseLeave);
@@ -165,12 +172,45 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
-            // ColorPickerControl
+            // BtnReset
+            // 
+            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnReset.Image = ((System.Drawing.Image)(resources.GetObject("BtnReset.Image")));
+            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(23, 22);
+            this.BtnReset.Text = "toolStripButton1";
+            this.BtnReset.ToolTipText = "Reset palette to default";
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // BtnExport
+            // 
+            this.BtnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnExport.Image = ((System.Drawing.Image)(resources.GetObject("BtnExport.Image")));
+            this.BtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(23, 22);
+            this.BtnExport.Text = "toolStripButton1";
+            this.BtnExport.ToolTipText = "Export palette";
+            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
+            // BtnImport
+            // 
+            this.BtnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnImport.Image = ((System.Drawing.Image)(resources.GetObject("BtnImport.Image")));
+            this.BtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnImport.Name = "BtnImport";
+            this.BtnImport.Size = new System.Drawing.Size(23, 22);
+            this.BtnImport.Text = "toolStripButton1";
+            this.BtnImport.ToolTipText = "Import palette";
+            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
+            // 
+            // ColorPickerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ColorPickerControl";
+            this.Name = "ColorPickerPanel";
             this.Size = new System.Drawing.Size(219, 347);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -199,5 +239,8 @@
         private System.Windows.Forms.Panel ForeBackColorPanels;
         private System.Windows.Forms.Panel BackColorPanel;
         private System.Windows.Forms.Panel ForeColorPanel;
+        private System.Windows.Forms.ToolStripButton BtnReset;
+        private System.Windows.Forms.ToolStripButton BtnExport;
+        private System.Windows.Forms.ToolStripButton BtnImport;
     }
 }

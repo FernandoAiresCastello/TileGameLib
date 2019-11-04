@@ -143,5 +143,24 @@ namespace TileGameMaker.Panels
             Refresh();
             MapEditor.TemplateControl.Refresh();
         }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            if (Alert.Confirm("Reset tileset to default tiles?"))
+            {
+                TilePicker.ResetToDefault();
+                UpdateStatus();
+            }
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
