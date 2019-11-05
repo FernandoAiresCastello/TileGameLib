@@ -73,6 +73,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap action {
+            get {
+                object obj = ResourceManager.GetObject("action", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_down {
             get {
                 object obj = ResourceManager.GetObject("arrow_down", resourceCulture);
@@ -336,6 +346,16 @@ namespace TileGameMaker.Properties {
         internal static System.Drawing.Bitmap layouts_four_grid {
             get {
                 object obj = ResourceManager.GetObject("layouts_four_grid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magic_wand_2 {
+            get {
+                object obj = ResourceManager.GetObject("magic_wand_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

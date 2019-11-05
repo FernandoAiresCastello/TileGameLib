@@ -197,8 +197,18 @@ namespace TileGameMaker.Panels
         private void EndSelection(Point point)
         {
             SetSelectionModeInstructionLabel();
-            point.Offset(1, 1);
-            Selection.EndPoint = point;
+
+            if (point.X < Selection.StartPoint.Value.X || point.Y < Selection.StartPoint.Value.Y)
+            {
+                EndSelection(Selection.StartPoint.Value);
+                StartSelection(point);
+            }
+            else
+            {
+                point.Offset(1, 1);
+                Selection.EndPoint = point;
+            }
+            
             ApplyTileSelection();
         }
 
@@ -430,6 +440,7 @@ namespace TileGameMaker.Panels
         private void SetMode(EditMode mode, object button)
         {
             Mode = mode;
+            BtnSelectionActions.Visible = Mode == EditMode.Selection;
 
             if (mode != EditMode.Selection)
                 CancelSelection();
@@ -747,7 +758,12 @@ namespace TileGameMaker.Panels
                 Map.BackColor = win.SelectedColor;
         }
 
-        private void BtnSetSelectionColor_Click(object sender, EventArgs e)
+        private void MiCancelSelection_Click(object sender, EventArgs e)
+        {
+            CancelSelection();
+        }
+
+        private void MiSetSelectionColor_Click(object sender, EventArgs e)
         {
             ColorDialog win = new ColorDialog();
 

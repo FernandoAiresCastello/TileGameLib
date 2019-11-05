@@ -243,6 +243,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\magic_wand_2.png" />
     <None Include="Resources\tooltip_baloon.png" />
     <None Include="Resources\table_edit.png" />
     <None Include="Resources\zoom_in.png" />
@@ -288,6 +289,7 @@
     <None Include="Resources\pencil.png" />
     <None Include="Resources\gameboy.png" />
     <None Include="Resources\color_management.png" />
+    <None Include="Resources\action.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

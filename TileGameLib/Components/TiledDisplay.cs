@@ -42,7 +42,7 @@ namespace TileGameLib.Components
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             TileSelectionColor = SystemColors.Highlight;
-            TileSelectionColorOpacity = 50;
+            TileSelectionColorOpacity = 128;
             ShowBorder(false);
             SetZoom(zoom);
         }

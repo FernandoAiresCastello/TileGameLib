@@ -52,12 +52,21 @@
             this.BtnSetData = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetSelectionColor = new System.Windows.Forms.ToolStripButton();
+            this.BtnSelectionActions = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MiCancelSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiCopyObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiCutObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiPasteObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiDeleteObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiFillWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -78,7 +87,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(646, 490);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 490);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // statusStrip1
@@ -88,7 +97,7 @@
             this.HoverLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 470);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(646, 20);
+            this.statusStrip1.Size = new System.Drawing.Size(800, 20);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -112,7 +121,7 @@
             this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapPanel.Location = new System.Drawing.Point(3, 34);
             this.MapPanel.Name = "MapPanel";
-            this.MapPanel.Size = new System.Drawing.Size(640, 433);
+            this.MapPanel.Size = new System.Drawing.Size(794, 433);
             this.MapPanel.TabIndex = 1;
             // 
             // toolStrip1
@@ -135,7 +144,7 @@
             this.BtnSetData,
             this.BtnAddText,
             this.BtnSelect,
-            this.BtnSetSelectionColor,
+            this.BtnSelectionActions,
             this.toolStripSeparator4,
             this.BtnZoomIn,
             this.BtnZoomOut,
@@ -146,7 +155,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(10, 5, 0, 3);
-            this.toolStrip1.Size = new System.Drawing.Size(646, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(800, 31);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -325,16 +334,61 @@
             this.BtnSelect.ToolTipText = "Selection mode";
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
-            // BtnSetSelectionColor
+            // BtnSelectionActions
             // 
-            this.BtnSetSelectionColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetSelectionColor.Image = global::TileGameMaker.Properties.Resources.color_wheel;
-            this.BtnSetSelectionColor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetSelectionColor.Name = "BtnSetSelectionColor";
-            this.BtnSetSelectionColor.Size = new System.Drawing.Size(23, 20);
-            this.BtnSetSelectionColor.Text = "toolStripButton1";
-            this.BtnSetSelectionColor.ToolTipText = "Set selection color";
-            this.BtnSetSelectionColor.Click += new System.EventHandler(this.BtnSetSelectionColor_Click);
+            this.BtnSelectionActions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiCancelSelection,
+            this.toolStripSeparator6,
+            this.MiCopyObjects,
+            this.MiCutObjects,
+            this.MiPasteObjects,
+            this.MiDeleteObjects,
+            this.MiFillWithTemplate,
+            this.toolStripSeparator2,
+            this.MiSetSelectionColor});
+            this.BtnSelectionActions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSelectionActions.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
+            this.BtnSelectionActions.Name = "BtnSelectionActions";
+            this.BtnSelectionActions.Size = new System.Drawing.Size(68, 20);
+            this.BtnSelectionActions.Text = "Selection";
+            this.BtnSelectionActions.ToolTipText = "Selection";
+            // 
+            // MiCancelSelection
+            // 
+            this.MiCancelSelection.Name = "MiCancelSelection";
+            this.MiCancelSelection.Size = new System.Drawing.Size(201, 22);
+            this.MiCancelSelection.Text = "Cancel";
+            this.MiCancelSelection.Click += new System.EventHandler(this.MiCancelSelection_Click);
+            // 
+            // MiCopyObjects
+            // 
+            this.MiCopyObjects.Name = "MiCopyObjects";
+            this.MiCopyObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiCopyObjects.Text = "Copy objects";
+            // 
+            // MiCutObjects
+            // 
+            this.MiCutObjects.Name = "MiCutObjects";
+            this.MiCutObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiCutObjects.Text = "Cut objects";
+            // 
+            // MiPasteObjects
+            // 
+            this.MiPasteObjects.Name = "MiPasteObjects";
+            this.MiPasteObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiPasteObjects.Text = "Paste objects";
+            // 
+            // MiDeleteObjects
+            // 
+            this.MiDeleteObjects.Name = "MiDeleteObjects";
+            this.MiDeleteObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiDeleteObjects.Text = "Delete objects";
+            // 
+            // MiFillWithTemplate
+            // 
+            this.MiFillWithTemplate.Name = "MiFillWithTemplate";
+            this.MiFillWithTemplate.Size = new System.Drawing.Size(201, 22);
+            this.MiFillWithTemplate.Text = "Fill with template object";
             // 
             // BtnZoomIn
             // 
@@ -391,13 +445,30 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // MiSetSelectionColor
+            // 
+            this.MiSetSelectionColor.Name = "MiSetSelectionColor";
+            this.MiSetSelectionColor.Size = new System.Drawing.Size(201, 22);
+            this.MiSetSelectionColor.Text = "Set selection color";
+            this.MiSetSelectionColor.Click += new System.EventHandler(this.MiSetSelectionColor_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(198, 6);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "MapEditorPanel";
-            this.Size = new System.Drawing.Size(646, 490);
+            this.Size = new System.Drawing.Size(800, 490);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MapEditorControl_KeyDown);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -440,6 +511,15 @@
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripButton BtnDelete;
         private System.Windows.Forms.ToolStripButton BtnToggleTooltip;
-        private System.Windows.Forms.ToolStripButton BtnSetSelectionColor;
+        private System.Windows.Forms.ToolStripDropDownButton BtnSelectionActions;
+        private System.Windows.Forms.ToolStripMenuItem MiCutObjects;
+        private System.Windows.Forms.ToolStripMenuItem MiCancelSelection;
+        private System.Windows.Forms.ToolStripMenuItem MiCopyObjects;
+        private System.Windows.Forms.ToolStripMenuItem MiFillWithTemplate;
+        private System.Windows.Forms.ToolStripMenuItem MiDeleteObjects;
+        private System.Windows.Forms.ToolStripMenuItem MiPasteObjects;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem MiSetSelectionColor;
     }
 }
