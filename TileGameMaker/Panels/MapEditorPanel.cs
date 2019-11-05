@@ -33,7 +33,7 @@ namespace TileGameMaker.Panels
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled = false;
 
-        private enum EditMode { Draw, Delete, Data, TextInput, Selection }
+        private enum EditMode { Draw, Delete, Data, TextInput, Selection, Replace }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -55,7 +55,7 @@ namespace TileGameMaker.Panels
             Display.ShowGrid = true;
             Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
-            HoverLabel.Text = "";
+            LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new TileBlockSelection();
 
@@ -91,7 +91,7 @@ namespace TileGameMaker.Panels
 
         private void UpdateStatusLabel()
         {
-            StatusLabel.Text =
+            LbMapInfo.Text =
                 string.Format("Size: {0}x{1} Image size: {2}x{3} Layers: {4} Zoom: {5}",
                     Map.Width, Map.Height, Map.ImageWidth, Map.ImageHeight, 
                     Map.Layers.Count, Display.Zoom);
@@ -167,6 +167,17 @@ namespace TileGameMaker.Panels
                 else
                 {
                     Alert.Warning("Can't copy object while in delete mode");
+                }
+            }
+            else if (Mode == EditMode.Replace)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReplaceObjectsWithTemplate(cell.GetObject());
+                }
+                else
+                {
+                    Alert.Warning("Can't copy object while in replace mode");
                 }
             }
             else if (Mode == EditMode.Selection)
@@ -246,7 +257,12 @@ namespace TileGameMaker.Panels
 
         private void SetSelectionModeInstructionLabel()
         {
-            HoverLabel.Text = "Selection mode: Left-click to set top-left and bottom-right tile; Right-click to cancel";
+            LbEditModeInfo.Text = "Selection mode: Left-click to set top-left and bottom-right tile; Right-click to cancel";
+        }
+
+        private void SetReplaceModeInstructionLabel()
+        {
+            LbEditModeInfo.Text = "Replace objects mode: Left-click to replace with template all objects equal to clicked object";
         }
 
         private void OnDisplayMouseMove(MouseEventArgs e)
@@ -259,8 +275,10 @@ namespace TileGameMaker.Panels
 
             if (Mode == EditMode.Selection)
                 SetSelectionModeInstructionLabel();
+            else if (Mode == EditMode.Replace)
+                SetReplaceModeInstructionLabel();
             else
-                HoverLabel.Text = position.ToString();
+                LbEditModeInfo.Text = position.ToString();
 
             GameObject o = Map.GetObject(position);
 
@@ -268,7 +286,7 @@ namespace TileGameMaker.Panels
             {
                 if (Mode != EditMode.Selection)
                 {
-                    HoverLabel.Text += " → " + o.ToString();
+                    LbEditModeInfo.Text += " → " + o.ToString();
                     ShowTooltip(o, position);
                 }
             }
@@ -326,7 +344,7 @@ namespace TileGameMaker.Panels
 
         private void Disp_MouseLeave(object sender, EventArgs e)
         {
-            HoverLabel.Text = "";
+            LbEditModeInfo.Text = "";
         }
 
         public override void Refresh()
@@ -432,6 +450,11 @@ namespace TileGameMaker.Panels
             SetMode(EditMode.Delete, sender);
         }
 
+        private void BtnReplaceObjects_Click(object sender, EventArgs e)
+        {
+            SetMode(EditMode.Replace, sender);
+        }
+
         private void BtnSelect_Click(object sender, EventArgs e)
         {
             SetMode(EditMode.Selection, sender);
@@ -463,6 +486,10 @@ namespace TileGameMaker.Panels
                     Display.Cursor = GetCursor(Properties.Resources.select);
                     SetSelectionModeInstructionLabel();
                     break;
+                case EditMode.Replace:
+                    Display.Cursor = GetCursor(Properties.Resources.magic_wand_2);
+                    SetReplaceModeInstructionLabel();
+                    break;
             }
 
             CheckModeButton(button as ToolStripButton);
@@ -480,6 +507,7 @@ namespace TileGameMaker.Panels
             BtnPutTemplate.Checked = false;
             BtnSelect.Checked = false;
             BtnDelete.Checked = false;
+            BtnReplaceObjects.Checked = false;
 
             button.Checked = true;
         }
@@ -770,6 +798,19 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.OK)
             {
                 Display.TileSelectionColor = win.Color;
+                Display.Refresh();
+            }
+        }
+
+        private void ReplaceObjectsWithTemplate(GameObject o)
+        {
+            if (o == null)
+            {
+                Alert.Warning("Clicked cell is empty");
+            }
+            else if (Alert.Confirm("This will replace with template all objects that are equal to the clicked object. Are you sure?"))
+            {
+                Map.ReplaceObjects(o, MapEditor.SelectedObject);
                 Display.Refresh();
             }
         }

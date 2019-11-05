@@ -30,8 +30,8 @@
         {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LbMapInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LbEditModeInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -67,6 +67,7 @@
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -93,26 +94,26 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel,
-            this.HoverLabel});
+            this.LbMapInfo,
+            this.LbEditModeInfo});
             this.statusStrip1.Location = new System.Drawing.Point(0, 470);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 20);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // StatusLabel
+            // LbMapInfo
             // 
-            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(71, 15);
-            this.StatusLabel.Text = "StatusLabel";
+            this.LbMapInfo.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.LbMapInfo.Name = "LbMapInfo";
+            this.LbMapInfo.Size = new System.Drawing.Size(69, 15);
+            this.LbMapInfo.Text = "LbMapInfo";
             // 
-            // HoverLabel
+            // LbEditModeInfo
             // 
-            this.HoverLabel.Name = "HoverLabel";
-            this.HoverLabel.Size = new System.Drawing.Size(67, 15);
-            this.HoverLabel.Text = "HoverLabel";
+            this.LbEditModeInfo.Name = "LbEditModeInfo";
+            this.LbEditModeInfo.Size = new System.Drawing.Size(92, 15);
+            this.LbEditModeInfo.Text = "LbEditModeInfo";
             // 
             // MapPanel
             // 
@@ -143,6 +144,7 @@
             this.BtnDelete,
             this.BtnSetData,
             this.BtnAddText,
+            this.BtnReplaceObjects,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
@@ -287,7 +289,7 @@
             this.BtnPutTemplate.Name = "BtnPutTemplate";
             this.BtnPutTemplate.Size = new System.Drawing.Size(23, 20);
             this.BtnPutTemplate.Text = "toolStripButton1";
-            this.BtnPutTemplate.ToolTipText = "Draw mode";
+            this.BtnPutTemplate.ToolTipText = "Draw template";
             this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
             // 
             // BtnDelete
@@ -298,7 +300,7 @@
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(23, 20);
             this.BtnDelete.Text = "toolStripButton1";
-            this.BtnDelete.ToolTipText = "Delete mode";
+            this.BtnDelete.ToolTipText = "Delete";
             this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
             // 
             // BtnSetData
@@ -309,7 +311,7 @@
             this.BtnSetData.Name = "BtnSetData";
             this.BtnSetData.Size = new System.Drawing.Size(23, 20);
             this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Data edit mode";
+            this.BtnSetData.ToolTipText = "Edit data";
             this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
@@ -320,7 +322,7 @@
             this.BtnAddText.Name = "BtnAddText";
             this.BtnAddText.Size = new System.Drawing.Size(23, 20);
             this.BtnAddText.Text = "toolStripButton1";
-            this.BtnAddText.ToolTipText = "Text input mode";
+            this.BtnAddText.ToolTipText = "Draw text";
             this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
             // 
             // BtnSelect
@@ -462,6 +464,17 @@
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(198, 6);
             // 
+            // BtnReplaceObjects
+            // 
+            this.BtnReplaceObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnReplaceObjects.Image = global::TileGameMaker.Properties.Resources.magic_wand_2;
+            this.BtnReplaceObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnReplaceObjects.Name = "BtnReplaceObjects";
+            this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
+            this.BtnReplaceObjects.Text = "toolStripButton1";
+            this.BtnReplaceObjects.ToolTipText = "Replace objects";
+            this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,8 +497,8 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
-        private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
+        private System.Windows.Forms.ToolStripStatusLabel LbMapInfo;
+        private System.Windows.Forms.ToolStripStatusLabel LbEditModeInfo;
         private System.Windows.Forms.Panel MapPanel;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton BtnNew;
@@ -521,5 +534,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem MiSetSelectionColor;
+        private System.Windows.Forms.ToolStripButton BtnReplaceObjects;
     }
 }

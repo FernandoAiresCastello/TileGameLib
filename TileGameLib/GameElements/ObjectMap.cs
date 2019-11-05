@@ -292,7 +292,7 @@ namespace TileGameLib.GameElements
                     for (int x = 0; x < Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        if (o.Equals(other))
+                        if (o != null && o.Equals(other))
                             layerPositions.Add(new ObjectPosition(layerIndex, x, y));
                     }
                 }
