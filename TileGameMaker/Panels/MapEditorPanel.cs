@@ -238,17 +238,8 @@ namespace TileGameMaker.Panels
         private void ApplyTileSelection()
         {
             Display.DeselectAllTiles();
-            List<Point> selectedTiles = new List<Point>();
 
-            if (Selection.Block.HasValue)
-            {
-                Rectangle rect = Selection.Block.Value;
-                
-                for (int x = rect.X; x < rect.X + rect.Width; x++)
-                    for (int y = rect.Y; y < rect.Y + rect.Height; y++)
-                        selectedTiles.Add(new Point(x, y));
-            }
-            
+            List<Point> selectedTiles = Selection.Points;
             if (selectedTiles.Count > 0)
                 Display.SelectTiles(selectedTiles);
 
