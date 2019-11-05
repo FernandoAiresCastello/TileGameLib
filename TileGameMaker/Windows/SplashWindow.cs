@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.Util;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
@@ -17,13 +13,16 @@ namespace TileGameMaker.Windows
         public SplashWindow()
         {
             InitializeComponent();
+            LbTitle.Font = EmbeddedFontLoader.Load(Properties.Resources.PressStart2P, 18);
+
             LostFocus += OnClick;
             KeyDown += OnClick;
 
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            string version = fvi.FileVersion;
             string build = Config.ReadString("BuildNumber");
 
-            MainLabel.Text = MainLabel.Text
+            LbVersionBuild.Text = LbVersionBuild.Text
                 .Replace("{version}", version)
                 .Replace("{build}", build);
         }

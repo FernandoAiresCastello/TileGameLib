@@ -127,11 +127,12 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MiExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.fileToolStripMenuItem.Text = "Application";
             // 
             // MiExit
             // 
+            this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
             this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Exit";
@@ -147,6 +148,7 @@
             // 
             // MiAbout
             // 
+            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
             this.MiAbout.Name = "MiAbout";
             this.MiAbout.Size = new System.Drawing.Size(180, 22);
             this.MiAbout.Text = "About...";

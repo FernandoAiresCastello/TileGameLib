@@ -87,6 +87,7 @@
     <Compile Include="Util\Alert.cs" />
     <Compile Include="Util\ByteExtensions.cs" />
     <Compile Include="Util\CaesarCipher.cs" />
+    <Compile Include="Util\EmbeddedFontLoader.cs" />
     <Compile Include="Util\IdGenerator.cs" />
     <Compile Include="Util\RandomNumber.cs" />
   </ItemGroup>

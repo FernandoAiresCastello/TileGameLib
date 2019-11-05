@@ -45,10 +45,15 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.MapPropertyControl, MapPropertiesPanel);
         }
 
-        private void MainWindow_Shown(object sender, EventArgs e)
+        private void ShowSplashWindow()
         {
             SplashWindow splash = new SplashWindow();
             splash.Show(this);
+        }
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            ShowSplashWindow();
         }
 
         private void AddControl(Control control, Control panel)
@@ -64,7 +69,7 @@ namespace TileGameMaker.Windows
 
         private void MiAbout_Click(object sender, EventArgs e)
         {
-            Alert.Info("Tile Game Maker © 2019\n\nDeveloped by Fernando Aires Castello");
+            ShowSplashWindow();
         }
     }
 }
