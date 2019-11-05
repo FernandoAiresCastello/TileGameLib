@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TileGameLib.Util
 {
-    public static class IdGenerator
+    public static class RandomID
     {
         private static readonly Random Random = new Random();
-        private static readonly string DefaultChars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        private static readonly string DefaultChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         public static string Generate(string allowedChars, int length)
         {
