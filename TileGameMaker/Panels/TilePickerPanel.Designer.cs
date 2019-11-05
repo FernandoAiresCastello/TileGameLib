@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TilePickerPanel));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnCopy = new System.Windows.Forms.ToolStripButton();
             this.BtnPaste = new System.Windows.Forms.ToolStripButton();
+            this.BtnReset = new System.Windows.Forms.ToolStripButton();
+            this.BtnExport = new System.Windows.Forms.ToolStripButton();
+            this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BtnReset = new System.Windows.Forms.ToolStripButton();
-            this.BtnExport = new System.Windows.Forms.ToolStripButton();
-            this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -69,9 +68,9 @@
             this.BtnNew,
             this.BtnCopy,
             this.BtnPaste,
-            this.BtnReset,
             this.BtnExport,
-            this.BtnImport});
+            this.BtnImport,
+            this.BtnReset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(235, 25);
@@ -92,7 +91,7 @@
             // BtnCopy
             // 
             this.BtnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnCopy.Image = global::TileGameMaker.Properties.Resources.page_white_copy1;
+            this.BtnCopy.Image = global::TileGameMaker.Properties.Resources.page_white_copy;
             this.BtnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnCopy.Name = "BtnCopy";
             this.BtnCopy.Size = new System.Drawing.Size(23, 22);
@@ -103,13 +102,46 @@
             // BtnPaste
             // 
             this.BtnPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnPaste.Image = global::TileGameMaker.Properties.Resources.page_white_paste1;
+            this.BtnPaste.Image = global::TileGameMaker.Properties.Resources.page_white_paste;
             this.BtnPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnPaste.Name = "BtnPaste";
             this.BtnPaste.Size = new System.Drawing.Size(23, 22);
             this.BtnPaste.Text = "toolStripButton1";
             this.BtnPaste.ToolTipText = "Paste tile";
             this.BtnPaste.Click += new System.EventHandler(this.BtnPaste_Click);
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
+            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(23, 22);
+            this.BtnReset.Text = "toolStripButton1";
+            this.BtnReset.ToolTipText = "Reset tileset to default";
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // BtnExport
+            // 
+            this.BtnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnExport.Image = global::TileGameMaker.Properties.Resources.diskette;
+            this.BtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(23, 22);
+            this.BtnExport.Text = "toolStripButton1";
+            this.BtnExport.ToolTipText = "Export tileset";
+            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
+            // 
+            // BtnImport
+            // 
+            this.BtnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnImport.Image = global::TileGameMaker.Properties.Resources.folder;
+            this.BtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnImport.Name = "BtnImport";
+            this.BtnImport.Size = new System.Drawing.Size(23, 22);
+            this.BtnImport.Text = "toolStripButton1";
+            this.BtnImport.ToolTipText = "Import tileset";
+            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
             // 
             // PnlTilePicker
             // 
@@ -147,39 +179,6 @@
             this.HoverLabel.Name = "HoverLabel";
             this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
-            // 
-            // BtnReset
-            // 
-            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReset.Image = ((System.Drawing.Image)(resources.GetObject("BtnReset.Image")));
-            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(23, 22);
-            this.BtnReset.Text = "toolStripButton1";
-            this.BtnReset.ToolTipText = "Reset tileset to default";
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // BtnExport
-            // 
-            this.BtnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnExport.Image = ((System.Drawing.Image)(resources.GetObject("BtnExport.Image")));
-            this.BtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnExport.Name = "BtnExport";
-            this.BtnExport.Size = new System.Drawing.Size(23, 22);
-            this.BtnExport.Text = "toolStripButton1";
-            this.BtnExport.ToolTipText = "Export tileset";
-            this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
-            // 
-            // BtnImport
-            // 
-            this.BtnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnImport.Image = ((System.Drawing.Image)(resources.GetObject("BtnImport.Image")));
-            this.BtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnImport.Name = "BtnImport";
-            this.BtnImport.Size = new System.Drawing.Size(23, 22);
-            this.BtnImport.Text = "toolStripButton1";
-            this.BtnImport.ToolTipText = "Import tileset";
-            this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
             // 
             // TilePickerPanel
             // 

@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Sonya-Swarm-Gameboy.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\gameboy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework" />
@@ -243,7 +243,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Sonya-Swarm-Gameboy.png" />
+    <None Include="Resources\tooltip_baloon.png" />
     <None Include="Resources\table_edit.png" />
     <None Include="Resources\zoom_in.png" />
     <None Include="Resources\layouts_four_grid.png" />
@@ -265,10 +265,8 @@
     <None Include="Resources\information.png" />
     <None Include="Resources\page_white_copy.png" />
     <None Include="Resources\page_white_paste.png" />
-    <None Include="Resources\draw_eraser1.png" />
     <None Include="Resources\insert_text.png" />
     <None Include="Resources\diskette.png" />
-    <None Include="Resources\diskette1.png" />
     <None Include="Resources\folder_vertical_open.png" />
     <None Include="Resources\folder.png" />
     <None Include="Resources\delete.png" />
@@ -278,19 +276,18 @@
     <None Include="Resources\arrow_left.png" />
     <None Include="Resources\arrow_up.png" />
     <None Include="Resources\arrow_down.png" />
-    <None Include="Resources\page_white_copy1.png" />
-    <None Include="Resources\page_white_paste1.png" />
     <None Include="Resources\layer_add.png" />
     <None Include="Resources\layer_delete.png" />
     <None Include="Resources\eye.png" />
-    <None Include="Resources\draw_eraser2.png" />
     <None Include="Resources\layers_map.png" />
     <None Include="Resources\layers.png" />
     <None Include="Resources\script_binary.png" />
     <None Include="Resources\select_by_color.png" />
     <None Include="Resources\color_wheel.png" />
     <None Include="Resources\broom.png" />
-    <Content Include="Resources\Sonya-Swarm-Gameboy.ico" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\gameboy.png" />
+    <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

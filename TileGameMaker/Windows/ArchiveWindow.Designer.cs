@@ -170,7 +170,7 @@
             // 
             this.BtnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSave.Image = global::TileGameMaker.Properties.Resources.diskette1;
+            this.BtnSave.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSave.Location = new System.Drawing.Point(117, 3);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(51, 40);

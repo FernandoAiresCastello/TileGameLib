@@ -16,6 +16,7 @@ using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
 using System.Diagnostics;
+using System.IO;
 
 namespace TileGameMaker.Panels
 {
@@ -32,7 +33,7 @@ namespace TileGameMaker.Panels
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled = false;
 
-        private enum EditMode { Template, Delete, Data, TextInput, Selection }
+        private enum EditMode { Draw, Delete, Data, TextInput, Selection }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -66,7 +67,7 @@ namespace TileGameMaker.Panels
             Display.MouseUp += Disp_MouseUp;
             Display.MouseLeave += Disp_MouseLeave;
 
-            SetMode(EditMode.Template, BtnPutTemplate);
+            SetMode(EditMode.Draw, BtnPutTemplate);
             ClearMap();
             RenderMap();
             Refresh();
@@ -130,7 +131,7 @@ namespace TileGameMaker.Panels
 
             ObjectCell cell = Map.GetCell(new ObjectPosition(Layer, point));
 
-            if (Mode == EditMode.Template)
+            if (Mode == EditMode.Draw)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -206,7 +207,6 @@ namespace TileGameMaker.Panels
 
         private void CancelSelection()
         {
-            SetSelectionModeInstructionLabel();
             Selection.StartPoint = null;
             Selection.EndPoint = null;
             ClearTileSelection();
@@ -422,7 +422,7 @@ namespace TileGameMaker.Panels
 
         private void BtnPutTemplate_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.Template, sender);
+            SetMode(EditMode.Draw, sender);
         }
 
         private void BtnDeleteMode_Click(object sender, EventArgs e)
@@ -444,23 +444,30 @@ namespace TileGameMaker.Panels
 
             switch (mode)
             {
-                case EditMode.Template:
+                case EditMode.Draw:
+                    Display.Cursor = GetCursor(Properties.Resources.pencil);
+                    break;
                 case EditMode.Delete:
-                    Display.Cursor = Cursors.Arrow;
+                    Display.Cursor = GetCursor(Properties.Resources.draw_eraser);
                     break;
                 case EditMode.TextInput:
-                    Display.Cursor = Cursors.IBeam;
+                    Display.Cursor = GetCursor(Properties.Resources.insert_text);
                     break;
                 case EditMode.Data:
-                    Display.Cursor = Cursors.Hand;
+                    Display.Cursor = GetCursor(Properties.Resources.script_binary);
                     break;
                 case EditMode.Selection:
-                    Display.Cursor = Cursors.Cross;
+                    Display.Cursor = GetCursor(Properties.Resources.select);
                     SetSelectionModeInstructionLabel();
                     break;
             }
 
             CheckModeButton(button as ToolStripButton);
+        }
+
+        private Cursor GetCursor(Bitmap bitmap)
+        {
+            return new Cursor(bitmap.GetHicon());
         }
 
         private void CheckModeButton(ToolStripButton button)

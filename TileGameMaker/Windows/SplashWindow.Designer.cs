@@ -64,7 +64,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::TileGameMaker.Properties.Resources.Sonya_Swarm_Gameboy1;
+            this.pictureBox1.Image = global::TileGameMaker.Properties.Resources.gameboy;
             this.pictureBox1.Location = new System.Drawing.Point(155, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(146, 137);
