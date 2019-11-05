@@ -78,6 +78,7 @@ namespace TileGameLib.GameElements
             GameObject o = (GameObject)obj;
 
             return
+                Tag.Equals(o.Tag) &&
                 Properties.Equals(o.Properties) &&
                 Animation.Equals(o.Animation);
         }
