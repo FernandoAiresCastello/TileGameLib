@@ -80,7 +80,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10, 10, 10, 15);
             this.panel2.Size = new System.Drawing.Size(282, 288);
             this.panel2.TabIndex = 2;
             // 
@@ -89,10 +89,10 @@
             this.TxtTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtTag.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTag.Location = new System.Drawing.Point(61, 32);
+            this.TxtTag.Location = new System.Drawing.Point(64, 32);
             this.TxtTag.MaxLength = 256;
             this.TxtTag.Name = "TxtTag";
-            this.TxtTag.Size = new System.Drawing.Size(208, 23);
+            this.TxtTag.Size = new System.Drawing.Size(205, 23);
             this.TxtTag.TabIndex = 13;
             this.TxtTag.Text = "Tag";
             this.TxtTag.Leave += new System.EventHandler(this.TxtTag_Leave);
@@ -100,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 32);
+            this.label1.Location = new System.Drawing.Point(29, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 15);
             this.label1.TabIndex = 12;
@@ -111,10 +111,10 @@
             this.TxtFrames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtFrames.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFrames.Location = new System.Drawing.Point(61, 3);
+            this.TxtFrames.Location = new System.Drawing.Point(64, 3);
             this.TxtFrames.MaxLength = 2;
             this.TxtFrames.Name = "TxtFrames";
-            this.TxtFrames.Size = new System.Drawing.Size(208, 23);
+            this.TxtFrames.Size = new System.Drawing.Size(205, 23);
             this.TxtFrames.TabIndex = 8;
             this.TxtFrames.Text = "0";
             this.TxtFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
@@ -123,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 5);
+            this.label4.Location = new System.Drawing.Point(8, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 7;
@@ -133,7 +133,7 @@
             // 
             this.BtnClear.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnClear.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
-            this.BtnClear.Location = new System.Drawing.Point(10, 248);
+            this.BtnClear.Location = new System.Drawing.Point(10, 243);
             this.BtnClear.Margin = new System.Windows.Forms.Padding(0, 3, 0, 5);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(262, 30);
@@ -155,7 +155,7 @@
             this.TxtProperties.Multiline = true;
             this.TxtProperties.Name = "TxtProperties";
             this.TxtProperties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtProperties.Size = new System.Drawing.Size(261, 145);
+            this.TxtProperties.Size = new System.Drawing.Size(261, 140);
             this.TxtProperties.TabIndex = 5;
             this.TxtProperties.WordWrap = false;
             this.TxtProperties.Leave += new System.EventHandler(this.TxtProperties_TextChanged);
@@ -163,11 +163,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 67);
+            this.label3.Location = new System.Drawing.Point(8, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "Properties";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TemplatePanel
             // 

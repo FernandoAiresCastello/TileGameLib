@@ -29,87 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
             this.TemplatePanel = new System.Windows.Forms.Panel();
             this.ColorPickerPanel = new System.Windows.Forms.Panel();
             this.TilePickerPanel = new System.Windows.Forms.Panel();
             this.MapEditorPanel = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.MainLayout.SuspendLayout();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
+            this.WindowLayout.SuspendLayout();
+            this.MainLayout.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // MainLayout
-            // 
-            this.MainLayout.ColumnCount = 3;
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainLayout.Controls.Add(this.MapPropertiesPanel, 2, 1);
-            this.MainLayout.Controls.Add(this.TemplatePanel, 2, 0);
-            this.MainLayout.Controls.Add(this.ColorPickerPanel, 0, 1);
-            this.MainLayout.Controls.Add(this.TilePickerPanel, 0, 0);
-            this.MainLayout.Controls.Add(this.MapEditorPanel, 1, 0);
-            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainLayout.Location = new System.Drawing.Point(0, 24);
-            this.MainLayout.Name = "MainLayout";
-            this.MainLayout.RowCount = 2;
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.MainLayout.Size = new System.Drawing.Size(784, 426);
-            this.MainLayout.TabIndex = 0;
-            // 
-            // MapPropertiesPanel
-            // 
-            this.MapPropertiesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MapPropertiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapPropertiesPanel.Location = new System.Drawing.Point(655, 216);
-            this.MapPropertiesPanel.Name = "MapPropertiesPanel";
-            this.MapPropertiesPanel.Size = new System.Drawing.Size(126, 207);
-            this.MapPropertiesPanel.TabIndex = 4;
-            // 
-            // TemplatePanel
-            // 
-            this.TemplatePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TemplatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TemplatePanel.Location = new System.Drawing.Point(655, 3);
-            this.TemplatePanel.Name = "TemplatePanel";
-            this.TemplatePanel.Size = new System.Drawing.Size(126, 207);
-            this.TemplatePanel.TabIndex = 3;
-            // 
-            // ColorPickerPanel
-            // 
-            this.ColorPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ColorPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ColorPickerPanel.Location = new System.Drawing.Point(3, 216);
-            this.ColorPickerPanel.Name = "ColorPickerPanel";
-            this.ColorPickerPanel.Size = new System.Drawing.Size(124, 207);
-            this.ColorPickerPanel.TabIndex = 2;
-            // 
-            // TilePickerPanel
-            // 
-            this.TilePickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TilePickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePickerPanel.Location = new System.Drawing.Point(3, 3);
-            this.TilePickerPanel.Name = "TilePickerPanel";
-            this.TilePickerPanel.Size = new System.Drawing.Size(124, 207);
-            this.TilePickerPanel.TabIndex = 1;
-            // 
-            // MapEditorPanel
-            // 
-            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapEditorPanel.Location = new System.Drawing.Point(133, 3);
-            this.MapEditorPanel.Name = "MapEditorPanel";
-            this.MainLayout.SetRowSpan(this.MapEditorPanel, 2);
-            this.MapEditorPanel.Size = new System.Drawing.Size(516, 420);
-            this.MapEditorPanel.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -134,7 +70,7 @@
             // 
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Size = new System.Drawing.Size(92, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -150,42 +86,136 @@
             // 
             this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
             this.MiAbout.Name = "MiAbout";
-            this.MiAbout.Size = new System.Drawing.Size(180, 22);
+            this.MiAbout.Size = new System.Drawing.Size(116, 22);
             this.MiAbout.Text = "About...";
             this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
+            // 
+            // WindowLayout
+            // 
+            this.WindowLayout.ColumnCount = 1;
+            this.WindowLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.WindowLayout.Controls.Add(this.MainLayout, 0, 0);
+            this.WindowLayout.Controls.Add(this.statusStrip1, 0, 1);
+            this.WindowLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WindowLayout.Location = new System.Drawing.Point(0, 24);
+            this.WindowLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.WindowLayout.Name = "WindowLayout";
+            this.WindowLayout.RowCount = 2;
+            this.WindowLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.WindowLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.WindowLayout.Size = new System.Drawing.Size(784, 426);
+            this.WindowLayout.TabIndex = 2;
+            // 
+            // MainLayout
+            // 
+            this.MainLayout.ColumnCount = 3;
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.MainLayout.Controls.Add(this.MapPropertiesPanel, 2, 1);
+            this.MainLayout.Controls.Add(this.TemplatePanel, 2, 0);
+            this.MainLayout.Controls.Add(this.ColorPickerPanel, 0, 1);
+            this.MainLayout.Controls.Add(this.TilePickerPanel, 0, 0);
+            this.MainLayout.Controls.Add(this.MapEditorPanel, 1, 0);
+            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainLayout.Location = new System.Drawing.Point(0, 0);
+            this.MainLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.MainLayout.Name = "MainLayout";
+            this.MainLayout.RowCount = 2;
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 344F));
+            this.MainLayout.Size = new System.Drawing.Size(784, 404);
+            this.MainLayout.TabIndex = 1;
+            // 
+            // MapPropertiesPanel
+            // 
+            this.MapPropertiesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MapPropertiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapPropertiesPanel.Location = new System.Drawing.Point(655, 63);
+            this.MapPropertiesPanel.Name = "MapPropertiesPanel";
+            this.MapPropertiesPanel.Size = new System.Drawing.Size(126, 338);
+            this.MapPropertiesPanel.TabIndex = 4;
+            // 
+            // TemplatePanel
+            // 
+            this.TemplatePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TemplatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TemplatePanel.Location = new System.Drawing.Point(655, 3);
+            this.TemplatePanel.Name = "TemplatePanel";
+            this.TemplatePanel.Size = new System.Drawing.Size(126, 54);
+            this.TemplatePanel.TabIndex = 3;
+            // 
+            // ColorPickerPanel
+            // 
+            this.ColorPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ColorPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ColorPickerPanel.Location = new System.Drawing.Point(3, 63);
+            this.ColorPickerPanel.Name = "ColorPickerPanel";
+            this.ColorPickerPanel.Size = new System.Drawing.Size(124, 338);
+            this.ColorPickerPanel.TabIndex = 2;
+            // 
+            // TilePickerPanel
+            // 
+            this.TilePickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TilePickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TilePickerPanel.Location = new System.Drawing.Point(3, 3);
+            this.TilePickerPanel.Name = "TilePickerPanel";
+            this.TilePickerPanel.Size = new System.Drawing.Size(124, 54);
+            this.TilePickerPanel.TabIndex = 1;
+            // 
+            // MapEditorPanel
+            // 
+            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEditorPanel.Location = new System.Drawing.Point(133, 3);
+            this.MapEditorPanel.Name = "MapEditorPanel";
+            this.MainLayout.SetRowSpan(this.MapEditorPanel, 2);
+            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
+            this.MapEditorPanel.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 404);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 450);
-            this.Controls.Add(this.MainLayout);
+            this.Controls.Add(this.WindowLayout);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tile Game Maker";
-            this.MainLayout.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.WindowLayout.ResumeLayout(false);
+            this.WindowLayout.PerformLayout();
+            this.MainLayout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel MainLayout;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Panel MapEditorPanel;
-        private System.Windows.Forms.Panel ColorPickerPanel;
-        private System.Windows.Forms.Panel MapPropertiesPanel;
-        private System.Windows.Forms.Panel TemplatePanel;
-        private System.Windows.Forms.Panel TilePickerPanel;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MiAbout;
+        private System.Windows.Forms.TableLayoutPanel WindowLayout;
+        private System.Windows.Forms.TableLayoutPanel MainLayout;
+        private System.Windows.Forms.Panel MapPropertiesPanel;
+        private System.Windows.Forms.Panel TemplatePanel;
+        private System.Windows.Forms.Panel ColorPickerPanel;
+        private System.Windows.Forms.Panel TilePickerPanel;
+        private System.Windows.Forms.Panel MapEditorPanel;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

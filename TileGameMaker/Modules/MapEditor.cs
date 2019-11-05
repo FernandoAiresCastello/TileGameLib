@@ -22,7 +22,6 @@ namespace TileGameMaker.Modules
         public GameObject BlankObject => CreateBlankObject();
 
         public ObjectMap Map { get; private set; }
-        public ObjectMap Clipboard { get; private set; }
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
 
@@ -95,7 +94,7 @@ namespace TileGameMaker.Modules
                 Directory.CreateDirectory(WorkspacePath);
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
-            Clipboard = null;
+
             Palette = Map.Palette;
             Tileset = Map.Tileset;
 

@@ -35,9 +35,9 @@
             this.ToolStripAndColorPicker = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.BtnExport = new System.Windows.Forms.ToolStripButton();
             this.BtnImport = new System.Windows.Forms.ToolStripButton();
+            this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
@@ -77,6 +77,7 @@
             this.StatusBar.Location = new System.Drawing.Point(0, 323);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.Size = new System.Drawing.Size(219, 24);
+            this.StatusBar.SizingGrip = false;
             this.StatusBar.TabIndex = 3;
             this.StatusBar.Text = "statusStrip1";
             // 
@@ -111,6 +112,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnNew,
             this.BtnExport,
@@ -118,8 +120,8 @@
             this.BtnReset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.Size = new System.Drawing.Size(219, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
+            this.toolStrip1.Size = new System.Drawing.Size(219, 30);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -133,17 +135,6 @@
             this.BtnNew.Text = "toolStripButton1";
             this.BtnNew.ToolTipText = "Clear palette";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // BtnReset
-            // 
-            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(23, 22);
-            this.BtnReset.Text = "toolStripButton1";
-            this.BtnReset.ToolTipText = "Reset palette to default";
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // BtnExport
             // 
@@ -167,14 +158,25 @@
             this.BtnImport.ToolTipText = "Import palette";
             this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
             // 
+            // BtnReset
+            // 
+            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
+            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(23, 22);
+            this.BtnReset.Text = "toolStripButton1";
+            this.BtnReset.ToolTipText = "Reset palette to default";
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
             // PnlColorPicker
             // 
             this.PnlColorPicker.AutoScroll = true;
             this.PnlColorPicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlColorPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlColorPicker.Location = new System.Drawing.Point(3, 28);
+            this.PnlColorPicker.Location = new System.Drawing.Point(3, 33);
             this.PnlColorPicker.Name = "PnlColorPicker";
-            this.PnlColorPicker.Size = new System.Drawing.Size(213, 212);
+            this.PnlColorPicker.Size = new System.Drawing.Size(213, 207);
             this.PnlColorPicker.TabIndex = 1;
             this.PnlColorPicker.MouseLeave += new System.EventHandler(this.ColorPicker_MouseLeave);
             // 
