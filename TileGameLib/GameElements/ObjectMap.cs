@@ -191,6 +191,26 @@ namespace TileGameLib.GameElements
             return cell.IsEmpty ? null : cell.GetObject();
         }
 
+        public ObjectPosition FindObjectById(string id)
+        {
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        if (o != null && o.Id.Equals(id))
+                            return new ObjectPosition(layerIndex, x, y);
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public ObjectPosition FindObjectByTag(string tag)
         {
             List<ObjectPosition> objects = FindObjectsByTag(tag);
@@ -394,6 +414,50 @@ namespace TileGameLib.GameElements
             }
 
             return false;
+        }
+
+        public ObjectCollision FindCollisionBetweenIds(string idObject1, string idObject2)
+        {
+            ObjectPosition posObject1 = FindObjectById(idObject1);
+            ObjectPosition posObject2 = FindObjectById(idObject2);
+
+            if (posObject1.X == posObject2.X && posObject1.Y == posObject2.Y)
+                return new ObjectCollision(GetObject(posObject1), GetObject(posObject2));
+
+            return null;
+        }
+
+        public List<ObjectCollision> FindCollisionsBetweenIdAndTags(string id, string tag)
+        {
+            ObjectPosition objectPos = FindObjectById(id);
+            List<ObjectPosition> taggedObjectsPos = FindObjectsByTag(tag);
+            HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
+
+            foreach (ObjectPosition taggedObjectPos in taggedObjectsPos)
+            {
+                if (objectPos.X == taggedObjectPos.X && objectPos.Y == taggedObjectPos.Y)
+                    collisions.Add(new ObjectCollision(GetObject(objectPos), GetObject(taggedObjectPos)));
+            }
+
+            return collisions.ToList();
+        }
+
+        public List<ObjectCollision> FindCollisionsBetweenTags(string tag1, string tag2)
+        {
+            List<ObjectPosition> taggedObjectsPos1 = FindObjectsByTag(tag1);
+            List<ObjectPosition> taggedObjectsPos2 = FindObjectsByTag(tag2);
+            HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
+
+            foreach (ObjectPosition pos1 in taggedObjectsPos1)
+            {
+                foreach (ObjectPosition pos2 in taggedObjectsPos2)
+                {
+                    if (pos1.X == pos2.X && pos1.Y == pos2.Y)
+                        collisions.Add(new ObjectCollision(GetObject(pos1), GetObject(pos2)));
+                }
+            }
+
+            return collisions.ToList();
         }
     }
 }

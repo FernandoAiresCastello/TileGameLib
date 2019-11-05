@@ -12,6 +12,7 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
+        public string Id { get; private set; }
         public string Tag { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
         public ObjectProperties Properties { set; get; } = new ObjectProperties();
@@ -26,17 +27,25 @@ namespace TileGameLib.GameElements
         public GameObject()
         {
             SetNull();
+            PostConstruct();
         }
 
         public GameObject(GameObject other)
         {
             SetEqual(other);
+            PostConstruct();
         }
 
         public GameObject(Tile singleAnimFrame)
         {
             SetNull();
             Animation.SetFrame(0, singleAnimFrame);
+            PostConstruct();
+        }
+
+        private void PostConstruct()
+        {
+            Id = RandomID.Generate(8);
         }
 
         public void SetNull()
@@ -67,7 +76,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Tag: {Tag}";
+            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Tag: {Tag}";
         }
 
         public override bool Equals(object obj)
@@ -83,9 +92,14 @@ namespace TileGameLib.GameElements
                 Animation.Equals(o.Animation);
         }
 
+        public bool StrictEquals(object obj)
+        {
+            return Equals(obj) && Id == ((GameObject)obj).Id;
+        }
+
         public override int GetHashCode()
         {
-            return Tuple.Create(Tag, Properties, Animation).GetHashCode();
+            return Tuple.Create(Id, Tag, Properties, Animation).GetHashCode();
         }
     }
 }
