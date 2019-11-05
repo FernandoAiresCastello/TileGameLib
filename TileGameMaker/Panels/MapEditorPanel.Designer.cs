@@ -52,6 +52,7 @@
             this.BtnSetData = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetSelectionColor = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
@@ -134,6 +135,7 @@
             this.BtnSetData,
             this.BtnAddText,
             this.BtnSelect,
+            this.BtnSetSelectionColor,
             this.toolStripSeparator4,
             this.BtnZoomIn,
             this.BtnZoomOut,
@@ -260,7 +262,7 @@
             // BtnSetBackColor
             // 
             this.BtnSetBackColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetBackColor.Image = global::TileGameMaker.Properties.Resources.color_wheel;
+            this.BtnSetBackColor.Image = global::TileGameMaker.Properties.Resources.color_management;
             this.BtnSetBackColor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSetBackColor.Name = "BtnSetBackColor";
             this.BtnSetBackColor.Size = new System.Drawing.Size(23, 20);
@@ -322,6 +324,17 @@
             this.BtnSelect.Text = "toolStripButton1";
             this.BtnSelect.ToolTipText = "Selection mode";
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
+            // 
+            // BtnSetSelectionColor
+            // 
+            this.BtnSetSelectionColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetSelectionColor.Image = global::TileGameMaker.Properties.Resources.color_wheel;
+            this.BtnSetSelectionColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetSelectionColor.Name = "BtnSetSelectionColor";
+            this.BtnSetSelectionColor.Size = new System.Drawing.Size(23, 20);
+            this.BtnSetSelectionColor.Text = "toolStripButton1";
+            this.BtnSetSelectionColor.ToolTipText = "Set selection color";
+            this.BtnSetSelectionColor.Click += new System.EventHandler(this.BtnSetSelectionColor_Click);
             // 
             // BtnZoomIn
             // 
@@ -427,5 +440,6 @@
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripButton BtnDelete;
         private System.Windows.Forms.ToolStripButton BtnToggleTooltip;
+        private System.Windows.Forms.ToolStripButton BtnSetSelectionColor;
     }
 }

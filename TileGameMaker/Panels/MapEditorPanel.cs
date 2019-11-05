@@ -64,7 +64,6 @@ namespace TileGameMaker.Panels
 
             Display.MouseMove += Disp_MouseMove;
             Display.MouseDown += Disp_MouseDown;
-            Display.MouseUp += Disp_MouseUp;
             Display.MouseLeave += Disp_MouseLeave;
 
             SetMode(EditMode.Draw, BtnPutTemplate);
@@ -114,11 +113,6 @@ namespace TileGameMaker.Panels
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
             OnDisplayMouseDown(e);
-        }
-
-        private void Disp_MouseUp(object sender, MouseEventArgs e)
-        {
-            OnDisplayMouseUp(e);
         }
 
         private void OnDisplayMouseDown(MouseEventArgs e)
@@ -179,11 +173,14 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    StartSelection(point);
+                    if (Selection.StartPoint.HasValue)
+                        EndSelection(point);
+                    else
+                        StartSelection(point);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
-                    EndSelection(point);
+                    CancelSelection();
                 }
             }
         }
@@ -239,12 +236,7 @@ namespace TileGameMaker.Panels
 
         private void SetSelectionModeInstructionLabel()
         {
-            HoverLabel.Text = "Selection mode: Left-click to set top left tile; Right-click to set bottom right tile";
-        }
-
-        private void OnDisplayMouseUp(MouseEventArgs e)
-        {
-            // Nothing here yet
+            HoverLabel.Text = "Selection mode: Left-click to set top-left and bottom-right tile; Right-click to cancel";
         }
 
         private void OnDisplayMouseMove(MouseEventArgs e)
@@ -751,9 +743,19 @@ namespace TileGameMaker.Panels
         private void BtnSetBackColor_Click(object sender, EventArgs e)
         {
             ColorPickerWindow win = new ColorPickerWindow(MapEditor, "Select map background");
-
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.BackColor = win.SelectedColor;
+        }
+
+        private void BtnSetSelectionColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog win = new ColorDialog();
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                Display.TileSelectionColor = win.Color;
+                Display.Refresh();
+            }
         }
     }
 }

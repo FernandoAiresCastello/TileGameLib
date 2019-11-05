@@ -19,6 +19,7 @@ namespace TileGameLib.Components
         public int Zoom { get; protected set; }
         public bool StretchImage { set; get; }
         public Color TileSelectionColor { set; get; }
+        public int TileSelectionColorOpacity { set; get; }
 
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
@@ -28,7 +29,7 @@ namespace TileGameLib.Components
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
-        private List<Point> SelectedTiles = new List<Point>();
+        private readonly List<Point> SelectedTiles = new List<Point>();
 
         public TiledDisplay(Control parent, int cols, int rows, int zoom)
         {
@@ -40,7 +41,8 @@ namespace TileGameLib.Components
             ShowOverlay = false;
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
-            TileSelectionColor = Color.FromArgb(50, SystemColors.Highlight);
+            TileSelectionColor = SystemColors.Highlight;
+            TileSelectionColorOpacity = 50;
             ShowBorder(false);
             SetZoom(zoom);
         }
@@ -196,7 +198,7 @@ namespace TileGameLib.Components
 
         private void PaintTilesSelection(System.Drawing.Graphics g)
         {
-            using (SolidBrush brush = new SolidBrush(TileSelectionColor))
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(TileSelectionColorOpacity, TileSelectionColor)))
             {
                 foreach (Point point in SelectedTiles)
                     PaintTileSelection(g, brush, point);
