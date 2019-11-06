@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameMaker.TiledDisplays;
@@ -39,14 +39,14 @@ namespace TileGameMaker.Panels
         }
 
         private readonly int MaxFrames = Config.ReadInt("MaxAnimationFrames");
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
 
         public TemplatePanel()
         {
             InitializeComponent();
         }
 
-        public TemplatePanel(MapEditor editor)
+        public TemplatePanel(MapEditorElements editor)
         {
             InitializeComponent();
             MapEditor = editor;

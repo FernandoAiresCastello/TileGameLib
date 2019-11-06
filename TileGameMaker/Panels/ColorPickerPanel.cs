@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
@@ -18,7 +18,7 @@ namespace TileGameMaker.Panels
 {
     public partial class ColorPickerPanel : BasePanel
     {
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
@@ -30,7 +30,7 @@ namespace TileGameMaker.Panels
             InitializeComponent();
         }
 
-        public ColorPickerPanel(MapEditor editor)
+        public ColorPickerPanel(MapEditorElements editor)
         {
             InitializeComponent();
             MapEditor = editor;

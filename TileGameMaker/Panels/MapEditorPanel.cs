@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameLib.GameElements;
 using TileGameLib.File;
 using TileGameLib.Graphics;
@@ -25,7 +25,7 @@ namespace TileGameMaker.Panels
         public TiledDisplay Display { get; private set; }
 
         private ObjectMap Map;
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
         private MapRenderer MapRenderer;
         private int Layer;
         private ObjectBlockSelection Selection;
@@ -46,7 +46,7 @@ namespace TileGameMaker.Panels
             InitializeComponent();
         }
 
-        public MapEditorPanel(MapEditor editor)
+        public MapEditorPanel(MapEditorElements editor)
         {
             InitializeComponent();
             MapEditor = editor;
@@ -658,7 +658,7 @@ namespace TileGameMaker.Panels
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
             Map.MusicFile = "";
-            MapEditor.ResizeMap(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
+            MapEditor.ResizeMap(MapEditorElements.DefaultMapWidth, MapEditorElements.DefaultMapHeight);
             MapEditor.MapFile = null;
             MapEditor.UpdateMapProperties();
             ClearMap();

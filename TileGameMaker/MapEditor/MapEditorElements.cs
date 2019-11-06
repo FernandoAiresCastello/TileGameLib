@@ -11,9 +11,9 @@ using TileGameMaker.Panels;
 using TileGameMaker.Util;
 using TileGameMaker.Windows;
 
-namespace TileGameMaker.Modules
+namespace TileGameMaker.MapEditor
 {
-    public class MapEditor
+    public class MapEditorElements
     {
         public string WorkspacePath { get; private set; }
         public string MapFile { get; set; }
@@ -86,7 +86,7 @@ namespace TileGameMaker.Modules
             }
         }
 
-        public MapEditor(MainWindow mainWindow)
+        public MapEditorElements(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
 

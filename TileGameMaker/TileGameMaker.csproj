@@ -77,7 +77,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Util\Config.cs" />
-    <Compile Include="Util\ObjectBlockSelection.cs" />
+    <Compile Include="MapEditor\ObjectBlockSelection.cs" />
     <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,7 +162,7 @@
     <Compile Include="Panels\TilePickerPanel.Designer.cs">
       <DependentUpon>TilePickerPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\MapEditor.cs" />
+    <Compile Include="MapEditor\MapEditorElements.cs" />
     <Compile Include="TiledDisplays\TilePickerDisplay.cs">
       <SubType>Component</SubType>
     </Compile>

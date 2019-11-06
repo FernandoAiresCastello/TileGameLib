@@ -11,14 +11,14 @@ using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
     public partial class MainWindow : Form
     {
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
 
         private static readonly int BestWidth = Config.ReadInt("MapEditorWindowBestWidth");
         private static readonly int BestHeight = Config.ReadInt("MapEditorWindowBestHeight");
@@ -37,7 +37,7 @@ namespace TileGameMaker.Windows
             else
                 WindowState = FormWindowState.Maximized;
 
-            MapEditor = new MapEditor(this);
+            MapEditor = new MapEditorElements(this);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);
             AddControl(MapEditor.TilePickerControl, TilePickerPanel);
             AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);

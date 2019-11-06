@@ -68,6 +68,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.MiReplaceWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -362,6 +363,7 @@
             this.MiPasteObjects,
             this.MiDeleteObjects,
             this.MiFillWithTemplate,
+            this.MiReplaceWithTemplate,
             this.toolStripSeparator2,
             this.MiSetSelectionColor});
             this.BtnSelectionActions.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -374,55 +376,55 @@
             // MiCancelSelection
             // 
             this.MiCancelSelection.Name = "MiCancelSelection";
-            this.MiCancelSelection.Size = new System.Drawing.Size(201, 22);
+            this.MiCancelSelection.Size = new System.Drawing.Size(227, 22);
             this.MiCancelSelection.Text = "Cancel";
             this.MiCancelSelection.Click += new System.EventHandler(this.MiCancelSelection_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(224, 6);
             // 
             // MiCopyObjects
             // 
             this.MiCopyObjects.Name = "MiCopyObjects";
-            this.MiCopyObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiCopyObjects.Size = new System.Drawing.Size(227, 22);
             this.MiCopyObjects.Text = "Copy objects";
             // 
             // MiCutObjects
             // 
             this.MiCutObjects.Name = "MiCutObjects";
-            this.MiCutObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiCutObjects.Size = new System.Drawing.Size(227, 22);
             this.MiCutObjects.Text = "Cut objects";
             // 
             // MiPasteObjects
             // 
             this.MiPasteObjects.Name = "MiPasteObjects";
-            this.MiPasteObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiPasteObjects.Size = new System.Drawing.Size(227, 22);
             this.MiPasteObjects.Text = "Paste objects";
             // 
             // MiDeleteObjects
             // 
             this.MiDeleteObjects.Name = "MiDeleteObjects";
-            this.MiDeleteObjects.Size = new System.Drawing.Size(201, 22);
+            this.MiDeleteObjects.Size = new System.Drawing.Size(227, 22);
             this.MiDeleteObjects.Text = "Delete objects";
             this.MiDeleteObjects.Click += new System.EventHandler(this.MiDeleteObjects_Click);
             // 
             // MiFillWithTemplate
             // 
             this.MiFillWithTemplate.Name = "MiFillWithTemplate";
-            this.MiFillWithTemplate.Size = new System.Drawing.Size(201, 22);
-            this.MiFillWithTemplate.Text = "Fill with template object";
+            this.MiFillWithTemplate.Size = new System.Drawing.Size(191, 22);
+            this.MiFillWithTemplate.Text = "Fill with template";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(224, 6);
             // 
             // MiSetSelectionColor
             // 
             this.MiSetSelectionColor.Name = "MiSetSelectionColor";
-            this.MiSetSelectionColor.Size = new System.Drawing.Size(201, 22);
+            this.MiSetSelectionColor.Size = new System.Drawing.Size(227, 22);
             this.MiSetSelectionColor.Text = "Set selection color";
             this.MiSetSelectionColor.Click += new System.EventHandler(this.MiSetSelectionColor_Click);
             // 
@@ -487,6 +489,12 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // MiReplaceWithTemplate
+            // 
+            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
+            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(191, 22);
+            this.MiReplaceWithTemplate.Text = "Replace with template";
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,5 +555,6 @@
         private System.Windows.Forms.ToolStripMenuItem MiSetSelectionColor;
         private System.Windows.Forms.ToolStripButton BtnReplaceObjects;
         private System.Windows.Forms.ToolStripButton BtnRenderInvisibleObjects;
+        private System.Windows.Forms.ToolStripMenuItem MiReplaceWithTemplate;
     }
 }

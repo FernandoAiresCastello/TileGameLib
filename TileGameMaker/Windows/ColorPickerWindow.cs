@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameMaker.TiledDisplays;
 using TileGameMaker.Util;
 
@@ -18,7 +18,7 @@ namespace TileGameMaker.Windows
     {
         public int SelectedColor => ColorPicker.BackColorIx;
 
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
         private ColorPickerDisplay ColorPicker;
 
         public ColorPickerWindow()
@@ -26,7 +26,7 @@ namespace TileGameMaker.Windows
             InitializeComponent();
         }
 
-        public ColorPickerWindow(MapEditor editor, string title)
+        public ColorPickerWindow(MapEditorElements editor, string title)
         {
             InitializeComponent();
             MapEditor = editor;

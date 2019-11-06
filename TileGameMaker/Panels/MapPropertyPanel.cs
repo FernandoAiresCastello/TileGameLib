@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.Modules;
+using TileGameMaker.MapEditor;
 using TileGameLib.Util;
 using System.IO;
 
@@ -15,12 +15,12 @@ namespace TileGameMaker.Panels
 {
     public partial class MapPropertyPanel : BasePanel
     {
-        private MapEditor MapEditor;
+        private MapEditorElements MapEditor;
 
         public string MapName => TxtName.Text.Trim();
         public string MapMusic => TxtMusicFile.Text.Trim();
 
-        public MapPropertyPanel(MapEditor editor)
+        public MapPropertyPanel(MapEditorElements editor)
         {
             InitializeComponent();
             MapEditor = editor;
