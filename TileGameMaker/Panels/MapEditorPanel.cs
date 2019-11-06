@@ -56,6 +56,7 @@ namespace TileGameMaker.Panels
             Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
             MapRenderer.RenderInvisibleObjects = true;
+            BtnRenderInvisibleObjects.Checked = MapRenderer.RenderInvisibleObjects;
             LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new TileBlockSelection();
@@ -807,6 +808,12 @@ namespace TileGameMaker.Panels
                 Map.ReplaceObjects(o, MapEditor.SelectedObject);
                 Display.Refresh();
             }
+        }
+
+        private void BtnRenderInvisibleObjects_Click(object sender, EventArgs e)
+        {
+            MapRenderer.RenderInvisibleObjects = BtnRenderInvisibleObjects.Checked;
+            Display.Refresh();
         }
     }
 }
