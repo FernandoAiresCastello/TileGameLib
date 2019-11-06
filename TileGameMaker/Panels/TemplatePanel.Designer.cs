@@ -38,6 +38,7 @@
             this.BtnClear = new System.Windows.Forms.Button();
             this.TxtProperties = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.ChkVisible = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.ChkVisible);
             this.panel2.Controls.Add(this.TxtTag);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.TxtFrames);
@@ -170,6 +172,19 @@
             this.label3.Text = "Properties";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ChkVisible
+            // 
+            this.ChkVisible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChkVisible.AutoSize = true;
+            this.ChkVisible.Checked = true;
+            this.ChkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChkVisible.Location = new System.Drawing.Point(209, 69);
+            this.ChkVisible.Name = "ChkVisible";
+            this.ChkVisible.Size = new System.Drawing.Size(62, 19);
+            this.ChkVisible.TabIndex = 14;
+            this.ChkVisible.Text = "Visible";
+            this.ChkVisible.UseVisualStyleBackColor = true;
+            // 
             // TemplatePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,5 +211,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtTag;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox ChkVisible;
     }
 }

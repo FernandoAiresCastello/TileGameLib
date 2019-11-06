@@ -81,8 +81,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del $(TargetDir)\maps
-mkdir $(TargetDir)\maps
-copy $(ProjectDir)\maps\*.* $(TargetDir)\maps</PostBuildEvent>
+    <PostBuildEvent>rmdir /Q /S $(TargetDir)maps
+mkdir $(TargetDir)maps
+copy $(ProjectDir)maps\*.* $(TargetDir)maps</PostBuildEvent>
   </PropertyGroup>
 </Project>

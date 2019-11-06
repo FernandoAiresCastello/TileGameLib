@@ -24,7 +24,7 @@ namespace TileGameLib.GameElements
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
-        public static string DefaultName => "Undefined " + RandomID.Generate(8);
+        public static string DefaultName => RandomID.Generate(8);
 
         public ObjectMap(int width, int height) : this(DefaultName, width, height, 0)
         {

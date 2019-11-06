@@ -14,6 +14,7 @@ namespace TileGameMaker.Windows
     public partial class ObjectDataInputWindow : Form
     {
         public string ObjectTag => TxtTag.Text.Trim();
+        public bool ObjectVisible => ChkVisible.Checked;
         public ObjectProperties ObjectProperties { set; get; }
 
         public ObjectDataInputWindow()
@@ -28,6 +29,7 @@ namespace TileGameMaker.Windows
             TxtPosition.Text = $"Layer:{position.Layer} X:{position.X} Y:{position.Y}";
             TxtPosition.Select(0, 0);
             TxtTag.Text = o.Tag;
+            ChkVisible.Checked = o.Visible;
             TxtTag.Select(0, 0);
             ObjectProperties.SetEqual(o.Properties);
             TxtProperties.Text = o.Properties.ToString();

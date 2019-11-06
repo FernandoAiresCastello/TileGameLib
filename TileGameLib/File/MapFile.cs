@@ -41,6 +41,7 @@ namespace TileGameLib.File
                         {
                             file.WriteByte(OccupiedCell);
                             file.WriteString(o.Tag);
+                            file.WriteByte(o.Visible ? (byte)1 : (byte)0);
                             file.WriteByte((byte)o.Animation.Size);
 
                             foreach (Tile tile in o.Animation.Frames)
@@ -85,6 +86,12 @@ namespace TileGameLib.File
             return file;
         }
 
+        public static void Save(ObjectMap map, string path)
+        {
+            MemoryFile file = Save(map);
+            file.SaveToPhysicalFile(path);
+        }
+
         public static ObjectMap Load(MemoryFile file)
         {
             string header = file.ReadString();
@@ -114,11 +121,13 @@ namespace TileGameLib.File
 
                         if (cellState == OccupiedCell)
                         {
-                            string id = file.ReadString();
+                            string tag = file.ReadString();
+                            bool visible = file.ReadByte() > 0;
                             int frameCount = file.ReadByte();
 
                             GameObject o = new GameObject();
-                            o.Tag = id;
+                            o.Tag = tag;
+                            o.Visible = visible;
                             o.Animation.Clear(null);
                             o.Animation.AddFrames(frameCount, new Tile());
 
@@ -169,19 +178,13 @@ namespace TileGameLib.File
             return map;
         }
 
-        public static void Save(ObjectMap map, string path)
-        {
-            MemoryFile file = Save(map);
-            file.SaveToPhysicalFile(path);
-        }
-
         public static ObjectMap Load(string path)
         {
             MemoryFile file = new MemoryFile(path);
             return Load(file);
         }
 
-        public static void Load(ObjectMap map, string path)
+        public static void Load(ref ObjectMap map, string path)
         {
             if (map != null)
                 map.SetEqual(Load(path));

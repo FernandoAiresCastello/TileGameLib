@@ -72,6 +72,7 @@ namespace TileGameMaker.Panels
         {
             base.Refresh();
             TxtTag.Text = Object.Tag;
+            ChkVisible.Checked = Object.Visible;
             TxtProperties.Text = Object.Properties.ToString();
         }
 
@@ -96,6 +97,7 @@ namespace TileGameMaker.Panels
             AnimationStrip.Clear();
             TxtFrames.Text = 1.ToString();
             TxtTag.Text = "";
+            ChkVisible.Checked = true;
             Refresh();
         }
 

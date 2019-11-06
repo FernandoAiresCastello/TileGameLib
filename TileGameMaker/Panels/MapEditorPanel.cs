@@ -55,6 +55,7 @@ namespace TileGameMaker.Panels
             Display.ShowGrid = true;
             Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
+            MapRenderer.RenderInvisibleObjects = true;
             LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new TileBlockSelection();
@@ -311,6 +312,7 @@ namespace TileGameMaker.Panels
             return 
                 $"{position}\n" +
                 $"Tag: {o.Tag}\n" +
+                $"Visible: {o.Visible}\n" +
                 $"Frames: {o.Animation.Frames.Count}\n" +
                 "Properties: \n" +
                 "{\n" + properties + "}";
@@ -519,6 +521,7 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this, o, position) == DialogResult.OK)
             {
                 o.Tag = win.ObjectTag;
+                o.Visible = win.ObjectVisible;
                 o.Properties = win.ObjectProperties;
             }
         }
@@ -584,7 +587,7 @@ namespace TileGameMaker.Panels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MapFile.Load(Map, dialog.FileName);
+                MapFile.Load(ref Map, dialog.FileName);
                 MapEditor.MapFile = dialog.FileName;
                 MapEditor.UpdateMapProperties();
                 MapEditor.ResizeMap(Map.Width, Map.Height);
@@ -788,7 +791,7 @@ namespace TileGameMaker.Panels
 
             if (win.ShowDialog(this) == DialogResult.OK)
             {
-                Display.TileSelectionColor = win.Color;
+                Display.TileHighlightColor = win.Color;
                 Display.Refresh();
             }
         }

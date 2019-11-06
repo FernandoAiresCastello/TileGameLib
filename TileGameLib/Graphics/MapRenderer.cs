@@ -16,6 +16,7 @@ namespace TileGameLib.Graphics
         public Rectangle Viewport { set; get; }
         public bool AnimationEnabled { set; get; }
         public bool AutoRefresh { set; get; }
+        public bool RenderInvisibleObjects { set; get; }
 
         public int RefreshInterval
         {
@@ -58,6 +59,7 @@ namespace TileGameLib.Graphics
             Scroll = scroll;
             RenderSingleLayer = false;
             SingleLayerToRender = 0;
+            RenderInvisibleObjects = false;
 
             AutoRefresh = true;
             RefreshTimer = new Timer();
@@ -164,8 +166,11 @@ namespace TileGameLib.Graphics
 
             if (o != null)
             {
-                Tile tile = o.Animation.GetFrame(AnimationFrame);
-                Disp.Graphics.PutTile(x, y, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+                if (o.Visible || RenderInvisibleObjects)
+                {
+                    Tile tile = o.Animation.GetFrame(AnimationFrame);
+                    Disp.Graphics.PutTile(x, y, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+                }
             }
         }
     }

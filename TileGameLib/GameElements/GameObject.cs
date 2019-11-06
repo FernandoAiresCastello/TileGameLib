@@ -14,6 +14,7 @@ namespace TileGameLib.GameElements
     {
         public string Id { get; private set; }
         public string Tag { set; get; }
+        public bool Visible { set; get; }
         public ObjectAnim Animation { set; get; } = new ObjectAnim();
         public ObjectProperties Properties { set; get; } = new ObjectProperties();
 
@@ -46,6 +47,7 @@ namespace TileGameLib.GameElements
         public void SetNull()
         {
             Tag = "";
+            Visible = true;
             Properties.RemoveAll();
             Animation.Clear(Tile.Null);
         }
@@ -55,6 +57,7 @@ namespace TileGameLib.GameElements
             if (o != null)
             {
                 Tag = o.Tag;
+                Visible = o.Visible;
                 Properties.SetEqual(o.Properties);
                 Animation.SetEqual(o.Animation);
             }
@@ -71,7 +74,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Tag: {Tag}";
+            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Visible: {Visible} Tag: {Tag}";
         }
 
         public override bool Equals(object obj)
@@ -83,6 +86,7 @@ namespace TileGameLib.GameElements
 
             return
                 Tag.Equals(o.Tag) &&
+                Visible.Equals(o.Visible) &&
                 Properties.Equals(o.Properties) &&
                 Animation.Equals(o.Animation);
         }
@@ -94,7 +98,7 @@ namespace TileGameLib.GameElements
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Id, Tag, Properties, Animation).GetHashCode();
+            return Tuple.Create(Id, Tag, Visible, Properties, Animation).GetHashCode();
         }
     }
 }
