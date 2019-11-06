@@ -36,6 +36,7 @@
             this.BtnExport = new System.Windows.Forms.ToolStripButton();
             this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
+            this.TxtTilesPerRow = new System.Windows.Forms.ToolStripTextBox();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -71,7 +72,8 @@
             this.BtnPaste,
             this.BtnExport,
             this.BtnImport,
-            this.BtnReset});
+            this.BtnReset,
+            this.TxtTilesPerRow});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 1, 2);
@@ -145,6 +147,18 @@
             this.BtnReset.ToolTipText = "Reset tileset to default";
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
+            // TxtTilesPerRow
+            // 
+            this.TxtTilesPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtTilesPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTilesPerRow.MaxLength = 2;
+            this.TxtTilesPerRow.Name = "TxtTilesPerRow";
+            this.TxtTilesPerRow.Size = new System.Drawing.Size(50, 23);
+            this.TxtTilesPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtTilesPerRow.ToolTipText = "Tiles per row to display";
+            this.TxtTilesPerRow.Leave += new System.EventHandler(this.TxtTilesPerRow_Leave);
+            this.TxtTilesPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtTilesPerRow_KeyUp);
+            // 
             // PnlTilePicker
             // 
             this.PnlTilePicker.AutoScroll = true;
@@ -214,5 +228,6 @@
         private System.Windows.Forms.ToolStripButton BtnReset;
         private System.Windows.Forms.ToolStripButton BtnExport;
         private System.Windows.Forms.ToolStripButton BtnImport;
+        private System.Windows.Forms.ToolStripTextBox TxtTilesPerRow;
     }
 }

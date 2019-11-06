@@ -14,6 +14,11 @@ namespace TileGameMaker.TiledDisplays
     {
         public int TileIndex { set; get; }
 
+        public TilePickerDisplay(Control parent, int zoom) 
+            : this(parent, 1, 1, zoom)
+        {
+        }
+
         public TilePickerDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
@@ -29,17 +34,24 @@ namespace TileGameMaker.TiledDisplays
             int x = 0;
             int y = 0;
 
-            for (int i = 0; i < Graphics.Tileset.Size; i++)
+            for (int i = 0; i < TileCount; i++)
             {
                 int fgc = 0;
                 int bgc = 1;
                 int selectedFgc = 2;
                 int selectedBgc = 3;
 
-                if (i == TileIndex)
-                    Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
+                if (i < Graphics.Tileset.Size)
+                {
+                    if (i == TileIndex)
+                        Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
+                    else
+                        Graphics.PutTile(x, y, i, fgc, bgc);
+                }
                 else
-                    Graphics.PutTile(x, y, i, fgc, bgc);
+                {
+                    Graphics.PutTile(x, y, 0, bgc, bgc);
+                }
 
                 x++;
 
@@ -48,6 +60,9 @@ namespace TileGameMaker.TiledDisplays
                     x = 0;
                     y++;
                 }
+
+                if (x >= Graphics.Cols || y >= Graphics.Rows)
+                    break;
             }
 
             base.OnPaint(e);

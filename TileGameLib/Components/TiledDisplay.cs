@@ -23,6 +23,7 @@ namespace TileGameLib.Components
 
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
+        public int TileCount => Cols * Rows;
 
         protected Bitmap Grid;
         protected Color GridColor;
@@ -77,6 +78,20 @@ namespace TileGameLib.Components
         {
             Graphics = new GraphicsAdapter(cols, rows, Graphics.Tileset, Graphics.Palette);
             UpdateSize();
+        }
+
+        public void ResizeGraphicsByTileCount(int tileCount, int tilesPerRow)
+        {
+            int cols = tilesPerRow;
+            int rows = 0;
+
+            for (int i = 0; i < tileCount; i++)
+            {
+                if (i % tilesPerRow == 0)
+                    rows++;
+            }
+
+            ResizeGraphics(cols, rows);
         }
 
         public void SetZoom(int zoom)
