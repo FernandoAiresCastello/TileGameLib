@@ -44,6 +44,7 @@
             this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
+            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
@@ -67,7 +68,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -268,6 +268,18 @@
             this.BtnSetBackColor.ToolTipText = "Set map background color";
             this.BtnSetBackColor.Click += new System.EventHandler(this.BtnSetBackColor_Click);
             // 
+            // BtnRenderInvisibleObjects
+            // 
+            this.BtnRenderInvisibleObjects.CheckOnClick = true;
+            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
+            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
+            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
+            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
+            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
+            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -394,6 +406,7 @@
             this.MiDeleteObjects.Name = "MiDeleteObjects";
             this.MiDeleteObjects.Size = new System.Drawing.Size(201, 22);
             this.MiDeleteObjects.Text = "Delete objects";
+            this.MiDeleteObjects.Click += new System.EventHandler(this.MiDeleteObjects_Click);
             // 
             // MiFillWithTemplate
             // 
@@ -473,18 +486,6 @@
             this.BtnScreenshot.Text = "toolStripButton1";
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
-            // 
-            // BtnRenderInvisibleObjects
-            // 
-            this.BtnRenderInvisibleObjects.CheckOnClick = true;
-            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
-            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
-            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
-            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
-            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
-            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
             // 
             // MapEditorPanel
             // 

@@ -28,7 +28,7 @@ namespace TileGameMaker.Panels
         private MapEditor MapEditor;
         private MapRenderer MapRenderer;
         private int Layer;
-        private TileBlockSelection Selection;
+        private ObjectBlockSelection Selection;
         private ToolTip Tooltip;
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled = false;
@@ -59,7 +59,7 @@ namespace TileGameMaker.Panels
             BtnRenderInvisibleObjects.Checked = MapRenderer.RenderInvisibleObjects;
             LbEditModeInfo.Text = "";
             Layer = 0;
-            Selection = new TileBlockSelection();
+            Selection = new ObjectBlockSelection();
 
             Tooltip = new ToolTip();
             Tooltip.IsBalloon = true;
@@ -813,6 +813,16 @@ namespace TileGameMaker.Panels
         private void BtnRenderInvisibleObjects_Click(object sender, EventArgs e)
         {
             MapRenderer.RenderInvisibleObjects = BtnRenderInvisibleObjects.Checked;
+            Display.Refresh();
+        }
+
+        private void MiDeleteObjects_Click(object sender, EventArgs e)
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedObjectPositions(Layer));
+
+            foreach (ObjectCell cell in selectedCells)
+                cell.DeleteObject();
+
             Display.Refresh();
         }
     }

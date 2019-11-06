@@ -77,7 +77,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Util\Config.cs" />
-    <Compile Include="Util\TileBlockSelection.cs" />
+    <Compile Include="Util\ObjectBlockSelection.cs" />
     <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>

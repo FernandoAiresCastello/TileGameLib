@@ -4,17 +4,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.GameElements;
 
 namespace TileGameMaker.Util
 {
-    public class TileBlockSelection
+    public class ObjectBlockSelection
     {
         public Point? StartPoint { set; get; } = null;
         public Point? EndPoint { set; get; } = null;
         public Rectangle? Block => CalculateBlock();
         public List<Point> Points => BlockToPoints();
 
-        public TileBlockSelection()
+        public ObjectBlockSelection()
         {
         }
 
@@ -49,6 +50,16 @@ namespace TileGameMaker.Util
             }
 
             return points;
+        }
+
+        public List<ObjectPosition> GetSelectedObjectPositions(int layer)
+        {
+            List<ObjectPosition> positions = new List<ObjectPosition>();
+            
+            foreach (Point point in Points)
+                positions.Add(new ObjectPosition(layer, point));
+
+            return positions;
         }
     }
 }

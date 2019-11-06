@@ -159,6 +159,16 @@ namespace TileGameLib.GameElements
             return Layers[pos.Layer].GetCell(pos.X, pos.Y);
         }
 
+        public List<ObjectCell> GetCells(List<ObjectPosition> positions)
+        {
+            List<ObjectCell> cells = new List<ObjectCell>();
+
+            foreach (ObjectPosition pos in positions)
+                cells.Add(GetCell(pos));
+
+            return cells;
+        }
+
         public GameObject GetObject(ObjectPosition pos)
         {
             return Layers[pos.Layer].GetObject(pos.X, pos.Y);
