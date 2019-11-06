@@ -17,6 +17,11 @@ namespace TileGameLib.GameElements
             Object2 = o2;
         }
 
+        public override string ToString()
+        {
+            return $"Object1: {Object1} Object2: {Object2}";
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())

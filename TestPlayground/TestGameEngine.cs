@@ -22,7 +22,7 @@ namespace TestPlayground
             DrawUi();
             AddMapController("maps/test01.tgmap", new TestMapController());
             AddMapController("maps/test02.tgmap", new TestMapController());
-            EnterMap("test01");
+            EnterMap("test02");
         }
 
         public override void OnDrawUi()

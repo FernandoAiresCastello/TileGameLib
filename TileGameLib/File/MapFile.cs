@@ -135,7 +135,7 @@ namespace TileGameLib.File
                             {
                                 string prop = file.ReadString();
                                 string value = file.ReadString();
-                                o.Properties.SetProperty(prop, value);
+                                o.Properties.Set(prop, value);
                             }
 
                             layer.SetObject(o, x, y);

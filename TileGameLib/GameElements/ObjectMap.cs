@@ -164,6 +164,16 @@ namespace TileGameLib.GameElements
             return Layers[pos.Layer].GetObject(pos.X, pos.Y);
         }
 
+        public List<GameObject> GetObjects(List<ObjectPosition> positions)
+        {
+            List<GameObject> objects = new List<GameObject>();
+
+            foreach (ObjectPosition pos in positions)
+                objects.Add(GetObject(pos));
+
+            return objects;
+        }
+
         public GameObject GetObjectUnder(ObjectPosition pos)
         {
             if (pos.Layer <= 0)
@@ -262,7 +272,7 @@ namespace TileGameLib.GameElements
                     for (int x = 0; x < Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        if (o != null && o.HasProperty(property))
+                        if (o != null && o.Properties.Has(property))
                             layerPositions.Add(new ObjectPosition(layerIndex, x, y));
                     }
                 }
@@ -287,7 +297,7 @@ namespace TileGameLib.GameElements
                     for (int x = 0; x < Width; x++)
                     {
                         GameObject o = layer.GetObject(x, y);
-                        if (o != null && o.HasPropertyValue(property, value))
+                        if (o != null && o.Properties.HasValue(property, value))
                             layerPositions.Add(new ObjectPosition(layerIndex, x, y));
                     }
                 }
@@ -388,7 +398,7 @@ namespace TileGameLib.GameElements
             {
                 GameObject o = destCell.GetObject();
 
-                if (o.HasProperty(property))
+                if (o.Properties.Has(property))
                 {
                     MoveObject(srcPos, destPos);
                     return true;
@@ -406,7 +416,7 @@ namespace TileGameLib.GameElements
             {
                 GameObject o = destCell.GetObject();
 
-                if (o.HasPropertyValue(property, value))
+                if (o.Properties.HasValue(property, value))
                 {
                     MoveObject(srcPos, destPos);
                     return true;
@@ -425,6 +435,11 @@ namespace TileGameLib.GameElements
                 return new ObjectCollision(GetObject(posObject1), GetObject(posObject2));
 
             return null;
+        }
+
+        public ObjectCollision FindCollisionBetweenObjects(GameObject object1, GameObject object2)
+        {
+            return FindCollisionBetweenIds(object1.Id, object2.Id);
         }
 
         public List<ObjectCollision> FindCollisionsBetweenIdAndTags(string id, string tag)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.GameElements
 {
@@ -14,46 +15,60 @@ namespace TileGameLib.GameElements
         {
         }
 
-        public string GetProperty(string property)
+        public string GetAsString(string property)
         {
-            if (HasProperty(property))
+            if (Has(property))
                 return Entries[property];
 
-            return null;
+            throw new TileGameLibException($"Property {property} not found");
         }
 
-        public void SetProperty(string property, object value)
+        public int GetAsNumber(string property)
+        {
+            if (Has(property))
+            {
+                bool isNumeric = int.TryParse(GetAsString(property), out int numericValue);
+                if (!isNumeric)
+                    throw new TileGameLibException($"Property {property} is not a numeric property");
+
+                return numericValue;
+            }
+
+            throw new TileGameLibException($"Property {property} not found");
+        }
+
+        public void Set(string property, object value)
         {
             Entries[property] = value.ToString();
         }
 
-        public bool HasProperty(string property)
+        public bool Has(string property)
         {
             return Entries.ContainsKey(property);
         }
 
-        public bool HasPropertyValue(string property, object value)
+        public bool HasValue(string property, object value)
         {
-            if (HasProperty(property) && GetProperty(property).Equals(value.ToString()))
+            if (Has(property) && GetAsString(property).Equals(value.ToString()))
                 return true;
 
             return false;
         }
 
-        public void RemoveProperty(string property)
+        public void Remove(string property)
         {
-            if (HasProperty(property))
+            if (Has(property))
                 Entries.Remove(property);
         }
 
-        public void RemoveAllProperties()
+        public void RemoveAll()
         {
             Entries.Clear();
         }
 
         public void SetEqual(ObjectProperties other)
         {
-            RemoveAllProperties();
+            RemoveAll();
             foreach (var property in other.Entries)
                 Entries[property.Key] = property.Value;
         }
@@ -88,7 +103,7 @@ namespace TileGameLib.GameElements
 
         public void Parse(string propertiesAsString)
         {
-            RemoveAllProperties();
+            RemoveAll();
             string[] properties = propertiesAsString.Trim().Split('\n');
             foreach (string propertyAndValue in properties)
             {
@@ -99,9 +114,17 @@ namespace TileGameLib.GameElements
                     string property = propertyValue[0].Trim();
                     string value = propertyValue[1].Trim();
                     if (!string.IsNullOrWhiteSpace(property) && !string.IsNullOrWhiteSpace(value))
-                        SetProperty(property, value);
+                        Set(property, value);
                 }
             }
+        }
+
+        public void AddNumeric(string property, int amount)
+        {
+            if (!Has(property))
+                return;
+            
+            Set(property, GetAsNumber(property) + amount);
         }
 
         public override int GetHashCode()
