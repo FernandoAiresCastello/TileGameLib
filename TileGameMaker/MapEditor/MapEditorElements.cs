@@ -17,8 +17,10 @@ namespace TileGameMaker.MapEditor
     {
         public string WorkspacePath { get; private set; }
         public string MapFile { get; set; }
-        public string MapName => MapPropertyControl.MapName;
-        public string MapMusic => MapPropertyControl.MapMusic;
+        //public string MapName => MapPropertyControl.MapName;
+        //public string MapMusic => MapPropertyControl.MapMusic;
+        public string MapName => MapPropertyGridControl.Properties.Name;
+        public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
 
         public ObjectMap Map { get; private set; }
@@ -31,6 +33,7 @@ namespace TileGameMaker.MapEditor
         public ColorPickerPanel ColorPickerControl { get; private set; }
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyPanel MapPropertyControl { get; private set; }
+        public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
 
         public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
         public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
@@ -103,13 +106,15 @@ namespace TileGameMaker.MapEditor
             TemplateControl = new TemplatePanel(this);
             TilePickerControl = new TilePickerPanel(this);
             ColorPickerControl = new ColorPickerPanel(this);
-            MapPropertyControl = new MapPropertyPanel(this);
+            //MapPropertyControl = new MapPropertyPanel(this);
+            MapPropertyGridControl = new MapPropertyGridPanel(this);
             UpdateMapProperties();
 
             Children.Add(TilePickerControl);
             Children.Add(TemplateControl);
             Children.Add(ColorPickerControl);
-            Children.Add(MapPropertyControl);
+            //Children.Add(MapPropertyControl);
+            Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
         }
 
@@ -127,7 +132,8 @@ namespace TileGameMaker.MapEditor
 
         public void UpdateMapProperties()
         {
-            MapPropertyControl.UpdateProperties();
+            //MapPropertyControl.UpdateProperties();
+            MapPropertyGridControl.UpdateProperties();
         }
 
         public void ResizeMap(int width, int height)

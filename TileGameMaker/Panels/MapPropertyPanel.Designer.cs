@@ -92,7 +92,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 176);
+            this.label7.Location = new System.Drawing.Point(15, 171);
             this.label7.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 30);
@@ -128,7 +128,7 @@
             // 
             this.TxtLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtLayers.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLayers.Location = new System.Drawing.Point(68, 215);
+            this.TxtLayers.Location = new System.Drawing.Point(68, 209);
             this.TxtLayers.Margin = new System.Windows.Forms.Padding(5);
             this.TxtLayers.MaxLength = 1;
             this.TxtLayers.Name = "TxtLayers";
@@ -141,7 +141,7 @@
             // 
             this.TxtHeight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtHeight.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtHeight.Location = new System.Drawing.Point(68, 147);
+            this.TxtHeight.Location = new System.Drawing.Point(68, 143);
             this.TxtHeight.Margin = new System.Windows.Forms.Padding(5);
             this.TxtHeight.MaxLength = 3;
             this.TxtHeight.Name = "TxtHeight";
@@ -153,7 +153,7 @@
             // 
             this.TxtMusicFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtMusicFile.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMusicFile.Location = new System.Drawing.Point(68, 181);
+            this.TxtMusicFile.Location = new System.Drawing.Point(68, 176);
             this.TxtMusicFile.Margin = new System.Windows.Forms.Padding(5);
             this.TxtMusicFile.Name = "TxtMusicFile";
             this.TxtMusicFile.Size = new System.Drawing.Size(210, 23);
@@ -163,7 +163,7 @@
             // 
             this.TxtWidth.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtWidth.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtWidth.Location = new System.Drawing.Point(68, 113);
+            this.TxtWidth.Location = new System.Drawing.Point(68, 110);
             this.TxtWidth.Margin = new System.Windows.Forms.Padding(5);
             this.TxtWidth.MaxLength = 3;
             this.TxtWidth.Name = "TxtWidth";
@@ -175,7 +175,7 @@
             // 
             this.TxtName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtName.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtName.Location = new System.Drawing.Point(68, 79);
+            this.TxtName.Location = new System.Drawing.Point(68, 77);
             this.TxtName.Margin = new System.Windows.Forms.Padding(5);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(210, 23);
@@ -185,7 +185,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 210);
+            this.label5.Location = new System.Drawing.Point(15, 204);
             this.label5.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 30);
@@ -197,7 +197,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 142);
+            this.label4.Location = new System.Drawing.Point(15, 138);
             this.label4.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 30);
@@ -209,7 +209,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 108);
+            this.label3.Location = new System.Drawing.Point(15, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 30);
@@ -221,7 +221,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 74);
+            this.label2.Location = new System.Drawing.Point(15, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 30);
@@ -233,7 +233,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 40);
+            this.label1.Location = new System.Drawing.Point(15, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 30);
@@ -245,7 +245,7 @@
             // 
             this.TxtFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtFile.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFile.Location = new System.Drawing.Point(68, 45);
+            this.TxtFile.Location = new System.Drawing.Point(68, 44);
             this.TxtFile.Margin = new System.Windows.Forms.Padding(5);
             this.TxtFile.Name = "TxtFile";
             this.TxtFile.ReadOnly = true;
@@ -261,11 +261,11 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnDiscard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 257);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 250);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 52);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 59);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // BtnDiscard
@@ -273,7 +273,7 @@
             this.BtnDiscard.AutoSize = true;
             this.BtnDiscard.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnDiscard.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnDiscard.Location = new System.Drawing.Point(139, 19);
+            this.BtnDiscard.Location = new System.Drawing.Point(139, 26);
             this.BtnDiscard.MaximumSize = new System.Drawing.Size(0, 30);
             this.BtnDiscard.Name = "BtnDiscard";
             this.BtnDiscard.Size = new System.Drawing.Size(130, 30);
@@ -287,7 +287,7 @@
             this.BtnApply.AutoSize = true;
             this.BtnApply.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BtnApply.Image = global::TileGameMaker.Properties.Resources.tick;
-            this.BtnApply.Location = new System.Drawing.Point(3, 19);
+            this.BtnApply.Location = new System.Drawing.Point(3, 26);
             this.BtnApply.MaximumSize = new System.Drawing.Size(0, 30);
             this.BtnApply.Name = "BtnApply";
             this.BtnApply.Size = new System.Drawing.Size(130, 30);
