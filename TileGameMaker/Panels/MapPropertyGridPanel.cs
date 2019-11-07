@@ -65,6 +65,22 @@ namespace TileGameMaker.Panels
                 return;
             }
 
+            if (width <= 0)
+            {
+                Alert.Warning("Width must be greater than 0");
+                Properties.Width = MapEditor.Map.Width.ToString();
+                Grid.Refresh();
+                return;
+            }
+
+            if (height <= 0)
+            {
+                Alert.Warning("Height must be greater than 0");
+                Properties.Height = MapEditor.Map.Height.ToString();
+                Grid.Refresh();
+                return;
+            }
+
             if ((width != MapEditor.Map.Width || height != MapEditor.Map.Height) &&
                 Alert.Confirm($"Resize map to {Properties.Width}x{Properties.Height}?"))
             {
