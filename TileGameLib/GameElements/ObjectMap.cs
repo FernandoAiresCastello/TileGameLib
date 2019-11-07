@@ -442,7 +442,7 @@ namespace TileGameLib.GameElements
             ObjectPosition posObject2 = FindObjectById(idObject2);
 
             if (posObject1.X == posObject2.X && posObject1.Y == posObject2.Y)
-                return new ObjectCollision(GetObject(posObject1), GetObject(posObject2));
+                return GetCollisionData(posObject1, posObject2);
 
             return null;
         }
@@ -461,7 +461,7 @@ namespace TileGameLib.GameElements
             foreach (ObjectPosition taggedObjectPos in taggedObjectsPos)
             {
                 if (objectPos.X == taggedObjectPos.X && objectPos.Y == taggedObjectPos.Y)
-                    collisions.Add(new ObjectCollision(GetObject(objectPos), GetObject(taggedObjectPos)));
+                    collisions.Add(GetCollisionData(objectPos, taggedObjectPos));
             }
 
             return collisions.ToList();
@@ -478,11 +478,18 @@ namespace TileGameLib.GameElements
                 foreach (ObjectPosition pos2 in taggedObjectsPos2)
                 {
                     if (pos1.X == pos2.X && pos1.Y == pos2.Y)
-                        collisions.Add(new ObjectCollision(GetObject(pos1), GetObject(pos2)));
+                        collisions.Add(GetCollisionData(pos1, pos2));
                 }
             }
 
             return collisions.ToList();
+        }
+
+        private ObjectCollision GetCollisionData(ObjectPosition pos1, ObjectPosition pos2)
+        {
+            return new ObjectCollision(
+                new PositionedObject(GetObject(pos1), pos1),
+                new PositionedObject(GetObject(pos2), pos2));
         }
     }
 }

@@ -52,7 +52,7 @@ namespace TileGameMaker.MapEditor
             return points;
         }
 
-        public List<ObjectPosition> GetSelectedObjectPositions(int layer)
+        public List<ObjectPosition> GetSelectedPositions(int layer)
         {
             List<ObjectPosition> positions = new List<ObjectPosition>();
             

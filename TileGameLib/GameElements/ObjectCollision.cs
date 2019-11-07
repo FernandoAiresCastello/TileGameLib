@@ -8,18 +8,18 @@ namespace TileGameLib.GameElements
 {
     public class ObjectCollision
     {
-        public GameObject Object1 { set; get; }
-        public GameObject Object2 { set; get; }
+        public PositionedObject PositionedObject1 { set; get; }
+        public PositionedObject PositionedObject2 { set; get; }
 
-        public ObjectCollision(GameObject o1, GameObject o2)
+        public ObjectCollision(PositionedObject o1, PositionedObject o2)
         {
-            Object1 = o1;
-            Object2 = o2;
+            PositionedObject1 = o1;
+            PositionedObject2 = o2;
         }
 
         public override string ToString()
         {
-            return $"Object1: {Object1} Object2: {Object2}";
+            return $"PositionedObject1: {PositionedObject1} PositionedObject2: {PositionedObject2}";
         }
 
         public override bool Equals(object obj)
@@ -30,13 +30,13 @@ namespace TileGameLib.GameElements
             ObjectCollision other = (ObjectCollision)obj;
 
             return 
-                Object1.StrictEquals(other.Object1) && 
-                Object2.StrictEquals(other.Object2);
+                PositionedObject1.Object.StrictEquals(other.PositionedObject1) &&
+                PositionedObject2.Object.StrictEquals(other.PositionedObject2);
         }
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Object1, Object2).GetHashCode();
+            return Tuple.Create(PositionedObject1, PositionedObject2).GetHashCode();
         }
     }
 }

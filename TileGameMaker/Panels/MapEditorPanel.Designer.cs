@@ -60,6 +60,7 @@
             this.MiPasteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiDeleteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiFillWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiReplaceWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,7 +69,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.MiReplaceWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -171,7 +171,7 @@
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(23, 20);
             this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear map";
+            this.BtnNew.ToolTipText = "Clear map (Ctrl+N)";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnLoadMap
@@ -182,7 +182,7 @@
             this.BtnLoadMap.Name = "BtnLoadMap";
             this.BtnLoadMap.Size = new System.Drawing.Size(23, 20);
             this.BtnLoadMap.Text = "toolStripButton1";
-            this.BtnLoadMap.ToolTipText = "Load map";
+            this.BtnLoadMap.ToolTipText = "Load map (Ctrl+O)";
             this.BtnLoadMap.Click += new System.EventHandler(this.BtnLoadMap_Click);
             // 
             // BtnSaveMap
@@ -193,7 +193,7 @@
             this.BtnSaveMap.Name = "BtnSaveMap";
             this.BtnSaveMap.Size = new System.Drawing.Size(23, 20);
             this.BtnSaveMap.Text = "toolStripButton1";
-            this.BtnSaveMap.ToolTipText = "Save map";
+            this.BtnSaveMap.ToolTipText = "Save map (Ctrl+S)";
             this.BtnSaveMap.Click += new System.EventHandler(this.BtnSaveMap_Click);
             // 
             // toolStripSeparator3
@@ -222,7 +222,7 @@
             this.BtnViewAll.Name = "BtnViewAll";
             this.BtnViewAll.Size = new System.Drawing.Size(23, 20);
             this.BtnViewAll.Text = "toolStripButton1";
-            this.BtnViewAll.ToolTipText = "View all layers";
+            this.BtnViewAll.ToolTipText = "View all layers (Ctrl+L)";
             this.BtnViewAll.Click += new System.EventHandler(this.BtnViewAll_Click);
             // 
             // BtnAddLayer
@@ -295,7 +295,7 @@
             this.BtnPutTemplate.Name = "BtnPutTemplate";
             this.BtnPutTemplate.Size = new System.Drawing.Size(23, 20);
             this.BtnPutTemplate.Text = "toolStripButton1";
-            this.BtnPutTemplate.ToolTipText = "Draw template";
+            this.BtnPutTemplate.ToolTipText = "Draw template (F2)";
             this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
             // 
             // BtnDelete
@@ -306,7 +306,7 @@
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(23, 20);
             this.BtnDelete.Text = "toolStripButton1";
-            this.BtnDelete.ToolTipText = "Delete";
+            this.BtnDelete.ToolTipText = "Delete (F3)";
             this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
             // 
             // BtnSetData
@@ -317,7 +317,7 @@
             this.BtnSetData.Name = "BtnSetData";
             this.BtnSetData.Size = new System.Drawing.Size(23, 20);
             this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Edit data";
+            this.BtnSetData.ToolTipText = "Edit data (F4)";
             this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
@@ -328,7 +328,7 @@
             this.BtnAddText.Name = "BtnAddText";
             this.BtnAddText.Size = new System.Drawing.Size(23, 20);
             this.BtnAddText.Text = "toolStripButton1";
-            this.BtnAddText.ToolTipText = "Draw text";
+            this.BtnAddText.ToolTipText = "Draw text (F5)";
             this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
             // 
             // BtnReplaceObjects
@@ -339,7 +339,7 @@
             this.BtnReplaceObjects.Name = "BtnReplaceObjects";
             this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
             this.BtnReplaceObjects.Text = "toolStripButton1";
-            this.BtnReplaceObjects.ToolTipText = "Replace objects";
+            this.BtnReplaceObjects.ToolTipText = "Replace objects (F6)";
             this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
             // 
             // BtnSelect
@@ -350,7 +350,7 @@
             this.BtnSelect.Name = "BtnSelect";
             this.BtnSelect.Size = new System.Drawing.Size(23, 20);
             this.BtnSelect.Text = "toolStripButton1";
-            this.BtnSelect.ToolTipText = "Selection mode";
+            this.BtnSelect.ToolTipText = "Selection mode (F7)";
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
             // BtnSelectionActions
@@ -376,55 +376,70 @@
             // MiCancelSelection
             // 
             this.MiCancelSelection.Name = "MiCancelSelection";
-            this.MiCancelSelection.Size = new System.Drawing.Size(227, 22);
+            this.MiCancelSelection.Size = new System.Drawing.Size(205, 22);
             this.MiCancelSelection.Text = "Cancel";
             this.MiCancelSelection.Click += new System.EventHandler(this.MiCancelSelection_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(224, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(188, 6);
             // 
             // MiCopyObjects
             // 
             this.MiCopyObjects.Name = "MiCopyObjects";
-            this.MiCopyObjects.Size = new System.Drawing.Size(227, 22);
+            this.MiCopyObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.MiCopyObjects.Size = new System.Drawing.Size(191, 22);
             this.MiCopyObjects.Text = "Copy objects";
+            this.MiCopyObjects.Click += new System.EventHandler(this.MiCopyObjects_Click);
             // 
             // MiCutObjects
             // 
             this.MiCutObjects.Name = "MiCutObjects";
-            this.MiCutObjects.Size = new System.Drawing.Size(227, 22);
+            this.MiCutObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.MiCutObjects.Size = new System.Drawing.Size(205, 22);
             this.MiCutObjects.Text = "Cut objects";
+            this.MiCutObjects.Click += new System.EventHandler(this.MiCutObjects_Click);
             // 
             // MiPasteObjects
             // 
             this.MiPasteObjects.Name = "MiPasteObjects";
-            this.MiPasteObjects.Size = new System.Drawing.Size(227, 22);
+            this.MiPasteObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.MiPasteObjects.Size = new System.Drawing.Size(191, 22);
             this.MiPasteObjects.Text = "Paste objects";
+            this.MiPasteObjects.Click += new System.EventHandler(this.MiPasteObjects_Click);
             // 
             // MiDeleteObjects
             // 
             this.MiDeleteObjects.Name = "MiDeleteObjects";
-            this.MiDeleteObjects.Size = new System.Drawing.Size(227, 22);
+            this.MiDeleteObjects.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.MiDeleteObjects.Size = new System.Drawing.Size(191, 22);
             this.MiDeleteObjects.Text = "Delete objects";
             this.MiDeleteObjects.Click += new System.EventHandler(this.MiDeleteObjects_Click);
             // 
             // MiFillWithTemplate
             // 
             this.MiFillWithTemplate.Name = "MiFillWithTemplate";
-            this.MiFillWithTemplate.Size = new System.Drawing.Size(191, 22);
+            this.MiFillWithTemplate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.MiFillWithTemplate.Size = new System.Drawing.Size(205, 22);
             this.MiFillWithTemplate.Text = "Fill with template";
+            this.MiFillWithTemplate.Click += new System.EventHandler(this.MiFillWithTemplate_Click);
+            // 
+            // MiReplaceWithTemplate
+            // 
+            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
+            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(191, 22);
+            this.MiReplaceWithTemplate.Text = "Replace with template";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(224, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(188, 6);
             // 
             // MiSetSelectionColor
             // 
             this.MiSetSelectionColor.Name = "MiSetSelectionColor";
-            this.MiSetSelectionColor.Size = new System.Drawing.Size(227, 22);
+            this.MiSetSelectionColor.Size = new System.Drawing.Size(191, 22);
             this.MiSetSelectionColor.Text = "Set selection color";
             this.MiSetSelectionColor.Click += new System.EventHandler(this.MiSetSelectionColor_Click);
             // 
@@ -442,7 +457,7 @@
             this.BtnZoomIn.Name = "BtnZoomIn";
             this.BtnZoomIn.Size = new System.Drawing.Size(23, 20);
             this.BtnZoomIn.Text = "toolStripButton1";
-            this.BtnZoomIn.ToolTipText = "Zoom in";
+            this.BtnZoomIn.ToolTipText = "Zoom in (PgUp)";
             this.BtnZoomIn.Click += new System.EventHandler(this.BtnZoomIn_Click);
             // 
             // BtnZoomOut
@@ -453,7 +468,7 @@
             this.BtnZoomOut.Name = "BtnZoomOut";
             this.BtnZoomOut.Size = new System.Drawing.Size(23, 20);
             this.BtnZoomOut.Text = "toolStripButton1";
-            this.BtnZoomOut.ToolTipText = "Zoom out";
+            this.BtnZoomOut.ToolTipText = "Zoom out (PgDn)";
             this.BtnZoomOut.Click += new System.EventHandler(this.BtnZoomOut_Click);
             // 
             // BtnGrid
@@ -464,7 +479,7 @@
             this.BtnGrid.Name = "BtnGrid";
             this.BtnGrid.Size = new System.Drawing.Size(23, 20);
             this.BtnGrid.Text = "toolStripButton1";
-            this.BtnGrid.ToolTipText = "Toggle grid";
+            this.BtnGrid.ToolTipText = "Toggle grid (Ctrl+G)";
             this.BtnGrid.Click += new System.EventHandler(this.BtnGrid_Click);
             // 
             // BtnToggleTooltip
@@ -486,14 +501,8 @@
             this.BtnScreenshot.Name = "BtnScreenshot";
             this.BtnScreenshot.Size = new System.Drawing.Size(23, 20);
             this.BtnScreenshot.Text = "toolStripButton1";
-            this.BtnScreenshot.ToolTipText = "Save image";
+            this.BtnScreenshot.ToolTipText = "Save image (Ctrl+P)";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
-            // 
-            // MiReplaceWithTemplate
-            // 
-            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
-            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(191, 22);
-            this.MiReplaceWithTemplate.Text = "Replace with template";
             // 
             // MapEditorPanel
             // 

@@ -31,7 +31,8 @@ namespace TileGameMaker.Panels
         private ObjectBlockSelection Selection;
         private ToolTip Tooltip;
         private Point CurrentTooltipPoint;
-        private bool TooltipEnabled = false;
+        private bool TooltipEnabled;
+        private ObjectBlockClipboard ClipboardObjects;
 
         private enum EditMode { Draw, Delete, Data, TextInput, Selection, Replace }
         private EditMode Mode;
@@ -63,6 +64,7 @@ namespace TileGameMaker.Panels
 
             Tooltip = new ToolTip();
             Tooltip.IsBalloon = true;
+            TooltipEnabled = false;
 
             Display.MouseMove += Disp_MouseMove;
             Display.MouseDown += Disp_MouseDown;
@@ -673,46 +675,6 @@ namespace TileGameMaker.Panels
                 CreateNewMap();
         }
 
-        private void MapEditorControl_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control)
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.O:
-                        LoadMap();
-                        break;
-                    case Keys.S:
-                        SaveMap();
-                        break;
-                    case Keys.N:
-                        ConfirmNewMap();
-                        break;
-                    case Keys.G:
-                        ToggleGrid();
-                        break;
-                    case Keys.T:
-                        SetMode(EditMode.TextInput, BtnAddText);
-                        break;
-                    case Keys.P:
-                        SaveScreenshot();
-                        break;
-                }
-            }
-            else
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.PageUp:
-                        ZoomIn();
-                        break;
-                    case Keys.PageDown:
-                        ZoomOut();
-                        break;
-                }
-            }
-        }
-
         private void CbLayer_SelectedIndexChanged(object sender, EventArgs e)
         {
             Layer = CbLayer.SelectedIndex;
@@ -759,6 +721,11 @@ namespace TileGameMaker.Panels
         }
 
         private void BtnViewAll_Click(object sender, EventArgs e)
+        {
+            ToggleViewAllLayers();
+        }
+
+        private void ToggleViewAllLayers()
         {
             BtnViewAll.Checked = !BtnViewAll.Checked;
             MapRenderer.SetRenderSingleLayer(!BtnViewAll.Checked, Layer);
@@ -818,12 +785,167 @@ namespace TileGameMaker.Panels
 
         private void MiDeleteObjects_Click(object sender, EventArgs e)
         {
-            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedObjectPositions(Layer));
+            DeleteSelectedObjects();
+        }
 
+        private void DeleteSelectedObjects()
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
             foreach (ObjectCell cell in selectedCells)
                 cell.DeleteObject();
 
             Display.Refresh();
+        }
+
+        private void MiFillWithTemplate_Click(object sender, EventArgs e)
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
+            foreach (ObjectCell cell in selectedCells)
+                cell.SetObjectEqual(MapEditor.SelectedObject);
+
+            Display.Refresh();
+        }
+
+        private void MiCopyObjects_Click(object sender, EventArgs e)
+        {
+            CopySelectedObjectsToClipboard();
+        }
+
+        private void MiCutObjects_Click(object sender, EventArgs e)
+        {
+            CutSelectedObjectsToClipboard();
+        }
+
+        private void MiPasteObjects_Click(object sender, EventArgs e)
+        {
+            PasteObjectsFromClipboard();
+        }
+
+        private void CutSelectedObjectsToClipboard()
+        {
+            CopySelectedObjectsToClipboard(false);
+            DeleteSelectedObjects();
+            CancelSelection();
+        }
+
+        private void CopySelectedObjectsToClipboard(bool cancelSelectionAfterCopy = true)
+        {
+            if (!Selection.Block.HasValue)
+            {
+                Alert.Warning("Can't copy from empty selection");
+                return;
+            }
+
+            ClipboardObjects = new ObjectBlockClipboard(Selection.Block.Value);
+
+            for (int y = 0; y < ClipboardObjects.Block.Height; y++)
+            {
+                for (int x = 0; x < ClipboardObjects.Block.Width; x++)
+                {
+                    GameObject o = Map.GetObject(new ObjectPosition(Layer, Selection.Block.Value.X + x, Selection.Block.Value.Y + y));
+                    ClipboardObjects.SetObject(o?.Copy(), x, y);
+                }
+            }
+
+            if (cancelSelectionAfterCopy)
+                CancelSelection();
+
+            Display.Refresh();
+        }
+
+        private void PasteObjectsFromClipboard()
+        {
+            if (ClipboardObjects == null)
+            {
+                Alert.Warning("Clipboard is empty");
+                return;
+            }
+            if (Selection.StartPoint == null)
+            {
+                Alert.Warning("Can't paste to empty selection");
+                return;
+            }
+
+            for (int y = 0; y < ClipboardObjects.Block.Height; y++)
+            {
+                for (int x = 0; x < ClipboardObjects.Block.Width; x++)
+                {
+                    GameObject o = ClipboardObjects.Objects[x, y];
+                    ObjectPosition pastePosition = new ObjectPosition(Layer, Selection.Block.Value.X + x, Selection.Block.Value.Y + y);
+
+                    if (pastePosition.X < Map.Width && pastePosition.Y < Map.Height)
+                    {
+                        if (o != null)
+                            Map.SetObject(o.Copy(), pastePosition);
+                        else
+                            Map.DeleteObject(pastePosition);
+                    }
+                }
+            }
+
+            CancelSelection();
+            Display.Refresh();
+        }
+
+        private void MapEditorControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.O:
+                        LoadMap();
+                        break;
+                    case Keys.S:
+                        SaveMap();
+                        break;
+                    case Keys.N:
+                        ConfirmNewMap();
+                        break;
+                    case Keys.G:
+                        ToggleGrid();
+                        break;
+                    case Keys.P:
+                        SaveScreenshot();
+                        break;
+                    case Keys.L:
+                        ToggleViewAllLayers();
+                        break;
+                }
+            }
+            else
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.F2:
+                        SetMode(EditMode.Draw, BtnPutTemplate);
+                        break;
+                    case Keys.F3:
+                        SetMode(EditMode.Delete, BtnDelete);
+                        break;
+                    case Keys.F4:
+                        SetMode(EditMode.Data, BtnSetData);
+                        break;
+                    case Keys.F5:
+                        SetMode(EditMode.TextInput, BtnAddText);
+                        break;
+                    case Keys.F6:
+                        SetMode(EditMode.Replace, BtnReplaceObjects);
+                        break;
+                    case Keys.F7:
+                        SetMode(EditMode.Selection, BtnSelect);
+                        break;
+                    case Keys.PageUp:
+                        ZoomIn();
+                        break;
+                    case Keys.PageDown:
+                        ZoomOut();
+                        break;
+                    case Keys.Escape:
+                        CancelSelection();
+                        break;
+                }
+            }
         }
     }
 }
