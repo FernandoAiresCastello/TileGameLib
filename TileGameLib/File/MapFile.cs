@@ -22,11 +22,11 @@ namespace TileGameLib.File
             MemoryFile file = new MemoryFile();
 
             file.WriteString(Header);
-            file.WriteString(map.Name);
+            file.WriteString(StringOrEmpty(map.Name));
             file.WriteShort(map.Width);
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
-            file.WriteString(map.MusicFile);
+            file.WriteString(StringOrEmpty(map.MusicFile));
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -190,6 +190,11 @@ namespace TileGameLib.File
                 map.SetEqual(Load(path));
             else
                 map = Load(path);
+        }
+
+        private static string StringOrEmpty(string str)
+        {
+            return !string.IsNullOrWhiteSpace(str) ? str : "";
         }
     }
 }

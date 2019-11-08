@@ -15,6 +15,16 @@ namespace TileGameLib.GameElements
         {
         }
 
+        public ObjectProperties(ObjectProperties other)
+        {
+            SetEqual(other);
+        }
+
+        public ObjectProperties Copy()
+        {
+            return new ObjectProperties(this);
+        }
+
         public string GetAsString(string property)
         {
             if (Has(property))
@@ -39,7 +49,15 @@ namespace TileGameLib.GameElements
 
         public void Set(string property, object value)
         {
-            Entries[property] = value.ToString();
+            Entries[property.Trim()] = value.ToString();
+        }
+
+        public void SetNumeric(string property, int amount)
+        {
+            if (!Has(property))
+                return;
+
+            Set(property, GetAsNumber(property) + amount);
         }
 
         public bool Has(string property)
@@ -117,14 +135,6 @@ namespace TileGameLib.GameElements
                         Set(property, value);
                 }
             }
-        }
-
-        public void AddNumeric(string property, int amount)
-        {
-            if (!Has(property))
-                return;
-            
-            Set(property, GetAsNumber(property) + amount);
         }
 
         public override int GetHashCode()

@@ -22,6 +22,7 @@ namespace TileGameMaker.Panels
         public AnimationStripDisplay AnimationStrip { set; get; }
         public ObjectAnim Animation => AnimationStrip.Animation;
         public ObjectAnim CroppedAnimation => AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
+        public ObjectProperties Properties => PropertyGrid.Properties;
 
         public int AnimationFrameCount
         {
@@ -73,7 +74,7 @@ namespace TileGameMaker.Panels
             base.Refresh();
             TxtTag.Text = Object.Tag;
             ChkVisible.Checked = Object.Visible;
-            TxtProperties.Text = Object.Properties.ToString();
+            PropertyGrid.UpdateProperties(Object);
         }
 
         private void TxtBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -129,12 +130,6 @@ namespace TileGameMaker.Panels
                     Config.ReadInt("DefaultTileForeColor"),
                     Config.ReadInt("DefaultTileBackColor")));
             }
-        }
-
-        private void TxtProperties_TextChanged(object sender, EventArgs e)
-        {
-            Object.Properties.Parse(TxtProperties.Text);
-            Refresh();
         }
 
         private void TxtTag_Leave(object sender, EventArgs e)

@@ -9,7 +9,7 @@ using TileGameLib.GameElements;
 
 namespace TileGameMaker.MapEditor
 {
-    public class MapProperties
+    public class ConfigurableMapProperties
     {
         [ReadOnly(true)]
         public string Path { set; get; }
@@ -25,7 +25,7 @@ namespace TileGameMaker.MapEditor
         private ObjectMap Map;
         private string MapFullPath;
 
-        public MapProperties(ObjectMap map, string mapFileFullPath)
+        public ConfigurableMapProperties(ObjectMap map, string mapFileFullPath)
         {
             Map = map;
             MapFullPath = mapFileFullPath;

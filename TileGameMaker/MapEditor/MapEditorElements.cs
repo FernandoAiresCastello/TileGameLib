@@ -46,7 +46,7 @@ namespace TileGameMaker.MapEditor
                 GameObject o = new GameObject();
                 o.Tag = TemplateControl.Object.Tag;
                 o.Visible = TemplateControl.Object.Visible;
-                o.Properties.SetEqual(TemplateControl.Object.Properties);
+                o.Properties.SetEqual(TemplateControl.Properties);
                 o.Animation.SetEqual(TemplateControl.CroppedAnimation);
                 return o;
             }

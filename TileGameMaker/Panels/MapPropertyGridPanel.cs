@@ -14,7 +14,7 @@ namespace TileGameMaker.Panels
 {
     public partial class MapPropertyGridPanel : UserControl
     {
-        public MapProperties Properties { get; private set; }
+        public ConfigurableMapProperties Properties { get; private set; }
 
         private MapEditorElements MapEditor;
 
@@ -31,7 +31,7 @@ namespace TileGameMaker.Panels
 
         public void UpdateProperties()
         {
-            Properties = new MapProperties(MapEditor.Map, MapEditor.MapFile);
+            Properties = new ConfigurableMapProperties(MapEditor.Map, MapEditor.MapFile);
             Grid.SelectedObject = Properties;
             Grid.Refresh();
         }

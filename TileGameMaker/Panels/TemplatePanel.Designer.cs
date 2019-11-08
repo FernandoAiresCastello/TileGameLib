@@ -31,14 +31,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AnimationPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ChkVisible = new System.Windows.Forms.CheckBox();
             this.TxtTag = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtFrames = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
-            this.TxtProperties = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.ChkVisible = new System.Windows.Forms.CheckBox();
+            this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -71,13 +71,13 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.PropertyGrid);
             this.panel2.Controls.Add(this.ChkVisible);
             this.panel2.Controls.Add(this.TxtTag);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.TxtFrames);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.BtnClear);
-            this.panel2.Controls.Add(this.TxtProperties);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 37);
@@ -85,6 +85,19 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(10, 10, 10, 15);
             this.panel2.Size = new System.Drawing.Size(282, 288);
             this.panel2.TabIndex = 2;
+            // 
+            // ChkVisible
+            // 
+            this.ChkVisible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChkVisible.AutoSize = true;
+            this.ChkVisible.Checked = true;
+            this.ChkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChkVisible.Location = new System.Drawing.Point(209, 69);
+            this.ChkVisible.Name = "ChkVisible";
+            this.ChkVisible.Size = new System.Drawing.Size(62, 19);
+            this.ChkVisible.TabIndex = 14;
+            this.ChkVisible.Text = "Visible";
+            this.ChkVisible.UseVisualStyleBackColor = true;
             // 
             // TxtTag
             // 
@@ -144,24 +157,6 @@
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
-            // TxtProperties
-            // 
-            this.TxtProperties.AcceptsReturn = true;
-            this.TxtProperties.AcceptsTab = true;
-            this.TxtProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtProperties.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProperties.Location = new System.Drawing.Point(10, 94);
-            this.TxtProperties.MaxLength = 65536;
-            this.TxtProperties.Multiline = true;
-            this.TxtProperties.Name = "TxtProperties";
-            this.TxtProperties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtProperties.Size = new System.Drawing.Size(261, 140);
-            this.TxtProperties.TabIndex = 5;
-            this.TxtProperties.WordWrap = false;
-            this.TxtProperties.Leave += new System.EventHandler(this.TxtProperties_TextChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -172,18 +167,15 @@
             this.label3.Text = "Properties";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ChkVisible
+            // PropertyGrid
             // 
-            this.ChkVisible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChkVisible.AutoSize = true;
-            this.ChkVisible.Checked = true;
-            this.ChkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkVisible.Location = new System.Drawing.Point(209, 69);
-            this.ChkVisible.Name = "ChkVisible";
-            this.ChkVisible.Size = new System.Drawing.Size(62, 19);
-            this.ChkVisible.TabIndex = 14;
-            this.ChkVisible.Text = "Visible";
-            this.ChkVisible.UseVisualStyleBackColor = true;
+            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PropertyGrid.Location = new System.Drawing.Point(11, 94);
+            this.PropertyGrid.Name = "PropertyGrid";
+            this.PropertyGrid.Size = new System.Drawing.Size(258, 138);
+            this.PropertyGrid.TabIndex = 15;
             // 
             // TemplatePanel
             // 
@@ -207,10 +199,10 @@
         private System.Windows.Forms.TextBox TxtFrames;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnClear;
-        private System.Windows.Forms.TextBox TxtProperties;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtTag;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ChkVisible;
+        private ObjectPropertyGridPanel PropertyGrid;
     }
 }

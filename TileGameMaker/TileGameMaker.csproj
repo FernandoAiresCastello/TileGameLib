@@ -70,13 +70,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapEditor\MapProperties.cs" />
+    <Compile Include="MapEditor\ConfigurableMapProperties.cs" />
     <Compile Include="MapEditor\ObjectBlockClipboard.cs" />
     <Compile Include="Panels\MapPropertyGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Panels\MapPropertyGridPanel.Designer.cs">
       <DependentUpon>MapPropertyGridPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\ObjectPropertyGridPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\ObjectPropertyGridPanel.Designer.cs">
+      <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
       <SubType>Component</SubType>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\MapPropertyGridPanel.resx">
       <DependentUpon>MapPropertyGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\ObjectPropertyGridPanel.resx">
+      <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
