@@ -42,6 +42,7 @@
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
+            this.TxtColorsPerRow = new System.Windows.Forms.ToolStripTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -117,7 +118,8 @@
             this.BtnNew,
             this.BtnExport,
             this.BtnImport,
-            this.BtnReset});
+            this.BtnReset,
+            this.TxtColorsPerRow});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
@@ -131,7 +133,7 @@
             this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
             this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 22);
+            this.BtnNew.Size = new System.Drawing.Size(23, 20);
             this.BtnNew.Text = "toolStripButton1";
             this.BtnNew.ToolTipText = "Clear palette";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
@@ -142,7 +144,7 @@
             this.BtnExport.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnExport.Name = "BtnExport";
-            this.BtnExport.Size = new System.Drawing.Size(23, 22);
+            this.BtnExport.Size = new System.Drawing.Size(23, 20);
             this.BtnExport.Text = "toolStripButton1";
             this.BtnExport.ToolTipText = "Export palette";
             this.BtnExport.Click += new System.EventHandler(this.BtnExport_Click);
@@ -153,7 +155,7 @@
             this.BtnImport.Image = global::TileGameMaker.Properties.Resources.folder;
             this.BtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnImport.Name = "BtnImport";
-            this.BtnImport.Size = new System.Drawing.Size(23, 22);
+            this.BtnImport.Size = new System.Drawing.Size(23, 20);
             this.BtnImport.Text = "toolStripButton1";
             this.BtnImport.ToolTipText = "Import palette";
             this.BtnImport.Click += new System.EventHandler(this.BtnImport_Click);
@@ -164,7 +166,7 @@
             this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
             this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(23, 22);
+            this.BtnReset.Size = new System.Drawing.Size(23, 20);
             this.BtnReset.Text = "toolStripButton1";
             this.BtnReset.ToolTipText = "Reset palette to default";
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
@@ -206,6 +208,18 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
+            // TxtColorsPerRow
+            // 
+            this.TxtColorsPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtColorsPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtColorsPerRow.MaxLength = 2;
+            this.TxtColorsPerRow.Name = "TxtColorsPerRow";
+            this.TxtColorsPerRow.Size = new System.Drawing.Size(50, 23);
+            this.TxtColorsPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtColorsPerRow.ToolTipText = "Colors per row to display";
+            this.TxtColorsPerRow.Leave += new System.EventHandler(this.TxtColorsPerRow_Leave);
+            this.TxtColorsPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColorsPerRow_KeyUp);
+            // 
             // ColorPickerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,5 +257,6 @@
         private System.Windows.Forms.ToolStripButton BtnReset;
         private System.Windows.Forms.ToolStripButton BtnExport;
         private System.Windows.Forms.ToolStripButton BtnImport;
+        private System.Windows.Forms.ToolStripTextBox TxtColorsPerRow;
     }
 }

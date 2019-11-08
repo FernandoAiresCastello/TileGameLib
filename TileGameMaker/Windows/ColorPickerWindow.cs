@@ -44,7 +44,7 @@ namespace TileGameMaker.Windows
 
         private void ColorPicker_MouseUp(object sender, MouseEventArgs e)
         {
-            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 

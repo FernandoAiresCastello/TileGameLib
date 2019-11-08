@@ -24,6 +24,8 @@ namespace TileGameMaker.Panels
 
         private static readonly string PaletteFileExt = Config.ReadString("PaletteFileExt");
         private static readonly string PaletteFileFilter = $"TileGameMaker palette file (*.{PaletteFileExt})|*.{PaletteFileExt}";
+        private static readonly int MinTilesPerRowAllowed = 1;
+        private static readonly int MaxTilesPerRowAllowed = 16;
 
         public ColorPickerPanel()
         {
@@ -39,6 +41,10 @@ namespace TileGameMaker.Panels
                 Config.ReadInt("ColorPickerCols"), 
                 Config.ReadInt("ColorPickerRows"), 
                 Config.ReadInt("ColorPickerZoom"));
+
+            int colorsPerRow = Config.ReadInt("ColorPickerColorsPerRow");
+            ColorPicker.ResizeGraphicsByTileCount(ColorPicker.Graphics.Palette.Size, colorsPerRow);
+            TxtColorsPerRow.Text = colorsPerRow.ToString();
 
             ColorPicker.Graphics.Palette = editor.Palette;
             ColorPicker.ShowGrid = true;
@@ -61,6 +67,7 @@ namespace TileGameMaker.Panels
         public void SetForeColorIndex(int index)
         {
             ColorPicker.ForeColorIx = index;
+            Refresh();
             UpdatePanelColors();
             UpdateStatus();
         }
@@ -68,6 +75,7 @@ namespace TileGameMaker.Panels
         public void SetBackColorIndex(int index)
         {
             ColorPicker.BackColorIx = index;
+            Refresh();
             UpdatePanelColors();
             UpdateStatus();
         }
@@ -84,7 +92,7 @@ namespace TileGameMaker.Panels
 
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
@@ -95,7 +103,7 @@ namespace TileGameMaker.Panels
 
         private void ColorPicker_MouseClick(object sender, MouseEventArgs e)
         {
-            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
@@ -104,13 +112,14 @@ namespace TileGameMaker.Panels
             else if (e.Button == MouseButtons.Right)
                 ColorPicker.BackColorIx = colorIx;
 
+            Refresh();
             UpdatePanelColors();
             UpdateStatus();
         }
 
         private void ColorPicker_MouseMove(object sender, MouseEventArgs e)
         {
-            int colorIx = ColorPicker.GetColorIndexAtMousePos(e.Location);
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx >= 0 && colorIx < ColorPicker.Graphics.Palette.Size)
             {
                 int color = ColorPicker.GetColor(colorIx);
@@ -215,6 +224,45 @@ namespace TileGameMaker.Panels
 
                 Alert.Info("Palette imported successfully!");
             }
+        }
+
+        private void TxtColorsPerRow_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                ApplyColorsPerRowSetting();
+        }
+
+        private void TxtColorsPerRow_Leave(object sender, EventArgs e)
+        {
+            ApplyColorsPerRowSetting();
+        }
+
+        private void ApplyColorsPerRowSetting()
+        {
+            int originalTilesPerRow = ColorPicker.Cols;
+            bool isNumber = int.TryParse(TxtColorsPerRow.Text, out int colorsPerRow);
+            bool revert = false;
+
+            if (isNumber)
+            {
+                if (colorsPerRow >= MinTilesPerRowAllowed && colorsPerRow <= MaxTilesPerRowAllowed)
+                {
+                    ColorPicker.ResizeGraphicsByTileCount(ColorPicker.Graphics.Tileset.Size, colorsPerRow);
+                    ColorPicker.Refresh();
+                }
+                else
+                {
+                    Alert.Warning($"Maximum colors per row must be between {MinTilesPerRowAllowed} and {MaxTilesPerRowAllowed}");
+                    revert = true;
+                }
+            }
+            else
+            {
+                revert = true;
+            }
+
+            if (revert)
+                TxtColorsPerRow.Text = originalTilesPerRow.ToString();
         }
     }
 }

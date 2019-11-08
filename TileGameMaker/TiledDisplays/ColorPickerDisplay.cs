@@ -17,6 +17,9 @@ namespace TileGameMaker.TiledDisplays
         public int BackColorIx { set; get; }
 
         private readonly int SwatchTileIx = Config.ReadInt("ColorPickerSwatchTile");
+        private readonly int SelectedForeColorSwatchTile = Config.ReadInt("ColorPickerSelectedForeColorSwatchTile");
+        private readonly int SelectedBackColorSwatchTile = Config.ReadInt("ColorPickerSelectedBackColorSwatchTile");
+        private readonly int SelectedBothColorsEqualSwatchTile = Config.ReadInt("ColorPickerSelectedBothColorsEqualSwatchTile");
 
         public ColorPickerDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
@@ -30,25 +33,53 @@ namespace TileGameMaker.TiledDisplays
             int x = 0;
             int y = 0;
 
+            int black = Graphics.Palette.Black;
+            int white = Graphics.Palette.White;
+
             for (int i = 0; i < Graphics.Palette.Size; i++)
             {
-                Graphics.PutTile(x, y, SwatchTileIx, i, 0);
-                x++;
-                if (x >= Graphics.Cols)
+                if (i < Graphics.Palette.Size)
                 {
-                    x = 0;
-                    y++;
+                    int selectionIndicatorColor = Graphics.Palette.GetBrightness(i) > 0.5 ? black : white;
+
+                    if (i == ForeColorIx && i == BackColorIx)
+                        Graphics.PutTile(x, y, SelectedBothColorsEqualSwatchTile, selectionIndicatorColor, i);
+                    else if (i == ForeColorIx)
+                        Graphics.PutTile(x, y, SelectedForeColorSwatchTile, selectionIndicatorColor, i);
+                    else if (i == BackColorIx)
+                        Graphics.PutTile(x, y, SelectedBackColorSwatchTile, selectionIndicatorColor, i);
+                    else
+                        Graphics.PutTile(x, y, SwatchTileIx, i, i);
+
+                    x++;
+
+                    if (x >= Graphics.Cols)
+                    {
+                        x = 0;
+                        y++;
+                    }
+                }
+                else
+                {
+                    Graphics.PutTile(x, y, 0, Graphics.Palette.White, Graphics.Palette.White);
                 }
             }
 
             base.OnPaint(e);
         }
 
-        public int GetColorIndexAtMousePos(Point mousePos)
+        public int GetForeColorIndexAtMousePos(Point mousePos)
         {
             Point p = GetMouseToCellPos(mousePos);
             Tile tile = Graphics.GetTile(p.X, p.Y);
             return tile.ForeColorIx;
+        }
+
+        public int GetBackColorIndexAtMousePos(Point mousePos)
+        {
+            Point p = GetMouseToCellPos(mousePos);
+            Tile tile = Graphics.GetTile(p.X, p.Y);
+            return tile.BackColorIx;
         }
 
         public int GetColor(int index)
