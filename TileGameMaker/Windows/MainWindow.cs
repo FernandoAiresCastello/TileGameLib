@@ -42,7 +42,6 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.TilePickerControl, TilePickerPanel);
             AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);
             AddControl(MapEditor.TemplateControl, TemplatePanel);
-            //AddControl(MapEditor.MapPropertyControl, MapPropertiesPanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
         }
 

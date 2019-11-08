@@ -11,6 +11,11 @@ namespace TileGameLib.GameElements
         public GameObject Object { set; get; }
         public ObjectPosition Position { set; get; }
 
+        public PositionedObject(GameObject o, int layer, int x, int y)
+            : this(o, new ObjectPosition(layer, x, y))
+        {
+        }
+
         public PositionedObject(GameObject o, ObjectPosition position)
         {
             Object = o;

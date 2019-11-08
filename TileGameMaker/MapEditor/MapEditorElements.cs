@@ -17,8 +17,6 @@ namespace TileGameMaker.MapEditor
     {
         public string WorkspacePath { get; private set; }
         public string MapFile { get; set; }
-        //public string MapName => MapPropertyControl.MapName;
-        //public string MapMusic => MapPropertyControl.MapMusic;
         public string MapName => MapPropertyGridControl.Properties.Name;
         public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
@@ -106,14 +104,12 @@ namespace TileGameMaker.MapEditor
             TemplateControl = new TemplatePanel(this);
             TilePickerControl = new TilePickerPanel(this);
             ColorPickerControl = new ColorPickerPanel(this);
-            //MapPropertyControl = new MapPropertyPanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             UpdateMapProperties();
 
             Children.Add(TilePickerControl);
             Children.Add(TemplateControl);
             Children.Add(ColorPickerControl);
-            //Children.Add(MapPropertyControl);
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
         }
@@ -132,7 +128,6 @@ namespace TileGameMaker.MapEditor
 
         public void UpdateMapProperties()
         {
-            //MapPropertyControl.UpdateProperties();
             MapPropertyGridControl.UpdateProperties();
         }
 

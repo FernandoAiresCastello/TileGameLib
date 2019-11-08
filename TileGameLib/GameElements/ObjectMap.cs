@@ -211,7 +211,7 @@ namespace TileGameLib.GameElements
             return cell.IsEmpty ? null : cell.GetObject();
         }
 
-        public ObjectPosition FindObjectById(string id)
+        public PositionedObject FindObjectById(string id)
         {
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
@@ -223,7 +223,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Id.Equals(id))
-                            return new ObjectPosition(layerIndex, x, y);
+                            return new PositionedObject(o, layerIndex, x, y);
                     }
                 }
             }
@@ -231,9 +231,9 @@ namespace TileGameLib.GameElements
             return null;
         }
 
-        public ObjectPosition FindObjectByTag(string tag)
+        public PositionedObject FindObjectByTag(string tag)
         {
-            List<ObjectPosition> objects = FindObjectsByTag(tag);
+            List<PositionedObject> objects = FindObjectsByTag(tag);
 
             if (objects.Count > 1)
                 throw new TileGameLibException("Multiple objects found with tag " + tag);
@@ -243,14 +243,14 @@ namespace TileGameLib.GameElements
             return null;
         }
 
-        public List<ObjectPosition> FindObjectsByTag(string tag)
+        public List<PositionedObject> FindObjectsByTag(string tag)
         {
-            List<ObjectPosition> objects = new List<ObjectPosition>();
+            List<PositionedObject> objects = new List<PositionedObject>();
 
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
                 ObjectLayer layer = Layers[layerIndex];
-                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+                List<PositionedObject> layerPositions = new List<PositionedObject>();
 
                 for (int y = 0; y < Height; y++)
                 {
@@ -258,7 +258,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.HasTag && o.Tag.Equals(tag))
-                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
                     }
                 }
 
@@ -268,14 +268,14 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
-        public List<ObjectPosition> FindObjectsByProperty(string property)
+        public List<PositionedObject> FindObjectsByProperty(string property)
         {
-            List<ObjectPosition> objects = new List<ObjectPosition>();
+            List<PositionedObject> objects = new List<PositionedObject>();
 
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
                 ObjectLayer layer = Layers[layerIndex];
-                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+                List<PositionedObject> layerPositions = new List<PositionedObject>();
 
                 for (int y = 0; y < Height; y++)
                 {
@@ -283,7 +283,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Properties.Has(property))
-                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
                     }
                 }
 
@@ -293,14 +293,14 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
-        public List<ObjectPosition> FindObjectsByPropertyValue(string property, object value)
+        public List<PositionedObject> FindObjectsByPropertyValue(string property, object value)
         {
-            List<ObjectPosition> objects = new List<ObjectPosition>();
+            List<PositionedObject> objects = new List<PositionedObject>();
 
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
                 ObjectLayer layer = Layers[layerIndex];
-                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+                List<PositionedObject> layerPositions = new List<PositionedObject>();
 
                 for (int y = 0; y < Height; y++)
                 {
@@ -308,7 +308,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Properties.HasValue(property, value))
-                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
                     }
                 }
 
@@ -318,14 +318,14 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
-        public List<ObjectPosition> FindObjectsEqual(GameObject other)
+        public List<PositionedObject> FindObjectsEqual(GameObject other)
         {
-            List<ObjectPosition> objects = new List<ObjectPosition>();
+            List<PositionedObject> objects = new List<PositionedObject>();
 
             for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
             {
                 ObjectLayer layer = Layers[layerIndex];
-                List<ObjectPosition> layerPositions = new List<ObjectPosition>();
+                List<PositionedObject> layerPositions = new List<PositionedObject>();
 
                 for (int y = 0; y < Height; y++)
                 {
@@ -333,7 +333,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Equals(other))
-                            layerPositions.Add(new ObjectPosition(layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
                     }
                 }
 
@@ -345,10 +345,10 @@ namespace TileGameLib.GameElements
 
         public void ReplaceObjects(GameObject original, GameObject replacement)
         {
-            List<ObjectPosition> originalPositions = FindObjectsEqual(original);
+            List<PositionedObject> originalPositions = FindObjectsEqual(original);
 
-            foreach (ObjectPosition originalPos in originalPositions)
-                GetObject(originalPos).SetEqual(replacement);
+            foreach (PositionedObject originalPos in originalPositions)
+                originalPos.Object.SetEqual(replacement);
         }
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
@@ -438,11 +438,14 @@ namespace TileGameLib.GameElements
 
         public ObjectCollision FindCollisionBetweenIds(string idObject1, string idObject2)
         {
-            ObjectPosition posObject1 = FindObjectById(idObject1);
-            ObjectPosition posObject2 = FindObjectById(idObject2);
+            PositionedObject posObject1 = FindObjectById(idObject1);
+            PositionedObject posObject2 = FindObjectById(idObject2);
 
-            if (posObject1.X == posObject2.X && posObject1.Y == posObject2.Y)
-                return GetCollisionData(posObject1, posObject2);
+            if (posObject1.Position.X == posObject2.Position.X &&
+                posObject1.Position.Y == posObject2.Position.Y)
+            {
+                return new ObjectCollision(posObject1, posObject2);
+            }
 
             return null;
         }
@@ -454,14 +457,17 @@ namespace TileGameLib.GameElements
 
         public List<ObjectCollision> FindCollisionsBetweenIdAndTags(string id, string tag)
         {
-            ObjectPosition objectPos = FindObjectById(id);
-            List<ObjectPosition> taggedObjectsPos = FindObjectsByTag(tag);
+            PositionedObject objectPos = FindObjectById(id);
+            List<PositionedObject> taggedObjectsPos = FindObjectsByTag(tag);
             HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
 
-            foreach (ObjectPosition taggedObjectPos in taggedObjectsPos)
+            foreach (PositionedObject taggedObjectPos in taggedObjectsPos)
             {
-                if (objectPos.X == taggedObjectPos.X && objectPos.Y == taggedObjectPos.Y)
-                    collisions.Add(GetCollisionData(objectPos, taggedObjectPos));
+                if (objectPos.Position.X == taggedObjectPos.Position.X &&
+                    objectPos.Position.Y == taggedObjectPos.Position.Y)
+                {
+                    collisions.Add(new ObjectCollision(objectPos, taggedObjectPos));
+                }
             }
 
             return collisions.ToList();
@@ -469,27 +475,23 @@ namespace TileGameLib.GameElements
 
         public List<ObjectCollision> FindCollisionsBetweenTags(string tag1, string tag2)
         {
-            List<ObjectPosition> taggedObjectsPos1 = FindObjectsByTag(tag1);
-            List<ObjectPosition> taggedObjectsPos2 = FindObjectsByTag(tag2);
+            List<PositionedObject> taggedObjectsPos1 = FindObjectsByTag(tag1);
+            List<PositionedObject> taggedObjectsPos2 = FindObjectsByTag(tag2);
             HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
 
-            foreach (ObjectPosition pos1 in taggedObjectsPos1)
+            foreach (PositionedObject pos1 in taggedObjectsPos1)
             {
-                foreach (ObjectPosition pos2 in taggedObjectsPos2)
+                foreach (PositionedObject pos2 in taggedObjectsPos2)
                 {
-                    if (pos1.X == pos2.X && pos1.Y == pos2.Y)
-                        collisions.Add(GetCollisionData(pos1, pos2));
+                    if (pos1.Position.X == pos2.Position.X &&
+                        pos1.Position.Y == pos2.Position.Y)
+                    {
+                        collisions.Add(new ObjectCollision(pos1, pos2));
+                    }
                 }
             }
 
             return collisions.ToList();
-        }
-
-        private ObjectCollision GetCollisionData(ObjectPosition pos1, ObjectPosition pos2)
-        {
-            return new ObjectCollision(
-                new PositionedObject(GetObject(pos1), pos1),
-                new PositionedObject(GetObject(pos2), pos2));
         }
     }
 }
