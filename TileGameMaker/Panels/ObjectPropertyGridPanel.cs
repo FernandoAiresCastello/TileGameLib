@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.GameElements;
 using TileGameMaker.MapEditor;
+using TileGameLib.Util;
 
 namespace TileGameMaker.Panels
 {
@@ -54,6 +55,45 @@ namespace TileGameMaker.Panels
             }
 
             return properties;
+        }
+
+        private void RemoveSelectedProperty()
+        {
+            if (Grid.SelectedRows.Count > 0)
+            {
+                bool cantDelete = false;
+
+                foreach (DataGridViewRow row in Grid.SelectedRows)
+                {
+                    try
+                    {
+                        Grid.Rows.Remove(row);
+                        Refresh();
+                    }
+                    catch
+                    {
+                        cantDelete = true;
+                    }
+                }
+
+                if (cantDelete)
+                    Alert.Warning("Can't delete this grid row");
+            }
+        }
+
+        private void RemoveAllProperties()
+        {
+            Grid.Rows.Clear();
+        }
+
+        private void BtnDeleteSelectedProperty_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedProperty();
+        }
+
+        private void BtnDeleteAllProperties_Click(object sender, EventArgs e)
+        {
+            RemoveAllProperties();
         }
     }
 }
