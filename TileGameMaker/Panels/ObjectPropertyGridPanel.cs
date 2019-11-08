@@ -20,6 +20,9 @@ namespace TileGameMaker.Panels
         {
             InitializeComponent();
 
+            Grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Grid.RowHeadersWidth = 20;
+
             Grid.Columns.Add("property", "Property");
             Grid.Columns.Add("value", "Value");
         }
@@ -51,10 +54,6 @@ namespace TileGameMaker.Panels
             }
 
             return properties;
-        }
-
-        private void Grid_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

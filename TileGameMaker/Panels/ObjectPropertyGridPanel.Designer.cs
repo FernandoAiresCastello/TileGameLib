@@ -53,7 +53,6 @@
             this.Grid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.Grid.Size = new System.Drawing.Size(234, 304);
             this.Grid.TabIndex = 0;
-            this.Grid.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grid_CellLeave);
             // 
             // ObjectPropertyGridPanel
             // 
