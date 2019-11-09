@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AnimationPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.ChkVisible = new System.Windows.Forms.CheckBox();
             this.TxtTag = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,18 +86,31 @@
             this.panel2.Size = new System.Drawing.Size(282, 288);
             this.panel2.TabIndex = 2;
             // 
+            // PropertyGrid
+            // 
+            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PropertyGrid.Location = new System.Drawing.Point(11, 94);
+            this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.PropertyGrid.Name = "PropertyGrid";
+            this.PropertyGrid.Size = new System.Drawing.Size(258, 138);
+            this.PropertyGrid.TabIndex = 15;
+            // 
             // ChkVisible
             // 
             this.ChkVisible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ChkVisible.AutoSize = true;
             this.ChkVisible.Checked = true;
             this.ChkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkVisible.Location = new System.Drawing.Point(209, 69);
+            this.ChkVisible.Location = new System.Drawing.Point(207, 70);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Size = new System.Drawing.Size(62, 19);
             this.ChkVisible.TabIndex = 14;
             this.ChkVisible.Text = "Visible";
             this.ChkVisible.UseVisualStyleBackColor = true;
+            this.ChkVisible.CheckedChanged += new System.EventHandler(this.ChkVisible_CheckedChanged);
             // 
             // TxtTag
             // 
@@ -110,6 +123,7 @@
             this.TxtTag.Size = new System.Drawing.Size(205, 23);
             this.TxtTag.TabIndex = 13;
             this.TxtTag.Text = "Tag";
+            this.TxtTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxtTag.Leave += new System.EventHandler(this.TxtTag_Leave);
             // 
             // label1
@@ -132,6 +146,7 @@
             this.TxtFrames.Size = new System.Drawing.Size(205, 23);
             this.TxtFrames.TabIndex = 8;
             this.TxtFrames.Text = "0";
+            this.TxtFrames.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxtFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBox_KeyPress);
             this.TxtFrames.Leave += new System.EventHandler(this.TxtFrames_TextChanged);
             // 
@@ -166,16 +181,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Properties";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PropertyGrid
-            // 
-            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid.Location = new System.Drawing.Point(11, 94);
-            this.PropertyGrid.Name = "PropertyGrid";
-            this.PropertyGrid.Size = new System.Drawing.Size(258, 138);
-            this.PropertyGrid.TabIndex = 15;
             // 
             // TemplatePanel
             // 

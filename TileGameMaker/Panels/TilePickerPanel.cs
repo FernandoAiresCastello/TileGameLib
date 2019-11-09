@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.MapEditor;
+using TileGameMaker.MapEditorElements;
 using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
@@ -19,7 +19,7 @@ namespace TileGameMaker.Panels
 {
     public partial class TilePickerPanel : BasePanel
     {
-        private MapEditorElements MapEditor;
+        private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
         private TileEditorWindow TileEditorWindow;
         private TilePixels ClipboardTile = new TilePixels();
@@ -34,7 +34,7 @@ namespace TileGameMaker.Panels
             InitializeComponent();
         }
 
-        public TilePickerPanel(MapEditorElements editor)
+        public TilePickerPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;

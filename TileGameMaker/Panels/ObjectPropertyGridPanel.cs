@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.GameElements;
-using TileGameMaker.MapEditor;
+using TileGameMaker.MapEditorElements;
 using TileGameLib.Util;
 
 namespace TileGameMaker.Panels

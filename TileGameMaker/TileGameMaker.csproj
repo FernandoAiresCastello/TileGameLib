@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -70,8 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapEditor\ConfigurableMapProperties.cs" />
-    <Compile Include="MapEditor\ObjectBlockClipboard.cs" />
+    <Compile Include="MapEditorElements\ConfigurableMapProperties.cs" />
+    <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
     <Compile Include="Panels\MapPropertyGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,7 +91,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Util\Config.cs" />
-    <Compile Include="MapEditor\ObjectBlockSelection.cs" />
+    <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,7 +176,7 @@
     <Compile Include="Panels\TilePickerPanel.Designer.cs">
       <DependentUpon>TilePickerPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="MapEditor\MapEditorElements.cs" />
+    <Compile Include="MapEditorElements\MapEditor.cs" />
     <Compile Include="TiledDisplays\TilePickerDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -244,7 +244,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Resources\PressStart2P.ttf" />
-    <None Include="set-build-number.ps1" />
+    <None Include="SetBuildNumber.ps1" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -336,6 +336,6 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>powershell -File "$(ProjectDir)set-build-number.ps1"</PreBuildEvent>
+    <PreBuildEvent>powershell -File "$(ProjectDir)SetBuildNumber.ps1"</PreBuildEvent>
   </PropertyGroup>
 </Project>

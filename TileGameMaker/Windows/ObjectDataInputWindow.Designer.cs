@@ -176,6 +176,7 @@
             this.TxtTag.Name = "TxtTag";
             this.TxtTag.Size = new System.Drawing.Size(136, 23);
             this.TxtTag.TabIndex = 1;
+            this.TxtTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -212,22 +213,22 @@
             // ChkVisible
             // 
             this.ChkVisible.AutoSize = true;
-            this.ChkVisible.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ChkVisible.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkVisible.Location = new System.Drawing.Point(199, 3);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.ChkVisible.Size = new System.Drawing.Size(134, 23);
+            this.ChkVisible.Size = new System.Drawing.Size(96, 17);
             this.ChkVisible.TabIndex = 3;
             this.ChkVisible.Text = "Visible";
             this.ChkVisible.UseVisualStyleBackColor = true;
             // 
             // PropertyGrid
             // 
+            this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PropertyGrid.Location = new System.Drawing.Point(3, 93);
+            this.PropertyGrid.Location = new System.Drawing.Point(0, 90);
+            this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PropertyGrid.Name = "PropertyGrid";
-            this.PropertyGrid.Size = new System.Drawing.Size(533, 230);
+            this.PropertyGrid.Size = new System.Drawing.Size(539, 236);
             this.PropertyGrid.TabIndex = 8;
             // 
             // ObjectDataInputWindow

@@ -11,9 +11,9 @@ using TileGameMaker.Panels;
 using TileGameMaker.Util;
 using TileGameMaker.Windows;
 
-namespace TileGameMaker.MapEditor
+namespace TileGameMaker.MapEditorElements
 {
-    public class MapEditorElements
+    public class MapEditor
     {
         public string WorkspacePath { get; private set; }
         public string MapFile { get; set; }
@@ -41,53 +41,17 @@ namespace TileGameMaker.MapEditor
 
         public GameObject SelectedObject
         {
-            get
-            {
-                GameObject o = new GameObject();
-                o.Tag = TemplateControl.Object.Tag;
-                o.Visible = TemplateControl.Object.Visible;
-                o.Properties.SetEqual(TemplateControl.Properties);
-                o.Animation.SetEqual(TemplateControl.CroppedAnimation);
-                return o;
-            }
-
-            set
-            {
-                if (value != null)
-                {
-                    TemplateControl.Object.SetEqual(value);
-                    TemplateControl.UpdateAnimation(value.Animation);
-                    Tile firstFrame = value.Animation.FirstFrame;
-                    TilePickerControl.SetTileIndex(firstFrame.TileIx);
-                    ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
-                    ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
-                    TemplateControl.Refresh();
-                }
-            }
+            get => GetSelectedObject();
+            set => SetSelectedObject(value);
         }
 
         public Tile SelectedTile
         {
-            get
-            {
-                return new Tile(
-                    TilePickerControl.GetTileIndex(),
-                    ColorPickerControl.GetForeColorIndex(),
-                    ColorPickerControl.GetBackColorIndex());
-            }
-
-            set
-            {
-                TilePickerControl.SetTileIndex(value.TileIx);
-                ColorPickerControl.SetForeColorIndex(value.ForeColorIx);
-                ColorPickerControl.SetBackColorIndex(value.BackColorIx);
-                TilePickerControl.Refresh();
-                ColorPickerControl.Refresh();
-                TemplateControl.Refresh();
-            }
+            get => GetSelectedTile();
+            set => SetSelectedTile(value);
         }
 
-        public MapEditorElements(MainWindow mainWindow)
+        public MapEditor(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
 
@@ -143,6 +107,48 @@ namespace TileGameMaker.MapEditor
         private GameObject CreateBlankObject()
         {
             return new GameObject(new Tile(0, Palette.Black, Palette.White));
+        }
+
+        private Tile GetSelectedTile()
+        {
+            return new Tile(
+                TilePickerControl.GetTileIndex(),
+                ColorPickerControl.GetForeColorIndex(),
+                ColorPickerControl.GetBackColorIndex());
+        }
+
+        private void SetSelectedTile(Tile tile)
+        {
+            TilePickerControl.SetTileIndex(tile.TileIx);
+            ColorPickerControl.SetForeColorIndex(tile.ForeColorIx);
+            ColorPickerControl.SetBackColorIndex(tile.BackColorIx);
+            TilePickerControl.Refresh();
+            ColorPickerControl.Refresh();
+            TemplateControl.Refresh();
+        }
+
+        private GameObject GetSelectedObject()
+        {
+            GameObject o = new GameObject();
+            o.Tag = TemplateControl.Object.Tag;
+            o.Visible = TemplateControl.Object.Visible;
+            o.Properties.SetEqual(TemplateControl.Properties);
+            o.Animation.SetEqual(TemplateControl.CroppedAnimation);
+            return o;
+        }
+
+        private void SetSelectedObject(GameObject o)
+        {
+            if (o == null)
+                return;
+
+            TemplateControl.Object.SetEqual(o);
+            TemplateControl.UpdateAnimation(o.Animation);
+            Tile firstFrame = o.Animation.FirstFrame;
+            TilePickerControl.SetTileIndex(firstFrame.TileIx);
+            ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
+            ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
+            TemplateControl.Refresh();
         }
     }
 }

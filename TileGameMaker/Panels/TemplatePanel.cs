@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.MapEditor;
+using TileGameMaker.MapEditorElements;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameMaker.TiledDisplays;
@@ -40,14 +40,14 @@ namespace TileGameMaker.Panels
         }
 
         private readonly int MaxFrames = Config.ReadInt("MaxAnimationFrames");
-        private MapEditorElements MapEditor;
+        private MapEditor MapEditor;
 
         public TemplatePanel()
         {
             InitializeComponent();
         }
 
-        public TemplatePanel(MapEditorElements editor)
+        public TemplatePanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
@@ -135,6 +135,11 @@ namespace TileGameMaker.Panels
         private void TxtTag_Leave(object sender, EventArgs e)
         {
             Object.Tag = TxtTag.Text.Trim();
+        }
+
+        private void ChkVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            Object.Visible = ChkVisible.Checked;
         }
     }
 }

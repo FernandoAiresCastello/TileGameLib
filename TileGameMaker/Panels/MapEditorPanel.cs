@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.MapEditor;
+using TileGameMaker.MapEditorElements;
 using TileGameLib.GameElements;
 using TileGameLib.File;
 using TileGameLib.Graphics;
@@ -25,7 +25,7 @@ namespace TileGameMaker.Panels
         public TiledDisplay Display { get; private set; }
 
         private ObjectMap Map;
-        private MapEditorElements MapEditor;
+        private MapEditor Editor;
         private MapRenderer MapRenderer;
         private int Layer;
         private ObjectBlockSelection Selection;
@@ -47,10 +47,10 @@ namespace TileGameMaker.Panels
             InitializeComponent();
         }
 
-        public MapEditorPanel(MapEditorElements editor)
+        public MapEditorPanel(MapEditor editor)
         {
             InitializeComponent();
-            MapEditor = editor;
+            Editor = editor;
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
             Display.ShowGrid = true;
@@ -323,7 +323,7 @@ namespace TileGameMaker.Panels
 
         private void PutCurrentObject(ObjectCell cell)
         {
-            cell.SetObjectEqual(MapEditor.SelectedObject);
+            cell.SetObjectEqual(Editor.SelectedObject);
             RenderMap();
         }
 
@@ -380,7 +380,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty)
-                MapEditor.SelectedObject = cell.GetObject();
+                Editor.SelectedObject = cell.GetObject();
             else
                 Alert.Warning("Can't copy from empty cell");
         }
@@ -542,7 +542,7 @@ namespace TileGameMaker.Panels
                 int px = x;
                 foreach (char ch in line)
                 {
-                    Tile tile = MapEditor.SelectedTile;
+                    Tile tile = Editor.SelectedTile;
                     tile.TileIx = ch;
                     GameObject o = new GameObject(tile);
                     Map.SetObject(o, new ObjectPosition(Layer, x++, y));
@@ -567,16 +567,16 @@ namespace TileGameMaker.Panels
         public void SaveMap()
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.InitialDirectory = Editor.WorkspacePath;
             dialog.Filter = MapFileFilter;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Map.Name = MapEditor.MapName;
-                Map.MusicFile = MapEditor.MapMusic;
+                Map.Name = Editor.MapName;
+                Map.MusicFile = Editor.MapMusic;
                 MapFile.Save(Map, dialog.FileName);
-                MapEditor.MapFile = dialog.FileName;
-                MapEditor.UpdateMapProperties();
+                Editor.MapFile = dialog.FileName;
+                Editor.UpdateMapProperties();
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
@@ -585,18 +585,17 @@ namespace TileGameMaker.Panels
         public void LoadMap()
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.InitialDirectory = Editor.WorkspacePath;
             dialog.Filter = MapFileFilter;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 MapFile.Load(ref Map, dialog.FileName);
-                MapEditor.MapFile = dialog.FileName;
-                MapEditor.UpdateMapProperties();
-                MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = MapEditor.BlankObject;
+                Editor.MapFile = dialog.FileName;
+                Editor.UpdateMapProperties();
+                Editor.ResizeMap(Map.Width, Map.Height);
+                Editor.SelectedObject = Editor.BlankObject;
                 UpdateLayerComboBox();
-                Alert.Info("File loaded successfully!");
             }
         }
 
@@ -610,12 +609,12 @@ namespace TileGameMaker.Panels
                 if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
                     return;
 
-                Map.Name = MapEditor.MapName;
+                Map.Name = Editor.MapName;
                 MapArchive arch = new MapArchive(path);
                 string file = mgr.SelectedEntry + "." + MapFileExt;
                 arch.Save(Map, file);
-                MapEditor.MapFile = file;
-                MapEditor.UpdateMapProperties();
+                Editor.MapFile = file;
+                Editor.UpdateMapProperties();
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
@@ -638,10 +637,10 @@ namespace TileGameMaker.Panels
                 MapArchive arch = new MapArchive(path);
                 string file = mgr.SelectedEntry;
                 arch.Load(Map, file);
-                MapEditor.MapFile = file;
-                MapEditor.UpdateMapProperties();
-                MapEditor.ResizeMap(Map.Width, Map.Height);
-                MapEditor.SelectedObject = MapEditor.BlankObject;
+                Editor.MapFile = file;
+                Editor.UpdateMapProperties();
+                Editor.ResizeMap(Map.Width, Map.Height);
+                Editor.SelectedObject = Editor.BlankObject;
                 UpdateLayerComboBox();
                 Alert.Info("File loaded successfully!");
             }
@@ -660,9 +659,9 @@ namespace TileGameMaker.Panels
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
             Map.MusicFile = "";
-            MapEditor.ResizeMap(MapEditorElements.DefaultMapWidth, MapEditorElements.DefaultMapHeight);
-            MapEditor.MapFile = null;
-            MapEditor.UpdateMapProperties();
+            Editor.ResizeMap(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
+            Editor.MapFile = null;
+            Editor.UpdateMapProperties();
             ClearMap();
             RenderMap();
             UpdateStatusLabel();
@@ -691,7 +690,7 @@ namespace TileGameMaker.Panels
                 Refresh();
                 UpdateLayerComboBox();
                 UpdateStatusLabel();
-                MapEditor.UpdateMapProperties();
+                Editor.UpdateMapProperties();
                 CbLayer.SelectedIndex = CbLayer.SelectedIndex + 1;
             }
             else
@@ -711,7 +710,7 @@ namespace TileGameMaker.Panels
                     Refresh();
                     UpdateLayerComboBox();
                     UpdateStatusLabel();
-                    MapEditor.UpdateMapProperties();
+                    Editor.UpdateMapProperties();
                 }
             }
             else
@@ -743,7 +742,7 @@ namespace TileGameMaker.Panels
 
         private void BtnSetBackColor_Click(object sender, EventArgs e)
         {
-            ColorPickerWindow win = new ColorPickerWindow(MapEditor, "Select map background");
+            ColorPickerWindow win = new ColorPickerWindow(Editor, "Select map background");
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.BackColor = win.SelectedColor;
         }
@@ -772,7 +771,7 @@ namespace TileGameMaker.Panels
             }
             else if (Alert.Confirm("This will replace with template all objects that are equal to the clicked object. Are you sure?"))
             {
-                Map.ReplaceObjects(o, MapEditor.SelectedObject);
+                Map.ReplaceObjects(o, Editor.SelectedObject);
                 Display.Refresh();
             }
         }
@@ -801,7 +800,7 @@ namespace TileGameMaker.Panels
         {
             List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
             foreach (ObjectCell cell in selectedCells)
-                cell.SetObjectEqual(MapEditor.SelectedObject);
+                cell.SetObjectEqual(Editor.SelectedObject);
 
             Display.Refresh();
         }

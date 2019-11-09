@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.GameElements;
 
-namespace TileGameMaker.MapEditor
+namespace TileGameMaker.MapEditorElements
 {
     public class ObjectBlockSelection
     {

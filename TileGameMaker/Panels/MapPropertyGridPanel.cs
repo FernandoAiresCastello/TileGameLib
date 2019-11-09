@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameMaker.MapEditor;
+using TileGameMaker.MapEditorElements;
 using TileGameLib.Util;
 
 namespace TileGameMaker.Panels
@@ -16,13 +16,13 @@ namespace TileGameMaker.Panels
     {
         public ConfigurableMapProperties Properties { get; private set; }
 
-        private MapEditorElements MapEditor;
+        private MapEditor MapEditor;
 
         public MapPropertyGridPanel() : this(null)
         {
         }
 
-        public MapPropertyGridPanel(MapEditorElements editor)
+        public MapPropertyGridPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;
