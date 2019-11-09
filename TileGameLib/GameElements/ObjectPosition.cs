@@ -64,42 +64,42 @@ namespace TileGameLib.GameElements
 
         public static ObjectPosition North(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X);
+            return new ObjectPosition(pos.Layer, pos.X, pos.Y - distance);
         }
 
         public static ObjectPosition South(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X);
+            return new ObjectPosition(pos.Layer, pos.X, pos.Y + distance);
         }
 
         public static ObjectPosition East(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y, pos.X + distance);
+            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y);
         }
 
         public static ObjectPosition West(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y, pos.X - distance);
+            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y);
         }
 
         public static ObjectPosition Northeast(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X + distance);
+            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y - distance);
         }
 
         public static ObjectPosition Northwest(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y - distance, pos.X - distance);
+            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y - distance);
         }
 
         public static ObjectPosition Southeast(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X + distance);
+            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y + distance);
         }
 
         public static ObjectPosition Southwest(ObjectPosition pos, int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.Y + distance, pos.X - distance);
+            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y + distance);
         }
     }
 }

@@ -24,7 +24,6 @@ namespace TestPlayground
 
         public override void OnDrawUi()
         {
-            PrintUi("ind-life", "666");
         }
 
         public override void OnExecuteCycle()
