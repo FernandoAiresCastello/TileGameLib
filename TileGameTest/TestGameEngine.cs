@@ -20,11 +20,12 @@ namespace TestPlayground
         public TestGameEngine() : base(WindowTitle, WindowCols, WindowRows, CycleInterval)
         {
             MapsBasePath = "maps/";
-
             LoadUiMap("ui.tgmap");
             SetMapViewport("view0", "view1");
-            AddMapController("test01.tgmap", new TestMapController());
-            EnterMap("test01");
+
+            string test01 = AddMapController("test01.tgmap", new TestMapController());
+
+            EnterMap(test01);
         }
 
         public override void OnDrawUi()
