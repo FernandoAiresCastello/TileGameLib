@@ -61,12 +61,12 @@ namespace TileGameTest
         {
             string takenMessage = null;
 
-            if (IsYellowKey(key.Object))
+            if (IsKey(key.Object, "yellow"))
             {
                 YellowKeys++;
                 takenMessage = "Got a yellow key!";
             }
-            else if (IsPinkKey(key.Object))
+            else if (IsKey(key.Object, "pink"))
             {
                 PinkKeys++;
                 takenMessage = "Got a pink key!";
@@ -83,7 +83,7 @@ namespace TileGameTest
         {
             bool unlock = false;
 
-            if (IsYellowDoor(door.Object))
+            if (IsDoor(door.Object, "yellow"))
             {
                 if (YellowKeys > 0)
                 {
@@ -95,7 +95,7 @@ namespace TileGameTest
                     ShowMessage("You need a yellow key!");
                 }
             }
-            else if (IsPinkDoor(door.Object))
+            else if (IsDoor(door.Object, "pink"))
             {
                 if (PinkKeys > 0)
                 {
@@ -115,34 +115,30 @@ namespace TileGameTest
             }
         }
 
-        private bool IsDoor(GameObject o)
+        private bool IsDoor(GameObject o, string color = null)
         {
-            return o != null && o.HasTag && o.Tag.Equals("door");
+            if (o == null)
+                return false;
+
+            bool isDoor = o.HasTag && o.Tag.Equals("door");
+
+            if (color != null)
+                return isDoor && o.Properties.HasValue("color", color);
+
+            return isDoor;
         }
 
-        private bool IsYellowDoor(GameObject o)
+        private bool IsKey(GameObject o, string color = null)
         {
-            return o != null && o.HasTag && o.Tag.Equals("door") && o.Properties.HasValue("color", "yellow");
-        }
+            if (o == null)
+                return false;
 
-        private bool IsPinkDoor(GameObject o)
-        {
-            return o != null && o.HasTag && o.Tag.Equals("door") && o.Properties.HasValue("color", "pink");
-        }
+            bool isKey = o.HasTag && o.Tag.Equals("key");
 
-        private bool IsKey(GameObject o)
-        {
-            return o != null && o.HasTag && o.Tag.Equals("key");
-        }
+            if (color != null)
+                return isKey && o.Properties.HasValue("color", color);
 
-        private bool IsYellowKey(GameObject o)
-        {
-            return o != null && o.HasTag && o.Tag.Equals("key") && o.Properties.HasValue("color", "yellow");
-        }
-
-        private bool IsPinkKey(GameObject o)
-        {
-            return o != null && o.HasTag && o.Tag.Equals("key") && o.Properties.HasValue("color", "pink");
+            return isKey;
         }
 
         private void MovePlayer(PositionedObject player, int dx, int dy)
