@@ -16,12 +16,12 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
-        public GameWindow Window { get; private set; }
         public string MapsBasePath { set; get; }
-        public bool Paused { set; get; } = false;
-        public UserInterface Ui => Window?.Ui;
+        public bool Paused { set; get; }
+        public bool CancelMapTransition { set; get; }
 
         private MapController MapController;
+        private readonly GameWindow Window;
         private readonly MapControllerCollection MapControllers;
         private readonly Timer CycleTimer;
         private readonly Timer GfxRefreshTimer;
@@ -78,6 +78,11 @@ namespace TileGameLib.Engine
             Window.Ui.Print(placeholderObjectTag, offsetX, offsetY, obj);
         }
 
+        public void ShowMessage(string placeholderObjectTag, string text, int duration)
+        {
+            Window.Ui.ShowMessage(placeholderObjectTag, text, duration);
+        }
+
         public virtual void OnDrawUi()
         {
         }
@@ -96,6 +101,8 @@ namespace TileGameLib.Engine
             bool global = OnKeyDown(e);
             if (!global && !Paused && MapController != null)
                 MapController.OnKeyDown(e);
+
+            Window.Ui.DrawMap();
         }
 
         public void HandleKeyUpEvent(KeyEventArgs e)
@@ -103,6 +110,8 @@ namespace TileGameLib.Engine
             bool global = OnKeyUp(e);
             if (!global && !Paused && MapController != null)
                 MapController.OnKeyUp(e);
+
+            Window.Ui.DrawMap();
         }
 
         public virtual bool OnKeyDown(KeyEventArgs e)
@@ -113,6 +122,10 @@ namespace TileGameLib.Engine
         public virtual bool OnKeyUp(KeyEventArgs e)
         {
             return false;
+        }
+
+        public virtual void OnMapTransition(MapController currentController, MapController nextController)
+        {
         }
 
         public void PlayMusicOnce(string musicFile)
@@ -158,7 +171,6 @@ namespace TileGameLib.Engine
                     mapPath = basePath + "/" + mapFile;
             }
 
-
             return mapPath;
         }
 
@@ -189,18 +201,25 @@ namespace TileGameLib.Engine
 
         public void EnterMap(string mapName)
         {
-            MapController next = MapControllers.Get(mapName);
-            if (next == null)
+            MapController nextController = MapControllers.Get(mapName);
+            if (nextController == null)
                 throw new TileGameLibException($"Map {mapName} not found");
 
-            if (MapController != null)
-                MapController.OnLeave();
+            OnMapTransition(MapController, nextController);
 
-            SetMapController(next);
-            MapController.OnEnter();
+            if (!CancelMapTransition)
+            {
+                if (MapController != null)
+                    MapController.OnLeave();
 
-            if (MapController.Map.HasMusic)
-                PlayMusicLoop(MapController.Map.MusicFile);
+                SetMapController(nextController);
+                MapController.OnEnter();
+
+                if (MapController.Map.HasMusic)
+                    PlayMusicLoop(MapController.Map.MusicFile);
+            }
+
+            CancelMapTransition = false;
         }
 
         private void SetMapController(MapController controller)

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestPlayground.Properties
+namespace TileGameTest.Properties
 {
 
 

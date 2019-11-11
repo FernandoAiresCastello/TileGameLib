@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestPlayground
+namespace TileGameTest
 {
     static class Program
     {
@@ -13,7 +13,7 @@ namespace TestPlayground
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new TestGameEngine().Run();
+            new TestEngine().Run();
         }
     }
 }

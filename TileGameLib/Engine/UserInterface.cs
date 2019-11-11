@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Exceptions;
 using TileGameLib.File;
@@ -16,21 +17,23 @@ namespace TileGameLib.Engine
     {
         public int BackColor { set; get; } = 0;
         public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
+        public GraphicsAdapter Graphics => Display.Graphics;
 
         private ObjectMap UiMap;
         private readonly MapRenderer MapRenderer;
         private readonly TiledDisplay Display;
         private Palette OriginalPalette;
         private Tileset OriginalTileset;
-        private GraphicsAdapter Graphics => Display.Graphics;
+        private UserInterfaceMessage Message;
 
-        private readonly Dictionary<string, UserInterfacePlaceholder>
-            Placeholders = new Dictionary<string, UserInterfacePlaceholder>();
+        public Dictionary<string, UserInterfacePlaceholder>
+            Placeholders { get; private set; } = new Dictionary<string, UserInterfacePlaceholder>();
 
         public UserInterface(TiledDisplay display)
         {
             Display = display;
             MapRenderer = new MapRenderer(display);
+            Message = new UserInterfaceMessage(this);
         }
 
         public void LoadUiMap(string uiMapFile)
@@ -84,6 +87,11 @@ namespace TileGameLib.Engine
             Graphics.PutString(x, y, text, foreColorIx, backColorIx);
         }
 
+        public void ShowMessage(string placeholderObjectTag, string text, int duration)
+        {
+            Message.Show(placeholderObjectTag, text, duration);
+        }
+
         public void Draw()
         {
             if (UiMap == null)
@@ -104,6 +112,7 @@ namespace TileGameLib.Engine
                 }
             }
 
+            Message.Draw();
             RestoreOriginalTilesetAndPalette();
         }
 
