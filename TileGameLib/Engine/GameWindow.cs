@@ -28,12 +28,12 @@ namespace TileGameLib.Engine
 
         protected override void HandleKeyDownEvent(KeyEventArgs e)
         {
-            Engine.OnKeyDown(e);
+            Engine.HandleKeyDownEvent(e);
         }
 
         protected override void HandleKeyUpEvent(KeyEventArgs e)
         {
-            Engine.OnKeyUp(e);
+            Engine.HandleKeyUpEvent(e);
         }
     }
 }

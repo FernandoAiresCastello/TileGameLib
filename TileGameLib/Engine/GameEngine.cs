@@ -79,26 +79,26 @@ namespace TileGameLib.Engine
             Debug.WriteLine(obj);
         }
 
-        public void OnKeyDown(KeyEventArgs e)
+        public void HandleKeyDownEvent(KeyEventArgs e)
         {
-            bool global = OnGlobalKeyDown(e);
-            if (!global && MapController != null)
+            bool global = OnKeyDown(e);
+            if (!global && !Paused && MapController != null)
                 MapController.OnKeyDown(e);
         }
 
-        public void OnKeyUp(KeyEventArgs e)
+        public void HandleKeyUpEvent(KeyEventArgs e)
         {
-            bool global = OnGlobalKeyUp(e);
-            if (!global && MapController != null)
+            bool global = OnKeyUp(e);
+            if (!global && !Paused && MapController != null)
                 MapController.OnKeyUp(e);
         }
 
-        public virtual bool OnGlobalKeyDown(KeyEventArgs e)
+        public virtual bool OnKeyDown(KeyEventArgs e)
         {
             return false;
         }
 
-        public virtual bool OnGlobalKeyUp(KeyEventArgs e)
+        public virtual bool OnKeyUp(KeyEventArgs e)
         {
             return false;
         }

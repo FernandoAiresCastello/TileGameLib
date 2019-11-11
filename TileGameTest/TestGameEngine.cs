@@ -30,12 +30,19 @@ namespace TestPlayground
         {
         }
 
-        public override bool OnGlobalKeyDown(KeyEventArgs e)
+        public override bool OnKeyDown(KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.P)
+            {
+                Paused = !Paused;
+                Window.Text = Paused ? "PAUSED" : "";
+                return true;
+            }
+
             return false;
         }
 
-        public override bool OnGlobalKeyUp(KeyEventArgs e)
+        public override bool OnKeyUp(KeyEventArgs e)
         {
             return false;
         }
