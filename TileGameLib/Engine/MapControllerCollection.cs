@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Util;
@@ -29,13 +30,26 @@ namespace TileGameLib.Engine
             return null;
         }
 
-        public string AddController(string mapFile, MapController controller)
+        public bool HasMap(string mapName)
         {
-            controller.Map = MapFile.Load(mapFile);
+            return Get(mapName) != null;
+        }
+
+        public ObjectMap AddController(string mapFile, MapController controller)
+        {
+            if (!System.IO.File.Exists(mapFile))
+                throw new TileGameLibException($"Map file not found: {mapFile}");
+
+            ObjectMap map = MapFile.Load(mapFile);
+
+            if (HasMap(map.Name))
+                throw new TileGameLibException($"There is already a map with the name {map.Name}");
+
+            controller.Map = map;
             controller.MapFile = mapFile;
             Controllers.Add(controller.Map, controller);
 
-            return controller.Map.Name;
+            return controller.Map;
         }
     }
 }

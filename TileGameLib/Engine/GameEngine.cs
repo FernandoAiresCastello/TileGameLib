@@ -17,7 +17,6 @@ namespace TileGameLib.Engine
     public class GameEngine
     {
         public GameWindow Window { get; private set; }
-        public Variables Variables { get; private set; }
         public string MapsBasePath { set; get; }
         public bool Paused { set; get; } = false;
         public UserInterface Ui => Window?.Ui;
@@ -28,10 +27,9 @@ namespace TileGameLib.Engine
         private readonly Timer GfxRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
+        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
-            Variables = new Variables();
             MapControllers = new MapControllerCollection();
             SoundPlayer = new SoundPlayer();
 
@@ -40,7 +38,7 @@ namespace TileGameLib.Engine
             CycleTimer.Tick += CycleTimer_Tick;
 
             GfxRefreshTimer = new Timer();
-            GfxRefreshTimer.Interval = 60;
+            GfxRefreshTimer.Interval = gfxRefreshInterval;
             GfxRefreshTimer.Tick += GfxRefreshTimer_Tick;
         }
 
@@ -179,16 +177,21 @@ namespace TileGameLib.Engine
             Window.Ui.SetMapViewport(x, y, width, height);
         }
 
-        public string AddMapController(string mapFile, MapController controller)
+        public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             return MapControllers.AddController(GetMapPath(mapFile), controller);
+        }
+
+        public void EnterMap(ObjectMap map)
+        {
+            EnterMap(map.Name);
         }
 
         public void EnterMap(string mapName)
         {
             MapController next = MapControllers.Get(mapName);
             if (next == null)
-                throw new TileGameLibException("Map " + mapName + " not found");
+                throw new TileGameLibException($"Map {mapName} not found");
 
             if (MapController != null)
                 MapController.OnLeave();
