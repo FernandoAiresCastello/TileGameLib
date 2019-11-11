@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{73F1D060-1
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlayground", "TestPlayground\TestPlayground.csproj", "{1F78FBBA-7FF4-4489-8701-69AF3BBBCB24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameTest", "TileGameTest\TileGameTest.csproj", "{1F78FBBA-7FF4-4489-8701-69AF3BBBCB24}"
 	ProjectSection(ProjectDependencies) = postProject
 		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C} = {ED0D0220-B0AF-4183-BC9F-204E6DF1381C}
 	EndProjectSection

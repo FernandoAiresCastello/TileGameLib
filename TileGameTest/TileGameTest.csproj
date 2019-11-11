@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1F78FBBA-7FF4-4489-8701-69AF3BBBCB24}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TestPlayground</RootNamespace>
-    <AssemblyName>TestPlayground</AssemblyName>
+    <RootNamespace>TileGameTest</RootNamespace>
+    <AssemblyName>TileGameTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
