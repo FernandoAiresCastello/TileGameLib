@@ -19,34 +19,48 @@ namespace TileGameLib.Engine
         public GameWindow Window { get; private set; }
         public Variables Variables { get; private set; }
         public bool Paused { set; get; } = false;
+        public UserInterface Ui => Window?.Ui;
 
         private MapController MapController;
-        private readonly MapControllerCollection MapControllerCollection;
+        private readonly MapControllerCollection MapControllers;
         private readonly Timer CycleTimer;
-        private readonly SoundPlayer SoundPlayer = new SoundPlayer();
+        private readonly Timer GfxRefreshTimer;
+        private readonly SoundPlayer SoundPlayer;
 
         public GameEngine(string winTitle, int winCols, int winRows, int cycleInterval)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
             Variables = new Variables();
-
-            MapControllerCollection = new MapControllerCollection();
+            MapControllers = new MapControllerCollection();
+            SoundPlayer = new SoundPlayer();
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
             CycleTimer.Tick += CycleTimer_Tick;
+
+            GfxRefreshTimer = new Timer();
+            GfxRefreshTimer.Interval = 60;
+            GfxRefreshTimer.Tick += GfxRefreshTimer_Tick;
         }
 
         public void Run()
         {
             CycleTimer.Start();
+            GfxRefreshTimer.Start();
             Application.Run(Window);
+        }
+
+        private void GfxRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            Window.Ui.Draw();
+            OnDrawUi();
+
+            if (MapController != null)
+                MapController.OnDrawUi();
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)
         {
-            DrawUi();
-
             if (!Paused)
             {
                 OnExecuteCycle();
@@ -55,15 +69,14 @@ namespace TileGameLib.Engine
             }
         }
 
-        public void DrawUi()
+        public void PrintUi(string placeholderObjectTag, object obj)
         {
-            Window.Ui.DrawUiMap();
-            OnDrawUi();
+            Window.Ui.Print(placeholderObjectTag, obj);
         }
 
-        public void PrintUi(string placeholderObjectTag, string text)
+        public void PrintUi(string placeholderObjectTag, int offsetX, int offsetY, object obj)
         {
-            Window.Ui.Print(placeholderObjectTag, text);
+            Window.Ui.Print(placeholderObjectTag, offsetX, offsetY, obj);
         }
 
         public virtual void OnDrawUi()
@@ -146,12 +159,12 @@ namespace TileGameLib.Engine
 
         public void AddMapController(string mapFile, MapController controller)
         {
-            MapControllerCollection.AddController(mapFile, controller);
+            MapControllers.AddController(mapFile, controller);
         }
 
         public void EnterMap(string mapName)
         {
-            MapController next = MapControllerCollection.Get(mapName);
+            MapController next = MapControllers.Get(mapName);
             if (next == null)
                 throw new TileGameLibException("Map " + mapName + " not found");
 

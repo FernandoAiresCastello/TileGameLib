@@ -15,27 +15,29 @@ namespace TileGameLib.Engine
     public class UserInterface
     {
         public int BackColor { set; get; } = 0;
+        public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
 
         private ObjectMap UiMap;
         private readonly MapRenderer MapRenderer;
-        private readonly GraphicsAdapter Graphics;
+        private readonly TiledDisplay Display;
         private Palette OriginalPalette;
         private Tileset OriginalTileset;
+        private GraphicsAdapter Graphics => Display.Graphics;
 
         private readonly Dictionary<string, UserInterfacePlaceholder>
             Placeholders = new Dictionary<string, UserInterfacePlaceholder>();
 
-        public UserInterface(GraphicsAdapter gr, TiledDisplay disp)
+        public UserInterface(TiledDisplay display)
         {
-            Graphics = gr;
-            MapRenderer = new MapRenderer(disp);
+            Display = display;
+            MapRenderer = new MapRenderer(display);
         }
 
         public void LoadUiMap(string uiMapFile)
         {
             UiMap = MapFile.Load(uiMapFile);
 
-            if (UiMap.Width != Graphics.Cols || UiMap.Height != Graphics.Rows)
+            if (UiMap.Width != Display.Cols || UiMap.Height != Display.Rows)
                 throw new TileGameLibException("UI map must be exactly the same dimensions as the window");
             if (UiMap.Layers.Count != 1)
                 throw new TileGameLibException("UI map must have exactly 1 layer");
@@ -58,16 +60,31 @@ namespace TileGameLib.Engine
             RestoreOriginalTilesetAndPalette();
         }
 
-        public void Print(string placeholderObjectTag, string text)
+        public void Print(string placeholderObjectTag, object obj)
+        {
+            Print(placeholderObjectTag, 0, 0, obj);
+        }
+
+        public void Print(string placeholderObjectTag, int offsetX, int offsetY, object obj)
+        {
+            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
+            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColorIx, ph.Tile.BackColorIx);
+        }
+
+        public void Print(string text, int x, int y, int foreColorIx)
+        {
+            Print(text, x, y, foreColorIx, BackColor);
+        }
+
+        public void Print(string text, int x, int y, int foreColorIx, int backColorIx)
         {
             if (UiMap == null)
                 return;
 
-            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
-            Graphics.PutString(ph.Position.X, ph.Position.Y, text, ph.Tile.ForeColorIx, ph.Tile.BackColorIx);
+            Graphics.PutString(x, y, text, foreColorIx, backColorIx);
         }
 
-        public void DrawUiMap()
+        public void Draw()
         {
             if (UiMap == null)
                 return;
@@ -82,12 +99,17 @@ namespace TileGameLib.Engine
                 for (int x = 0; x < layer.Width; x++)
                 {
                     GameObject o = layer.GetObject(x, y);
-                    if (o != null)
+                    if (o != null && o.Visible)
                         Graphics.PutTile(x, y, o.Animation.FirstFrame);
                 }
             }
 
             RestoreOriginalTilesetAndPalette();
+        }
+
+        public void DrawMap()
+        {
+            MapRenderer.Render();
         }
 
         public void SetMapViewport(int x, int y, int width, int height)
@@ -110,27 +132,33 @@ namespace TileGameLib.Engine
             MapRenderer.Map = map;
         }
 
-        public void EnableMapAnimation(bool enable)
-        {
-            MapRenderer.AnimationEnabled = enable;
-        }
-
         public void ClearMapViewport()
         {
             ClearRect(MapRenderer.Viewport);
         }
 
-        public void ShowGameMap(bool show)
+        public void ShowMap()
         {
-            if (show)
-            {
-                MapRenderer.AutoRefresh = true;
-            }
-            else
-            {
-                MapRenderer.AutoRefresh = false;
-                DrawUiMap();
-            }
+            MapRenderer.AutoRefresh = true;
+            DrawMap();
+            Display.Refresh();
+        }
+
+        public void HideMap()
+        {
+            MapRenderer.AutoRefresh = false;
+            ClearMapViewport();
+            Display.Refresh();
+        }
+
+        public void StartMapAnimation()
+        {
+            MapRenderer.AnimationEnabled = true;
+        }
+
+        public void StopMapAnimation()
+        {
+            MapRenderer.AnimationEnabled = false;
         }
 
         public void ScrollMapViewport(int dx, int dy)

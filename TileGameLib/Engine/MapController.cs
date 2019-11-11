@@ -33,6 +33,10 @@ namespace TileGameLib.Engine
         {
         }
 
+        public virtual void OnDrawUi()
+        {
+        }
+
         public virtual void OnKeyDown(KeyEventArgs e)
         {
         }

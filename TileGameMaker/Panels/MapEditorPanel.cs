@@ -279,7 +279,7 @@ namespace TileGameMaker.Panels
 
             if (o != null)
             {
-                if (Mode != EditMode.Selection)
+                if (Mode != EditMode.Selection && Mode != EditMode.Replace)
                 {
                     LbEditModeInfo.Text += " → " + o.ToString();
                     ShowTooltip(o, position);
@@ -767,9 +767,13 @@ namespace TileGameMaker.Panels
         {
             if (o == null)
             {
-                Alert.Warning("Clicked cell is empty");
+                if (Alert.Confirm($"The clicked cell is empty. This will put the template object in all empty cells in the current layer (layer {Layer}). Are you sure?"))
+                {
+                    Map.FillEmptyCells(Editor.SelectedObject, Layer);
+                    Display.Refresh();
+                }
             }
-            else if (Alert.Confirm("This will replace with template all objects that are equal to the clicked object. Are you sure?"))
+            else if (Alert.Confirm("This will replace with the template all objects in all layers that are equal to the clicked object. Are you sure?"))
             {
                 Map.ReplaceObjects(o, Editor.SelectedObject);
                 Display.Refresh();

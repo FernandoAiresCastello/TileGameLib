@@ -23,7 +23,7 @@ namespace TileGameLib.Engine
         {
             Text = title;
             Engine = engine;
-            Ui = new UserInterface(Graphics, Display);
+            Ui = new UserInterface(Display);
         }
 
         protected override void HandleKeyDownEvent(KeyEventArgs e)

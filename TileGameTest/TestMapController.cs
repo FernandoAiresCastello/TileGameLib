@@ -12,7 +12,6 @@ namespace TestPlayground
 {
     class TestMapController : MapController
     {
-        private PositionedObject Player;
         private int YellowKeys = 0;
         private int PinkKeys = 0;
 
@@ -32,9 +31,15 @@ namespace TestPlayground
         {
         }
 
+        public override void OnDrawUi()
+        {
+            Engine.PrintUi("bottom", 0, 1, "Yellow keys: " + YellowKeys);
+            Engine.PrintUi("bottom", 0, 2, "Pink keys: " + PinkKeys);
+        }
+
         public override void OnKeyDown(KeyEventArgs e)
         {
-            Player = Map.FindObjectByTag("player");
+            PositionedObject Player = Map.FindObjectByTag("player");
 
             int dx = 0;
             int dy = 0;
