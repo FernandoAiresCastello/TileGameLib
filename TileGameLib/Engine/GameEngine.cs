@@ -18,6 +18,7 @@ namespace TileGameLib.Engine
     {
         public GameWindow Window { get; private set; }
         public Variables Variables { get; private set; }
+        public string MapsBasePath { set; get; }
         public bool Paused { set; get; } = false;
         public UserInterface Ui => Window?.Ui;
 
@@ -142,9 +143,30 @@ namespace TileGameLib.Engine
             SoundPlayer.Stop();
         }
 
+        public string GetMapPath(string mapFile)
+        {
+            string basePath = MapsBasePath.Replace('\\', '/');
+            string mapPath = "";
+
+            if (string.IsNullOrWhiteSpace(basePath))
+            {
+                mapPath = mapFile;
+            }
+            else
+            {
+                if (basePath.EndsWith("/"))
+                    mapPath = basePath + mapFile;
+                else
+                    mapPath = basePath + "/" + mapFile;
+            }
+
+
+            return mapPath;
+        }
+
         public void LoadUiMap(string uiMapFile)
         {
-            Window.Ui.LoadUiMap(uiMapFile);
+            Window.Ui.LoadUiMap(GetMapPath(uiMapFile));
         }
 
         public void SetMapViewport(string topLeftPlaceholderObjectTag, string bottomRightPlaceholderObjectTag)
@@ -159,7 +181,7 @@ namespace TileGameLib.Engine
 
         public void AddMapController(string mapFile, MapController controller)
         {
-            MapControllers.AddController(mapFile, controller);
+            MapControllers.AddController(GetMapPath(mapFile), controller);
         }
 
         public void EnterMap(string mapName)

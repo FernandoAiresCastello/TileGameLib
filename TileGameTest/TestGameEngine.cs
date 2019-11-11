@@ -19,9 +19,11 @@ namespace TestPlayground
 
         public TestGameEngine() : base(WindowTitle, WindowCols, WindowRows, CycleInterval)
         {
-            LoadUiMap("maps/ui.tgmap");
+            MapsBasePath = "maps/";
+
+            LoadUiMap("ui.tgmap");
             SetMapViewport("view0", "view1");
-            AddMapController("maps/test01.tgmap", new TestMapController());
+            AddMapController("test01.tgmap", new TestMapController());
             EnterMap("test01");
         }
 
