@@ -38,9 +38,9 @@ namespace TileGameLib.GameElements
             int destX = other.Area.X;
             int destY = other.Area.Y;
 
-            for (int sourceY = Area.Y; sourceY < Area.Y + Area.Height; sourceY++, destY++)
+            for (int sourceY = Area.Y; sourceY < Area.Bottom; sourceY++, destY++)
             {
-                for (int sourceX = Area.X; sourceX < Area.X + Area.Width; sourceX++, destX++)
+                for (int sourceX = Area.X; sourceX < Area.Right; sourceX++, destX++)
                 {
                     ObjectPosition sourcePosition = new ObjectPosition(sourceLayer, sourceX, sourceY);
                     ObjectPosition destPosition = new ObjectPosition(destLayer, destX, destY);
@@ -58,8 +58,8 @@ namespace TileGameLib.GameElements
 
         public void DeleteObjects()
         {
-            for (int y = Area.Y; y < Area.Height; y++)
-                for (int x = Area.X; x < Area.Width; x++)
+            for (int y = Area.Y; y < Area.Bottom; y++)
+                for (int x = Area.X; x < Area.Right; x++)
                     Map.DeleteObject(new ObjectPosition(Layer, x, y));
         }
 
@@ -67,9 +67,9 @@ namespace TileGameLib.GameElements
         {
             PositionedCell[,] cells = new PositionedCell[Area.Width, Area.Height];
 
-            for (int y = Area.Y; y < Area.Y + Area.Height; y++)
+            for (int y = Area.Y; y < Area.Bottom; y++)
             {
-                for (int x = Area.X; x < Area.X + Area.Width; x++)
+                for (int x = Area.X; x < Area.Right; x++)
                 {
                     ObjectPosition position = new ObjectPosition(Layer, x, y);
                     ObjectCell cell = Map.GetCell(position);
@@ -84,9 +84,9 @@ namespace TileGameLib.GameElements
         {
             PositionedObject[,] objects = new PositionedObject[Area.Width, Area.Height];
 
-            for (int y = Area.Y; y < Area.Y + Area.Height; y++)
+            for (int y = Area.Y; y < Area.Bottom; y++)
             {
-                for (int x = Area.X; x < Area.X + Area.Width; x++)
+                for (int x = Area.X; x < Area.Height; x++)
                 {
                     ObjectPosition position = new ObjectPosition(Layer, x, y);
                     GameObject obj = Map.GetObject(position);
