@@ -115,6 +115,24 @@ namespace TileGameLib.Graphics
             AnimationFrame++;
         }
 
+        public void ScrollByDistance(int dx, int dy)
+        {
+            Scroll = new Point(Scroll.X + dx, Scroll.Y + dy);
+        }
+
+        public void ScrollToPoint(Point point)
+        {
+            Scroll = new Point(point.X, point.Y);
+        }
+
+        public void ScrollToCenter(Point point)
+        {
+            int offsetX = (Viewport.Width / 2);
+            int offsetY = (Viewport.Height / 2);
+
+            Scroll = new Point(point.X - offsetX, point.Y - offsetY);
+        }
+
         public void Render()
         {
             if (Map == null)

@@ -16,12 +16,14 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
+        public GameWindow Window { get; private set; }
         public string MapsBasePath { set; get; }
         public bool Paused { set; get; }
+
+        public UserInterface Ui => Window.Ui;
         public bool HasMessages => Window.Ui.HasMessages;
 
         private MapController MapController;
-        private readonly GameWindow Window;
         private readonly MapControllerCollection MapControllers;
         private readonly Timer CycleTimer;
         private readonly Timer GfxRefreshTimer;
@@ -86,21 +88,6 @@ namespace TileGameLib.Engine
             // Return false to cancel the transition, true otherwise
 
             return true;
-        }
-
-        public void PrintUi(string placeholderObjectTag, object obj)
-        {
-            Window.Ui.Print(placeholderObjectTag, obj);
-        }
-
-        public void PrintUi(string placeholderObjectTag, int offsetX, int offsetY, object obj)
-        {
-            Window.Ui.Print(placeholderObjectTag, offsetX, offsetY, obj);
-        }
-
-        public void ShowMessage(string placeholderObjectTag, int duration, params string[] messages)
-        {
-            Window.Ui.ShowMessage(placeholderObjectTag, duration, messages);
         }
 
         public void Log(object obj)
@@ -175,16 +162,6 @@ namespace TileGameLib.Engine
         public void LoadUiMap(string uiMapFile)
         {
             Window.Ui.LoadUiMap(GetMapPath(uiMapFile));
-        }
-
-        public void SetMapViewport(string topLeftPlaceholderObjectTag, string bottomRightPlaceholderObjectTag)
-        {
-            Window.Ui.SetMapViewport(topLeftPlaceholderObjectTag, bottomRightPlaceholderObjectTag);
-        }
-
-        public void SetMapViewport(int x, int y, int width, int height)
-        {
-            Window.Ui.SetMapViewport(x, y, width, height);
         }
 
         public ObjectMap LoadMap(string mapFile, MapController controller)

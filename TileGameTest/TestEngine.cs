@@ -22,7 +22,7 @@ namespace TileGameTest
         public TestEngine() : base(WindowTitle, WindowCols, WindowRows, GfxRefreshInterval, CycleInterval, MapsFolder)
         {
             LoadUiMap("ui.tgmap");
-            SetMapViewport("view0", "view1");
+            Ui.SetMapViewport("view0", "view1");
 
             ObjectMap test01 = LoadMap("test01.tgmap", new Test01Controller());
 
@@ -31,12 +31,12 @@ namespace TileGameTest
 
         public void ShowMessage(params string[] messages)
         {
-            ShowMessage("bottom", MessageDuration, messages);
+            Ui.ShowMessage("bottom", MessageDuration, messages);
         }
 
         public void PrintUi(string text, int offsetX, int offsetY)
         {
-            PrintUi("bottom", offsetX, offsetY, text);
+            Ui.Print("bottom", offsetX, offsetY, text);
         }
 
         public override void OnDrawUi()

@@ -16,11 +16,11 @@ namespace TileGameLib.Engine
     public class UserInterface
     {
         public int BackColor { set; get; } = 0;
+        public MapRenderer MapRenderer { get; private set; }
         public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
         public GraphicsAdapter Graphics => Display.Graphics;
         public bool HasMessages => Messages.Count > 0;
 
-        private readonly MapRenderer MapRenderer;
         private readonly TiledDisplay Display;
         private readonly List<UserInterfaceMessage> Messages;
         private readonly Timer MessageTimer;
@@ -191,11 +191,6 @@ namespace TileGameLib.Engine
         public void StopMapAnimation()
         {
             MapRenderer.AnimationEnabled = false;
-        }
-
-        public void ScrollMapViewport(int dx, int dy)
-        {
-            MapRenderer.Scroll = new Point(MapRenderer.Scroll.X + dx, MapRenderer.Scroll.Y + dy);
         }
 
         private void MessageTimer_Tick(object sender, EventArgs e)

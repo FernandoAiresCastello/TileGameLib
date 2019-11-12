@@ -22,6 +22,7 @@ namespace TileGameTest
 
         public override void OnEnter()
         {
+            CenterMapViewOnPlayer();
         }
 
         public override void OnLeave()
@@ -75,7 +76,7 @@ namespace TileGameTest
                 takenMessage = "Got a pink key!";
             }
 
-            if (!string.IsNullOrWhiteSpace(takenMessage))
+            if (takenMessage != null)
             {
                 Map.DeleteObject(key.Position);
                 ShowMessage(takenMessage);
@@ -146,13 +147,21 @@ namespace TileGameTest
 
         private void MovePlayer(PositionedObject player, int dx, int dy)
         {
-            Map.MoveObjectIfDestinationIsEmpty(
+            bool moved = Map.MoveObjectIfDestinationIsEmpty(
                 player.Position, player.Position.AtDistance(dx, dy));
+
+            if (moved)
+                Ui.MapRenderer.ScrollByDistance(dx, dy);
         }
 
         private PositionedObject FindPlayer()
         {
             return Map.FindObjectByTag("player");
+        }
+
+        private void CenterMapViewOnPlayer()
+        {
+            Ui.MapRenderer.ScrollToCenter(FindPlayer().Position.Point);
         }
 
         private Point GetDirectionOffsetByKeyPressed(Keys keyPressed)

@@ -17,6 +17,8 @@ namespace TileGameLib.Engine
         public ObjectMap Map { set; get; }
         public string MapFile { set; get; }
 
+        public UserInterface Ui => Window.Ui;
+
         public MapController()
         {
         }
