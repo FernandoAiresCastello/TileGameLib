@@ -18,13 +18,15 @@ namespace TileGameLib.Engine
         public int BackColor { set; get; } = 0;
         public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
         public GraphicsAdapter Graphics => Display.Graphics;
+        public bool HasMessages => Messages.Count > 0;
 
-        private ObjectMap UiMap;
         private readonly MapRenderer MapRenderer;
         private readonly TiledDisplay Display;
+        private readonly List<UserInterfaceMessage> Messages;
+        private readonly Timer MessageTimer;
+        private ObjectMap UiMap;
         private Palette OriginalPalette;
         private Tileset OriginalTileset;
-        private UserInterfaceMessage Message;
 
         public Dictionary<string, UserInterfacePlaceholder>
             Placeholders { get; private set; } = new Dictionary<string, UserInterfacePlaceholder>();
@@ -33,7 +35,10 @@ namespace TileGameLib.Engine
         {
             Display = display;
             MapRenderer = new MapRenderer(display);
-            Message = new UserInterfaceMessage(this);
+            Messages = new List<UserInterfaceMessage>();
+
+            MessageTimer = new Timer();
+            MessageTimer.Tick += MessageTimer_Tick;
         }
 
         public void LoadUiMap(string uiMapFile)
@@ -87,9 +92,25 @@ namespace TileGameLib.Engine
             Graphics.PutString(x, y, text, foreColorIx, backColorIx);
         }
 
-        public void ShowMessage(string placeholderObjectTag, string text, int duration)
+        public void ShowMessage(string placeholderObjectTag, int duration, params string[] messages)
         {
-            Message.Show(placeholderObjectTag, text, duration);
+            Messages.Clear();
+
+            UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
+
+            int offsetX = 0;
+            int offsetY = 0;
+
+            foreach (string text in messages)
+            {
+                UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(placeholder, offsetX, offsetY);
+                Messages.Add(new UserInterfaceMessage(this, currentPlaceholder, text));
+                offsetY++;
+            }
+
+            MessageTimer.Stop();
+            MessageTimer.Interval = duration;
+            MessageTimer.Start();
         }
 
         public void Draw()
@@ -112,7 +133,9 @@ namespace TileGameLib.Engine
                 }
             }
 
-            Message.Draw();
+            foreach (UserInterfaceMessage message in Messages)
+                message.Draw();
+
             RestoreOriginalTilesetAndPalette();
         }
 
@@ -173,6 +196,12 @@ namespace TileGameLib.Engine
         public void ScrollMapViewport(int dx, int dy)
         {
             MapRenderer.Scroll = new Point(MapRenderer.Scroll.X + dx, MapRenderer.Scroll.Y + dy);
+        }
+
+        private void MessageTimer_Tick(object sender, EventArgs e)
+        {
+            Messages.Clear();
+            MessageTimer.Stop();
         }
 
         private void PreserveOriginalTilesetAndPalette()

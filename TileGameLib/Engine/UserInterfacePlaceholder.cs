@@ -18,5 +18,22 @@ namespace TileGameLib.Engine
             Tile = tile.Copy();
             Position = new ObjectPosition(0, x, y);
         }
+
+        public UserInterfacePlaceholder(UserInterfacePlaceholder placeholder)
+        {
+            Tile = placeholder.Tile.Copy();
+            Position = placeholder.Position.Copy();
+        }
+
+        public UserInterfacePlaceholder(UserInterfacePlaceholder placeholder, int offsetX, int offsetY)
+        {
+            Tile = placeholder.Tile.Copy();
+            Position = ObjectPosition.AtDistance(placeholder.Position, offsetX, offsetY);
+        }
+
+        public UserInterfacePlaceholder Copy()
+        {
+            return new UserInterfacePlaceholder(this);
+        }
     }
 }

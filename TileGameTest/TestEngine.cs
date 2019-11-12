@@ -11,16 +11,16 @@ namespace TileGameTest
 {
     class TestEngine : GameEngine
     {
-        private const string WindowTitle = "";
+        private const string WindowTitle = "Test Game";
         private const int WindowCols = 32;
         private const int WindowRows = 24;
         private const int CycleInterval = 250;
         private const int GfxRefreshInterval = 60;
         private const int MessageDuration = 2000;
+        private const string MapsFolder = "maps/";
 
-        public TestEngine() : base(WindowTitle, WindowCols, WindowRows, GfxRefreshInterval, CycleInterval)
+        public TestEngine() : base(WindowTitle, WindowCols, WindowRows, GfxRefreshInterval, CycleInterval, MapsFolder)
         {
-            MapsBasePath = "maps/";
             LoadUiMap("ui.tgmap");
             SetMapViewport("view0", "view1");
 
@@ -29,9 +29,14 @@ namespace TileGameTest
             EnterMap(test01);
         }
 
-        public void ShowMessage(string text)
+        public void ShowMessage(params string[] messages)
         {
-            ShowMessage("bottom", text, MessageDuration);
+            ShowMessage("bottom", MessageDuration, messages);
+        }
+
+        public void PrintUi(string text, int offsetX, int offsetY)
+        {
+            PrintUi("bottom", offsetX, offsetY, text);
         }
 
         public override void OnDrawUi()

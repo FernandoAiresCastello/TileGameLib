@@ -34,8 +34,11 @@ namespace TileGameTest
 
         public override void OnDrawUi()
         {
-            Engine.PrintUi("bottom", 0, 1, "Yellow keys: " + YellowKeys);
-            Engine.PrintUi("bottom", 0, 2, "Pink keys: " + PinkKeys);
+            if (!Engine.HasMessages)
+            {
+                PrintUi("Yellow keys: " + YellowKeys, 0, 0);
+                PrintUi("Pink keys: " + PinkKeys, 0, 1);
+            }
         }
 
         public override void OnKeyUp(KeyEventArgs e)
@@ -92,7 +95,7 @@ namespace TileGameTest
                 }
                 else
                 {
-                    ShowMessage("You need a yellow key!");
+                    ShowMessage("The door is locked", "You need a yellow key");
                 }
             }
             else if (IsDoor(door.Object, "pink"))
@@ -104,7 +107,7 @@ namespace TileGameTest
                 }
                 else
                 {
-                    ShowMessage("You need a pink key!");
+                    ShowMessage("The door is locked", "You need a pink key!");
                 }
             }
 
@@ -165,9 +168,14 @@ namespace TileGameTest
             return new Point(dx, dy);
         }
 
-        private void ShowMessage(string text)
+        private void ShowMessage(params string[] messages)
         {
-            (Engine as TestEngine).ShowMessage(text);
+            (Engine as TestEngine).ShowMessage(messages);
+        }
+
+        private void PrintUi(string text, int offsetX, int offsetY)
+        {
+            (Engine as TestEngine).PrintUi(text, offsetX, offsetY);
         }
     }
 }

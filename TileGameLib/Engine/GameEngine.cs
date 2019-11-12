@@ -18,6 +18,7 @@ namespace TileGameLib.Engine
     {
         public string MapsBasePath { set; get; }
         public bool Paused { set; get; }
+        public bool HasMessages => Window.Ui.HasMessages;
 
         private MapController MapController;
         private readonly GameWindow Window;
@@ -26,11 +27,12 @@ namespace TileGameLib.Engine
         private readonly Timer GfxRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval)
+        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval, string mapsBasePath = null)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows);
             MapControllers = new MapControllerCollection();
             SoundPlayer = new SoundPlayer();
+            MapsBasePath = mapsBasePath;
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
@@ -96,9 +98,9 @@ namespace TileGameLib.Engine
             Window.Ui.Print(placeholderObjectTag, offsetX, offsetY, obj);
         }
 
-        public void ShowMessage(string placeholderObjectTag, string text, int duration)
+        public void ShowMessage(string placeholderObjectTag, int duration, params string[] messages)
         {
-            Window.Ui.ShowMessage(placeholderObjectTag, text, duration);
+            Window.Ui.ShowMessage(placeholderObjectTag, duration, messages);
         }
 
         public void Log(object obj)
@@ -227,8 +229,8 @@ namespace TileGameLib.Engine
         private void GfxRefreshTimer_Tick(object sender, EventArgs e)
         {
             Window.Ui.Draw();
-            OnDrawUi();
 
+            OnDrawUi();
             if (MapController != null)
                 MapController.OnDrawUi();
         }

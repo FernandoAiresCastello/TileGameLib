@@ -38,6 +38,11 @@ namespace TileGameLib.GameElements
             return $"Layer: {Layer} X: {X} Y: {Y}";
         }
 
+        public ObjectPosition Copy()
+        {
+            return new ObjectPosition(this);
+        }
+
         public int GetDistance(ObjectPosition otherPos)
         {
             return (int)Math.Truncate(

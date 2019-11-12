@@ -12,39 +12,21 @@ namespace TileGameLib.Engine
     public class UserInterfaceMessage
     {
         private readonly UserInterface Ui;
-        private readonly Timer MessageTimer;
-        private string Message;
-        private UserInterfacePlaceholder MessagePlaceholder;
-        public  bool HasMessage => !string.IsNullOrWhiteSpace(Message);
+        private readonly UserInterfacePlaceholder MessagePlaceholder;
+        private readonly string Message;
+        public bool IsEmpty => string.IsNullOrWhiteSpace(Message);
 
-        public UserInterfaceMessage(UserInterface ui)
+        public UserInterfaceMessage(UserInterface ui, UserInterfacePlaceholder placeholder, string message)
         {
             Ui = ui;
-            MessageTimer = new Timer();
-            MessageTimer.Tick += MessageTimer_Tick;
-        }
-
-        private void MessageTimer_Tick(object sender, EventArgs e)
-        {
-            Message = "";
-            MessageTimer.Stop();
-        }
-
-        public void Show(string placeholderObjectTag, string text, int duration)
-        {
-            MessagePlaceholder = Ui.Placeholders[placeholderObjectTag];
-
-            Message = text;
-            MessageTimer.Stop();
-            MessageTimer.Interval = duration;
-            MessageTimer.Start();
+            MessagePlaceholder = placeholder.Copy();
+            Message = message;
         }
 
         public void Draw()
         {
-            if (!HasMessage)
-                return;
-                
+            if (IsEmpty) return;
+
             ObjectPosition msgpos = MessagePlaceholder.Position;
             Tile msgtile = MessagePlaceholder.Tile;
             Ui.Graphics.PutString(msgpos.X, msgpos.Y, Message, msgtile.ForeColorIx, msgtile.BackColorIx);
