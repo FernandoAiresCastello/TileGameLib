@@ -107,21 +107,19 @@ namespace TileGameLib.GameElements
                 layer.Fill(o);
         }
 
-        public void Fill(GameObject o, int layerIx)
+        public void Fill(GameObject o, int layer)
         {
-            Layers[layerIx].Fill(o);
+            Layers[layer].Fill(o);
         }
 
-        public void FillEmptyCells(GameObject o, int layerIx)
+        public void FillEmptyCells(GameObject o, int layer)
         {
-            ObjectLayer layer = Layers[layerIx];
-
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    if (layer.GetCell(x, y).IsEmpty)
-                        layer.SetObject(o, x, y);
+                    if (Layers[layer].GetCell(x, y).IsEmpty)
+                        Layers[layer].SetObject(o, x, y);
                 }
             }
         }
@@ -131,11 +129,11 @@ namespace TileGameLib.GameElements
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
         }
 
-        public void SetStringOfObjects(string text, ObjectPosition pos, int foreColorIx, int backColorIx)
+        public void SetStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
         {
             foreach (char ch in text)
             {
-                GameObject o = new GameObject(new Tile(ch, foreColorIx, backColorIx));
+                GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
                 SetObject(o, pos);
                 pos.X++;
             }
@@ -516,6 +514,22 @@ namespace TileGameLib.GameElements
             }
 
             return collisions.ToList();
+        }
+
+        public void CopyObjects(ObjectCellBlock source, ObjectCellBlock dest)
+        {
+            source.CopyTo(dest);
+        }
+
+        public void MoveObjects(ObjectCellBlock source, ObjectCellBlock dest)
+        {
+            CopyObjects(source, dest);
+            DeleteObjects(source);
+        }
+
+        public void DeleteObjects(ObjectCellBlock block)
+        {
+            block.DeleteObjects();
         }
     }
 }

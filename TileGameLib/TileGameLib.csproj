@@ -62,6 +62,7 @@
     <Compile Include="File\MapFile.cs" />
     <Compile Include="File\PaletteFile.cs" />
     <Compile Include="File\TilesetFile.cs" />
+    <Compile Include="GameElements\ObjectCellBlock.cs" />
     <Compile Include="GameElements\ObjectCell.cs" />
     <Compile Include="GameElements\ObjectCollision.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="File\Archive.cs" />
     <Compile Include="GameElements\ObjectPosition.cs" />
     <Compile Include="GameElements\ObjectProperties.cs" />
+    <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnim.cs" />

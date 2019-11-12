@@ -18,6 +18,7 @@ namespace TileGameLib.Engine
         public string MapFile { set; get; }
 
         public UserInterface Ui => Window.Ui;
+        public MapRenderer MapRenderer => Window.Ui.MapRenderer;
 
         public MapController()
         {

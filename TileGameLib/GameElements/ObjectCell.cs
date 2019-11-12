@@ -22,6 +22,11 @@ namespace TileGameLib.GameElements
             SetEqual(other);
         }
 
+        public override string ToString()
+        {
+            return Object != null ? Object.ToString() : "Empty cell";
+        }
+
         public GameObject GetObject()
         {
             return Object;
