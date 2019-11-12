@@ -18,7 +18,6 @@ namespace TileGameLib.Engine
     {
         public string MapsBasePath { set; get; }
         public bool Paused { set; get; }
-        public bool CancelMapTransition { set; get; }
 
         private MapController MapController;
         private readonly GameWindow Window;
@@ -49,23 +48,42 @@ namespace TileGameLib.Engine
             Application.Run(Window);
         }
 
-        private void GfxRefreshTimer_Tick(object sender, EventArgs e)
+        public virtual void OnDrawUi()
         {
-            Window.Ui.Draw();
-            OnDrawUi();
-
-            if (MapController != null)
-                MapController.OnDrawUi();
+            // Override this to globally and continuously print stuff to the UI
+            // Called whenever the graphics refresh timer interval elapses
         }
 
-        private void CycleTimer_Tick(object sender, EventArgs e)
+        public virtual void OnExecuteCycle()
         {
-            if (!Paused)
-            {
-                OnExecuteCycle();
-                if (MapController != null)
-                    MapController.OnExecuteCycle();
-            }
+            // Override this to globally do stuff on every cycle
+            // Called whenever the cycle timer interval elapses
+        }
+
+        public virtual bool OnKeyDown(KeyEventArgs e)
+        {
+            // Override this to globally do stuff whenever some key is pressed down
+            // Return true if the keydown event was handled, false otherwise
+            // If this is handled, the event won't be sent to the map controller
+
+            return false;
+        }
+
+        public virtual bool OnKeyUp(KeyEventArgs e)
+        {
+            // Override this to globally do stuff whenever some key is released
+            // Return true if the keyup event was handled, false otherwise
+            // If this is handled, the event won't be sent to the map controller
+
+            return false;
+        }
+
+        public virtual bool OnMapTransition(MapController currentController, MapController nextController)
+        {
+            // Override this to do stuff whenever there is a transition from one map to another
+            // Return false to cancel the transition, true otherwise
+
+            return true;
         }
 
         public void PrintUi(string placeholderObjectTag, object obj)
@@ -81,14 +99,6 @@ namespace TileGameLib.Engine
         public void ShowMessage(string placeholderObjectTag, string text, int duration)
         {
             Window.Ui.ShowMessage(placeholderObjectTag, text, duration);
-        }
-
-        public virtual void OnDrawUi()
-        {
-        }
-
-        public virtual void OnExecuteCycle()
-        {
         }
 
         public void Log(object obj)
@@ -112,20 +122,6 @@ namespace TileGameLib.Engine
                 MapController.OnKeyUp(e);
 
             Window.Ui.DrawMap();
-        }
-
-        public virtual bool OnKeyDown(KeyEventArgs e)
-        {
-            return false;
-        }
-
-        public virtual bool OnKeyUp(KeyEventArgs e)
-        {
-            return false;
-        }
-
-        public virtual void OnMapTransition(MapController currentController, MapController nextController)
-        {
         }
 
         public void PlayMusicOnce(string musicFile)
@@ -154,7 +150,7 @@ namespace TileGameLib.Engine
             SoundPlayer.Stop();
         }
 
-        public string GetMapPath(string mapFile)
+        protected string GetMapPath(string mapFile)
         {
             string basePath = MapsBasePath.Replace('\\', '/');
             string mapPath = "";
@@ -205,9 +201,9 @@ namespace TileGameLib.Engine
             if (nextController == null)
                 throw new TileGameLibException($"Map {mapName} not found");
 
-            OnMapTransition(MapController, nextController);
+            bool transitionNotCancelled = OnMapTransition(MapController, nextController);
 
-            if (!CancelMapTransition)
+            if (transitionNotCancelled)
             {
                 if (MapController != null)
                     MapController.OnLeave();
@@ -218,8 +214,6 @@ namespace TileGameLib.Engine
                 if (MapController.Map.HasMusic)
                     PlayMusicLoop(MapController.Map.MusicFile);
             }
-
-            CancelMapTransition = false;
         }
 
         private void SetMapController(MapController controller)
@@ -228,6 +222,25 @@ namespace TileGameLib.Engine
             MapController.Engine = this;
             MapController.Window = Window;
             Window.Ui.SetGameMap(MapController.Map);
+        }
+
+        private void GfxRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            Window.Ui.Draw();
+            OnDrawUi();
+
+            if (MapController != null)
+                MapController.OnDrawUi();
+        }
+
+        private void CycleTimer_Tick(object sender, EventArgs e)
+        {
+            if (!Paused)
+            {
+                OnExecuteCycle();
+                if (MapController != null)
+                    MapController.OnExecuteCycle();
+            }
         }
     }
 }

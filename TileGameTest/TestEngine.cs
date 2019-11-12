@@ -42,8 +42,9 @@ namespace TileGameTest
         {
         }
 
-        public override void OnMapTransition(MapController currentController, MapController nextController)
+        public override bool OnMapTransition(MapController currentController, MapController nextController)
         {
+            return true;
         }
 
         public override bool OnKeyDown(KeyEventArgs e)
