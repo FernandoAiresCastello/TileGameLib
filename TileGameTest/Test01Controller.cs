@@ -49,13 +49,13 @@ namespace TileGameTest
         {
             Point offset = GetDirectionOffsetByKeyPressed(e.KeyCode);
             PositionedObject player = FindPlayer();
-            ObjectPosition pos = ObjectPosition.AtDistance(player.Position, offset.X, offset.Y);
-            PositionedObject o = new PositionedObject(Map.GetObject(pos), pos);
+            ObjectPosition adjacentPos = player.Position.AtDistance(offset.X, offset.Y);
+            PositionedObject adjacent = new PositionedObject(Map.GetObject(adjacentPos), adjacentPos);
 
-            if (IsKey(o.Object))
-                TakeKey(o);
-            else if (IsDoor(o.Object))
-                OpenDoor(o);
+            if (IsKey(adjacent.Object))
+                TakeKey(adjacent);
+            else if (IsDoor(adjacent.Object))
+                OpenDoor(adjacent);
             else
                 MovePlayer(player, offset.X, offset.Y);
         }
@@ -146,8 +146,8 @@ namespace TileGameTest
 
         private void MovePlayer(PositionedObject player, int dx, int dy)
         {
-            Map.MoveObjectIfDestinationIsEmpty(player.Position,
-                ObjectPosition.AtDistance(player.Position, dx, dy));
+            Map.MoveObjectIfDestinationIsEmpty(
+                player.Position, player.Position.AtDistance(dx, dy));
         }
 
         private PositionedObject FindPlayer()

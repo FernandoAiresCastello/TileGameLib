@@ -12,14 +12,16 @@ namespace TileGameLib.GameElements
         public int Layer { set; get; }
         public int X { set; get; }
         public int Y { set; get; }
+
         public Point Point => new Point(X, Y);
 
         public ObjectPosition() : this(0, 0, 0)
         {
         }
 
-        public ObjectPosition(ObjectPosition other) : this(other.Layer, other.X, other.Y)
+        public ObjectPosition(ObjectPosition other)
         {
+            SetEqual(other);
         }
 
         public ObjectPosition(int layer, Point point) : this(layer, point.X, point.Y)
@@ -43,68 +45,131 @@ namespace TileGameLib.GameElements
             return new ObjectPosition(this);
         }
 
-        public int GetDistance(ObjectPosition otherPos)
+        public void SetEqual(ObjectPosition other)
+        {
+            Layer = other.Layer;
+            X = other.X;
+            Y = other.Y;
+        }
+
+        public int GetDistance(ObjectPosition other)
         {
             return (int)Math.Truncate(
                 Math.Sqrt(
-                    Math.Pow(otherPos.X - X, 2) + Math.Pow(otherPos.Y - Y, 2)
+                    Math.Pow(other.X - X, 2) + Math.Pow(other.Y - Y, 2)
                 )
             );
         }
 
-        public static ObjectPosition AtDistance(ObjectPosition pos, int dx, int dy)
+        public void MoveTo(int x, int y)
         {
-            return new ObjectPosition(pos.Layer, pos.X + dx, pos.Y + dy);
+            X = x;
+            Y = y;
         }
 
-        public static ObjectPosition Above(ObjectPosition pos)
+        public void MoveDistance(int dx, int dy)
         {
-            return new ObjectPosition(pos.Layer + 1, pos.X, pos.Y);
+            X += dx;
+            Y += dy;
         }
 
-        public static ObjectPosition Under(ObjectPosition pos)
+        public void MoveTowards(ObjectPosition other)
         {
-            return new ObjectPosition(pos.Layer - 1, pos.X, pos.Y);
+            ObjectPosition newPosition = Towards(other);
+            SetEqual(newPosition);
         }
 
-        public static ObjectPosition North(ObjectPosition pos, int distance = 1)
+        public void MoveAwayFrom(ObjectPosition other)
         {
-            return new ObjectPosition(pos.Layer, pos.X, pos.Y - distance);
+            ObjectPosition newPosition = AwayFrom(other);
+            SetEqual(newPosition);
         }
 
-        public static ObjectPosition South(ObjectPosition pos, int distance = 1)
+        public ObjectPosition AtDistance(int dx, int dy)
         {
-            return new ObjectPosition(pos.Layer, pos.X, pos.Y + distance);
+            return new ObjectPosition(Layer, X + dx, Y + dy);
         }
 
-        public static ObjectPosition East(ObjectPosition pos, int distance = 1)
+        public ObjectPosition Above()
         {
-            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y);
+            return new ObjectPosition(Layer + 1, X, Y);
         }
 
-        public static ObjectPosition West(ObjectPosition pos, int distance = 1)
+        public ObjectPosition Under()
         {
-            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y);
+            return new ObjectPosition(Layer - 1, X, Y);
         }
 
-        public static ObjectPosition Northeast(ObjectPosition pos, int distance = 1)
+        public ObjectPosition North(int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y - distance);
+            return new ObjectPosition(Layer, X, Y - distance);
         }
 
-        public static ObjectPosition Northwest(ObjectPosition pos, int distance = 1)
+        public ObjectPosition South(int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y - distance);
+            return new ObjectPosition(Layer, X, Y + distance);
         }
 
-        public static ObjectPosition Southeast(ObjectPosition pos, int distance = 1)
+        public ObjectPosition East(int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.X + distance, pos.Y + distance);
+            return new ObjectPosition(Layer, X + distance, Y);
         }
 
-        public static ObjectPosition Southwest(ObjectPosition pos, int distance = 1)
+        public ObjectPosition West(int distance = 1)
         {
-            return new ObjectPosition(pos.Layer, pos.X - distance, pos.Y + distance);
+            return new ObjectPosition(Layer, X - distance, Y);
+        }
+
+        public ObjectPosition Northeast(int distance = 1)
+        {
+            return new ObjectPosition(Layer, X + distance, Y - distance);
+        }
+
+        public ObjectPosition Northwest(int distance = 1)
+        {
+            return new ObjectPosition(Layer, X - distance, Y - distance);
+        }
+
+        public ObjectPosition Southeast(int distance = 1)
+        {
+            return new ObjectPosition(Layer, X + distance, Y + distance);
+        }
+
+        public ObjectPosition Southwest(int distance = 1)
+        {
+            return new ObjectPosition(Layer, X - distance, Y + distance);
+        }
+
+        public ObjectPosition Towards(ObjectPosition other)
+        {
+            ObjectPosition position = new ObjectPosition(this);
+
+            if (other.X > position.X)
+                position.X++;
+            else if (other.X < position.X)
+                position.X--;
+            if (other.Y > position.Y)
+                position.Y++;
+            else if (other.Y < position.Y)
+                position.Y--;
+
+            return position;
+        }
+
+        public ObjectPosition AwayFrom(ObjectPosition other)
+        {
+            ObjectPosition position = new ObjectPosition(this);
+
+            if (other.X > position.X)
+                position.X--;
+            else if (other.X < position.X)
+                position.X++;
+            if (other.Y > position.Y)
+                position.Y--;
+            else if (other.Y < position.Y)
+                position.Y++;
+
+            return position;
         }
     }
 }

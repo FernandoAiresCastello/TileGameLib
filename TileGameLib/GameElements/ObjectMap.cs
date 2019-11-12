@@ -213,7 +213,7 @@ namespace TileGameLib.GameElements
             if (pos.Layer <= 0)
                 return null;
 
-            ObjectCell cellUnder = GetCell(ObjectPosition.Under(pos));
+            ObjectCell cellUnder = GetCell(pos.Under());
 
             return cellUnder.IsEmpty ? null : cellUnder.GetObject();
         }
@@ -223,14 +223,14 @@ namespace TileGameLib.GameElements
             if (pos.Layer >= Layers.Count - 1)
                 return null;
 
-            ObjectCell cellAbove = GetCell(ObjectPosition.Above(pos));
+            ObjectCell cellAbove = GetCell(pos.Above());
 
             return cellAbove.IsEmpty ? null : cellAbove.GetObject();
         }
 
         public GameObject GetObjectAtDistance(ObjectPosition pos, int dx, int dy)
         {
-            ObjectCell cell = GetCell(ObjectPosition.AtDistance(pos, dx, dy));
+            ObjectCell cell = GetCell(pos.AtDistance(dx, dy));
 
             return cell.IsEmpty ? null : cell.GetObject();
         }
