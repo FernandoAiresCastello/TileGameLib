@@ -135,7 +135,7 @@ namespace TileGameLib.GameElements
             {
                 GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
                 SetObject(o, pos);
-                pos.X++;
+                pos = pos.East();
             }
         }
 

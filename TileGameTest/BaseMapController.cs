@@ -27,9 +27,16 @@ namespace TileGameTest
         protected void MovePlayer(int dx, int dy)
         {
             PositionedObject player = FindPlayer();
+            ObjectPosition adjacentPosUnderPlayer = player.Position.AtDistance(dx, dy).Under();
+            GameObject adjacentObjectUnder = Map.GetObject(adjacentPosUnderPlayer);
 
-            bool moved = Map.MoveObjectIfDestinationIsEmpty(
-                player.Position, player.Position.AtDistance(dx, dy));
+            bool moved = false;
+
+            if (adjacentObjectUnder == null)
+            {
+                moved = Map.MoveObjectIfDestinationIsEmpty(
+                    player.Position, adjacentPosUnderPlayer.Above());
+            }
 
             if (moved)
                 MapRenderer.ScrollByDistance(dx, dy);
@@ -38,7 +45,7 @@ namespace TileGameTest
         protected PositionedObject GetObjectNextToPlayer(Point distance)
         {
             PositionedObject player = FindPlayer();
-            ObjectPosition adjacentPosition = player.Position.AtDistance(distance.X, distance.Y);
+            ObjectPosition adjacentPosition = player.Position.AtDistance(distance.X, distance.Y).Under();
             PositionedObject adjacent = new PositionedObject(Map.GetObject(adjacentPosition), adjacentPosition);
 
             return adjacent;

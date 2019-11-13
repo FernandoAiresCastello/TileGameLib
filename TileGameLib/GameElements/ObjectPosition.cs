@@ -9,9 +9,9 @@ namespace TileGameLib.GameElements
 {
     public class ObjectPosition
     {
-        public int Layer { set; get; }
-        public int X { set; get; }
-        public int Y { set; get; }
+        public int Layer { private set; get; }
+        public int X { private set; get; }
+        public int Y { private set; get; }
 
         public Point Point => new Point(X, Y);
 
