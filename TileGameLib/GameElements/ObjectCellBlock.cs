@@ -10,17 +10,24 @@ namespace TileGameLib.GameElements
 {
     public class ObjectCellBlock
     {
-        public int Layer { set; get; }
-        public ObjectMap Map { set; get; }
-        public Rectangle Area { set; get; }
+        public int Layer { get; private set; }
+        public ObjectMap Map { get; private set; }
+        public Rectangle Area { get; private set; }
         public PositionedCell[,] Cells => GetCells();
         public PositionedObject[,] Objects => GetObjects();
 
         public ObjectCellBlock(ObjectMap map, int layer, Rectangle area)
         {
             Map = map;
-            Area = area;
+            Area = new Rectangle(area.X, area.Y, area.Width, area.Height);
             Layer = layer;
+        }
+
+        public ObjectCellBlock(ObjectCellBlock other)
+        {
+            Map = other.Map;
+            Area = new Rectangle(other.Area.X, other.Area.Y, other.Area.Width, other.Area.Height);
+            Layer = other.Layer;
         }
 
         public bool SizeEquals(ObjectCellBlock other)
@@ -54,6 +61,11 @@ namespace TileGameLib.GameElements
         {
             CopyTo(other);
             DeleteObjects();
+        }
+
+        public void MoveDistance(int dx, int dy)
+        {
+            // TODO
         }
 
         public void DeleteObjects()
