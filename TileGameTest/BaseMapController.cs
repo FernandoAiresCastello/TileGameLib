@@ -32,7 +32,7 @@ namespace TileGameTest
 
             bool moved = false;
 
-            if (adjacentObjectUnder == null)
+            if (adjacentObjectUnder == null || !adjacentObjectUnder.Visible)
             {
                 moved = Map.MoveObjectIfDestinationIsEmpty(
                     player.Position, adjacentPosUnderPlayer.Above());
@@ -68,10 +68,46 @@ namespace TileGameTest
 
             switch (keyPressed)
             {
-                case Keys.Up: dy = -1; break;
-                case Keys.Down: dy = 1; break;
-                case Keys.Left: dx = -1; break;
-                case Keys.Right: dx = 1; break;
+                case Keys.Up:
+                case Keys.W:
+                case Keys.NumPad8:
+                    dy = -1;
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                case Keys.NumPad2:
+                    dy = 1;
+                    break;
+                case Keys.Left:
+                case Keys.A:
+                case Keys.NumPad4:
+                    dx = -1;
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                case Keys.NumPad6:
+                    dx = 1;
+                    break;
+                case Keys.Q:
+                case Keys.NumPad7:
+                    dx = -1;
+                    dy = -1;
+                    break;
+                case Keys.E:
+                case Keys.NumPad9:
+                    dx = 1;
+                    dy = -1;
+                    break;
+                case Keys.Z:
+                case Keys.NumPad1:
+                    dx = -1;
+                    dy = 1;
+                    break;
+                case Keys.X:
+                case Keys.NumPad3:
+                    dx = 1;
+                    dy = 1;
+                    break;
             }
 
             return new Point(dx, dy);

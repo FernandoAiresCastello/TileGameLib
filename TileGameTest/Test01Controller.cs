@@ -28,8 +28,8 @@ namespace TileGameTest
                 return;
 
             PrintUi("Keys:", 0, 0);
-            PrintUi("Pink    " + Player.PinkKeys, 1, 1);
-            PrintUi("Yellow  " + Player.YellowKeys, 1, 2);
+            PrintUi($"Pink    {Player.PinkKeys}", 1, 1);
+            PrintUi($"Yellow  {Player.YellowKeys}", 1, 2);
             PrintUi($"X: {Player.X} Y: {Player.Y}", 0, 3);
         }
 
@@ -45,14 +45,18 @@ namespace TileGameTest
             else if (ObjectAssertion.IsTeleport(adjacent.Object))
                 Teleport(adjacent);
             else if (ObjectAssertion.IsButton(adjacent.Object))
-                PushButton();
+                PushButton(adjacent);
             else
                 MovePlayer(offset.X, offset.Y);
         }
 
-        private void PushButton()
+        private void PushButton(PositionedObject button)
         {
-            Map.MoveObjectBlock("blksrc", "blkdest", "width", "height");
+            if (!button.Object.Properties.HasValue("active", "false"))
+            {
+                Map.MoveObjectBlock("blksrc", "blkdest", "width", "height");
+                button.Object.Properties.Set("active", "false");
+            }
         }
 
         private void TakeKey(PositionedObject key)

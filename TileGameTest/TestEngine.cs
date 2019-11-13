@@ -55,6 +55,7 @@ namespace TileGameTest
         public override bool OnMapTransition(MapController currentController, MapController nextController)
         {
             Player.Map = nextController.Map;
+
             return true;
         }
 

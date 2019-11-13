@@ -10,8 +10,8 @@ namespace TileGameTest
     public class Player
     {
         public ObjectMap Map { set; get; }
-        public int YellowKeys { set; get; } = 0;
-        public int PinkKeys { set; get; } = 0;
+        public int YellowKeys { set; get; }
+        public int PinkKeys { set; get; }
 
         public GameObject Object => Find().Object;
         public ObjectPosition Position => Find().Position.Copy();
@@ -20,6 +20,14 @@ namespace TileGameTest
 
         public Player()
         {
+            Init();
+        }
+
+        public void Init()
+        {
+            Map = null;
+            YellowKeys = 0;
+            PinkKeys = 0;
         }
 
         public PositionedObject Find()
