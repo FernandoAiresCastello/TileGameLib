@@ -40,19 +40,19 @@ namespace TileGameLib.GameElements
             if (!SizeEquals(other))
                 throw new TileGameLibException("The cell blocks must be the same width and height");
 
-            int sourceLayer = Layer;
-            int destLayer = other.Layer;
-            int destX = other.Area.X;
-            int destY = other.Area.Y;
+            PositionedCell[,] srcCells = Cells;
+            PositionedCell[,] destCells = other.Cells;
 
-            for (int sourceY = Area.Y; sourceY < Area.Bottom; sourceY++, destY++)
+            for (int y = 0; y < Area.Height; y++)
             {
-                for (int sourceX = Area.X; sourceX < Area.Right; sourceX++, destX++)
+                for (int x = 0; x < Area.Width; x++)
                 {
-                    ObjectPosition sourcePosition = new ObjectPosition(sourceLayer, sourceX, sourceY);
-                    ObjectPosition destPosition = new ObjectPosition(destLayer, destX, destY);
-                    GameObject sourceObject = Map.GetObject(sourcePosition);
-                    Map.SetObject(sourceObject, destPosition);
+                    PositionedCell srcPosCell = srcCells[x, y];
+                    PositionedCell destPosCell = destCells[x, y];
+                    GameObject copiedObject = srcPosCell.Cell.GetObject();
+
+                    if (copiedObject != null)
+                        destPosCell.Cell.SetObjectEqual(copiedObject);
                 }
             }
         }
@@ -61,11 +61,6 @@ namespace TileGameLib.GameElements
         {
             CopyTo(other);
             DeleteObjects();
-        }
-
-        public void MoveDistance(int dx, int dy)
-        {
-            // TODO
         }
 
         public void DeleteObjects()
@@ -79,11 +74,11 @@ namespace TileGameLib.GameElements
         {
             PositionedCell[,] cells = new PositionedCell[Area.Width, Area.Height];
 
-            for (int y = Area.Y; y < Area.Bottom; y++)
+            for (int y = 0; y < Area.Height; y++)
             {
-                for (int x = Area.X; x < Area.Right; x++)
+                for (int x = 0; x < Area.Width; x++)
                 {
-                    ObjectPosition position = new ObjectPosition(Layer, x, y);
+                    ObjectPosition position = new ObjectPosition(Layer, x + Area.X, y + Area.Y);
                     ObjectCell cell = Map.GetCell(position);
                     cells[x, y] = new PositionedCell(cell, position);
                 }
@@ -96,11 +91,11 @@ namespace TileGameLib.GameElements
         {
             PositionedObject[,] objects = new PositionedObject[Area.Width, Area.Height];
 
-            for (int y = Area.Y; y < Area.Bottom; y++)
+            for (int y = 0; y < Area.Height; y++)
             {
-                for (int x = Area.X; x < Area.Height; x++)
+                for (int x = 0; x < Area.Width; x++)
                 {
-                    ObjectPosition position = new ObjectPosition(Layer, x, y);
+                    ObjectPosition position = new ObjectPosition(Layer, x + Area.X, y + Area.Y);
                     GameObject obj = Map.GetObject(position);
                     objects[x, y] = new PositionedObject(obj, position);
                 }

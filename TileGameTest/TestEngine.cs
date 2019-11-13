@@ -19,14 +19,19 @@ namespace TileGameTest
         private const int MessageDuration = 2000;
         private const string MapsFolder = "maps/";
 
+        public Player Player { get; private set; }
+
         public TestEngine() : base(WindowTitle, WindowCols, WindowRows, GfxRefreshInterval, CycleInterval, MapsFolder)
         {
+            Player = new Player();
+
             LoadUiMap("ui.tgmap");
             Ui.SetMapViewport("view0", "view1");
 
-            ObjectMap test01 = LoadMap("test01.tgmap", new Test01Controller());
+            ObjectMap firstMap = LoadMap("test01.tgmap", new Test01Controller());
+            LoadMap("test02.tgmap", new Test01Controller());
 
-            EnterMap(test01);
+            EnterMap(firstMap);
         }
 
         public void ShowMessage(params string[] messages)
@@ -49,6 +54,7 @@ namespace TileGameTest
 
         public override bool OnMapTransition(MapController currentController, MapController nextController)
         {
+            Player.Map = nextController.Map;
             return true;
         }
 

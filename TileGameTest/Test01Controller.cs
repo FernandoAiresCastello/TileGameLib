@@ -13,25 +13,24 @@ namespace TileGameTest
 {
     class Test01Controller : BaseMapController
     {
-        private int YellowKeys = 0;
-        private int PinkKeys = 0;
-
         public Test01Controller()
         {
         }
 
         public override void OnEnter()
         {
-            CenterMapViewOnPlayer();
+            base.OnEnter();
         }
 
         public override void OnDrawUi()
         {
-            if (!Engine.HasMessages)
-            {
-                PrintUi("Yellow keys: " + YellowKeys, 0, 0);
-                PrintUi("Pink keys: " + PinkKeys, 0, 1);
-            }
+            if (Engine.HasMessages)
+                return;
+
+            PrintUi("Keys:", 0, 0);
+            PrintUi("Pink    " + Player.PinkKeys, 1, 1);
+            PrintUi("Yellow  " + Player.YellowKeys, 1, 2);
+            PrintUi($"X: {Player.X} Y: {Player.Y}", 0, 3);
         }
 
         public override void OnKeyDown(KeyEventArgs e)
@@ -43,8 +42,17 @@ namespace TileGameTest
                 TakeKey(adjacent);
             else if (ObjectAssertion.IsDoor(adjacent.Object))
                 OpenDoor(adjacent);
+            else if (ObjectAssertion.IsTeleport(adjacent.Object))
+                Teleport(adjacent);
+            else if (ObjectAssertion.IsButton(adjacent.Object))
+                PushButton();
             else
                 MovePlayer(offset.X, offset.Y);
+        }
+
+        private void PushButton()
+        {
+            Map.MoveObjectBlock("blksrc", "blkdest", "width", "height");
         }
 
         private void TakeKey(PositionedObject key)
@@ -53,12 +61,12 @@ namespace TileGameTest
 
             if (ObjectAssertion.IsKey(key.Object, "yellow"))
             {
-                YellowKeys++;
+                Player.YellowKeys++;
                 takenMessage = "Got a yellow key!";
             }
             else if (ObjectAssertion.IsKey(key.Object, "pink"))
             {
-                PinkKeys++;
+                Player.PinkKeys++;
                 takenMessage = "Got a pink key!";
             }
 
@@ -75,9 +83,9 @@ namespace TileGameTest
 
             if (ObjectAssertion.IsDoor(door.Object, "yellow"))
             {
-                if (YellowKeys > 0)
+                if (Player.YellowKeys > 0)
                 {
-                    YellowKeys--;
+                    Player.YellowKeys--;
                     unlockMessage = "Unlocked the door!";
                 }
                 else
@@ -87,9 +95,9 @@ namespace TileGameTest
             }
             else if (ObjectAssertion.IsDoor(door.Object, "pink"))
             {
-                if (PinkKeys > 0)
+                if (Player.PinkKeys > 0)
                 {
-                    PinkKeys--;
+                    Player.PinkKeys--;
                     unlockMessage = "Unlocked the door!";
                 }
                 else
@@ -103,6 +111,12 @@ namespace TileGameTest
                 Map.DeleteObject(door.Position);
                 ShowMessage(unlockMessage);
             }
+        }
+
+        private void Teleport(PositionedObject teleport)
+        {
+            string nextMap = teleport.Object.Properties.GetAsString("map");
+            Engine.EnterMap(nextMap);
         }
     }
 }

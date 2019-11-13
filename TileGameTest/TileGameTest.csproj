@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BaseMapController.cs" />
     <Compile Include="ObjectAssertion.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEngine.cs" />

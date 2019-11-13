@@ -596,6 +596,7 @@ namespace TileGameMaker.Panels
                 Editor.ResizeMap(Map.Width, Map.Height);
                 Editor.SelectedObject = Editor.BlankObject;
                 UpdateLayerComboBox();
+                Alert.Info("File loaded successfully!");
             }
         }
 

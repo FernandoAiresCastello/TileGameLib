@@ -9,6 +9,26 @@ namespace TileGameTest
 {
     public static class ObjectAssertion
     {
+        public static bool IsButton(GameObject o)
+        {
+            if (o == null)
+                return false;
+
+            bool isButton = o.HasTag && o.Tag.Equals("button");
+
+            return isButton;
+        }
+
+        public static bool IsTeleport(GameObject o)
+        {
+            if (o == null)
+                return false;
+
+            bool isTeleport = o.HasTag && o.Tag.Equals("teleport");
+
+            return isTeleport;
+        }
+
         public static bool IsDoor(GameObject o, string color = null)
         {
             if (o == null)
@@ -33,6 +53,14 @@ namespace TileGameTest
                 return isKey && o.Properties.HasValue("color", color);
 
             return isKey;
+        }
+
+        public static bool IsPlayer(GameObject o)
+        {
+            if (o == null)
+                return false;
+
+            return o.HasTag && o.Tag.Equals("player");
         }
     }
 }

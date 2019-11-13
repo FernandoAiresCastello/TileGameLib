@@ -12,6 +12,18 @@ namespace TileGameTest
 {
     public class BaseMapController : MapController
     {
+        public Player Player { set; get; }
+
+        public BaseMapController()
+        {
+        }
+
+        public override void OnEnter()
+        {
+            Player = (Engine as TestEngine).Player;
+            CenterMapViewOnPlayer();
+        }
+
         protected void MovePlayer(int dx, int dy)
         {
             PositionedObject player = FindPlayer();
@@ -34,7 +46,7 @@ namespace TileGameTest
 
         protected PositionedObject FindPlayer()
         {
-            return Map.FindObjectByTag("player");
+            return (Engine as TestEngine).Player.Find();
         }
 
         protected void CenterMapViewOnPlayer()

@@ -516,20 +516,45 @@ namespace TileGameLib.GameElements
             return collisions.ToList();
         }
 
-        public void CopyObjects(ObjectCellBlock source, ObjectCellBlock dest)
+        public void CopyObjectBlock(ObjectCellBlock source, ObjectCellBlock dest)
         {
             source.CopyTo(dest);
         }
 
-        public void MoveObjects(ObjectCellBlock source, ObjectCellBlock dest)
+        public void CopyObjectBlock(string srcTopLeftTag, string destTopLeftTag, string widthPropertyName, string heightPropertyName)
         {
-            CopyObjects(source, dest);
-            DeleteObjects(source);
+            ObjectCellBlock src = GetCellBlock(srcTopLeftTag, widthPropertyName, heightPropertyName);
+            ObjectCellBlock dest = GetCellBlock(destTopLeftTag, widthPropertyName, heightPropertyName);
+            src.CopyTo(dest);
         }
 
-        public void DeleteObjects(ObjectCellBlock block)
+        public void MoveObjectBlock(ObjectCellBlock source, ObjectCellBlock dest)
+        {
+            CopyObjectBlock(source, dest);
+            DeleteObjectBlock(source);
+        }
+
+        public void MoveObjectBlock(string srcTopLeftTag, string destTopLeftTag, string widthPropertyName, string heightPropertyName)
+        {
+            ObjectCellBlock src = GetCellBlock(srcTopLeftTag, widthPropertyName, heightPropertyName);
+            ObjectCellBlock dest = GetCellBlock(destTopLeftTag, widthPropertyName, heightPropertyName);
+
+            src.MoveTo(dest);
+        }
+
+        public void DeleteObjectBlock(ObjectCellBlock block)
         {
             block.DeleteObjects();
+        }
+
+        public ObjectCellBlock GetCellBlock(string topLeftTag, string widthPropertyName, string heightPropertyName)
+        {
+            PositionedObject topLeft = FindObjectByTag(topLeftTag);
+            Size srcSize = new Size(
+                topLeft.Object.Properties.GetAsNumber(widthPropertyName),
+                topLeft.Object.Properties.GetAsNumber(heightPropertyName));
+
+            return new ObjectCellBlock(this, topLeft.Position.Layer, new Rectangle(topLeft.Position.Point, srcSize));
         }
     }
 }

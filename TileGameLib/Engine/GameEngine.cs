@@ -23,8 +23,9 @@ namespace TileGameLib.Engine
         public UserInterface Ui => Window.Ui;
         public bool HasMessages => Window.Ui.HasMessages;
 
-        private MapController MapController;
-        private readonly MapControllerCollection MapControllers;
+        protected MapController MapController;
+        protected readonly MapControllerCollection MapControllers;
+
         private readonly Timer CycleTimer;
         private readonly Timer GfxRefreshTimer;
         private readonly SoundPlayer SoundPlayer;

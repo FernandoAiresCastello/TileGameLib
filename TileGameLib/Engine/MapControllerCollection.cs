@@ -51,5 +51,15 @@ namespace TileGameLib.Engine
 
             return controller.Map;
         }
+
+        public List<MapController> GetControllers()
+        {
+            List<MapController> controllers = new List<MapController>();
+
+            foreach (var controller in Controllers)
+                controllers.Add(controller.Value);
+
+            return controllers;
+        }
     }
 }
