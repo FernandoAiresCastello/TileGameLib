@@ -16,8 +16,11 @@ namespace TileGameTest
         private const int WindowRows = 24;
         private const int CycleInterval = 250;
         private const int GfxRefreshInterval = 60;
-        private const int MessageDuration = 2000;
         private const string MapsFolder = "maps/";
+
+        public static readonly int MessageDuration = 2000;
+        public static readonly string BottomPanelTag = "bottom";
+        public static readonly string RightPanelTag = "right";
 
         public Player Player { get; private set; }
 
@@ -32,16 +35,6 @@ namespace TileGameTest
             LoadMap("test02.tgmap", new Test01Controller());
 
             EnterMap(firstMap);
-        }
-
-        public void ShowMessage(params string[] messages)
-        {
-            Ui.ShowMessage("bottom", MessageDuration, messages);
-        }
-
-        public void PrintUi(string text, int offsetX, int offsetY)
-        {
-            Ui.Print("bottom", offsetX, offsetY, text);
         }
 
         public override void OnDrawUi()

@@ -559,12 +559,53 @@ namespace TileGameMaker.Panels
             SaveMap();
         }
 
+        private void BtnSaveMapAs_Click(object sender, EventArgs e)
+        {
+            SaveMapAs();
+        }
+
         private void BtnLoadMap_Click(object sender, EventArgs e)
         {
             LoadMap();
         }
 
         public void SaveMap()
+        {
+            bool success = false;
+
+            if (string.IsNullOrWhiteSpace(Editor.MapFile))
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.InitialDirectory = Editor.WorkspacePath;
+                dialog.Filter = MapFileFilter;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    Map.Name = Editor.MapName;
+                    Map.MusicFile = Editor.MapMusic;
+                    MapFile.Save(Map, dialog.FileName);
+                    Editor.MapFile = dialog.FileName;
+                    Editor.UpdateMapProperties();
+                    success = true;
+                }
+            }
+            else if (Alert.Confirm($"Overwrite file {Editor.MapFile}?"))
+            {
+                Map.Name = Editor.MapName;
+                Map.MusicFile = Editor.MapMusic;
+                MapFile.Save(Map, Editor.MapFile);
+                Editor.UpdateMapProperties();
+                success = true;
+            }
+
+            if (success)
+            {
+                Refresh();
+                Alert.Info("File saved successfully!");
+            }
+        }
+
+        public void SaveMapAs()
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = Editor.WorkspacePath;
@@ -577,7 +618,6 @@ namespace TileGameMaker.Panels
                 MapFile.Save(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
-                Refresh();
                 Alert.Info("File saved successfully!");
             }
         }

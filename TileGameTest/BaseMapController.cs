@@ -61,6 +61,11 @@ namespace TileGameTest
             MapRenderer.ScrollToCenter(FindPlayer().Position.Point);
         }
 
+        protected void ShowMessage(params string[] messages)
+        {
+            Ui.ShowMessage(TestEngine.BottomPanelTag, TestEngine.MessageDuration, messages);
+        }
+
         protected Point GetDirectionOffsetByKeyPressed(Keys keyPressed)
         {
             int dx = 0;
@@ -111,16 +116,6 @@ namespace TileGameTest
             }
 
             return new Point(dx, dy);
-        }
-
-        protected void ShowMessage(params string[] messages)
-        {
-            (Engine as TestEngine).ShowMessage(messages);
-        }
-
-        protected void PrintUi(string text, int offsetX, int offsetY)
-        {
-            (Engine as TestEngine).PrintUi(text, offsetX, offsetY);
         }
     }
 }

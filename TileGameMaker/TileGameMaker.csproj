@@ -315,6 +315,7 @@
     <None Include="Resources\gameboy.png" />
     <None Include="Resources\color_management.png" />
     <None Include="Resources\action.png" />
+    <None Include="Resources\file_save_as.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

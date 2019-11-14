@@ -68,15 +68,9 @@ namespace TileGameLib.Engine
             RestoreOriginalTilesetAndPalette();
         }
 
-        public void Print(string placeholderObjectTag, object obj)
+        public void Print(object obj, string placeholderObjectTag)
         {
-            Print(placeholderObjectTag, 0, 0, obj);
-        }
-
-        public void Print(string placeholderObjectTag, int offsetX, int offsetY, object obj)
-        {
-            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
-            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColorIx, ph.Tile.BackColorIx);
+            Print(obj, placeholderObjectTag, 0, 0);
         }
 
         public void Print(string text, int x, int y, int foreColorIx)
@@ -90,6 +84,12 @@ namespace TileGameLib.Engine
                 return;
 
             Graphics.PutString(x, y, text, foreColorIx, backColorIx);
+        }
+
+        public void Print(object obj, string placeholderObjectTag, int offsetX, int offsetY)
+        {
+            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
+            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColorIx, ph.Tile.BackColorIx);
         }
 
         public void ShowMessage(string placeholderObjectTag, int duration, params string[] messages)

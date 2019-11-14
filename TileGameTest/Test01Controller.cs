@@ -17,20 +17,12 @@ namespace TileGameTest
         {
         }
 
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void OnDrawUi()
         {
-            if (Engine.HasMessages)
-                return;
+            Ui.Print("Stats", TestEngine.RightPanelTag, 0, 0);
 
-            PrintUi("Keys:", 0, 0);
-            PrintUi($"Pink    {Player.PinkKeys}", 1, 1);
-            PrintUi($"Yellow  {Player.YellowKeys}", 1, 2);
-            PrintUi($"X: {Player.X} Y: {Player.Y}", 0, 3);
+            if (!Engine.HasMessages)
+                Ui.Print("Messages", TestEngine.BottomPanelTag, 0, 0);
         }
 
         public override void OnKeyDown(KeyEventArgs e)
