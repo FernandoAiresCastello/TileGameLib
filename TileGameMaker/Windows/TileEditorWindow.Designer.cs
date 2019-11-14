@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(316, 383);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 396);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // statusStrip1
@@ -75,9 +75,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel,
             this.HoverLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 359);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 372);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(316, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(334, 24);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -111,7 +111,7 @@
             this.BtnRotateUp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(316, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(334, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -249,7 +249,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 28);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(50);
-            this.panel1.Size = new System.Drawing.Size(310, 328);
+            this.panel1.Size = new System.Drawing.Size(328, 341);
             this.panel1.TabIndex = 2;
             // 
             // TilePanel
@@ -258,14 +258,14 @@
             this.TilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TilePanel.Location = new System.Drawing.Point(50, 50);
             this.TilePanel.Name = "TilePanel";
-            this.TilePanel.Size = new System.Drawing.Size(208, 226);
+            this.TilePanel.Size = new System.Drawing.Size(226, 239);
             this.TilePanel.TabIndex = 3;
             // 
             // TileEditorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 383);
+            this.ClientSize = new System.Drawing.Size(334, 396);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
