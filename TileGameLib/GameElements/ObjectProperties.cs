@@ -52,7 +52,7 @@ namespace TileGameLib.GameElements
             Entries[property.Trim()] = value.ToString();
         }
 
-        public void SetNumeric(string property, int amount)
+        public void AddToNumeric(string property, int amount)
         {
             if (!Has(property))
                 return;

@@ -29,16 +29,24 @@ namespace TileGameLib.Engine
             Vars.Add(name, value.ToString());
         }
 
-        public string GetStr(string name)
+        public string GetAsString(string name)
         {
             Vars.TryGetValue(name, out string value);
             return value;
         }
 
-        public int GetInt(string name)
+        public int GetAsNumber(string name)
         {
-            int.TryParse(GetStr(name), out int value);
+            int.TryParse(GetAsString(name), out int value);
             return value;
+        }
+
+        public void AddToNumeric(string name, int amount)
+        {
+            if (!Contains(name))
+                return;
+
+            Set(name, GetAsNumber(name) + amount);
         }
 
         public void Delete(string name)
