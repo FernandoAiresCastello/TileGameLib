@@ -245,7 +245,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Id.Equals(id))
-                            return new PositionedObject(o, layerIndex, x, y);
+                            return new PositionedObject(this, o, layerIndex, x, y);
                     }
                 }
             }
@@ -280,7 +280,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.HasTag && o.Tag.Equals(tag))
-                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
                     }
                 }
 
@@ -305,7 +305,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Properties.Has(property))
-                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
                     }
                 }
 
@@ -330,7 +330,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Properties.HasValue(property, value))
-                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
                     }
                 }
 
@@ -355,7 +355,7 @@ namespace TileGameLib.GameElements
                     {
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Equals(other))
-                            layerPositions.Add(new PositionedObject(o, layerIndex, x, y));
+                            layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
                     }
                 }
 

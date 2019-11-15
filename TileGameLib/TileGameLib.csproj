@@ -95,6 +95,7 @@
     <Compile Include="Util\EmbeddedFontLoader.cs" />
     <Compile Include="Util\RandomID.cs" />
     <Compile Include="Util\RandomNumber.cs" />
+    <Compile Include="Util\Strings.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Components\DisplayWindow.resx">

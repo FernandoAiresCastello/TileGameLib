@@ -11,6 +11,7 @@ using TileGameLib.Exceptions;
 using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 
 namespace TileGameLib.Engine
 {
@@ -21,7 +22,8 @@ namespace TileGameLib.Engine
         public bool Paused { set; get; }
 
         public UserInterface Ui => Window.Ui;
-        public bool HasMessages => Window.Ui.HasMessages;
+        public bool HasTimedMessage => Window.Ui.HasTimedMessage;
+        public bool HasModalMessage => Window.Ui.HasModalMessage;
 
         protected MapController MapController;
         protected readonly MapControllerCollection MapControllers;
@@ -194,6 +196,16 @@ namespace TileGameLib.Engine
                 if (MapController.Map.HasMusic)
                     PlayMusicLoop(MapController.Map.MusicFile);
             }
+        }
+
+        public void ShowTimedMessage(Strings message, string placeholderObjectTag, int duration)
+        {
+            Ui.ShowTimedMessage(placeholderObjectTag, duration, message.Array);
+        }
+
+        public void ShowModalMessage(Strings message)
+        {
+            Ui.SetModalMessage(message.Array);
         }
 
         private void SetMapController(MapController controller)

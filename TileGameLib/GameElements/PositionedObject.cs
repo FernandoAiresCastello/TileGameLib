@@ -8,23 +8,25 @@ namespace TileGameLib.GameElements
 {
     public class PositionedObject
     {
+        public ObjectMap Map { set; get; }
         public GameObject Object { set; get; }
         public ObjectPosition Position { set; get; }
 
-        public PositionedObject(GameObject o, int layer, int x, int y)
-            : this(o, new ObjectPosition(layer, x, y))
+        public PositionedObject(ObjectMap map, GameObject o, int layer, int x, int y)
+            : this(map, o, new ObjectPosition(layer, x, y))
         {
         }
 
-        public PositionedObject(GameObject o, ObjectPosition position)
+        public PositionedObject(ObjectMap map, GameObject o, ObjectPosition position)
         {
+            Map = map;
             Object = o;
             Position = position;
         }
 
         public override string ToString()
         {
-            return Object.ToString() + " " + Position.ToString();
+            return Map.Name + " " + Object.ToString() + " " + Position.ToString();
         }
     }
 }

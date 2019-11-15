@@ -97,7 +97,7 @@ namespace TileGameLib.GameElements
                 {
                     ObjectPosition position = new ObjectPosition(Layer, x + Area.X, y + Area.Y);
                     GameObject obj = Map.GetObject(position);
-                    objects[x, y] = new PositionedObject(obj, position);
+                    objects[x, y] = new PositionedObject(Map, obj, position);
                 }
             }
 
