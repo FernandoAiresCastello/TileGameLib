@@ -52,7 +52,7 @@
     <ApplicationIcon>Resources\gameboy.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework" />
@@ -333,8 +333,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>cd "$(TargetDir)"
+copy "$(TargetFileName)" "$(ProjectDir)\..\Binaries\$(TargetFileName)"
+copy "$(TargetFileName).config" "$(ProjectDir)\..\Binaries\$(TargetFileName).config"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>powershell -File "$(ProjectDir)SetBuildNumber.ps1"</PreBuildEvent>
