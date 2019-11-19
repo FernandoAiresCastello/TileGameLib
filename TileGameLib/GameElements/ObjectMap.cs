@@ -74,6 +74,11 @@ namespace TileGameLib.GameElements
             Height = height;
         }
 
+        public void Enlarge(int horizontal, int vertical)
+        {
+            Resize(Width + horizontal, Height + vertical);
+        }
+
         public void AddLayer()
         {
             Layers.Add(new ObjectLayer(Width, Height));

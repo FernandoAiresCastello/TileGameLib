@@ -115,6 +115,11 @@ namespace TileGameLib.Graphics
             AnimationFrame++;
         }
 
+        public void ScrollByDistance(Point distance)
+        {
+            ScrollByDistance(distance.X, distance.Y);
+        }
+
         public void ScrollByDistance(int dx, int dy)
         {
             Scroll = new Point(Scroll.X + dx, Scroll.Y + dy);

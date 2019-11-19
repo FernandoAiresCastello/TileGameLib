@@ -85,6 +85,11 @@ namespace TileGameLib.GameElements
             SetEqual(newPosition);
         }
 
+        public ObjectPosition AtDistance(Point distance)
+        {
+            return AtDistance(distance.X, distance.Y);
+        }
+
         public ObjectPosition AtDistance(int dx, int dy)
         {
             return new ObjectPosition(Layer, X + dx, Y + dy);
