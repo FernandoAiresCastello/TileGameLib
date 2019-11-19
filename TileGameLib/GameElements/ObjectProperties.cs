@@ -47,6 +47,31 @@ namespace TileGameLib.GameElements
             throw new TileGameLibException($"Property {property} not found");
         }
 
+        public string[] GetSeriesAsString(string propertyPrefix)
+        {
+            List<string> series = new List<string>();
+            bool finished = false;
+            int index = 0;
+
+            while (!finished)
+            {
+                string prop = propertyPrefix + index;
+
+                if (Has(prop))
+                {
+                    string value = GetAsString(prop);
+                    series.Add(value);
+                    index++;
+                }
+                else
+                {
+                    finished = true;
+                }
+            }
+
+            return series.ToArray();
+        }
+
         public void Set(string property, object value)
         {
             Entries[property.Trim()] = value.ToString();
