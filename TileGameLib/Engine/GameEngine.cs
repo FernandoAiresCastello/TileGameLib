@@ -26,6 +26,7 @@ namespace TileGameLib.Engine
         public bool HasModalMessage => Window.Ui.HasModalMessage;
 
         protected MapController MapController;
+        protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
 
         private readonly Timer CycleTimer;
@@ -198,6 +199,12 @@ namespace TileGameLib.Engine
             }
         }
 
+        public void EnterPreviousMap()
+        {
+            if (PreviousMapController != null)
+                EnterMap(PreviousMapController.Map);
+        }
+
         public void ShowTimedMessage(Strings message, string placeholderObjectTag, int duration)
         {
             Ui.ShowTimedMessage(placeholderObjectTag, duration, message.Array);
@@ -210,6 +217,7 @@ namespace TileGameLib.Engine
 
         private void SetMapController(MapController controller)
         {
+            PreviousMapController = MapController;
             MapController = controller;
             MapController.Engine = this;
             MapController.Window = Window;
