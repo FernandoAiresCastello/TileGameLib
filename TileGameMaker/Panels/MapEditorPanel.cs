@@ -133,7 +133,10 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    PutCurrentObject(cell);
+                    if (ModifierKeys == Keys.Control)
+                        DeleteObject(cell);
+                    else
+                        PutCurrentObject(cell);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,10 +47,15 @@ namespace TileGameLib.Engine
                 throw new TileGameLibException($"There is already a map with the name {map.Name}");
 
             controller.Map = map;
-            controller.MapFile = mapFile;
+            controller.MapFile = Path.GetFileName(mapFile);
             Controllers.Add(controller.Map, controller);
 
             return controller.Map;
+        }
+
+        public void RemoveController(MapController controller)
+        {
+            Controllers.Remove(controller.Map);
         }
 
         public List<MapController> GetControllers()
