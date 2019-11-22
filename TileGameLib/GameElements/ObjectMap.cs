@@ -380,8 +380,12 @@ namespace TileGameLib.GameElements
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
+            string srcObjectId = GetObject(srcPos).Id;
+
             DuplicateObject(srcPos, destPos);
             DeleteObject(srcPos);
+
+            GetObject(destPos).Id = srcObjectId;
         }
 
         public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)
