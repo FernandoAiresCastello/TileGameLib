@@ -8,9 +8,9 @@ namespace TileGameLib.GameElements
 {
     public class ObjectCell
     {
-        public bool IsEmpty => Object == null;
+        public GameObject Object { get; private set; }
 
-        private GameObject Object;
+        public bool IsEmpty => Object == null;
 
         public ObjectCell()
         {
@@ -25,11 +25,6 @@ namespace TileGameLib.GameElements
         public override string ToString()
         {
             return Object != null ? Object.ToString() : "Empty cell";
-        }
-
-        public GameObject GetObject()
-        {
-            return Object;
         }
 
         public void DeleteObject()

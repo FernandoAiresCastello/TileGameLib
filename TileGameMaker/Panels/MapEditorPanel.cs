@@ -180,7 +180,7 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    ReplaceObjectsWithTemplate(cell.GetObject());
+                    ReplaceObjectsWithTemplate(cell.Object);
                 }
                 else
                 {
@@ -383,7 +383,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty)
-                Editor.SelectedObject = cell.GetObject();
+                Editor.SelectedObject = cell.Object;
             else
                 Alert.Warning("Can't copy from empty cell");
         }
