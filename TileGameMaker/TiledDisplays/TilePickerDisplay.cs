@@ -78,7 +78,7 @@ namespace TileGameMaker.TiledDisplays
         {
             Point p = GetMouseToCellPos(mousePos);
             Tile tile = Graphics.GetTile(p.X, p.Y);
-            return tile.TileIx;
+            return tile.Index;
         }
 
         public void Clear()

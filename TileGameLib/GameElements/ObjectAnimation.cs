@@ -7,31 +7,31 @@ using TileGameLib.Graphics;
 
 namespace TileGameLib.GameElements
 {
-    public class ObjectAnim
+    public class ObjectAnimation
     {
         public List<Tile> Frames { set; get; } = new List<Tile>();
         public int Size => Frames.Count;
         public Tile FirstFrame => Frames.Count > 0 ? Frames[0] : null;
 
-        public ObjectAnim()
+        public ObjectAnimation()
         {
             Frames.Clear();
         }
 
-        public ObjectAnim(bool addFirstFrame)
+        public ObjectAnimation(bool addFirstFrame)
         {
             Frames.Clear();
             if (addFirstFrame)
-                Frames.Add(Tile.Null);
+                Frames.Add(Tile.Blank);
         }
 
-        public ObjectAnim(Tile firstFrame)
+        public ObjectAnimation(Tile firstFrame)
         {
             Frames.Clear();
             Frames.Add(firstFrame);
         }
 
-        public ObjectAnim(ObjectAnim other)
+        public ObjectAnimation(ObjectAnimation other)
         {
             SetEqual(other);
         }
@@ -41,16 +41,9 @@ namespace TileGameLib.GameElements
             Frames.Clear();
         }
 
-        public void Clear(Tile firstFrame)
+        public ObjectAnimation CopyFrames(int frames)
         {
-            Frames.Clear();
-            if (firstFrame != null)
-                Frames.Add(firstFrame);
-        }
-
-        public ObjectAnim CopyFrames(int frames)
-        {
-            ObjectAnim anim = new ObjectAnim();
+            ObjectAnimation anim = new ObjectAnimation();
             for (int i = 0; i < frames && i < Frames.Count; i++)
                 anim.AddFrame(Frames[i]);
 
@@ -62,11 +55,11 @@ namespace TileGameLib.GameElements
             return Frames.Count == 1;
         }
 
-        public void SetEqual(ObjectAnim other)
+        public void SetEqual(ObjectAnimation other)
         {
             Frames.Clear();
             foreach (Tile ch in other.Frames)
-                Frames.Add(new Tile(ch.TileIx, ch.ForeColorIx, ch.BackColorIx));
+                Frames.Add(new Tile(ch.Index, ch.ForeColor, ch.BackColor));
         }
 
         public void AddFrame(Tile ch)
@@ -78,6 +71,11 @@ namespace TileGameLib.GameElements
         {
             for (int i = 0; i < count; i++)
                 AddFrame(ch);
+        }
+
+        public void AddBlankFrame()
+        {
+            AddFrame(Tile.Blank);
         }
 
         public void SetFrame(int index, Tile ch)
@@ -95,7 +93,7 @@ namespace TileGameLib.GameElements
             if (o == null || GetType() != o.GetType())
                 return false;
 
-            ObjectAnim other = (ObjectAnim)o;
+            ObjectAnimation other = (ObjectAnimation)o;
 
             if (Frames.Count != other.Frames.Count)
                 return false;

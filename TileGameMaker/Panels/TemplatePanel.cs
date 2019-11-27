@@ -20,8 +20,8 @@ namespace TileGameMaker.Panels
     {
         public GameObject Object { set; get; }
         public AnimationStripDisplay AnimationStrip { set; get; }
-        public ObjectAnim Animation => AnimationStrip.Animation;
-        public ObjectAnim CroppedAnimation => AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
+        public ObjectAnimation Animation => AnimationStrip.Animation;
+        public ObjectAnimation CroppedAnimation => AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
         public ObjectProperties Properties => PropertyGrid.Properties;
 
         public int AnimationFrameCount
@@ -118,7 +118,7 @@ namespace TileGameMaker.Panels
             }
         }
 
-        public void UpdateAnimation(ObjectAnim anim)
+        public void UpdateAnimation(ObjectAnimation anim)
         {
             Animation.SetEqual(anim);
             AnimationFrameCount = anim.Size;

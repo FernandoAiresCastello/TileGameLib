@@ -15,7 +15,7 @@ namespace TileGameLib.GameElements
         public string Id { set; get; }
         public string Tag { set; get; }
         public bool Visible { set; get; }
-        public ObjectAnim Animation { set; get; } = new ObjectAnim();
+        public ObjectAnimation Animation { set; get; } = new ObjectAnimation();
         public ObjectProperties Properties { set; get; } = new ObjectProperties();
 
         public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
@@ -44,7 +44,8 @@ namespace TileGameLib.GameElements
             Tag = "";
             Visible = true;
             Properties.RemoveAll();
-            Animation.Clear(Tile.Null);
+            Animation.Clear();
+            Animation.AddBlankFrame();
         }
 
         public void SetEqual(GameObject o)

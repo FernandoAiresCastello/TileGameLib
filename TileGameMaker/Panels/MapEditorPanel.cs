@@ -546,7 +546,7 @@ namespace TileGameMaker.Panels
                 foreach (char ch in line)
                 {
                     Tile tile = Editor.SelectedTile;
-                    tile.TileIx = ch;
+                    tile.Index = ch;
                     GameObject o = new GameObject(tile);
                     Map.SetObject(o, new ObjectPosition(Layer, x++, y));
                 }

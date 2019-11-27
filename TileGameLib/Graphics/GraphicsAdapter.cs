@@ -32,7 +32,7 @@ namespace TileGameLib.Graphics
 
         public GraphicsAdapter(int cols, int rows, Tileset tileset, Palette palette)
         {
-            if (cols <= 0)
+            if (rows <= 0)
                 throw new ArgumentOutOfRangeException("rows");
             if (cols <= 0)
                 throw new ArgumentOutOfRangeException("cols");
@@ -70,19 +70,19 @@ namespace TileGameLib.Graphics
 
         public void Clear(int palIndex0)
         {
-            Fill(Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
+            Fill(Tile.Blank.Index, Tile.Blank.ForeColor, palIndex0);
         }
 
         public void ClearRect(int palIndex0, int x, int y, int width, int height)
         {
             for (int px = x; px < x + width; px++)
                 for (int py = y; py < y + height; py++)
-                    PutTile(px, py, Tile.Null.TileIx, Tile.Null.ForeColorIx, palIndex0);
+                    PutTile(px, py, Tile.Blank.Index, Tile.Blank.ForeColor, palIndex0);
         }
 
         public void Fill(Tile tile)
         {
-            Fill(tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+            Fill(tile.Index, tile.ForeColor, tile.BackColor);
         }
 
         public void Fill(int charIndex, int palIndex1, int palIndex0)
@@ -100,7 +100,7 @@ namespace TileGameLib.Graphics
 
         public void PutTile(int col, int row, Tile tile)
         {
-            PutTile(col, row, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+            PutTile(col, row, tile.Index, tile.ForeColor, tile.BackColor);
         }
 
         public void PutTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
@@ -128,8 +128,8 @@ namespace TileGameLib.Graphics
                 for (int col = 0; col < Cols; col++)
                 {
                     Tile tile = TileBuffer.Tiles[col, row];
-                    DrawTile(col, row, Palette.Get(tile.ForeColorIx), 
-                        Palette.Get(tile.BackColorIx), Tileset.Get(tile.TileIx).PixelRows);
+                    DrawTile(col, row, Palette.Get(tile.ForeColor), 
+                        Palette.Get(tile.BackColor), Tileset.Get(tile.Index).PixelRows);
                 }
             }
         }

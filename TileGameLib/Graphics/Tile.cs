@@ -8,15 +8,15 @@ namespace TileGameLib.Graphics
 {
     public class Tile
     {
-        public int TileIx { set; get; }
-        public int ForeColorIx { set; get; }
-        public int BackColorIx { set; get; }
+        public int Index { set; get; }
+        public int ForeColor { set; get; }
+        public int BackColor { set; get; }
 
-        public static Tile Null => new Tile(0, 0, 0);
+        public static Tile Blank => new Tile(0, 0, 0);
 
         public Tile()
         {
-            SetNull();
+            SetBlank();
         }
 
         public Tile(Tile other)
@@ -26,30 +26,30 @@ namespace TileGameLib.Graphics
 
         public Tile(int chrix, int fgcix, int bgcix)
         {
-            TileIx = chrix;
-            ForeColorIx = fgcix;
-            BackColorIx = bgcix;
+            Index = chrix;
+            ForeColor = fgcix;
+            BackColor = bgcix;
         }
 
         public void Set(int tileIx, int foreColorIx, int backColorIx)
         {
-            TileIx = tileIx;
-            ForeColorIx = foreColorIx;
-            BackColorIx = backColorIx;
+            Index = tileIx;
+            ForeColor = foreColorIx;
+            BackColor = backColorIx;
         }
 
         public void SetEqual(Tile other)
         {
-            TileIx = other.TileIx;
-            ForeColorIx = other.ForeColorIx;
-            BackColorIx = other.BackColorIx;
+            Index = other.Index;
+            ForeColor = other.ForeColor;
+            BackColor = other.BackColor;
         }
 
-        public void SetNull()
+        public void SetBlank()
         {
-            TileIx = Null.TileIx;
-            ForeColorIx = Null.ForeColorIx;
-            BackColorIx = Null.BackColorIx;
+            Index = Blank.Index;
+            ForeColor = Blank.ForeColor;
+            BackColor = Blank.BackColor;
         }
 
         public Tile Copy()
@@ -65,14 +65,14 @@ namespace TileGameLib.Graphics
             Tile other = (Tile)obj;
 
             return
-                TileIx == other.TileIx &&
-                ForeColorIx == other.ForeColorIx &&
-                BackColorIx == other.BackColorIx;
+                Index == other.Index &&
+                ForeColor == other.ForeColor &&
+                BackColor == other.BackColor;
         }
 
         public override int GetHashCode()
         {
-            return Tuple.Create(TileIx, ForeColorIx, BackColorIx).GetHashCode();
+            return Tuple.Create(Index, ForeColor, BackColor).GetHashCode();
         }
     }
 }
