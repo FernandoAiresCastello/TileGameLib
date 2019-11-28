@@ -419,60 +419,6 @@ namespace TileGameLib.GameElements
             return false;
         }
 
-        public bool MoveObjectIfDestinationHasTag(ObjectPosition srcPos, ObjectPosition destPos, string tag)
-        {
-            ObjectCell destCell = GetCell(destPos);
-
-            if (!destCell.IsEmpty)
-            {
-                GameObject o = destCell.Object;
-
-                if (o.HasTag && o.Tag.Equals(tag))
-                {
-                    MoveObject(srcPos, destPos);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool MoveObjectIfDestinationHasProperty(ObjectPosition srcPos, ObjectPosition destPos, string property)
-        {
-            ObjectCell destCell = GetCell(destPos);
-
-            if (!destCell.IsEmpty)
-            {
-                GameObject o = destCell.Object;
-
-                if (o.Properties.Has(property))
-                {
-                    MoveObject(srcPos, destPos);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public bool MoveObjectIfDestinationHasPropertyValue(ObjectPosition srcPos, ObjectPosition destPos, string property, object value)
-        {
-            ObjectCell destCell = GetCell(destPos);
-
-            if (!destCell.IsEmpty)
-            {
-                GameObject o = destCell.Object;
-
-                if (o.Properties.HasValue(property, value))
-                {
-                    MoveObject(srcPos, destPos);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public ObjectCollision FindCollisionBetweenIds(string idObject1, string idObject2)
         {
             PositionedObject posObject1 = FindObjectById(idObject1);
