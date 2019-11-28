@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.Util
 {
@@ -56,6 +57,42 @@ namespace TileGameLib.Util
                 return Direction.Northwest;
 
             return Direction.None;
+        }
+
+        public static string GetName(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.None: return "none";
+                case Direction.North: return "north";
+                case Direction.Northeast: return "northeast";
+                case Direction.East: return "east";
+                case Direction.Southeast: return "southeast";
+                case Direction.South: return "south";
+                case Direction.Southwest: return "southwest";
+                case Direction.West: return "west";
+                case Direction.Northwest: return "northwest";
+            }
+
+            throw new TileGameLibException("Invalid direction: " + direction);
+        }
+
+        public static Direction GetByName(string name)
+        {
+            switch (name.Trim().ToLower())
+            {
+                case "none": return Direction.None;
+                case "north": return Direction.North;
+                case "northeast": return Direction.Northeast;
+                case "east": return Direction.East;
+                case "southeast": return Direction.Southeast;
+                case "south": return Direction.South;
+                case "southwest": return Direction.Southwest;
+                case "west": return Direction.West;
+                case "northwest": return Direction.Northwest;
+            }
+
+            throw new TileGameLibException("Invalid direction name: " + name);
         }
     }
 }
