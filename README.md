@@ -11,4 +11,4 @@ This repository contains a Visual Studio solution comprised of two C# projects t
 
 #### Screenshots:
 
-<img src="/Screenshots/tile_game_maker.png?raw=true" />
+<img src="/Screenshots/tgm.png?raw=true" />
