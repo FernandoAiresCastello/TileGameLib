@@ -176,7 +176,9 @@ namespace TileGameLib.Engine
 
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
-            return MapControllers.AddController(GetMapPath(mapFile), controller);
+            ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
+            controller.OnLoad();
+            return map;
         }
 
         public void EnterMap(ObjectMap map)
@@ -209,6 +211,14 @@ namespace TileGameLib.Engine
         {
             if (PreviousMapController != null)
                 EnterMap(PreviousMapController.Map);
+        }
+
+        public void ReloadMap(string name)
+        {
+            MapController controller = MapControllers.Get(name);
+            controller.Map.SetEqual(MapFile.Load(GetMapPath(controller.MapFile)));
+            SetMapController(controller);
+            controller.OnLoad();
         }
 
         public void ShowTimedMessage(Strings message, string placeholderObjectTag, int duration)
