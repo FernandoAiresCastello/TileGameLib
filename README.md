@@ -5,10 +5,12 @@ The goal of this project is to deliver a toolkit for the development of pseudo-8
 
 This repository contains a Visual Studio solution comprised of two C# projects targeting the .NET Framework 4.6.1 and above:
 
-- **TileGameLib** (TGL for short) is a library project that generates a .NET DLL file, which is used throughout the toolkit and can also be used in any other projects if desired. It provides several building blocks typically found in early tile-based games, as well as an 8-bit graphics emulation system, WinForms components, file handling and other utilities.
+- **TileGameLib** (TGL for short) is a library project that generates a .NET DLL file, which is used throughout the toolkit and can also be used in any other projects if desired. It provides several building blocks typically found in early tile-based games, as well as an 8-bit graphics emulation system, WinForms components and other utilities.
 
-- **TileGameMaker** is a Windows desktop application project built using the TileGameLib that generates a .NET executable file. It contains a couple of design tools mainly focused on graphics editing and object map creation. It can export map files that can be loaded by scripts in the TileGameEngine.
+- **TileGameMaker** is a Windows desktop application project built using the TileGameLib that generates a .NET executable file. It contains a couple of design tools mainly focused on graphics editing and object map creation. It can export map files that can be loaded using the framework provided in TileGameLib.
 
-#### Screenshots:
+If you just want to use the toolkit and don't need or don't care about the source code you can find the precompiled TileGameLib.dll and TileGameMaker.exe inside the "Binaries" folder.
+
+#### Screenshot:
 
 <img src="/Screenshots/tgm.png?raw=true" />
