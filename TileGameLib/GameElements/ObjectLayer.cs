@@ -99,7 +99,7 @@ namespace TileGameLib.GameElements
         public GameObject GetObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].GetObject();
+                return Cells[x, y].Object;
 
             throw GetInvalidLayerPositionException(x, y);
         }

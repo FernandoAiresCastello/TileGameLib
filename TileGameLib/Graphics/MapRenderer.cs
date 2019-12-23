@@ -185,15 +185,12 @@ namespace TileGameLib.Graphics
 
         private void RenderCell(ObjectCell cell, int x, int y)
         {
-            GameObject o = cell.GetObject();
+            GameObject o = cell.Object;
 
-            if (o != null)
+            if (o != null && (o.Visible || RenderInvisibleObjects))
             {
-                if (o.Visible || RenderInvisibleObjects)
-                {
-                    Tile tile = o.Animation.GetFrame(AnimationFrame);
-                    Disp.Graphics.PutTile(x, y, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
-                }
+                Tile tile = o.Animation.GetFrame(AnimationFrame);
+                Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
             }
         }
     }

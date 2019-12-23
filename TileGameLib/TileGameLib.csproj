@@ -76,7 +76,7 @@
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
-    <Compile Include="GameElements\ObjectAnim.cs" />
+    <Compile Include="GameElements\ObjectAnimation.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />
     <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Graphics\FastBitmap.cs" />

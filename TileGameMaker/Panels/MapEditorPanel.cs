@@ -133,7 +133,10 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    PutCurrentObject(cell);
+                    if (ModifierKeys == Keys.Control)
+                        DeleteObject(cell);
+                    else
+                        PutCurrentObject(cell);
                 }
                 else if (e.Button == MouseButtons.Right)
                 {
@@ -177,7 +180,7 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    ReplaceObjectsWithTemplate(cell.GetObject());
+                    ReplaceObjectsWithTemplate(cell.Object);
                 }
                 else
                 {
@@ -380,7 +383,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty)
-                Editor.SelectedObject = cell.GetObject();
+                Editor.SelectedObject = cell.Object;
             else
                 Alert.Warning("Can't copy from empty cell");
         }
@@ -543,7 +546,7 @@ namespace TileGameMaker.Panels
                 foreach (char ch in line)
                 {
                     Tile tile = Editor.SelectedTile;
-                    tile.TileIx = ch;
+                    tile.Index = ch;
                     GameObject o = new GameObject(tile);
                     Map.SetObject(o, new ObjectPosition(Layer, x++, y));
                 }

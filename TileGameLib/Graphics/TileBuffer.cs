@@ -32,7 +32,7 @@ namespace TileGameLib.Graphics
         {
             for (int row = 0; row < Rows; row++)
                 for (int col = 0; col < Cols; col++)
-                    Tiles[col, row].SetNull();
+                    Tiles[col, row].SetBlank();
         }
 
         public void Set(Tile tile, int x, int y)
@@ -64,7 +64,7 @@ namespace TileGameLib.Graphics
             if (x < 0 || y < 0 || x >= Cols || y >= Rows)
                 throw new TileGameLibException();
 
-            Tiles[x, y].SetNull();
+            Tiles[x, y].SetBlank();
         }
 
         public void ScrollRight()

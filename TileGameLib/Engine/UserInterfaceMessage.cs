@@ -29,7 +29,7 @@ namespace TileGameLib.Engine
 
             ObjectPosition msgpos = MessagePlaceholder.Position;
             Tile msgtile = MessagePlaceholder.Tile;
-            Ui.Graphics.PutString(msgpos.X, msgpos.Y, Message, msgtile.ForeColorIx, msgtile.BackColorIx);
+            Ui.Graphics.PutString(msgpos.X, msgpos.Y, Message, msgtile.ForeColor, msgtile.BackColor);
         }
     }
 }

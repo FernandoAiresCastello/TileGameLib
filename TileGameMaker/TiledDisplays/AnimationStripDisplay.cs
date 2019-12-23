@@ -14,7 +14,7 @@ namespace TileGameMaker.TiledDisplays
 {
     public class AnimationStripDisplay : TiledDisplay
     {
-        public ObjectAnim Animation { set; get; } = new ObjectAnim(false);
+        public ObjectAnimation Animation { set; get; } = new ObjectAnimation(false);
 
         private readonly Tile BlankTile;
 
@@ -33,7 +33,7 @@ namespace TileGameMaker.TiledDisplays
 
             int x = 0;
             foreach (Tile tile in Animation.Frames)
-                Graphics.PutTile(x++, 0, tile.TileIx, tile.ForeColorIx, tile.BackColorIx);
+                Graphics.PutTile(x++, 0, tile.Index, tile.ForeColor, tile.BackColor);
 
             base.OnPaint(e);
         }

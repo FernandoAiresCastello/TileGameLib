@@ -24,6 +24,12 @@ namespace TileGameLib.Engine
         {
         }
 
+        public virtual void OnLoad()
+        {
+            // Override this to do stuff upon loading the map
+            // Called whenever the map is loaded or reloaded
+        }
+
         public virtual void OnEnter()
         {
             // Override this to do stuff upon entering the map

@@ -33,9 +33,15 @@ namespace TileGameLib.Engine
         private readonly Timer GfxRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval, string mapsBasePath = null)
+        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval, string mapsBasePath) :
+            this(winTitle, winCols, winRows, gfxRefreshInterval, cycleInterval, true, true, mapsBasePath)
         {
-            Window = new GameWindow(this, winTitle, winCols, winRows);
+        }
+
+        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval,
+            bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath)
+        {
+            Window = new GameWindow(this, winTitle, winCols, winRows, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
             SoundPlayer = new SoundPlayer();
             MapsBasePath = mapsBasePath;
@@ -170,7 +176,9 @@ namespace TileGameLib.Engine
 
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
-            return MapControllers.AddController(GetMapPath(mapFile), controller);
+            ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
+            controller.OnLoad();
+            return map;
         }
 
         public void EnterMap(ObjectMap map)
@@ -203,6 +211,14 @@ namespace TileGameLib.Engine
         {
             if (PreviousMapController != null)
                 EnterMap(PreviousMapController.Map);
+        }
+
+        public void ReloadMap(string name)
+        {
+            MapController controller = MapControllers.Get(name);
+            controller.Map.SetEqual(MapFile.Load(GetMapPath(controller.MapFile)));
+            SetMapController(controller);
+            controller.OnLoad();
         }
 
         public void ShowTimedMessage(Strings message, string placeholderObjectTag, int duration)

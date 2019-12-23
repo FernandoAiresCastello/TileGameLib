@@ -46,9 +46,9 @@ namespace TileGameLib.File
 
                             foreach (Tile tile in o.Animation.Frames)
                             {
-                                file.WriteShort((short)tile.TileIx);
-                                file.WriteByte((byte)tile.ForeColorIx);
-                                file.WriteByte((byte)tile.BackColorIx);
+                                file.WriteShort((short)tile.Index);
+                                file.WriteByte((byte)tile.ForeColor);
+                                file.WriteByte((byte)tile.BackColor);
                             }
 
                             file.WriteInt(o.Properties.Entries.Count);
@@ -128,14 +128,14 @@ namespace TileGameLib.File
                             GameObject o = new GameObject();
                             o.Tag = tag;
                             o.Visible = visible;
-                            o.Animation.Clear(null);
-                            o.Animation.AddFrames(frameCount, new Tile());
+                            o.Animation.Clear();
+                            o.Animation.AddFrames(frameCount, Tile.Blank);
 
                             foreach (Tile tile in o.Animation.Frames)
                             {
-                                tile.TileIx = file.ReadShort();
-                                tile.ForeColorIx = file.ReadByte();
-                                tile.BackColorIx = file.ReadByte();
+                                tile.Index = file.ReadShort();
+                                tile.ForeColor = file.ReadByte();
+                                tile.BackColor = file.ReadByte();
                             }
 
                             int propertyCount = file.ReadInt();

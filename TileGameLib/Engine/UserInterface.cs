@@ -84,7 +84,7 @@ namespace TileGameLib.Engine
         public void PutChar(int charCode, string placeholderObjectTag)
         {
             UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
-            ph.Tile.TileIx = charCode;
+            ph.Tile.Index = charCode;
             Graphics.PutTile(ph.Position.X, ph.Position.Y, ph.Tile);
         }
 
@@ -101,7 +101,7 @@ namespace TileGameLib.Engine
         public void Print(object obj, string placeholderObjectTag, int offsetX, int offsetY)
         {
             UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
-            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColorIx, ph.Tile.BackColorIx);
+            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColor, ph.Tile.BackColor);
         }
 
         public void Print(string text, int x, int y, int foreColorIx, int backColorIx)

@@ -119,9 +119,9 @@ namespace TileGameMaker.MapEditorElements
 
         private void SetSelectedTile(Tile tile)
         {
-            TilePickerControl.SetTileIndex(tile.TileIx);
-            ColorPickerControl.SetForeColorIndex(tile.ForeColorIx);
-            ColorPickerControl.SetBackColorIndex(tile.BackColorIx);
+            TilePickerControl.SetTileIndex(tile.Index);
+            ColorPickerControl.SetForeColorIndex(tile.ForeColor);
+            ColorPickerControl.SetBackColorIndex(tile.BackColor);
             TilePickerControl.Refresh();
             ColorPickerControl.Refresh();
             TemplateControl.Refresh();
@@ -145,9 +145,9 @@ namespace TileGameMaker.MapEditorElements
             TemplateControl.Object.SetEqual(o);
             TemplateControl.UpdateAnimation(o.Animation);
             Tile firstFrame = o.Animation.FirstFrame;
-            TilePickerControl.SetTileIndex(firstFrame.TileIx);
-            ColorPickerControl.SetForeColorIndex(firstFrame.ForeColorIx);
-            ColorPickerControl.SetBackColorIndex(firstFrame.BackColorIx);
+            TilePickerControl.SetTileIndex(firstFrame.Index);
+            ColorPickerControl.SetForeColorIndex(firstFrame.ForeColor);
+            ColorPickerControl.SetBackColorIndex(firstFrame.BackColor);
             TemplateControl.Refresh();
         }
     }

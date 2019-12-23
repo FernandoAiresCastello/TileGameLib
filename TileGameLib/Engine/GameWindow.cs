@@ -18,8 +18,13 @@ namespace TileGameLib.Engine
 
         private readonly GameEngine Engine;
 
-        public GameWindow(GameEngine engine, string title, int cols, int rows) 
-            : base(cols, rows, false, false)
+        public GameWindow(GameEngine engine, string title, int cols, int rows) :
+            this(engine, title, cols, rows, true, true)
+        {
+        }
+
+        public GameWindow(GameEngine engine, string title, int cols, int rows, bool allowFullscreen, bool allowResize) :
+            base(cols, rows, false, allowFullscreen, allowResize)
         {
             Text = title;
             Engine = engine;

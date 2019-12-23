@@ -20,17 +20,24 @@ namespace TileGameLib.Components
         public HashSet<Keys> KeysPressed { get; private set; } = new HashSet<Keys>();
         public GraphicsAdapter Graphics => Display?.Graphics;
 
+        private bool AllowFullscreen;
+        private bool AllowResize;
+
         public bool Fullscreen
         {
             get { return IsFullscreen; }
 
             set
             {
-                IsFullscreen = value;
-                if (IsFullscreen)
-                    SwitchToFullscreenMode();
-                else
-                    SwitchToWindowedMode();
+                if (AllowFullscreen)
+                {
+                    IsFullscreen = value;
+
+                    if (IsFullscreen)
+                        SwitchToFullscreenMode();
+                    else
+                        SwitchToWindowedMode();
+                }
             }
         }
 
@@ -44,20 +51,21 @@ namespace TileGameLib.Components
         protected Point OriginalLocation;
         protected bool IsFullscreen;
 
-        public DisplayWindow(int cols, int rows) : this(cols, rows, false, false)
-        {
-        }
-
-        public DisplayWindow(int cols, int rows, bool fullscreen, bool border)
+        public DisplayWindow(int cols, int rows, bool border, bool allowFullscreen, bool allowResize)
         {
             InitializeComponent();
+
             Display = new TiledDisplay(MapPanel, cols, rows, 1);
             Display.StretchImage = true;
             Display.Dock = DockStyle.Fill;
             OriginalSize = Size;
             OriginalLocation = Location;
-            Fullscreen = fullscreen;
+            Fullscreen = false;
             Border = border;
+            AllowResize = allowResize;
+            AllowFullscreen = allowFullscreen;
+            FormBorderStyle = allowResize ? FormBorderStyle.Sizable : FormBorderStyle.FixedSingle;
+            MaximizeBox = allowResize;
             StartPosition = FormStartPosition.CenterScreen;
             KeyDown += DisplayWindow_KeyDown;
             KeyUp += DisplayWindow_KeyUp;
@@ -134,6 +142,9 @@ namespace TileGameLib.Components
 
         protected void SwitchToFullscreenMode()
         {
+            if (!AllowFullscreen)
+                return;
+
             IsFullscreen = true;
             OriginalSize = Size;
             OriginalLocation = Location;

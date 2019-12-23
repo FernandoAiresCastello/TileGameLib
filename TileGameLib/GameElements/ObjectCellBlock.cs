@@ -49,7 +49,7 @@ namespace TileGameLib.GameElements
                 {
                     PositionedCell srcPosCell = srcCells[x, y];
                     PositionedCell destPosCell = destCells[x, y];
-                    GameObject copiedObject = srcPosCell.Cell.GetObject();
+                    GameObject copiedObject = srcPosCell.Cell.Object;
 
                     if (copiedObject != null)
                         destPosCell.Cell.SetObjectEqual(copiedObject);
