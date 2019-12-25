@@ -25,6 +25,8 @@ namespace TileGameLib.Graphics
 
         private readonly FastBitmap FastBitmap;
 
+        private const char NewLineChar = '\\';
+
         public GraphicsAdapter(int cols, int rows)
             : this(cols, rows, new Tileset(), new Palette())
         {
@@ -94,8 +96,26 @@ namespace TileGameLib.Graphics
 
         public void PutString(int x, int y, string str, int palIndex1, int palIndex0)
         {
+            int px = x;
+
             foreach (char ch in str)
-                PutTile(x++, y, ch, palIndex1, palIndex0);
+            {
+                if (ch == NewLineChar)
+                {
+                    x = px;
+                    y++;
+
+                    if (y >= Rows)
+                        break;
+                }
+                else
+                {
+                    PutTile(x++, y, ch, palIndex1, palIndex0);
+
+                    if (x >= Cols)
+                        break;
+                }
+            }
         }
 
         public void PutTile(int col, int row, Tile tile)

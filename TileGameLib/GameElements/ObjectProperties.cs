@@ -51,7 +51,7 @@ namespace TileGameLib.GameElements
         {
             List<string> series = new List<string>();
             bool finished = false;
-            int index = 0;
+            int index = 1;
 
             while (!finished)
             {
