@@ -38,11 +38,11 @@
             this.BtnExport = new System.Windows.Forms.ToolStripButton();
             this.BtnImport = new System.Windows.Forms.ToolStripButton();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
+            this.TxtColorsPerRow = new System.Windows.Forms.ToolStripTextBox();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.TxtColorsPerRow = new System.Windows.Forms.ToolStripTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -171,6 +171,18 @@
             this.BtnReset.ToolTipText = "Reset palette to default";
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
+            // TxtColorsPerRow
+            // 
+            this.TxtColorsPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtColorsPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtColorsPerRow.MaxLength = 2;
+            this.TxtColorsPerRow.Name = "TxtColorsPerRow";
+            this.TxtColorsPerRow.Size = new System.Drawing.Size(30, 23);
+            this.TxtColorsPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtColorsPerRow.ToolTipText = "Colors per row to display";
+            this.TxtColorsPerRow.Leave += new System.EventHandler(this.TxtColorsPerRow_Leave);
+            this.TxtColorsPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColorsPerRow_KeyUp);
+            // 
             // PnlColorPicker
             // 
             this.PnlColorPicker.AutoScroll = true;
@@ -207,18 +219,6 @@
             this.ForeColorPanel.Name = "ForeColorPanel";
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
-            // 
-            // TxtColorsPerRow
-            // 
-            this.TxtColorsPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtColorsPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColorsPerRow.MaxLength = 2;
-            this.TxtColorsPerRow.Name = "TxtColorsPerRow";
-            this.TxtColorsPerRow.Size = new System.Drawing.Size(50, 23);
-            this.TxtColorsPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtColorsPerRow.ToolTipText = "Colors per row to display";
-            this.TxtColorsPerRow.Leave += new System.EventHandler(this.TxtColorsPerRow_Leave);
-            this.TxtColorsPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColorsPerRow_KeyUp);
             // 
             // ColorPickerPanel
             // 

@@ -21,12 +21,12 @@ namespace TileGameLib.File
         {
             MemoryFile file = new MemoryFile();
 
-            file.WriteString(Header);
-            file.WriteString(StringOrEmpty(map.Name));
+            file.WriteStringNullTerminated(Header);
+            file.WriteStringNullTerminated(StringOrEmpty(map.Name));
             file.WriteShort(map.Width);
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
-            file.WriteString(StringOrEmpty(map.MusicFile));
+            file.WriteStringNullTerminated(StringOrEmpty(map.MusicFile));
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -40,7 +40,7 @@ namespace TileGameLib.File
                         if (o != null)
                         {
                             file.WriteByte(OccupiedCell);
-                            file.WriteString(o.Tag);
+                            file.WriteStringNullTerminated(o.Tag);
                             file.WriteByte(o.Visible ? (byte)1 : (byte)0);
                             file.WriteByte((byte)o.Animation.Size);
 
@@ -55,8 +55,8 @@ namespace TileGameLib.File
 
                             foreach (var property in o.Properties.Entries)
                             {
-                                file.WriteString(property.Key);
-                                file.WriteString(property.Value);
+                                file.WriteStringNullTerminated(property.Key);
+                                file.WriteStringNullTerminated(property.Value);
                             }
                         }
                         else

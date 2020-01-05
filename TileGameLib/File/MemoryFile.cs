@@ -26,7 +26,7 @@ namespace TileGameLib.File
             if (bytes != null)
             {
                 foreach (byte b in bytes)
-                    Bytes.Add(b);
+                    WriteByte(b);
             }
         }
 
@@ -53,9 +53,13 @@ namespace TileGameLib.File
         public void WriteString(string str)
         {
             foreach (char ch in str)
-                Bytes.Add((byte)ch);
+                WriteByte((byte)ch);
+        }
 
-            Bytes.Add(0);
+        public void WriteStringNullTerminated(string str)
+        {
+            WriteString(str);
+            WriteByte(0);
         }
 
         public void WriteShort(int value)
@@ -64,7 +68,7 @@ namespace TileGameLib.File
                 throw new TileGameLibException($"Cannot write value {value} as ushort");
 
             foreach (byte b in BitConverter.GetBytes((ushort)value))
-                Bytes.Add(b);
+                WriteByte(b);
         }
 
         public void WriteInt(int value)
@@ -73,7 +77,7 @@ namespace TileGameLib.File
                 throw new TileGameLibException($"Cannot write value {value} as type uint");
 
             foreach (byte b in BitConverter.GetBytes((uint)value))
-                Bytes.Add(b);
+                WriteByte(b);
         }
 
         public byte ReadByte()

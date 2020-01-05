@@ -24,8 +24,6 @@ namespace TileGameMaker.Panels
         private TileEditorWindow TileEditorWindow;
         private TilePixels ClipboardTile = new TilePixels();
 
-        private static readonly string TilesetFileExt = Config.ReadString("TilesetFileExt");
-        private static readonly string TilesetFileFilter = $"TileGameMaker tileset file (*.{TilesetFileExt})|*.{TilesetFileExt}";
         private static readonly int MinTilesPerRowAllowed = 1;
         private static readonly int MaxTilesPerRowAllowed = 16;
 
@@ -159,35 +157,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void BtnExport_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = TilesetFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                TilesetFile.Save(TilePicker.Graphics.Tileset, dialog.FileName);
-                Alert.Info("Tileset exported successfully!");
-            }
-        }
-
-        private void BtnImport_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = TilesetFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                TilePicker.Graphics.Tileset.SetEqual(TilesetFile.Load(dialog.FileName));
-                TilePicker.Refresh();
-                UpdateStatus();
-
-                Alert.Info("Tileset imported successfully!");
-            }
-        }
-
         private void TxtTilesPerRow_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -225,6 +194,69 @@ namespace TileGameMaker.Panels
 
             if (revert)
                 TxtTilesPerRow.Text = originalTilesPerRow.ToString();
+        }
+
+        private void BtnExportRawBytes_Click(object sender, EventArgs e)
+        {
+            Export(ExportFormat.RawBytes);
+        }
+
+        private void BtnExportBinaryStrings_Click(object sender, EventArgs e)
+        {
+            Export(ExportFormat.BinaryStrings);
+        }
+
+        private void BtnExportHex_Click(object sender, EventArgs e)
+        {
+            Export(ExportFormat.HexadecimalCsv);
+        }
+
+        private void Export(ExportFormat format)
+        {
+            string fileExt = ExportFormatFileExtension.Get(format);
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TilesetFile.Export(format, TilePicker.Graphics.Tileset, dialog.FileName);
+                Alert.Info("Tileset exported successfully!");
+            }
+        }
+
+        private void BtnImportRawBytes_Click(object sender, EventArgs e)
+        {
+            Import(ExportFormat.RawBytes);
+        }
+
+        private void BtnImportBinaryStrings_Click(object sender, EventArgs e)
+        {
+            Import(ExportFormat.BinaryStrings);
+        }
+
+        private void BtnImportHex_Click(object sender, EventArgs e)
+        {
+            Import(ExportFormat.HexadecimalCsv);
+        }
+
+        private void Import(ExportFormat format)
+        {
+            string fileExt = ExportFormatFileExtension.Get(format);
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TilePicker.Graphics.Tileset.SetEqual(TilesetFile.Import(format, dialog.FileName));
+                TilePicker.Refresh();
+                UpdateStatus();
+
+                Alert.Info("Tileset imported successfully!");
+            }
         }
     }
 }

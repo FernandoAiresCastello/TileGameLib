@@ -22,7 +22,7 @@ namespace TileGameMaker.Panels
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        private static readonly string PaletteFileExt = Config.ReadString("PaletteFileExt");
+        private static readonly string PaletteFileExt = "tgpal";
         private static readonly string PaletteFileFilter = $"TileGameMaker palette file (*.{PaletteFileExt})|*.{PaletteFileExt}";
         private static readonly int MinTilesPerRowAllowed = 1;
         private static readonly int MaxTilesPerRowAllowed = 16;
