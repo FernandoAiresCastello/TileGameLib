@@ -7,22 +7,22 @@ using TileGameLib.Exceptions;
 
 namespace TileGameLib.File
 {
-    public enum ExportFormat
+    public enum TilesetExportFormat
     {
         RawBytes,
         HexadecimalCsv, 
         BinaryStrings
     }
 
-    public static class ExportFormatFileExtension
+    public static class TilesetExportFileExtension
     {
-        public static string Get(ExportFormat format)
+        public static string Get(TilesetExportFormat format)
         {
             switch (format)
             {
-                case ExportFormat.RawBytes: return "dat";
-                case ExportFormat.HexadecimalCsv: return "hex";
-                case ExportFormat.BinaryStrings: return "bin";
+                case TilesetExportFormat.RawBytes: return "dat.tgtil";
+                case TilesetExportFormat.HexadecimalCsv: return "csv.tgtil";
+                case TilesetExportFormat.BinaryStrings: return "bin.tgtil";
             }
 
             throw new TileGameLibException("Invalid export format: " + format.ToString());

@@ -10,6 +10,8 @@ namespace TileGameLib.File
 {
     public class MemoryFile
     {
+        public const string NewLine = "\r\n";
+
         public string Path { set; get; }
         public int Length => Bytes.Count;
         public bool EndOfFile => ReadPtr >= Length;

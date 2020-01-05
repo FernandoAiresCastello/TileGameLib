@@ -60,7 +60,8 @@
     <Compile Include="Engine\UserInterfacePlaceholder.cs" />
     <Compile Include="Engine\Variables.cs" />
     <Compile Include="Exporters\JavascriptExporter.cs" />
-    <Compile Include="File\ExportFormat.cs" />
+    <Compile Include="File\PaletteExportFormat.cs" />
+    <Compile Include="File\TilesetExportFormat.cs" />
     <Compile Include="File\MapFile.cs" />
     <Compile Include="File\PaletteFile.cs" />
     <Compile Include="File\TilesetFile.cs" />

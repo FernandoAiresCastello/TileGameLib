@@ -22,8 +22,6 @@ namespace TileGameMaker.Panels
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        private static readonly string PaletteFileExt = "tgpal";
-        private static readonly string PaletteFileFilter = $"TileGameMaker palette file (*.{PaletteFileExt})|*.{PaletteFileExt}";
         private static readonly int MinTilesPerRowAllowed = 1;
         private static readonly int MaxTilesPerRowAllowed = 16;
 
@@ -197,36 +195,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void BtnExport_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = PaletteFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                PaletteFile.Save(ColorPicker.Graphics.Palette, dialog.FileName);
-                Alert.Info("Palette exported successfully!");
-            }
-        }
-
-        private void BtnImport_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = PaletteFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                ColorPicker.Graphics.Palette.SetEqual(PaletteFile.Load(dialog.FileName));
-                ColorPicker.Refresh();
-                UpdatePanelColors();
-                UpdateStatus();
-
-                Alert.Info("Palette imported successfully!");
-            }
-        }
-
         private void TxtColorsPerRow_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -264,6 +232,60 @@ namespace TileGameMaker.Panels
 
             if (revert)
                 TxtColorsPerRow.Text = originalTilesPerRow.ToString();
+        }
+
+        private void BtnExportRawBytes_Click(object sender, EventArgs e)
+        {
+            Export(PaletteExportFormat.RawBytes);
+        }
+
+        private void BtnExportHexRgb_Click(object sender, EventArgs e)
+        {
+            Export(PaletteExportFormat.HexadecimalRgb);
+        }
+
+        private void BtnExportHexCsv_Click(object sender, EventArgs e)
+        {
+            Export(PaletteExportFormat.HexadecimalCsv);
+        }
+
+        private void Export(PaletteExportFormat format)
+        {
+            string fileExt = PaletteExportFileExtension.Get(format);
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"TileGameMaker palette file (*.{fileExt})|*.{fileExt}";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                PaletteFile.Export(format, ColorPicker.Graphics.Palette, dialog.FileName);
+                Alert.Info("Palette exported successfully!");
+            }
+        }
+
+        private void BtnImportRawBytes_Click(object sender, EventArgs e)
+        {
+            Import(PaletteExportFormat.RawBytes);
+        }
+
+        private void Import(PaletteExportFormat format)
+        {
+            string fileExt = PaletteExportFileExtension.Get(format);
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"TileGameMaker palette file (*.{fileExt})|*.{fileExt}";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                ColorPicker.Graphics.Palette.SetEqual(PaletteFile.Import(format, dialog.FileName));
+                ColorPicker.Refresh();
+                UpdatePanelColors();
+                UpdateStatus();
+
+                Alert.Info("Palette imported successfully!");
+            }
         }
     }
 }

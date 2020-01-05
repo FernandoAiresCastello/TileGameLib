@@ -11,25 +11,25 @@ namespace TileGameLib.File
 {
     public static class TilesetFile
     {
-        public static void Export(ExportFormat format, Tileset tileset, string file)
+        public static void Export(TilesetExportFormat format, Tileset tileset, string file)
         {
             switch (format)
             {
-                case ExportFormat.RawBytes: SaveAsRawBytes(tileset, file); break;
-                case ExportFormat.BinaryStrings: SaveAsBinaryStrings(tileset, file); break;
-                case ExportFormat.HexadecimalCsv: SaveAsHexadecimalCsv(tileset, file); break;
+                case TilesetExportFormat.RawBytes: SaveAsRawBytes(tileset, file); break;
+                case TilesetExportFormat.BinaryStrings: SaveAsBinaryStrings(tileset, file); break;
+                case TilesetExportFormat.HexadecimalCsv: SaveAsHexadecimalCsv(tileset, file); break;
 
                 default: throw new TileGameLibException("Invalid export format: " + format.ToString());
             }
         }
 
-        public static Tileset Import(ExportFormat format, string file)
+        public static Tileset Import(TilesetExportFormat format, string file)
         {
             switch (format)
             {
-                case ExportFormat.RawBytes: return LoadFromRawBytes(file);
-                case ExportFormat.BinaryStrings: return LoadFromBinaryStrings(file);
-                case ExportFormat.HexadecimalCsv: return LoadFromHexadecimalCsv(file);
+                case TilesetExportFormat.RawBytes: return LoadFromRawBytes(file);
+                case TilesetExportFormat.BinaryStrings: return LoadFromBinaryStrings(file);
+                case TilesetExportFormat.HexadecimalCsv: return LoadFromHexadecimalCsv(file);
 
                 default: throw new TileGameLibException("Invalid export format: " + format.ToString());
             }
@@ -81,7 +81,7 @@ namespace TileGameLib.File
                     binary.Append(row.ToBinaryString());
                 }
 
-                file.WriteString(binary.ToString() + "\r\n");
+                file.WriteString(binary.ToString() + MemoryFile.NewLine);
             }
 
             file.SaveToPhysicalFile(path);
@@ -99,7 +99,7 @@ namespace TileGameLib.File
             foreach (TilePixels pixels in tileset.Pixels)
             {
                 string line = BitConverter.ToString(pixels.PixelRows).Replace('-', ',');
-                file.WriteString(line + "\r\n");
+                file.WriteString(line + MemoryFile.NewLine);
             }
 
             file.SaveToPhysicalFile(path);

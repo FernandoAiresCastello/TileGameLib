@@ -69,6 +69,7 @@ namespace TileGameLib.Graphics
         public void Clear()
         {
             Clear(DefaultSize, 0xFFffffff);
+            Set(0, Color.Black);
         }
 
         public void Clear(int count, uint color)

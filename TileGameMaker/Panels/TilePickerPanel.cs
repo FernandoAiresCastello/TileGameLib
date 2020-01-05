@@ -198,22 +198,22 @@ namespace TileGameMaker.Panels
 
         private void BtnExportRawBytes_Click(object sender, EventArgs e)
         {
-            Export(ExportFormat.RawBytes);
+            Export(TilesetExportFormat.RawBytes);
         }
 
         private void BtnExportBinaryStrings_Click(object sender, EventArgs e)
         {
-            Export(ExportFormat.BinaryStrings);
+            Export(TilesetExportFormat.BinaryStrings);
         }
 
         private void BtnExportHex_Click(object sender, EventArgs e)
         {
-            Export(ExportFormat.HexadecimalCsv);
+            Export(TilesetExportFormat.HexadecimalCsv);
         }
 
-        private void Export(ExportFormat format)
+        private void Export(TilesetExportFormat format)
         {
-            string fileExt = ExportFormatFileExtension.Get(format);
+            string fileExt = TilesetExportFileExtension.Get(format);
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = MapEditor.WorkspacePath;
@@ -228,22 +228,22 @@ namespace TileGameMaker.Panels
 
         private void BtnImportRawBytes_Click(object sender, EventArgs e)
         {
-            Import(ExportFormat.RawBytes);
+            Import(TilesetExportFormat.RawBytes);
         }
 
         private void BtnImportBinaryStrings_Click(object sender, EventArgs e)
         {
-            Import(ExportFormat.BinaryStrings);
+            Import(TilesetExportFormat.BinaryStrings);
         }
 
         private void BtnImportHex_Click(object sender, EventArgs e)
         {
-            Import(ExportFormat.HexadecimalCsv);
+            Import(TilesetExportFormat.HexadecimalCsv);
         }
 
-        private void Import(ExportFormat format)
+        private void Import(TilesetExportFormat format)
         {
-            string fileExt = ExportFormatFileExtension.Get(format);
+            string fileExt = TilesetExportFileExtension.Get(format);
 
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = MapEditor.WorkspacePath;
