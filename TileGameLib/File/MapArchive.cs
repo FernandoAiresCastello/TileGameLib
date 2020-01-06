@@ -21,7 +21,7 @@ namespace TileGameLib.File
 
         public void Save(ObjectMap map, string filename)
         {
-            MemoryFile file = MapFile.Save(map);
+            MemoryFile file = MapFile.SaveAsRawBytes(map);
             Archive.Save(Path, filename, file);
         }
 
@@ -34,7 +34,7 @@ namespace TileGameLib.File
         public ObjectMap Load(string filename)
         {
             MemoryFile file = Archive.Load(Path, filename);
-            return MapFile.Load(file);
+            return MapFile.LoadFromRawBytes(file);
         }
     }
 }

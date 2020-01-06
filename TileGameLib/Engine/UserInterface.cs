@@ -47,7 +47,7 @@ namespace TileGameLib.Engine
 
         public void LoadUiMap(string uiMapFile)
         {
-            UiMap = MapFile.Load(uiMapFile);
+            UiMap = MapFile.LoadFromRawBytes(uiMapFile);
 
             if (UiMap.Width != Display.Cols || UiMap.Height != Display.Rows)
                 throw new TileGameLibException("UI map must be exactly the same dimensions as the window");

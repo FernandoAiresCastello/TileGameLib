@@ -17,7 +17,17 @@ namespace TileGameLib.File
         private static readonly byte EmptyCell = 0;
         private static readonly byte OccupiedCell = 1;
 
-        public static MemoryFile Save(ObjectMap map)
+        public static void Export(MapExportFormat format, ObjectMap map, string file)
+        {
+            switch (format)
+            {
+                case MapExportFormat.RawBytes: SaveAsRawBytes(map, file); break;
+
+                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
+            }
+        }
+
+        public static MemoryFile SaveAsRawBytes(ObjectMap map)
         {
             MemoryFile file = new MemoryFile();
 
@@ -86,13 +96,13 @@ namespace TileGameLib.File
             return file;
         }
 
-        public static void Save(ObjectMap map, string path)
+        public static void SaveAsRawBytes(ObjectMap map, string path)
         {
-            MemoryFile file = Save(map);
+            MemoryFile file = SaveAsRawBytes(map);
             file.SaveToPhysicalFile(path);
         }
 
-        public static ObjectMap Load(MemoryFile file)
+        public static ObjectMap LoadFromRawBytes(MemoryFile file)
         {
             string header = file.ReadString();
             if (!Header.Equals(header))
@@ -178,18 +188,18 @@ namespace TileGameLib.File
             return map;
         }
 
-        public static ObjectMap Load(string path)
+        public static ObjectMap LoadFromRawBytes(string path)
         {
             MemoryFile file = new MemoryFile(path);
-            return Load(file);
+            return LoadFromRawBytes(file);
         }
 
-        public static void Load(ref ObjectMap map, string path)
+        public static void LoadFromRawBytes(ref ObjectMap map, string path)
         {
             if (map != null)
-                map.SetEqual(Load(path));
+                map.SetEqual(LoadFromRawBytes(path));
             else
-                map = Load(path);
+                map = LoadFromRawBytes(path);
         }
 
         private static string StringOrEmpty(string str)

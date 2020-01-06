@@ -216,7 +216,7 @@ namespace TileGameLib.Engine
         public void ReloadMap(string name)
         {
             MapController controller = MapControllers.Get(name);
-            controller.Map.SetEqual(MapFile.Load(GetMapPath(controller.MapFile)));
+            controller.Map.SetEqual(MapFile.LoadFromRawBytes(GetMapPath(controller.MapFile)));
             SetMapController(controller);
             controller.OnLoad();
         }

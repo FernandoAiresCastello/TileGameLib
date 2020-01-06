@@ -34,9 +34,25 @@
             this.LbEditModeInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnLoadMap = new System.Windows.Forms.ToolStripButton();
+            this.BtnSaveMap = new System.Windows.Forms.ToolStripButton();
+            this.BtnSaveMapAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
+            this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
+            this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
+            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
+            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetData = new System.Windows.Forms.ToolStripButton();
+            this.BtnAddText = new System.Windows.Forms.ToolStripButton();
+            this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
+            this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnSelectionActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.MiCancelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,22 +65,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnLoadMap = new System.Windows.Forms.ToolStripButton();
-            this.BtnSaveMap = new System.Windows.Forms.ToolStripButton();
-            this.BtnSaveMapAs = new System.Windows.Forms.ToolStripButton();
-            this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
-            this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
-            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
-            this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
-            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetData = new System.Windows.Forms.ToolStripButton();
-            this.BtnAddText = new System.Windows.Forms.ToolStripButton();
-            this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
-            this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
@@ -165,6 +165,50 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // BtnNew
+            // 
+            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
+            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(23, 20);
+            this.BtnNew.Text = "toolStripButton1";
+            this.BtnNew.ToolTipText = "Clear map (Ctrl+N)";
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnLoadMap
+            // 
+            this.BtnLoadMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnLoadMap.Image = global::TileGameMaker.Properties.Resources.folder;
+            this.BtnLoadMap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnLoadMap.Name = "BtnLoadMap";
+            this.BtnLoadMap.Size = new System.Drawing.Size(23, 20);
+            this.BtnLoadMap.Text = "toolStripButton1";
+            this.BtnLoadMap.ToolTipText = "Load map (Ctrl+O)";
+            this.BtnLoadMap.Click += new System.EventHandler(this.BtnLoadMap_Click);
+            // 
+            // BtnSaveMap
+            // 
+            this.BtnSaveMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSaveMap.Image = global::TileGameMaker.Properties.Resources.diskette;
+            this.BtnSaveMap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSaveMap.Name = "BtnSaveMap";
+            this.BtnSaveMap.Size = new System.Drawing.Size(23, 20);
+            this.BtnSaveMap.Text = "toolStripButton1";
+            this.BtnSaveMap.ToolTipText = "Save map (Ctrl+S)";
+            this.BtnSaveMap.Click += new System.EventHandler(this.BtnSaveMap_Click);
+            // 
+            // BtnSaveMapAs
+            // 
+            this.BtnSaveMapAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSaveMapAs.Image = global::TileGameMaker.Properties.Resources.file_save_as;
+            this.BtnSaveMapAs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSaveMapAs.Name = "BtnSaveMapAs";
+            this.BtnSaveMapAs.Size = new System.Drawing.Size(23, 20);
+            this.BtnSaveMapAs.Text = "toolStripButton1";
+            this.BtnSaveMapAs.ToolTipText = "Save map as (Ctrl+Shift+S)";
+            this.BtnSaveMapAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
@@ -181,11 +225,146 @@
             this.CbLayer.Size = new System.Drawing.Size(121, 23);
             this.CbLayer.SelectedIndexChanged += new System.EventHandler(this.CbLayer_SelectedIndexChanged);
             // 
+            // BtnViewAll
+            // 
+            this.BtnViewAll.Checked = true;
+            this.BtnViewAll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BtnViewAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnViewAll.Image = global::TileGameMaker.Properties.Resources.layers;
+            this.BtnViewAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnViewAll.Name = "BtnViewAll";
+            this.BtnViewAll.Size = new System.Drawing.Size(23, 20);
+            this.BtnViewAll.Text = "toolStripButton1";
+            this.BtnViewAll.ToolTipText = "View all layers (Ctrl+L)";
+            this.BtnViewAll.Click += new System.EventHandler(this.BtnViewAll_Click);
+            // 
+            // BtnAddLayer
+            // 
+            this.BtnAddLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnAddLayer.Image = global::TileGameMaker.Properties.Resources.layer_add;
+            this.BtnAddLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnAddLayer.Name = "BtnAddLayer";
+            this.BtnAddLayer.Size = new System.Drawing.Size(23, 20);
+            this.BtnAddLayer.Text = "toolStripButton1";
+            this.BtnAddLayer.ToolTipText = "Add layer";
+            this.BtnAddLayer.Click += new System.EventHandler(this.BtnAddLayer_Click);
+            // 
+            // BtnRemoveLayer
+            // 
+            this.BtnRemoveLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRemoveLayer.Image = global::TileGameMaker.Properties.Resources.layer_delete;
+            this.BtnRemoveLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRemoveLayer.Name = "BtnRemoveLayer";
+            this.BtnRemoveLayer.Size = new System.Drawing.Size(23, 20);
+            this.BtnRemoveLayer.Text = "toolStripButton1";
+            this.BtnRemoveLayer.ToolTipText = "Remove layer";
+            this.BtnRemoveLayer.Click += new System.EventHandler(this.BtnRemoveLayer_Click);
+            // 
+            // BtnClearLayer
+            // 
+            this.BtnClearLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnClearLayer.Image = global::TileGameMaker.Properties.Resources.broom;
+            this.BtnClearLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnClearLayer.Name = "BtnClearLayer";
+            this.BtnClearLayer.Size = new System.Drawing.Size(23, 20);
+            this.BtnClearLayer.Text = "toolStripButton1";
+            this.BtnClearLayer.ToolTipText = "Clear layer";
+            this.BtnClearLayer.Click += new System.EventHandler(this.BtnClearLayer_Click);
+            // 
+            // BtnSetBackColor
+            // 
+            this.BtnSetBackColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetBackColor.Image = global::TileGameMaker.Properties.Resources.color_management;
+            this.BtnSetBackColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetBackColor.Name = "BtnSetBackColor";
+            this.BtnSetBackColor.Size = new System.Drawing.Size(23, 20);
+            this.BtnSetBackColor.Text = "toolStripButton1";
+            this.BtnSetBackColor.ToolTipText = "Set map background color";
+            this.BtnSetBackColor.Click += new System.EventHandler(this.BtnSetBackColor_Click);
+            // 
+            // BtnRenderInvisibleObjects
+            // 
+            this.BtnRenderInvisibleObjects.CheckOnClick = true;
+            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
+            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
+            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
+            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
+            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
+            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // BtnPutTemplate
+            // 
+            this.BtnPutTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnPutTemplate.Image = global::TileGameMaker.Properties.Resources.pencil;
+            this.BtnPutTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnPutTemplate.Name = "BtnPutTemplate";
+            this.BtnPutTemplate.Size = new System.Drawing.Size(23, 20);
+            this.BtnPutTemplate.Text = "toolStripButton1";
+            this.BtnPutTemplate.ToolTipText = "Draw template (F2)";
+            this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDelete.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
+            this.BtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(23, 20);
+            this.BtnDelete.Text = "toolStripButton1";
+            this.BtnDelete.ToolTipText = "Delete (F3)";
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
+            // 
+            // BtnSetData
+            // 
+            this.BtnSetData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetData.Image = global::TileGameMaker.Properties.Resources.script_binary;
+            this.BtnSetData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetData.Name = "BtnSetData";
+            this.BtnSetData.Size = new System.Drawing.Size(23, 20);
+            this.BtnSetData.Text = "toolStripButton1";
+            this.BtnSetData.ToolTipText = "Edit data (F4)";
+            this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
+            // 
+            // BtnAddText
+            // 
+            this.BtnAddText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnAddText.Image = global::TileGameMaker.Properties.Resources.insert_text;
+            this.BtnAddText.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnAddText.Name = "BtnAddText";
+            this.BtnAddText.Size = new System.Drawing.Size(23, 20);
+            this.BtnAddText.Text = "toolStripButton1";
+            this.BtnAddText.ToolTipText = "Draw text (F5)";
+            this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
+            // 
+            // BtnReplaceObjects
+            // 
+            this.BtnReplaceObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnReplaceObjects.Image = global::TileGameMaker.Properties.Resources.magic_wand_2;
+            this.BtnReplaceObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnReplaceObjects.Name = "BtnReplaceObjects";
+            this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
+            this.BtnReplaceObjects.Text = "toolStripButton1";
+            this.BtnReplaceObjects.ToolTipText = "Replace objects (F6)";
+            this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
+            // 
+            // BtnSelect
+            // 
+            this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSelect.Image = global::TileGameMaker.Properties.Resources.select;
+            this.BtnSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.Size = new System.Drawing.Size(23, 20);
+            this.BtnSelect.Text = "toolStripButton1";
+            this.BtnSelect.ToolTipText = "Selection mode (F7)";
+            this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
             // BtnSelectionActions
             // 
@@ -282,185 +461,6 @@
             this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 20);
-            this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear map (Ctrl+N)";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // BtnLoadMap
-            // 
-            this.BtnLoadMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnLoadMap.Image = global::TileGameMaker.Properties.Resources.folder;
-            this.BtnLoadMap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnLoadMap.Name = "BtnLoadMap";
-            this.BtnLoadMap.Size = new System.Drawing.Size(23, 20);
-            this.BtnLoadMap.Text = "toolStripButton1";
-            this.BtnLoadMap.ToolTipText = "Load map (Ctrl+O)";
-            this.BtnLoadMap.Click += new System.EventHandler(this.BtnLoadMap_Click);
-            // 
-            // BtnSaveMap
-            // 
-            this.BtnSaveMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSaveMap.Image = global::TileGameMaker.Properties.Resources.diskette;
-            this.BtnSaveMap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSaveMap.Name = "BtnSaveMap";
-            this.BtnSaveMap.Size = new System.Drawing.Size(23, 20);
-            this.BtnSaveMap.Text = "toolStripButton1";
-            this.BtnSaveMap.ToolTipText = "Save map (Ctrl+S)";
-            this.BtnSaveMap.Click += new System.EventHandler(this.BtnSaveMap_Click);
-            // 
-            // BtnSaveMapAs
-            // 
-            this.BtnSaveMapAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSaveMapAs.Image = global::TileGameMaker.Properties.Resources.file_save_as;
-            this.BtnSaveMapAs.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSaveMapAs.Name = "BtnSaveMapAs";
-            this.BtnSaveMapAs.Size = new System.Drawing.Size(23, 20);
-            this.BtnSaveMapAs.Text = "toolStripButton1";
-            this.BtnSaveMapAs.ToolTipText = "Save map as (Ctrl+Shift+S)";
-            this.BtnSaveMapAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
-            // 
-            // BtnViewAll
-            // 
-            this.BtnViewAll.Checked = true;
-            this.BtnViewAll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.BtnViewAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnViewAll.Image = global::TileGameMaker.Properties.Resources.layers;
-            this.BtnViewAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnViewAll.Name = "BtnViewAll";
-            this.BtnViewAll.Size = new System.Drawing.Size(23, 20);
-            this.BtnViewAll.Text = "toolStripButton1";
-            this.BtnViewAll.ToolTipText = "View all layers (Ctrl+L)";
-            this.BtnViewAll.Click += new System.EventHandler(this.BtnViewAll_Click);
-            // 
-            // BtnAddLayer
-            // 
-            this.BtnAddLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnAddLayer.Image = global::TileGameMaker.Properties.Resources.layer_add;
-            this.BtnAddLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnAddLayer.Name = "BtnAddLayer";
-            this.BtnAddLayer.Size = new System.Drawing.Size(23, 20);
-            this.BtnAddLayer.Text = "toolStripButton1";
-            this.BtnAddLayer.ToolTipText = "Add layer";
-            this.BtnAddLayer.Click += new System.EventHandler(this.BtnAddLayer_Click);
-            // 
-            // BtnRemoveLayer
-            // 
-            this.BtnRemoveLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRemoveLayer.Image = global::TileGameMaker.Properties.Resources.layer_delete;
-            this.BtnRemoveLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRemoveLayer.Name = "BtnRemoveLayer";
-            this.BtnRemoveLayer.Size = new System.Drawing.Size(23, 20);
-            this.BtnRemoveLayer.Text = "toolStripButton1";
-            this.BtnRemoveLayer.ToolTipText = "Remove layer";
-            this.BtnRemoveLayer.Click += new System.EventHandler(this.BtnRemoveLayer_Click);
-            // 
-            // BtnClearLayer
-            // 
-            this.BtnClearLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnClearLayer.Image = global::TileGameMaker.Properties.Resources.broom;
-            this.BtnClearLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnClearLayer.Name = "BtnClearLayer";
-            this.BtnClearLayer.Size = new System.Drawing.Size(23, 20);
-            this.BtnClearLayer.Text = "toolStripButton1";
-            this.BtnClearLayer.ToolTipText = "Clear layer";
-            this.BtnClearLayer.Click += new System.EventHandler(this.BtnClearLayer_Click);
-            // 
-            // BtnSetBackColor
-            // 
-            this.BtnSetBackColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetBackColor.Image = global::TileGameMaker.Properties.Resources.color_management;
-            this.BtnSetBackColor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetBackColor.Name = "BtnSetBackColor";
-            this.BtnSetBackColor.Size = new System.Drawing.Size(23, 20);
-            this.BtnSetBackColor.Text = "toolStripButton1";
-            this.BtnSetBackColor.ToolTipText = "Set map background color";
-            this.BtnSetBackColor.Click += new System.EventHandler(this.BtnSetBackColor_Click);
-            // 
-            // BtnRenderInvisibleObjects
-            // 
-            this.BtnRenderInvisibleObjects.CheckOnClick = true;
-            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
-            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
-            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
-            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
-            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
-            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
-            // 
-            // BtnPutTemplate
-            // 
-            this.BtnPutTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnPutTemplate.Image = global::TileGameMaker.Properties.Resources.pencil;
-            this.BtnPutTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnPutTemplate.Name = "BtnPutTemplate";
-            this.BtnPutTemplate.Size = new System.Drawing.Size(23, 20);
-            this.BtnPutTemplate.Text = "toolStripButton1";
-            this.BtnPutTemplate.ToolTipText = "Draw template (F2)";
-            this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
-            // 
-            // BtnDelete
-            // 
-            this.BtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnDelete.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
-            this.BtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(23, 20);
-            this.BtnDelete.Text = "toolStripButton1";
-            this.BtnDelete.ToolTipText = "Delete (F3)";
-            this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
-            // 
-            // BtnSetData
-            // 
-            this.BtnSetData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetData.Image = global::TileGameMaker.Properties.Resources.script_binary;
-            this.BtnSetData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetData.Name = "BtnSetData";
-            this.BtnSetData.Size = new System.Drawing.Size(23, 20);
-            this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Edit data (F4)";
-            this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
-            // 
-            // BtnAddText
-            // 
-            this.BtnAddText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnAddText.Image = global::TileGameMaker.Properties.Resources.insert_text;
-            this.BtnAddText.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnAddText.Name = "BtnAddText";
-            this.BtnAddText.Size = new System.Drawing.Size(23, 20);
-            this.BtnAddText.Text = "toolStripButton1";
-            this.BtnAddText.ToolTipText = "Draw text (F5)";
-            this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
-            // 
-            // BtnReplaceObjects
-            // 
-            this.BtnReplaceObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReplaceObjects.Image = global::TileGameMaker.Properties.Resources.magic_wand_2;
-            this.BtnReplaceObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnReplaceObjects.Name = "BtnReplaceObjects";
-            this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
-            this.BtnReplaceObjects.Text = "toolStripButton1";
-            this.BtnReplaceObjects.ToolTipText = "Replace objects (F6)";
-            this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
-            // 
-            // BtnSelect
-            // 
-            this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSelect.Image = global::TileGameMaker.Properties.Resources.select;
-            this.BtnSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.Size = new System.Drawing.Size(23, 20);
-            this.BtnSelect.Text = "toolStripButton1";
-            this.BtnSelect.ToolTipText = "Selection mode (F7)";
-            this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
             // BtnZoomIn
             // 

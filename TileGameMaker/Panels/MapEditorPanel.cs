@@ -587,7 +587,7 @@ namespace TileGameMaker.Panels
                 {
                     Map.Name = Editor.MapName;
                     Map.MusicFile = Editor.MapMusic;
-                    MapFile.Save(Map, dialog.FileName);
+                    MapFile.SaveAsRawBytes(Map, dialog.FileName);
                     Editor.MapFile = dialog.FileName;
                     Editor.UpdateMapProperties();
                     success = true;
@@ -597,7 +597,7 @@ namespace TileGameMaker.Panels
             {
                 Map.Name = Editor.MapName;
                 Map.MusicFile = Editor.MapMusic;
-                MapFile.Save(Map, Editor.MapFile);
+                MapFile.SaveAsRawBytes(Map, Editor.MapFile);
                 Editor.UpdateMapProperties();
                 success = true;
             }
@@ -619,7 +619,7 @@ namespace TileGameMaker.Panels
             {
                 Map.Name = Editor.MapName;
                 Map.MusicFile = Editor.MapMusic;
-                MapFile.Save(Map, dialog.FileName);
+                MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
                 Alert.Info("File saved successfully!");
@@ -634,7 +634,7 @@ namespace TileGameMaker.Panels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MapFile.Load(ref Map, dialog.FileName);
+                MapFile.LoadFromRawBytes(ref Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
                 Editor.ResizeMap(Map.Width, Map.Height);

@@ -41,7 +41,7 @@ namespace TileGameLib.Engine
             if (!System.IO.File.Exists(mapFile))
                 throw new TileGameLibException($"Map file not found: {mapFile}");
 
-            ObjectMap map = MapFile.Load(mapFile);
+            ObjectMap map = MapFile.LoadFromRawBytes(mapFile);
 
             if (HasMap(map.Name))
                 throw new TileGameLibException($"There is already a map with the name {map.Name}");

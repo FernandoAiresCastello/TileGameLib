@@ -268,6 +268,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\table_export.png" />
     <None Include="Resources\magic_wand_2.png" />
     <None Include="Resources\tooltip_baloon.png" />
     <None Include="Resources\table_edit.png" />
