@@ -22,26 +22,20 @@ namespace TileGameMaker.MapEditorElements
         [ReadOnly(true)]
         public int Layers { set; get; }
 
-        private ObjectMap Map;
-        private string MapFullPath;
-
         public ConfigurableMapProperties(ObjectMap map, string mapFileFullPath)
         {
-            Map = map;
-            MapFullPath = mapFileFullPath;
-
-            if (MapFullPath != null)
+            if (mapFileFullPath != null)
             {
-                FileInfo info = new FileInfo(MapFullPath);
+                FileInfo info = new FileInfo(mapFileFullPath);
                 Path = info.Directory.FullName;
                 File = info.Name;
             }
 
-            Name = Map.Name;
-            Width = Map.Width.ToString();
-            Height = Map.Height.ToString();
-            Music = Map.MusicFile;
-            Layers = Map.Layers.Count;
+            Name = map.Name;
+            Width = map.Width.ToString();
+            Height = map.Height.ToString();
+            Music = map.MusicFile;
+            Layers = map.Layers.Count;
         }
     }
 }

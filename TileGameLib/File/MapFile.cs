@@ -37,6 +37,7 @@ namespace TileGameLib.File
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
             file.WriteStringNullTerminated(StringOrEmpty(map.MusicFile));
+            file.WriteStringNullTerminated(StringOrEmpty(map.Script));
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -104,15 +105,16 @@ namespace TileGameLib.File
 
         public static ObjectMap LoadFromRawBytes(MemoryFile file)
         {
-            string header = file.ReadString();
+            string header = file.ReadStringNullTerminated();
             if (!Header.Equals(header))
                 throw new TileGameLibException("Invalid file format");
 
-            string name = file.ReadString();
+            string name = file.ReadStringNullTerminated();
             int width = file.ReadShort();
             int height = file.ReadShort();
             int backColor = file.ReadShort();
-            string musicFile = file.ReadString();
+            string musicFile = file.ReadStringNullTerminated();
+            string script = file.ReadStringNullTerminated();
 
             ObjectMap map = new ObjectMap(name, width, height, backColor);
 
@@ -120,6 +122,7 @@ namespace TileGameLib.File
             map.Layers.Clear();
             map.AddLayers(layerCount);
             map.MusicFile = musicFile;
+            map.Script = script;
 
             foreach (ObjectLayer layer in map.Layers)
             {
@@ -131,7 +134,7 @@ namespace TileGameLib.File
 
                         if (cellState == OccupiedCell)
                         {
-                            string tag = file.ReadString();
+                            string tag = file.ReadStringNullTerminated();
                             bool visible = file.ReadByte() > 0;
                             int frameCount = file.ReadByte();
 
@@ -152,8 +155,8 @@ namespace TileGameLib.File
 
                             for (int i = 0; i < propertyCount; i++)
                             {
-                                string prop = file.ReadString();
-                                string value = file.ReadString();
+                                string prop = file.ReadStringNullTerminated();
+                                string value = file.ReadStringNullTerminated();
                                 o.Properties.Set(prop, value);
                             }
 

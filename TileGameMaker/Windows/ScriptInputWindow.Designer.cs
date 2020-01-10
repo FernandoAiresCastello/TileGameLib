@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class TextInputWindow
+    partial class ScriptInputWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -71,7 +71,7 @@
             this.BtnAccept.Name = "BtnAccept";
             this.BtnAccept.Size = new System.Drawing.Size(23, 22);
             this.BtnAccept.Text = "toolStripButton1";
-            this.BtnAccept.ToolTipText = "Confirm";
+            this.BtnAccept.ToolTipText = "Save";
             this.BtnAccept.Click += new System.EventHandler(this.BtnAccept_Click);
             // 
             // BtnCancel
@@ -101,14 +101,15 @@
             this.TxtText.TabIndex = 1;
             this.TxtText.WordWrap = false;
             // 
-            // TextInputWindow
+            // ScriptInputWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 341);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "TextInputWindow";
+            this.Name = "ScriptInputWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Map script editor";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

@@ -34,7 +34,7 @@ namespace TileGameMaker.Panels
         private bool TooltipEnabled;
         private ObjectBlockClipboard ClipboardObjects;
 
-        private enum EditMode { Draw, Delete, Data, TextInput, Selection, Replace }
+        private enum EditMode { Draw, Delete, Property, TextInput, Selection, Replace }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -144,15 +144,15 @@ namespace TileGameMaker.Panels
                     CopyObjectToTemplate(cell);
                 }
             }
-            else if (Mode == EditMode.Data)
+            else if (Mode == EditMode.Property)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    InputData(point.X, point.Y);
+                    EditProperties(point.X, point.Y);
                 }
                 else
                 {
-                    Alert.Warning("Can't copy object while in data edit mode");
+                    Alert.Warning("Can't copy object while in property edit mode");
                 }
             }
             else if (Mode == EditMode.TextInput)
@@ -437,7 +437,7 @@ namespace TileGameMaker.Panels
 
         private void BtnSetScript_Click(object sender, EventArgs e)
         {
-            SetMode(EditMode.Data, sender);
+            SetMode(EditMode.Property, sender);
         }
 
         private void BtnPutTemplate_Click(object sender, EventArgs e)
@@ -479,8 +479,8 @@ namespace TileGameMaker.Panels
                 case EditMode.TextInput:
                     Display.Cursor = GetCursor(Properties.Resources.insert_text);
                     break;
-                case EditMode.Data:
-                    Display.Cursor = GetCursor(Properties.Resources.script_binary);
+                case EditMode.Property:
+                    Display.Cursor = GetCursor(Properties.Resources.database_edit);
                     break;
                 case EditMode.Selection:
                     Display.Cursor = GetCursor(Properties.Resources.select);
@@ -512,7 +512,7 @@ namespace TileGameMaker.Panels
             button.Checked = true;
         }
 
-        private void InputData(int x, int y)
+        private void EditProperties(int x, int y)
         {
             ObjectPosition position = new ObjectPosition(Layer, x, y);
             GameObject o = Map.GetObject(position);
@@ -523,7 +523,7 @@ namespace TileGameMaker.Panels
                 return;
             }
 
-            ObjectDataInputWindow win = new ObjectDataInputWindow();
+            ObjectPropertiesEditWindow win = new ObjectPropertiesEditWindow();
 
             if (win.ShowDialog(this, o, position) == DialogResult.OK)
             {
@@ -972,7 +972,7 @@ namespace TileGameMaker.Panels
                         SetMode(EditMode.Delete, BtnDelete);
                         break;
                     case Keys.F4:
-                        SetMode(EditMode.Data, BtnSetData);
+                        SetMode(EditMode.Property, BtnSetData);
                         break;
                     case Keys.F5:
                         SetMode(EditMode.TextInput, BtnAddText);
@@ -993,6 +993,16 @@ namespace TileGameMaker.Panels
                         CancelSelection();
                         break;
                 }
+            }
+        }
+
+        private void BtnEditScript_Click(object sender, EventArgs e)
+        {
+            ScriptInputWindow win = new ScriptInputWindow();
+
+            if (win.ShowDialog(this, Map.Script) == DialogResult.OK)
+            {
+                Map.Script = win.Script;
             }
         }
     }

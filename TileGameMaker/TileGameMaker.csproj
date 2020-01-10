@@ -113,11 +113,17 @@
     <Compile Include="Windows\ColorPickerWindow.Designer.cs">
       <DependentUpon>ColorPickerWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ObjectDataInputWindow.cs">
+    <Compile Include="Windows\ObjectPropertiesEditWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\ObjectDataInputWindow.Designer.cs">
-      <DependentUpon>ObjectDataInputWindow.cs</DependentUpon>
+    <Compile Include="Windows\ObjectPropertiesEditWindow.Designer.cs">
+      <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ScriptInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ScriptInputWindow.Designer.cs">
+      <DependentUpon>ScriptInputWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
@@ -203,8 +209,11 @@
     <EmbeddedResource Include="Windows\ColorPickerWindow.resx">
       <DependentUpon>ColorPickerWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\ObjectDataInputWindow.resx">
-      <DependentUpon>ObjectDataInputWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\ObjectPropertiesEditWindow.resx">
+      <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ScriptInputWindow.resx">
+      <DependentUpon>ScriptInputWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>
@@ -268,6 +277,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\script_binary1.png" />
     <None Include="Resources\table_export.png" />
     <None Include="Resources\magic_wand_2.png" />
     <None Include="Resources\tooltip_baloon.png" />
@@ -317,6 +327,7 @@
     <None Include="Resources\color_management.png" />
     <None Include="Resources\action.png" />
     <None Include="Resources\file_save_as.png" />
+    <None Include="Resources\database_edit.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

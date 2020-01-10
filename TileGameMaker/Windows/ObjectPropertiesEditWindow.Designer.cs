@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class ObjectDataInputWindow
+    partial class ObjectPropertiesEditWindow
     {
         /// <summary>
         /// Required designer variable.

@@ -93,7 +93,7 @@ namespace TileGameLib.File
             return (char)ReadByte();
         }
 
-        public string ReadString()
+        public string ReadStringNullTerminated()
         {
             StringBuilder str = new StringBuilder();
             byte b = byte.MaxValue;

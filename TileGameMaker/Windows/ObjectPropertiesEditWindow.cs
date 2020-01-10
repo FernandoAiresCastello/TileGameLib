@@ -11,13 +11,13 @@ using TileGameLib.GameElements;
 
 namespace TileGameMaker.Windows
 {
-    public partial class ObjectDataInputWindow : Form
+    public partial class ObjectPropertiesEditWindow : Form
     {
         public string ObjectTag => TxtTag.Text.Trim();
         public bool ObjectVisible => ChkVisible.Checked;
         public ObjectProperties ObjectProperties { set; get; }
 
-        public ObjectDataInputWindow()
+        public ObjectPropertiesEditWindow()
         {
             InitializeComponent();
             Text = "Enter object data";
