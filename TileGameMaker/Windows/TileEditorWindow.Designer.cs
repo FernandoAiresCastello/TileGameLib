@@ -34,8 +34,8 @@
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnOk = new System.Windows.Forms.ToolStripButton();
-            this.BtnUndo = new System.Windows.Forms.ToolStripButton();
             this.BtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.BtnUndo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnClear = new System.Windows.Forms.ToolStripButton();
             this.BtnInvert = new System.Windows.Forms.ToolStripButton();
@@ -45,12 +45,13 @@
             this.BtnRotateRight = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateDown = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateUp = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtStringRep = new System.Windows.Forms.TextBox();
             this.TilePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -59,7 +60,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -67,7 +68,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 396);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(426, 396);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // statusStrip1
@@ -77,7 +78,7 @@
             this.HoverLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 372);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(334, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(426, 24);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -98,8 +99,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnOk,
-            this.BtnUndo,
             this.BtnCancel,
+            this.BtnUndo,
             this.toolStripSeparator1,
             this.BtnClear,
             this.BtnInvert,
@@ -111,7 +112,7 @@
             this.BtnRotateUp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(334, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(426, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -126,17 +127,6 @@
             this.BtnOk.ToolTipText = "Confirm changes";
             this.BtnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
-            // BtnUndo
-            // 
-            this.BtnUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnUndo.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnUndo.Name = "BtnUndo";
-            this.BtnUndo.Size = new System.Drawing.Size(23, 22);
-            this.BtnUndo.Text = "toolStripButton1";
-            this.BtnUndo.ToolTipText = "Undo changes";
-            this.BtnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
-            // 
             // BtnCancel
             // 
             this.BtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -147,6 +137,17 @@
             this.BtnCancel.Text = "toolStripButton1";
             this.BtnCancel.ToolTipText = "Cancel";
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // BtnUndo
+            // 
+            this.BtnUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnUndo.Image = global::TileGameMaker.Properties.Resources.undo;
+            this.BtnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnUndo.Name = "BtnUndo";
+            this.BtnUndo.Size = new System.Drawing.Size(23, 22);
+            this.BtnUndo.Text = "toolStripButton1";
+            this.BtnUndo.ToolTipText = "Undo changes";
+            this.BtnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
             // 
             // toolStripSeparator1
             // 
@@ -241,31 +242,48 @@
             this.BtnRotateUp.ToolTipText = "Rotate up";
             this.BtnRotateUp.Click += new System.EventHandler(this.BtnRotateUp_Click);
             // 
-            // panel1
+            // tableLayoutPanel2
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.TilePanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(50);
-            this.panel1.Size = new System.Drawing.Size(328, 341);
-            this.panel1.TabIndex = 2;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.TxtStringRep, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.TilePanel, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 28);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.88563F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.11437F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(420, 341);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // TxtStringRep
+            // 
+            this.TxtStringRep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtStringRep.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtStringRep.Location = new System.Drawing.Point(3, 271);
+            this.TxtStringRep.Multiline = true;
+            this.TxtStringRep.Name = "TxtStringRep";
+            this.TxtStringRep.ReadOnly = true;
+            this.TxtStringRep.Size = new System.Drawing.Size(414, 67);
+            this.TxtStringRep.TabIndex = 5;
+            this.TxtStringRep.Text = "String representations";
             // 
             // TilePanel
             // 
-            this.TilePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TilePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePanel.Location = new System.Drawing.Point(50, 50);
+            this.TilePanel.Location = new System.Drawing.Point(113, 37);
+            this.TilePanel.Margin = new System.Windows.Forms.Padding(113, 37, 113, 37);
             this.TilePanel.Name = "TilePanel";
-            this.TilePanel.Size = new System.Drawing.Size(226, 239);
-            this.TilePanel.TabIndex = 3;
+            this.TilePanel.Size = new System.Drawing.Size(194, 194);
+            this.TilePanel.TabIndex = 4;
             // 
             // TileEditorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 396);
+            this.ClientSize = new System.Drawing.Size(426, 396);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -274,7 +292,7 @@
             this.MinimumSize = new System.Drawing.Size(220, 286);
             this.Name = "TileEditorWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tile Editor";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -282,7 +300,8 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -302,11 +321,12 @@
         private System.Windows.Forms.ToolStripButton BtnInvert;
         private System.Windows.Forms.ToolStripButton BtnFlipH;
         private System.Windows.Forms.ToolStripButton BtnFlipV;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel TilePanel;
         private System.Windows.Forms.ToolStripButton BtnRotateRight;
         private System.Windows.Forms.ToolStripButton BtnRotateLeft;
         private System.Windows.Forms.ToolStripButton BtnRotateDown;
         private System.Windows.Forms.ToolStripButton BtnRotateUp;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TextBox TxtStringRep;
+        private System.Windows.Forms.Panel TilePanel;
     }
 }

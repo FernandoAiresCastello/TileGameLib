@@ -35,7 +35,7 @@ namespace TileGameMaker.TiledDisplays
                 return;
             }
 
-            string pixels = Tileset.Get(TileIndex).ToString();
+            string pixels = Tileset.Get(TileIndex).ToBinaryString();
             int pix = 0;
 
             for (int y = 0; y < Graphics.Rows; y++)

@@ -110,13 +110,33 @@ namespace TileGameLib.Graphics
                 PixelRows[i] = pixels.PixelRows[i];
         }
 
-        public override string ToString()
+        public string ToBinaryString()
         {
             StringBuilder str = new StringBuilder();
             foreach (byte row in PixelRows)
                 str.Append(row.ToBinaryString());
                 
             return str.ToString();
+        }
+
+        public string ToCsvString()
+        {
+            StringBuilder str = new StringBuilder();
+            foreach (byte row in PixelRows)
+                str.Append(row.ToString() + ",");
+
+            string csv = str.ToString();
+            return csv.Substring(0, csv.Length - 1);
+        }
+
+        public string ToHexCsvString()
+        {
+            StringBuilder str = new StringBuilder();
+            foreach (byte row in PixelRows)
+                str.Append(row.ToString("X2") + ",");
+
+            string csv = str.ToString();
+            return csv.Substring(0, csv.Length - 1);
         }
 
         public override int GetHashCode()

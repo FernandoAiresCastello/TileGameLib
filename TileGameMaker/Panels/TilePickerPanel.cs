@@ -48,11 +48,6 @@ namespace TileGameMaker.Panels
             TilePicker.MouseLeave += TilePicker_MouseLeave;
             TilePicker.MouseDown += TilePicker_MouseDown;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
-            TileEditorWindow = new TileEditorWindow(editor.Tileset);
-            TileEditorWindow.Subscribe(this);
-            TileEditorWindow.Subscribe(TilePicker);
-            TileEditorWindow.Subscribe(editor.MapEditorControl);
-            TileEditorWindow.Subscribe(editor.TemplateControl);
             SetHoverStatus("");
             UpdateStatus();
         }
@@ -105,9 +100,16 @@ namespace TileGameMaker.Panels
         private void TilePicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+
+            TileEditorWindow = new TileEditorWindow(MapEditor.Tileset);
+            TileEditorWindow.Subscribe(this);
+            TileEditorWindow.Subscribe(TilePicker);
+            TileEditorWindow.Subscribe(MapEditor.MapEditorControl);
+            TileEditorWindow.Subscribe(MapEditor.TemplateControl);
+
             TileEditorWindow.SetTile(tileIx);
-            TileEditorWindow.Location = new Point(Location.X, Location.Y + 50);
-            TileEditorWindow.ShowDialog(this);
+            
+            TileEditorWindow.Show(this);
         }
 
         private void TilePicker_MouseLeave(object sender, EventArgs e)
