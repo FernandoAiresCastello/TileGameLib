@@ -539,22 +539,8 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            string[] lines = win.Text.Replace("\r", "").Split('\n');
-
-            foreach (string line in lines)
-            {
-                int px = x;
-                foreach (char ch in line)
-                {
-                    Tile tile = Editor.SelectedTile;
-                    tile.Index = ch;
-                    GameObject o = new GameObject(tile);
-                    Map.SetObject(o, new ObjectPosition(Layer, x++, y));
-                }
-                y++;
-                x = px;
-            }
-
+            Tile tile = Editor.SelectedTile;
+            Map.SetStringOfObjects(win.Text, new ObjectPosition(Layer, x, y), tile.ForeColor, tile.BackColor);
             Refresh();
         }
 

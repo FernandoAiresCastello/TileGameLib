@@ -59,10 +59,19 @@ namespace TileGameLib.File
 
             tileset.Clear(tilesetSize);
 
-            foreach (TilePixels pixels in tileset.Pixels)
+            try
             {
-                for (int i = 0; i < pixels.PixelRows.Length; i++)
-                    pixels.PixelRows[i] = file.ReadByte();
+                foreach (TilePixels pixels in tileset.Pixels)
+                {
+                    for (int i = 0; i < pixels.PixelRows.Length; i++)
+                    {
+                        pixels.PixelRows[i] = file.ReadByte();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Alert.Error(ex.Message);
             }
 
             return tileset;

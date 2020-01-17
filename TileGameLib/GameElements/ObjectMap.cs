@@ -138,12 +138,39 @@ namespace TileGameLib.GameElements
 
         public void SetStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
         {
+            int initialX = pos.X;
+            text = text.Replace("\r", "");
+
             foreach (char ch in text)
             {
-                GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
-                SetObject(o, pos);
-                pos = pos.East();
+                if (ch == '\n')
+                {
+                    pos = pos.South();
+                    pos.MoveTo(initialX, pos.Y);
+                }
+                else
+                {
+                    if (IsWithinBounds(pos))
+                    {
+                        GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        SetObject(o, pos);
+                        pos = pos.East();
+                    }
+                }
             }
+        }
+
+        public bool IsOutOfBounds(ObjectPosition pos)
+        {
+            return !IsWithinBounds(pos);
+        }
+
+        public bool IsWithinBounds(ObjectPosition pos)
+        {
+            return 
+                pos.Layer >= 0 && pos.Layer < Layers.Count && 
+                pos.X >= 0 && pos.X < Width && 
+                pos.Y >= 0 && pos.Y < Height;
         }
 
         public void CreateNewObject(ObjectPosition pos)
