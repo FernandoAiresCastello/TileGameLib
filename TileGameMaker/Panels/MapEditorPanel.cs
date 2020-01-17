@@ -558,19 +558,9 @@ namespace TileGameMaker.Panels
             Refresh();
         }
 
-        private void BtnSaveMap_Click(object sender, EventArgs e)
-        {
-            SaveMap();
-        }
-
         private void BtnSaveMapAs_Click(object sender, EventArgs e)
         {
             SaveMapAs();
-        }
-
-        private void BtnLoadMap_Click(object sender, EventArgs e)
-        {
-            LoadMap();
         }
 
         public void SaveMap()
@@ -1003,6 +993,28 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this, Map.Script) == DialogResult.OK)
             {
                 Map.Script = win.Script;
+            }
+        }
+
+        private void BtnSaveRawBytes_Click(object sender, EventArgs e)
+        {
+            SaveMap();
+        }
+
+        private void BtnLoadRawBytes_Click(object sender, EventArgs e)
+        {
+            LoadMap();
+        }
+
+        private void BtnSaveCustomFormat_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Editor.WorkspacePath;
+            dialog.Filter = MapFileFilter;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                MapFile.SaveCustomFormat(Map, dialog.FileName);
             }
         }
     }

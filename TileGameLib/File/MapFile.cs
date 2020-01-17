@@ -22,9 +22,15 @@ namespace TileGameLib.File
             switch (format)
             {
                 case MapExportFormat.RawBytes: SaveAsRawBytes(map, file); break;
+                case MapExportFormat.Custom: SaveCustomFormat(map, file); break;
 
                 default: throw new TileGameLibException("Invalid export format: " + format.ToString());
             }
+        }
+
+        private static string StringOrEmpty(string str)
+        {
+            return !string.IsNullOrWhiteSpace(str) ? str : "";
         }
 
         public static MemoryFile SaveAsRawBytes(ObjectMap map)
@@ -205,9 +211,9 @@ namespace TileGameLib.File
                 map = LoadFromRawBytes(path);
         }
 
-        private static string StringOrEmpty(string str)
+        public static void SaveCustomFormat(ObjectMap map, string path)
         {
-            return !string.IsNullOrWhiteSpace(str) ? str : "";
+            throw new NotImplementedException();
         }
     }
 }

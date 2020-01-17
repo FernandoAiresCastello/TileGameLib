@@ -35,10 +35,10 @@
             this.ToolStripAndColorPicker = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexRgb = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.TxtColorsPerRow = new System.Windows.Forms.ToolStripTextBox();
@@ -292,10 +292,10 @@
         private System.Windows.Forms.Panel ForeColorPanel;
         private System.Windows.Forms.ToolStripButton BtnReset;
         private System.Windows.Forms.ToolStripTextBox TxtColorsPerRow;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem BtnExportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexRgb;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripMenuItem BtnImportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexCsv;
     }

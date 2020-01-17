@@ -10,7 +10,7 @@ namespace TileGameLib.File
     public enum MapExportFormat
     {
         RawBytes,
-        Csv,
+        Custom,
     }
 
     public static class MapExportFileExtension
@@ -20,7 +20,7 @@ namespace TileGameLib.File
             switch (format)
             {
                 case MapExportFormat.RawBytes: return "dat.tgmap";
-                case MapExportFormat.Csv: return "csv.tgmap";
+                case MapExportFormat.Custom: return "tgmap";
             }
 
             throw new TileGameLibException("Invalid export format: " + format.ToString());
