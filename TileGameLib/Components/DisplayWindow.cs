@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
 
-namespace TileGameMaker.Components
+namespace TileGameLib.Components
 {
     public partial class DisplayWindow : Form
     {

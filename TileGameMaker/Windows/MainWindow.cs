@@ -12,7 +12,6 @@ using TileGameLib.Components;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
-using TileGameMaker.Components;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
