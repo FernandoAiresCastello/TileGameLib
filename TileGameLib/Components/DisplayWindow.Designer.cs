@@ -1,4 +1,4 @@
-﻿namespace TileGameMaker.Testing
+﻿namespace TileGameMaker.Components
 {
     partial class DisplayWindow
     {
