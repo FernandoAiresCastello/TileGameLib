@@ -18,7 +18,7 @@ namespace TileGameLib.Components
     {
         public TiledDisplay Display { get; private set; }
         public HashSet<Keys> KeysPressed { get; private set; } = new HashSet<Keys>();
-        public GraphicsAdapter Graphics => Display?.Graphics;
+        public TileGraphicsDriver Graphics => Display?.Graphics;
 
         private bool AllowFullscreen;
         private bool AllowResize;

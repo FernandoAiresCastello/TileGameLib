@@ -10,7 +10,7 @@ using TileGameLib.Util;
 
 namespace TileGameLib.Graphics
 {
-    public class GraphicsAdapter
+    public class TileGraphicsDriver
     {
         public Bitmap Bitmap => FastBitmap.Bitmap;
         public int PixelCount => FastBitmap.Pixels.Length;
@@ -27,12 +27,12 @@ namespace TileGameLib.Graphics
 
         private const char NewLineChar = '\\';
 
-        public GraphicsAdapter(int cols, int rows)
+        public TileGraphicsDriver(int cols, int rows)
             : this(cols, rows, new Tileset(), new Palette())
         {
         }
 
-        public GraphicsAdapter(int cols, int rows, Tileset tileset, Palette palette)
+        public TileGraphicsDriver(int cols, int rows, Tileset tileset, Palette palette)
         {
             if (rows <= 0)
                 throw new ArgumentOutOfRangeException("rows");

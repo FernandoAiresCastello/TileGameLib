@@ -84,7 +84,7 @@
     <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Graphics\FastBitmap.cs" />
     <Compile Include="GameElements\GameObject.cs" />
-    <Compile Include="Graphics\GraphicsAdapter.cs" />
+    <Compile Include="Graphics\TileGraphicsDriver.cs" />
     <Compile Include="Graphics\Tile.cs" />
     <Compile Include="Graphics\MapRenderer.cs" />
     <Compile Include="Graphics\Palette.cs" />

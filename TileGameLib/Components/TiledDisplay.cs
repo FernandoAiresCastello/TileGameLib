@@ -12,7 +12,7 @@ namespace TileGameLib.Components
 {
     public class TiledDisplay : PictureBox
     {
-        public GraphicsAdapter Graphics { get; set; }
+        public TileGraphicsDriver Graphics { get; set; }
         public Bitmap Overlay { set; get; }
         public bool ShowGrid { set; get; }
         public bool ShowOverlay { set; get; }
@@ -36,7 +36,7 @@ namespace TileGameLib.Components
         {
             Parent = parent;
             DoubleBuffered = true;
-            Graphics = new GraphicsAdapter(cols, rows);
+            Graphics = new TileGraphicsDriver(cols, rows);
             Image = Graphics.Bitmap;
             ShowGrid = false;
             ShowOverlay = false;
@@ -76,7 +76,7 @@ namespace TileGameLib.Components
 
         public void ResizeGraphics(int cols, int rows)
         {
-            Graphics = new GraphicsAdapter(cols, rows, Graphics.Tileset, Graphics.Palette);
+            Graphics = new TileGraphicsDriver(cols, rows, Graphics.Tileset, Graphics.Palette);
             UpdateSize();
         }
 

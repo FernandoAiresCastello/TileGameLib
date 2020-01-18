@@ -18,7 +18,7 @@ namespace TileGameLib.Engine
         public int BackColor { set; get; } = 0;
         public MapRenderer MapRenderer { get; private set; }
         public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
-        public GraphicsAdapter Graphics => Display.Graphics;
+        public TileGraphicsDriver Graphics => Display.Graphics;
         public bool HasTimedMessage => TimedMessages.Count > 0;
         public bool HasModalMessage => ModalMessages.Count > 0 && ModalMessagePage < ModalMessages.Count;
         public string CurrentModalMessagePage => ModalMessages[ModalMessagePage];
