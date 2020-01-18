@@ -81,12 +81,27 @@ namespace TileGameMaker.Windows
 
         private void Test()
         {
-            DisplayWindow win = new DisplayWindow(160, 96, 3, false, true, true);
+            int width = 100;
+            int height = 80;
+            //Color yellow = Color.Yellow;
+            //Color blueTrans = Color.FromArgb(80, Color.Blue);
+            int yellow = 0xffff00;
+            int blue = 0x0000ff;
 
-            win.Graphics.Clear(Color.Blue);
+            DisplayWindow win = new DisplayWindow(width, height, 1, false, true, true);
 
-            for (int i = 0; i < win.Graphics.Height; i++)
-                win.Graphics.SetPixel(i, i, Color.Yellow);
+            win.Graphics.Clear(Color.White);
+
+            for (int y = 0; y < height; y++)
+            {
+                win.Graphics.SetPixel(0, y, yellow);
+                win.Graphics.SetPixel(width - 1, y, blue);
+            }
+            for (int x = 0; x < width; x++)
+            {
+                win.Graphics.SetPixel(x, 0, blue);
+                win.Graphics.SetPixel(x, height - 1, yellow);
+            }
 
             win.ShowDialog(this);
         }
