@@ -12,6 +12,7 @@ using TileGameLib.Components;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
+using TileGameMaker.Testing;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
@@ -27,6 +28,7 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             Shown += MainWindow_Shown;
+            TestMenu.Visible = false;
 
             Rectangle screenArea = Screen.PrimaryScreen.Bounds;
             Size = new Size(BestWidth, BestHeight);
@@ -70,6 +72,23 @@ namespace TileGameMaker.Windows
         private void MiAbout_Click(object sender, EventArgs e)
         {
             ShowSplashWindow();
+        }
+
+        private void MiOpenTestWindow_Click(object sender, EventArgs e)
+        {
+            Test();
+        }
+
+        private void Test()
+        {
+            DisplayWindow win = new DisplayWindow(160, 96, 3, false, true, true);
+
+            win.Graphics.Clear(Color.Blue);
+
+            for (int i = 0; i < win.Graphics.Height; i++)
+                win.Graphics.SetPixel(i, i, Color.Yellow);
+
+            win.ShowDialog(this);
         }
     }
 }

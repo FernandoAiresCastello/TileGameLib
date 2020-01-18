@@ -10,20 +10,11 @@ using TileGameLib.Util;
 
 namespace TileGameLib.Graphics
 {
-    public class TileGraphicsDriver
+    public class TileGraphicsDriver : GraphicsDriver
     {
-        public Bitmap Bitmap => FastBitmap.Bitmap;
-        public int PixelCount => FastBitmap.Pixels.Length;
-        public int Width => FastBitmap.Width; 
-        public int Height => FastBitmap.Height;
-        public int Cols => FastBitmap.Width / TilePixels.RowLength;
-        public int Rows => FastBitmap.Height / TilePixels.RowCount;
-
         public Tileset Tileset { set; get; }
         public Palette Palette { set; get; }
         public TileBuffer TileBuffer { get; private set; }
-
-        private readonly FastBitmap FastBitmap;
 
         private const char NewLineChar = '\\';
 
@@ -33,6 +24,7 @@ namespace TileGameLib.Graphics
         }
 
         public TileGraphicsDriver(int cols, int rows, Tileset tileset, Palette palette)
+            : base(cols * TilePixels.RowLength, rows * TilePixels.RowCount)
         {
             if (rows <= 0)
                 throw new ArgumentOutOfRangeException("rows");
@@ -42,16 +34,7 @@ namespace TileGameLib.Graphics
             Tileset = tileset ?? throw new ArgumentNullException("tileset");
             Palette = palette ?? throw new ArgumentNullException("palette");
 
-            int width = cols * TilePixels.RowLength;
-            int height = rows * TilePixels.RowCount;
-
             TileBuffer = new TileBuffer(cols, rows);
-            FastBitmap = new FastBitmap(width, height);
-        }
-
-        public void SaveAsImage(string file)
-        {
-            Bitmap.Save(file);
         }
 
         public Tile GetTile(int col, int row)
@@ -169,10 +152,7 @@ namespace TileGameLib.Graphics
                 for (int bit = TilePixels.RowLength - 1; bit >= 0; bit--)
                 {
                     int pixelIndex = row * FastBitmap.Width + col;
-                    if (pixelIndex < 0 || pixelIndex >= FastBitmap.Pixels.Length)
-                        return;
-
-                    FastBitmap.Pixels[pixelIndex] = (pixelRow & (1 << bit)) != 0 ? color1 : color0;
+                    SetPixel(pixelIndex, (pixelRow & (1 << bit)) != 0 ? color1 : color0);
 
                     if (++i < TilePixels.RowLength)
                     {

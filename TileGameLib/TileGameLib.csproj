@@ -43,11 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Display.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\DisplayWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Components\DisplayWindow.Designer.cs">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TiledDisplayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\TiledDisplayWindow.Designer.cs">
+      <DependentUpon>TiledDisplayWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Engine\GameWindow.cs">
@@ -78,6 +87,7 @@
     <Compile Include="GameElements\ObjectProperties.cs" />
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
+    <Compile Include="Graphics\GraphicsDriver.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />
@@ -104,6 +114,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Components\DisplayWindow.resx">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TiledDisplayWindow.resx">
+      <DependentUpon>TiledDisplayWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

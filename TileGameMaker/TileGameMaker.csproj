@@ -277,6 +277,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\watch_window.png" />
     <None Include="Resources\script_binary1.png" />
     <None Include="Resources\table_export.png" />
     <None Include="Resources\magic_wand_2.png" />

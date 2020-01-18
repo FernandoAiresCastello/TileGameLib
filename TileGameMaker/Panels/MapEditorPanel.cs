@@ -410,7 +410,7 @@ namespace TileGameMaker.Panels
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
-                Display.Graphics.SaveAsImage(dialog.FileName);
+                Display.Graphics.SaveImage(dialog.FileName);
         }
 
         private void BtnGrid_Click(object sender, EventArgs e)

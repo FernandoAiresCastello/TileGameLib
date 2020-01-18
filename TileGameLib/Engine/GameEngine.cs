@@ -33,15 +33,15 @@ namespace TileGameLib.Engine
         private readonly Timer GfxRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval, string mapsBasePath) :
-            this(winTitle, winCols, winRows, gfxRefreshInterval, cycleInterval, true, true, mapsBasePath)
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int gfxRefreshInterval, int cycleInterval, string mapsBasePath) :
+            this(winTitle, winCols, winRows, zoom, gfxRefreshInterval, cycleInterval, true, true, mapsBasePath)
         {
         }
 
-        public GameEngine(string winTitle, int winCols, int winRows, int gfxRefreshInterval, int cycleInterval,
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int gfxRefreshInterval, int cycleInterval,
             bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath)
         {
-            Window = new GameWindow(this, winTitle, winCols, winRows, allowFullscreenWindow, allowResizeWindow);
+            Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
             SoundPlayer = new SoundPlayer();
             MapsBasePath = mapsBasePath;

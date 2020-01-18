@@ -44,7 +44,6 @@ namespace TileGameLib.Components
             GridColor = Color.FromArgb(50, 0, 0, 0);
             TileHighlightColor = SystemColors.Highlight;
             TileHighlightColorOpacity = 128;
-            ShowBorder(false);
             SetZoom(zoom);
         }
 
@@ -52,11 +51,6 @@ namespace TileGameLib.Components
             : this(parent, cols, rows, zoom)
         {
             Graphics.Fill(defaultTile);
-        }
-
-        protected void ShowBorder(bool show)
-        {
-            BorderStyle = show ? BorderStyle.Fixed3D : BorderStyle.None;
         }
 
         public Point GetMouseToCellPos(Point point)

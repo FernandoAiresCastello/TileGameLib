@@ -7,16 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameLib.Components;
+using System.Windows.Input;
+using TileGameLib.GameElements;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 
-namespace TileGameMaker.Testing
+namespace TileGameLib.Components
 {
-    public partial class DisplayWindow : Form
+    public partial class TiledDisplayWindow : Form
     {
-        public Display Display { get; private set; }
-        public GraphicsDriver Graphics => Display?.Graphics;
+        public TiledDisplay Display { get; private set; }
+        public TileGraphicsDriver Graphics => Display?.Graphics;
         public HashSet<Keys> KeysPressed { get; private set; } = new HashSet<Keys>();
+
+        private bool AllowFullscreen;
+        private bool AllowResize;
 
         public bool Fullscreen
         {
@@ -38,25 +43,23 @@ namespace TileGameMaker.Testing
 
         public bool Border
         {
-            get { return DisplayPanel.BorderStyle == BorderStyle.Fixed3D; }
-            set { DisplayPanel.BorderStyle = value ? BorderStyle.Fixed3D : BorderStyle.None; }
+            get { return MapPanel.BorderStyle == BorderStyle.Fixed3D; }
+            set { MapPanel.BorderStyle = value ? BorderStyle.Fixed3D : BorderStyle.None; }
         }
 
         protected Size OriginalSize;
         protected Point OriginalLocation;
         protected bool IsFullscreen;
-        protected bool AllowFullscreen;
-        protected bool AllowResize;
 
-        public DisplayWindow(int displayWidth, int displayHeight, int zoom, bool border, bool allowFullscreen, bool allowResize)
+        public TiledDisplayWindow(int cols, int rows, int zoom, bool border, bool allowFullscreen, bool allowResize)
         {
             InitializeComponent();
 
-            OriginalSize = Size;
-            OriginalLocation = Location;
-            Display = new Display(DisplayPanel, displayWidth, displayHeight, zoom);
+            Display = new TiledDisplay(MapPanel, cols, rows, zoom);
             Display.StretchImage = true;
             Display.Dock = DockStyle.Fill;
+            OriginalSize = Size;
+            OriginalLocation = Location;
             Fullscreen = false;
             Border = border;
             AllowResize = allowResize;
@@ -69,6 +72,22 @@ namespace TileGameMaker.Testing
             Display.MouseDown += DisplayWindow_MouseDown;
         }
 
+        public override string ToString()
+        {
+            return Text;
+        }
+
+        public bool IsKeyPressed(Keys key)
+        {
+            return KeysPressed.Contains(key);
+        }
+
+        public bool IsKeyPressed(string keyname)
+        {
+            Keys key = (Keys)new KeysConverter().ConvertFrom(keyname);
+            return KeysPressed.Contains(key);
+        }
+
         protected virtual void HandleKeyDownEvent(KeyEventArgs e)
         {
         }
@@ -79,12 +98,6 @@ namespace TileGameMaker.Testing
 
         protected virtual void HandleMouseDownEvent(MouseEventArgs e)
         {
-        }
-
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-            Refresh();
         }
 
         protected void DisplayWindow_MouseDown(object sender, MouseEventArgs e)
@@ -149,6 +162,20 @@ namespace TileGameMaker.Testing
                 SwitchToWindowedMode();
             else
                 SwitchToFullscreenMode();
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            Refresh();
+        }
+
+        public override void Refresh()
+        {
+            if (Graphics != null)
+                Graphics.Refresh();
+
+            base.Refresh();
         }
     }
 }
