@@ -53,7 +53,7 @@ namespace TileGameLib.Graphics
             return TileBuffer.Tiles[col, row].Copy();
         }
 
-        public void Clear(int palIndex0)
+        public new void Clear(int palIndex0)
         {
             Fill(Tile.Blank.Index, Tile.Blank.ForeColor, palIndex0);
         }

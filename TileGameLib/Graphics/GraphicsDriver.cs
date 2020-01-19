@@ -24,10 +24,15 @@ namespace TileGameLib.Graphics
             FastBitmap = new FastBitmap(width, height);
         }
 
-        public void Clear(Color color)
+        public void Clear(int rgb)
         {
             for (int i = 0; i < PixelCount; i++)
-                FastBitmap.Pixels[i] = color.ToArgb();
+                FastBitmap.Pixels[i] = rgb;
+        }
+
+        public void Clear(Color color)
+        {
+            Clear(color.ToArgb());
         }
 
         public void SaveImage(string file)
@@ -35,17 +40,17 @@ namespace TileGameLib.Graphics
             Bitmap.Save(file);
         }
 
-        public void SetPixel(int x, int y, int argb)
+        public void SetPixel(int x, int y, int rgb)
         {
-            SetPixel(y * Width + x, argb);
+            SetPixel(y * Width + x, rgb);
         }
 
-        public void SetPixel(int pixelIndex, int argb)
+        public void SetPixel(int pixelIndex, int rgb)
         {
             if (pixelIndex < 0 || pixelIndex >= PixelCount)
                 return;
 
-            FastBitmap.Pixels[pixelIndex] = argb;
+            FastBitmap.Pixels[pixelIndex] = rgb;
         }
 
         public void SetPixel(int x, int y, Color color)
