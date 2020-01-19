@@ -38,6 +38,7 @@
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexRgb = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
@@ -46,7 +47,6 @@
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -144,6 +144,7 @@
             // 
             // toolStripSplitButton1
             // 
+            this.toolStripSplitButton1.AutoToolTip = false;
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnExportRawBytes,
@@ -152,9 +153,8 @@
             this.toolStripSplitButton1.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 20);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            this.toolStripSplitButton1.ToolTipText = "Export palette";
             // 
             // BtnExportRawBytes
             // 
@@ -170,22 +170,29 @@
             this.BtnExportHexRgb.Text = "Hexadecimal RGB";
             this.BtnExportHexRgb.Click += new System.EventHandler(this.BtnExportHexRgb_Click);
             // 
+            // BtnExportHexCsv
+            // 
+            this.BtnExportHexCsv.Name = "BtnExportHexCsv";
+            this.BtnExportHexCsv.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportHexCsv.Text = "Hexadecimal CSV";
+            this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
+            // 
             // toolStripSplitButton2
             // 
+            this.toolStripSplitButton2.AutoToolTip = false;
             this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnImportRawBytes});
             this.toolStripSplitButton2.Image = global::TileGameMaker.Properties.Resources.folder;
             this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(29, 20);
             this.toolStripSplitButton2.Text = "toolStripSplitButton1";
-            this.toolStripSplitButton2.ToolTipText = "Import palette";
             // 
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(127, 22);
             this.BtnImportRawBytes.Text = "Raw bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
@@ -248,13 +255,6 @@
             this.ForeColorPanel.Name = "ForeColorPanel";
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
-            // 
-            // BtnExportHexCsv
-            // 
-            this.BtnExportHexCsv.Name = "BtnExportHexCsv";
-            this.BtnExportHexCsv.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportHexCsv.Text = "Hexadecimal CSV";
-            this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
             // 
             // ColorPickerPanel
             // 

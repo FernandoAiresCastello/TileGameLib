@@ -17,17 +17,6 @@ namespace TileGameLib.File
         private static readonly byte EmptyCell = 0;
         private static readonly byte OccupiedCell = 1;
 
-        public static void Export(MapExportFormat format, ObjectMap map, string file)
-        {
-            switch (format)
-            {
-                case MapExportFormat.RawBytes: SaveAsRawBytes(map, file); break;
-                case MapExportFormat.Custom: SaveCustomFormat(map, file); break;
-
-                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
-            }
-        }
-
         private static string StringOrEmpty(string str)
         {
             return !string.IsNullOrWhiteSpace(str) ? str : "";
@@ -209,11 +198,6 @@ namespace TileGameLib.File
                 map.SetEqual(LoadFromRawBytes(path));
             else
                 map = LoadFromRawBytes(path);
-        }
-
-        public static void SaveCustomFormat(ObjectMap map, string path)
-        {
-            throw new NotImplementedException();
         }
     }
 }

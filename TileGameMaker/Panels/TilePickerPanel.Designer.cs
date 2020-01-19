@@ -121,6 +121,7 @@
             // 
             // toolStripDropDownButton1
             // 
+            this.toolStripDropDownButton1.AutoToolTip = false;
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnExportRawBytes,
@@ -135,26 +136,27 @@
             // BtnExportRawBytes
             // 
             this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnExportRawBytes.Text = "Raw bytes";
             this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
             // 
             // BtnExportBinaryStrings
             // 
             this.BtnExportBinaryStrings.Name = "BtnExportBinaryStrings";
-            this.BtnExportBinaryStrings.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportBinaryStrings.Size = new System.Drawing.Size(180, 22);
             this.BtnExportBinaryStrings.Text = "Binary strings";
             this.BtnExportBinaryStrings.Click += new System.EventHandler(this.BtnExportBinaryStrings_Click);
             // 
             // BtnExportHex
             // 
             this.BtnExportHex.Name = "BtnExportHex";
-            this.BtnExportHex.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportHex.Size = new System.Drawing.Size(180, 22);
             this.BtnExportHex.Text = "Hexadecimal CSV";
             this.BtnExportHex.Click += new System.EventHandler(this.BtnExportHex_Click);
             // 
             // toolStripDropDownButton2
             // 
+            this.toolStripDropDownButton2.AutoToolTip = false;
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnImportRawBytes});
@@ -163,12 +165,11 @@
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 20);
             this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.ToolTipText = "Import tileset";
             // 
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(127, 22);
             this.BtnImportRawBytes.Text = "Raw bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 

@@ -991,17 +991,5 @@ namespace TileGameMaker.Panels
         {
             LoadMap();
         }
-
-        private void BtnSaveCustomFormat_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = Editor.WorkspacePath;
-            dialog.Filter = MapFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                MapFile.SaveCustomFormat(Map, dialog.FileName);
-            }
-        }
     }
 }
