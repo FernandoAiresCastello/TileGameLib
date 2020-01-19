@@ -32,27 +32,36 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
             this.TemplatePanel = new System.Windows.Forms.Panel();
             this.ColorPickerPanel = new System.Windows.Forms.Panel();
             this.TilePickerPanel = new System.Windows.Forms.Panel();
-            this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.TestMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.MapEditorPanel = new System.Windows.Forms.Panel();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
             this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.MiOpenTestWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).BeginInit();
+            this.MapAndCommandLineSplitContainer.Panel1.SuspendLayout();
+            this.MapAndCommandLineSplitContainer.Panel2.SuspendLayout();
+            this.MapAndCommandLineSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.TestMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -76,6 +85,14 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // TestMenu
+            // 
+            this.TestMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiOpenTestWindow});
+            this.TestMenu.Name = "TestMenu";
+            this.TestMenu.Size = new System.Drawing.Size(41, 20);
+            this.TestMenu.Text = "Test";
             // 
             // WindowLayout
             // 
@@ -103,7 +120,7 @@
             this.MainLayout.Controls.Add(this.TemplatePanel, 2, 0);
             this.MainLayout.Controls.Add(this.ColorPickerPanel, 0, 1);
             this.MainLayout.Controls.Add(this.TilePickerPanel, 0, 0);
-            this.MainLayout.Controls.Add(this.MapEditorPanel, 1, 0);
+            this.MainLayout.Controls.Add(this.MapAndCommandLineSplitContainer, 1, 0);
             this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayout.Location = new System.Drawing.Point(0, 0);
             this.MainLayout.Margin = new System.Windows.Forms.Padding(0);
@@ -150,16 +167,6 @@
             this.TilePickerPanel.Size = new System.Drawing.Size(124, 54);
             this.TilePickerPanel.TabIndex = 1;
             // 
-            // MapEditorPanel
-            // 
-            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapEditorPanel.Location = new System.Drawing.Point(133, 3);
-            this.MapEditorPanel.Name = "MapEditorPanel";
-            this.MainLayout.SetRowSpan(this.MapEditorPanel, 2);
-            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
-            this.MapEditorPanel.TabIndex = 0;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 404);
@@ -168,13 +175,42 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // TestMenu
+            // MapAndCommandLineSplitContainer
             // 
-            this.TestMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiOpenTestWindow});
-            this.TestMenu.Name = "TestMenu";
-            this.TestMenu.Size = new System.Drawing.Size(41, 20);
-            this.TestMenu.Text = "Test";
+            this.MapAndCommandLineSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapAndCommandLineSplitContainer.Location = new System.Drawing.Point(133, 3);
+            this.MapAndCommandLineSplitContainer.Name = "MapAndCommandLineSplitContainer";
+            this.MapAndCommandLineSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // MapAndCommandLineSplitContainer.Panel1
+            // 
+            this.MapAndCommandLineSplitContainer.Panel1.Controls.Add(this.MapEditorPanel);
+            // 
+            // MapAndCommandLineSplitContainer.Panel2
+            // 
+            this.MapAndCommandLineSplitContainer.Panel2.Controls.Add(this.CommandLinePanel);
+            this.MapAndCommandLineSplitContainer.Panel2Collapsed = true;
+            this.MainLayout.SetRowSpan(this.MapAndCommandLineSplitContainer, 2);
+            this.MapAndCommandLineSplitContainer.Size = new System.Drawing.Size(516, 398);
+            this.MapAndCommandLineSplitContainer.SplitterDistance = 323;
+            this.MapAndCommandLineSplitContainer.TabIndex = 5;
+            // 
+            // MapEditorPanel
+            // 
+            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
+            this.MapEditorPanel.Name = "MapEditorPanel";
+            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
+            this.MapEditorPanel.TabIndex = 1;
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnToggleCommandLine});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
             // 
             // MiExit
             // 
@@ -184,12 +220,21 @@
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
+            // BtnToggleCommandLine
+            // 
+            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
+            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
+            this.BtnToggleCommandLine.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.BtnToggleCommandLine.Size = new System.Drawing.Size(210, 22);
+            this.BtnToggleCommandLine.Text = "Toggle command line";
+            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
+            // 
             // MiAbout
             // 
             this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
             this.MiAbout.Name = "MiAbout";
             this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MiAbout.Size = new System.Drawing.Size(180, 22);
+            this.MiAbout.Size = new System.Drawing.Size(135, 22);
             this.MiAbout.Text = "About...";
             this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 
@@ -201,6 +246,14 @@
             this.MiOpenTestWindow.Size = new System.Drawing.Size(195, 22);
             this.MiOpenTestWindow.Text = "Open test window";
             this.MiOpenTestWindow.Click += new System.EventHandler(this.MiOpenTestWindow_Click);
+            // 
+            // CommandLinePanel
+            // 
+            this.CommandLinePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommandLinePanel.Location = new System.Drawing.Point(0, 0);
+            this.CommandLinePanel.Name = "CommandLinePanel";
+            this.CommandLinePanel.Size = new System.Drawing.Size(516, 71);
+            this.CommandLinePanel.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -219,6 +272,10 @@
             this.WindowLayout.ResumeLayout(false);
             this.WindowLayout.PerformLayout();
             this.MainLayout.ResumeLayout(false);
+            this.MapAndCommandLineSplitContainer.Panel1.ResumeLayout(false);
+            this.MapAndCommandLineSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).EndInit();
+            this.MapAndCommandLineSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,9 +293,13 @@
         private System.Windows.Forms.Panel TemplatePanel;
         private System.Windows.Forms.Panel ColorPickerPanel;
         private System.Windows.Forms.Panel TilePickerPanel;
-        private System.Windows.Forms.Panel MapEditorPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem TestMenu;
         private System.Windows.Forms.ToolStripMenuItem MiOpenTestWindow;
+        private System.Windows.Forms.SplitContainer MapAndCommandLineSplitContainer;
+        private System.Windows.Forms.Panel MapEditorPanel;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BtnToggleCommandLine;
+        private System.Windows.Forms.Panel CommandLinePanel;
     }
 }

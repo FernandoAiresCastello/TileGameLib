@@ -44,6 +44,7 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);
             AddControl(MapEditor.TemplateControl, TemplatePanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
+            AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
         }
 
         private void ShowSplashWindow()
@@ -82,8 +83,6 @@ namespace TileGameMaker.Windows
         {
             int width = 100;
             int height = 80;
-            //Color yellow = Color.Yellow;
-            //Color blueTrans = Color.FromArgb(80, Color.Blue);
             int yellow = 0xffff00;
             int blue = 0x0000ff;
 
@@ -103,6 +102,27 @@ namespace TileGameMaker.Windows
             }
 
             win.ShowDialog(this);
+        }
+
+        private void BtnToggleCommandLine_Click(object sender, EventArgs e)
+        {
+            ToggleCommandLine();
+        }
+
+        public void ToggleCommandLine()
+        {
+            bool visible = MapAndCommandLineSplitContainer.Panel2Collapsed;
+            MapAndCommandLineSplitContainer.Panel2Collapsed = !visible;
+
+            if (visible)
+            {
+                MapEditor.CommandLinePanel.Focus();
+            }
+        }
+
+        public void ShowCommandLine(bool show)
+        {
+            MapAndCommandLineSplitContainer.Panel2Collapsed = !show;
         }
     }
 }

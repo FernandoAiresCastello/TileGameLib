@@ -32,6 +32,7 @@ namespace TileGameMaker.MapEditorElements
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyPanel MapPropertyControl { get; private set; }
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
+        public CommandLinePanel CommandLinePanel { get; private set; }
 
         public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
         public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
@@ -68,6 +69,7 @@ namespace TileGameMaker.MapEditorElements
             TemplateControl = new TemplatePanel(this);
             TilePickerControl = new TilePickerPanel(this);
             ColorPickerControl = new ColorPickerPanel(this);
+            CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             UpdateMapProperties();
 
@@ -76,6 +78,7 @@ namespace TileGameMaker.MapEditorElements
             Children.Add(ColorPickerControl);
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
+            Children.Add(CommandLinePanel);
         }
 
         public void Show()
@@ -102,6 +105,11 @@ namespace TileGameMaker.MapEditorElements
 
             MapEditorControl.ResizeMapView(width, height);
             Refresh();
+        }
+
+        public void ShowCommandLine(bool show)
+        {
+            MainWindow.ShowCommandLine(show);
         }
 
         private GameObject CreateBlankObject()
