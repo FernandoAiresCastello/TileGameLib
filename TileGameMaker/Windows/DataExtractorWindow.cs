@@ -34,6 +34,11 @@ namespace TileGameMaker.Windows
                 CmbLayer.Items.Add("Layer " + i);
 
             CmbLayer.SelectedIndex = 0;
+
+            PaletteRangeFirst.Value = 0;
+            PaletteRangeLast.Value = PaletteRangeLast.Maximum = Map.Palette.Size - 1;
+            TilesetRangeFirst.Value = 0;
+            TilesetRangeLast.Value = TilesetRangeLast.Maximum = Map.Tileset.Size - 1;
         }
 
         private void BtnExtractMapData_Click(object sender, EventArgs e) => ExtractMapData();
@@ -166,12 +171,15 @@ namespace TileGameMaker.Windows
             string lineSuffix = TxtColorLineSuffix.Text;
             string hexPrefix = TxtColorHexPrefix.Text;
             string rgbSeparator = TxtColorComponentSeparator.Text;
+            int first = decimal.ToInt32(PaletteRangeFirst.Value);
+            int last = decimal.ToInt32(PaletteRangeLast.Value);
 
             StringBuilder output = new StringBuilder();
             output.AppendLine($"Palette size: {Map.Palette.Size}");
+            output.AppendLine($"Range: {first}-{last}");
             output.AppendLine();
 
-            for (int colorIndex = 0; colorIndex < Map.Palette.Size; colorIndex++)
+            for (int colorIndex = first; colorIndex <= last; colorIndex++)
             {
                 Color color = Map.Palette.GetColorObject(colorIndex);
 
@@ -230,12 +238,15 @@ namespace TileGameMaker.Windows
             string lineSuffix = TxtTileLineSuffix.Text;
             string hexPrefix = TxtTileHexPrefix.Text;
             string byteSeparator = TxtTileByteSeparator.Text;
+            int first = decimal.ToInt32(TilesetRangeFirst.Value);
+            int last = decimal.ToInt32(TilesetRangeLast.Value);
 
             StringBuilder output = new StringBuilder();
             output.AppendLine($"Tileset size: {Map.Tileset.Size}");
+            output.AppendLine($"Range: {first}-{last}");
             output.AppendLine();
 
-            for (int tileIndex = 0; tileIndex < Map.Tileset.Size; tileIndex++)
+            for (int tileIndex = first; tileIndex <= last; tileIndex++)
             {
                 TilePixels tile = Map.Tileset.Get(tileIndex);
 

@@ -80,6 +80,12 @@
             this.RbTileBinaryString = new System.Windows.Forms.RadioButton();
             this.RbTileHexadecimal = new System.Windows.Forms.RadioButton();
             this.RbTileDecimal = new System.Windows.Forms.RadioButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.PaletteRangeFirst = new System.Windows.Forms.NumericUpDown();
+            this.PaletteRangeLast = new System.Windows.Forms.NumericUpDown();
+            this.TilesetRangeLast = new System.Windows.Forms.NumericUpDown();
+            this.TilesetRangeFirst = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,6 +94,10 @@
             this.RootPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeLast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeLast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeFirst)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -308,6 +318,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.PaletteRangeLast);
+            this.tabPage2.Controls.Add(this.PaletteRangeFirst);
+            this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Controls.Add(this.TxtColorComponentSeparator);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.ChkColorAppendAlpha);
@@ -340,6 +353,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.TilesetRangeLast);
+            this.tabPage3.Controls.Add(this.TilesetRangeFirst);
+            this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.TxtTileByteSeparator);
             this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.TxtTileHexPrefix);
@@ -641,6 +657,52 @@
             this.RbTileDecimal.Text = "Decimal 8 bytes";
             this.RbTileDecimal.UseVisualStyleBackColor = true;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(187, 107);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Range";
+            // 
+            // PaletteRangeFirst
+            // 
+            this.PaletteRangeFirst.Location = new System.Drawing.Point(190, 127);
+            this.PaletteRangeFirst.Name = "PaletteRangeFirst";
+            this.PaletteRangeFirst.Size = new System.Drawing.Size(52, 20);
+            this.PaletteRangeFirst.TabIndex = 24;
+            // 
+            // PaletteRangeLast
+            // 
+            this.PaletteRangeLast.Location = new System.Drawing.Point(251, 127);
+            this.PaletteRangeLast.Name = "PaletteRangeLast";
+            this.PaletteRangeLast.Size = new System.Drawing.Size(52, 20);
+            this.PaletteRangeLast.TabIndex = 25;
+            // 
+            // TilesetRangeLast
+            // 
+            this.TilesetRangeLast.Location = new System.Drawing.Point(251, 127);
+            this.TilesetRangeLast.Name = "TilesetRangeLast";
+            this.TilesetRangeLast.Size = new System.Drawing.Size(52, 20);
+            this.TilesetRangeLast.TabIndex = 34;
+            // 
+            // TilesetRangeFirst
+            // 
+            this.TilesetRangeFirst.Location = new System.Drawing.Point(190, 127);
+            this.TilesetRangeFirst.Name = "TilesetRangeFirst";
+            this.TilesetRangeFirst.Size = new System.Drawing.Size(52, 20);
+            this.TilesetRangeFirst.TabIndex = 33;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(187, 107);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 13);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Range";
+            // 
             // DataExtractorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,6 +726,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeLast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeLast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeFirst)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -722,5 +788,11 @@
         private System.Windows.Forms.RadioButton RbTileBinaryString;
         private System.Windows.Forms.RadioButton RbTileHexadecimal;
         private System.Windows.Forms.RadioButton RbTileDecimal;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown PaletteRangeLast;
+        private System.Windows.Forms.NumericUpDown PaletteRangeFirst;
+        private System.Windows.Forms.NumericUpDown TilesetRangeLast;
+        private System.Windows.Forms.NumericUpDown TilesetRangeFirst;
+        private System.Windows.Forms.Label label15;
     }
 }

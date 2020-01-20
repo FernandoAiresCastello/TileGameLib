@@ -137,7 +137,7 @@ namespace TileGameMaker.Windows
             if (DataExtractor == null)
             {
                 DataExtractor = new DataExtractorWindow(MapEditor);
-                DataExtractor.Show(this);
+                DataExtractor.ShowDialog(this);
             }
             else
             {
@@ -152,7 +152,7 @@ namespace TileGameMaker.Windows
                     if (DataExtractor.IsDisposed)
                         DataExtractor = new DataExtractorWindow(MapEditor);
 
-                    DataExtractor.Show(this);
+                    DataExtractor.ShowDialog(this);
                 }
             }
         }
