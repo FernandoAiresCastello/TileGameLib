@@ -487,7 +487,7 @@ namespace TileGameMaker.Panels
                     SetSelectionModeInstructionLabel();
                     break;
                 case EditMode.Replace:
-                    Display.Cursor = GetCursor(Properties.Resources.magic_wand_2);
+                    Display.Cursor = GetCursor(Properties.Resources.magic_wand);
                     SetReplaceModeInstructionLabel();
                     break;
             }

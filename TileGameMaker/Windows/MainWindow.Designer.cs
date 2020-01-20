@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TestMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -39,15 +39,15 @@
             this.TemplatePanel = new System.Windows.Forms.Panel();
             this.ColorPickerPanel = new System.Windows.Forms.Panel();
             this.TilePickerPanel = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MapEditorPanel = new System.Windows.Forms.Panel();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CommandLinePanel = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.MiOpenTestWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -61,7 +61,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.TestMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -77,6 +77,15 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.fileToolStripMenuItem.Text = "Application";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnToggleCommandLine,
+            this.BtnDataExtractor});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // helpToolStripMenuItem
             // 
@@ -167,14 +176,6 @@
             this.TilePickerPanel.Size = new System.Drawing.Size(124, 54);
             this.TilePickerPanel.TabIndex = 1;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 404);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // MapAndCommandLineSplitContainer
             // 
             this.MapAndCommandLineSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -204,13 +205,21 @@
             this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
             this.MapEditorPanel.TabIndex = 1;
             // 
-            // viewToolStripMenuItem
+            // CommandLinePanel
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnToggleCommandLine});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.CommandLinePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommandLinePanel.Location = new System.Drawing.Point(0, 0);
+            this.CommandLinePanel.Name = "CommandLinePanel";
+            this.CommandLinePanel.Size = new System.Drawing.Size(150, 46);
+            this.CommandLinePanel.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 404);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // MiExit
             // 
@@ -224,10 +233,19 @@
             // 
             this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
             this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
-            this.BtnToggleCommandLine.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.BtnToggleCommandLine.Size = new System.Drawing.Size(210, 22);
+            this.BtnToggleCommandLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.BtnToggleCommandLine.Size = new System.Drawing.Size(231, 22);
             this.BtnToggleCommandLine.Text = "Toggle command line";
             this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
+            // 
+            // BtnDataExtractor
+            // 
+            this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
+            this.BtnDataExtractor.Name = "BtnDataExtractor";
+            this.BtnDataExtractor.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.BtnDataExtractor.Size = new System.Drawing.Size(231, 22);
+            this.BtnDataExtractor.Text = "Data extractor";
+            this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
             // MiAbout
             // 
@@ -247,14 +265,6 @@
             this.MiOpenTestWindow.Text = "Open test window";
             this.MiOpenTestWindow.Click += new System.EventHandler(this.MiOpenTestWindow_Click);
             // 
-            // CommandLinePanel
-            // 
-            this.CommandLinePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CommandLinePanel.Location = new System.Drawing.Point(0, 0);
-            this.CommandLinePanel.Name = "CommandLinePanel";
-            this.CommandLinePanel.Size = new System.Drawing.Size(516, 71);
-            this.CommandLinePanel.TabIndex = 0;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,7 +272,6 @@
             this.ClientSize = new System.Drawing.Size(784, 450);
             this.Controls.Add(this.WindowLayout);
             this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -298,8 +307,9 @@
         private System.Windows.Forms.ToolStripMenuItem MiOpenTestWindow;
         private System.Windows.Forms.SplitContainer MapAndCommandLineSplitContainer;
         private System.Windows.Forms.Panel MapEditorPanel;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem BtnToggleCommandLine;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.Panel CommandLinePanel;
+        private System.Windows.Forms.ToolStripMenuItem BtnToggleCommandLine;
+        private System.Windows.Forms.ToolStripMenuItem BtnDataExtractor;
     }
 }

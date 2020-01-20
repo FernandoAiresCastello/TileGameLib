@@ -19,6 +19,7 @@ namespace TileGameMaker.Windows
     public partial class MainWindow : Form
     {
         private MapEditor MapEditor;
+        private DataExtractorWindow DataExtractor;
 
         private static readonly int BestWidth = Config.ReadInt("MapEditorWindowBestWidth");
         private static readonly int BestHeight = Config.ReadInt("MapEditorWindowBestHeight");
@@ -26,8 +27,9 @@ namespace TileGameMaker.Windows
         public MainWindow()
         {
             InitializeComponent();
-            Shown += MainWindow_Shown;
+            Icon = Global.WindowIcon;
             TestMenu.Visible = false;
+            Shown += MainWindow_Shown;
 
             Rectangle screenArea = Screen.PrimaryScreen.Bounds;
             Size = new Size(BestWidth, BestHeight);
@@ -123,6 +125,36 @@ namespace TileGameMaker.Windows
         public void ShowCommandLine(bool show)
         {
             MapAndCommandLineSplitContainer.Panel2Collapsed = !show;
+        }
+
+        private void BtnDataExtractor_Click(object sender, EventArgs e)
+        {
+            ShowDataExtractor();
+        }
+
+        private void ShowDataExtractor()
+        {
+            if (DataExtractor == null)
+            {
+                DataExtractor = new DataExtractorWindow(MapEditor);
+                DataExtractor.Show(this);
+            }
+            else
+            {
+                if (DataExtractor.Visible)
+                {
+                    DataExtractor.BringToFront();
+                    if (DataExtractor.WindowState == FormWindowState.Minimized)
+                        DataExtractor.WindowState = FormWindowState.Normal;
+                }
+                else
+                {
+                    if (DataExtractor.IsDisposed)
+                        DataExtractor = new DataExtractorWindow(MapEditor);
+
+                    DataExtractor.Show(this);
+                }
+            }
         }
     }
 }

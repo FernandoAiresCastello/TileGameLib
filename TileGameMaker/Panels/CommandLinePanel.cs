@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.MapEditorElements;
 using TileGameLib.Util;
+using TileGameLib.GameElements;
 
 namespace TileGameMaker.Panels
 {
@@ -16,6 +17,7 @@ namespace TileGameMaker.Panels
     {
         private MapEditor MapEditor;
         private string LastCommand;
+        private ObjectMap Map => MapEditor.Map;
 
         public CommandLinePanel()
         {
@@ -27,8 +29,6 @@ namespace TileGameMaker.Panels
             InitializeComponent();
             MapEditor = editor;
             TxtInput.KeyDown += TxtInput_KeyDown;
-
-            //Print("Type help to view available commands.");
         }
 
         private void TxtInput_KeyDown(object sender, KeyEventArgs e)
@@ -110,19 +110,26 @@ namespace TileGameMaker.Panels
             string command = commandAndArgs.Length > 0 ? commandAndArgs[0] : "";
             string args = commandAndArgs.Length > 1 ? commandAndArgs[1] : "";
 
-            switch (command)
+            try
             {
-                case "cls":
-                    ClearOutput();
-                    break;
-                case "exit":
-                    ClearOutput();
-                    ClearInput();
-                    MapEditor.ShowCommandLine(false);
-                    break;
-                default:
-                    Print("Invalid command");
-                    break;
+                switch (command)
+                {
+                    case "cls":
+                        ClearOutput();
+                        break;
+                    case "exit":
+                        ClearOutput();
+                        ClearInput();
+                        MapEditor.ShowCommandLine(false);
+                        break;
+                    default:
+                        Print("Invalid command");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Print("Error: " + ex.Message);
             }
         }
     }

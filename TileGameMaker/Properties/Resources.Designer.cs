@@ -233,6 +233,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap database_lightning {
+            get {
+                object obj = ResourceManager.GetObject("database_lightning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
@@ -383,9 +393,9 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap magic_wand_2 {
+        internal static System.Drawing.Bitmap magic_wand {
             get {
-                object obj = ResourceManager.GetObject("magic_wand_2", resourceCulture);
+                object obj = ResourceManager.GetObject("magic_wand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -526,16 +536,6 @@ namespace TileGameMaker.Properties {
         internal static System.Drawing.Bitmap shape_flip_vertical {
             get {
                 object obj = ResourceManager.GetObject("shape_flip_vertical", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Sonya_Swarm_Gameboy {
-            get {
-                object obj = ResourceManager.GetObject("Sonya-Swarm-Gameboy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

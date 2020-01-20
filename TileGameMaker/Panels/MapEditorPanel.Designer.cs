@@ -39,6 +39,7 @@
             this.BtnLoadRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveMap = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
@@ -72,7 +73,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.BtnSsaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -194,7 +194,8 @@
             // BtnLoadRawBytes
             // 
             this.BtnLoadRawBytes.Name = "BtnLoadRawBytes";
-            this.BtnLoadRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnLoadRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.BtnLoadRawBytes.Size = new System.Drawing.Size(196, 22);
             this.BtnLoadRawBytes.Text = "Load raw bytes";
             this.BtnLoadRawBytes.Click += new System.EventHandler(this.BtnLoadRawBytes_Click);
             // 
@@ -204,7 +205,7 @@
             this.BtnSaveMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BtnSaveMap.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnSaveRawBytes,
-            this.BtnSsaveRawBytesAs});
+            this.BtnSaveRawBytesAs});
             this.BtnSaveMap.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSaveMap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSaveMap.Name = "BtnSaveMap";
@@ -214,9 +215,19 @@
             // BtnSaveRawBytes
             // 
             this.BtnSaveRawBytes.Name = "BtnSaveRawBytes";
-            this.BtnSaveRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnSaveRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.BtnSaveRawBytes.Size = new System.Drawing.Size(237, 22);
             this.BtnSaveRawBytes.Text = "Save raw bytes";
             this.BtnSaveRawBytes.Click += new System.EventHandler(this.BtnSaveRawBytes_Click);
+            // 
+            // BtnSaveRawBytesAs
+            // 
+            this.BtnSaveRawBytesAs.Name = "BtnSaveRawBytesAs";
+            this.BtnSaveRawBytesAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.BtnSaveRawBytesAs.Size = new System.Drawing.Size(237, 22);
+            this.BtnSaveRawBytesAs.Text = "Save raw bytes as";
+            this.BtnSaveRawBytesAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
             // 
             // toolStripSeparator3
             // 
@@ -367,7 +378,7 @@
             // BtnReplaceObjects
             // 
             this.BtnReplaceObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReplaceObjects.Image = global::TileGameMaker.Properties.Resources.magic_wand_2;
+            this.BtnReplaceObjects.Image = global::TileGameMaker.Properties.Resources.magic_wand;
             this.BtnReplaceObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnReplaceObjects.Name = "BtnReplaceObjects";
             this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
@@ -537,13 +548,6 @@
             this.BtnScreenshot.ToolTipText = "Save image (Ctrl+P)";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // BtnSsaveRawBytesAs
-            // 
-            this.BtnSsaveRawBytesAs.Name = "BtnSsaveRawBytesAs";
-            this.BtnSsaveRawBytesAs.Size = new System.Drawing.Size(180, 22);
-            this.BtnSsaveRawBytesAs.Text = "Save raw bytes as";
-            this.BtnSsaveRawBytesAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
-            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +612,6 @@
         private System.Windows.Forms.ToolStripButton BtnEditScript;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnLoadRawBytes;
-        private System.Windows.Forms.ToolStripMenuItem BtnSsaveRawBytesAs;
+        private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytesAs;
     }
 }
