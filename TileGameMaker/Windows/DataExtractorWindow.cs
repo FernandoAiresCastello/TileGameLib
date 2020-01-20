@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.GameElements;
+using TileGameLib.Graphics;
+using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
 using TileGameMaker.Util;
 
@@ -169,9 +171,9 @@ namespace TileGameMaker.Windows
             output.AppendLine($"Palette size: {Map.Palette.Size}");
             output.AppendLine();
 
-            for (int i = 0; i < Map.Palette.Size; i++)
+            for (int colorIndex = 0; colorIndex < Map.Palette.Size; colorIndex++)
             {
-                Color color = Map.Palette.GetColorObject(i);
+                Color color = Map.Palette.GetColorObject(colorIndex);
 
                 output.Append(linePrefix);
 
@@ -220,7 +222,68 @@ namespace TileGameMaker.Windows
 
         private void ExtractTilesetData()
         {
-            throw new NotImplementedException();
+            bool decimalBytes = RbTileDecimal.Checked;
+            bool hexadecimalBytes = RbTileHexadecimal.Checked;
+            bool binaryString = RbTileBinaryString.Checked;
+            bool base64 = RbTileBase64.Checked;
+            string linePrefix = TxtTileLinePrefix.Text;
+            string lineSuffix = TxtTileLineSuffix.Text;
+            string hexPrefix = TxtTileHexPrefix.Text;
+            string byteSeparator = TxtTileByteSeparator.Text;
+
+            StringBuilder output = new StringBuilder();
+            output.AppendLine($"Tileset size: {Map.Tileset.Size}");
+            output.AppendLine();
+
+            for (int tileIndex = 0; tileIndex < Map.Tileset.Size; tileIndex++)
+            {
+                TilePixels tile = Map.Tileset.Get(tileIndex);
+
+                output.Append(linePrefix);
+
+                if (decimalBytes)
+                {
+                    for (int row = 0; row < tile.PixelRows.Length; row++)
+                    {
+                        byte rowByte = tile.PixelRows[row];
+                        output.Append(rowByte);
+                        if (row < tile.PixelRows.Length - 1)
+                            output.Append(byteSeparator);
+                    }
+                }
+                else if (hexadecimalBytes)
+                {
+                    for (int row = 0; row < tile.PixelRows.Length; row++)
+                    {
+                        byte rowByte = tile.PixelRows[row];
+                        output.Append(hexPrefix);
+                        output.Append(rowByte.ToString("x2"));
+                        if (row < tile.PixelRows.Length - 1)
+                            output.Append(byteSeparator);
+                    }
+                }
+                else if (binaryString)
+                {
+                    StringBuilder binary = new StringBuilder();
+
+                    for (int row = 0; row < tile.PixelRows.Length; row++)
+                    {
+                        byte rowByte = tile.PixelRows[row];
+                        binary.Append(rowByte.ToBinaryString());
+                    }
+
+                    output.Append(binary);
+                }
+                else if (base64)
+                {
+                    output.Append(Convert.ToBase64String(tile.PixelRows));
+                }
+
+                output.Append(lineSuffix);
+                output.AppendLine();
+            }
+
+            TxtOutput.Text = output.ToString();
         }
     }
 }
