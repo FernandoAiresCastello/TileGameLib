@@ -50,11 +50,11 @@ namespace TileGameMaker.Windows
             string linePrefix = TxtObjectLinePrefix.Text;
             string lineSuffix = TxtObjectLineSuffix.Text;
 
-            StringBuilder output = new StringBuilder();
             ObjectLayer layer = Map.Layers[layerIndex];
 
-            output.AppendLine($"Map name: {Map.Name}");
-            output.AppendLine($"Map size: W{Map.Width} H{Map.Height}");
+            StringBuilder output = new StringBuilder();
+            output.AppendLine($"Name: {Map.Name}");
+            output.AppendLine($"Size: W{Map.Width} H{Map.Height}");
             output.AppendLine($"Layer: {layerIndex}");
             output.AppendLine($"Objects: {layer.Width * layer.Height}");
             output.AppendLine();
@@ -146,7 +146,7 @@ namespace TileGameMaker.Windows
                     }
 
                     output.Append(lineSuffix);
-                    output.Append(Environment.NewLine);
+                    output.AppendLine();
                 }
             }
 
@@ -155,7 +155,67 @@ namespace TileGameMaker.Windows
 
         private void ExtractPaletteData()
         {
-            throw new NotImplementedException();
+            bool decimalInt = RbPaletteFmtDecInt.Checked;
+            bool hexadecimalInt = RbPaletteFmtHexInt.Checked;
+            bool decimalRgb = RbPaletteFmtDecRgb.Checked;
+            bool hexadecimalRgb = RbPaletteFmtHexRgb.Checked;
+            bool appendAlpha = ChkColorAppendAlpha.Checked;
+            string linePrefix = TxtColorLinePrefix.Text;
+            string lineSuffix = TxtColorLineSuffix.Text;
+            string hexPrefix = TxtColorHexPrefix.Text;
+            string rgbSeparator = TxtColorComponentSeparator.Text;
+
+            StringBuilder output = new StringBuilder();
+            output.AppendLine($"Palette size: {Map.Palette.Size}");
+            output.AppendLine();
+
+            for (int i = 0; i < Map.Palette.Size; i++)
+            {
+                Color color = Map.Palette.GetColorObject(i);
+
+                output.Append(linePrefix);
+
+                if (decimalInt)
+                {
+                    if (appendAlpha)
+                        output.Append(color.ToArgb());
+                    else
+                        output.Append(Color.FromArgb(255, color).ToArgb());
+                }
+                else if (hexadecimalInt)
+                {
+                    output.Append(hexPrefix);
+                    string value = color.ToArgb().ToString("x8");
+
+                    if (!appendAlpha)
+                        value = value.Substring(2);
+
+                    output.Append(value);
+                }
+                else if (decimalRgb)
+                {
+                    if (appendAlpha)
+                        output.Append(color.A + rgbSeparator);
+
+                    output.Append(color.R + rgbSeparator);
+                    output.Append(color.G + rgbSeparator);
+                    output.Append(color.B);
+                }
+                else if (hexadecimalRgb)
+                {
+                    if (appendAlpha)
+                        output.Append(hexPrefix + color.A.ToString("x2") + rgbSeparator);
+
+                    output.Append(hexPrefix + color.R.ToString("x2") + rgbSeparator);
+                    output.Append(hexPrefix + color.G.ToString("x2") + rgbSeparator);
+                    output.Append(hexPrefix + color.B.ToString("x2"));
+                }
+
+                output.Append(lineSuffix);
+                output.AppendLine();
+            }
+
+            TxtOutput.Text = output.ToString();
         }
 
         private void ExtractTilesetData()
