@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,15 @@ namespace TileGameLib.Graphics
             Clear(other.Size);
             for (int i = 0; i < Size; i++)
                 Pixels[i].SetEqual(other.Pixels[i]);
+        }
+
+        public void ParseFromImage(string file)
+        {
+            Bitmap bitmap = (Bitmap)Image.FromFile(file);
+
+            throw new NotImplementedException();
+
+            bitmap.Dispose();
         }
 
         public void InitDefault(Default defaultTiles = DefaultTiles)

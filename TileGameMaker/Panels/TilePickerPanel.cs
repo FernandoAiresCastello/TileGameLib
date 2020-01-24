@@ -108,7 +108,7 @@ namespace TileGameMaker.Panels
             TileEditorWindow.Subscribe(MapEditor.TemplateControl);
 
             TileEditorWindow.SetTile(tileIx);
-            
+
             TileEditorWindow.Show(this);
         }
 
@@ -119,8 +119,8 @@ namespace TileGameMaker.Panels
 
         private void UpdateStatus()
         {
-            StatusLabel.Text = 
-                "C: " + TilePicker.Graphics.Tileset.Size + 
+            StatusLabel.Text =
+                "C: " + TilePicker.Graphics.Tileset.Size +
                 " SEL: " + TilePicker.TileIndex;
         }
 
@@ -258,6 +258,18 @@ namespace TileGameMaker.Panels
                 UpdateStatus();
 
                 Alert.Info("Tileset imported successfully!");
+            }
+        }
+
+        private void BtnImportFromImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"Bitmap file (*.bmp)|*.bmp";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                throw new NotImplementedException();
             }
         }
     }
