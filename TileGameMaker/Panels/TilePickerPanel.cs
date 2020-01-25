@@ -272,5 +272,20 @@ namespace TileGameMaker.Panels
                 throw new NotImplementedException();
             }
         }
+
+        private void BtnExportToImage_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.Filter = $"PNG image file (*.png)|*.png";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                TilePicker.DrawTiles(false);
+                TilePicker.Graphics.SaveImage(dialog.FileName);
+                TilePicker.DrawTiles(true);
+                Alert.Info("Tileset successfully saved to image!");
+            }
+        }
     }
 }

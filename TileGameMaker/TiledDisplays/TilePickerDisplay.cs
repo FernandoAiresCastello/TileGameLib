@@ -31,6 +31,12 @@ namespace TileGameMaker.TiledDisplays
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            DrawTiles(true);
+            base.OnPaint(e);
+        }
+
+        public void DrawTiles(bool drawCursor)
+        {
             int x = 0;
             int y = 0;
 
@@ -43,7 +49,7 @@ namespace TileGameMaker.TiledDisplays
 
                 if (i < Graphics.Tileset.Size)
                 {
-                    if (i == TileIndex)
+                    if (i == TileIndex && drawCursor)
                         Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
                     else
                         Graphics.PutTile(x, y, i, fgc, bgc);
@@ -64,8 +70,6 @@ namespace TileGameMaker.TiledDisplays
                 if (x >= Graphics.Cols || y >= Graphics.Rows)
                     break;
             }
-
-            base.OnPaint(e);
         }
 
         public void SelectTileIndex(int tileIx)
