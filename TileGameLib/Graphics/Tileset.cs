@@ -14,6 +14,11 @@ namespace TileGameLib.Graphics
         public List<TilePixels> Pixels { get; private set; } = new List<TilePixels>();
         public int Size => Pixels.Count;
 
+        private readonly Color ImagePixelOnColor = Color.Black;
+        private readonly Color ImagePixelOffColor = Color.White;
+        private readonly int ImagePixelOnValue = 1;
+        private readonly int ImagePixelOffValue = 0;
+
         public enum Default
         {
             CodePage437,
@@ -79,13 +84,40 @@ namespace TileGameLib.Graphics
                 Pixels[i].SetEqual(other.Pixels[i]);
         }
 
-        public void ParseFromImage(string file)
+        public void LoadFromImage(string file)
         {
-            Bitmap bitmap = (Bitmap)Image.FromFile(file);
+            using (Bitmap image = (Bitmap)Image.FromFile(file))
+            {
+                int width = image.Width;
+                int height = image.Height;
 
-            throw new NotImplementedException();
+                int[,] pixelArray = new int[width, height];
 
-            bitmap.Dispose();
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        Color color = image.GetPixel(x, y);
+                        if (color.Equals(ImagePixelOnColor))
+                            pixelArray[x, y] = ImagePixelOnValue;
+                        else if (color.Equals(ImagePixelOffColor))
+                            pixelArray[x, y] = ImagePixelOffValue;
+                    }
+                }
+
+                ParseFromArray(pixelArray, width, height);
+            }
+        }
+
+        public void ParseFromArray(int[,] array, int width, int height)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // todo
+                }
+            }
         }
 
         public void InitDefault(Default defaultTiles = DefaultTiles)

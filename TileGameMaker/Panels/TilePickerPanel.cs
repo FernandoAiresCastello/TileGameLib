@@ -265,11 +265,11 @@ namespace TileGameMaker.Panels
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = $"Bitmap file (*.bmp)|*.bmp";
+            dialog.Filter = $"PNG image file (*.png)|*.png";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                throw new NotImplementedException();
+                TilePicker.Graphics.Tileset.LoadFromImage(dialog.FileName);
             }
         }
 
