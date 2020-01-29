@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,16 @@ namespace TileGameLib.Components
     public class TiledDisplay : PictureBox
     {
         public TileGraphicsDriver Graphics { get; set; }
-        public Bitmap Overlay { set; get; }
+        public Bitmap CustomOverlay { set; get; }
+        public Bitmap TextOverlay { set; get; }
         public bool ShowGrid { set; get; }
-        public bool ShowOverlay { set; get; }
+        public bool ShowCustomOverlay { set; get; }
+        public bool ShowTextOverlay { set; get; }
         public int Zoom { get; protected set; }
         public bool StretchImage { set; get; }
         public Color TileHighlightColor { set; get; }
         public int TileHighlightColorOpacity { set; get; }
+        public List<OverlayText> OverlayTexts { get; private set; } = new List<OverlayText>();
 
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
@@ -39,7 +43,9 @@ namespace TileGameLib.Components
             Graphics = new TileGraphicsDriver(cols, rows);
             Image = Graphics.Bitmap;
             ShowGrid = false;
-            ShowOverlay = false;
+            ShowCustomOverlay = false;
+            TextOverlay = new Bitmap(Graphics.Width, Graphics.Height);
+            ShowTextOverlay = true;
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             TileHighlightColor = SystemColors.Highlight;
@@ -123,15 +129,15 @@ namespace TileGameLib.Components
             SetZoom(Zoom - 1);
         }
 
-        public Bitmap CreateOverlay()
+        public Bitmap CreateCustomOverlay()
         {
-            Overlay = new Bitmap(Width, Height);
-            return Overlay;
+            CustomOverlay = new Bitmap(Graphics.Width, Graphics.Height);
+            return CustomOverlay;
         }
 
-        public System.Drawing.Graphics GetOverlayGraphics()
+        public System.Drawing.Graphics GetCustomOverlayGraphics()
         {
-            return System.Drawing.Graphics.FromImage(Overlay);
+            return System.Drawing.Graphics.FromImage(CustomOverlay);
         }
         
         public bool IsTileSelected(Point point)
@@ -184,25 +190,43 @@ namespace TileGameLib.Components
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            System.Drawing.Graphics g = e.Graphics;
+            PaintTiles(e.Graphics);
+            PaintOverlays(e.Graphics);
+        }
+
+        private void PaintTiles(System.Drawing.Graphics g)
+        {
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.SmoothingMode = SmoothingMode.None;
             g.PixelOffsetMode = PixelOffsetMode.Half;
             g.CompositingQuality = CompositingQuality.HighSpeed;
             g.CompositingMode = CompositingMode.SourceCopy;
 
-            g.DrawImage(Graphics.Bitmap, 0, 0, 
+            g.DrawImage(Graphics.Bitmap, 0, 0,
                 StretchImage ? ClientRectangle.Width : Zoom * Graphics.Width,
                 StretchImage ? ClientRectangle.Height : Zoom * Graphics.Height);
+        }
 
+        private void PaintOverlays(System.Drawing.Graphics g)
+        {
+            g.InterpolationMode = InterpolationMode.Default;
+            g.SmoothingMode = SmoothingMode.Default;
+            g.PixelOffsetMode = PixelOffsetMode.Default;
+            g.CompositingQuality = CompositingQuality.Default;
             g.CompositingMode = CompositingMode.SourceOver;
+
+            if (ShowTextOverlay && OverlayTexts.Count > 0)
+            {
+                PaintTextOverlay();
+                g.DrawImage(TextOverlay, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
+            }
 
             if (HighlightedTiles.Count > 0)
                 PaintTileHighlights(g);
             if (ShowGrid && Grid != null)
                 g.DrawImage(Grid, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
-            if (ShowOverlay && Overlay != null)
-                g.DrawImage(Overlay, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
+            if (ShowCustomOverlay && CustomOverlay != null)
+                g.DrawImage(CustomOverlay, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
         }
 
         private void PaintTileHighlights(System.Drawing.Graphics g)
@@ -228,6 +252,25 @@ namespace TileGameLib.Components
             };
 
             g.FillRectangle(brush, rect);
+        }
+
+        private void PaintTextOverlay()
+        {
+            var g = System.Drawing.Graphics.FromImage(TextOverlay);
+            g.InterpolationMode = InterpolationMode.Default;
+            g.SmoothingMode = SmoothingMode.Default;
+            g.PixelOffsetMode = PixelOffsetMode.Default;
+            g.CompositingQuality = CompositingQuality.Default;
+            g.CompositingMode = CompositingMode.SourceCopy;
+            g.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
+
+            foreach (OverlayText text in OverlayTexts)
+            {
+                using (SolidBrush brush = new SolidBrush(text.Color))
+                {
+                    g.DrawString(text.Text, text.Font, brush, text.Point);
+                }
+            }
         }
 
         protected void MakeGrid()

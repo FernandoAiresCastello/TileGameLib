@@ -87,6 +87,7 @@
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />
+    <Compile Include="Graphics\OverlayText.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />

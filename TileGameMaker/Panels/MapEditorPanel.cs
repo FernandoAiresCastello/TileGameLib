@@ -34,7 +34,7 @@ namespace TileGameMaker.Panels
         private bool TooltipEnabled;
         private ObjectBlockClipboard ClipboardObjects;
 
-        private enum EditMode { Draw, Delete, Property, TextInput, Selection, Replace }
+        private enum EditMode { Draw, Delete, Property, TextInput, Selection, Replace, Annotate }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -202,6 +202,14 @@ namespace TileGameMaker.Panels
                     CancelSelection();
                 }
             }
+            else if (Mode == EditMode.Annotate)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    Point annotationPoint = e.Location;
+                    AddAnotation(annotationPoint.X, annotationPoint.Y);
+                }
+            }
         }
 
         private void StartSelection(Point point)
@@ -264,6 +272,11 @@ namespace TileGameMaker.Panels
             LbEditModeInfo.Text = "Replace objects mode: Left-click to replace with template all objects equal to clicked object";
         }
 
+        private void SetAnnotateModeInstructionLabel()
+        {
+            LbEditModeInfo.Text = "Click anywhere on the map to insert annotation";
+        }
+
         private void OnDisplayMouseMove(MouseEventArgs e)
         {
             Point point = Display.GetMouseToCellPos(e.Location);
@@ -276,6 +289,8 @@ namespace TileGameMaker.Panels
                 SetSelectionModeInstructionLabel();
             else if (Mode == EditMode.Replace)
                 SetReplaceModeInstructionLabel();
+            else if (Mode == EditMode.Annotate)
+                SetAnnotateModeInstructionLabel();
             else
                 LbEditModeInfo.Text = position.ToString();
 
@@ -460,6 +475,11 @@ namespace TileGameMaker.Panels
             SetMode(EditMode.Selection, sender);
         }
 
+        private void BtnAddNote_Click(object sender, EventArgs e)
+        {
+            SetMode(EditMode.Annotate, sender);
+        }
+
         private void SetMode(EditMode mode, object button)
         {
             Mode = mode;
@@ -490,6 +510,11 @@ namespace TileGameMaker.Panels
                     Display.Cursor = GetCursor(Properties.Resources.magic_wand);
                     SetReplaceModeInstructionLabel();
                     break;
+                case EditMode.Annotate:
+                    Alert.Warning("Please note that this functionality is still incomplete!");
+                    Display.Cursor = GetCursor(Properties.Resources.highlighter_text);
+                    SetAnnotateModeInstructionLabel();
+                    break;
             }
 
             CheckModeButton(button as ToolStripButton);
@@ -508,6 +533,7 @@ namespace TileGameMaker.Panels
             BtnSelect.Checked = false;
             BtnDelete.Checked = false;
             BtnReplaceObjects.Checked = false;
+            BtnAddNote.Checked = false;
 
             button.Checked = true;
         }
@@ -990,6 +1016,24 @@ namespace TileGameMaker.Panels
         private void BtnLoadRawBytes_Click(object sender, EventArgs e)
         {
             LoadMap();
+        }
+
+        private void AddAnotation(int zoomedX, int zoomedY)
+        {
+            int x = zoomedX / Display.Zoom;
+            int y = zoomedY / Display.Zoom;
+
+            TextInputWindow window = new TextInputWindow("Enter annotation");
+            if (window.ShowDialog(this) == DialogResult.OK)
+            {
+                string text = window.Text.Trim();
+                if (!string.IsNullOrEmpty(text))
+                {
+                    Font defaultFont = new Font("Arial", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Display.OverlayTexts.Add(new OverlayText(
+                        text, new Point(x, y), Color.Black, defaultFont));
+                }
+            }
         }
     }
 }
