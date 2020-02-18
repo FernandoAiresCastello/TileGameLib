@@ -15,15 +15,12 @@ namespace TileGameLib.Components
     {
         public TileGraphicsDriver Graphics { get; set; }
         public Bitmap CustomOverlay { set; get; }
-        public Bitmap TextOverlay { set; get; }
         public bool ShowGrid { set; get; }
         public bool ShowCustomOverlay { set; get; }
-        public bool ShowTextOverlay { set; get; }
         public int Zoom { get; protected set; }
         public bool StretchImage { set; get; }
         public Color TileHighlightColor { set; get; }
         public int TileHighlightColorOpacity { set; get; }
-        public List<OverlayText> OverlayTexts { get; private set; } = new List<OverlayText>();
 
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
@@ -44,8 +41,6 @@ namespace TileGameLib.Components
             Image = Graphics.Bitmap;
             ShowGrid = false;
             ShowCustomOverlay = false;
-            TextOverlay = new Bitmap(Graphics.Width, Graphics.Height);
-            ShowTextOverlay = true;
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
             TileHighlightColor = SystemColors.Highlight;
@@ -215,12 +210,6 @@ namespace TileGameLib.Components
             g.CompositingQuality = CompositingQuality.Default;
             g.CompositingMode = CompositingMode.SourceOver;
 
-            if (ShowTextOverlay && OverlayTexts.Count > 0)
-            {
-                PaintTextOverlay();
-                g.DrawImage(TextOverlay, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
-            }
-
             if (HighlightedTiles.Count > 0)
                 PaintTileHighlights(g);
             if (ShowGrid && Grid != null)
@@ -252,25 +241,6 @@ namespace TileGameLib.Components
             };
 
             g.FillRectangle(brush, rect);
-        }
-
-        private void PaintTextOverlay()
-        {
-            var g = System.Drawing.Graphics.FromImage(TextOverlay);
-            g.InterpolationMode = InterpolationMode.Default;
-            g.SmoothingMode = SmoothingMode.Default;
-            g.PixelOffsetMode = PixelOffsetMode.Default;
-            g.CompositingQuality = CompositingQuality.Default;
-            g.CompositingMode = CompositingMode.SourceCopy;
-            g.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
-
-            foreach (OverlayText text in OverlayTexts)
-            {
-                using (SolidBrush brush = new SolidBrush(text.Color))
-                {
-                    g.DrawString(text.Text, text.Font, brush, text.Point);
-                }
-            }
         }
 
         protected void MakeGrid()

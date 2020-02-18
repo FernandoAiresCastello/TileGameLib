@@ -49,7 +49,6 @@
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnEditScript = new System.Windows.Forms.ToolStripButton();
-            this.BtnAddNote = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
@@ -154,7 +153,6 @@
             this.BtnSetData,
             this.BtnAddText,
             this.BtnReplaceObjects,
-            this.BtnAddNote,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
@@ -326,17 +324,6 @@
             this.BtnEditScript.Text = "toolStripButton1";
             this.BtnEditScript.ToolTipText = "Edit script";
             this.BtnEditScript.Click += new System.EventHandler(this.BtnEditScript_Click);
-            // 
-            // BtnAddNote
-            // 
-            this.BtnAddNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnAddNote.Image = global::TileGameMaker.Properties.Resources.highlighter_text;
-            this.BtnAddNote.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnAddNote.Name = "BtnAddNote";
-            this.BtnAddNote.Size = new System.Drawing.Size(23, 20);
-            this.BtnAddNote.Text = "toolStripButton1";
-            this.BtnAddNote.ToolTipText = "Add annotation";
-            this.BtnAddNote.Click += new System.EventHandler(this.BtnAddNote_Click);
             // 
             // toolStripSeparator1
             // 
@@ -626,6 +613,5 @@
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnLoadRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytesAs;
-        private System.Windows.Forms.ToolStripButton BtnAddNote;
     }
 }
