@@ -49,24 +49,28 @@
             this.CmbLayer = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.BtnExtractPaletteData = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.BtnExtractTilesetData = new System.Windows.Forms.Button();
-            this.RootPanel = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RbPaletteFmtDecInt = new System.Windows.Forms.RadioButton();
-            this.RbPaletteFmtHexInt = new System.Windows.Forms.RadioButton();
-            this.RbPaletteFmtDecRgb = new System.Windows.Forms.RadioButton();
-            this.RbPaletteFmtHexRgb = new System.Windows.Forms.RadioButton();
+            this.PaletteRangeLast = new System.Windows.Forms.NumericUpDown();
+            this.PaletteRangeFirst = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.TxtColorComponentSeparator = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ChkColorAppendAlpha = new System.Windows.Forms.CheckBox();
+            this.TxtColorHexPrefix = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.TxtColorLineSuffix = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtColorLinePrefix = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtColorHexPrefix = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.ChkColorAppendAlpha = new System.Windows.Forms.CheckBox();
-            this.TxtColorComponentSeparator = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RbPaletteFmtHexRgb = new System.Windows.Forms.RadioButton();
+            this.RbPaletteFmtDecRgb = new System.Windows.Forms.RadioButton();
+            this.RbPaletteFmtHexInt = new System.Windows.Forms.RadioButton();
+            this.RbPaletteFmtDecInt = new System.Windows.Forms.RadioButton();
+            this.BtnExtractPaletteData = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.TilesetRangeLast = new System.Windows.Forms.NumericUpDown();
+            this.TilesetRangeFirst = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
             this.TxtTileByteSeparator = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtTileHexPrefix = new System.Windows.Forms.TextBox();
@@ -80,38 +84,37 @@
             this.RbTileBinaryString = new System.Windows.Forms.RadioButton();
             this.RbTileHexadecimal = new System.Windows.Forms.RadioButton();
             this.RbTileDecimal = new System.Windows.Forms.RadioButton();
-            this.label16 = new System.Windows.Forms.Label();
-            this.PaletteRangeFirst = new System.Windows.Forms.NumericUpDown();
-            this.PaletteRangeLast = new System.Windows.Forms.NumericUpDown();
-            this.TilesetRangeLast = new System.Windows.Forms.NumericUpDown();
-            this.TilesetRangeFirst = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
+            this.BtnExtractTilesetData = new System.Windows.Forms.Button();
+            this.RootPanel = new System.Windows.Forms.Panel();
+            this.BtnCopyOutput = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.RootPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeLast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeLast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeFirst)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.RootPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.BtnCopyOutput, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.TxtOutput, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(464, 502);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -119,12 +122,12 @@
             // 
             this.TxtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtOutput.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtOutput.Location = new System.Drawing.Point(3, 254);
+            this.TxtOutput.Location = new System.Drawing.Point(3, 237);
             this.TxtOutput.Multiline = true;
             this.TxtOutput.Name = "TxtOutput";
             this.TxtOutput.ReadOnly = true;
             this.TxtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtOutput.Size = new System.Drawing.Size(458, 245);
+            this.TxtOutput.Size = new System.Drawing.Size(458, 228);
             this.TxtOutput.TabIndex = 0;
             this.TxtOutput.WordWrap = false;
             // 
@@ -137,7 +140,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(458, 245);
+            this.tabControl1.Size = new System.Drawing.Size(458, 228);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -161,7 +164,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage1.Size = new System.Drawing.Size(450, 219);
+            this.tabPage1.Size = new System.Drawing.Size(450, 202);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Map";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -290,7 +293,7 @@
             // BtnExtractMapData
             // 
             this.BtnExtractMapData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractMapData.Location = new System.Drawing.Point(331, 179);
+            this.BtnExtractMapData.Location = new System.Drawing.Point(331, 162);
             this.BtnExtractMapData.Name = "BtnExtractMapData";
             this.BtnExtractMapData.Size = new System.Drawing.Size(106, 27);
             this.BtnExtractMapData.TabIndex = 2;
@@ -340,116 +343,74 @@
             this.tabPage2.Text = "Palette";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // BtnExtractPaletteData
+            // PaletteRangeLast
             // 
-            this.BtnExtractPaletteData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractPaletteData.Location = new System.Drawing.Point(331, 179);
-            this.BtnExtractPaletteData.Name = "BtnExtractPaletteData";
-            this.BtnExtractPaletteData.Size = new System.Drawing.Size(106, 27);
-            this.BtnExtractPaletteData.TabIndex = 3;
-            this.BtnExtractPaletteData.Text = "Extract data";
-            this.BtnExtractPaletteData.UseVisualStyleBackColor = true;
-            this.BtnExtractPaletteData.Click += new System.EventHandler(this.BtnExtractPaletteData_Click);
+            this.PaletteRangeLast.Location = new System.Drawing.Point(251, 127);
+            this.PaletteRangeLast.Name = "PaletteRangeLast";
+            this.PaletteRangeLast.Size = new System.Drawing.Size(52, 20);
+            this.PaletteRangeLast.TabIndex = 25;
             // 
-            // tabPage3
+            // PaletteRangeFirst
             // 
-            this.tabPage3.Controls.Add(this.TilesetRangeLast);
-            this.tabPage3.Controls.Add(this.TilesetRangeFirst);
-            this.tabPage3.Controls.Add(this.label15);
-            this.tabPage3.Controls.Add(this.TxtTileByteSeparator);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.TxtTileHexPrefix);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.TxtTileLineSuffix);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.TxtTileLinePrefix);
-            this.tabPage3.Controls.Add(this.label14);
-            this.tabPage3.Controls.Add(this.groupBox2);
-            this.tabPage3.Controls.Add(this.BtnExtractTilesetData);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage3.Size = new System.Drawing.Size(450, 219);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Tileset";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.PaletteRangeFirst.Location = new System.Drawing.Point(190, 127);
+            this.PaletteRangeFirst.Name = "PaletteRangeFirst";
+            this.PaletteRangeFirst.Size = new System.Drawing.Size(52, 20);
+            this.PaletteRangeFirst.TabIndex = 24;
             // 
-            // BtnExtractTilesetData
+            // label16
             // 
-            this.BtnExtractTilesetData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractTilesetData.Location = new System.Drawing.Point(331, 179);
-            this.BtnExtractTilesetData.Name = "BtnExtractTilesetData";
-            this.BtnExtractTilesetData.Size = new System.Drawing.Size(106, 27);
-            this.BtnExtractTilesetData.TabIndex = 3;
-            this.BtnExtractTilesetData.Text = "Extract data";
-            this.BtnExtractTilesetData.UseVisualStyleBackColor = true;
-            this.BtnExtractTilesetData.Click += new System.EventHandler(this.BtnExtractTilesetData_Click);
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(187, 107);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Range";
             // 
-            // RootPanel
+            // TxtColorComponentSeparator
             // 
-            this.RootPanel.Controls.Add(this.tableLayoutPanel1);
-            this.RootPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RootPanel.Location = new System.Drawing.Point(0, 0);
-            this.RootPanel.Name = "RootPanel";
-            this.RootPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.RootPanel.Size = new System.Drawing.Size(474, 512);
-            this.RootPanel.TabIndex = 1;
+            this.TxtColorComponentSeparator.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtColorComponentSeparator.Location = new System.Drawing.Point(251, 79);
+            this.TxtColorComponentSeparator.Name = "TxtColorComponentSeparator";
+            this.TxtColorComponentSeparator.Size = new System.Drawing.Size(52, 20);
+            this.TxtColorComponentSeparator.TabIndex = 22;
+            this.TxtColorComponentSeparator.Text = ",";
             // 
-            // groupBox1
+            // label10
             // 
-            this.groupBox1.Controls.Add(this.RbPaletteFmtHexRgb);
-            this.groupBox1.Controls.Add(this.RbPaletteFmtDecRgb);
-            this.groupBox1.Controls.Add(this.RbPaletteFmtHexInt);
-            this.groupBox1.Controls.Add(this.RbPaletteFmtDecInt);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-            this.groupBox1.Size = new System.Drawing.Size(162, 121);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Color format";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(248, 59);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Separator";
             // 
-            // RbPaletteFmtDecInt
+            // ChkColorAppendAlpha
             // 
-            this.RbPaletteFmtDecInt.AutoSize = true;
-            this.RbPaletteFmtDecInt.Location = new System.Drawing.Point(13, 21);
-            this.RbPaletteFmtDecInt.Name = "RbPaletteFmtDecInt";
-            this.RbPaletteFmtDecInt.Size = new System.Drawing.Size(98, 17);
-            this.RbPaletteFmtDecInt.TabIndex = 0;
-            this.RbPaletteFmtDecInt.Text = "Decimal integer";
-            this.RbPaletteFmtDecInt.UseVisualStyleBackColor = true;
+            this.ChkColorAppendAlpha.AutoSize = true;
+            this.ChkColorAppendAlpha.Location = new System.Drawing.Point(18, 145);
+            this.ChkColorAppendAlpha.Name = "ChkColorAppendAlpha";
+            this.ChkColorAppendAlpha.Size = new System.Drawing.Size(148, 17);
+            this.ChkColorAppendAlpha.TabIndex = 20;
+            this.ChkColorAppendAlpha.Text = "Append alpha component";
+            this.ChkColorAppendAlpha.UseVisualStyleBackColor = true;
             // 
-            // RbPaletteFmtHexInt
+            // TxtColorHexPrefix
             // 
-            this.RbPaletteFmtHexInt.AutoSize = true;
-            this.RbPaletteFmtHexInt.Checked = true;
-            this.RbPaletteFmtHexInt.Location = new System.Drawing.Point(13, 44);
-            this.RbPaletteFmtHexInt.Name = "RbPaletteFmtHexInt";
-            this.RbPaletteFmtHexInt.Size = new System.Drawing.Size(121, 17);
-            this.RbPaletteFmtHexInt.TabIndex = 1;
-            this.RbPaletteFmtHexInt.TabStop = true;
-            this.RbPaletteFmtHexInt.Text = "Hexadecimal integer";
-            this.RbPaletteFmtHexInt.UseVisualStyleBackColor = true;
+            this.TxtColorHexPrefix.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtColorHexPrefix.Location = new System.Drawing.Point(190, 79);
+            this.TxtColorHexPrefix.Name = "TxtColorHexPrefix";
+            this.TxtColorHexPrefix.Size = new System.Drawing.Size(52, 20);
+            this.TxtColorHexPrefix.TabIndex = 19;
+            this.TxtColorHexPrefix.Text = "0x";
             // 
-            // RbPaletteFmtDecRgb
+            // label9
             // 
-            this.RbPaletteFmtDecRgb.AutoSize = true;
-            this.RbPaletteFmtDecRgb.Location = new System.Drawing.Point(13, 67);
-            this.RbPaletteFmtDecRgb.Name = "RbPaletteFmtDecRgb";
-            this.RbPaletteFmtDecRgb.Size = new System.Drawing.Size(117, 17);
-            this.RbPaletteFmtDecRgb.TabIndex = 2;
-            this.RbPaletteFmtDecRgb.Text = "Decimal RGB triplet";
-            this.RbPaletteFmtDecRgb.UseVisualStyleBackColor = true;
-            // 
-            // RbPaletteFmtHexRgb
-            // 
-            this.RbPaletteFmtHexRgb.AutoSize = true;
-            this.RbPaletteFmtHexRgb.Location = new System.Drawing.Point(13, 90);
-            this.RbPaletteFmtHexRgb.Name = "RbPaletteFmtHexRgb";
-            this.RbPaletteFmtHexRgb.Size = new System.Drawing.Size(140, 17);
-            this.RbPaletteFmtHexRgb.TabIndex = 3;
-            this.RbPaletteFmtHexRgb.Text = "Hexadecimal RGB triplet";
-            this.RbPaletteFmtHexRgb.UseVisualStyleBackColor = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(187, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Hex. prefix";
             // 
             // TxtColorLineSuffix
             // 
@@ -485,51 +446,118 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Line prefix";
             // 
-            // TxtColorHexPrefix
+            // groupBox1
             // 
-            this.TxtColorHexPrefix.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColorHexPrefix.Location = new System.Drawing.Point(190, 79);
-            this.TxtColorHexPrefix.Name = "TxtColorHexPrefix";
-            this.TxtColorHexPrefix.Size = new System.Drawing.Size(52, 20);
-            this.TxtColorHexPrefix.TabIndex = 19;
-            this.TxtColorHexPrefix.Text = "0x";
+            this.groupBox1.Controls.Add(this.RbPaletteFmtHexRgb);
+            this.groupBox1.Controls.Add(this.RbPaletteFmtDecRgb);
+            this.groupBox1.Controls.Add(this.RbPaletteFmtHexInt);
+            this.groupBox1.Controls.Add(this.RbPaletteFmtDecInt);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.groupBox1.Size = new System.Drawing.Size(162, 121);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Color format";
             // 
-            // label9
+            // RbPaletteFmtHexRgb
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(187, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Hex. prefix";
+            this.RbPaletteFmtHexRgb.AutoSize = true;
+            this.RbPaletteFmtHexRgb.Location = new System.Drawing.Point(13, 90);
+            this.RbPaletteFmtHexRgb.Name = "RbPaletteFmtHexRgb";
+            this.RbPaletteFmtHexRgb.Size = new System.Drawing.Size(140, 17);
+            this.RbPaletteFmtHexRgb.TabIndex = 3;
+            this.RbPaletteFmtHexRgb.Text = "Hexadecimal RGB triplet";
+            this.RbPaletteFmtHexRgb.UseVisualStyleBackColor = true;
             // 
-            // ChkColorAppendAlpha
+            // RbPaletteFmtDecRgb
             // 
-            this.ChkColorAppendAlpha.AutoSize = true;
-            this.ChkColorAppendAlpha.Location = new System.Drawing.Point(18, 145);
-            this.ChkColorAppendAlpha.Name = "ChkColorAppendAlpha";
-            this.ChkColorAppendAlpha.Size = new System.Drawing.Size(148, 17);
-            this.ChkColorAppendAlpha.TabIndex = 20;
-            this.ChkColorAppendAlpha.Text = "Append alpha component";
-            this.ChkColorAppendAlpha.UseVisualStyleBackColor = true;
+            this.RbPaletteFmtDecRgb.AutoSize = true;
+            this.RbPaletteFmtDecRgb.Location = new System.Drawing.Point(13, 67);
+            this.RbPaletteFmtDecRgb.Name = "RbPaletteFmtDecRgb";
+            this.RbPaletteFmtDecRgb.Size = new System.Drawing.Size(117, 17);
+            this.RbPaletteFmtDecRgb.TabIndex = 2;
+            this.RbPaletteFmtDecRgb.Text = "Decimal RGB triplet";
+            this.RbPaletteFmtDecRgb.UseVisualStyleBackColor = true;
             // 
-            // TxtColorComponentSeparator
+            // RbPaletteFmtHexInt
             // 
-            this.TxtColorComponentSeparator.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColorComponentSeparator.Location = new System.Drawing.Point(251, 79);
-            this.TxtColorComponentSeparator.Name = "TxtColorComponentSeparator";
-            this.TxtColorComponentSeparator.Size = new System.Drawing.Size(52, 20);
-            this.TxtColorComponentSeparator.TabIndex = 22;
-            this.TxtColorComponentSeparator.Text = ",";
+            this.RbPaletteFmtHexInt.AutoSize = true;
+            this.RbPaletteFmtHexInt.Checked = true;
+            this.RbPaletteFmtHexInt.Location = new System.Drawing.Point(13, 44);
+            this.RbPaletteFmtHexInt.Name = "RbPaletteFmtHexInt";
+            this.RbPaletteFmtHexInt.Size = new System.Drawing.Size(121, 17);
+            this.RbPaletteFmtHexInt.TabIndex = 1;
+            this.RbPaletteFmtHexInt.TabStop = true;
+            this.RbPaletteFmtHexInt.Text = "Hexadecimal integer";
+            this.RbPaletteFmtHexInt.UseVisualStyleBackColor = true;
             // 
-            // label10
+            // RbPaletteFmtDecInt
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(248, 59);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Separator";
+            this.RbPaletteFmtDecInt.AutoSize = true;
+            this.RbPaletteFmtDecInt.Location = new System.Drawing.Point(13, 21);
+            this.RbPaletteFmtDecInt.Name = "RbPaletteFmtDecInt";
+            this.RbPaletteFmtDecInt.Size = new System.Drawing.Size(98, 17);
+            this.RbPaletteFmtDecInt.TabIndex = 0;
+            this.RbPaletteFmtDecInt.Text = "Decimal integer";
+            this.RbPaletteFmtDecInt.UseVisualStyleBackColor = true;
+            // 
+            // BtnExtractPaletteData
+            // 
+            this.BtnExtractPaletteData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnExtractPaletteData.Location = new System.Drawing.Point(331, 179);
+            this.BtnExtractPaletteData.Name = "BtnExtractPaletteData";
+            this.BtnExtractPaletteData.Size = new System.Drawing.Size(106, 27);
+            this.BtnExtractPaletteData.TabIndex = 3;
+            this.BtnExtractPaletteData.Text = "Extract data";
+            this.BtnExtractPaletteData.UseVisualStyleBackColor = true;
+            this.BtnExtractPaletteData.Click += new System.EventHandler(this.BtnExtractPaletteData_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.TilesetRangeLast);
+            this.tabPage3.Controls.Add(this.TilesetRangeFirst);
+            this.tabPage3.Controls.Add(this.label15);
+            this.tabPage3.Controls.Add(this.TxtTileByteSeparator);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.TxtTileHexPrefix);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.TxtTileLineSuffix);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.TxtTileLinePrefix);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.BtnExtractTilesetData);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(10);
+            this.tabPage3.Size = new System.Drawing.Size(450, 219);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Tileset";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // TilesetRangeLast
+            // 
+            this.TilesetRangeLast.Location = new System.Drawing.Point(251, 127);
+            this.TilesetRangeLast.Name = "TilesetRangeLast";
+            this.TilesetRangeLast.Size = new System.Drawing.Size(52, 20);
+            this.TilesetRangeLast.TabIndex = 34;
+            // 
+            // TilesetRangeFirst
+            // 
+            this.TilesetRangeFirst.Location = new System.Drawing.Point(190, 127);
+            this.TilesetRangeFirst.Name = "TilesetRangeFirst";
+            this.TilesetRangeFirst.Size = new System.Drawing.Size(52, 20);
+            this.TilesetRangeFirst.TabIndex = 33;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(187, 107);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 13);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Range";
             // 
             // TxtTileByteSeparator
             // 
@@ -657,51 +685,37 @@
             this.RbTileDecimal.Text = "Decimal 8 bytes";
             this.RbTileDecimal.UseVisualStyleBackColor = true;
             // 
-            // label16
+            // BtnExtractTilesetData
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(187, 107);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(39, 13);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "Range";
+            this.BtnExtractTilesetData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnExtractTilesetData.Location = new System.Drawing.Point(331, 179);
+            this.BtnExtractTilesetData.Name = "BtnExtractTilesetData";
+            this.BtnExtractTilesetData.Size = new System.Drawing.Size(106, 27);
+            this.BtnExtractTilesetData.TabIndex = 3;
+            this.BtnExtractTilesetData.Text = "Extract data";
+            this.BtnExtractTilesetData.UseVisualStyleBackColor = true;
+            this.BtnExtractTilesetData.Click += new System.EventHandler(this.BtnExtractTilesetData_Click);
             // 
-            // PaletteRangeFirst
+            // RootPanel
             // 
-            this.PaletteRangeFirst.Location = new System.Drawing.Point(190, 127);
-            this.PaletteRangeFirst.Name = "PaletteRangeFirst";
-            this.PaletteRangeFirst.Size = new System.Drawing.Size(52, 20);
-            this.PaletteRangeFirst.TabIndex = 24;
+            this.RootPanel.Controls.Add(this.tableLayoutPanel1);
+            this.RootPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RootPanel.Location = new System.Drawing.Point(0, 0);
+            this.RootPanel.Name = "RootPanel";
+            this.RootPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.RootPanel.Size = new System.Drawing.Size(474, 512);
+            this.RootPanel.TabIndex = 1;
             // 
-            // PaletteRangeLast
+            // BtnCopyOutput
             // 
-            this.PaletteRangeLast.Location = new System.Drawing.Point(251, 127);
-            this.PaletteRangeLast.Name = "PaletteRangeLast";
-            this.PaletteRangeLast.Size = new System.Drawing.Size(52, 20);
-            this.PaletteRangeLast.TabIndex = 25;
-            // 
-            // TilesetRangeLast
-            // 
-            this.TilesetRangeLast.Location = new System.Drawing.Point(251, 127);
-            this.TilesetRangeLast.Name = "TilesetRangeLast";
-            this.TilesetRangeLast.Size = new System.Drawing.Size(52, 20);
-            this.TilesetRangeLast.TabIndex = 34;
-            // 
-            // TilesetRangeFirst
-            // 
-            this.TilesetRangeFirst.Location = new System.Drawing.Point(190, 127);
-            this.TilesetRangeFirst.Name = "TilesetRangeFirst";
-            this.TilesetRangeFirst.Size = new System.Drawing.Size(52, 20);
-            this.TilesetRangeFirst.TabIndex = 33;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(187, 107);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 13);
-            this.label15.TabIndex = 32;
-            this.label15.Text = "Range";
+            this.BtnCopyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCopyOutput.Location = new System.Drawing.Point(355, 472);
+            this.BtnCopyOutput.Name = "BtnCopyOutput";
+            this.BtnCopyOutput.Size = new System.Drawing.Size(106, 27);
+            this.BtnCopyOutput.TabIndex = 3;
+            this.BtnCopyOutput.Text = "Copy output";
+            this.BtnCopyOutput.UseVisualStyleBackColor = true;
+            this.BtnCopyOutput.Click += new System.EventHandler(this.BtnCopyOutput_Click);
             // 
             // DataExtractorWindow
             // 
@@ -719,17 +733,17 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.RootPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeLast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeFirst)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PaletteRangeLast)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeLast)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TilesetRangeFirst)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.RootPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -794,5 +808,6 @@
         private System.Windows.Forms.NumericUpDown TilesetRangeLast;
         private System.Windows.Forms.NumericUpDown TilesetRangeFirst;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button BtnCopyOutput;
     }
 }

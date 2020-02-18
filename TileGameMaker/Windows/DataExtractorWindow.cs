@@ -296,5 +296,13 @@ namespace TileGameMaker.Windows
 
             TxtOutput.Text = output.ToString();
         }
+
+        private void BtnCopyOutput_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TxtOutput.Text))
+            {
+                Clipboard.SetText(TxtOutput.Text);
+            }
+        }
     }
 }
