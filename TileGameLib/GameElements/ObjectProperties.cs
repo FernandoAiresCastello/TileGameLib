@@ -90,6 +90,17 @@ namespace TileGameLib.GameElements
             return Entries.ContainsKey(property);
         }
 
+        public bool HasAll(params string[] properties)
+        {
+            foreach (string prop in properties)
+            {
+                if (!Has(prop))
+                    return false;
+            }
+
+            return true;
+        }
+
         public bool HasValue(string property, object value)
         {
             if (Has(property) && GetAsString(property).Equals(value.ToString()))

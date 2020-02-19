@@ -92,6 +92,16 @@ namespace TileGameLib.GameElements
             return Equals(obj) && Id == ((GameObject)obj).Id;
         }
 
+        public bool PropertiesEqual(object obj)
+        {
+            return Properties.Equals((obj as GameObject).Properties);
+        }
+
+        public bool HasProperties(params string[] properties)
+        {
+            return Properties.HasAll(properties);
+        }
+
         public override int GetHashCode()
         {
             return Tuple.Create(Id, Tag, Visible, Properties, Animation).GetHashCode();

@@ -17,9 +17,9 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
-        public GameWindow Window { get; private set; }
         public string MapsBasePath { set; get; }
         public bool Paused { set; get; }
+        public GameWindow Window { get; private set; }
 
         public UserInterface Ui => Window.Ui;
         public bool HasTimedMessage => Window.Ui.HasTimedMessage;
@@ -57,9 +57,16 @@ namespace TileGameLib.Engine
 
         public void Run()
         {
+            OnStart();
             CycleTimer.Start();
             GfxRefreshTimer.Start();
             Application.Run(Window);
+        }
+
+        public virtual void OnStart()
+        {
+            // Override this to initialize the engine
+            // Called once immediately before the engine starts running
         }
 
         public virtual void OnDrawUi()
