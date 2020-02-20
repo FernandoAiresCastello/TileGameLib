@@ -553,6 +553,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap site_backup_and_restore {
+            get {
+                object obj = ResourceManager.GetObject("site_backup_and_restore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap table_edit {
             get {
                 object obj = ResourceManager.GetObject("table_edit", resourceCulture);

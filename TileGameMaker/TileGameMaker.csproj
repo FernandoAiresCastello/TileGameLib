@@ -136,6 +136,12 @@
     <Compile Include="Windows\ObjectPropertiesEditWindow.Designer.cs">
       <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RangeInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\RangeInputWindow.Designer.cs">
+      <DependentUpon>RangeInputWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     <EmbeddedResource Include="Windows\ObjectPropertiesEditWindow.resx">
       <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\RangeInputWindow.resx">
+      <DependentUpon>RangeInputWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +300,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\site_backup_and_restore.png" />
     <None Include="Resources\highlighter_text.png" />
     <None Include="Resources\magic_wand.png" />
     <None Include="Resources\Sonya-Swarm-Gameboy.png" />

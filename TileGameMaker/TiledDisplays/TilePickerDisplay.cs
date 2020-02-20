@@ -92,6 +92,12 @@ namespace TileGameMaker.TiledDisplays
             Refresh();
         }
 
+        public void ClearRange(int first, int last)
+        {
+            Graphics.Tileset.ClearRange(first, last);
+            Refresh();
+        }
+
         public void ResetToDefault()
         {
             Graphics.Tileset.InitDefault();

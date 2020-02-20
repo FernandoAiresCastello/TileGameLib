@@ -15,6 +15,8 @@ namespace TileGameLib.Graphics
 
         public byte[] PixelRows { set; get; } = new byte[RowCount];
 
+        public static TilePixels Blank => new TilePixels();
+
         public TilePixels()
         {
             Clear();

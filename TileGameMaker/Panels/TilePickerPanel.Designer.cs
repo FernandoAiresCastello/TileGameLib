@@ -30,6 +30,11 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.PnlTilePicker = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnImportFromImage = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,16 +43,13 @@
             this.BtnExportBinaryStrings = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHex = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportToImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnCopy = new System.Windows.Forms.ToolStripButton();
             this.BtnPaste = new System.Windows.Forms.ToolStripButton();
-            this.BtnReset = new System.Windows.Forms.ToolStripButton();
+            this.BtnClear = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnClearAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnClearRange = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnUse16x16TileEditor = new System.Windows.Forms.ToolStripButton();
-            this.PnlTilePicker = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -78,10 +80,10 @@
             this.toolStripDropDownButton2,
             this.toolStripDropDownButton1,
             this.toolStripSeparator1,
-            this.BtnNew,
             this.BtnCopy,
             this.BtnPaste,
-            this.BtnReset,
+            this.BtnClear,
+            this.BtnRestoreDefault,
             this.BtnUse16x16TileEditor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -89,6 +91,49 @@
             this.toolStrip1.Size = new System.Drawing.Size(235, 30);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // PnlTilePicker
+            // 
+            this.PnlTilePicker.AutoScroll = true;
+            this.PnlTilePicker.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PnlTilePicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PnlTilePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTilePicker.Location = new System.Drawing.Point(3, 33);
+            this.PnlTilePicker.Name = "PnlTilePicker";
+            this.PnlTilePicker.Size = new System.Drawing.Size(229, 320);
+            this.PnlTilePicker.TabIndex = 1;
+            this.PnlTilePicker.MouseLeave += new System.EventHandler(this.TilePicker_MouseLeave);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusLabel,
+            this.HoverLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 356);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(235, 24);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
+            this.StatusLabel.Text = "StatusLabel";
+            // 
+            // HoverLabel
+            // 
+            this.HoverLabel.Name = "HoverLabel";
+            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
+            this.HoverLabel.Text = "HoverLabel";
             // 
             // toolStripDropDownButton2
             // 
@@ -160,22 +205,6 @@
             this.BtnExportToImage.Text = "To image";
             this.BtnExportToImage.Click += new System.EventHandler(this.BtnExportToImage_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.broom;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 20);
-            this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear tileset";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
             // BtnCopy
             // 
             this.BtnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -198,16 +227,38 @@
             this.BtnPaste.ToolTipText = "Paste tile";
             this.BtnPaste.Click += new System.EventHandler(this.BtnPaste_Click);
             // 
-            // BtnReset
+            // BtnClear
             // 
-            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(23, 20);
-            this.BtnReset.Text = "toolStripButton1";
-            this.BtnReset.ToolTipText = "Reset tileset to default";
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            this.BtnClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnClear.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnClearAll,
+            this.BtnClearRange});
+            this.BtnClear.Image = global::TileGameMaker.Properties.Resources.broom;
+            this.BtnClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(29, 20);
+            // 
+            // BtnClearAll
+            // 
+            this.BtnClearAll.Name = "BtnClearAll";
+            this.BtnClearAll.Size = new System.Drawing.Size(180, 22);
+            this.BtnClearAll.Text = "Clear all";
+            this.BtnClearAll.Click += new System.EventHandler(this.BtnClearAll_Click);
+            // 
+            // BtnClearRange
+            // 
+            this.BtnClearRange.Name = "BtnClearRange";
+            this.BtnClearRange.Size = new System.Drawing.Size(180, 22);
+            this.BtnClearRange.Text = "Clear range";
+            this.BtnClearRange.Click += new System.EventHandler(this.BtnClearRange_Click);
+            // 
+            // BtnRestoreDefault
+            // 
+            this.BtnRestoreDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRestoreDefault.Image = global::TileGameMaker.Properties.Resources.site_backup_and_restore;
+            this.BtnRestoreDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRestoreDefault.Name = "BtnRestoreDefault";
+            this.BtnRestoreDefault.Size = new System.Drawing.Size(29, 20);
             // 
             // BtnUse16x16TileEditor
             // 
@@ -219,44 +270,6 @@
             this.BtnUse16x16TileEditor.Text = "toolStripButton1";
             this.BtnUse16x16TileEditor.ToolTipText = "Use 16x16 editor";
             this.BtnUse16x16TileEditor.Click += new System.EventHandler(this.BtnSwitchTileEditor_Click);
-            // 
-            // PnlTilePicker
-            // 
-            this.PnlTilePicker.AutoScroll = true;
-            this.PnlTilePicker.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PnlTilePicker.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlTilePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTilePicker.Location = new System.Drawing.Point(3, 33);
-            this.PnlTilePicker.Name = "PnlTilePicker";
-            this.PnlTilePicker.Size = new System.Drawing.Size(229, 320);
-            this.PnlTilePicker.TabIndex = 1;
-            this.PnlTilePicker.MouseLeave += new System.EventHandler(this.TilePicker_MouseLeave);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel,
-            this.HoverLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 356);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(235, 24);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(71, 19);
-            this.StatusLabel.Text = "StatusLabel";
-            // 
-            // HoverLabel
-            // 
-            this.HoverLabel.Name = "HoverLabel";
-            this.HoverLabel.Size = new System.Drawing.Size(67, 19);
-            this.HoverLabel.Text = "HoverLabel";
             // 
             // TilePickerPanel
             // 
@@ -279,14 +292,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton BtnNew;
         private System.Windows.Forms.Panel PnlTilePicker;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel HoverLabel;
         private System.Windows.Forms.ToolStripButton BtnCopy;
         private System.Windows.Forms.ToolStripButton BtnPaste;
-        private System.Windows.Forms.ToolStripButton BtnReset;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem BtnExportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportBinaryStrings;
@@ -297,5 +308,9 @@
         private System.Windows.Forms.ToolStripMenuItem BtnExportToImage;
         private System.Windows.Forms.ToolStripButton BtnUse16x16TileEditor;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripDropDownButton BtnClear;
+        private System.Windows.Forms.ToolStripMenuItem BtnClearAll;
+        private System.Windows.Forms.ToolStripMenuItem BtnClearRange;
+        private System.Windows.Forms.ToolStripDropDownButton BtnRestoreDefault;
     }
 }

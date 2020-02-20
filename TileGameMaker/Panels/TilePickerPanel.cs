@@ -49,8 +49,33 @@ namespace TileGameMaker.Panels
             TilePicker.MouseLeave += TilePicker_MouseLeave;
             TilePicker.MouseDown += TilePicker_MouseDown;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
+
+            UpdateDefaultTilesetMenu();
             SetHoverStatus("");
             UpdateStatus();
+        }
+
+        private void UpdateDefaultTilesetMenu()
+        {
+            int defaultTilesetEnumValue = 0;
+
+            foreach (string defaultTileset in Tileset.GetDefaultTilesetNames())
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(defaultTileset);
+                item.Click += DefaultTilesetItem_Click;
+                item.Tag = defaultTilesetEnumValue;
+                BtnRestoreDefault.DropDownItems.Add(item);
+                defaultTilesetEnumValue++;
+            }
+       }
+
+        private void DefaultTilesetItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int defaultTilesetEnumValue = (int)item.Tag;
+            TilePicker.Graphics.Tileset.InitDefault((Tileset.Default)defaultTilesetEnumValue);
+            UpdateStatus();
+            Refresh();
         }
 
         public void SetTileIndex(int index)
@@ -148,15 +173,6 @@ namespace TileGameMaker.Panels
             HoverLabel.Text = status;
         }
 
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-            if (Alert.Confirm("Clear tileset?"))
-            {
-                TilePicker.Clear();
-                UpdateStatus();
-            }
-        }
-
         private void BtnCopy_Click(object sender, EventArgs e)
         {
             CopyTile(TilePicker.TileIndex);
@@ -167,15 +183,6 @@ namespace TileGameMaker.Panels
             PasteTile(TilePicker.TileIndex);
             Refresh();
             MapEditor.TemplateControl.Refresh();
-        }
-
-        private void BtnReset_Click(object sender, EventArgs e)
-        {
-            if (Alert.Confirm("Reset tileset to default tiles?"))
-            {
-                TilePicker.ResetToDefault();
-                UpdateStatus();
-            }
         }
 
         private void TxtTilesPerRow_KeyUp(object sender, KeyEventArgs e)
@@ -310,6 +317,47 @@ namespace TileGameMaker.Panels
         private void BtnSwitchTileEditor_Click(object sender, EventArgs e)
         {
             BtnUse16x16TileEditor.Checked = !BtnUse16x16TileEditor.Checked;
+        }
+
+        private void BtnClearAll_Click(object sender, EventArgs e)
+        {
+            if (Alert.Confirm("Clear entire tileset?"))
+            {
+                TilePicker.Clear();
+                UpdateStatus();
+            }
+        }
+
+        private void BtnClearRange_Click(object sender, EventArgs e)
+        {
+            RangeInputWindow win = new RangeInputWindow();
+            win.FromMinValue = 0;
+            win.ToMinValue = 0;
+            win.FromMaxValue = TilePicker.Graphics.Tileset.Size - 1;
+            win.ToMaxValue = TilePicker.Graphics.Tileset.Size - 1;
+            win.FromIncrement = 1;
+            win.ToIncrement = 1;
+            win.FromValue = 0;
+            win.ToValue = 0;
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                int from = win.FromValue;
+                int to = win.ToValue;
+
+                if (to == from)
+                    return;
+
+                if (to > from)
+                {
+                    TilePicker.ClearRange(from, to);
+                    UpdateStatus();
+                }
+                else
+                {
+                    Alert.Warning("Invalid range");
+                }
+            }
         }
     }
 }
