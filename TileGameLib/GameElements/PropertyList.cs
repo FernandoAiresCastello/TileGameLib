@@ -7,22 +7,22 @@ using TileGameLib.Exceptions;
 
 namespace TileGameLib.GameElements
 {
-    public class ObjectProperties
+    public class PropertyList
     {
         public Dictionary<string, string> Entries { get; set; } = new Dictionary<string, string>();
 
-        public ObjectProperties()
+        public PropertyList()
         {
         }
 
-        public ObjectProperties(ObjectProperties other)
+        public PropertyList(PropertyList other)
         {
             SetEqual(other);
         }
 
-        public ObjectProperties Copy()
+        public PropertyList Copy()
         {
-            return new ObjectProperties(this);
+            return new PropertyList(this);
         }
 
         public string GetAsString(string property)
@@ -120,7 +120,7 @@ namespace TileGameLib.GameElements
             Entries.Clear();
         }
 
-        public void SetEqual(ObjectProperties other)
+        public void SetEqual(PropertyList other)
         {
             RemoveAll();
             foreach (var property in other.Entries)
@@ -132,7 +132,7 @@ namespace TileGameLib.GameElements
             if (obj == null || GetType() != obj.GetType())
                 return false;
 
-            ObjectProperties other = (ObjectProperties)obj;
+            PropertyList other = (PropertyList)obj;
 
             if (other.Entries.Count != Entries.Count)
                 return false;

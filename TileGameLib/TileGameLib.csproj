@@ -83,7 +83,7 @@
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
     <Compile Include="GameElements\ObjectPosition.cs" />
-    <Compile Include="GameElements\ObjectProperties.cs" />
+    <Compile Include="GameElements\PropertyList.cs" />
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />

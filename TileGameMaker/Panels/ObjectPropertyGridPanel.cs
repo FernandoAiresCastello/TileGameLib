@@ -15,7 +15,7 @@ namespace TileGameMaker.Panels
 {
     public partial class ObjectPropertyGridPanel : UserControl
     {
-        public ObjectProperties Properties => GetProperties();
+        public PropertyList Properties => GetProperties();
 
         public ObjectPropertyGridPanel()
         {
@@ -41,9 +41,9 @@ namespace TileGameMaker.Panels
             }
         }
 
-        public ObjectProperties GetProperties()
+        public PropertyList GetProperties()
         {
-            ObjectProperties properties = new ObjectProperties();
+            PropertyList properties = new PropertyList();
 
             foreach (DataGridViewRow row in Grid.Rows)
             {

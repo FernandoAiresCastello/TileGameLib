@@ -15,13 +15,13 @@ namespace TileGameMaker.Windows
     {
         public string ObjectTag => TxtTag.Text.Trim();
         public bool ObjectVisible => ChkVisible.Checked;
-        public ObjectProperties ObjectProperties { set; get; }
+        public PropertyList ObjectProperties { set; get; }
 
         public ObjectPropertiesEditWindow()
         {
             InitializeComponent();
             Text = "Enter object data";
-            ObjectProperties = new ObjectProperties();
+            ObjectProperties = new PropertyList();
         }
 
         public DialogResult ShowDialog(Control parent, GameObject o, ObjectPosition position)

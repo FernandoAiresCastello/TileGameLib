@@ -22,7 +22,7 @@ namespace TileGameMaker.Panels
         public AnimationStripDisplay AnimationStrip { set; get; }
         public ObjectAnimation Animation => AnimationStrip.Animation;
         public ObjectAnimation CroppedAnimation => AnimationStrip.Animation.CopyFrames(AnimationFrameCount);
-        public ObjectProperties Properties => PropertyGrid.Properties;
+        public PropertyList Properties => PropertyGrid.Properties;
 
         public int AnimationFrameCount
         {

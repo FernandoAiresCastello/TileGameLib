@@ -16,7 +16,7 @@ namespace TileGameLib.GameElements
         public string Tag { set; get; }
         public bool Visible { set; get; }
         public ObjectAnimation Animation { set; get; } = new ObjectAnimation();
-        public ObjectProperties Properties { set; get; } = new ObjectProperties();
+        public PropertyList Properties { set; get; } = new PropertyList();
 
         public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
 
