@@ -34,19 +34,19 @@
             this.LblHover = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStripAndColorPicker = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexRgb = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -131,16 +131,24 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // BtnNew
+            // toolStripSplitButton2
             // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 20);
-            this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear palette";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            this.toolStripSplitButton2.AutoToolTip = false;
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnImportRawBytes});
+            this.toolStripSplitButton2.Image = global::TileGameMaker.Properties.Resources.folder;
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(29, 20);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton1";
+            // 
+            // BtnImportRawBytes
+            // 
+            this.BtnImportRawBytes.Name = "BtnImportRawBytes";
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(127, 22);
+            this.BtnImportRawBytes.Text = "Raw bytes";
+            this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
             // toolStripSplitButton1
             // 
@@ -177,24 +185,21 @@
             this.BtnExportHexCsv.Text = "Hexadecimal CSV";
             this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
             // 
-            // toolStripSplitButton2
+            // toolStripSeparator1
             // 
-            this.toolStripSplitButton2.AutoToolTip = false;
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnImportRawBytes});
-            this.toolStripSplitButton2.Image = global::TileGameMaker.Properties.Resources.folder;
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(29, 20);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton1";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
-            // BtnImportRawBytes
+            // BtnNew
             // 
-            this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
-            this.BtnImportRawBytes.Text = "Raw bytes";
-            this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
+            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.broom;
+            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.Size = new System.Drawing.Size(23, 20);
+            this.BtnNew.Text = "toolStripButton1";
+            this.BtnNew.ToolTipText = "Clear palette";
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnReset
             // 
@@ -243,11 +248,6 @@
             this.ForeColorPanel.Name = "ForeColorPanel";
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // ColorPickerPanel
             // 

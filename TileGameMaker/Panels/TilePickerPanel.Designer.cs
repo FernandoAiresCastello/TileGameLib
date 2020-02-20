@@ -30,24 +30,24 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnCopy = new System.Windows.Forms.ToolStripButton();
-            this.BtnPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnImportFromImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportBinaryStrings = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHex = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportToImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnImportFromImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnCopy = new System.Windows.Forms.ToolStripButton();
+            this.BtnPaste = new System.Windows.Forms.ToolStripButton();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.BtnUse16x16TileEditor = new System.Windows.Forms.ToolStripButton();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -90,10 +90,85 @@
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.AutoToolTip = false;
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnImportRawBytes,
+            this.BtnImportFromImage});
+            this.toolStripDropDownButton2.Image = global::TileGameMaker.Properties.Resources.folder;
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+            // 
+            // BtnImportRawBytes
+            // 
+            this.BtnImportRawBytes.Name = "BtnImportRawBytes";
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(138, 22);
+            this.BtnImportRawBytes.Text = "Raw bytes";
+            this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
+            // 
+            // BtnImportFromImage
+            // 
+            this.BtnImportFromImage.Name = "BtnImportFromImage";
+            this.BtnImportFromImage.Size = new System.Drawing.Size(138, 22);
+            this.BtnImportFromImage.Text = "From image";
+            this.BtnImportFromImage.Click += new System.EventHandler(this.BtnImportFromImage_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.AutoToolTip = false;
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnExportRawBytes,
+            this.BtnExportBinaryStrings,
+            this.BtnExportHex,
+            this.BtnExportToImage});
+            this.toolStripDropDownButton1.Image = global::TileGameMaker.Properties.Resources.diskette;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
+            this.toolStripDropDownButton1.Text = "Export tileset";
+            // 
+            // BtnExportRawBytes
+            // 
+            this.BtnExportRawBytes.Name = "BtnExportRawBytes";
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportRawBytes.Text = "Raw bytes";
+            this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
+            // 
+            // BtnExportBinaryStrings
+            // 
+            this.BtnExportBinaryStrings.Name = "BtnExportBinaryStrings";
+            this.BtnExportBinaryStrings.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportBinaryStrings.Text = "Binary strings";
+            this.BtnExportBinaryStrings.Click += new System.EventHandler(this.BtnExportBinaryStrings_Click);
+            // 
+            // BtnExportHex
+            // 
+            this.BtnExportHex.Name = "BtnExportHex";
+            this.BtnExportHex.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportHex.Text = "Hexadecimal CSV";
+            this.BtnExportHex.Click += new System.EventHandler(this.BtnExportHex_Click);
+            // 
+            // BtnExportToImage
+            // 
+            this.BtnExportToImage.Name = "BtnExportToImage";
+            this.BtnExportToImage.Size = new System.Drawing.Size(166, 22);
+            this.BtnExportToImage.Text = "To image";
+            this.BtnExportToImage.Click += new System.EventHandler(this.BtnExportToImage_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
             // BtnNew
             // 
             this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
+            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.broom;
             this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(23, 20);
@@ -122,76 +197,6 @@
             this.BtnPaste.Text = "toolStripButton1";
             this.BtnPaste.ToolTipText = "Paste tile";
             this.BtnPaste.Click += new System.EventHandler(this.BtnPaste_Click);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.AutoToolTip = false;
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnExportRawBytes,
-            this.BtnExportBinaryStrings,
-            this.BtnExportHex,
-            this.BtnExportToImage});
-            this.toolStripDropDownButton1.Image = global::TileGameMaker.Properties.Resources.diskette;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownButton1.Text = "Export tileset";
-            // 
-            // BtnExportRawBytes
-            // 
-            this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportRawBytes.Text = "Raw bytes";
-            this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
-            // 
-            // BtnExportBinaryStrings
-            // 
-            this.BtnExportBinaryStrings.Name = "BtnExportBinaryStrings";
-            this.BtnExportBinaryStrings.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportBinaryStrings.Text = "Binary strings";
-            this.BtnExportBinaryStrings.Click += new System.EventHandler(this.BtnExportBinaryStrings_Click);
-            // 
-            // BtnExportHex
-            // 
-            this.BtnExportHex.Name = "BtnExportHex";
-            this.BtnExportHex.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportHex.Text = "Hexadecimal CSV";
-            this.BtnExportHex.Click += new System.EventHandler(this.BtnExportHex_Click);
-            // 
-            // BtnExportToImage
-            // 
-            this.BtnExportToImage.Name = "BtnExportToImage";
-            this.BtnExportToImage.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportToImage.Text = "To image";
-            this.BtnExportToImage.Click += new System.EventHandler(this.BtnExportToImage_Click);
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.AutoToolTip = false;
-            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnImportRawBytes,
-            this.BtnImportFromImage});
-            this.toolStripDropDownButton2.Image = global::TileGameMaker.Properties.Resources.folder;
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 20);
-            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
-            // 
-            // BtnImportRawBytes
-            // 
-            this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
-            this.BtnImportRawBytes.Text = "Raw bytes";
-            this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
-            // 
-            // BtnImportFromImage
-            // 
-            this.BtnImportFromImage.Name = "BtnImportFromImage";
-            this.BtnImportFromImage.Size = new System.Drawing.Size(180, 22);
-            this.BtnImportFromImage.Text = "From image";
-            this.BtnImportFromImage.Click += new System.EventHandler(this.BtnImportFromImage_Click);
             // 
             // BtnReset
             // 
@@ -252,11 +257,6 @@
             this.HoverLabel.Name = "HoverLabel";
             this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // TilePickerPanel
             // 

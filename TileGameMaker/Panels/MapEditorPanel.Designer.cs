@@ -174,7 +174,7 @@
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(23, 20);
             this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Clear map (Ctrl+N)";
+            this.BtnNew.ToolTipText = "Create new map (Ctrl+N)";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // BtnLoadMap
