@@ -977,16 +977,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void BtnEditScript_Click(object sender, EventArgs e)
-        {
-            ScriptInputWindow win = new ScriptInputWindow();
-
-            if (win.ShowDialog(this, Map.Script) == DialogResult.OK)
-            {
-                Map.Script = win.Script;
-            }
-        }
-
         private void BtnSaveRawBytes_Click(object sender, EventArgs e)
         {
             SaveMap();

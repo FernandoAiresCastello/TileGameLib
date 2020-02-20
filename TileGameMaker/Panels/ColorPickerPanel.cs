@@ -22,8 +22,8 @@ namespace TileGameMaker.Panels
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
 
-        private static readonly int MinTilesPerRowAllowed = 1;
-        private static readonly int MaxTilesPerRowAllowed = 16;
+        //private static readonly int MinTilesPerRowAllowed = 1;
+        //private static readonly int MaxTilesPerRowAllowed = 16;
 
         public ColorPickerPanel()
         {

@@ -25,8 +25,8 @@ namespace TileGameMaker.Panels
         private TileEditor16x16Window TileEditor16x16Window;
         private TilePixels ClipboardTile = new TilePixels();
 
-        private static readonly int MinTilesPerRowAllowed = 1;
-        private static readonly int MaxTilesPerRowAllowed = 16;
+        //private static readonly int MinTilesPerRowAllowed = 1;
+        //private static readonly int MaxTilesPerRowAllowed = 16;
 
         public TilePickerPanel()
         {

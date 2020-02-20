@@ -213,10 +213,11 @@
             // ChkVisible
             // 
             this.ChkVisible.AutoSize = true;
+            this.ChkVisible.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChkVisible.Location = new System.Drawing.Point(199, 3);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.ChkVisible.Size = new System.Drawing.Size(96, 17);
+            this.ChkVisible.Size = new System.Drawing.Size(134, 23);
             this.ChkVisible.TabIndex = 3;
             this.ChkVisible.Text = "Visible";
             this.ChkVisible.UseVisualStyleBackColor = true;
@@ -231,13 +232,13 @@
             this.PropertyGrid.Size = new System.Drawing.Size(539, 236);
             this.PropertyGrid.TabIndex = 8;
             // 
-            // ObjectDataInputWindow
+            // ObjectPropertiesEditWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 326);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ObjectDataInputWindow";
+            this.Name = "ObjectPropertiesEditWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

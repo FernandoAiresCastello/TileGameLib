@@ -59,6 +59,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapEditorElements\ConfigurableMapProperties.cs" />
+    <Compile Include="MapEditorElements\MapProperties.cs" />
     <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
     <Compile Include="Panels\CommandLinePanel.cs">
       <SubType>UserControl</SubType>
@@ -135,12 +136,6 @@
     <Compile Include="Windows\ObjectPropertiesEditWindow.Designer.cs">
       <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ScriptInputWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\ScriptInputWindow.Designer.cs">
-      <DependentUpon>ScriptInputWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,12 +153,6 @@
     </Compile>
     <Compile Include="Panels\MapEditorPanel.Designer.cs">
       <DependentUpon>MapEditorPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Panels\MapPropertyPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Panels\MapPropertyPanel.Designer.cs">
-      <DependentUpon>MapPropertyPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\TemplatePanel.cs">
       <SubType>UserControl</SubType>
@@ -240,9 +229,6 @@
     <EmbeddedResource Include="Windows\ObjectPropertiesEditWindow.resx">
       <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\ScriptInputWindow.resx">
-      <DependentUpon>ScriptInputWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,9 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\MapEditorPanel.resx">
       <DependentUpon>MapEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Panels\MapPropertyPanel.resx">
-      <DependentUpon>MapPropertyPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\TemplatePanel.resx">
       <DependentUpon>TemplatePanel.cs</DependentUpon>

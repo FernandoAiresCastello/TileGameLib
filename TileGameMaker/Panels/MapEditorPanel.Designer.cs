@@ -48,7 +48,6 @@
             this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
-            this.BtnEditScript = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
@@ -146,7 +145,6 @@
             this.BtnClearLayer,
             this.BtnSetBackColor,
             this.BtnRenderInvisibleObjects,
-            this.BtnEditScript,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
             this.BtnDelete,
@@ -313,17 +311,6 @@
             this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
             this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
             this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
-            // 
-            // BtnEditScript
-            // 
-            this.BtnEditScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnEditScript.Image = global::TileGameMaker.Properties.Resources.script_binary;
-            this.BtnEditScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnEditScript.Name = "BtnEditScript";
-            this.BtnEditScript.Size = new System.Drawing.Size(23, 20);
-            this.BtnEditScript.Text = "toolStripButton1";
-            this.BtnEditScript.ToolTipText = "Edit script";
-            this.BtnEditScript.Click += new System.EventHandler(this.BtnEditScript_Click);
             // 
             // toolStripSeparator1
             // 
@@ -609,7 +596,6 @@
         private System.Windows.Forms.ToolStripButton BtnReplaceObjects;
         private System.Windows.Forms.ToolStripButton BtnRenderInvisibleObjects;
         private System.Windows.Forms.ToolStripMenuItem MiReplaceWithTemplate;
-        private System.Windows.Forms.ToolStripButton BtnEditScript;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnLoadRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytesAs;

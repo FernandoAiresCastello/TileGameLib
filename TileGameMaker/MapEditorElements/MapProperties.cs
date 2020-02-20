@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 using TileGameLib.GameElements;
 
 namespace TileGameMaker.MapEditorElements
 {
-    public class ConfigurableMapProperties
+    public class MapProperties
     {
+        public string Name { set; get; }
+        [ReadOnly(true)]
+        public int Layers { set; get; }
+        public string Width { set; get; }
+        public string Height { set; get; }
+        [Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
+        public string Music { set; get; }
         [ReadOnly(true)]
         public string Path { set; get; }
         [ReadOnly(true)]
         public string File { set; get; }
-        public string Name { set; get; }
-        public string Music { set; get; }
-        public string Width { set; get; }
-        public string Height { set; get; }
-        [ReadOnly(true)]
-        public int Layers { set; get; }
 
-        public ConfigurableMapProperties(ObjectMap map, string mapFileFullPath)
+        public MapProperties(ObjectMap map, string mapFileFullPath)
         {
             if (mapFileFullPath != null)
             {

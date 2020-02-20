@@ -30,7 +30,6 @@ namespace TileGameMaker.MapEditorElements
         public TilePickerPanel TilePickerControl { get; private set; }
         public ColorPickerPanel ColorPickerControl { get; private set; }
         public TemplatePanel TemplateControl { get; private set; }
-        public MapPropertyPanel MapPropertyControl { get; private set; }
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
 
