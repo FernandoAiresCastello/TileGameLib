@@ -35,7 +35,10 @@ namespace TileGameMaker.Windows
             TileEditor.MouseMove += TileEditor_MouseMove;
             TileEditor.MouseLeave += TileEditor_MouseLeave;
             TileEditor.MouseDown += TileEditor_MouseDown;
+
             TxtStringRep.KeyDown += TxtStringRep_KeyDown;
+            TxtStringRep.Visible = false;
+
             HoverLabel.Text = "";
         }
 
@@ -101,9 +104,9 @@ namespace TileGameMaker.Windows
         private void UpdateStringRepresentations()
         {
             StringBuilder reps = new StringBuilder();
-            reps.AppendLine("B:" + Tileset.Get(TileIndex).ToBinaryString());
-            reps.AppendLine("H:" + Tileset.Get(TileIndex).ToHexCsvString());
-            reps.AppendLine("C:" + Tileset.Get(TileIndex).ToCsvString());
+            reps.AppendLine("B: " + Tileset.Get(TileIndex).ToBinaryString());
+            reps.AppendLine("H: " + Tileset.Get(TileIndex).ToHexCsvString());
+            reps.AppendLine("D: " + Tileset.Get(TileIndex).ToCsvString());
 
             TxtStringRep.Text = reps.ToString();
             TxtStringRep.Select(0, 0);
@@ -171,6 +174,12 @@ namespace TileGameMaker.Windows
         {
             TileEditor.RotateDown();
             OnTileChanged();
+        }
+
+        private void BtnViewCode_Click(object sender, EventArgs e)
+        {
+            BtnViewCode.Checked = !BtnViewCode.Checked;
+            TxtStringRep.Visible = BtnViewCode.Checked;
         }
     }
 }

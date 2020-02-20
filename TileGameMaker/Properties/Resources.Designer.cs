@@ -503,6 +503,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap script_code {
+            get {
+                object obj = ResourceManager.GetObject("script_code", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap scroll_pane_text {
             get {
                 object obj = ResourceManager.GetObject("scroll_pane_text", resourceCulture);

@@ -57,7 +57,7 @@ namespace TileGameLib.File
 
             int tilesetSize = file.ReadShort();
 
-            tileset.Clear(tilesetSize);
+            tileset.ClearToSize(tilesetSize);
 
             try
             {

@@ -45,6 +45,8 @@
             this.BtnRotateRight = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateDown = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateUp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnViewCode = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtStringRep = new System.Windows.Forms.TextBox();
             this.TilePanel = new System.Windows.Forms.Panel();
@@ -109,7 +111,9 @@
             this.BtnRotateLeft,
             this.BtnRotateRight,
             this.BtnRotateDown,
-            this.BtnRotateUp});
+            this.BtnRotateUp,
+            this.toolStripSeparator2,
+            this.BtnViewCode});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(426, 25);
@@ -242,6 +246,22 @@
             this.BtnRotateUp.ToolTipText = "Rotate up";
             this.BtnRotateUp.Click += new System.EventHandler(this.BtnRotateUp_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // BtnViewCode
+            // 
+            this.BtnViewCode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnViewCode.Image = global::TileGameMaker.Properties.Resources.script_code;
+            this.BtnViewCode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnViewCode.Name = "BtnViewCode";
+            this.BtnViewCode.Size = new System.Drawing.Size(23, 22);
+            this.BtnViewCode.Text = "toolStripButton1";
+            this.BtnViewCode.ToolTipText = "View code";
+            this.BtnViewCode.Click += new System.EventHandler(this.BtnViewCode_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -279,7 +299,7 @@
             this.TilePanel.Size = new System.Drawing.Size(194, 194);
             this.TilePanel.TabIndex = 4;
             // 
-            // TileEditorWindow
+            // TileEditor8x8Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -290,7 +310,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(220, 286);
-            this.Name = "TileEditorWindow";
+            this.Name = "TileEditor8x8Window";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tile Editor";
@@ -328,5 +348,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox TxtStringRep;
         private System.Windows.Forms.Panel TilePanel;
+        private System.Windows.Forms.ToolStripButton BtnViewCode;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

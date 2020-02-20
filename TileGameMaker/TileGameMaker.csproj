@@ -300,6 +300,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\script_code.png" />
     <None Include="Resources\site_backup_and_restore.png" />
     <None Include="Resources\highlighter_text.png" />
     <None Include="Resources\magic_wand.png" />

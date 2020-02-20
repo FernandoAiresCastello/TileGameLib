@@ -28,8 +28,8 @@ namespace TileGameMaker.TiledDisplays
         private TileEditor8x8Display(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            Graphics.Palette.Set(0, Config.ReadInt("TileEditorPixelOffColor"));
-            Graphics.Palette.Set(1, Config.ReadInt("TileEditorPixelOnColor"));
+            Graphics.Palette.Set(0, Config.ReadInt("TileEditorPixelOnColor"));
+            Graphics.Palette.Set(1, Config.ReadInt("TileEditorPixelOffColor"));
         }
 
         protected override void OnPaint(PaintEventArgs e)

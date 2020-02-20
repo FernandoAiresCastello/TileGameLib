@@ -174,7 +174,7 @@ namespace TileGameLib.File
             }
 
             int tilesetSize = file.ReadShort();
-            map.Tileset.Clear(tilesetSize);
+            map.Tileset.ClearToSize(tilesetSize);
             foreach (TilePixels pixels in map.Tileset.Pixels)
             {
                 for (int i = 0; i < pixels.PixelRows.Length; i++)

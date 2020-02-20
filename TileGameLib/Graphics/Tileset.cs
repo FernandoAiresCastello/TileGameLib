@@ -10,21 +10,21 @@ namespace TileGameLib.Graphics
 {
     public class Tileset
     {
-        private const Default DefaultTiles = Default.Basic;
-
-        public static readonly int DefaultSize = 512;
         public List<TilePixels> Pixels { get; private set; } = new List<TilePixels>();
         public int Size => Pixels.Count;
 
+        private const Default DefaultTiles = Default.Basic;
+        private const int DefaultSize = 512;
+
         private readonly Color ImagePixelOnColor = Color.Black;
         private readonly Color ImagePixelOffColor = Color.White;
-        private readonly int ImagePixelOnValue = 1;
-        private readonly int ImagePixelOffValue = 0;
+        private const int ImagePixelOnValue = 1;
+        private const int ImagePixelOffValue = 0;
 
         public enum Default
         {
             Basic,
-            TileGameMaker,
+            Classic,
             MSX,
             CodePage437,
             Intellivision
@@ -70,10 +70,10 @@ namespace TileGameLib.Graphics
 
         public void Clear()
         {
-            Clear(DefaultSize);
+            ClearToSize(DefaultSize);
         }
 
-        public void Clear(int count)
+        public void ClearToSize(int count)
         {
             Pixels.Clear();
             for (int i = 0; i < count; i++)
@@ -93,7 +93,7 @@ namespace TileGameLib.Graphics
 
         public void SetEqual(Tileset other)
         {
-            Clear(other.Size);
+            ClearToSize(other.Size);
             for (int i = 0; i < Size; i++)
                 Pixels[i].SetEqual(other.Pixels[i]);
         }
@@ -139,7 +139,7 @@ namespace TileGameLib.Graphics
             switch (defaultTiles)
             {
                 case Default.Basic: InitDefaultBasic(); break;
-                case Default.TileGameMaker: InitDefaultTileGameMaker(); break;
+                case Default.Classic: InitDefaultClassic(); break;
                 case Default.MSX: InitDefaultMSX(); break;
                 case Default.CodePage437: InitDefaultCodePage437(); break;
                 case Default.Intellivision: InitDefaultIntellivision(); break;
@@ -250,7 +250,7 @@ namespace TileGameLib.Graphics
             Set(i++, 0x70, 0x18, 0x18, 0x0e, 0x18, 0x18, 0x70, 0x00);
         }
 
-        public void InitDefaultTileGameMaker()
+        public void InitDefaultClassic()
         {
             Clear();
             int i = 0;
