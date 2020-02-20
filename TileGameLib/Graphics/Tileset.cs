@@ -21,6 +21,8 @@ namespace TileGameLib.Graphics
 
         public enum Default
         {
+            TileGameMaker,
+            MSX,
             CodePage437,
             Intellivision
         }
@@ -115,7 +117,7 @@ namespace TileGameLib.Graphics
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // todo
+                    // TODO
                 }
             }
         }
@@ -124,12 +126,30 @@ namespace TileGameLib.Graphics
         {
             switch (defaultTiles)
             {
+                case Default.TileGameMaker: InitDefaultTileGameMaker(); break;
+                case Default.MSX: InitDefaultMSX(); break;
                 case Default.CodePage437: InitDefaultCodePage437(); break;
                 case Default.Intellivision: InitDefaultIntellivision(); break;
 
                 default:
                     throw new TileGameLibException("Invalid tileset default: " + defaultTiles);
             }
+        }
+
+        public void InitDefaultTileGameMaker()
+        {
+            Clear();
+            int i = 0;
+
+            // TODO
+        }
+
+        public void InitDefaultMSX()
+        {
+            Clear();
+            int i = 0;
+
+            // TODO
         }
 
         public void InitDefaultCodePage437()
