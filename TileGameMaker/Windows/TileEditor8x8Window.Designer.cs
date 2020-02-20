@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class TileEditorWindow
+    partial class TileEditor8x8Window
     {
         /// <summary>
         /// Required designer variable.

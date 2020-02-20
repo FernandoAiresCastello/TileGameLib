@@ -21,7 +21,8 @@ namespace TileGameMaker.Panels
     {
         private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
-        private TileEditorWindow TileEditorWindow;
+        private TileEditor8x8Window TileEditor8x8Window;
+        private TileEditor16x16Window TileEditor16x16Window;
         private TilePixels ClipboardTile = new TilePixels();
 
         private static readonly int MinTilesPerRowAllowed = 1;
@@ -40,7 +41,7 @@ namespace TileGameMaker.Panels
             TilePicker = new TilePickerDisplay(PnlTilePicker, Config.ReadInt("TilePickerZoom"));
             int tilesPerRow = Config.ReadInt("TilePickerTilesPerRow");
             TilePicker.ResizeGraphicsByTileCount(TilePicker.Graphics.Tileset.Size, tilesPerRow);
-            TxtTilesPerRow.Text = tilesPerRow.ToString();
+            //TxtTilesPerRow.Text = tilesPerRow.ToString();
 
             TilePicker.Graphics.Tileset = editor.Tileset;
             TilePicker.ShowGrid = true;
@@ -101,15 +102,33 @@ namespace TileGameMaker.Panels
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
 
-            TileEditorWindow = new TileEditorWindow(MapEditor.Tileset);
-            TileEditorWindow.Subscribe(this);
-            TileEditorWindow.Subscribe(TilePicker);
-            TileEditorWindow.Subscribe(MapEditor.MapEditorControl);
-            TileEditorWindow.Subscribe(MapEditor.TemplateControl);
-
-            TileEditorWindow.SetTile(tileIx);
-
-            TileEditorWindow.Show(this);
+            if (BtnUse16x16TileEditor.Checked)
+            {
+                if (tileIx <= MapEditor.Tileset.Size - 4)
+                {
+                    TileEditor16x16Window = new TileEditor16x16Window(MapEditor.Tileset);
+                    TileEditor16x16Window.Subscribe(this);
+                    TileEditor16x16Window.Subscribe(TilePicker);
+                    TileEditor16x16Window.Subscribe(MapEditor.MapEditorControl);
+                    TileEditor16x16Window.Subscribe(MapEditor.TemplateControl);
+                    TileEditor16x16Window.SetTiles(tileIx, tileIx + 1, tileIx + 2, tileIx + 3);
+                    TileEditor16x16Window.Show(this);
+                }
+                else
+                {
+                    Alert.Warning("Can't use 16x16 editor from this tile index");
+                }
+            }
+            else
+            {
+                TileEditor8x8Window = new TileEditor8x8Window(MapEditor.Tileset);
+                TileEditor8x8Window.Subscribe(this);
+                TileEditor8x8Window.Subscribe(TilePicker);
+                TileEditor8x8Window.Subscribe(MapEditor.MapEditorControl);
+                TileEditor8x8Window.Subscribe(MapEditor.TemplateControl);
+                TileEditor8x8Window.SetTile(tileIx);
+                TileEditor8x8Window.Show(this);
+            }
         }
 
         private void TilePicker_MouseLeave(object sender, EventArgs e)
@@ -171,7 +190,7 @@ namespace TileGameMaker.Panels
         }
 
         private void ApplyTilesPerRowSetting()
-        {
+        {/*
             int originalTilesPerRow = TilePicker.Cols;
             bool isNumber = int.TryParse(TxtTilesPerRow.Text, out int tilesPerRow);
             bool revert = false;
@@ -195,7 +214,7 @@ namespace TileGameMaker.Panels
             }
 
             if (revert)
-                TxtTilesPerRow.Text = originalTilesPerRow.ToString();
+                TxtTilesPerRow.Text = originalTilesPerRow.ToString();*/
         }
 
         private void BtnExportRawBytes_Click(object sender, EventArgs e)
@@ -286,6 +305,11 @@ namespace TileGameMaker.Panels
                 TilePicker.DrawTiles(true);
                 Alert.Info("Tileset successfully saved to image!");
             }
+        }
+
+        private void BtnSwitchTileEditor_Click(object sender, EventArgs e)
+        {
+            BtnUse16x16TileEditor.Checked = !BtnUse16x16TileEditor.Checked;
         }
     }
 }

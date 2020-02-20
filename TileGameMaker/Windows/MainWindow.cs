@@ -83,27 +83,6 @@ namespace TileGameMaker.Windows
 
         private void Test()
         {
-            int width = 100;
-            int height = 80;
-            int yellow = 0xffff00;
-            int blue = 0x0000ff;
-
-            DisplayWindow win = new DisplayWindow(width, height, 1, false, true, true);
-
-            win.Graphics.Clear(Color.White);
-
-            for (int y = 0; y < height; y++)
-            {
-                win.Graphics.SetPixel(0, y, yellow);
-                win.Graphics.SetPixel(width - 1, y, blue);
-            }
-            for (int x = 0; x < width; x++)
-            {
-                win.Graphics.SetPixel(x, 0, blue);
-                win.Graphics.SetPixel(x, height - 1, yellow);
-            }
-
-            win.ShowDialog(this);
         }
 
         private void BtnToggleCommandLine_Click(object sender, EventArgs e)

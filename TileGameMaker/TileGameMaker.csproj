@@ -96,6 +96,9 @@
     <Compile Include="Panels\BasePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TiledDisplays\TileEditor16x16Display.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Util\Config.cs" />
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
@@ -174,14 +177,20 @@
     <Compile Include="Windows\SplashWindow.Designer.cs">
       <DependentUpon>SplashWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="TiledDisplays\TileEditorDisplay.cs">
+    <Compile Include="TiledDisplays\TileEditor8x8Display.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Windows\TileEditorWindow.cs">
+    <Compile Include="Windows\TileEditor16x16Window.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\TileEditorWindow.Designer.cs">
-      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    <Compile Include="Windows\TileEditor16x16Window.Designer.cs">
+      <DependentUpon>TileEditor16x16Window.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TileEditor8x8Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\TileEditor8x8Window.Designer.cs">
+      <DependentUpon>TileEditor8x8Window.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\ArchiveWindow.cs">
       <SubType>Form</SubType>
@@ -252,8 +261,11 @@
     <EmbeddedResource Include="Windows\SplashWindow.resx">
       <DependentUpon>SplashWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\TileEditorWindow.resx">
-      <DependentUpon>TileEditorWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\TileEditor16x16Window.resx">
+      <DependentUpon>TileEditor16x16Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\TileEditor8x8Window.resx">
+      <DependentUpon>TileEditor8x8Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\TilePickerPanel.resx">
       <DependentUpon>TilePickerPanel.cs</DependentUpon>

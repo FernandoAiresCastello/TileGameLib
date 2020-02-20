@@ -14,23 +14,22 @@ using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
-    public partial class TileEditorWindow : BaseWindow
+    public partial class TileEditor8x8Window : BaseWindow
     {
         private int TileIndex = 0;
 
-        private readonly TileEditorDisplay TileEditor;
+        private readonly TileEditor8x8Display TileEditor;
         private readonly Tileset Tileset;
         private TilePixels OriginalPixels;
         private readonly int PixelOn = Config.ReadInt("TileEditorPixelOnValue");
         private readonly int PixelOff = Config.ReadInt("TileEditorPixelOffValue");
 
-        public TileEditorWindow(Tileset tileset)
+        public TileEditor8x8Window(Tileset tileset)
         {
             InitializeComponent();
             Tileset = tileset;
 
-            TileEditor = new TileEditorDisplay(TilePanel, 
-                TilePixels.RowLength, TilePixels.RowCount, Config.ReadInt("TileEditorZoom"));
+            TileEditor = new TileEditor8x8Display(TilePanel, Config.ReadInt("TileEditorZoom"));
 
             TileEditor.ShowGrid = true;
             TileEditor.MouseMove += TileEditor_MouseMove;

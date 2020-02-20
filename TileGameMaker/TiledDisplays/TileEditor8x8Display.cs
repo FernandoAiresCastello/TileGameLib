@@ -12,15 +12,20 @@ using TileGameMaker.Util;
 
 namespace TileGameMaker.TiledDisplays
 {
-    public class TileEditorDisplay : TiledDisplay
+    public class TileEditor8x8Display : TiledDisplay
     {
         private Tileset Tileset;
         private int TileIndex;
+
         private readonly int PixelIndicator = Config.ReadInt("TileEditorPixelIndicator");
         private readonly char PixelOn = Config.ReadChar("TileEditorPixelOnValue");
         private readonly char PixelOff = Config.ReadChar("TileEditorPixelOffValue");
 
-        public TileEditorDisplay(Control parent, int cols, int rows, int zoom)
+        public TileEditor8x8Display(Control parent, int zoom) : this(parent, 8, 8, zoom)
+        {
+        }
+
+        private TileEditor8x8Display(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
             Graphics.Palette.Set(0, Config.ReadInt("TileEditorPixelOffColor"));

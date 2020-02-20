@@ -37,16 +37,17 @@
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportBinaryStrings = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHex = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnExportToImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnImportFromImage = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
-            this.TxtTilesPerRow = new System.Windows.Forms.ToolStripTextBox();
+            this.BtnUse16x16TileEditor = new System.Windows.Forms.ToolStripButton();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BtnExportToImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -74,13 +75,14 @@
             this.toolStrip1.CanOverflow = false;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton2,
+            this.toolStripDropDownButton1,
+            this.toolStripSeparator1,
             this.BtnNew,
             this.BtnCopy,
             this.BtnPaste,
-            this.toolStripDropDownButton1,
-            this.toolStripDropDownButton2,
             this.BtnReset,
-            this.TxtTilesPerRow});
+            this.BtnUse16x16TileEditor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 1, 2);
@@ -157,6 +159,13 @@
             this.BtnExportHex.Text = "Hexadecimal CSV";
             this.BtnExportHex.Click += new System.EventHandler(this.BtnExportHex_Click);
             // 
+            // BtnExportToImage
+            // 
+            this.BtnExportToImage.Name = "BtnExportToImage";
+            this.BtnExportToImage.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportToImage.Text = "To image";
+            this.BtnExportToImage.Click += new System.EventHandler(this.BtnExportToImage_Click);
+            // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.AutoToolTip = false;
@@ -195,17 +204,16 @@
             this.BtnReset.ToolTipText = "Reset tileset to default";
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
-            // TxtTilesPerRow
+            // BtnUse16x16TileEditor
             // 
-            this.TxtTilesPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtTilesPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTilesPerRow.MaxLength = 2;
-            this.TxtTilesPerRow.Name = "TxtTilesPerRow";
-            this.TxtTilesPerRow.Size = new System.Drawing.Size(30, 23);
-            this.TxtTilesPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtTilesPerRow.ToolTipText = "Tiles per row to display";
-            this.TxtTilesPerRow.Leave += new System.EventHandler(this.TxtTilesPerRow_Leave);
-            this.TxtTilesPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtTilesPerRow_KeyUp);
+            this.BtnUse16x16TileEditor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnUse16x16TileEditor.Image = global::TileGameMaker.Properties.Resources.layouts_four_grid;
+            this.BtnUse16x16TileEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnUse16x16TileEditor.Name = "BtnUse16x16TileEditor";
+            this.BtnUse16x16TileEditor.Size = new System.Drawing.Size(23, 20);
+            this.BtnUse16x16TileEditor.Text = "toolStripButton1";
+            this.BtnUse16x16TileEditor.ToolTipText = "Use 16x16 editor";
+            this.BtnUse16x16TileEditor.Click += new System.EventHandler(this.BtnSwitchTileEditor_Click);
             // 
             // PnlTilePicker
             // 
@@ -245,12 +253,10 @@
             this.HoverLabel.Size = new System.Drawing.Size(67, 19);
             this.HoverLabel.Text = "HoverLabel";
             // 
-            // BtnExportToImage
+            // toolStripSeparator1
             // 
-            this.BtnExportToImage.Name = "BtnExportToImage";
-            this.BtnExportToImage.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportToImage.Text = "To image";
-            this.BtnExportToImage.Click += new System.EventHandler(this.BtnExportToImage_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // TilePickerPanel
             // 
@@ -281,7 +287,6 @@
         private System.Windows.Forms.ToolStripButton BtnCopy;
         private System.Windows.Forms.ToolStripButton BtnPaste;
         private System.Windows.Forms.ToolStripButton BtnReset;
-        private System.Windows.Forms.ToolStripTextBox TxtTilesPerRow;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem BtnExportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportBinaryStrings;
@@ -290,5 +295,7 @@
         private System.Windows.Forms.ToolStripMenuItem BtnImportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnImportFromImage;
         private System.Windows.Forms.ToolStripMenuItem BtnExportToImage;
+        private System.Windows.Forms.ToolStripButton BtnUse16x16TileEditor;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

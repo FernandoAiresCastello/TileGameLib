@@ -42,11 +42,11 @@
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnReset = new System.Windows.Forms.ToolStripButton();
-            this.TxtColorsPerRow = new System.Windows.Forms.ToolStripTextBox();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -119,11 +119,11 @@
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnNew,
-            this.toolStripSplitButton1,
             this.toolStripSplitButton2,
-            this.BtnReset,
-            this.TxtColorsPerRow});
+            this.toolStripSplitButton1,
+            this.toolStripSeparator1,
+            this.BtnNew,
+            this.BtnReset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
@@ -159,21 +159,21 @@
             // BtnExportRawBytes
             // 
             this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(167, 22);
             this.BtnExportRawBytes.Text = "Raw bytes";
             this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
             // 
             // BtnExportHexRgb
             // 
             this.BtnExportHexRgb.Name = "BtnExportHexRgb";
-            this.BtnExportHexRgb.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportHexRgb.Size = new System.Drawing.Size(167, 22);
             this.BtnExportHexRgb.Text = "Hexadecimal RGB";
             this.BtnExportHexRgb.Click += new System.EventHandler(this.BtnExportHexRgb_Click);
             // 
             // BtnExportHexCsv
             // 
             this.BtnExportHexCsv.Name = "BtnExportHexCsv";
-            this.BtnExportHexCsv.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportHexCsv.Size = new System.Drawing.Size(167, 22);
             this.BtnExportHexCsv.Text = "Hexadecimal CSV";
             this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
             // 
@@ -192,7 +192,7 @@
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(127, 22);
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnImportRawBytes.Text = "Raw bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
@@ -206,18 +206,6 @@
             this.BtnReset.Text = "toolStripButton1";
             this.BtnReset.ToolTipText = "Reset palette to default";
             this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // TxtColorsPerRow
-            // 
-            this.TxtColorsPerRow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtColorsPerRow.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColorsPerRow.MaxLength = 2;
-            this.TxtColorsPerRow.Name = "TxtColorsPerRow";
-            this.TxtColorsPerRow.Size = new System.Drawing.Size(30, 23);
-            this.TxtColorsPerRow.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtColorsPerRow.ToolTipText = "Colors per row to display";
-            this.TxtColorsPerRow.Leave += new System.EventHandler(this.TxtColorsPerRow_Leave);
-            this.TxtColorsPerRow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColorsPerRow_KeyUp);
             // 
             // PnlColorPicker
             // 
@@ -256,6 +244,11 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
             // ColorPickerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,12 +284,12 @@
         private System.Windows.Forms.Panel BackColorPanel;
         private System.Windows.Forms.Panel ForeColorPanel;
         private System.Windows.Forms.ToolStripButton BtnReset;
-        private System.Windows.Forms.ToolStripTextBox TxtColorsPerRow;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem BtnExportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexRgb;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStripMenuItem BtnImportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexCsv;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

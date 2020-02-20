@@ -42,7 +42,7 @@ namespace TileGameMaker.Panels
 
             int colorsPerRow = Config.ReadInt("ColorPickerColorsPerRow");
             ColorPicker.ResizeGraphicsByTileCount(ColorPicker.Graphics.Palette.Size, colorsPerRow);
-            TxtColorsPerRow.Text = colorsPerRow.ToString();
+            //TxtColorsPerRow.Text = colorsPerRow.ToString();
 
             ColorPicker.Graphics.Palette = editor.Palette;
             ColorPicker.ShowGrid = true;
@@ -207,7 +207,7 @@ namespace TileGameMaker.Panels
         }
 
         private void ApplyColorsPerRowSetting()
-        {
+        {/*
             int originalTilesPerRow = ColorPicker.Cols;
             bool isNumber = int.TryParse(TxtColorsPerRow.Text, out int colorsPerRow);
             bool revert = false;
@@ -231,7 +231,7 @@ namespace TileGameMaker.Panels
             }
 
             if (revert)
-                TxtColorsPerRow.Text = originalTilesPerRow.ToString();
+                TxtColorsPerRow.Text = originalTilesPerRow.ToString();*/
         }
 
         private void BtnExportRawBytes_Click(object sender, EventArgs e)
