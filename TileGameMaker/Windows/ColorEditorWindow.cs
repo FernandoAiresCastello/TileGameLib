@@ -34,8 +34,22 @@ namespace TileGameMaker.Windows
             BlueTextBox.TextChanged += TextBox_TextChanged;
 
             ColorHex.TextChanged += ColorHex_TextChanged;
+            ColorHex.KeyDown += ColorHex_KeyDown;
         }
-            
+
+        private void ColorHex_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                Close();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                Cancel();
+            }
+        }
+
         public void SetColor(int colorIx)
         {
             ColorIndex = colorIx;
@@ -141,7 +155,15 @@ namespace TileGameMaker.Windows
             BlueTextBox.Text = Color.B.ToString();
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private void Undo()
+        {
+            Color = OriginalColor;
+            Palette.Set(ColorIndex, OriginalColor);
+            UpdateAllControls();
+            Refresh();
+        }
+
+        private void Cancel()
         {
             Color = OriginalColor;
             Palette.Set(ColorIndex, OriginalColor);
@@ -151,10 +173,12 @@ namespace TileGameMaker.Windows
 
         private void BtnUndo_Click(object sender, EventArgs e)
         {
-            Color = OriginalColor;
-            Palette.Set(ColorIndex, OriginalColor);
-            UpdateAllControls();
-            Refresh();
+            Undo();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Cancel();
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
