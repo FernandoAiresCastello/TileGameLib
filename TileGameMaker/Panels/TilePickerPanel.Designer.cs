@@ -37,7 +37,6 @@
             this.HoverLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnImportFromImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportBinaryStrings = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,8 +142,7 @@
             this.toolStripDropDownButton2.AutoToolTip = false;
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnImportRawBytes,
-            this.BtnImportFromImage});
+            this.BtnImportRawBytes});
             this.toolStripDropDownButton2.Image = global::TileGameMaker.Properties.Resources.folder;
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -157,13 +155,6 @@
             this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnImportRawBytes.Text = "Raw bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
-            // 
-            // BtnImportFromImage
-            // 
-            this.BtnImportFromImage.Name = "BtnImportFromImage";
-            this.BtnImportFromImage.Size = new System.Drawing.Size(180, 22);
-            this.BtnImportFromImage.Text = "From image";
-            this.BtnImportFromImage.Click += new System.EventHandler(this.BtnImportFromImage_Click);
             // 
             // toolStripDropDownButton1
             // 
@@ -331,7 +322,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnExportHex;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
         private System.Windows.Forms.ToolStripMenuItem BtnImportRawBytes;
-        private System.Windows.Forms.ToolStripMenuItem BtnImportFromImage;
         private System.Windows.Forms.ToolStripMenuItem BtnExportToImage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripDropDownButton BtnMoreActions;

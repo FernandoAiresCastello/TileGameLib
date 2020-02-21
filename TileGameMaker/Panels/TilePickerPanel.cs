@@ -267,22 +267,11 @@ namespace TileGameMaker.Panels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 TilePicker.Graphics.Tileset.SetEqual(TilesetFile.Import(format, dialog.FileName));
+                TilePicker.UpdateSize();
                 TilePicker.Refresh();
                 UpdateStatus();
 
                 Alert.Info("Tileset imported successfully!");
-            }
-        }
-
-        private void BtnImportFromImage_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
-            dialog.Filter = $"PNG image file (*.png)|*.png";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                TilePicker.Graphics.Tileset.LoadFromImage(dialog.FileName);
             }
         }
 

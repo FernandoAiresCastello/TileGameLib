@@ -24,15 +24,20 @@ namespace TileGameMaker.TiledDisplays
         public TilePickerDisplay(Control parent, Tileset tileset) 
             : base(parent, 1, 1, TilePickerZoom)
         {
-            ResizeGraphicsByTileCount(tileset.Size, TilesPerRow);
-
-            TileIndex = 0;
             Graphics.Tileset = tileset;
+            TileIndex = 0;
+
+            UpdateSize();
             Graphics.Palette.Set(0, SystemColors.WindowText);
             Graphics.Palette.Set(1, SystemColors.Window);
             Graphics.Palette.Set(2, SystemColors.HighlightText);
             Graphics.Palette.Set(3, SystemColors.Highlight);
             Graphics.Palette.Set(4, Color.Red); // Rearrange mode
+        }
+
+        public void UpdateSize()
+        {
+            ResizeGraphicsByTileCount(Graphics.Tileset.Size, TilesPerRow);
         }
 
         protected override void OnPaint(PaintEventArgs e)
