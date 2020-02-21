@@ -103,6 +103,7 @@
     <Compile Include="Util\Config.cs" />
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
+    <Compile Include="Util\UserSettings.cs" />
     <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
     </Compile>

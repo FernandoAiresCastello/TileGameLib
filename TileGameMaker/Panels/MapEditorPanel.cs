@@ -685,7 +685,7 @@ namespace TileGameMaker.Panels
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
             Map.MusicFile = "";
-            Editor.ResizeMap(MapEditor.DefaultMapWidth, MapEditor.DefaultMapHeight);
+            Editor.ResizeMap(Editor.DefaultMapWidth, Editor.DefaultMapHeight);
             Editor.MapFile = null;
             Editor.UpdateMapProperties();
             ClearMap();

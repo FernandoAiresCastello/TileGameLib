@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
+using TileGameLib.Util;
 using TileGameMaker.Panels;
 using TileGameMaker.Util;
 using TileGameMaker.Windows;
@@ -33,9 +35,10 @@ namespace TileGameMaker.MapEditorElements
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
 
-        public static readonly string DefaultWorkspacePath = Config.ReadString("DefaultWorkspacePath");
-        public static readonly int DefaultMapWidth = Config.ReadInt("DefaultMapWidth");
-        public static readonly int DefaultMapHeight = Config.ReadInt("DefaultMapHeight");
+        public UserSettings Settings { get; private set; }
+
+        public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
+        public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
 
         private readonly List<Control> Children = new List<Control>();
 
@@ -54,15 +57,19 @@ namespace TileGameMaker.MapEditorElements
         public MapEditor(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
-
-            WorkspacePath = DefaultWorkspacePath;
-            if (!Directory.Exists(WorkspacePath))
-                Directory.CreateDirectory(WorkspacePath);
+            ApplyUserSettings();
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
 
-            Palette = Map.Palette;
-            Tileset = Map.Tileset;
+            if (Palette == null)
+                Palette = Map.Palette;
+            else
+                Map.Palette = Palette;
+
+            if (Tileset == null)
+                Tileset = Map.Tileset;
+            else
+                Map.Tileset = Tileset;
 
             MapEditorControl = new MapEditorPanel(this);
             TemplateControl = new TemplatePanel(this);
@@ -78,6 +85,45 @@ namespace TileGameMaker.MapEditorElements
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
+        }
+
+        private void ApplyUserSettings()
+        {
+            if (Settings == null)
+                Settings = new UserSettings();
+
+            if (Settings.Has("TilesetFile"))
+            {
+                string tilesetFile = Settings.Get("TilesetFile");
+
+                try
+                {
+                    Tileset = TilesetFile.LoadFromRawBytes(tilesetFile);
+                }
+                catch
+                {
+                    Alert.Error("Tileset file not found: " + tilesetFile);
+                }
+            }
+
+            if (Settings.Has("PaletteFile"))
+            {
+                string paletteFile = Settings.Get("PaletteFile");
+
+                try
+                {
+                    Palette = PaletteFile.LoadFromRawBytes(paletteFile);
+                }
+                catch
+                {
+                    Alert.Error("Palette file not found: " + paletteFile);
+                }
+            }
+
+            if (Settings.Has("DefaultMapWidth"))
+                DefaultMapWidth = Settings.GetInteger("DefaultMapWidth");
+            if (Settings.Has("DefaultMapHeight"))
+                DefaultMapHeight = Settings.GetInteger("DefaultMapHeight");
         }
 
         public void Show()

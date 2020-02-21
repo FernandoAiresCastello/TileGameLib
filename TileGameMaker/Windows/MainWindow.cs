@@ -57,7 +57,8 @@ namespace TileGameMaker.Windows
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
-            ShowSplashWindow();
+            if (!MapEditor.Settings.Has("ShowSplashWindow") || MapEditor.Settings.GetBool("ShowSplashWindow"))
+                ShowSplashWindow();
         }
 
         private void AddControl(Control control, Control panel)
