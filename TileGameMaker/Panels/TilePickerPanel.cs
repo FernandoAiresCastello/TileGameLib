@@ -25,6 +25,8 @@ namespace TileGameMaker.Panels
         private TileEditor16x16Window TileEditor16x16Window;
         private TilePixels ClipboardTile = new TilePixels();
 
+        private bool RearrangeMode => BtnRearrange.Checked;
+
         public TilePickerPanel()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace TileGameMaker.Panels
             TilePicker.MouseMove += TilePicker_MouseMove;
             TilePicker.MouseLeave += TilePicker_MouseLeave;
             TilePicker.MouseDown += TilePicker_MouseDown;
+            TilePicker.MouseUp += TilePicker_MouseUp;
             TilePicker.MouseDoubleClick += TilePicker_MouseDoubleClick;
 
             UpdateDefaultTilesetMenu();
@@ -100,14 +103,28 @@ namespace TileGameMaker.Panels
 
             if (e.Button == MouseButtons.Left)
             {
-                TilePicker.SelectTileIndex(tileIx);
-                UpdateStatus();
+                if (RearrangeMode)
+                {
+                    TilePicker.StartRearrange(tileIx);
+                }
+                else
+                {
+                    TilePicker.SelectTileIndex(tileIx);
+                    UpdateStatus();
+                }
             }
         }
 
         private void TilePicker_MouseMove(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+                return;
+
+            if (RearrangeMode)
+            {
+                TilePicker.UpdateRearrange(tileIx);
+            }
 
             if (tileIx >= 0 && tileIx < TilePicker.Graphics.Tileset.Size)
                 SetHoverStatus("IX: " + tileIx);
@@ -115,9 +132,26 @@ namespace TileGameMaker.Panels
                 SetHoverStatus("");
         }
 
+        private void TilePicker_MouseUp(object sender, MouseEventArgs e)
+        {
+            int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+                return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if (RearrangeMode)
+                {
+                    TilePicker.EndRearrange(tileIx);
+                }
+            }
+        }
+
         private void TilePicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
+            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+                return;
 
             if (BtnUse16x16TileEditor.Checked)
             {
@@ -317,6 +351,11 @@ namespace TileGameMaker.Panels
         {
             TilePicker.Add8Tiles();
             UpdateStatus();
+        }
+
+        private void BtnRearrange_Click(object sender, EventArgs e)
+        {
+            BtnRearrange.Checked = !BtnRearrange.Checked;
         }
     }
 }

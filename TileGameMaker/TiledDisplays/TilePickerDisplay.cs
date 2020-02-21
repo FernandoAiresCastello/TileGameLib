@@ -17,6 +17,10 @@ namespace TileGameMaker.TiledDisplays
         private const int TilesPerRow = 8;
         private const int TilePickerZoom = 3;
 
+        private bool RearrangeMode = false;
+        private int RearrangeTileSrc = 0;
+        private int RearrangeTileDst = 0;
+
         public TilePickerDisplay(Control parent, Tileset tileset) 
             : base(parent, 1, 1, TilePickerZoom)
         {
@@ -28,6 +32,7 @@ namespace TileGameMaker.TiledDisplays
             Graphics.Palette.Set(1, SystemColors.Window);
             Graphics.Palette.Set(2, SystemColors.HighlightText);
             Graphics.Palette.Set(3, SystemColors.Highlight);
+            Graphics.Palette.Set(4, Color.Red); // Rearrange mode
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -47,6 +52,10 @@ namespace TileGameMaker.TiledDisplays
                 int bgc = 1;
                 int selectedFgc = 2;
                 int selectedBgc = 3;
+                int rearrangeModeSrcFgc = 2;
+                int rearrangeModeSrcBgc = 4;
+                int rearrangeModeDstFgc = 0;
+                int rearrangeModeDstBgc = 4;
 
                 if (i < Graphics.Tileset.Size)
                 {
@@ -54,6 +63,14 @@ namespace TileGameMaker.TiledDisplays
                         Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
                     else
                         Graphics.PutTile(x, y, i, fgc, bgc);
+
+                    if (RearrangeMode)
+                    {
+                        if (i == RearrangeTileSrc)
+                            Graphics.PutTile(x, y, i, rearrangeModeSrcFgc, rearrangeModeSrcBgc);
+                        else if (i == RearrangeTileDst)
+                            Graphics.PutTile(x, y, i, rearrangeModeDstFgc, rearrangeModeDstBgc);
+                    }
                 }
                 else
                 {
@@ -82,8 +99,16 @@ namespace TileGameMaker.TiledDisplays
         public int GetTileIndexAtMousePos(Point mousePos)
         {
             Point p = GetMouseToCellPos(mousePos);
-            Tile tile = Graphics.GetTile(p.X, p.Y);
-            return tile.Index;
+
+            try
+            {
+                Tile tile = Graphics.GetTile(p.X, p.Y);
+                return tile.Index;
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
         public void Clear()
@@ -110,6 +135,27 @@ namespace TileGameMaker.TiledDisplays
         {
             Graphics.Tileset.AddBlank(8);
             ResizeGraphics(Cols, Rows + 1);
+            Refresh();
+        }
+
+        public void StartRearrange(int src)
+        {
+            RearrangeMode = true;
+            RearrangeTileSrc = src;
+            Refresh();
+        }
+
+        public void UpdateRearrange(int index)
+        {
+            RearrangeTileDst = index;
+            Refresh();
+        }
+
+        public void EndRearrange(int dst)
+        {
+            RearrangeMode = false;
+            RearrangeTileDst = dst;
+            Graphics.Tileset.Swap(RearrangeTileSrc, RearrangeTileDst);
             Refresh();
         }
     }

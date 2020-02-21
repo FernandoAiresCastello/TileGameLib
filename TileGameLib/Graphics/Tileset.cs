@@ -103,6 +103,13 @@ namespace TileGameLib.Graphics
                 Pixels[i].SetEqual(other.Pixels[i]);
         }
 
+        public void Swap(int first, int second)
+        {
+            TilePixels temp = Get(first);
+            Set(first, Get(second));
+            Set(second, temp);
+        }
+
         public void LoadFromImage(string file)
         {
             using (Bitmap image = (Bitmap)Image.FromFile(file))

@@ -273,6 +273,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap document_page_next {
+            get {
+                object obj = ResourceManager.GetObject("document_page_next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap draw_eraser {
             get {
                 object obj = ResourceManager.GetObject("draw_eraser", resourceCulture);
@@ -376,6 +386,16 @@ namespace TileGameMaker.Properties {
         internal static System.Drawing.Bitmap layer_delete {
             get {
                 object obj = ResourceManager.GetObject("layer_delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap layer_stack_arrange {
+            get {
+                object obj = ResourceManager.GetObject("layer_stack_arrange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -300,6 +300,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\layer_stack_arrange.png" />
     <None Include="Resources\script_code.png" />
     <None Include="Resources\site_backup_and_restore.png" />
     <None Include="Resources\highlighter_text.png" />
@@ -359,6 +360,7 @@
     <None Include="Resources\application_xp_terminal.png" />
     <None Include="Resources\database_lightning.png" />
     <None Include="Resources\add.png" />
+    <None Include="Resources\document_page_next.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>
