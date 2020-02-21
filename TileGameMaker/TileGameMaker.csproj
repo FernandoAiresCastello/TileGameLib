@@ -358,6 +358,7 @@
     <None Include="Resources\database_edit.png" />
     <None Include="Resources\application_xp_terminal.png" />
     <None Include="Resources\database_lightning.png" />
+    <None Include="Resources\add.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

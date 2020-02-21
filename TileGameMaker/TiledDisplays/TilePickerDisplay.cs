@@ -14,15 +14,16 @@ namespace TileGameMaker.TiledDisplays
     {
         public int TileIndex { set; get; }
 
-        public TilePickerDisplay(Control parent, int zoom) 
-            : this(parent, 1, 1, zoom)
-        {
-        }
+        private const int TilesPerRow = 8;
+        private const int TilePickerZoom = 3;
 
-        public TilePickerDisplay(Control parent, int cols, int rows, int zoom)
-            : base(parent, cols, rows, zoom)
+        public TilePickerDisplay(Control parent, Tileset tileset) 
+            : base(parent, 1, 1, TilePickerZoom)
         {
+            ResizeGraphicsByTileCount(tileset.Size, TilesPerRow);
+
             TileIndex = 0;
+            Graphics.Tileset = tileset;
             Graphics.Palette.Set(0, SystemColors.WindowText);
             Graphics.Palette.Set(1, SystemColors.Window);
             Graphics.Palette.Set(2, SystemColors.HighlightText);
@@ -102,6 +103,13 @@ namespace TileGameMaker.TiledDisplays
         {
             Graphics.Tileset.InitDefault();
             TileIndex = 0;
+            Refresh();
+        }
+
+        public void Add8Tiles()
+        {
+            Graphics.Tileset.AddBlank(8);
+            ResizeGraphics(Cols, Rows + 1);
             Refresh();
         }
     }

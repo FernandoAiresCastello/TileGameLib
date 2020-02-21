@@ -25,9 +25,6 @@ namespace TileGameMaker.Panels
         private TileEditor16x16Window TileEditor16x16Window;
         private TilePixels ClipboardTile = new TilePixels();
 
-        //private static readonly int MinTilesPerRowAllowed = 1;
-        //private static readonly int MaxTilesPerRowAllowed = 16;
-
         public TilePickerPanel()
         {
             InitializeComponent();
@@ -38,12 +35,7 @@ namespace TileGameMaker.Panels
             InitializeComponent();
             MapEditor = editor;
 
-            TilePicker = new TilePickerDisplay(PnlTilePicker, Config.ReadInt("TilePickerZoom"));
-            int tilesPerRow = Config.ReadInt("TilePickerTilesPerRow");
-            TilePicker.ResizeGraphicsByTileCount(TilePicker.Graphics.Tileset.Size, tilesPerRow);
-            //TxtTilesPerRow.Text = tilesPerRow.ToString();
-
-            TilePicker.Graphics.Tileset = editor.Tileset;
+            TilePicker = new TilePickerDisplay(PnlTilePicker, editor.Tileset);
             TilePicker.ShowGrid = true;
             TilePicker.MouseMove += TilePicker_MouseMove;
             TilePicker.MouseLeave += TilePicker_MouseLeave;
@@ -185,45 +177,6 @@ namespace TileGameMaker.Panels
             MapEditor.TemplateControl.Refresh();
         }
 
-        private void TxtTilesPerRow_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                ApplyTilesPerRowSetting();
-        }
-
-        private void TxtTilesPerRow_Leave(object sender, EventArgs e)
-        {
-            ApplyTilesPerRowSetting();
-        }
-
-        private void ApplyTilesPerRowSetting()
-        {/*
-            int originalTilesPerRow = TilePicker.Cols;
-            bool isNumber = int.TryParse(TxtTilesPerRow.Text, out int tilesPerRow);
-            bool revert = false;
-
-            if (isNumber)
-            {
-                if (tilesPerRow >= MinTilesPerRowAllowed && tilesPerRow <= MaxTilesPerRowAllowed)
-                {
-                    TilePicker.ResizeGraphicsByTileCount(TilePicker.Graphics.Tileset.Size, tilesPerRow);
-                    TilePicker.Refresh();
-                }
-                else
-                {
-                    Alert.Warning($"Maximum tiles per row must be between {MinTilesPerRowAllowed} and {MaxTilesPerRowAllowed}");
-                    revert = true;
-                }
-            }
-            else
-            {
-                revert = true;
-            }
-
-            if (revert)
-                TxtTilesPerRow.Text = originalTilesPerRow.ToString();*/
-        }
-
         private void BtnExportRawBytes_Click(object sender, EventArgs e)
         {
             Export(TilesetExportFormat.RawBytes);
@@ -358,6 +311,12 @@ namespace TileGameMaker.Panels
                     Alert.Warning("Invalid range");
                 }
             }
+        }
+
+        private void BtnAdd8Tiles_Click(object sender, EventArgs e)
+        {
+            TilePicker.Add8Tiles();
+            UpdateStatus();
         }
     }
 }
