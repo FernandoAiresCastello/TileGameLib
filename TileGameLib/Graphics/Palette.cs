@@ -10,15 +10,28 @@ namespace TileGameLib.Graphics
 {
     public class Palette
     {
-        public static readonly int DefaultSize = 256;
         public List<int> Colors { get; private set; } = new List<int>();
         public int Size => Colors.Count;
         public int White => GetWhite();
         public int Black => GetBlack();
 
-        public Palette()
+        private const Default DefaultPalette = Default.Classic;
+        private const int DefaultSize = 256;
+
+        public enum Default
         {
-            InitDefault();
+            Classic,
+            MSX
+        }
+
+        public Palette(Default defaultPalette = DefaultPalette)
+        {
+            InitDefault(defaultPalette);
+        }
+
+        public static string[] GetDefaultPaletteNames()
+        {
+            return Enum.GetNames(typeof(Default));
         }
 
         public void Add(uint color)
@@ -213,10 +226,23 @@ namespace TileGameLib.Graphics
             return ((num4 - num5) / ((2f - num4) - num5));
         }
 
-        public void InitDefault()
+        public void InitDefault(Default defaultPalette = DefaultPalette)
+        {
+            switch (defaultPalette)
+            {
+                case Default.Classic: InitDefaultClassic(); break;
+                case Default.MSX: InitDefaultMSX(); break;
+
+                default:
+                    throw new TileGameLibException("Invalid palette default: " + defaultPalette);
+            }
+        }
+
+        public void InitDefaultClassic()
         {
             Clear();
             int i = 0;
+
             Set(i++, 0xff000000);
             Set(i++, 0xffffffff);
             Set(i++, 0xffe0e0e0);
@@ -289,6 +315,29 @@ namespace TileGameLib.Graphics
             Set(i++, 0xffff80ff);
             Set(i++, 0xffffc0ff);
             Set(i++, 0xffffe0ff);
+        }
+
+        public void InitDefaultMSX()
+        {
+            Clear();
+            int i = 0;
+
+            Set(i++, 0xff000000);
+            Set(i++, 0xff000000);
+            Set(i++, 0xff40b64a);
+            Set(i++, 0xff73ce7c);
+            Set(i++, 0xff5955df);
+            Set(i++, 0xff7e75f0);
+            Set(i++, 0xffb75e51);
+            Set(i++, 0xff64daee);
+            Set(i++, 0xffd96459);
+            Set(i++, 0xfffe877c);
+            Set(i++, 0xffcac15e);
+            Set(i++, 0xffddce85);
+            Set(i++, 0xff3ca042);
+            Set(i++, 0xffb565b3);
+            Set(i++, 0xffcacaca);
+            Set(i++, 0xffffffff);
         }
     }
 }

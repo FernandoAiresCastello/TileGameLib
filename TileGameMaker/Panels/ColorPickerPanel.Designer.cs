@@ -42,11 +42,11 @@
             this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnReset = new System.Windows.Forms.ToolStripButton();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
+            this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -123,7 +123,7 @@
             this.toolStripSplitButton1,
             this.toolStripSeparator1,
             this.BtnNew,
-            this.BtnReset});
+            this.BtnRestoreDefault});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
@@ -201,17 +201,6 @@
             this.BtnNew.ToolTipText = "Clear palette";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
-            // BtnReset
-            // 
-            this.BtnReset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnReset.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(23, 20);
-            this.BtnReset.Text = "toolStripButton1";
-            this.BtnReset.ToolTipText = "Reset palette to default";
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
             // PnlColorPicker
             // 
             this.PnlColorPicker.AutoScroll = true;
@@ -249,6 +238,14 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
+            // BtnRestoreDefault
+            // 
+            this.BtnRestoreDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRestoreDefault.Image = global::TileGameMaker.Properties.Resources.site_backup_and_restore;
+            this.BtnRestoreDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRestoreDefault.Name = "BtnRestoreDefault";
+            this.BtnRestoreDefault.Size = new System.Drawing.Size(29, 20);
+            // 
             // ColorPickerPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,7 +280,6 @@
         private System.Windows.Forms.Panel ForeBackColorPanels;
         private System.Windows.Forms.Panel BackColorPanel;
         private System.Windows.Forms.Panel ForeColorPanel;
-        private System.Windows.Forms.ToolStripButton BtnReset;
         private System.Windows.Forms.ToolStripDropDownButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem BtnExportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexRgb;
@@ -291,5 +287,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnImportRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexCsv;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripDropDownButton BtnRestoreDefault;
     }
 }

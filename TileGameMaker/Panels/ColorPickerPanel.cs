@@ -13,6 +13,7 @@ using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
 using TileGameMaker.Util;
 using TileGameLib.File;
+using TileGameLib.Graphics;
 
 namespace TileGameMaker.Panels
 {
@@ -50,16 +51,43 @@ namespace TileGameMaker.Panels
             ColorPicker.MouseLeave += ColorPicker_MouseLeave;
             ColorPicker.MouseDown += ColorPicker_MouseClick;
             ColorPicker.MouseDoubleClick += ColorPicker_MouseDoubleClick;
+
             ForeColorPanel.MouseDown += ColorPanel_Click;
             BackColorPanel.MouseDown += ColorPanel_Click;
+
             ColorEditorWindow = new ColorEditorWindow(ColorPicker.Graphics.Palette);
             ColorEditorWindow.Subscribe(this);
             ColorEditorWindow.Subscribe(ColorPicker);
             ColorEditorWindow.Subscribe(editor.MapEditorControl);
             ColorEditorWindow.Subscribe(editor.TemplateControl);
+
+            UpdateDefaultPaletteMenu();
             UpdatePanelColors();
             UpdateStatus();
             SetHoverStatus("");
+        }
+
+        private void UpdateDefaultPaletteMenu()
+        {
+            int defaultPaletteEnumValue = 0;
+
+            foreach (string defaultTileset in Palette.GetDefaultPaletteNames())
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(defaultTileset);
+                item.Click += DefaultPaletteItem_Click;
+                item.Tag = defaultPaletteEnumValue;
+                BtnRestoreDefault.DropDownItems.Add(item);
+                defaultPaletteEnumValue++;
+            }
+        }
+
+        private void DefaultPaletteItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            int defaultPaletteEnumValue = (int)item.Tag;
+            ColorPicker.Graphics.Palette.InitDefault((Palette.Default)defaultPaletteEnumValue);
+            UpdateStatus();
+            Refresh();
         }
 
         public void SetForeColorIndex(int index)
@@ -180,16 +208,6 @@ namespace TileGameMaker.Panels
             if (Alert.Confirm("Clear palette?"))
             {
                 ColorPicker.Clear();
-                UpdatePanelColors();
-                UpdateStatus();
-            }
-        }
-
-        private void BtnReset_Click(object sender, EventArgs e)
-        {
-            if (Alert.Confirm("Reset palette to default colors?"))
-            {
-                ColorPicker.ResetToDefault();
                 UpdatePanelColors();
                 UpdateStatus();
             }
