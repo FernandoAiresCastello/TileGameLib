@@ -21,7 +21,8 @@ namespace TileGameLib.Graphics
         public enum Default
         {
             Classic,
-            MSX
+            MSX,
+            NES
         }
 
         public Palette(Default defaultPalette = DefaultPalette)
@@ -232,6 +233,7 @@ namespace TileGameLib.Graphics
             {
                 case Default.Classic: InitDefaultClassic(); break;
                 case Default.MSX: InitDefaultMSX(); break;
+                case Default.NES: InitDefaultNES(); break;
 
                 default:
                     throw new TileGameLibException("Invalid palette default: " + defaultPalette);
@@ -338,6 +340,77 @@ namespace TileGameLib.Graphics
             Set(i++, 0xffb565b3);
             Set(i++, 0xffcacaca);
             Set(i++, 0xffffffff);
+        }
+
+        public void InitDefaultNES()
+        {
+            Clear();
+            int i = 0;
+
+            Set(i++, 0xFF7C7C7C);
+            Set(i++, 0xFF0000FC);
+            Set(i++, 0xFF0000BC);
+            Set(i++, 0xFF4428BC);
+            Set(i++, 0xFF940084);
+            Set(i++, 0xFFA80020);
+            Set(i++, 0xFFA81000);
+            Set(i++, 0xFF881400);
+            Set(i++, 0xFF503000);
+            Set(i++, 0xFF007800);
+            Set(i++, 0xFF006800);
+            Set(i++, 0xFF005800);
+            Set(i++, 0xFF004058);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFFBCBCBC);
+            Set(i++, 0xFF0078F8);
+            Set(i++, 0xFF0058F8);
+            Set(i++, 0xFF6844FC);
+            Set(i++, 0xFFD800CC);
+            Set(i++, 0xFFE40058);
+            Set(i++, 0xFFF83800);
+            Set(i++, 0xFFE45C10);
+            Set(i++, 0xFFAC7C00);
+            Set(i++, 0xFF00B800);
+            Set(i++, 0xFF00A800);
+            Set(i++, 0xFF00A844);
+            Set(i++, 0xFF008888);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFFF8F8F8);
+            Set(i++, 0xFF3CBCFC);
+            Set(i++, 0xFF6888FC);
+            Set(i++, 0xFF9878F8);
+            Set(i++, 0xFFF878F8);
+            Set(i++, 0xFFF85898);
+            Set(i++, 0xFFF87858);
+            Set(i++, 0xFFFCA044);
+            Set(i++, 0xFFF8B800);
+            Set(i++, 0xFFB8F818);
+            Set(i++, 0xFF58D854);
+            Set(i++, 0xFF58F898);
+            Set(i++, 0xFF00E8D8);
+            Set(i++, 0xFF787878);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFFFCFCFC);
+            Set(i++, 0xFFA4E4FC);
+            Set(i++, 0xFFB8B8F8);
+            Set(i++, 0xFFD8B8F8);
+            Set(i++, 0xFFF8B8F8);
+            Set(i++, 0xFFF8A4C0);
+            Set(i++, 0xFFF0D0B0);
+            Set(i++, 0xFFFCE0A8);
+            Set(i++, 0xFFF8D878);
+            Set(i++, 0xFFD8F878);
+            Set(i++, 0xFFB8F8B8);
+            Set(i++, 0xFFB8F8D8);
+            Set(i++, 0xFF00FCFC);
+            Set(i++, 0xFFF8D8F8);
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF000000);
         }
     }
 }
