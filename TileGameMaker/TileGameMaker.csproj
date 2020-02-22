@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapEditorElements\MacroPlayer.cs" />
     <Compile Include="MapEditorElements\MapProperties.cs" />
     <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
     <Compile Include="Panels\CommandLinePanel.cs">

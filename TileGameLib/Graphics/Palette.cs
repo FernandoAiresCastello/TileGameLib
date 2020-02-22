@@ -21,8 +21,9 @@ namespace TileGameLib.Graphics
         public enum Default
         {
             Classic,
-            MSX,
-            NES
+            ROYGBIV,
+            NES,
+            MSX
         }
 
         public Palette(Default defaultPalette = DefaultPalette)
@@ -234,6 +235,7 @@ namespace TileGameLib.Graphics
                 case Default.Classic: InitDefaultClassic(); break;
                 case Default.MSX: InitDefaultMSX(); break;
                 case Default.NES: InitDefaultNES(); break;
+                case Default.ROYGBIV: InitDefaultROYGBIV(); break;
 
                 default:
                     throw new TileGameLibException("Invalid palette default: " + defaultPalette);
@@ -411,6 +413,24 @@ namespace TileGameLib.Graphics
             Set(i++, 0xFFF8D8F8);
             Set(i++, 0xFF000000);
             Set(i++, 0xFF000000);
+        }
+
+        public void InitDefaultROYGBIV()
+        {
+            Clear();
+            int i = 0;
+
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFFffffff);
+            Set(i++, 0xFFff0000);
+            Set(i++, 0xFFff8000);
+            Set(i++, 0xFFffff00);
+            Set(i++, 0xFF00ff00);
+            Set(i++, 0xFF00ffff);
+            Set(i++, 0xFF0000ff);
+            Set(i++, 0xFF8000ff);
+            Set(i++, 0xFFff00ff);
+            Set(i++, 0xFF808080);
         }
     }
 }

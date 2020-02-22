@@ -122,6 +122,11 @@ namespace TileGameMaker.Panels
                         ClearInput();
                         MapEditor.ShowCommandLine(false);
                         break;
+                    case "macro":
+                        MacroPlayer mp = new MacroPlayer(Map);
+                        string result = mp.Execute(args);
+                        Print(result);
+                        break;
                     default:
                         Print("Invalid command");
                         break;
