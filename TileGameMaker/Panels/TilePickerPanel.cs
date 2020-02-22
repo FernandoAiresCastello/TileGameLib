@@ -105,7 +105,7 @@ namespace TileGameMaker.Panels
         private void TilePicker_MouseDown(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+            if (tileIx == TilePickerDisplay.InvalidIndex)
                 return;
 
             if (e.Button == MouseButtons.Left)
@@ -125,7 +125,7 @@ namespace TileGameMaker.Panels
         private void TilePicker_MouseMove(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+            if (tileIx == TilePickerDisplay.InvalidIndex)
                 return;
 
             if (RearrangeMode)
@@ -142,7 +142,7 @@ namespace TileGameMaker.Panels
         private void TilePicker_MouseUp(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+            if (tileIx == TilePickerDisplay.InvalidIndex)
                 return;
 
             if (e.Button == MouseButtons.Left)
@@ -157,7 +157,7 @@ namespace TileGameMaker.Panels
         private void TilePicker_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int tileIx = TilePicker.GetTileIndexAtMousePos(e.Location);
-            if (tileIx < 0 || tileIx >= TilePicker.Graphics.Tileset.Size)
+            if (tileIx == TilePickerDisplay.InvalidIndex)
                 return;
 
             if (BtnUse16x16TileEditor.Checked)

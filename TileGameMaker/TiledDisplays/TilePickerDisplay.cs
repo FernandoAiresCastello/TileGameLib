@@ -12,15 +12,23 @@ namespace TileGameMaker.TiledDisplays
 {
     public class TilePickerDisplay : TiledDisplay
     {
+        public static readonly int InvalidIndex = -1;
+
         public int TileIndex { set; get; }
 
         private const int TilePickerZoom = 3;
-
         private readonly int TilesPerRow;
-
         private bool RearrangeMode = false;
         private int RearrangeTileSrc = 0;
         private int RearrangeTileDst = 0;
+
+        private enum IndicatorColor
+        {
+            Invalid, Fore, Back,
+            ForeSelected, BackSelected,
+            ForeRearrangeSrc, BackRearrangeSrc,
+            ForeRearrangeDst, BackRearrangeDst
+        }
 
         public TilePickerDisplay(Control parent, Tileset tileset, int tilesPerRow)
             : base(parent, 1, 1, TilePickerZoom)
@@ -30,11 +38,21 @@ namespace TileGameMaker.TiledDisplays
             TileIndex = 0;
 
             UpdateSize();
-            Graphics.Palette.Set(0, SystemColors.WindowText);
-            Graphics.Palette.Set(1, SystemColors.Window);
-            Graphics.Palette.Set(2, SystemColors.HighlightText);
-            Graphics.Palette.Set(3, SystemColors.Highlight);
-            Graphics.Palette.Set(4, Color.Red); // Rearrange mode
+
+            SetIndicatorColor(IndicatorColor.Invalid, Color.LightGray);
+            SetIndicatorColor(IndicatorColor.Fore, Color.Black);
+            SetIndicatorColor(IndicatorColor.Back, Color.White);
+            SetIndicatorColor(IndicatorColor.ForeSelected, Color.White);
+            SetIndicatorColor(IndicatorColor.BackSelected, SystemColors.Highlight);
+            SetIndicatorColor(IndicatorColor.ForeRearrangeSrc, Color.White);
+            SetIndicatorColor(IndicatorColor.BackRearrangeSrc, Color.Red);
+            SetIndicatorColor(IndicatorColor.ForeRearrangeDst, Color.Black);
+            SetIndicatorColor(IndicatorColor.BackRearrangeDst, Color.Red);
+        }
+
+        private void SetIndicatorColor(IndicatorColor indicatorColor, Color color)
+        {
+            Graphics.Palette.Set((int)indicatorColor, color);
         }
 
         public void UpdateSize()
@@ -55,35 +73,44 @@ namespace TileGameMaker.TiledDisplays
 
             for (int i = 0; i < TileCount; i++)
             {
-                int fgc = 0;
-                int bgc = 1;
-                int selectedFgc = 2;
-                int selectedBgc = 3;
-                int rearrangeModeSrcFgc = 2;
-                int rearrangeModeSrcBgc = 4;
-                int rearrangeModeDstFgc = 0;
-                int rearrangeModeDstBgc = 4;
+                int fgc;
+                int bgc;
+                bool valid = i < Graphics.Tileset.Size;
 
-                if (i < Graphics.Tileset.Size)
+                if (valid)
                 {
                     if (i == TileIndex && drawCursor)
-                        Graphics.PutTile(x, y, i, selectedFgc, selectedBgc);
+                    {
+                        fgc = (int)IndicatorColor.ForeSelected;
+                        bgc = (int)IndicatorColor.BackSelected;
+                    }
                     else
-                        Graphics.PutTile(x, y, i, fgc, bgc);
+                    {
+                        fgc = (int)IndicatorColor.Fore;
+                        bgc = (int)IndicatorColor.Back;
+                    }
 
                     if (RearrangeMode)
                     {
                         if (i == RearrangeTileSrc)
-                            Graphics.PutTile(x, y, i, rearrangeModeSrcFgc, rearrangeModeSrcBgc);
+                        {
+                            fgc = (int)IndicatorColor.ForeRearrangeSrc;
+                            bgc = (int)IndicatorColor.BackRearrangeSrc;
+                        }
                         else if (i == RearrangeTileDst)
-                            Graphics.PutTile(x, y, i, rearrangeModeDstFgc, rearrangeModeDstBgc);
+                        {
+                            fgc = (int)IndicatorColor.ForeRearrangeDst;
+                            bgc = (int)IndicatorColor.BackRearrangeDst;
+                        }
                     }
                 }
                 else
                 {
-                    Graphics.PutTile(x, y, 0, bgc, bgc);
+                    fgc = (int)IndicatorColor.Invalid;
+                    bgc = (int)IndicatorColor.Invalid;
                 }
 
+                Graphics.PutTile(x, y, valid ? i : 0, fgc, bgc);
                 x++;
 
                 if (x >= Graphics.Cols)
@@ -110,11 +137,15 @@ namespace TileGameMaker.TiledDisplays
             try
             {
                 Tile tile = Graphics.GetTile(p.X, p.Y);
+
+                if (p.Y * Cols + p.X >= Graphics.Tileset.Size)
+                    return InvalidIndex;
+
                 return tile.Index;
             }
             catch
             {
-                return -1;
+                return InvalidIndex;
             }
         }
 
@@ -141,7 +172,7 @@ namespace TileGameMaker.TiledDisplays
         public void Add8Tiles()
         {
             Graphics.Tileset.AddBlank(8);
-            ResizeGraphics(Cols, Rows + 1);
+            UpdateSize();
             Refresh();
         }
 
