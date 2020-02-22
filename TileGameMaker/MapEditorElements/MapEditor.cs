@@ -73,7 +73,7 @@ namespace TileGameMaker.MapEditorElements
 
             MapEditorControl = new MapEditorPanel(this);
             TemplateControl = new TemplatePanel(this);
-            TilePickerControl = new TilePickerPanel(this);
+            TilePickerControl = new TilePickerPanel(this, 8);
             ColorPickerControl = new ColorPickerPanel(this);
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);

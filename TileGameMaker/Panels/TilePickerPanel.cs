@@ -19,6 +19,12 @@ namespace TileGameMaker.Panels
 {
     public partial class TilePickerPanel : BasePanel
     {
+        public bool PopOutAllowed
+        {
+            set { BtnPopOutWindow.Enabled = BtnPopOutWindow.Visible = value; }
+            get { return BtnPopOutWindow.Enabled; }
+        }
+
         private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
         private TileEditor8x8Window TileEditor8x8Window;
@@ -32,13 +38,14 @@ namespace TileGameMaker.Panels
             InitializeComponent();
         }
 
-        public TilePickerPanel(MapEditor editor)
+        public TilePickerPanel(MapEditor editor, int tilesPerRow)
         {
             InitializeComponent();
-            MapEditor = editor;
 
-            TilePicker = new TilePickerDisplay(PnlTilePicker, editor.Tileset);
+            MapEditor = editor;
+            TilePicker = new TilePickerDisplay(PnlTilePicker, editor.Tileset, tilesPerRow);
             TilePicker.ShowGrid = true;
+
             TilePicker.MouseMove += TilePicker_MouseMove;
             TilePicker.MouseLeave += TilePicker_MouseLeave;
             TilePicker.MouseDown += TilePicker_MouseDown;
@@ -345,6 +352,34 @@ namespace TileGameMaker.Panels
         private void BtnRearrange_Click(object sender, EventArgs e)
         {
             BtnRearrange.Checked = !BtnRearrange.Checked;
+        }
+
+        private void BtnPopOutWindow_Click(object sender, EventArgs e)
+        {
+            if (!PopOutAllowed)
+                return;
+
+            Hide();
+
+            Form window = new Form();
+            window.Text = "Tileset";
+            window.Size = new Size(619, 626);
+            window.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            window.StartPosition = FormStartPosition.CenterScreen;
+
+            Panel panel = new Panel();
+            panel.Dock = DockStyle.Fill;
+            panel.Parent = window;
+
+            TilePickerPanel poppedOutPicker = new TilePickerPanel(MapEditor, 24);
+            poppedOutPicker.PopOutAllowed = false;
+            poppedOutPicker.Dock = DockStyle.Fill;
+            poppedOutPicker.Parent = panel;
+
+            window.ShowDialog(this);
+
+            Refresh();
+            Show();
         }
     }
 }

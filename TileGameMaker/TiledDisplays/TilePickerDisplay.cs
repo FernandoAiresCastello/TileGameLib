@@ -14,17 +14,19 @@ namespace TileGameMaker.TiledDisplays
     {
         public int TileIndex { set; get; }
 
-        private const int TilesPerRow = 8;
         private const int TilePickerZoom = 3;
+
+        private readonly int TilesPerRow;
 
         private bool RearrangeMode = false;
         private int RearrangeTileSrc = 0;
         private int RearrangeTileDst = 0;
 
-        public TilePickerDisplay(Control parent, Tileset tileset) 
+        public TilePickerDisplay(Control parent, Tileset tileset, int tilesPerRow)
             : base(parent, 1, 1, TilePickerZoom)
         {
             Graphics.Tileset = tileset;
+            TilesPerRow = tilesPerRow;
             TileIndex = 0;
 
             UpdateSize();
