@@ -14,13 +14,9 @@ namespace TileGameMaker.Test
         {
             LoadUiMap("ui.tgmap");
             Ui.SetMapViewport("map-tl", "map-br");
-            Ui.SetPlaceholderVisible("bottom", false);
 
             LoadMap("test01.tgmap", new TestController());
             EnterMap("Test 01");
-
-            //Ui.SetTimedMessage("bottom", "Henlo world! How are you", 2000);
-            Ui.SetModalMessage("bottom", "Henlo world!", "How are you doing?");
         }
     }
 }

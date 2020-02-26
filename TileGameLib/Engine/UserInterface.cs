@@ -19,6 +19,7 @@ namespace TileGameLib.Engine
         public MapRenderer MapRenderer { get; private set; }
         public List<UserInterfaceMessage> ModalMessages { get; private set; } = new List<UserInterfaceMessage>();
         public List<UserInterfaceMessage> TimedMessages { get; private set; } = new List<UserInterfaceMessage>();
+        public TextInput TextInput { get; private set; }
 
         public TileGraphicsDriver Graphics => Display.Graphics;
         public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
@@ -40,6 +41,7 @@ namespace TileGameLib.Engine
         {
             Display = display;
             MapRenderer = new MapRenderer(display);
+            TextInput = new TextInput(this);
 
             MessageTimer = new Timer();
             MessageTimer.Tick += MessageTimer_Tick;
@@ -72,44 +74,27 @@ namespace TileGameLib.Engine
             RestoreOriginalTilesetAndPalette();
         }
 
-        public void SetPlaceholderVisible(string placeholderObjectTag, bool visible)
+        public void SetPlaceholderVisible(string placeholder, bool visible)
         {
-            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
+            UserInterfacePlaceholder ph = Placeholders[placeholder];
             GameObject indicator = UiMap.GetObject(ph.Position);
 
             if (indicator != null)
                 indicator.Visible = visible;
         }
 
-        public void PutChar(int charCode, string placeholderObjectTag)
+        public void Print(object obj, string placeholder, int offsetX = 0, int offsetY = 0)
         {
-            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
-            ph.Tile.Index = charCode;
-            Graphics.PutTile(ph.Position.X, ph.Position.Y, ph.Tile);
-        }
-
-        public void Print(object obj, string placeholderObjectTag)
-        {
-            Print(obj, placeholderObjectTag, 0, 0);
-        }
-
-        public void Print(string text, int x, int y, int foreColorIx)
-        {
-            Print(text, x, y, foreColorIx, BackColor);
-        }
-
-        public void Print(object obj, string placeholderObjectTag, int offsetX, int offsetY)
-        {
-            UserInterfacePlaceholder ph = Placeholders[placeholderObjectTag];
+            UserInterfacePlaceholder ph = Placeholders[placeholder];
             Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColor, ph.Tile.BackColor);
         }
 
-        public void Print(string text, int x, int y, int foreColorIx, int backColorIx)
+        public void Print(object obj, int x, int y, int foreColorIx, int backColorIx)
         {
             if (UiMap == null)
                 return;
 
-            string[] lines = text.Split('\n');
+            string[] lines = obj.ToString().Split('\n');
 
             foreach (string line in lines)
                 Graphics.PutString(x, y++, line, foreColorIx, backColorIx);
@@ -127,13 +112,13 @@ namespace TileGameLib.Engine
             ModalMessages.Clear();
         }
 
-        public void SetTimedMessage(string placeholderObjectTag, string message, int duration)
+        public void SetTimedMessage(string placeholder, string message, int duration)
         {
             ClearTimedMessage();
             ClearModalMessage();
             
-            UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
-            UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(placeholder, 0, 0);
+            UserInterfacePlaceholder ph = Placeholders[placeholder].Copy();
+            UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(ph);
             TimedMessages.Add(new UserInterfaceMessage(this, currentPlaceholder, message));
 
             MessageTimer.Stop();
@@ -141,15 +126,15 @@ namespace TileGameLib.Engine
             MessageTimer.Start();
         }
 
-        public void SetModalMessage(string placeholderObjectTag, params string[] messages)
+        public void SetModalMessage(string placeholder, params string[] messages)
         {
             ClearTimedMessage();
             ClearModalMessage();
 
             foreach (string message in messages)
             {
-                UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
-                ModalMessages.Add(new UserInterfaceMessage(this, new UserInterfacePlaceholder(placeholder, 0, 0), message));
+                UserInterfacePlaceholder ph = Placeholders[placeholder].Copy();
+                ModalMessages.Add(new UserInterfaceMessage(this, new UserInterfacePlaceholder(ph), message));
             }
         }
 
@@ -184,7 +169,38 @@ namespace TileGameLib.Engine
             foreach (UserInterfaceMessage message in TimedMessages)
                 message.Draw();
 
+            if (TextInput.IsActive)
+                DrawInput();
+
             RestoreOriginalTilesetAndPalette();
+        }
+
+        private void DrawInput()
+        {
+            int x = TextInput.InputPlaceholderStart.Position.X;
+            int y = TextInput.InputPlaceholderStart.Position.Y;
+            int fgc = TextInput.InputPlaceholderStart.Tile.ForeColor;
+            int bgc = TextInput.InputPlaceholderStart.Tile.BackColor;
+
+            if (TextInput.InputPrompt != null)
+            {
+                Graphics.PutString(TextInput.InputPlaceholderPrompt.Position.X, TextInput.InputPlaceholderPrompt.Position.Y,
+                    TextInput.InputPrompt, TextInput.InputPlaceholderPrompt.Tile.ForeColor, TextInput.InputPlaceholderPrompt.Tile.BackColor);
+            }
+
+            for (int i = 0; i < TextInput.InputString.Length; i++)
+            {
+                char ch = TextInput.InputString[i];
+                if (x > TextInput.InputPlaceholderEnd.Position.X)
+                    break;
+
+                if (i == TextInput.InputCursor)
+                    Graphics.PutTile(x, y, ch, bgc, fgc);
+                else
+                    Graphics.PutTile(x, y, ch, fgc, bgc);
+
+                x++;
+            }
         }
 
         public void DrawMap()
@@ -197,10 +213,10 @@ namespace TileGameLib.Engine
             MapRenderer.Viewport = new Rectangle(x, y, width, height);
         }
 
-        public void SetMapViewport(string topLeftPlaceholderObjectTag, string bottomRightPlaceholderObjectTag)
+        public void SetMapViewport(string topLeftplaceholder, string bottomRightplaceholder)
         {
-            UserInterfacePlaceholder topLeft = Placeholders[topLeftPlaceholderObjectTag];
-            UserInterfacePlaceholder bottomRight = Placeholders[bottomRightPlaceholderObjectTag];
+            UserInterfacePlaceholder topLeft = Placeholders[topLeftplaceholder];
+            UserInterfacePlaceholder bottomRight = Placeholders[bottomRightplaceholder];
 
             SetMapViewport(topLeft.Position.X, topLeft.Position.Y, 
                 bottomRight.Position.X - topLeft.Position.X + 1, 

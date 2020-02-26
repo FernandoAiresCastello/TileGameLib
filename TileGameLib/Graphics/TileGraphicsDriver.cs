@@ -77,6 +77,11 @@ namespace TileGameLib.Graphics
                     PutTile(x, y, charIndex, palIndex1, palIndex0);
         }
 
+        public void PutString(int x, int y, char[] chars, int palIndex1, int palIndex0)
+        {
+            PutString(x, y, new string(chars), palIndex1, palIndex0);
+        }
+
         public void PutString(int x, int y, string str, int palIndex1, int palIndex0)
         {
             int px = x;

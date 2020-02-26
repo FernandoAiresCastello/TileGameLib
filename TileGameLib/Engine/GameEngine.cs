@@ -27,15 +27,15 @@ namespace TileGameLib.Engine
         protected readonly MapControllerCollection MapControllers;
 
         private readonly Timer CycleTimer;
-        private readonly Timer GfxRefreshTimer;
+        private readonly Timer UiRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int gfxRefreshInterval, int cycleInterval, string mapsBasePath) :
-            this(winTitle, winCols, winRows, zoom, gfxRefreshInterval, cycleInterval, true, true, mapsBasePath)
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval, string mapsBasePath) :
+            this(winTitle, winCols, winRows, zoom, uiRefreshInterval, cycleInterval, true, true, mapsBasePath)
         {
         }
 
-        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int gfxRefreshInterval, int cycleInterval,
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval,
             bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
@@ -47,9 +47,9 @@ namespace TileGameLib.Engine
             CycleTimer.Interval = cycleInterval;
             CycleTimer.Tick += CycleTimer_Tick;
 
-            GfxRefreshTimer = new Timer();
-            GfxRefreshTimer.Interval = gfxRefreshInterval;
-            GfxRefreshTimer.Tick += GfxRefreshTimer_Tick;
+            UiRefreshTimer = new Timer();
+            UiRefreshTimer.Interval = uiRefreshInterval;
+            UiRefreshTimer.Tick += UiRefreshTimer_Tick;
         }
 
         public void Run()
@@ -61,17 +61,12 @@ namespace TileGameLib.Engine
         {
             OnStart();
             CycleTimer.Start();
-            GfxRefreshTimer.Start();
+            UiRefreshTimer.Start();
 
             if (parent == null)
-            {
                 Application.Run(Window);
-            }
             else
-            {
                 Window.ShowDialog(parent);
-            }
-            
         }
 
         public virtual void OnStart()
@@ -130,7 +125,11 @@ namespace TileGameLib.Engine
 
         public void HandleKeyDownEvent(KeyEventArgs e)
         {
-            if (Ui.HasModalMessage && e.KeyCode == Keys.Enter)
+            if (Ui.TextInput.IsActive)
+            {
+                Ui.TextInput.HandleKeyEvent(e);
+            }
+            else if (Ui.HasModalMessage && e.KeyCode == Keys.Enter)
             {
                 Ui.NextModalMessagePage();
             }
@@ -260,7 +259,7 @@ namespace TileGameLib.Engine
             Window.Ui.SetGameMap(MapController.Map);
         }
 
-        private void GfxRefreshTimer_Tick(object sender, EventArgs e)
+        private void UiRefreshTimer_Tick(object sender, EventArgs e)
         {
             Window.Ui.Draw();
 

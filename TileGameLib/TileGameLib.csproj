@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Engine\MapController.cs" />
     <Compile Include="Engine\MapControllerCollection.cs" />
+    <Compile Include="Engine\TextInput.cs" />
     <Compile Include="Engine\UserInterface.cs" />
     <Compile Include="Engine\UserInterfaceMessage.cs" />
     <Compile Include="Engine\UserInterfacePlaceholder.cs" />
