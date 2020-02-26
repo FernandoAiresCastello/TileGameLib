@@ -92,6 +92,8 @@
     <Compile Include="Panels\ObjectPropertyGridPanel.Designer.cs">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test\TestController.cs" />
+    <Compile Include="Test\TestEngine.cs" />
     <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
       <SubType>Component</SubType>
     </Compile>

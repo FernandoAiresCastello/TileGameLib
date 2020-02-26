@@ -265,7 +265,7 @@ namespace TileGameLib.Graphics
         public void InitDefaultClassic()
         {
             Clear();
-            int i = 0;
+            //int i = 0;
         }
 
         public void InitDefaultMSX()

@@ -12,6 +12,7 @@ using TileGameLib.Components;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
+using TileGameMaker.Test;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
@@ -84,6 +85,8 @@ namespace TileGameMaker.Windows
 
         private void Test()
         {
+            TestEngine engine = new TestEngine();
+            engine.Run(this);
         }
 
         private void BtnToggleCommandLine_Click(object sender, EventArgs e)

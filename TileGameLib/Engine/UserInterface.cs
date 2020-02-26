@@ -17,16 +17,17 @@ namespace TileGameLib.Engine
     {
         public int BackColor { set; get; } = 0;
         public MapRenderer MapRenderer { get; private set; }
-        public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
+        public List<UserInterfaceMessage> ModalMessages { get; private set; } = new List<UserInterfaceMessage>();
+        public List<UserInterfaceMessage> TimedMessages { get; private set; } = new List<UserInterfaceMessage>();
+
         public TileGraphicsDriver Graphics => Display.Graphics;
+        public bool MapVisible => MapRenderer != null && MapRenderer.AutoRefresh;
         public bool HasTimedMessage => TimedMessages.Count > 0;
         public bool HasModalMessage => ModalMessages.Count > 0 && ModalMessagePage < ModalMessages.Count;
-        public string CurrentModalMessagePage => ModalMessages[ModalMessagePage];
+        public UserInterfaceMessage CurrentModalMessage => ModalMessages[ModalMessagePage];
 
         private readonly TiledDisplay Display;
-        private readonly List<UserInterfaceMessage> TimedMessages;
         private readonly Timer MessageTimer;
-        private readonly List<string> ModalMessages = new List<string>();
         private int ModalMessagePage = 0;
         private ObjectMap UiMap;
         private Palette OriginalPalette;
@@ -39,7 +40,6 @@ namespace TileGameLib.Engine
         {
             Display = display;
             MapRenderer = new MapRenderer(display);
-            TimedMessages = new List<UserInterfaceMessage>();
 
             MessageTimer = new Timer();
             MessageTimer.Tick += MessageTimer_Tick;
@@ -121,51 +121,36 @@ namespace TileGameLib.Engine
             MessageTimer.Stop();
         }
 
-        public void SetTimedMessage(string placeholderObjectTag, params string[] messages)
-        {
-            ClearTimedMessage();
-            AddTimedMessage(placeholderObjectTag, messages);
-        }
-
-        public void AddTimedMessage(string placeholderObjectTag, params string[] messages)
-        {
-            MessageTimer.Stop();
-
-            UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
-
-            int offsetX = 0;
-            int offsetY = 0;
-
-            foreach (string text in messages)
-            {
-                UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(placeholder, offsetX, offsetY);
-                TimedMessages.Add(new UserInterfaceMessage(this, currentPlaceholder, text));
-                offsetY++;
-            }
-        }
-
-        public void ShowTimedMessage(string placeholderObjectTag, int duration, params string[] messages)
-        {
-            ClearModalMessage();
-
-            SetTimedMessage(placeholderObjectTag, messages);
-
-            MessageTimer.Stop();
-            MessageTimer.Interval = duration;
-            MessageTimer.Start();
-        }
-
         public void ClearModalMessage()
         {
             ModalMessagePage = 0;
             ModalMessages.Clear();
         }
 
-        public void SetModalMessage(string[] pages)
+        public void SetTimedMessage(string placeholderObjectTag, string message, int duration)
         {
             ClearTimedMessage();
             ClearModalMessage();
-            ModalMessages.AddRange(pages.ToList());
+            
+            UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
+            UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(placeholder, 0, 0);
+            TimedMessages.Add(new UserInterfaceMessage(this, currentPlaceholder, message));
+
+            MessageTimer.Stop();
+            MessageTimer.Interval = duration;
+            MessageTimer.Start();
+        }
+
+        public void SetModalMessage(string placeholderObjectTag, params string[] messages)
+        {
+            ClearTimedMessage();
+            ClearModalMessage();
+
+            foreach (string message in messages)
+            {
+                UserInterfacePlaceholder placeholder = Placeholders[placeholderObjectTag].Copy();
+                ModalMessages.Add(new UserInterfaceMessage(this, new UserInterfacePlaceholder(placeholder, 0, 0), message));
+            }
         }
 
         public void NextModalMessagePage()

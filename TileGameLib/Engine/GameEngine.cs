@@ -21,10 +21,7 @@ namespace TileGameLib.Engine
         public bool Paused { set; get; }
         public GameWindow Window { get; private set; }
 
-        public UserInterface Ui => Window.Ui;
-        public bool HasTimedMessage => Window.Ui.HasTimedMessage;
-        public bool HasModalMessage => Window.Ui.HasModalMessage;
-
+        protected UserInterface Ui => Window.Ui;
         protected MapController MapController;
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
@@ -57,10 +54,24 @@ namespace TileGameLib.Engine
 
         public void Run()
         {
+            Run(null);
+        }
+
+        public void Run(Form parent)
+        {
             OnStart();
             CycleTimer.Start();
             GfxRefreshTimer.Start();
-            Application.Run(Window);
+
+            if (parent == null)
+            {
+                Application.Run(Window);
+            }
+            else
+            {
+                Window.ShowDialog(parent);
+            }
+            
         }
 
         public virtual void OnStart()
@@ -73,6 +84,11 @@ namespace TileGameLib.Engine
         {
             // Override this to globally and continuously print stuff to the UI
             // Called whenever the graphics refresh timer interval elapses
+
+            if (Ui.HasModalMessage)
+            {
+                Ui.CurrentModalMessage.Draw();
+            }
         }
 
         public virtual void OnExecuteCycle()
@@ -114,9 +130,16 @@ namespace TileGameLib.Engine
 
         public void HandleKeyDownEvent(KeyEventArgs e)
         {
-            bool global = OnKeyDown(e);
-            if (!global && !Paused && MapController != null)
-                MapController.OnKeyDown(e);
+            if (Ui.HasModalMessage && e.KeyCode == Keys.Enter)
+            {
+                Ui.NextModalMessagePage();
+            }
+            else
+            {
+                bool global = OnKeyDown(e);
+                if (!global && !Paused && MapController != null)
+                    MapController.OnKeyDown(e);
+            }
 
             Window.Ui.DrawMap();
         }
@@ -226,16 +249,6 @@ namespace TileGameLib.Engine
             controller.Map.SetEqual(MapFile.LoadFromRawBytes(GetMapPath(controller.MapFile)));
             SetMapController(controller);
             controller.OnLoad();
-        }
-
-        public void ShowTimedMessage(Strings message, string placeholderObjectTag, int duration)
-        {
-            Ui.ShowTimedMessage(placeholderObjectTag, duration, message.Array);
-        }
-
-        public void ShowModalMessage(Strings message)
-        {
-            Ui.SetModalMessage(message.Array);
         }
 
         private void SetMapController(MapController controller)
