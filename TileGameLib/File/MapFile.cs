@@ -108,7 +108,6 @@ namespace TileGameLib.File
             int height = file.ReadShort();
             int backColor = file.ReadShort();
             string musicFile = file.ReadStringNullTerminated();
-            string script = file.ReadStringNullTerminated();
 
             ObjectMap map = new ObjectMap(name, width, height, backColor);
 
