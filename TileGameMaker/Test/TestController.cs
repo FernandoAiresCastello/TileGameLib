@@ -11,24 +11,24 @@ namespace TileGameMaker.Test
 {
     public class TestController : MapController
     {
+        int msgcol = 0;
+
         public override void OnEnter()
         {
-            //Ui.SetTimedMessage("bottom", "Henlo world! How are you", 2000);
-            //Ui.SetModalMessage("bottom", "Henlo world!", "How are you doing?");
         }
 
         public override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
-            {
-                Ui.TextInput.Input("Enter command:", 
-                    "bottom", "input-start", "input-end", "name", ProcessInput);
-            }
+            if (e.KeyCode == Keys.Right)
+                msgcol++;
+            if (e.KeyCode == Keys.Left)
+                msgcol--;
         }
 
-        private void ProcessInput(string id, string input)
+        public override void OnDrawUi()
         {
-            Alert.Info(id + "\n" + input);
+            Ui.PrintWrap("In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface.", 
+                "bottom", Ui.Graphics.Cols, msgcol);
         }
     }
 }

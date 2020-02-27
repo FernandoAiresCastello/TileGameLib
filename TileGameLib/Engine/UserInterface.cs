@@ -86,7 +86,7 @@ namespace TileGameLib.Engine
         public void Print(object obj, string placeholder, int offsetX = 0, int offsetY = 0)
         {
             UserInterfacePlaceholder ph = Placeholders[placeholder];
-            Print(obj.ToString(), ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColor, ph.Tile.BackColor);
+            Print(obj, ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColor, ph.Tile.BackColor);
         }
 
         public void Print(object obj, int x, int y, int foreColorIx, int backColorIx)
@@ -98,6 +98,40 @@ namespace TileGameLib.Engine
 
             foreach (string line in lines)
                 Graphics.PutString(x, y++, line, foreColorIx, backColorIx);
+        }
+
+        public void PrintWrap(object obj, string placeholder, int cols, int offsetX = 0, int offsetY = 0)
+        {
+            UserInterfacePlaceholder ph = Placeholders[placeholder];
+            PrintWrap(obj, ph.Position.X + offsetX, ph.Position.Y + offsetY, cols, ph.Tile.ForeColor, ph.Tile.BackColor);
+        }
+
+        public void PrintWrap(object obj, int x, int y, int cols, int foreColorIx, int backColorIx)
+        {
+            int px = x;
+            int py = y;
+
+            string[] words = obj.ToString().Split(' ');
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                string word = words[i];
+
+                if (px + word.Length - x > cols)
+                {
+                    i--;
+                    px = x;
+                    py++;
+
+                    if (py >= Graphics.Rows || i < 0)
+                        break;
+                }
+                else
+                {
+                    Print(word, px, py, foreColorIx, backColorIx);
+                    px += word.Length + 1;
+                }
+            }
         }
 
         public void ClearTimedMessage()
