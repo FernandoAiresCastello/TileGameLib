@@ -76,6 +76,7 @@ namespace TileGameMaker.Panels
             RenderMap();
             Refresh();
             UpdateLayerComboBox();
+            UpdateRecentFileList();
         }
 
         public void ResizeMapView(int width, int height)
@@ -614,15 +615,56 @@ namespace TileGameMaker.Panels
             dialog.Filter = MapFileFilter;
 
             if (dialog.ShowDialog() == DialogResult.OK)
+                LoadMap(dialog.FileName);
+        }
+
+        public void LoadMap(string file)
+        {
+            MapFile.LoadFromRawBytes(ref Map, file);
+            Editor.MapFile = file;
+            Editor.UpdateMapProperties();
+            Editor.ResizeMap(Map.Width, Map.Height);
+            Editor.SelectedObject = Editor.BlankObject;
+            Editor.RecentFiles.Add(file);
+            UpdateRecentFileList();
+            UpdateLayerComboBox();
+            Alert.Info("File loaded successfully!");
+        }
+
+        private void UpdateRecentFileList()
+        {
+            BtnRecentFiles.DropDownItems.Clear();
+
+            foreach (string file in Editor.RecentFiles.Files)
             {
-                MapFile.LoadFromRawBytes(ref Map, dialog.FileName);
-                Editor.MapFile = dialog.FileName;
-                Editor.UpdateMapProperties();
-                Editor.ResizeMap(Map.Width, Map.Height);
-                Editor.SelectedObject = Editor.BlankObject;
-                UpdateLayerComboBox();
-                Alert.Info("File loaded successfully!");
+                ToolStripMenuItem fileItem = new ToolStripMenuItem(file);
+                fileItem.Click += BtnRecentFileItem_Click;
+                BtnRecentFiles.DropDownItems.Add(fileItem);
             }
+
+            if (BtnRecentFiles.DropDownItems.Count > 0)
+            {
+                BtnRecentFiles.DropDownItems.Add(new ToolStripSeparator());
+                ToolStripMenuItem clearAll = new ToolStripMenuItem("Clear recent files list");
+                clearAll.Click += BtnClearAllRecentItems_Click;
+                BtnRecentFiles.DropDownItems.Add(clearAll);
+            }
+            else
+            {
+                BtnRecentFiles.DropDownItems.Add("(Empty)").Enabled = false;
+            }
+        }
+
+        private void BtnRecentFileItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem fileItem = (ToolStripMenuItem)sender;
+            LoadMap(fileItem.Text);
+        }
+
+        private void BtnClearAllRecentItems_Click(object sender, EventArgs e)
+        {
+            Editor.RecentFiles.Files.Clear();
+            UpdateRecentFileList();
         }
 
         public void SaveMapToArchive(string path)

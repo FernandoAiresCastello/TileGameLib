@@ -36,6 +36,7 @@ namespace TileGameMaker.MapEditorElements
         public CommandLinePanel CommandLinePanel { get; private set; }
 
         public UserSettings Settings { get; private set; }
+        public RecentFiles RecentFiles { get; private set; }
 
         public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
         public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
@@ -57,7 +58,10 @@ namespace TileGameMaker.MapEditorElements
         public MapEditor(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
+            MainWindow.FormClosed += MainWindow_FormClosed;
+
             ApplyUserSettings();
+            RecentFiles = new RecentFiles();
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
 
@@ -85,6 +89,16 @@ namespace TileGameMaker.MapEditorElements
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveRecentFiles();
+        }
+
+        private void SaveRecentFiles()
+        {
+            RecentFiles.Save();
         }
 
         private void ApplyUserSettings()

@@ -37,6 +37,8 @@
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnLoadMap = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnLoadRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveMap = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,7 +184,9 @@
             this.BtnLoadMap.AutoToolTip = false;
             this.BtnLoadMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BtnLoadMap.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnLoadRawBytes});
+            this.BtnLoadRawBytes,
+            this.toolStripSeparator5,
+            this.BtnRecentFiles});
             this.BtnLoadMap.Image = global::TileGameMaker.Properties.Resources.folder;
             this.BtnLoadMap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnLoadMap.Name = "BtnLoadMap";
@@ -193,9 +197,20 @@
             // 
             this.BtnLoadRawBytes.Name = "BtnLoadRawBytes";
             this.BtnLoadRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.BtnLoadRawBytes.Size = new System.Drawing.Size(196, 22);
-            this.BtnLoadRawBytes.Text = "Load raw bytes";
+            this.BtnLoadRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnLoadRawBytes.Text = "Open";
             this.BtnLoadRawBytes.Click += new System.EventHandler(this.BtnLoadRawBytes_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // BtnRecentFiles
+            // 
+            this.BtnRecentFiles.Name = "BtnRecentFiles";
+            this.BtnRecentFiles.Size = new System.Drawing.Size(180, 22);
+            this.BtnRecentFiles.Text = "Open recent file";
             // 
             // BtnSaveMap
             // 
@@ -214,8 +229,8 @@
             // 
             this.BtnSaveRawBytes.Name = "BtnSaveRawBytes";
             this.BtnSaveRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.BtnSaveRawBytes.Size = new System.Drawing.Size(237, 22);
-            this.BtnSaveRawBytes.Text = "Save raw bytes";
+            this.BtnSaveRawBytes.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveRawBytes.Text = "Save";
             this.BtnSaveRawBytes.Click += new System.EventHandler(this.BtnSaveRawBytes_Click);
             // 
             // BtnSaveRawBytesAs
@@ -223,8 +238,8 @@
             this.BtnSaveRawBytesAs.Name = "BtnSaveRawBytesAs";
             this.BtnSaveRawBytesAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.BtnSaveRawBytesAs.Size = new System.Drawing.Size(237, 22);
-            this.BtnSaveRawBytesAs.Text = "Save raw bytes as";
+            this.BtnSaveRawBytesAs.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveRawBytesAs.Text = "Save as";
             this.BtnSaveRawBytesAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
             // 
             // toolStripSeparator3
@@ -599,5 +614,7 @@
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnLoadRawBytes;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytesAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem BtnRecentFiles;
     }
 }
