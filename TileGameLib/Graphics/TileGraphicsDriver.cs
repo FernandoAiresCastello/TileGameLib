@@ -16,7 +16,7 @@ namespace TileGameLib.Graphics
         public Palette Palette { set; get; }
         public TileBuffer TileBuffer { get; private set; }
 
-        private const char NewLineChar = '\\';
+        private const char NewLineChar = '\n';
 
         public TileGraphicsDriver(int cols, int rows)
             : this(cols, rows, new Tileset(), new Palette())
@@ -77,31 +77,27 @@ namespace TileGameLib.Graphics
                     PutTile(x, y, charIndex, palIndex1, palIndex0);
         }
 
-        public void PutString(int x, int y, char[] chars, int palIndex1, int palIndex0)
-        {
-            PutString(x, y, new string(chars), palIndex1, palIndex0);
-        }
-
         public void PutString(int x, int y, string str, int palIndex1, int palIndex0)
         {
             int px = x;
 
             foreach (char ch in str)
             {
-                if (ch == NewLineChar)
+                if (ch != '\r')
                 {
-                    x = px;
-                    y++;
+                    if (ch == NewLineChar)
+                    {
+                        x = px;
+                        y++;
 
-                    if (y >= Rows)
-                        break;
-                }
-                else
-                {
-                    PutTile(x++, y, ch, palIndex1, palIndex0);
-
-                    if (x >= Cols)
-                        break;
+                        if (y >= Rows)
+                            break;
+                    }
+                    else
+                    {
+                        if (x < Cols && y < Rows)
+                            PutTile(x++, y, ch, palIndex1, palIndex0);
+                    }
                 }
             }
         }

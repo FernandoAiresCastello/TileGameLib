@@ -21,11 +21,8 @@ namespace TileGameMaker.Test
         {
             if (e.KeyCode == Keys.F1)
             {
-                Ui.TextInput.Input("Enter your name:", "bottom", "input-start", "input-end", "name", ProcessInput);
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                Ui.TextInput.Input("Please write anything:", "bottom", "input-start", "input-end", "anything", ProcessInput);
+                Ui.TextInput.Input("Enter your name, but beware this\nis going to be a very touch\ndesicion to make. Are you \nabsolutely certain sure you want\nto do it?", 
+                    "bottom", "input-start", "input-end", "name", ProcessInput);
             }
         }
 
