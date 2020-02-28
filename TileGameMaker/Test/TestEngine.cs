@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,18 @@ namespace TileGameMaker.Test
 {
     public class TestEngine : GameEngine
     {
-        public TestEngine() : base("Test", 32, 24, 2, 10, 10, true, true, "")
-        {
-            LoadUiMap("ui.tgmap");
-            Ui.SetMapViewport("map-tl", "map-br");
+        private const int Cols = 16;
+        private const int Rows = 20;
+        private const int Zoom = 2;
+        private const int UiRefreshInterval = 10;
+        private const int CycleInterval = 10;
 
+        public TestEngine() : base("Test", Cols, Rows, Zoom, UiRefreshInterval, CycleInterval, true, true)
+        {
+            //LoadUiMap("ui.tgmap");
+            //Ui.SetMapViewport("map-tl", "map-br");
+            Window.Size = new Size(640, 480);
+            Ui.SetMapViewport(0, 0, 16, 16);
             LoadMap("test01.tgmap", new TestController());
             EnterMap("Test 01");
         }

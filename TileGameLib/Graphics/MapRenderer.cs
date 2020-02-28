@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using TileGameLib.GameElements;
 using TileGameLib.Components;
 using System.Drawing;
+using TileGameLib.Exceptions;
 
 namespace TileGameLib.Graphics
 {
@@ -141,7 +142,13 @@ namespace TileGameLib.Graphics
         public void Render()
         {
             if (Map == null)
-                return;
+                throw new TileGameLibException("Unable to render map. Map reference is null");
+            if (Viewport.IsEmpty)
+                throw new TileGameLibException("Unable to render map. Map viewport has size 0");
+            if (Viewport.X < 0 || Viewport.Y < 0)
+                throw new TileGameLibException("Unable to render map. Map viewport has a negative position");
+            if (Viewport.X + Viewport.Width > Disp.Cols || Viewport.Y + Viewport.Height > Disp.Rows)
+                throw new TileGameLibException("Unable to render map. Map viewport extends beyond display area");
 
             Tileset originalTileset = Disp.Graphics.Tileset;
             Palette originalPalette = Disp.Graphics.Palette;

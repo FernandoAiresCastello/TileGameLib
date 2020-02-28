@@ -11,24 +11,20 @@ namespace TileGameMaker.Test
 {
     public class TestController : MapController
     {
-        int msgcol = 0;
-
         public override void OnEnter()
         {
         }
 
         public override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
-                msgcol++;
-            if (e.KeyCode == Keys.Left)
-                msgcol--;
         }
 
         public override void OnDrawUi()
         {
-            Ui.PrintWrap("In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface.", 
-                "bottom", Ui.Graphics.Cols, msgcol);
+            int y = 16;
+            Ui.Print("H 100", 0, y++, 1);
+            Ui.Print("M  20", 0, y++, 1);
+            Ui.Print("G   0", 0, y++, 1);
         }
     }
 }
