@@ -37,12 +37,14 @@ namespace TileGameLib.Engine
         public Dictionary<string, UserInterfacePlaceholder>
             Placeholders { get; private set; } = new Dictionary<string, UserInterfacePlaceholder>();
 
-        public UserInterface(TiledDisplay display)
+        public UserInterface(TiledDisplay display, int backColor = 0)
         {
             Display = display;
+            BackColor = backColor;
             MapRenderer = new MapRenderer(display);
             TextInput = new TextInput(this);
-
+            UiMap = new ObjectMap("ui", Display.Cols, Display.Rows, BackColor);
+            SetMapViewport(0, 0, Display.Cols, Display.Rows);
             MessageTimer = new Timer();
             MessageTimer.Tick += MessageTimer_Tick;
         }
@@ -58,6 +60,7 @@ namespace TileGameLib.Engine
 
             BackColor = UiMap.BackColor;
             FindPlaceholders();
+            ShowPlaceholders(false);
         }
 
         public void Clear()
@@ -83,10 +86,26 @@ namespace TileGameLib.Engine
                 indicator.Visible = visible;
         }
 
+        public void ShowPlaceholders(bool show)
+        {
+            foreach (var kv in Placeholders)
+            {
+                UserInterfacePlaceholder ph = kv.Value;
+                GameObject indicator = UiMap.GetObject(ph.Position);
+                if (indicator != null)
+                    indicator.Visible = show;
+            }
+        }
+
         public void Print(object obj, string placeholder, int offsetX = 0, int offsetY = 0)
         {
             UserInterfacePlaceholder ph = Placeholders[placeholder];
             Print(obj, ph.Position.X + offsetX, ph.Position.Y + offsetY, ph.Tile.ForeColor, ph.Tile.BackColor);
+        }
+
+        public void Print(object obj, int x, int y, int foreColorIx)
+        {
+            Print(obj, x, y, foreColorIx, BackColor);
         }
 
         public void Print(object obj, int x, int y, int foreColorIx, int backColorIx)
@@ -104,6 +123,11 @@ namespace TileGameLib.Engine
         {
             UserInterfacePlaceholder ph = Placeholders[placeholder];
             PrintWrap(obj, ph.Position.X + offsetX, ph.Position.Y + offsetY, cols, ph.Tile.ForeColor, ph.Tile.BackColor);
+        }
+
+        public void PrintWrap(object obj, int x, int y, int cols, int foreColorIx)
+        {
+            PrintWrap(obj, x, y, cols, foreColorIx, BackColor);
         }
 
         public void PrintWrap(object obj, int x, int y, int cols, int foreColorIx, int backColorIx)

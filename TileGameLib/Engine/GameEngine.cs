@@ -30,13 +30,13 @@ namespace TileGameLib.Engine
         private readonly Timer UiRefreshTimer;
         private readonly SoundPlayer SoundPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval, string mapsBasePath) :
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval, string mapsBasePath = null) :
             this(winTitle, winCols, winRows, zoom, uiRefreshInterval, cycleInterval, true, true, mapsBasePath)
         {
         }
 
         public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval,
-            bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath)
+            bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath = null)
         {
             Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
@@ -180,6 +180,9 @@ namespace TileGameLib.Engine
 
         protected string GetMapPath(string mapFile)
         {
+            if (string.IsNullOrWhiteSpace(MapsBasePath))
+                return mapFile;
+
             string basePath = MapsBasePath.Replace('\\', '/');
             string mapPath = "";
 
