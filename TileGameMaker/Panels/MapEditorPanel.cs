@@ -542,6 +542,7 @@ namespace TileGameMaker.Panels
         private void InputText(int x, int y)
         {
             TextInputWindow win = new TextInputWindow($"Enter text to insert @{x},{y}");
+            win.EnableOrientationChange = true;
             if (win.ShowDialog(this) == DialogResult.Cancel)
                 return;
 

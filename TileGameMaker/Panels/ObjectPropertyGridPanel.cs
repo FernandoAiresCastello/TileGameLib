@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TileGameLib.GameElements;
 using TileGameMaker.MapEditorElements;
 using TileGameLib.Util;
+using TileGameMaker.Windows;
 
 namespace TileGameMaker.Panels
 {
@@ -94,6 +95,26 @@ namespace TileGameMaker.Panels
         private void BtnDeleteAllProperties_Click(object sender, EventArgs e)
         {
             RemoveAllProperties();
+        }
+
+        private void BtnOpenTextEditor_Click(object sender, EventArgs e)
+        {
+            if (Grid.SelectedCells.Count == 0)
+                return;
+
+            TextInputWindow win = new TextInputWindow("Edit property");
+            string currentValue = Grid.SelectedCells[0].Value != null ? Grid.SelectedCells[0].Value.ToString() : "";
+
+            if (win.ShowDialog(this, currentValue) == DialogResult.OK)
+            {
+                Grid.SelectedCells[0].Value = win.Text;
+                Refresh();
+            }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            Grid.Rows.Add();
         }
     }
 }

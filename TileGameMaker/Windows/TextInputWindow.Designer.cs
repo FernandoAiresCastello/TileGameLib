@@ -32,10 +32,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BtnAccept = new System.Windows.Forms.ToolStripButton();
             this.BtnCancel = new System.Windows.Forms.ToolStripButton();
-            this.TxtText = new System.Windows.Forms.TextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.LbOrientation = new System.Windows.Forms.ToolStripLabel();
             this.CmbOrientation = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.TxtText = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             this.BtnAccept,
             this.BtnCancel,
             this.toolStripSeparator1,
-            this.toolStripLabel1,
+            this.LbOrientation,
             this.CmbOrientation});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -77,7 +77,7 @@
             this.BtnAccept.Image = global::TileGameMaker.Properties.Resources.tick;
             this.BtnAccept.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnAccept.Name = "BtnAccept";
-            this.BtnAccept.Size = new System.Drawing.Size(23, 22);
+            this.BtnAccept.Size = new System.Drawing.Size(23, 20);
             this.BtnAccept.Text = "toolStripButton1";
             this.BtnAccept.ToolTipText = "Confirm";
             this.BtnAccept.Click += new System.EventHandler(this.BtnAccept_Click);
@@ -89,10 +89,30 @@
             this.BtnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(23, 22);
+            this.BtnCancel.Size = new System.Drawing.Size(23, 20);
             this.BtnCancel.Text = "toolStripButton2";
             this.BtnCancel.ToolTipText = "Cancel";
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // LbOrientation
+            // 
+            this.LbOrientation.Name = "LbOrientation";
+            this.LbOrientation.Size = new System.Drawing.Size(67, 20);
+            this.LbOrientation.Text = "Orientation";
+            // 
+            // CmbOrientation
+            // 
+            this.CmbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbOrientation.Items.AddRange(new object[] {
+            "Horizontal",
+            "Vertical"});
+            this.CmbOrientation.Name = "CmbOrientation";
+            this.CmbOrientation.Size = new System.Drawing.Size(121, 23);
             // 
             // TxtText
             // 
@@ -108,26 +128,6 @@
             this.TxtText.Size = new System.Drawing.Size(533, 309);
             this.TxtText.TabIndex = 1;
             this.TxtText.WordWrap = false;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // CmbOrientation
-            // 
-            this.CmbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbOrientation.Items.AddRange(new object[] {
-            "Horizontal",
-            "Vertical"});
-            this.CmbOrientation.Name = "CmbOrientation";
-            this.CmbOrientation.Size = new System.Drawing.Size(121, 23);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(67, 22);
-            this.toolStripLabel1.Text = "Orientation";
             // 
             // TextInputWindow
             // 
@@ -154,6 +154,6 @@
         private System.Windows.Forms.TextBox TxtText;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox CmbOrientation;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel LbOrientation;
     }
 }

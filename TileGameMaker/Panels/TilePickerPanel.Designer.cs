@@ -44,10 +44,10 @@
             this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnMoreActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnAdd8Tiles = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnUse16x16TileEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnClearAll = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnClearRange = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnUse16x16TileEditor = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnPopOutWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlTilePicker = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -208,7 +208,7 @@
             this.clearTilesToolStripMenuItem,
             this.BtnUse16x16TileEditor,
             this.BtnPopOutWindow});
-            this.BtnMoreActions.Image = global::TileGameMaker.Properties.Resources.document_page_next;
+            this.BtnMoreActions.Image = global::TileGameMaker.Properties.Resources.menu;
             this.BtnMoreActions.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnMoreActions.Name = "BtnMoreActions";
             this.BtnMoreActions.Size = new System.Drawing.Size(29, 20);
@@ -220,14 +220,6 @@
             this.BtnAdd8Tiles.Size = new System.Drawing.Size(180, 22);
             this.BtnAdd8Tiles.Text = "Add 8 tiles";
             this.BtnAdd8Tiles.Click += new System.EventHandler(this.BtnAdd8Tiles_Click);
-            // 
-            // BtnUse16x16TileEditor
-            // 
-            this.BtnUse16x16TileEditor.CheckOnClick = true;
-            this.BtnUse16x16TileEditor.Image = global::TileGameMaker.Properties.Resources.layouts_four_grid;
-            this.BtnUse16x16TileEditor.Name = "BtnUse16x16TileEditor";
-            this.BtnUse16x16TileEditor.Size = new System.Drawing.Size(180, 22);
-            this.BtnUse16x16TileEditor.Text = "Use 16x16 editor";
             // 
             // clearTilesToolStripMenuItem
             // 
@@ -252,6 +244,14 @@
             this.BtnClearRange.Size = new System.Drawing.Size(147, 22);
             this.BtnClearRange.Text = "Select range...";
             this.BtnClearRange.Click += new System.EventHandler(this.BtnClearRange_Click);
+            // 
+            // BtnUse16x16TileEditor
+            // 
+            this.BtnUse16x16TileEditor.CheckOnClick = true;
+            this.BtnUse16x16TileEditor.Image = global::TileGameMaker.Properties.Resources.layouts_four_grid;
+            this.BtnUse16x16TileEditor.Name = "BtnUse16x16TileEditor";
+            this.BtnUse16x16TileEditor.Size = new System.Drawing.Size(180, 22);
+            this.BtnUse16x16TileEditor.Text = "Use 16x16 editor";
             // 
             // BtnPopOutWindow
             // 

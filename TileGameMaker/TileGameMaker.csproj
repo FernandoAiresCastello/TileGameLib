@@ -305,6 +305,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\menu.png" />
     <None Include="Resources\layer_stack_arrange.png" />
     <None Include="Resources\script_code.png" />
     <None Include="Resources\site_backup_and_restore.png" />
