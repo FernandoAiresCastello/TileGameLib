@@ -74,6 +74,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.MiOverrideColors = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -197,19 +198,19 @@
             // 
             this.BtnLoadRawBytes.Name = "BtnLoadRawBytes";
             this.BtnLoadRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.BtnLoadRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnLoadRawBytes.Size = new System.Drawing.Size(158, 22);
             this.BtnLoadRawBytes.Text = "Open";
             this.BtnLoadRawBytes.Click += new System.EventHandler(this.BtnLoadRawBytes_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(155, 6);
             // 
             // BtnRecentFiles
             // 
             this.BtnRecentFiles.Name = "BtnRecentFiles";
-            this.BtnRecentFiles.Size = new System.Drawing.Size(180, 22);
+            this.BtnRecentFiles.Size = new System.Drawing.Size(158, 22);
             this.BtnRecentFiles.Text = "Open recent file";
             // 
             // BtnSaveMap
@@ -409,6 +410,7 @@
             this.MiPasteObjects,
             this.MiDeleteObjects,
             this.MiFillWithTemplate,
+            this.MiOverrideColors,
             this.MiReplaceWithTemplate,
             this.toolStripSeparator2,
             this.MiSetSelectionColor});
@@ -476,6 +478,7 @@
             this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
             this.MiReplaceWithTemplate.Size = new System.Drawing.Size(205, 22);
             this.MiReplaceWithTemplate.Text = "Replace with template";
+            this.MiReplaceWithTemplate.Click += new System.EventHandler(this.MiReplaceWithTemplate_Click);
             // 
             // toolStripSeparator2
             // 
@@ -550,6 +553,13 @@
             this.BtnScreenshot.ToolTipText = "Save image (Ctrl+P)";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // MiOverrideColors
+            // 
+            this.MiOverrideColors.Name = "MiOverrideColors";
+            this.MiOverrideColors.Size = new System.Drawing.Size(205, 22);
+            this.MiOverrideColors.Text = "Override colors";
+            this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,5 +626,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnSaveRawBytesAs;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem BtnRecentFiles;
+        private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
     }
 }

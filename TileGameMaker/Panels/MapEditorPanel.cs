@@ -1035,5 +1035,27 @@ namespace TileGameMaker.Panels
         {
             LoadMap();
         }
+
+        private void MiReplaceWithTemplate_Click(object sender, EventArgs e)
+        {
+            Alert.Warning("Feature not yet implemented");
+        }
+
+        private void MiOverrideColors_Click(object sender, EventArgs e)
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
+            Tile firstFrameOfSelectedObject = Editor.SelectedObject.Animation.FirstFrame;
+
+            foreach (ObjectCell cell in selectedCells)
+            {
+                foreach (Tile tile in cell.Object.Animation.Frames)
+                {
+                    tile.ForeColor = firstFrameOfSelectedObject.ForeColor;
+                    tile.BackColor = firstFrameOfSelectedObject.BackColor;
+                }
+            }
+
+            Display.Refresh();
+        }
     }
 }
