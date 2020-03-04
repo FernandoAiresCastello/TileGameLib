@@ -13,6 +13,7 @@ namespace TileGameMaker.Windows
     public partial class TextInputWindow : Form
     {
         public new string Text { get; private set; }
+        public string TextOrientation => (string)CmbOrientation.SelectedItem;
 
         public TextInputWindow() : this("")
         {
@@ -22,6 +23,7 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             base.Text = title;
+            CmbOrientation.SelectedIndex = 0;
         }
 
         public DialogResult ShowDialog(Control parent, string text)

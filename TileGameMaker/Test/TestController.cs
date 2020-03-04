@@ -21,7 +21,7 @@ namespace TileGameMaker.Test
 
         public override void OnDrawUi()
         {
-            int y = 16;
+            int y = 19;
             Ui.Print("H 100", 0, y++, 1);
             Ui.Print("M  20", 0, y++, 1);
             Ui.Print("G   0", 0, y++, 1);

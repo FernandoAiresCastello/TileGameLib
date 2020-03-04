@@ -33,6 +33,9 @@
             this.BtnAccept = new System.Windows.Forms.ToolStripButton();
             this.BtnCancel = new System.Windows.Forms.ToolStripButton();
             this.TxtText = new System.Windows.Forms.TextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.CmbOrientation = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -54,12 +57,17 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnAccept,
-            this.BtnCancel});
+            this.BtnCancel,
+            this.toolStripSeparator1,
+            this.toolStripLabel1,
+            this.CmbOrientation});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(539, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(539, 26);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -92,14 +100,34 @@
             this.TxtText.AcceptsTab = true;
             this.TxtText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtText.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtText.Location = new System.Drawing.Point(3, 28);
+            this.TxtText.Location = new System.Drawing.Point(3, 29);
             this.TxtText.MaxLength = 65536;
             this.TxtText.Multiline = true;
             this.TxtText.Name = "TxtText";
             this.TxtText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtText.Size = new System.Drawing.Size(533, 310);
+            this.TxtText.Size = new System.Drawing.Size(533, 309);
             this.TxtText.TabIndex = 1;
             this.TxtText.WordWrap = false;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // CmbOrientation
+            // 
+            this.CmbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbOrientation.Items.AddRange(new object[] {
+            "Horizontal",
+            "Vertical"});
+            this.CmbOrientation.Name = "CmbOrientation";
+            this.CmbOrientation.Size = new System.Drawing.Size(121, 23);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(67, 22);
+            this.toolStripLabel1.Text = "Orientation";
             // 
             // TextInputWindow
             // 
@@ -124,5 +152,8 @@
         private System.Windows.Forms.ToolStripButton BtnAccept;
         private System.Windows.Forms.ToolStripButton BtnCancel;
         private System.Windows.Forms.TextBox TxtText;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripComboBox CmbOrientation;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

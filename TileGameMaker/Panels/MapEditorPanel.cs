@@ -545,8 +545,15 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
+            bool vertical = win.TextOrientation.Trim().ToLower().Equals("vertical");
             Tile tile = Editor.SelectedTile;
-            Map.SetStringOfObjects(win.Text, new ObjectPosition(Layer, x, y), tile.ForeColor, tile.BackColor);
+            ObjectPosition pos = new ObjectPosition(Layer, x, y);
+
+            if (vertical)
+                Map.SetVerticalStringOfObjects(win.Text, pos, tile.ForeColor, tile.BackColor);
+            else
+                Map.SetHorizontalStringOfObjects(win.Text, pos, tile.ForeColor, tile.BackColor);
+
             Refresh();
         }
 

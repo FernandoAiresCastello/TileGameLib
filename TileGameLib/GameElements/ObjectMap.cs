@@ -134,7 +134,7 @@ namespace TileGameLib.GameElements
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
         }
 
-        public void SetStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        public void SetHorizontalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
         {
             int initialX = pos.X;
             text = text.Replace("\r", "");
@@ -153,6 +153,30 @@ namespace TileGameLib.GameElements
                         GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
                         SetObject(o, pos);
                         pos = pos.East();
+                    }
+                }
+            }
+        }
+
+        public void SetVerticalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        {
+            int initialY = pos.Y;
+            text = text.Replace("\r", "");
+
+            foreach (char ch in text)
+            {
+                if (ch == '\n')
+                {
+                    pos = pos.East();
+                    pos.MoveTo(pos.X, initialY);
+                }
+                else
+                {
+                    if (IsWithinBounds(pos))
+                    {
+                        GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        SetObject(o, pos);
+                        pos = pos.South();
                     }
                 }
             }

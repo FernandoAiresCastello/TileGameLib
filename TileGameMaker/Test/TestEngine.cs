@@ -11,8 +11,8 @@ namespace TileGameMaker.Test
 {
     public class TestEngine : GameEngine
     {
-        private const int Cols = 16;
-        private const int Rows = 20;
+        private const int Cols = 20;
+        private const int Rows = 24;
         private const int Zoom = 3;
         private const int UiRefreshInterval = 10;
         private const int CycleInterval = 10;
@@ -22,7 +22,7 @@ namespace TileGameMaker.Test
             //LoadUiMap("ui.tgmap");
             //Ui.SetMapViewport("map-tl", "map-br");
             Window.Size = new Size(500, 500);
-            Ui.SetMapViewport(0, 0, 16, 16);
+            Ui.SetMapViewport(0, 0, 20, 19);
             LoadMap("test01.tgmap", new TestController());
             EnterMap("Test 01");
         }
