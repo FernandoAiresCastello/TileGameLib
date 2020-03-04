@@ -966,6 +966,11 @@ namespace TileGameMaker.Panels
             Display.Refresh();
         }
 
+        public void HandleKeyEvent(object sender, KeyEventArgs e)
+        {
+            MapEditorControl_KeyDown(sender, e);
+        }
+
         private void MapEditorControl_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control)
@@ -981,14 +986,23 @@ namespace TileGameMaker.Panels
                     case Keys.N:
                         ConfirmNewMap();
                         break;
-                    case Keys.G:
-                        ToggleGrid();
+                    case Keys.D1:
+                        SetMode(EditMode.Draw, BtnPutTemplate);
                         break;
-                    case Keys.P:
-                        SaveScreenshot();
+                    case Keys.D2:
+                        SetMode(EditMode.Delete, BtnDelete);
                         break;
-                    case Keys.L:
-                        ToggleViewAllLayers();
+                    case Keys.D3:
+                        SetMode(EditMode.Property, BtnSetData);
+                        break;
+                    case Keys.D4:
+                        SetMode(EditMode.TextInput, BtnAddText);
+                        break;
+                    case Keys.D5:
+                        SetMode(EditMode.Replace, BtnReplaceObjects);
+                        break;
+                    case Keys.D6:
+                        SetMode(EditMode.Selection, BtnSelect);
                         break;
                 }
             }
@@ -996,24 +1010,6 @@ namespace TileGameMaker.Panels
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.F2:
-                        SetMode(EditMode.Draw, BtnPutTemplate);
-                        break;
-                    case Keys.F3:
-                        SetMode(EditMode.Delete, BtnDelete);
-                        break;
-                    case Keys.F4:
-                        SetMode(EditMode.Property, BtnSetData);
-                        break;
-                    case Keys.F5:
-                        SetMode(EditMode.TextInput, BtnAddText);
-                        break;
-                    case Keys.F6:
-                        SetMode(EditMode.Replace, BtnReplaceObjects);
-                        break;
-                    case Keys.F7:
-                        SetMode(EditMode.Selection, BtnSelect);
-                        break;
                     case Keys.PageUp:
                         ZoomIn();
                         break;

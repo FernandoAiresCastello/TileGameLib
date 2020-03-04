@@ -30,9 +30,12 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TestMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
@@ -43,11 +46,6 @@
             this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiOpenTestWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -62,8 +60,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.TestMenu});
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -78,14 +75,38 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.fileToolStripMenuItem.Text = "Application";
             // 
+            // MiExit
+            // 
+            this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.MiExit.Name = "MiExit";
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Text = "Exit";
+            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnToggleCommandLine,
             this.BtnDataExtractor});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // BtnToggleCommandLine
+            // 
+            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
+            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
+            this.BtnToggleCommandLine.Size = new System.Drawing.Size(190, 22);
+            this.BtnToggleCommandLine.Text = "Toggle command line";
+            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
+            // 
+            // BtnDataExtractor
+            // 
+            this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
+            this.BtnDataExtractor.Name = "BtnDataExtractor";
+            this.BtnDataExtractor.Size = new System.Drawing.Size(190, 22);
+            this.BtnDataExtractor.Text = "Data extractor";
+            this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -95,13 +116,13 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // TestMenu
+            // MiAbout
             // 
-            this.TestMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiOpenTestWindow});
-            this.TestMenu.Name = "TestMenu";
-            this.TestMenu.Size = new System.Drawing.Size(41, 20);
-            this.TestMenu.Text = "Test";
+            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
+            this.MiAbout.Name = "MiAbout";
+            this.MiAbout.Size = new System.Drawing.Size(180, 22);
+            this.MiAbout.Text = "About...";
+            this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 
             // WindowLayout
             // 
@@ -221,50 +242,6 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // MiExit
-            // 
-            this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(92, 22);
-            this.MiExit.Text = "Exit";
-            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
-            // 
-            // BtnToggleCommandLine
-            // 
-            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
-            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
-            this.BtnToggleCommandLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.BtnToggleCommandLine.Size = new System.Drawing.Size(231, 22);
-            this.BtnToggleCommandLine.Text = "Toggle command line";
-            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
-            // 
-            // BtnDataExtractor
-            // 
-            this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
-            this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.BtnDataExtractor.Size = new System.Drawing.Size(231, 22);
-            this.BtnDataExtractor.Text = "Data extractor";
-            this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
-            // 
-            // MiAbout
-            // 
-            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
-            this.MiAbout.Name = "MiAbout";
-            this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MiAbout.Size = new System.Drawing.Size(135, 22);
-            this.MiAbout.Text = "About...";
-            this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
-            // 
-            // MiOpenTestWindow
-            // 
-            this.MiOpenTestWindow.Image = global::TileGameMaker.Properties.Resources.watch_window;
-            this.MiOpenTestWindow.Name = "MiOpenTestWindow";
-            this.MiOpenTestWindow.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.MiOpenTestWindow.Size = new System.Drawing.Size(195, 22);
-            this.MiOpenTestWindow.Text = "Open test window";
-            this.MiOpenTestWindow.Click += new System.EventHandler(this.MiOpenTestWindow_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,8 +280,6 @@
         private System.Windows.Forms.Panel ColorPickerPanel;
         private System.Windows.Forms.Panel TilePickerPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripMenuItem TestMenu;
-        private System.Windows.Forms.ToolStripMenuItem MiOpenTestWindow;
         private System.Windows.Forms.SplitContainer MapAndCommandLineSplitContainer;
         private System.Windows.Forms.Panel MapEditorPanel;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;

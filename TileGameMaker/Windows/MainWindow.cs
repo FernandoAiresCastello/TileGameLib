@@ -29,8 +29,9 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             Icon = Global.WindowIcon;
-            TestMenu.Visible = false;
             Shown += MainWindow_Shown;
+            KeyPreview = true;
+            KeyDown += MainWindow_KeyDown;
 
             Rectangle screenArea = Screen.PrimaryScreen.Bounds;
             Size = new Size(BestWidth, BestHeight);
@@ -48,6 +49,17 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.TemplateControl, TemplatePanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
             AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+            {
+                Test();
+                return;
+            }
+
+            MapEditor.MapEditorControl.HandleKeyEvent(sender, e);
         }
 
         private void ShowSplashWindow()

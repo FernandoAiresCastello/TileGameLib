@@ -65,6 +65,7 @@
             this.MiPasteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiDeleteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiFillWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiOverrideColors = new System.Windows.Forms.ToolStripMenuItem();
             this.MiReplaceWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.MiOverrideColors = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -342,7 +342,7 @@
             this.BtnPutTemplate.Name = "BtnPutTemplate";
             this.BtnPutTemplate.Size = new System.Drawing.Size(23, 20);
             this.BtnPutTemplate.Text = "toolStripButton1";
-            this.BtnPutTemplate.ToolTipText = "Draw template (F2)";
+            this.BtnPutTemplate.ToolTipText = "Draw template (CTRL+1)";
             this.BtnPutTemplate.Click += new System.EventHandler(this.BtnPutTemplate_Click);
             // 
             // BtnDelete
@@ -353,7 +353,7 @@
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(23, 20);
             this.BtnDelete.Text = "toolStripButton1";
-            this.BtnDelete.ToolTipText = "Delete (F3)";
+            this.BtnDelete.ToolTipText = "Delete (CTRL+2)";
             this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
             // 
             // BtnSetData
@@ -364,7 +364,7 @@
             this.BtnSetData.Name = "BtnSetData";
             this.BtnSetData.Size = new System.Drawing.Size(23, 20);
             this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Edit properties (F4)";
+            this.BtnSetData.ToolTipText = "Edit properties (CTRL+3)";
             this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
@@ -375,7 +375,7 @@
             this.BtnAddText.Name = "BtnAddText";
             this.BtnAddText.Size = new System.Drawing.Size(23, 20);
             this.BtnAddText.Text = "toolStripButton1";
-            this.BtnAddText.ToolTipText = "Draw text (F5)";
+            this.BtnAddText.ToolTipText = "Draw text (CTRL+4)";
             this.BtnAddText.Click += new System.EventHandler(this.BtnAddText_Click);
             // 
             // BtnReplaceObjects
@@ -386,7 +386,7 @@
             this.BtnReplaceObjects.Name = "BtnReplaceObjects";
             this.BtnReplaceObjects.Size = new System.Drawing.Size(23, 20);
             this.BtnReplaceObjects.Text = "toolStripButton1";
-            this.BtnReplaceObjects.ToolTipText = "Replace objects (F6)";
+            this.BtnReplaceObjects.ToolTipText = "Replace objects (CTRL+5)";
             this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
             // 
             // BtnSelect
@@ -397,7 +397,7 @@
             this.BtnSelect.Name = "BtnSelect";
             this.BtnSelect.Size = new System.Drawing.Size(23, 20);
             this.BtnSelect.Text = "toolStripButton1";
-            this.BtnSelect.ToolTipText = "Selection mode (F7)";
+            this.BtnSelect.ToolTipText = "Selection mode (CTRL+6)";
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
             // BtnSelectionActions
@@ -473,6 +473,13 @@
             this.MiFillWithTemplate.Text = "Fill with template";
             this.MiFillWithTemplate.Click += new System.EventHandler(this.MiFillWithTemplate_Click);
             // 
+            // MiOverrideColors
+            // 
+            this.MiOverrideColors.Name = "MiOverrideColors";
+            this.MiOverrideColors.Size = new System.Drawing.Size(205, 22);
+            this.MiOverrideColors.Text = "Override colors";
+            this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
+            // 
             // MiReplaceWithTemplate
             // 
             this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
@@ -528,7 +535,7 @@
             this.BtnGrid.Name = "BtnGrid";
             this.BtnGrid.Size = new System.Drawing.Size(23, 20);
             this.BtnGrid.Text = "toolStripButton1";
-            this.BtnGrid.ToolTipText = "Toggle grid (Ctrl+G)";
+            this.BtnGrid.ToolTipText = "Toggle grid";
             this.BtnGrid.Click += new System.EventHandler(this.BtnGrid_Click);
             // 
             // BtnToggleTooltip
@@ -550,15 +557,8 @@
             this.BtnScreenshot.Name = "BtnScreenshot";
             this.BtnScreenshot.Size = new System.Drawing.Size(23, 20);
             this.BtnScreenshot.Text = "toolStripButton1";
-            this.BtnScreenshot.ToolTipText = "Save image (Ctrl+P)";
+            this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
-            // 
-            // MiOverrideColors
-            // 
-            this.MiOverrideColors.Name = "MiOverrideColors";
-            this.MiOverrideColors.Size = new System.Drawing.Size(205, 22);
-            this.MiOverrideColors.Text = "Override colors";
-            this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
             // 
             // MapEditorPanel
             // 
