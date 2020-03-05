@@ -71,7 +71,7 @@ namespace TileGameMaker.Panels
             Display.MouseDown += Disp_MouseDown;
             Display.MouseLeave += Disp_MouseLeave;
 
-            SetMode(EditMode.Draw, BtnPutTemplate);
+            SetMode(EditMode.Draw);
             ClearMap();
             RenderMap();
             Refresh();
@@ -153,7 +153,7 @@ namespace TileGameMaker.Panels
                 }
                 else
                 {
-                    Alert.Warning("Can't copy object while in property edit mode");
+                    SetMode(EditMode.Draw);
                 }
             }
             else if (Mode == EditMode.TextInput)
@@ -164,7 +164,7 @@ namespace TileGameMaker.Panels
                 }
                 else
                 {
-                    Alert.Warning("Can't copy object while in text input mode");
+                    SetMode(EditMode.Draw);
                 }
             }
             else if (Mode == EditMode.Delete)
@@ -175,7 +175,7 @@ namespace TileGameMaker.Panels
                 }
                 else
                 {
-                    Alert.Warning("Can't copy object while in delete mode");
+                    SetMode(EditMode.Draw);
                 }
             }
             else if (Mode == EditMode.Replace)
@@ -186,7 +186,7 @@ namespace TileGameMaker.Panels
                 }
                 else
                 {
-                    Alert.Warning("Can't copy object while in replace mode");
+                    SetMode(EditMode.Draw);
                 }
             }
             else if (Mode == EditMode.Selection)
@@ -263,11 +263,6 @@ namespace TileGameMaker.Panels
         private void SetReplaceModeInstructionLabel()
         {
             LbEditModeInfo.Text = "Replace objects mode: Left-click to replace with template all objects equal to clicked object";
-        }
-
-        private void SetAnnotateModeInstructionLabel()
-        {
-            LbEditModeInfo.Text = "Click anywhere on the map to insert annotation";
         }
 
         private void OnDisplayMouseMove(MouseEventArgs e)
@@ -436,40 +431,18 @@ namespace TileGameMaker.Panels
             BtnToggleTooltip.Checked = TooltipEnabled;
         }
 
-        private void BtnAddText_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.TextInput, sender);
-        }
+        private void BtnAddText_Click(object sender, EventArgs e) => SetMode(EditMode.TextInput);
+        private void BtnSetScript_Click(object sender, EventArgs e) => SetMode(EditMode.Property);
+        private void BtnPutTemplate_Click(object sender, EventArgs e) => SetMode(EditMode.Draw);
+        private void BtnDeleteMode_Click(object sender, EventArgs e) => SetMode(EditMode.Delete);
+        private void BtnReplaceObjects_Click(object sender, EventArgs e) => SetMode(EditMode.Replace);
+        private void BtnSelect_Click(object sender, EventArgs e) => SetMode(EditMode.Selection);
 
-        private void BtnSetScript_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.Property, sender);
-        }
-
-        private void BtnPutTemplate_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.Draw, sender);
-        }
-
-        private void BtnDeleteMode_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.Delete, sender);
-        }
-
-        private void BtnReplaceObjects_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.Replace, sender);
-        }
-
-        private void BtnSelect_Click(object sender, EventArgs e)
-        {
-            SetMode(EditMode.Selection, sender);
-        }
-
-        private void SetMode(EditMode mode, object button)
+        private void SetMode(EditMode mode)
         {
             Mode = mode;
             BtnSelectionActions.Visible = Mode == EditMode.Selection;
+            ToolStripButton button = null;
 
             if (mode != EditMode.Selection)
                 CancelSelection();
@@ -478,27 +451,34 @@ namespace TileGameMaker.Panels
             {
                 case EditMode.Draw:
                     Display.Cursor = GetCursor(Properties.Resources.pencil);
+                    button = BtnPutTemplate;
                     break;
                 case EditMode.Delete:
                     Display.Cursor = GetCursor(Properties.Resources.draw_eraser);
+                    button = BtnDelete;
                     break;
                 case EditMode.TextInput:
                     Display.Cursor = GetCursor(Properties.Resources.insert_text);
+                    button = BtnAddText;
                     break;
                 case EditMode.Property:
                     Display.Cursor = GetCursor(Properties.Resources.database_edit);
+                    button = BtnSetData;
                     break;
                 case EditMode.Selection:
                     Display.Cursor = GetCursor(Properties.Resources.select);
+                    button = BtnSelect;
                     SetSelectionModeInstructionLabel();
                     break;
                 case EditMode.Replace:
                     Display.Cursor = GetCursor(Properties.Resources.magic_wand);
+                    button = BtnReplaceObjects;
                     SetReplaceModeInstructionLabel();
                     break;
             }
 
-            CheckModeButton(button as ToolStripButton);
+            if (button != null)
+                CheckModeButton(button);
         }
 
         private Cursor GetCursor(Bitmap bitmap)
@@ -987,22 +967,22 @@ namespace TileGameMaker.Panels
                         ConfirmNewMap();
                         break;
                     case Keys.D1:
-                        SetMode(EditMode.Draw, BtnPutTemplate);
+                        SetMode(EditMode.Draw);
                         break;
                     case Keys.D2:
-                        SetMode(EditMode.Delete, BtnDelete);
+                        SetMode(EditMode.Delete);
                         break;
                     case Keys.D3:
-                        SetMode(EditMode.Property, BtnSetData);
+                        SetMode(EditMode.Property);
                         break;
                     case Keys.D4:
-                        SetMode(EditMode.TextInput, BtnAddText);
+                        SetMode(EditMode.TextInput);
                         break;
                     case Keys.D5:
-                        SetMode(EditMode.Replace, BtnReplaceObjects);
+                        SetMode(EditMode.Replace);
                         break;
                     case Keys.D6:
-                        SetMode(EditMode.Selection, BtnSelect);
+                        SetMode(EditMode.Selection);
                         break;
                 }
             }
