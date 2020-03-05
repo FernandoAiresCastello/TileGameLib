@@ -1034,5 +1034,25 @@ namespace TileGameMaker.Panels
 
             Display.Refresh();
         }
+
+        private void BtnExportJson_Click(object sender, EventArgs e)
+        {
+            Export(MapExportFormat.Json);
+        }
+
+        public void Export(MapExportFormat format)
+        {
+            string fileExt = MapExportFileExtension.Get(format);
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = Editor.WorkspacePath;
+            dialog.Filter = $"TileGameMaker map JSON file (*.{fileExt})|*.{fileExt}";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                MapFile.Export(format, Map, dialog.FileName);
+                Alert.Info("Map exported successfully!");
+            }
+        }
     }
 }

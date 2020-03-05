@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,19 +15,20 @@ namespace TileGameLib.GameElements
     {
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public ReadOnlyCollection<ObjectCell> Cells => ToReadOnlyList();
 
-        private ObjectCell[,] Cells;
+        private ObjectCell[,] ObjectCells;
 
         public ObjectLayer(int width, int height)
         {
             Width = width;
             Height = height;
 
-            Cells = new ObjectCell[width, height];
+            ObjectCells = new ObjectCell[width, height];
 
             for (int row = 0; row < height; row++)
                 for (int col = 0; col < width; col++)
-                    Cells[col, row] = new ObjectCell();
+                    ObjectCells[col, row] = new ObjectCell();
         }
 
         public void SetEqual(ObjectLayer other)
@@ -37,9 +40,9 @@ namespace TileGameLib.GameElements
                     GameObject o = other.GetObject(col, row);
 
                     if (o != null)
-                        Cells[col, row].SetObjectEqual(o);
+                        ObjectCells[col, row].SetObjectEqual(o);
                     else
-                        Cells[col, row].DeleteObject();
+                        ObjectCells[col, row].DeleteObject();
                 }
             }
         }
@@ -53,13 +56,13 @@ namespace TileGameLib.GameElements
                 for (int col = 0; col < width; col++)
                 {
                     if (col < Width && row < Height)
-                        newCells[col, row] = new ObjectCell(Cells[col, row]);
+                        newCells[col, row] = new ObjectCell(ObjectCells[col, row]);
                     else
                         newCells[col, row] = new ObjectCell();
                 }
             }
 
-            Cells = newCells;
+            ObjectCells = newCells;
             Width = width;
             Height = height;
         }
@@ -68,38 +71,38 @@ namespace TileGameLib.GameElements
         {
             for (int row = 0; row < Height; row++)
                 for (int col = 0; col < Width; col++)
-                    Cells[col, row].DeleteObject();
+                    ObjectCells[col, row].DeleteObject();
         }
 
         public void Fill(GameObject o)
         {
             for (int row = 0; row < Height; row++)
                 for (int col = 0; col < Width; col++)
-                    Cells[col, row].SetObjectEqual(o);
+                    ObjectCells[col, row].SetObjectEqual(o);
         }
 
         public void SetObject(GameObject o, int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                Cells[x, y].SetObjectEqual(o);
+                ObjectCells[x, y].SetObjectEqual(o);
             else
                 throw GetInvalidLayerPositionException(x, y);
         }
 
         public void DeleteObject(int x, int y)
         {
-            Cells[x, y].DeleteObject();
+            ObjectCells[x, y].DeleteObject();
         }
 
         public ObjectCell GetCell(int x, int y)
         {
-            return Cells[x, y];
+            return ObjectCells[x, y];
         }
 
         public GameObject GetObject(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                return Cells[x, y].Object;
+                return ObjectCells[x, y].Object;
 
             throw GetInvalidLayerPositionException(x, y);
         }
@@ -109,6 +112,17 @@ namespace TileGameLib.GameElements
             return new TileGameLibException(
                 string.Format("Invalid layer position X:{0} Y:{1}. Layer size is {2}x{3}", 
                 x, y, Width, Height));
+        }
+
+        private ReadOnlyCollection<ObjectCell> ToReadOnlyList()
+        {
+            List<ObjectCell> cells = new List<ObjectCell>();
+
+            for (int row = 0; row < Height; row++)
+                for (int col = 0; col < Width; col++)
+                    cells.Add(ObjectCells[col, row]);
+
+            return new ReadOnlyCollection<ObjectCell>(cells);
         }
     }
 }

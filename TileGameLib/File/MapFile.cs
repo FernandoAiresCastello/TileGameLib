@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using TileGameLib.Exceptions;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
@@ -195,6 +196,19 @@ namespace TileGameLib.File
                 map.SetEqual(LoadFromRawBytes(path));
             else
                 map = LoadFromRawBytes(path);
+        }
+
+        public static void Export(MapExportFormat format, ObjectMap map, string path)
+        {
+            ExportJson(map, path);
+        }
+
+        private static void ExportJson(ObjectMap map, string path)
+        {
+            string json = new JavaScriptSerializer().Serialize(map);
+            MemoryFile file = new MemoryFile();
+            file.WriteString(json);
+            file.SaveToPhysicalFile(path);
         }
     }
 }

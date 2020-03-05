@@ -42,6 +42,8 @@
             this.BtnSaveMap = new System.Windows.Forms.ToolStripDropDownButton();
             this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +77,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -219,7 +222,9 @@
             this.BtnSaveMap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BtnSaveMap.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnSaveRawBytes,
-            this.BtnSaveRawBytesAs});
+            this.BtnSaveRawBytesAs,
+            this.toolStripSeparator7,
+            this.BtnExport});
             this.BtnSaveMap.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSaveMap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSaveMap.Name = "BtnSaveMap";
@@ -242,6 +247,19 @@
             this.BtnSaveRawBytesAs.Size = new System.Drawing.Size(184, 22);
             this.BtnSaveRawBytesAs.Text = "Save as";
             this.BtnSaveRawBytesAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(181, 6);
+            // 
+            // BtnExport
+            // 
+            this.BtnExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnExportJson});
+            this.BtnExport.Name = "BtnExport";
+            this.BtnExport.Size = new System.Drawing.Size(184, 22);
+            this.BtnExport.Text = "Export";
             // 
             // toolStripSeparator3
             // 
@@ -560,6 +578,13 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // BtnExportJson
+            // 
+            this.BtnExportJson.Name = "BtnExportJson";
+            this.BtnExportJson.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportJson.Text = "JSON";
+            this.BtnExportJson.Click += new System.EventHandler(this.BtnExportJson_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,5 +652,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem BtnRecentFiles;
         private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem BtnExport;
+        private System.Windows.Forms.ToolStripMenuItem BtnExportJson;
     }
 }

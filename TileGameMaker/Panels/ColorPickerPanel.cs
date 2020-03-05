@@ -213,45 +213,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void TxtColorsPerRow_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                ApplyColorsPerRowSetting();
-        }
-
-        private void TxtColorsPerRow_Leave(object sender, EventArgs e)
-        {
-            ApplyColorsPerRowSetting();
-        }
-
-        private void ApplyColorsPerRowSetting()
-        {/*
-            int originalTilesPerRow = ColorPicker.Cols;
-            bool isNumber = int.TryParse(TxtColorsPerRow.Text, out int colorsPerRow);
-            bool revert = false;
-
-            if (isNumber)
-            {
-                if (colorsPerRow >= MinTilesPerRowAllowed && colorsPerRow <= MaxTilesPerRowAllowed)
-                {
-                    ColorPicker.ResizeGraphicsByTileCount(ColorPicker.Graphics.Tileset.Size, colorsPerRow);
-                    ColorPicker.Refresh();
-                }
-                else
-                {
-                    Alert.Warning($"Maximum colors per row must be between {MinTilesPerRowAllowed} and {MaxTilesPerRowAllowed}");
-                    revert = true;
-                }
-            }
-            else
-            {
-                revert = true;
-            }
-
-            if (revert)
-                TxtColorsPerRow.Text = originalTilesPerRow.ToString();*/
-        }
-
         private void BtnExportRawBytes_Click(object sender, EventArgs e)
         {
             Export(PaletteExportFormat.RawBytes);
