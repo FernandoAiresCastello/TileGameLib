@@ -17,7 +17,7 @@ namespace TileGameMaker.MapEditorElements
 {
     public class MapEditor
     {
-        public string WorkspacePath { get; private set; }
+        public string WorkspacePath { get; set; }
         public string MapFile { get; set; }
         public string MapName => MapPropertyGridControl.Properties.Name;
         public string MapMusic => MapPropertyGridControl.Properties.Music;
@@ -34,6 +34,7 @@ namespace TileGameMaker.MapEditorElements
         public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
+        public WorkspacePanel WorkspacePanel { get; private set; }
 
         public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
@@ -81,7 +82,10 @@ namespace TileGameMaker.MapEditorElements
             ColorPickerControl = new ColorPickerPanel(this);
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
+            WorkspacePanel = new WorkspacePanel(this);
+
             UpdateMapProperties();
+            WorkspacePanel.UpdateWorkspace();
 
             Children.Add(TilePickerControl);
             Children.Add(TemplateControl);
@@ -93,18 +97,27 @@ namespace TileGameMaker.MapEditorElements
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SaveRecentFiles();
+            SaveUserSettings();
         }
 
-        private void SaveRecentFiles()
+        private void SaveUserSettings()
         {
+            Settings.Set("Workspace", WorkspacePath);
             RecentFiles.Save();
+            Settings.Save();
         }
 
         private void ApplyUserSettings()
         {
             if (Settings == null)
                 Settings = new UserSettings();
+
+            if (Settings.Has("Workspace"))
+            {
+                string workspace = Settings.Get("Workspace");
+                if (!string.IsNullOrWhiteSpace(workspace))
+                    WorkspacePath = workspace;
+            }
 
             if (Settings.Has("TilesetFile"))
             {

@@ -41,6 +41,19 @@ namespace TileGameMaker.Util
             }
         }
 
+        public void Save()
+        {
+            List<string> lines = new List<string>();
+
+            foreach (var setting in Settings)
+            {
+                string line = setting.Key + "=" + setting.Value;
+                lines.Add(line);
+            }
+
+            File.WriteAllLines(Path, lines);
+        }
+
         public bool Has(string setting)
         {
             return Settings.TryGetValue(setting, out string value);
@@ -66,6 +79,11 @@ namespace TileGameMaker.Util
         public bool GetBool(string setting)
         {
             return bool.Parse(Get(setting));
+        }
+
+        public void Set(string setting, string value)
+        {
+            Settings[setting] = value;
         }
     }
 }

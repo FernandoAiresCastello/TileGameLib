@@ -30,12 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
@@ -46,6 +42,13 @@
             this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.MapAndWorkspaceSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.WorkspacePanel = new System.Windows.Forms.Panel();
+            this.BtnToggleWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -53,6 +56,10 @@
             this.MapAndCommandLineSplitContainer.Panel1.SuspendLayout();
             this.MapAndCommandLineSplitContainer.Panel2.SuspendLayout();
             this.MapAndCommandLineSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapAndWorkspaceSplitContainer)).BeginInit();
+            this.MapAndWorkspaceSplitContainer.Panel1.SuspendLayout();
+            this.MapAndWorkspaceSplitContainer.Panel2.SuspendLayout();
+            this.MapAndWorkspaceSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -75,38 +82,15 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.fileToolStripMenuItem.Text = "Application";
             // 
-            // MiExit
-            // 
-            this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
-            this.MiExit.Text = "Exit";
-            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
-            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnToggleWorkspace,
             this.BtnToggleCommandLine,
             this.BtnDataExtractor});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // BtnToggleCommandLine
-            // 
-            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
-            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
-            this.BtnToggleCommandLine.Size = new System.Drawing.Size(190, 22);
-            this.BtnToggleCommandLine.Text = "Toggle command line";
-            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
-            // 
-            // BtnDataExtractor
-            // 
-            this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
-            this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(190, 22);
-            this.BtnDataExtractor.Text = "Data extractor";
-            this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -115,14 +99,6 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // MiAbout
-            // 
-            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
-            this.MiAbout.Name = "MiAbout";
-            this.MiAbout.Size = new System.Drawing.Size(180, 22);
-            this.MiAbout.Text = "About...";
-            this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 
             // WindowLayout
             // 
@@ -206,7 +182,7 @@
             // 
             // MapAndCommandLineSplitContainer.Panel1
             // 
-            this.MapAndCommandLineSplitContainer.Panel1.Controls.Add(this.MapEditorPanel);
+            this.MapAndCommandLineSplitContainer.Panel1.Controls.Add(this.MapAndWorkspaceSplitContainer);
             // 
             // MapAndCommandLineSplitContainer.Panel2
             // 
@@ -242,6 +218,75 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // MapAndWorkspaceSplitContainer
+            // 
+            this.MapAndWorkspaceSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapAndWorkspaceSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.MapAndWorkspaceSplitContainer.Name = "MapAndWorkspaceSplitContainer";
+            // 
+            // MapAndWorkspaceSplitContainer.Panel1
+            // 
+            this.MapAndWorkspaceSplitContainer.Panel1.Controls.Add(this.MapEditorPanel);
+            // 
+            // MapAndWorkspaceSplitContainer.Panel2
+            // 
+            this.MapAndWorkspaceSplitContainer.Panel2.Controls.Add(this.WorkspacePanel);
+            this.MapAndWorkspaceSplitContainer.Panel2Collapsed = true;
+            this.MapAndWorkspaceSplitContainer.Size = new System.Drawing.Size(516, 398);
+            this.MapAndWorkspaceSplitContainer.SplitterDistance = 350;
+            this.MapAndWorkspaceSplitContainer.TabIndex = 2;
+            // 
+            // MiExit
+            // 
+            this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.MiExit.Name = "MiExit";
+            this.MiExit.Size = new System.Drawing.Size(92, 22);
+            this.MiExit.Text = "Exit";
+            this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
+            // 
+            // BtnToggleCommandLine
+            // 
+            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
+            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
+            this.BtnToggleCommandLine.Size = new System.Drawing.Size(190, 22);
+            this.BtnToggleCommandLine.Text = "Toggle command line";
+            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
+            // 
+            // BtnDataExtractor
+            // 
+            this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
+            this.BtnDataExtractor.Name = "BtnDataExtractor";
+            this.BtnDataExtractor.Size = new System.Drawing.Size(190, 22);
+            this.BtnDataExtractor.Text = "Data extractor";
+            this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
+            // 
+            // MiAbout
+            // 
+            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
+            this.MiAbout.Name = "MiAbout";
+            this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.MiAbout.Size = new System.Drawing.Size(180, 22);
+            this.MiAbout.Text = "About...";
+            this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
+            // 
+            // WorkspacePanel
+            // 
+            this.WorkspacePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WorkspacePanel.Location = new System.Drawing.Point(0, 0);
+            this.WorkspacePanel.Name = "WorkspacePanel";
+            this.WorkspacePanel.Size = new System.Drawing.Size(162, 398);
+            this.WorkspacePanel.TabIndex = 0;
+            // 
+            // BtnToggleWorkspace
+            // 
+            this.BtnToggleWorkspace.Image = global::TileGameMaker.Properties.Resources.folder_vertical_open;
+            this.BtnToggleWorkspace.Name = "BtnToggleWorkspace";
+            this.BtnToggleWorkspace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.BtnToggleWorkspace.Size = new System.Drawing.Size(214, 22);
+            this.BtnToggleWorkspace.Text = "Toggle workspace";
+            this.BtnToggleWorkspace.Click += new System.EventHandler(this.BtnToggleWorkspace_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,6 +307,10 @@
             this.MapAndCommandLineSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).EndInit();
             this.MapAndCommandLineSplitContainer.ResumeLayout(false);
+            this.MapAndWorkspaceSplitContainer.Panel1.ResumeLayout(false);
+            this.MapAndWorkspaceSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MapAndWorkspaceSplitContainer)).EndInit();
+            this.MapAndWorkspaceSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +335,8 @@
         private System.Windows.Forms.Panel CommandLinePanel;
         private System.Windows.Forms.ToolStripMenuItem BtnToggleCommandLine;
         private System.Windows.Forms.ToolStripMenuItem BtnDataExtractor;
+        private System.Windows.Forms.SplitContainer MapAndWorkspaceSplitContainer;
+        private System.Windows.Forms.Panel WorkspacePanel;
+        private System.Windows.Forms.ToolStripMenuItem BtnToggleWorkspace;
     }
 }

@@ -93,6 +93,12 @@
     <Compile Include="Panels\ObjectPropertyGridPanel.Designer.cs">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\WorkspacePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\WorkspacePanel.Designer.cs">
+      <DependentUpon>WorkspacePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Test\TestController.cs" />
     <Compile Include="Test\TestEngine.cs" />
     <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\ObjectPropertyGridPanel.resx">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\WorkspacePanel.resx">
+      <DependentUpon>WorkspacePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
