@@ -40,7 +40,7 @@ namespace TileGameMaker.Panels
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
 
-        private static readonly string MapFileExt = "tgmap";
+        private static readonly string MapFileExt = FileExtensions.MapRaw;
         private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
 
         public MapEditorPanel()

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TileGameMaker.MapEditorElements;
 using System.IO;
 using TileGameLib.Util;
+using TileGameLib.File;
 
 namespace TileGameMaker.Panels
 {
@@ -49,7 +50,7 @@ namespace TileGameMaker.Panels
             {
                 FileInfo file = new FileInfo(name);
 
-                if (file.Extension == ".tgmap")
+                if (file.Extension == "." + FileExtensions.MapRaw)
                 {
                     double kb = file.Length / 1024d;
                     WorkspaceGrid.Rows.Add(file.Name, kb.ToString("0.##"), file.LastWriteTime);

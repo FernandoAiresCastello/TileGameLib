@@ -20,9 +20,9 @@ namespace TileGameLib.File
         {
             switch (format)
             {
-                case PaletteExportFormat.RawBytes: return "dat.tgpal";
-                case PaletteExportFormat.HexadecimalRgb: return "rgb.tgpal";
-                case PaletteExportFormat.HexadecimalCsv: return "csv.tgpal";
+                case PaletteExportFormat.RawBytes: return FileExtensions.PaletteRaw;
+                case PaletteExportFormat.HexadecimalRgb: return FileExtensions.PaletteRgb;
+                case PaletteExportFormat.HexadecimalCsv: return FileExtensions.PaletteCsv;
             }
 
             throw new TileGameLibException("Invalid export format: " + format.ToString());

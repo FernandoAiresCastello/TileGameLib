@@ -20,9 +20,9 @@ namespace TileGameLib.File
         {
             switch (format)
             {
-                case TilesetExportFormat.RawBytes: return "dat.tgtil";
-                case TilesetExportFormat.HexadecimalCsv: return "csv.tgtil";
-                case TilesetExportFormat.BinaryStrings: return "bin.tgtil";
+                case TilesetExportFormat.RawBytes: return FileExtensions.TilesetRaw;
+                case TilesetExportFormat.HexadecimalCsv: return FileExtensions.TilesetCsv;
+                case TilesetExportFormat.BinaryStrings: return FileExtensions.TilesetBinaryStrings;
             }
 
             throw new TileGameLibException("Invalid export format: " + format.ToString());
