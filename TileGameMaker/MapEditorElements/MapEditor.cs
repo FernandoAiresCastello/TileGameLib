@@ -22,6 +22,7 @@ namespace TileGameMaker.MapEditorElements
         public string MapName => MapPropertyGridControl.Properties.Name;
         public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
+        public bool ScriptPanelOpen => ScriptPanel.Visible;
 
         public ObjectMap Map { get; private set; }
         public Palette Palette { get; private set; }
@@ -35,6 +36,7 @@ namespace TileGameMaker.MapEditorElements
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
         public WorkspacePanel WorkspacePanel { get; private set; }
+        public ScriptPanel ScriptPanel { get; private set; }
 
         public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
@@ -83,6 +85,7 @@ namespace TileGameMaker.MapEditorElements
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             WorkspacePanel = new WorkspacePanel(this);
+            ScriptPanel = new ScriptPanel(this);
 
             UpdateMapProperties();
             WorkspacePanel.UpdateWorkspace();

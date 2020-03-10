@@ -43,7 +43,10 @@ namespace TileGameMaker.Panels
 
         public void UpdateWorkspace()
         {
-            TxtPath.Text = MapEditor.WorkspacePath;
+            TxtPath.Text = MapEditor.WorkspacePath ?? "";
+            if (MapEditor.WorkspacePath == null)
+                return;
+
             var filenames = Directory.EnumerateFiles(MapEditor.WorkspacePath);
 
             foreach (string name in filenames)

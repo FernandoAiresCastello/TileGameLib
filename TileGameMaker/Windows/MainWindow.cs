@@ -49,7 +49,7 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.TemplateControl, TemplatePanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
             AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
-            AddControl(MapEditor.WorkspacePanel, WorkspacePanel);
+            AddControl(MapEditor.ScriptPanel, ScriptPanel);
 
         }
 
@@ -152,13 +152,18 @@ namespace TileGameMaker.Windows
             }
         }
 
-        private void BtnToggleWorkspace_Click(object sender, EventArgs e)
+        private void BtnViewWorkspace_Click(object sender, EventArgs e)
         {
-            bool visible = MapAndWorkspaceSplitContainer.Panel2Collapsed;
-            MapAndWorkspaceSplitContainer.Panel2Collapsed = !visible;
+            // todo
+        }
+
+        private void BtnToggleScript_Click(object sender, EventArgs e)
+        {
+            bool visible = MapAndScriptSplitContainer.Panel2Collapsed;
+            MapAndScriptSplitContainer.Panel2Collapsed = !visible;
 
             if (visible)
-                MapEditor.WorkspacePanel.Focus();
+                MapEditor.ScriptPanel.Focus();
         }
     }
 }

@@ -547,6 +547,10 @@ namespace TileGameMaker.Panels
         {
             bool success = false;
 
+            Map.Name = Editor.MapName;
+            Map.MusicFile = Editor.MapMusic;
+            Map.Script = Editor.ScriptPanel.Script;
+
             if (string.IsNullOrWhiteSpace(Editor.MapFile))
             {
                 SaveFileDialog dialog = new SaveFileDialog();
@@ -555,25 +559,20 @@ namespace TileGameMaker.Panels
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    Map.Name = Editor.MapName;
-                    Map.MusicFile = Editor.MapMusic;
                     MapFile.SaveAsRawBytes(Map, dialog.FileName);
                     Editor.MapFile = dialog.FileName;
-                    Editor.UpdateMapProperties();
                     success = true;
                 }
             }
             else if (Alert.Confirm($"Overwrite file {Editor.MapFile}?"))
             {
-                Map.Name = Editor.MapName;
-                Map.MusicFile = Editor.MapMusic;
                 MapFile.SaveAsRawBytes(Map, Editor.MapFile);
-                Editor.UpdateMapProperties();
                 success = true;
             }
 
             if (success)
             {
+                Editor.UpdateMapProperties();
                 Refresh();
                 Alert.Info("File saved successfully!");
             }
@@ -589,6 +588,7 @@ namespace TileGameMaker.Panels
             {
                 Map.Name = Editor.MapName;
                 Map.MusicFile = Editor.MapMusic;
+                Map.Script = Editor.ScriptPanel.Script;
                 MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
@@ -610,6 +610,7 @@ namespace TileGameMaker.Panels
         {
             MapFile.LoadFromRawBytes(ref Map, file);
             Editor.MapFile = file;
+            Editor.ScriptPanel.Script = Map.Script;
             Editor.UpdateMapProperties();
             Editor.ResizeMap(Map.Width, Map.Height);
             Editor.SelectedObject = Editor.BlankObject;

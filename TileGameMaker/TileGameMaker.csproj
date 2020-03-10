@@ -93,6 +93,12 @@
     <Compile Include="Panels\ObjectPropertyGridPanel.Designer.cs">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\ScriptPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\ScriptPanel.Designer.cs">
+      <DependentUpon>ScriptPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\WorkspacePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\ObjectPropertyGridPanel.resx">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\ScriptPanel.resx">
+      <DependentUpon>ScriptPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\WorkspacePanel.resx">
       <DependentUpon>WorkspacePanel.cs</DependentUpon>
