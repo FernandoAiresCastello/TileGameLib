@@ -96,6 +96,8 @@ namespace TileGameMaker.MapEditorElements
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
+            Children.Add(WorkspacePanel);
+            Children.Add(ScriptPanel);
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)

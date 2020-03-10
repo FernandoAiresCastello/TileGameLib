@@ -16,7 +16,8 @@ namespace TileGameMaker.Panels
 {
     public partial class WorkspacePanel : BasePanel
     {
-        private MapEditor MapEditor;
+        public MapEditor MapEditor { get; set; }
+        public bool CloseOnLoadFile { get; set; } = true;
 
         public WorkspacePanel() : this(null)
         {
@@ -70,6 +71,9 @@ namespace TileGameMaker.Panels
                 string file = WorkspaceGrid.SelectedRows[0].Cells[0].Value.ToString();
                 string path = Path.Combine(MapEditor.WorkspacePath, file);
                 MapEditor.MapEditorControl.LoadMap(path);
+
+                if (CloseOnLoadFile && Parent is Form)
+                    (Parent as Form).Close();
             }
         }
     }

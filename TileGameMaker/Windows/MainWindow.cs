@@ -154,7 +154,8 @@ namespace TileGameMaker.Windows
 
         private void BtnViewWorkspace_Click(object sender, EventArgs e)
         {
-            // todo
+            WorkspaceWindow window = new WorkspaceWindow(MapEditor);
+            window.ShowDialog(this);
         }
 
         private void BtnToggleScript_Click(object sender, EventArgs e)
