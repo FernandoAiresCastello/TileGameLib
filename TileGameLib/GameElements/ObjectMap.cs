@@ -472,64 +472,6 @@ namespace TileGameLib.GameElements
             return false;
         }
 
-        public ObjectCollision FindCollisionBetweenIds(string idObject1, string idObject2)
-        {
-            PositionedObject posObject1 = FindObjectById(idObject1);
-            PositionedObject posObject2 = FindObjectById(idObject2);
-
-            if (posObject1.Position.X == posObject2.Position.X &&
-                posObject1.Position.Y == posObject2.Position.Y)
-            {
-                return new ObjectCollision(posObject1, posObject2);
-            }
-
-            return null;
-        }
-
-        public ObjectCollision FindCollisionBetweenObjects(GameObject object1, GameObject object2)
-        {
-            return FindCollisionBetweenIds(object1.Id, object2.Id);
-        }
-
-        public List<ObjectCollision> FindCollisionsBetweenIdAndTags(string id, string tag)
-        {
-            PositionedObject objectPos = FindObjectById(id);
-            List<PositionedObject> taggedObjectsPos = FindObjectsByTag(tag);
-            HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
-
-            foreach (PositionedObject taggedObjectPos in taggedObjectsPos)
-            {
-                if (objectPos.Position.X == taggedObjectPos.Position.X &&
-                    objectPos.Position.Y == taggedObjectPos.Position.Y)
-                {
-                    collisions.Add(new ObjectCollision(objectPos, taggedObjectPos));
-                }
-            }
-
-            return collisions.ToList();
-        }
-
-        public List<ObjectCollision> FindCollisionsBetweenTags(string tag1, string tag2)
-        {
-            List<PositionedObject> taggedObjectsPos1 = FindObjectsByTag(tag1);
-            List<PositionedObject> taggedObjectsPos2 = FindObjectsByTag(tag2);
-            HashSet<ObjectCollision> collisions = new HashSet<ObjectCollision>();
-
-            foreach (PositionedObject pos1 in taggedObjectsPos1)
-            {
-                foreach (PositionedObject pos2 in taggedObjectsPos2)
-                {
-                    if (pos1.Position.X == pos2.Position.X &&
-                        pos1.Position.Y == pos2.Position.Y)
-                    {
-                        collisions.Add(new ObjectCollision(pos1, pos2));
-                    }
-                }
-            }
-
-            return collisions.ToList();
-        }
-
         public void CopyObjectBlock(ObjectCellBlock source, ObjectCellBlock dest)
         {
             source.CopyTo(dest);

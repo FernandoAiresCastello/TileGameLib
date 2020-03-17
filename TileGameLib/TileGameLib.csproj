@@ -66,8 +66,6 @@
     </Compile>
     <Compile Include="Engine\MapController.cs" />
     <Compile Include="Engine\MapControllerCollection.cs" />
-    <Compile Include="Engine\ScriptCommand.cs" />
-    <Compile Include="Engine\ScriptedMapController.cs" />
     <Compile Include="Engine\TextInput.cs" />
     <Compile Include="Engine\UserInterface.cs" />
     <Compile Include="Engine\UserInterfaceMessage.cs" />
@@ -93,6 +91,7 @@
     <Compile Include="GameElements\PropertyList.cs" />
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
+    <Compile Include="GameElements\TrackedObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />

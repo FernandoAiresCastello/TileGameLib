@@ -13,6 +13,7 @@ namespace TileGameMaker.Test
     {
         public override void OnEnter()
         {
+            Ui.SetModalMessage("msg", "Hello world");
         }
 
         public override void OnKeyDown(KeyEventArgs e)
