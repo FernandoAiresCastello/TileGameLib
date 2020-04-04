@@ -49,6 +49,34 @@ namespace TileGameLib.Engine
             MessageTimer.Tick += MessageTimer_Tick;
         }
 
+        public GameObject GetUiObject(int x, int y)
+        {
+            return UiMap.GetObject(new ObjectPosition(0, x, y));
+        }
+
+        public void AddPlaceholder(string id, int x, int y, int foreColor)
+        {
+            AddPlaceholder(id, x, y, foreColor, BackColor);
+        }
+
+        public void AddPlaceholder(string id, int x, int y, int foreColor, int backColor)
+        {
+            UserInterfacePlaceholder placeholder = new UserInterfacePlaceholder(new Tile(0, foreColor, backColor), x, y);
+            Placeholders.Add(id, placeholder);
+        }
+
+        public void AddOffsetPlaceholder(string idRefPlaceholder, string idOffsetPlaceholder, int offsetX, int offsetY)
+        {
+            UserInterfacePlaceholder refPlaceholder = Placeholders[idRefPlaceholder];
+            AddOffsetPlaceholder(idRefPlaceholder, idOffsetPlaceholder, offsetX, offsetY, refPlaceholder.Tile.ForeColor, refPlaceholder.Tile.BackColor);
+        }
+
+        public void AddOffsetPlaceholder(string idRefPlaceholder, string idOffsetPlaceholder, int offsetX, int offsetY, int foreColor, int backColor)
+        {
+            UserInterfacePlaceholder refPlaceholder = Placeholders[idRefPlaceholder];
+            AddPlaceholder(idOffsetPlaceholder, refPlaceholder.Position.X + offsetX, refPlaceholder.Position.Y + offsetY, foreColor, backColor);
+        }
+
         public void LoadUiMap(string uiMapFile)
         {
             UiMap = MapFile.LoadFromRawBytes(uiMapFile);

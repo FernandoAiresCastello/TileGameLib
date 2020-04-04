@@ -91,7 +91,6 @@
     <Compile Include="GameElements\PropertyList.cs" />
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
-    <Compile Include="GameElements\TrackedObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />
@@ -114,7 +113,6 @@
     <Compile Include="Util\EmbeddedFontLoader.cs" />
     <Compile Include="Util\RandomID.cs" />
     <Compile Include="Util\RandomNumber.cs" />
-    <Compile Include="Util\Strings.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Components\DisplayWindow.resx">
