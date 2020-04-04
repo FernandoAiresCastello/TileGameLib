@@ -69,6 +69,11 @@ namespace TileGameLib.Engine
                 Window.ShowDialog(parent);
         }
 
+        public void Exit()
+        {
+            Window.Close();
+        }
+
         public virtual void OnStart()
         {
             // Override this to initialize the engine

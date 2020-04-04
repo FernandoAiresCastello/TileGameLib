@@ -19,13 +19,14 @@ namespace TileGameLib.Engine
         public UserInterfaceMessage(UserInterface ui, UserInterfacePlaceholder placeholder, string message)
         {
             Ui = ui;
-            MessagePlaceholder = placeholder.Copy();
+            MessagePlaceholder = placeholder;
             Message = message;
         }
 
         public void Draw()
         {
-            if (IsEmpty) return;
+            if (IsEmpty)
+                return;
 
             ObjectPosition msgpos = MessagePlaceholder.Position;
             Tile msgtile = MessagePlaceholder.Tile;

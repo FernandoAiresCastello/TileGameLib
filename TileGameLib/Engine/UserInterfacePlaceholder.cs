@@ -10,25 +10,27 @@ namespace TileGameLib.Engine
 {
     public class UserInterfacePlaceholder
     {
-        public Tile Tile { set; get; }
-        public ObjectPosition Position { set; get; }
+        private readonly PositionedObject PositionedObject;
 
-        public UserInterfacePlaceholder(Tile tile, int x, int y)
+        public Tile Tile => PositionedObject.Object.Tile;
+        public ObjectPosition Position => PositionedObject.Position;
+        public GameObject Object => PositionedObject.Object;
+        public ObjectMap Map => PositionedObject.Map;
+
+        public UserInterfacePlaceholder(PositionedObject po)
         {
-            Tile = tile.Copy();
-            Position = new ObjectPosition(0, x, y);
+            PositionedObject = po;
         }
 
         public UserInterfacePlaceholder(UserInterfacePlaceholder placeholder)
         {
-            Tile = placeholder.Tile.Copy();
-            Position = placeholder.Position.Copy();
+            PositionedObject = new PositionedObject(placeholder.Map, placeholder.Object, placeholder.Position);
         }
 
         public UserInterfacePlaceholder(UserInterfacePlaceholder placeholder, int offsetX, int offsetY)
         {
-            Tile = placeholder.Tile.Copy();
-            Position = placeholder.Position.AtDistance(offsetX, offsetY);
+            PositionedObject = new PositionedObject(placeholder.Map, placeholder.Object, 
+                placeholder.Position.AtDistance(offsetX, offsetY));
         }
 
         public UserInterfacePlaceholder Copy()

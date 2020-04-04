@@ -54,6 +54,17 @@ namespace TileGameLib.Engine
             return UiMap.GetObject(new ObjectPosition(0, x, y));
         }
 
+        public PositionedObject FindUiObject(string propertyName, string propertyValue)
+        {
+            List<PositionedObject> objs = FindUiObjects(propertyName, propertyValue);
+            return objs.Count > 0 ? objs[0] : null;
+        }
+
+        public List<PositionedObject> FindUiObjects(string propertyName, string propertyValue)
+        {
+            return UiMap.FindObjectsByPropertyValue(propertyName, propertyValue);
+        }
+
         public void LoadUiMap(string uiMapFile, string placeholderProperty)
         {
             UiMap = MapFile.LoadFromRawBytes(uiMapFile);
@@ -65,7 +76,6 @@ namespace TileGameLib.Engine
 
             BackColor = UiMap.BackColor;
             FindPlaceholders(placeholderProperty);
-            ShowPlaceholders(false);
         }
 
         public void Clear()
@@ -118,10 +128,13 @@ namespace TileGameLib.Engine
             if (UiMap == null)
                 return;
 
-            string[] lines = obj.ToString().Split('\n');
+            PreserveOriginalTilesetAndPalette();
 
+            string[] lines = obj.ToString().Split('\n');
             foreach (string line in lines)
                 Graphics.PutString(x, y++, line, foreColorIx, backColorIx);
+
+            RestoreOriginalTilesetAndPalette();
         }
 
         public void PrintWrap(object obj, string placeholder, int cols, int offsetX = 0, int offsetY = 0)
@@ -180,9 +193,7 @@ namespace TileGameLib.Engine
             ClearTimedMessage();
             ClearModalMessage();
             
-            UserInterfacePlaceholder ph = Placeholders[placeholder].Copy();
-            UserInterfacePlaceholder currentPlaceholder = new UserInterfacePlaceholder(ph);
-            TimedMessages.Add(new UserInterfaceMessage(this, currentPlaceholder, message));
+            TimedMessages.Add(new UserInterfaceMessage(this, Placeholders[placeholder], message));
 
             MessageTimer.Stop();
             MessageTimer.Interval = duration;
@@ -195,10 +206,7 @@ namespace TileGameLib.Engine
             ClearModalMessage();
 
             foreach (string message in messages)
-            {
-                UserInterfacePlaceholder ph = Placeholders[placeholder].Copy();
-                ModalMessages.Add(new UserInterfaceMessage(this, new UserInterfacePlaceholder(ph), message));
-            }
+                ModalMessages.Add(new UserInterfaceMessage(this, Placeholders[placeholder], message));
         }
 
         public void NextModalMessagePage()
@@ -344,11 +352,12 @@ namespace TileGameLib.Engine
             Graphics.Tileset = OriginalTileset;
         }
 
-        private void FindPlaceholders(string placeholderProperty)
+        public void FindPlaceholders(string placeholderProperty)
         {
             if (UiMap == null)
                 return;
 
+            Placeholders.Clear();
             ObjectLayer layer = UiMap.Layers[0];
 
             for (int y = 0; y < layer.Height; y++)
@@ -362,9 +371,9 @@ namespace TileGameLib.Engine
                         string placeholder = o.Properties.GetAsString(placeholderProperty);
                         bool isDuplicate = Placeholders.TryGetValue(placeholder, out UserInterfacePlaceholder ph);
                         if (isDuplicate)
-                            throw new TileGameLibException("Duplicate placeholder " + placeholder + " in UI map");
+                            throw new TileGameLibException("Duplicate placeholder \"" + placeholder + "\" in UI map");
 
-                        Placeholders[placeholder] = new UserInterfacePlaceholder(o.Animation.FirstFrame, x, y);
+                        Placeholders[placeholder] = new UserInterfacePlaceholder(new PositionedObject(UiMap, o, 0, x, y));
                     }
                 }
             }
