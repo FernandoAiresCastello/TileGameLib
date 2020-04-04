@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Panels
 {
-    partial class ScriptPanel
+    partial class MapTextPanel
     {
         /// <summary> 
         /// Required designer variable.
@@ -68,16 +68,16 @@
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Margin = new System.Windows.Forms.Padding(4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Script";
+            this.label1.Text = "Map text";
             // 
-            // ScriptPanel
+            // MapTextPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ScriptPanel";
+            this.Name = "MapTextPanel";
             this.Size = new System.Drawing.Size(238, 337);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

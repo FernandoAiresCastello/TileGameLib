@@ -33,8 +33,9 @@
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnToggleScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnViewWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnToggleCommandLine = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -49,7 +50,6 @@
             this.ScriptPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.BtnViewWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -94,8 +94,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnToggleScript,
             this.BtnViewWorkspace,
+            this.BtnToggleScript,
             this.BtnDataExtractor,
             this.BtnToggleCommandLine});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -106,26 +106,34 @@
             // 
             this.BtnToggleScript.Image = global::TileGameMaker.Properties.Resources.script_code;
             this.BtnToggleScript.Name = "BtnToggleScript";
-            this.BtnToggleScript.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.BtnToggleScript.Size = new System.Drawing.Size(217, 22);
-            this.BtnToggleScript.Text = "Toggle script editor";
+            this.BtnToggleScript.Size = new System.Drawing.Size(203, 22);
+            this.BtnToggleScript.Text = "Toggle map text editor";
             this.BtnToggleScript.Click += new System.EventHandler(this.BtnToggleScript_Click);
             // 
-            // BtnToggleCommandLine
+            // BtnViewWorkspace
             // 
-            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
-            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
-            this.BtnToggleCommandLine.Size = new System.Drawing.Size(217, 22);
-            this.BtnToggleCommandLine.Text = "Toggle command line";
-            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
+            this.BtnViewWorkspace.Image = global::TileGameMaker.Properties.Resources.folder_vertical_open;
+            this.BtnViewWorkspace.Name = "BtnViewWorkspace";
+            this.BtnViewWorkspace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            this.BtnViewWorkspace.Size = new System.Drawing.Size(234, 22);
+            this.BtnViewWorkspace.Text = "View workspace";
+            this.BtnViewWorkspace.Click += new System.EventHandler(this.BtnViewWorkspace_Click);
             // 
             // BtnDataExtractor
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
             this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(217, 22);
+            this.BtnDataExtractor.Size = new System.Drawing.Size(234, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
+            // 
+            // BtnToggleCommandLine
+            // 
+            this.BtnToggleCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
+            this.BtnToggleCommandLine.Name = "BtnToggleCommandLine";
+            this.BtnToggleCommandLine.Size = new System.Drawing.Size(234, 22);
+            this.BtnToggleCommandLine.Text = "Toggle command line";
+            this.BtnToggleCommandLine.Click += new System.EventHandler(this.BtnToggleCommandLine_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -270,7 +278,7 @@
             this.ScriptPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ScriptPanel.Location = new System.Drawing.Point(0, 0);
             this.ScriptPanel.Name = "ScriptPanel";
-            this.ScriptPanel.Size = new System.Drawing.Size(162, 398);
+            this.ScriptPanel.Size = new System.Drawing.Size(96, 100);
             this.ScriptPanel.TabIndex = 0;
             // 
             // CommandLinePanel
@@ -288,15 +296,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // BtnViewWorkspace
-            // 
-            this.BtnViewWorkspace.Image = global::TileGameMaker.Properties.Resources.folder_vertical_open;
-            this.BtnViewWorkspace.Name = "BtnViewWorkspace";
-            this.BtnViewWorkspace.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.BtnViewWorkspace.Size = new System.Drawing.Size(217, 22);
-            this.BtnViewWorkspace.Text = "View workspace";
-            this.BtnViewWorkspace.Click += new System.EventHandler(this.BtnViewWorkspace_Click);
             // 
             // MainWindow
             // 

@@ -11,7 +11,7 @@ using TileGameMaker.MapEditorElements;
 
 namespace TileGameMaker.Panels
 {
-    public partial class ScriptPanel : BasePanel
+    public partial class MapTextPanel : BasePanel
     {
         public string Script
         {
@@ -21,11 +21,11 @@ namespace TileGameMaker.Panels
 
         private MapEditor MapEditor;
 
-        public ScriptPanel() : this(null)
+        public MapTextPanel() : this(null)
         {
         }
 
-        public ScriptPanel(MapEditor editor)
+        public MapTextPanel(MapEditor editor)
         {
             InitializeComponent();
             MapEditor = editor;

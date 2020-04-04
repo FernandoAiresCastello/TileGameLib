@@ -93,11 +93,11 @@
     <Compile Include="Panels\ObjectPropertyGridPanel.Designer.cs">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\ScriptPanel.cs">
+    <Compile Include="Panels\MapTextPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panels\ScriptPanel.Designer.cs">
-      <DependentUpon>ScriptPanel.cs</DependentUpon>
+    <Compile Include="Panels\MapTextPanel.Designer.cs">
+      <DependentUpon>MapTextPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\WorkspacePanel.cs">
       <SubType>UserControl</SubType>
@@ -243,8 +243,8 @@
     <EmbeddedResource Include="Panels\ObjectPropertyGridPanel.resx">
       <DependentUpon>ObjectPropertyGridPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panels\ScriptPanel.resx">
-      <DependentUpon>ScriptPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\MapTextPanel.resx">
+      <DependentUpon>MapTextPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\WorkspacePanel.resx">
       <DependentUpon>WorkspacePanel.cs</DependentUpon>

@@ -36,7 +36,7 @@ namespace TileGameMaker.MapEditorElements
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
         public WorkspacePanel WorkspacePanel { get; private set; }
-        public ScriptPanel ScriptPanel { get; private set; }
+        public MapTextPanel ScriptPanel { get; private set; }
 
         public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
@@ -85,7 +85,7 @@ namespace TileGameMaker.MapEditorElements
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             WorkspacePanel = new WorkspacePanel(this);
-            ScriptPanel = new ScriptPanel(this);
+            ScriptPanel = new MapTextPanel(this);
 
             UpdateMapProperties();
             WorkspacePanel.UpdateWorkspace();
