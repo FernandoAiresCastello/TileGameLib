@@ -13,8 +13,8 @@ namespace TileGameMaker.TiledDisplays
 {
     public class ColorPickerDisplay : TiledDisplay
     {
-        public int ForeColorIx { set; get; }
-        public int BackColorIx { set; get; }
+        public int SelectedForeColor { set; get; }
+        public int SelectedBackColor { set; get; }
 
         private readonly int SwatchTileIx = Config.ReadInt("ColorPickerSwatchTile");
         private readonly int SelectedForeColorSwatchTile = Config.ReadInt("ColorPickerSelectedForeColorSwatchTile");
@@ -24,8 +24,8 @@ namespace TileGameMaker.TiledDisplays
         public ColorPickerDisplay(Control parent, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
-            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
-            BackColorIx = Config.ReadInt("DefaultTileBackColor");
+            SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
+            SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -42,11 +42,11 @@ namespace TileGameMaker.TiledDisplays
                 {
                     int selectionIndicatorColor = Graphics.Palette.GetBrightness(i) > 0.5 ? black : white;
 
-                    if (i == ForeColorIx && i == BackColorIx)
+                    if (i == SelectedForeColor && i == SelectedBackColor)
                         Graphics.PutTile(x, y, SelectedBothColorsEqualSwatchTile, selectionIndicatorColor, i);
-                    else if (i == ForeColorIx)
+                    else if (i == SelectedForeColor)
                         Graphics.PutTile(x, y, SelectedForeColorSwatchTile, selectionIndicatorColor, i);
-                    else if (i == BackColorIx)
+                    else if (i == SelectedBackColor)
                         Graphics.PutTile(x, y, SelectedBackColorSwatchTile, selectionIndicatorColor, i);
                     else
                         Graphics.PutTile(x, y, SwatchTileIx, i, i);
@@ -100,27 +100,27 @@ namespace TileGameMaker.TiledDisplays
 
         public Color GetForeColor()
         {
-            return Color.FromArgb(Graphics.Palette.Colors[ForeColorIx]);
+            return Color.FromArgb(Graphics.Palette.Colors[SelectedForeColor]);
         }
 
         public Color GetBackColor()
         {
-            return Color.FromArgb(Graphics.Palette.Colors[BackColorIx]);
+            return Color.FromArgb(Graphics.Palette.Colors[SelectedBackColor]);
         }
 
         public void Clear()
         {
             Graphics.Palette.Clear();
-            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
-            BackColorIx = Config.ReadInt("DefaultTileBackColor");
+            SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
+            SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
             Refresh();
         }
 
         public void ResetToDefault()
         {
             Graphics.Palette.InitDefault();
-            ForeColorIx = Config.ReadInt("DefaultTileForeColor");
-            BackColorIx = Config.ReadInt("DefaultTileBackColor");
+            SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
+            SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
             Refresh();
         }
     }

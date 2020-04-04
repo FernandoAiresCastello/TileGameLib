@@ -16,7 +16,7 @@ namespace TileGameMaker.Windows
 {
     public partial class ColorPickerWindow : Form
     {
-        public int SelectedColor => ColorPicker.BackColorIx;
+        public int SelectedColor => ColorPicker.SelectedBackColor;
 
         private MapEditor MapEditor;
         private ColorPickerDisplay ColorPicker;
@@ -48,7 +48,7 @@ namespace TileGameMaker.Windows
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
 
-            ColorPicker.BackColorIx = colorIx;
+            ColorPicker.SelectedBackColor = colorIx;
             DialogResult = DialogResult.OK;
         }
 

@@ -480,26 +480,6 @@ namespace TileGameMaker.Panels
             button.Checked = true;
         }
 
-        private void EditProperties(int x, int y)
-        {
-            ObjectPosition position = new ObjectPosition(Layer, x, y);
-            GameObject o = Map.GetObject(position);
-
-            if (o == null)
-            {
-                Alert.Warning("There's no object in this cell");
-                return;
-            }
-
-            ObjectPropertiesEditWindow win = new ObjectPropertiesEditWindow();
-
-            if (win.ShowDialog(this, o, position) == DialogResult.OK)
-            {
-                o.Visible = win.ObjectVisible;
-                o.Properties = win.ObjectProperties;
-            }
-        }
-
         private void InputText(int x, int y)
         {
             TextInputWindow win = new TextInputWindow($"Enter text to insert @{x},{y}");
@@ -1000,14 +980,13 @@ namespace TileGameMaker.Panels
         private void MiOverrideColors_Click(object sender, EventArgs e)
         {
             List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
-            Tile firstFrameOfSelectedObject = Editor.SelectedObject.Animation.FirstFrame;
 
             foreach (ObjectCell cell in selectedCells)
             {
                 foreach (Tile tile in cell.Object.Animation.Frames)
                 {
-                    tile.ForeColor = firstFrameOfSelectedObject.ForeColor;
-                    tile.BackColor = firstFrameOfSelectedObject.BackColor;
+                    tile.ForeColor = Editor.ColorPickerControl.SelectedForeColor;
+                    tile.BackColor = Editor.ColorPickerControl.SelectedBackColor;
                 }
             }
 

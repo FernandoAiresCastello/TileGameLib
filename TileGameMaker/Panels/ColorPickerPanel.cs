@@ -19,12 +19,12 @@ namespace TileGameMaker.Panels
 {
     public partial class ColorPickerPanel : BasePanel
     {
+        public int SelectedForeColor => ColorPicker.SelectedForeColor;
+        public int SelectedBackColor => ColorPicker.SelectedBackColor;
+
         private MapEditor MapEditor;
         private ColorPickerDisplay ColorPicker;
         private ColorEditorWindow ColorEditorWindow;
-
-        //private static readonly int MinTilesPerRowAllowed = 1;
-        //private static readonly int MaxTilesPerRowAllowed = 16;
 
         public ColorPickerPanel()
         {
@@ -92,7 +92,7 @@ namespace TileGameMaker.Panels
 
         public void SetForeColorIndex(int index)
         {
-            ColorPicker.ForeColorIx = index;
+            ColorPicker.SelectedForeColor = index;
             Refresh();
             UpdatePanelColors();
             UpdateStatus();
@@ -100,20 +100,10 @@ namespace TileGameMaker.Panels
 
         public void SetBackColorIndex(int index)
         {
-            ColorPicker.BackColorIx = index;
+            ColorPicker.SelectedBackColor = index;
             Refresh();
             UpdatePanelColors();
             UpdateStatus();
-        }
-
-        public int GetForeColorIndex()
-        {
-            return ColorPicker.ForeColorIx;
-        }
-
-        public int GetBackColorIndex()
-        {
-            return ColorPicker.BackColorIx;
         }
 
         private void ColorPicker_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -134,9 +124,9 @@ namespace TileGameMaker.Panels
                 return;
 
             if (e.Button == MouseButtons.Left)
-                ColorPicker.ForeColorIx = colorIx;
+                ColorPicker.SelectedForeColor = colorIx;
             else if (e.Button == MouseButtons.Right)
-                ColorPicker.BackColorIx = colorIx;
+                ColorPicker.SelectedBackColor = colorIx;
 
             Refresh();
             UpdatePanelColors();
@@ -173,8 +163,8 @@ namespace TileGameMaker.Panels
         {
             LblStatus.Text = 
                 "C: " + ColorPicker.Graphics.Palette.Size + 
-                " F: " + ColorPicker.ForeColorIx + 
-                " B: " + ColorPicker.BackColorIx;
+                " F: " + ColorPicker.SelectedForeColor + 
+                " B: " + ColorPicker.SelectedBackColor;
         }
 
         private void SetHoverStatus(string status)
@@ -195,9 +185,9 @@ namespace TileGameMaker.Panels
 
         private void SwapColors()
         {
-            int temp = ColorPicker.ForeColorIx;
-            ColorPicker.ForeColorIx = ColorPicker.BackColorIx;
-            ColorPicker.BackColorIx = temp;
+            int temp = ColorPicker.SelectedForeColor;
+            ColorPicker.SelectedForeColor = ColorPicker.SelectedBackColor;
+            ColorPicker.SelectedBackColor = temp;
             UpdatePanelColors();
             UpdateStatus();
             Refresh();

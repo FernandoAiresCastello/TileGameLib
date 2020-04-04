@@ -25,6 +25,8 @@ namespace TileGameMaker.Panels
             get { return BtnPopOutWindow.Enabled; }
         }
 
+        public int SelectedTile => TilePicker.TileIndex;
+
         private MapEditor MapEditor;
         private TilePickerDisplay TilePicker;
         private TileEditor8x8Window TileEditor8x8Window;
@@ -85,11 +87,6 @@ namespace TileGameMaker.Panels
             TilePicker.TileIndex = index;
             UpdateStatus();
             Refresh();
-        }
-
-        public int GetTileIndex()
-        {
-            return TilePicker.TileIndex;
         }
 
         private void CopyTile(int tileIx)

@@ -197,9 +197,9 @@ namespace TileGameMaker.MapEditorElements
         private Tile GetSelectedTile()
         {
             return new Tile(
-                TilePickerControl.GetTileIndex(),
-                ColorPickerControl.GetForeColorIndex(),
-                ColorPickerControl.GetBackColorIndex());
+                TilePickerControl.SelectedTile,
+                ColorPickerControl.SelectedForeColor,
+                ColorPickerControl.SelectedBackColor);
         }
 
         private void SetSelectedTile(Tile tile)

@@ -4,8 +4,6 @@
 	New features:
 		- Find and select objects in map editor
 		- "Rearrange mode" in color picker
-		- Replace forecolor of all selected objects
-		- Replace backcolor of all selected objects
 -------------------------------------------------------------------------------
 	Improvements or changes to existing features:
 		(None)
