@@ -48,7 +48,6 @@ namespace TileGameMaker.Windows
         private void ExtractMapData()
         {
             int layerIndex = CmbLayer.SelectedIndex;
-            bool extractTag = ChkObjectTag.Checked;
             bool extract1stTileIndex = ChkObject1stTileIndex.Checked;
             bool extract1stTileForeColor = ChkObject1stTileForeColor.Checked;
             bool extract1stTileBackColor = ChkObject1stTileBackColor.Checked;
@@ -65,28 +64,6 @@ namespace TileGameMaker.Windows
             output.AppendLine($"Layer: {layerIndex}");
             output.AppendLine($"Objects: {layer.Width * layer.Height}");
             output.AppendLine();
-
-            if (extractTag)
-            {
-                output.AppendLine("[Tag]");
-
-                for (int y = 0; y < layer.Height; y++)
-                {
-                    output.Append(linePrefix);
-
-                    for (int x = 0; x < layer.Width; x++)
-                    {
-                        GameObject o = layer.GetObject(x, y);
-                        output.Append(o == null || !o.HasTag ? emptyCell : o.Tag);
-
-                        if (y <= layer.Height - 1 && x < layer.Width - 1)
-                            output.Append(itemSeparator);
-                    }
-
-                    output.Append(lineSuffix);
-                    output.AppendLine();
-                }
-            }
 
             if (extract1stTileIndex)
             {

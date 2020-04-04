@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnCopyOutput = new System.Windows.Forms.Button();
             this.TxtOutput = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -43,7 +44,6 @@
             this.ChkObject1stTileBackColor = new System.Windows.Forms.CheckBox();
             this.ChkObject1stTileForeColor = new System.Windows.Forms.CheckBox();
             this.ChkObject1stTileIndex = new System.Windows.Forms.CheckBox();
-            this.ChkObjectTag = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnExtractMapData = new System.Windows.Forms.Button();
             this.CmbLayer = new System.Windows.Forms.ComboBox();
@@ -86,7 +86,6 @@
             this.RbTileDecimal = new System.Windows.Forms.RadioButton();
             this.BtnExtractTilesetData = new System.Windows.Forms.Button();
             this.RootPanel = new System.Windows.Forms.Panel();
-            this.BtnCopyOutput = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -117,6 +116,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(464, 502);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // BtnCopyOutput
+            // 
+            this.BtnCopyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCopyOutput.Location = new System.Drawing.Point(355, 472);
+            this.BtnCopyOutput.Name = "BtnCopyOutput";
+            this.BtnCopyOutput.Size = new System.Drawing.Size(106, 27);
+            this.BtnCopyOutput.TabIndex = 3;
+            this.BtnCopyOutput.Text = "Copy output";
+            this.BtnCopyOutput.UseVisualStyleBackColor = true;
+            this.BtnCopyOutput.Click += new System.EventHandler(this.BtnCopyOutput_Click);
             // 
             // TxtOutput
             // 
@@ -156,7 +166,6 @@
             this.tabPage1.Controls.Add(this.ChkObject1stTileBackColor);
             this.tabPage1.Controls.Add(this.ChkObject1stTileForeColor);
             this.tabPage1.Controls.Add(this.ChkObject1stTileIndex);
-            this.tabPage1.Controls.Add(this.ChkObjectTag);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.BtnExtractMapData);
             this.tabPage1.Controls.Add(this.CmbLayer);
@@ -242,7 +251,7 @@
             // ChkObject1stTileBackColor
             // 
             this.ChkObject1stTileBackColor.AutoSize = true;
-            this.ChkObject1stTileBackColor.Location = new System.Drawing.Point(86, 118);
+            this.ChkObject1stTileBackColor.Location = new System.Drawing.Point(86, 96);
             this.ChkObject1stTileBackColor.Name = "ChkObject1stTileBackColor";
             this.ChkObject1stTileBackColor.Size = new System.Drawing.Size(106, 17);
             this.ChkObject1stTileBackColor.TabIndex = 7;
@@ -252,7 +261,7 @@
             // ChkObject1stTileForeColor
             // 
             this.ChkObject1stTileForeColor.AutoSize = true;
-            this.ChkObject1stTileForeColor.Location = new System.Drawing.Point(86, 95);
+            this.ChkObject1stTileForeColor.Location = new System.Drawing.Point(86, 73);
             this.ChkObject1stTileForeColor.Name = "ChkObject1stTileForeColor";
             this.ChkObject1stTileForeColor.Size = new System.Drawing.Size(100, 17);
             this.ChkObject1stTileForeColor.TabIndex = 6;
@@ -264,22 +273,12 @@
             this.ChkObject1stTileIndex.AutoSize = true;
             this.ChkObject1stTileIndex.Checked = true;
             this.ChkObject1stTileIndex.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkObject1stTileIndex.Location = new System.Drawing.Point(86, 72);
+            this.ChkObject1stTileIndex.Location = new System.Drawing.Point(86, 50);
             this.ChkObject1stTileIndex.Name = "ChkObject1stTileIndex";
             this.ChkObject1stTileIndex.Size = new System.Drawing.Size(84, 17);
             this.ChkObject1stTileIndex.TabIndex = 5;
             this.ChkObject1stTileIndex.Text = "1st tile index";
             this.ChkObject1stTileIndex.UseVisualStyleBackColor = true;
-            // 
-            // ChkObjectTag
-            // 
-            this.ChkObjectTag.AutoSize = true;
-            this.ChkObjectTag.Location = new System.Drawing.Point(86, 49);
-            this.ChkObjectTag.Name = "ChkObjectTag";
-            this.ChkObjectTag.Size = new System.Drawing.Size(45, 17);
-            this.ChkObjectTag.TabIndex = 4;
-            this.ChkObjectTag.Text = "Tag";
-            this.ChkObjectTag.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -338,7 +337,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage2.Size = new System.Drawing.Size(450, 219);
+            this.tabPage2.Size = new System.Drawing.Size(450, 202);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Palette";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -531,7 +530,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage3.Size = new System.Drawing.Size(450, 219);
+            this.tabPage3.Size = new System.Drawing.Size(450, 202);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tileset";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -706,17 +705,6 @@
             this.RootPanel.Size = new System.Drawing.Size(474, 512);
             this.RootPanel.TabIndex = 1;
             // 
-            // BtnCopyOutput
-            // 
-            this.BtnCopyOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCopyOutput.Location = new System.Drawing.Point(355, 472);
-            this.BtnCopyOutput.Name = "BtnCopyOutput";
-            this.BtnCopyOutput.Size = new System.Drawing.Size(106, 27);
-            this.BtnCopyOutput.TabIndex = 3;
-            this.BtnCopyOutput.Text = "Copy output";
-            this.BtnCopyOutput.UseVisualStyleBackColor = true;
-            this.BtnCopyOutput.Click += new System.EventHandler(this.BtnCopyOutput_Click);
-            // 
             // DataExtractorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -763,7 +751,6 @@
         private System.Windows.Forms.Button BtnExtractPaletteData;
         private System.Windows.Forms.Button BtnExtractTilesetData;
         private System.Windows.Forms.CheckBox ChkObject1stTileIndex;
-        private System.Windows.Forms.CheckBox ChkObjectTag;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ChkObject1stTileBackColor;
         private System.Windows.Forms.CheckBox ChkObject1stTileForeColor;

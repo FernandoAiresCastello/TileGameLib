@@ -37,8 +37,6 @@
             this.BtnCancel = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtTag = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtPosition = new System.Windows.Forms.TextBox();
             this.ChkVisible = new System.Windows.Forms.CheckBox();
@@ -147,15 +145,11 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.TxtTag, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.TxtPosition, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.ChkVisible, 2, 0);
@@ -167,27 +161,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(533, 29);
             this.tableLayoutPanel3.TabIndex = 4;
-            // 
-            // TxtTag
-            // 
-            this.TxtTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtTag.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTag.Location = new System.Drawing.Point(394, 3);
-            this.TxtTag.Name = "TxtTag";
-            this.TxtTag.Size = new System.Drawing.Size(136, 23);
-            this.TxtTag.TabIndex = 1;
-            this.TxtTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(336, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tag";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -207,17 +180,17 @@
             this.TxtPosition.Location = new System.Drawing.Point(58, 3);
             this.TxtPosition.Name = "TxtPosition";
             this.TxtPosition.ReadOnly = true;
-            this.TxtPosition.Size = new System.Drawing.Size(135, 23);
+            this.TxtPosition.Size = new System.Drawing.Size(233, 23);
             this.TxtPosition.TabIndex = 1;
             // 
             // ChkVisible
             // 
             this.ChkVisible.AutoSize = true;
             this.ChkVisible.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChkVisible.Location = new System.Drawing.Point(199, 3);
+            this.ChkVisible.Location = new System.Drawing.Point(297, 3);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.ChkVisible.Size = new System.Drawing.Size(134, 23);
+            this.ChkVisible.Size = new System.Drawing.Size(233, 23);
             this.ChkVisible.TabIndex = 3;
             this.ChkVisible.Text = "Visible";
             this.ChkVisible.UseVisualStyleBackColor = true;
@@ -264,10 +237,8 @@
         private System.Windows.Forms.ToolStripButton BtnCancel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TextBox TxtTag;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtPosition;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ChkVisible;
         private Panels.ObjectPropertyGridPanel PropertyGrid;
     }

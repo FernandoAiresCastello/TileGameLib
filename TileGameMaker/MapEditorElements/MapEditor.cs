@@ -215,7 +215,6 @@ namespace TileGameMaker.MapEditorElements
         private GameObject GetSelectedObject()
         {
             GameObject o = new GameObject();
-            o.Tag = TemplateControl.Object.Tag;
             o.Visible = TemplateControl.Object.Visible;
             o.Properties.SetEqual(TemplateControl.Properties);
             o.Animation.SetEqual(TemplateControl.CroppedAnimation);

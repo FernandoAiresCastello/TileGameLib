@@ -61,7 +61,6 @@ namespace TileGameMaker.Panels
             AnimationStrip.Graphics.Palette = editor.Map.Palette;
             AnimationStrip.MouseDown += AnimationStrip_MouseDown;
             TxtFrames.Text = 1.ToString();
-            TxtTag.Text = "";
         }
 
         private void TemplateControl_Shown(object sender, EventArgs e)
@@ -72,7 +71,6 @@ namespace TileGameMaker.Panels
         public override void Refresh()
         {
             base.Refresh();
-            TxtTag.Text = Object.Tag;
             ChkVisible.Checked = Object.Visible;
             PropertyGrid.UpdateProperties(Object);
         }
@@ -97,7 +95,6 @@ namespace TileGameMaker.Panels
             Object.SetNull();
             AnimationStrip.Clear();
             TxtFrames.Text = 1.ToString();
-            TxtTag.Text = "";
             ChkVisible.Checked = true;
             Refresh();
         }
@@ -130,11 +127,6 @@ namespace TileGameMaker.Panels
                     Config.ReadInt("DefaultTileForeColor"),
                     Config.ReadInt("DefaultTileBackColor")));
             }
-        }
-
-        private void TxtTag_Leave(object sender, EventArgs e)
-        {
-            Object.Tag = TxtTag.Text.Trim();
         }
 
         private void ChkVisible_CheckedChanged(object sender, EventArgs e)

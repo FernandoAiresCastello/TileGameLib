@@ -13,7 +13,6 @@ namespace TileGameMaker.Windows
 {
     public partial class ObjectPropertiesEditWindow : Form
     {
-        public string ObjectTag => TxtTag.Text.Trim();
         public bool ObjectVisible => ChkVisible.Checked;
         public PropertyList ObjectProperties { set; get; }
 
@@ -28,9 +27,7 @@ namespace TileGameMaker.Windows
         {
             TxtPosition.Text = $"Layer:{position.Layer} X:{position.X} Y:{position.Y}";
             TxtPosition.Select(0, 0);
-            TxtTag.Text = o.Tag;
             ChkVisible.Checked = o.Visible;
-            TxtTag.Select(0, 0);
             ObjectProperties.SetEqual(o.Properties);
             PropertyGrid.UpdateProperties(o);
             

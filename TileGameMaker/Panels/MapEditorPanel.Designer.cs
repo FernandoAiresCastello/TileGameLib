@@ -44,6 +44,7 @@
             this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +56,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetData = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
@@ -77,7 +77,6 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -154,7 +153,6 @@
             this.toolStripSeparator1,
             this.BtnPutTemplate,
             this.BtnDelete,
-            this.BtnSetData,
             this.BtnAddText,
             this.BtnReplaceObjects,
             this.BtnSelect,
@@ -260,6 +258,13 @@
             this.BtnExport.Name = "BtnExport";
             this.BtnExport.Size = new System.Drawing.Size(184, 22);
             this.BtnExport.Text = "Export";
+            // 
+            // BtnExportJson
+            // 
+            this.BtnExportJson.Name = "BtnExportJson";
+            this.BtnExportJson.Size = new System.Drawing.Size(102, 22);
+            this.BtnExportJson.Text = "JSON";
+            this.BtnExportJson.Click += new System.EventHandler(this.BtnExportJson_Click);
             // 
             // toolStripSeparator3
             // 
@@ -373,17 +378,6 @@
             this.BtnDelete.Text = "toolStripButton1";
             this.BtnDelete.ToolTipText = "Delete (CTRL+2)";
             this.BtnDelete.Click += new System.EventHandler(this.BtnDeleteMode_Click);
-            // 
-            // BtnSetData
-            // 
-            this.BtnSetData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetData.Image = global::TileGameMaker.Properties.Resources.database_edit;
-            this.BtnSetData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetData.Name = "BtnSetData";
-            this.BtnSetData.Size = new System.Drawing.Size(23, 20);
-            this.BtnSetData.Text = "toolStripButton1";
-            this.BtnSetData.ToolTipText = "Edit properties (CTRL+3)";
-            this.BtnSetData.Click += new System.EventHandler(this.BtnSetScript_Click);
             // 
             // BtnAddText
             // 
@@ -578,13 +572,6 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // BtnExportJson
-            // 
-            this.BtnExportJson.Name = "BtnExportJson";
-            this.BtnExportJson.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportJson.Text = "JSON";
-            this.BtnExportJson.Click += new System.EventHandler(this.BtnExportJson_Click);
-            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,7 +615,6 @@
         private System.Windows.Forms.ToolStripButton BtnRemoveLayer;
         private System.Windows.Forms.ToolStripButton BtnViewAll;
         private System.Windows.Forms.ToolStripButton BtnClearLayer;
-        private System.Windows.Forms.ToolStripButton BtnSetData;
         private System.Windows.Forms.ToolStripButton BtnPutTemplate;
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripButton BtnDelete;

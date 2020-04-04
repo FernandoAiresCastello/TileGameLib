@@ -13,12 +13,10 @@ namespace TileGameLib.GameElements
     public class GameObject
     {
         public string Id { set; get; }
-        public string Tag { set; get; }
         public bool Visible { set; get; }
         public ObjectAnimation Animation { set; get; } = new ObjectAnimation();
         public PropertyList Properties { set; get; } = new PropertyList();
-
-        public bool HasTag => !string.IsNullOrWhiteSpace(Tag);
+        public Tile Tile => Animation.FirstFrame;
 
         public GameObject()
         {
@@ -41,7 +39,6 @@ namespace TileGameLib.GameElements
 
         public void SetNull()
         {
-            Tag = "";
             Visible = true;
             Properties.RemoveAll();
             Animation.Clear();
@@ -52,7 +49,6 @@ namespace TileGameLib.GameElements
         {
             if (o != null)
             {
-                Tag = o.Tag;
                 Visible = o.Visible;
                 Properties.SetEqual(o.Properties);
                 Animation.SetEqual(o.Animation);
@@ -70,7 +66,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Visible: {Visible} Tag: {Tag}";
+            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Visible: {Visible}";
         }
 
         public override bool Equals(object obj)
@@ -81,7 +77,6 @@ namespace TileGameLib.GameElements
             GameObject o = (GameObject)obj;
 
             return
-                Tag.Equals(o.Tag) &&
                 Visible.Equals(o.Visible) &&
                 Properties.Equals(o.Properties) &&
                 Animation.Equals(o.Animation);
@@ -104,7 +99,7 @@ namespace TileGameLib.GameElements
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Id, Tag, Visible, Properties, Animation).GetHashCode();
+            return Tuple.Create(Id, Visible, Properties, Animation).GetHashCode();
         }
 
         private void GenerateId()

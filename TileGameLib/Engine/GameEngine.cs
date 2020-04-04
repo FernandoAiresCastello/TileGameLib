@@ -201,11 +201,6 @@ namespace TileGameLib.Engine
             return mapPath;
         }
 
-        public void LoadUiMap(string uiMapFile)
-        {
-            Window.Ui.LoadUiMap(GetMapPath(uiMapFile));
-        }
-
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);

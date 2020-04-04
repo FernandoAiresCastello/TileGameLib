@@ -20,7 +20,7 @@ namespace TileGameLib.GameElements
         public string MusicFile { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public string Script { get; set; }
+        public string Text { get; set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
@@ -54,7 +54,7 @@ namespace TileGameLib.GameElements
             Height = other.Height;
             BackColor = other.BackColor;
             MusicFile = other.MusicFile;
-            Script = other.Script;
+            Text = other.Text;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();
@@ -317,43 +317,6 @@ namespace TileGameLib.GameElements
             return null;
         }
 
-        public PositionedObject FindObjectByTag(string tag)
-        {
-            List<PositionedObject> objects = FindObjectsByTag(tag);
-
-            if (objects.Count > 1)
-                throw new TileGameLibException("Multiple objects found with tag " + tag);
-            if (objects.Count == 1)
-                return objects[0];
-
-            return null;
-        }
-
-        public List<PositionedObject> FindObjectsByTag(string tag)
-        {
-            List<PositionedObject> objects = new List<PositionedObject>();
-
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
-            {
-                ObjectLayer layer = Layers[layerIndex];
-                List<PositionedObject> layerPositions = new List<PositionedObject>();
-
-                for (int y = 0; y < Height; y++)
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        GameObject o = layer.GetObject(x, y);
-                        if (o != null && o.HasTag && o.Tag.Equals(tag))
-                            layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
-                    }
-                }
-
-                objects.AddRange(layerPositions);
-            }
-
-            return objects;
-        }
-
         public List<PositionedObject> FindObjectsByProperty(string property)
         {
             List<PositionedObject> objects = new List<PositionedObject>();
@@ -470,47 +433,6 @@ namespace TileGameLib.GameElements
             }
 
             return false;
-        }
-
-        public void CopyObjectBlock(ObjectCellBlock source, ObjectCellBlock dest)
-        {
-            source.CopyTo(dest);
-        }
-
-        public void CopyObjectBlock(string srcTopLeftTag, string destTopLeftTag, string widthPropertyName, string heightPropertyName)
-        {
-            ObjectCellBlock src = GetCellBlock(srcTopLeftTag, widthPropertyName, heightPropertyName);
-            ObjectCellBlock dest = GetCellBlock(destTopLeftTag, widthPropertyName, heightPropertyName);
-            src.CopyTo(dest);
-        }
-
-        public void MoveObjectBlock(ObjectCellBlock source, ObjectCellBlock dest)
-        {
-            CopyObjectBlock(source, dest);
-            DeleteObjectBlock(source);
-        }
-
-        public void MoveObjectBlock(string srcTopLeftTag, string destTopLeftTag, string widthPropertyName, string heightPropertyName)
-        {
-            ObjectCellBlock src = GetCellBlock(srcTopLeftTag, widthPropertyName, heightPropertyName);
-            ObjectCellBlock dest = GetCellBlock(destTopLeftTag, widthPropertyName, heightPropertyName);
-
-            src.MoveTo(dest);
-        }
-
-        public void DeleteObjectBlock(ObjectCellBlock block)
-        {
-            block.DeleteObjects();
-        }
-
-        public ObjectCellBlock GetCellBlock(string topLeftTag, string widthPropertyName, string heightPropertyName)
-        {
-            PositionedObject topLeft = FindObjectByTag(topLeftTag);
-            Size srcSize = new Size(
-                topLeft.Object.Properties.GetAsNumber(widthPropertyName),
-                topLeft.Object.Properties.GetAsNumber(heightPropertyName));
-
-            return new ObjectCellBlock(this, topLeft.Position.Layer, new Rectangle(topLeft.Position.Point, srcSize));
         }
     }
 }

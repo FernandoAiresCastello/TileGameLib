@@ -77,7 +77,7 @@ namespace TileGameLib.Engine
             AddPlaceholder(idOffsetPlaceholder, refPlaceholder.Position.X + offsetX, refPlaceholder.Position.Y + offsetY, foreColor, backColor);
         }
 
-        public void LoadUiMap(string uiMapFile)
+        public void LoadUiMap(string uiMapFile, string placeholderProperty)
         {
             UiMap = MapFile.LoadFromRawBytes(uiMapFile);
 
@@ -87,7 +87,7 @@ namespace TileGameLib.Engine
                 throw new TileGameLibException("UI map must have exactly 1 layer");
 
             BackColor = UiMap.BackColor;
-            FindPlaceholders();
+            FindPlaceholders(placeholderProperty);
             ShowPlaceholders(false);
         }
 
@@ -367,7 +367,7 @@ namespace TileGameLib.Engine
             Graphics.Tileset = OriginalTileset;
         }
 
-        private void FindPlaceholders()
+        private void FindPlaceholders(string placeholderProperty)
         {
             if (UiMap == null)
                 return;
@@ -380,13 +380,14 @@ namespace TileGameLib.Engine
                 {
                     GameObject o = layer.GetObject(x, y);
 
-                    if (o != null && o.HasTag)
+                    if (o != null && o.Properties.Has(placeholderProperty))
                     {
-                        bool isDuplicate = Placeholders.TryGetValue(o.Tag, out UserInterfacePlaceholder ph);
+                        string placeholder = o.Properties.GetAsString(placeholderProperty);
+                        bool isDuplicate = Placeholders.TryGetValue(placeholder, out UserInterfacePlaceholder ph);
                         if (isDuplicate)
-                            throw new TileGameLibException("Duplicate placeholder " + o.Tag + " in UI map");
+                            throw new TileGameLibException("Duplicate placeholder " + placeholder + " in UI map");
 
-                        Placeholders[o.Tag] = new UserInterfacePlaceholder(o.Animation.FirstFrame, x, y);
+                        Placeholders[placeholder] = new UserInterfacePlaceholder(o.Animation.FirstFrame, x, y);
                     }
                 }
             }

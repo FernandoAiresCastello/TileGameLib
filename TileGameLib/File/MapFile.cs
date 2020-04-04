@@ -33,7 +33,7 @@ namespace TileGameLib.File
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
             file.WriteStringNullTerminated(StringOrEmpty(map.MusicFile));
-            file.WriteStringNullTerminated(map.Script);
+            file.WriteStringNullTerminated(map.Text);
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -47,7 +47,6 @@ namespace TileGameLib.File
                         if (o != null)
                         {
                             file.WriteByte(OccupiedCell);
-                            file.WriteStringNullTerminated(o.Tag);
                             file.WriteByte(o.Visible ? (byte)1 : (byte)0);
                             file.WriteByte((byte)o.Animation.Size);
 
@@ -118,7 +117,7 @@ namespace TileGameLib.File
             map.Layers.Clear();
             map.AddLayers(layerCount);
             map.MusicFile = musicFile;
-            map.Script = script;
+            map.Text = script;
 
             foreach (ObjectLayer layer in map.Layers)
             {
@@ -130,12 +129,10 @@ namespace TileGameLib.File
 
                         if (cellState == OccupiedCell)
                         {
-                            string tag = file.ReadStringNullTerminated();
                             bool visible = file.ReadByte() > 0;
                             int frameCount = file.ReadByte();
 
                             GameObject o = new GameObject();
-                            o.Tag = tag;
                             o.Visible = visible;
                             o.Animation.Clear();
                             o.Animation.AddFrames(frameCount, Tile.Blank);

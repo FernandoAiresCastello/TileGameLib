@@ -34,7 +34,7 @@ namespace TileGameMaker.Panels
         private bool TooltipEnabled;
         private ObjectBlockClipboard ClipboardObjects;
 
-        private enum EditMode { Draw, Delete, Property, TextInput, Selection, Replace }
+        private enum EditMode { Draw, Delete, TextInput, Selection, Replace }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -143,17 +143,6 @@ namespace TileGameMaker.Panels
                 else if (e.Button == MouseButtons.Right)
                 {
                     CopyObjectToTemplate(cell);
-                }
-            }
-            else if (Mode == EditMode.Property)
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    EditProperties(point.X, point.Y);
-                }
-                else
-                {
-                    SetMode(EditMode.Draw);
                 }
             }
             else if (Mode == EditMode.TextInput)
@@ -319,7 +308,6 @@ namespace TileGameMaker.Panels
 
             return 
                 $"{position}\n" +
-                $"Tag: {o.Tag}\n" +
                 $"Visible: {o.Visible}\n" +
                 $"Frames: {o.Animation.Frames.Count}\n" +
                 "Properties: \n" +
@@ -432,7 +420,6 @@ namespace TileGameMaker.Panels
         }
 
         private void BtnAddText_Click(object sender, EventArgs e) => SetMode(EditMode.TextInput);
-        private void BtnSetScript_Click(object sender, EventArgs e) => SetMode(EditMode.Property);
         private void BtnPutTemplate_Click(object sender, EventArgs e) => SetMode(EditMode.Draw);
         private void BtnDeleteMode_Click(object sender, EventArgs e) => SetMode(EditMode.Delete);
         private void BtnReplaceObjects_Click(object sender, EventArgs e) => SetMode(EditMode.Replace);
@@ -461,10 +448,6 @@ namespace TileGameMaker.Panels
                     Display.Cursor = GetCursor(Properties.Resources.insert_text);
                     button = BtnAddText;
                     break;
-                case EditMode.Property:
-                    Display.Cursor = GetCursor(Properties.Resources.database_edit);
-                    button = BtnSetData;
-                    break;
                 case EditMode.Selection:
                     Display.Cursor = GetCursor(Properties.Resources.select);
                     button = BtnSelect;
@@ -488,7 +471,6 @@ namespace TileGameMaker.Panels
 
         private void CheckModeButton(ToolStripButton button)
         {
-            BtnSetData.Checked = false;
             BtnAddText.Checked = false;
             BtnPutTemplate.Checked = false;
             BtnSelect.Checked = false;
@@ -513,7 +495,6 @@ namespace TileGameMaker.Panels
 
             if (win.ShowDialog(this, o, position) == DialogResult.OK)
             {
-                o.Tag = win.ObjectTag;
                 o.Visible = win.ObjectVisible;
                 o.Properties = win.ObjectProperties;
             }
@@ -549,7 +530,7 @@ namespace TileGameMaker.Panels
 
             Map.Name = Editor.MapName;
             Map.MusicFile = Editor.MapMusic;
-            Map.Script = Editor.ScriptPanel.Script;
+            Map.Text = Editor.ScriptPanel.Script;
 
             if (string.IsNullOrWhiteSpace(Editor.MapFile))
             {
@@ -588,7 +569,7 @@ namespace TileGameMaker.Panels
             {
                 Map.Name = Editor.MapName;
                 Map.MusicFile = Editor.MapMusic;
-                Map.Script = Editor.ScriptPanel.Script;
+                Map.Text = Editor.ScriptPanel.Script;
                 MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
@@ -610,7 +591,7 @@ namespace TileGameMaker.Panels
         {
             MapFile.LoadFromRawBytes(ref Map, file);
             Editor.MapFile = file;
-            Editor.ScriptPanel.Script = Map.Script;
+            Editor.ScriptPanel.Script = Map.Text;
             Editor.UpdateMapProperties();
             Editor.ResizeMap(Map.Width, Map.Height);
             Editor.SelectedObject = Editor.BlankObject;
@@ -974,15 +955,12 @@ namespace TileGameMaker.Panels
                         SetMode(EditMode.Delete);
                         break;
                     case Keys.D3:
-                        SetMode(EditMode.Property);
-                        break;
-                    case Keys.D4:
                         SetMode(EditMode.TextInput);
                         break;
-                    case Keys.D5:
+                    case Keys.D4:
                         SetMode(EditMode.Replace);
                         break;
-                    case Keys.D6:
+                    case Keys.D5:
                         SetMode(EditMode.Selection);
                         break;
                 }

@@ -33,8 +33,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.ChkVisible = new System.Windows.Forms.CheckBox();
-            this.TxtTag = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.TxtFrames = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnClear = new System.Windows.Forms.Button();
@@ -73,8 +71,6 @@
             // 
             this.panel2.Controls.Add(this.PropertyGrid);
             this.panel2.Controls.Add(this.ChkVisible);
-            this.panel2.Controls.Add(this.TxtTag);
-            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.TxtFrames);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.BtnClear);
@@ -92,10 +88,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PropertyGrid.Location = new System.Drawing.Point(11, 94);
+            this.PropertyGrid.Location = new System.Drawing.Point(11, 62);
             this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PropertyGrid.Name = "PropertyGrid";
-            this.PropertyGrid.Size = new System.Drawing.Size(258, 138);
+            this.PropertyGrid.Size = new System.Drawing.Size(258, 168);
             this.PropertyGrid.TabIndex = 15;
             // 
             // ChkVisible
@@ -104,7 +100,7 @@
             this.ChkVisible.AutoSize = true;
             this.ChkVisible.Checked = true;
             this.ChkVisible.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkVisible.Location = new System.Drawing.Point(207, 70);
+            this.ChkVisible.Location = new System.Drawing.Point(207, 5);
             this.ChkVisible.Name = "ChkVisible";
             this.ChkVisible.Size = new System.Drawing.Size(62, 19);
             this.ChkVisible.TabIndex = 14;
@@ -112,38 +108,13 @@
             this.ChkVisible.UseVisualStyleBackColor = true;
             this.ChkVisible.CheckedChanged += new System.EventHandler(this.ChkVisible_CheckedChanged);
             // 
-            // TxtTag
-            // 
-            this.TxtTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTag.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTag.Location = new System.Drawing.Point(64, 32);
-            this.TxtTag.MaxLength = 256;
-            this.TxtTag.Name = "TxtTag";
-            this.TxtTag.Size = new System.Drawing.Size(205, 23);
-            this.TxtTag.TabIndex = 13;
-            this.TxtTag.Text = "Tag";
-            this.TxtTag.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtTag.Leave += new System.EventHandler(this.TxtTag_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 15);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Tag";
-            // 
             // TxtFrames
             // 
-            this.TxtFrames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtFrames.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFrames.Location = new System.Drawing.Point(64, 3);
             this.TxtFrames.MaxLength = 2;
             this.TxtFrames.Name = "TxtFrames";
-            this.TxtFrames.Size = new System.Drawing.Size(205, 23);
+            this.TxtFrames.Size = new System.Drawing.Size(43, 23);
             this.TxtFrames.TabIndex = 8;
             this.TxtFrames.Text = "0";
             this.TxtFrames.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -175,7 +146,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 70);
+            this.label3.Location = new System.Drawing.Point(8, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 4;
@@ -205,8 +176,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TxtTag;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ChkVisible;
         private ObjectPropertyGridPanel PropertyGrid;
     }
