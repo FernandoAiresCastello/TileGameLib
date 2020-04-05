@@ -196,7 +196,7 @@ namespace TileGameMaker.Panels
 
         private void StartSelection(Point point)
         {
-            SetSelectionModeInstructionLabel();
+            SetSelectionModeLabel();
             Selection.EndPoint = null;
             Selection.StartPoint = point;
             ClearTileSelection();
@@ -205,7 +205,7 @@ namespace TileGameMaker.Panels
 
         private void EndSelection(Point point)
         {
-            SetSelectionModeInstructionLabel();
+            SetSelectionModeLabel();
 
             if (point.X < Selection.StartPoint.Value.X || point.Y < Selection.StartPoint.Value.Y)
             {
@@ -244,14 +244,19 @@ namespace TileGameMaker.Panels
             Display.Refresh();
         }
 
-        private void SetSelectionModeInstructionLabel()
+        private void SetSelectionModeLabel()
         {
-            LbEditModeInfo.Text = "Selection mode: Left-click to set top-left and bottom-right tile; Right-click to cancel";
+            Rectangle? selection = Selection.Block;
+            
+            if (selection.HasValue)
+                LbEditModeInfo.Text = $"Selection size: {selection.Value.Width}x{selection.Value.Height}";
+            else
+                LbEditModeInfo.Text = "Selection mode";
         }
 
-        private void SetReplaceModeInstructionLabel()
+        private void SetReplaceModeLabel()
         {
-            LbEditModeInfo.Text = "Replace objects mode: Left-click to replace with template all objects equal to clicked object";
+            LbEditModeInfo.Text = "Replace mode";
         }
 
         private void OnDisplayMouseMove(MouseEventArgs e)
@@ -263,9 +268,9 @@ namespace TileGameMaker.Panels
             ObjectPosition position = new ObjectPosition(Layer, point);
 
             if (Mode == EditMode.Selection)
-                SetSelectionModeInstructionLabel();
+                SetSelectionModeLabel();
             else if (Mode == EditMode.Replace)
-                SetReplaceModeInstructionLabel();
+                SetReplaceModeLabel();
             else
                 LbEditModeInfo.Text = position.ToString();
 
@@ -451,12 +456,12 @@ namespace TileGameMaker.Panels
                 case EditMode.Selection:
                     Display.Cursor = GetCursor(Properties.Resources.select);
                     button = BtnSelect;
-                    SetSelectionModeInstructionLabel();
+                    SetSelectionModeLabel();
                     break;
                 case EditMode.Replace:
                     Display.Cursor = GetCursor(Properties.Resources.magic_wand);
                     button = BtnReplaceObjects;
-                    SetReplaceModeInstructionLabel();
+                    SetReplaceModeLabel();
                     break;
             }
 
