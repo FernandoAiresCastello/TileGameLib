@@ -116,5 +116,22 @@ namespace TileGameMaker.Panels
         {
             Grid.Rows.Add();
         }
+
+        private void BtnGenerateId_Click(object sender, EventArgs e)
+        {
+            bool hasId = false;
+
+            foreach (DataGridViewRow row in Grid.Rows)
+            {
+                object prop = row.Cells[0].Value;
+                if (prop != null && prop.ToString().ToLower() == "id")
+                    hasId = true;
+            }
+
+            if (!hasId)
+                Grid.Rows.Add("id", RandomID.Generate(8));
+            else
+                Alert.Warning("This object already has an ID");
+        }
     }
 }

@@ -955,10 +955,12 @@ namespace TileGameMaker.Panels
                 switch (e.KeyCode)
                 {
                     case Keys.PageUp:
-                        ZoomIn();
+                        if (CbLayer.SelectedIndex < CbLayer.Items.Count - 1)
+                            CbLayer.SelectedIndex++;
                         break;
                     case Keys.PageDown:
-                        ZoomOut();
+                        if (CbLayer.SelectedIndex > 0)
+                            CbLayer.SelectedIndex--;
                         break;
                     case Keys.Escape:
                         CancelSelection();
