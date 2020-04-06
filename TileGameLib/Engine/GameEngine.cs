@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Exceptions;
@@ -28,7 +29,8 @@ namespace TileGameLib.Engine
 
         private readonly Timer CycleTimer;
         private readonly Timer UiRefreshTimer;
-        private readonly SoundPlayer SoundPlayer;
+        private readonly SoundPlayer BgmPlayer;
+        private readonly SoundPlayer SfxPlayer;
 
         public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval, string mapsBasePath = null) :
             this(winTitle, winCols, winRows, zoom, uiRefreshInterval, cycleInterval, true, true, mapsBasePath)
@@ -40,7 +42,8 @@ namespace TileGameLib.Engine
         {
             Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
-            SoundPlayer = new SoundPlayer();
+            BgmPlayer = new SoundPlayer();
+            SfxPlayer = new SoundPlayer();
             MapsBasePath = mapsBasePath;
 
             CycleTimer = new Timer();
@@ -157,30 +160,36 @@ namespace TileGameLib.Engine
             Window.Ui.DrawMap();
         }
 
+        public void PlaySound(string soundFile)
+        {
+            SfxPlayer.SoundLocation = soundFile;
+            SfxPlayer.Play();
+        }
+
         public void PlayMusicOnce(string musicFile)
         {
             StopMusic();
-            SoundPlayer.SoundLocation = musicFile;
-            SoundPlayer.Play();
+            BgmPlayer.SoundLocation = musicFile;
+            BgmPlayer.Play();
         }
 
         public void PlayMusicLoop(string musicFile)
         {
             StopMusic();
-            SoundPlayer.SoundLocation = musicFile;
-            SoundPlayer.PlayLooping();
+            BgmPlayer.SoundLocation = musicFile;
+            BgmPlayer.PlayLooping();
         }
 
         public void AwaitPlayMusic(string musicFile)
         {
             StopMusic();
-            SoundPlayer.SoundLocation = musicFile;
-            SoundPlayer.PlaySync();
+            BgmPlayer.SoundLocation = musicFile;
+            BgmPlayer.PlaySync();
         }
 
         public void StopMusic()
         {
-            SoundPlayer.Stop();
+            BgmPlayer.Stop();
         }
 
         protected string GetMapPath(string mapFile)
