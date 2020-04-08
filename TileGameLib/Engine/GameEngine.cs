@@ -224,14 +224,14 @@ namespace TileGameLib.Engine
 
         public void EnterMap(ObjectMap map)
         {
-            EnterMap(map.Name);
+            EnterMap(map.Id);
         }
 
-        public void EnterMap(string mapName)
+        public void EnterMap(string id)
         {
-            MapController nextController = MapControllers.Get(mapName);
+            MapController nextController = MapControllers.Get(id);
             if (nextController == null)
-                throw new TileGameLibException($"Map {mapName} not found");
+                throw new TileGameLibException($"Map with id {id} not found");
 
             bool transitionNotCancelled = OnMapTransition(MapController, nextController);
 

@@ -12,6 +12,7 @@ namespace TileGameLib.GameElements
 {
     public class ObjectMap
     {
+        public string Id { set; get; }
         public string Name { set; get; }
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
         public Tileset Tileset { get; set; } = new Tileset();
@@ -25,15 +26,18 @@ namespace TileGameLib.GameElements
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
-        public static string DefaultName => RandomID.Generate(8);
+        public const string DefaultName = "Untitled";
 
         public ObjectMap(int width, int height) : this(DefaultName, width, height, 0)
         {
+            GenerateId();
             BackColor = Palette.White;
         }
 
         public ObjectMap(string name, int width, int height, int backColor)
         {
+            GenerateId();
+
             Name = name;
             Width = width;
             Height = height;
@@ -47,8 +51,14 @@ namespace TileGameLib.GameElements
             SetEqual(other);
         }
 
+        public void GenerateId()
+        {
+            Id = RandomID.Generate(8);
+        }
+
         public void SetEqual(ObjectMap other)
         {
+            Id = other.Id;
             Name = other.Name;
             Width = other.Width;
             Height = other.Height;

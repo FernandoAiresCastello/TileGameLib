@@ -28,12 +28,13 @@ namespace TileGameLib.File
             MemoryFile file = new MemoryFile();
 
             file.WriteStringNullTerminated(Header);
+            file.WriteStringNullTerminated(StringOrEmpty(map.Id));
             file.WriteStringNullTerminated(StringOrEmpty(map.Name));
             file.WriteShort(map.Width);
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
             file.WriteStringNullTerminated(StringOrEmpty(map.MusicFile));
-            file.WriteStringNullTerminated(map.Text);
+            file.WriteStringNullTerminated(StringOrEmpty(map.Text));
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -104,6 +105,7 @@ namespace TileGameLib.File
             if (!Header.Equals(header))
                 throw new TileGameLibException("Invalid file format");
 
+            string id = file.ReadStringNullTerminated();
             string name = file.ReadStringNullTerminated();
             int width = file.ReadShort();
             int height = file.ReadShort();
@@ -114,6 +116,7 @@ namespace TileGameLib.File
             ObjectMap map = new ObjectMap(name, width, height, backColor);
 
             int layerCount = file.ReadByte();
+            map.Id = id;
             map.Layers.Clear();
             map.AddLayers(layerCount);
             map.MusicFile = musicFile;

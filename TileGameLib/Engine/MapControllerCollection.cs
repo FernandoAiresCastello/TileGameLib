@@ -20,20 +20,20 @@ namespace TileGameLib.Engine
             Controllers = new Dictionary<ObjectMap, MapController>();
         }
 
-        public MapController Get(string mapName)
+        public MapController Get(string id)
         {
             foreach (var mapAndController in Controllers)
             {
-                if (mapAndController.Key.Name.Equals(mapName))
+                if (mapAndController.Key.Id.Equals(id))
                     return mapAndController.Value;
             }
 
             return null;
         }
 
-        public bool HasMap(string mapName)
+        public bool HasMap(string id)
         {
-            return Get(mapName) != null;
+            return Get(id) != null;
         }
 
         public ObjectMap AddController(string mapFile, MapController controller)
@@ -43,8 +43,8 @@ namespace TileGameLib.Engine
 
             ObjectMap map = MapFile.LoadFromRawBytes(mapFile);
 
-            if (HasMap(map.Name))
-                throw new TileGameLibException($"There is already a map with the name {map.Name}");
+            if (HasMap(map.Id))
+                throw new TileGameLibException($"There is already a map with id {map.Id}");
 
             controller.Map = map;
             controller.MapFile = Path.GetFileName(mapFile);

@@ -4,6 +4,7 @@
 	New features:
 		- Find and select objects in map editor
 		- "Rearrange mode" in color picker
+		- Template object library
 -------------------------------------------------------------------------------
 	Improvements or changes to existing features:
 		(none)

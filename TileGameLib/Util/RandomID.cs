@@ -9,7 +9,7 @@ namespace TileGameLib.Util
     public static class RandomID
     {
         private static readonly Random Random = new Random();
-        private static readonly string DefaultChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private static readonly string DefaultChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         public static string Generate(string allowedChars, int length)
         {

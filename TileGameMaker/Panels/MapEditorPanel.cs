@@ -552,6 +552,7 @@ namespace TileGameMaker.Panels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                Map.GenerateId();
                 Map.Name = Editor.MapName;
                 Map.MusicFile = Editor.MapMusic;
                 Map.Text = Editor.ScriptPanel.Script;
@@ -679,6 +680,7 @@ namespace TileGameMaker.Panels
                     Map.RemoveLayer(i);
             }
 
+            Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
             Map.MusicFile = "";

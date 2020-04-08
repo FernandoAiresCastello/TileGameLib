@@ -13,6 +13,8 @@ namespace TileGameMaker.MapEditorElements
 {
     public class MapProperties
     {
+        [ReadOnly(true)]
+        public string Id { set; get; }
         public string Name { set; get; }
         [ReadOnly(true)]
         public int Layers { set; get; }
@@ -34,6 +36,7 @@ namespace TileGameMaker.MapEditorElements
                 File = info.Name;
             }
 
+            Id = map.Id;
             Name = map.Name;
             Width = map.Width.ToString();
             Height = map.Height.ToString();
