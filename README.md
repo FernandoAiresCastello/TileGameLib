@@ -14,3 +14,7 @@ If you just want to use the toolkit and don't need or don't care about the sourc
 #### Screenshot:
 
 <img src="/Screenshots/tgm.png?raw=true" />
+
+#### Special thanks to:
+
+- [John Nesky](https://github.com/johnnesky), developer of the great music creation tool [BeepBox](https://beepbox.co/)
