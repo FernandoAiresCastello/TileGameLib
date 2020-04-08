@@ -77,6 +77,7 @@
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.MiAdvancedSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -416,6 +417,7 @@
             // 
             this.BtnSelectionActions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MiCancelSelection,
+            this.MiAdvancedSelection,
             this.toolStripSeparator6,
             this.MiCopyObjects,
             this.MiCutObjects,
@@ -572,6 +574,14 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // MiAdvancedSelection
+            // 
+            this.MiAdvancedSelection.Name = "MiAdvancedSelection";
+            this.MiAdvancedSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.MiAdvancedSelection.Size = new System.Drawing.Size(217, 22);
+            this.MiAdvancedSelection.Text = "Advanced selection";
+            this.MiAdvancedSelection.Click += new System.EventHandler(this.MiAdvancedSelection_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -641,5 +651,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem BtnExport;
         private System.Windows.Forms.ToolStripMenuItem BtnExportJson;
+        private System.Windows.Forms.ToolStripMenuItem MiAdvancedSelection;
     }
 }

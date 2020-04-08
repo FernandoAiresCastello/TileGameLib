@@ -25,6 +25,17 @@ namespace TileGameMaker.Panels
             get { return BtnPopOutWindow.Enabled; }
         }
 
+        public bool CloseOnTileSelected { set; get; } = false;
+
+        public bool HideToolStrip
+        {
+            set
+            {
+                if (value)
+                    ToolStrip.Hide();
+            }
+        }
+
         public int SelectedTile => TilePicker.TileIndex;
 
         private MapEditor MapEditor;
@@ -114,6 +125,10 @@ namespace TileGameMaker.Panels
                 else
                 {
                     TilePicker.SelectTileIndex(tileIx);
+
+                    if (CloseOnTileSelected)
+                        ParentForm.Close();
+
                     UpdateStatus();
                 }
             }

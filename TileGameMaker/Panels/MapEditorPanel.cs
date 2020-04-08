@@ -29,6 +29,7 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
         private ObjectBlockSelection Selection;
+        private AdvancedSelectionWindow AdvancedSelectionWindow;
         private ToolTip Tooltip;
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled;
@@ -62,6 +63,7 @@ namespace TileGameMaker.Panels
             LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new ObjectBlockSelection();
+            AdvancedSelectionWindow = new AdvancedSelectionWindow(Editor, this, Display);
 
             Tooltip = new ToolTip();
             Tooltip.IsBalloon = true;
@@ -805,6 +807,12 @@ namespace TileGameMaker.Panels
             }
         }
 
+        public void ReplaceObjectsWithTemplate(List<ObjectPosition> positions)
+        {
+            Map.SetObjects(Editor.SelectedObject, positions);
+            Display.Refresh();
+        }
+
         private void BtnRenderInvisibleObjects_Click(object sender, EventArgs e)
         {
             MapRenderer.RenderInvisibleObjects = BtnRenderInvisibleObjects.Checked;
@@ -988,7 +996,12 @@ namespace TileGameMaker.Panels
 
         private void MiOverrideColors_Click(object sender, EventArgs e)
         {
-            List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
+            OverrideObjectColors(Selection.GetSelectedPositions(Layer));
+        }
+
+        public void OverrideObjectColors(List<ObjectPosition> positions)
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(positions);
 
             foreach (ObjectCell cell in selectedCells)
             {
@@ -996,6 +1009,21 @@ namespace TileGameMaker.Panels
                 {
                     tile.ForeColor = Editor.ColorPickerControl.SelectedForeColor;
                     tile.BackColor = Editor.ColorPickerControl.SelectedBackColor;
+                }
+            }
+
+            Display.Refresh();
+        }
+
+        public void OverrideObjectTileIndex(List<ObjectPosition> positions)
+        {
+            List<ObjectCell> selectedCells = Map.GetCells(positions);
+
+            foreach (ObjectCell cell in selectedCells)
+            {
+                foreach (Tile tile in cell.Object.Animation.Frames)
+                {
+                    tile.Index = Editor.TilePickerControl.SelectedTile;
                 }
             }
 
@@ -1020,6 +1048,11 @@ namespace TileGameMaker.Panels
                 MapFile.Export(format, Map, dialog.FileName);
                 Alert.Info("Map exported successfully!");
             }
+        }
+
+        private void MiAdvancedSelection_Click(object sender, EventArgs e)
+        {
+            AdvancedSelectionWindow.Show();
         }
     }
 }

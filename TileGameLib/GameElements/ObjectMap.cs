@@ -146,6 +146,12 @@ namespace TileGameLib.GameElements
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);
         }
 
+        public void SetObjects(GameObject o, List<ObjectPosition> positions)
+        {
+            foreach (ObjectPosition pos in positions)
+                SetObject(o, pos);
+        }
+
         public void SetHorizontalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
         {
             int initialX = pos.X;
@@ -393,6 +399,46 @@ namespace TileGameLib.GameElements
                         GameObject o = layer.GetObject(x, y);
                         if (o != null && o.Equals(other))
                             layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
+                    }
+                }
+
+                objects.AddRange(layerPositions);
+            }
+
+            return objects;
+        }
+
+        public List<PositionedObject> FindObjectsPartiallyEqual(GameObject other, bool compareTileIndex, bool compareTileForeColor, bool compareTileBackColor, bool compareProperties)
+        {
+            List<PositionedObject> objects = new List<PositionedObject>();
+
+            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = Layers[layerIndex];
+                List<PositionedObject> layerPositions = new List<PositionedObject>();
+
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+
+                        if (o != null)
+                        {
+                            bool comparisonOk = false;
+
+                            if (compareTileIndex && o.Tile.Index == other.Tile.Index)
+                                comparisonOk = true;
+                            if (compareTileForeColor && o.Tile.ForeColor == other.Tile.ForeColor)
+                                comparisonOk = true;
+                            if (compareTileBackColor && o.Tile.BackColor == other.Tile.BackColor)
+                                comparisonOk = true;
+                            if (compareProperties && o.Properties.Equals(other.Properties))
+                                comparisonOk = true;
+
+                            if (comparisonOk && (o.Visible == other.Visible))
+                                layerPositions.Add(new PositionedObject(this, o, layerIndex, x, y));
+                        }
                     }
                 }
 

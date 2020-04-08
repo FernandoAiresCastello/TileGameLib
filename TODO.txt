@@ -5,6 +5,8 @@
 		- Find and select objects in map editor
 		- "Rearrange mode" in color picker
 		- Template object library
+		- "Wrap around" map flag
+		- "Infinite" map flag
 -------------------------------------------------------------------------------
 	Improvements or changes to existing features:
 		(none)

@@ -21,6 +21,7 @@ namespace TileGameLib.Components
         public bool StretchImage { set; get; }
         public Color TileHighlightColor { set; get; }
         public int TileHighlightColorOpacity { set; get; }
+        public List<Point> SelectedTiles { get; private set; } = new List<Point>();
 
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
@@ -30,8 +31,6 @@ namespace TileGameLib.Components
         protected Color GridColor;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
-
-        private readonly List<Point> HighlightedTiles = new List<Point>();
 
         public TiledDisplay(Control parent, int cols, int rows, int zoom)
         {
@@ -137,7 +136,7 @@ namespace TileGameLib.Components
         
         public bool IsTileSelected(Point point)
         {
-            foreach (Point currentPoint in HighlightedTiles)
+            foreach (Point currentPoint in SelectedTiles)
             {
                 if (currentPoint.Equals(point))
                     return true;
@@ -149,27 +148,35 @@ namespace TileGameLib.Components
         public void SelectTile(Point point)
         {
             if (!IsTileSelected(point))
-                HighlightedTiles.Add(point);
+                SelectedTiles.Add(point);
         }
 
         public void DeselectTile(Point point)
         {
-            for (int index = 0; index < HighlightedTiles.Count; index++)
+            for (int index = 0; index < SelectedTiles.Count; index++)
             {
-                Point currentPoint = HighlightedTiles[index];
+                Point currentPoint = SelectedTiles[index];
 
                 if (currentPoint.Equals(point))
                 {
-                    HighlightedTiles.RemoveAt(index);
+                    SelectedTiles.RemoveAt(index);
                     break;
                 }
             }
         }
 
-        public void SelectTiles(List<Point> points)
+        public void SelectTiles(List<Point> points, bool additive = false)
         {
-            HighlightedTiles.Clear();
-            HighlightedTiles.AddRange(points);
+            if (additive)
+            {
+                SelectedTiles.RemoveAll(point => points.Contains(point));
+            }
+            else
+            {
+                DeselectAllTiles();
+            }
+
+            SelectedTiles.AddRange(points);
         }
 
         public void DeselectTiles(List<Point> points)
@@ -180,7 +187,7 @@ namespace TileGameLib.Components
 
         public void DeselectAllTiles()
         {
-            HighlightedTiles.Clear();
+            SelectedTiles.Clear();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -210,7 +217,7 @@ namespace TileGameLib.Components
             g.CompositingQuality = CompositingQuality.Default;
             g.CompositingMode = CompositingMode.SourceOver;
 
-            if (HighlightedTiles.Count > 0)
+            if (SelectedTiles.Count > 0)
                 PaintTileHighlights(g);
             if (ShowGrid && Grid != null)
                 g.DrawImage(Grid, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
@@ -222,7 +229,7 @@ namespace TileGameLib.Components
         {
             using (SolidBrush brush = new SolidBrush(Color.FromArgb(TileHighlightColorOpacity, TileHighlightColor)))
             {
-                foreach (Point point in HighlightedTiles)
+                foreach (Point point in SelectedTiles)
                     PaintTileHighlight(g, brush, point);
             }
         }
