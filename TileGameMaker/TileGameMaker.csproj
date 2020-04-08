@@ -332,6 +332,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\music.png" />
     <None Include="Resources\tag_blue_add.png" />
     <None Include="Resources\save_close.png" />
     <None Include="Resources\menu.png" />

@@ -166,5 +166,10 @@ namespace TileGameMaker.Windows
             if (visible)
                 MapEditor.ScriptPanel.Focus();
         }
+
+        private void BtnOpenMusicComposer_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://beepbox.co/");
+        }
     }
 }
