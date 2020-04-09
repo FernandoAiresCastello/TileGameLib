@@ -26,6 +26,7 @@ namespace TileGameLib.Engine
         protected MapController MapController;
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
+        protected DebuggerWindow Debugger;
 
         private readonly Timer CycleTimer;
         private readonly Timer UiRefreshTimer;
@@ -40,11 +41,12 @@ namespace TileGameLib.Engine
         public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval,
             bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath = null)
         {
+            MapsBasePath = mapsBasePath;
             Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
             BgmPlayer = new SoundPlayer();
             SfxPlayer = new SoundPlayer();
-            MapsBasePath = mapsBasePath;
+            Debugger = new DebuggerWindow(this);
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
@@ -288,6 +290,11 @@ namespace TileGameLib.Engine
                 if (MapController != null)
                     MapController.OnExecuteCycle();
             }
+        }
+
+        public void ShowDebugWindow()
+        {
+            Debugger.Show();
         }
     }
 }
