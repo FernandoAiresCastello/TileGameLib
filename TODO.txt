@@ -7,6 +7,7 @@
 		- Template object library
 		- "Wrap around" map flag
 		- "Infinite" map flag
+		- Function to show a debug window from engine
 -------------------------------------------------------------------------------
 	Improvements or changes to existing features:
 		(none)

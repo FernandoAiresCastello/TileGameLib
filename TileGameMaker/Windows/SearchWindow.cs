@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.GameElements;
+using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
 using TileGameMaker.Panels;
 
 namespace TileGameMaker.Windows
 {
-    public partial class AdvancedSelectionWindow : Form
+    public partial class SearchWindow : Form
     {
         private MapEditor MapEditor;
         private MapEditorPanel MapEditorPanel;
         private TiledDisplay Display;
         private List<ObjectPosition> SelectedObjects = new List<ObjectPosition>();
 
-        public AdvancedSelectionWindow(MapEditor editor, MapEditorPanel editorPanel, TiledDisplay display)
+        public SearchWindow(MapEditor editor, MapEditorPanel editorPanel, TiledDisplay display)
         {
             MapEditor = editor;
             MapEditorPanel = editorPanel;
@@ -85,6 +86,15 @@ namespace TileGameMaker.Windows
 
         private void BtnSelect_Click(object sender, EventArgs e)
         {
+            string id = TxtId.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(id))
+                SelectObjectById(id);
+            else
+                SelectObjects();
+        }
+
+        private void SelectObjects()
+        {
             bool compareTileIndex = true;
             bool compareTileForeColor = true;
             bool compareTileBackColor = true;
@@ -133,6 +143,22 @@ namespace TileGameMaker.Windows
 
             Display.SelectTiles(pos, true);
             Display.Refresh();
+        }
+
+        private void SelectObjectById(string id)
+        {
+            PositionedObject po = MapEditor.Map.FindObjectById(id);
+
+            if (po != null)
+            {
+                SelectedObjects.Add(po.Position);
+                Point pos = po.Position.Point;
+                Display.SelectTiles(new List<Point>() { pos }, true);
+                Display.Refresh();
+                Alert.Info($"Object found with ID {id} on layer {po.Position.Layer} at {pos.X}, {pos.Y}");
+            }
+            else
+                Alert.Warning($"Object not found with ID {id}");
         }
 
         private void AdvancedSelectionWindow_FormClosing(object sender, FormClosingEventArgs e)

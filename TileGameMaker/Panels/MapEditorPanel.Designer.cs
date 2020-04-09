@@ -34,31 +34,9 @@
             this.LbEditModeInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnLoadMap = new System.Windows.Forms.ToolStripDropDownButton();
-            this.BtnLoadRawBytes = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSaveMap = new System.Windows.Forms.ToolStripDropDownButton();
-            this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
-            this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
-            this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
-            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
-            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.BtnAddText = new System.Windows.Forms.ToolStripButton();
-            this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
-            this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnSelectionActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.MiCancelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,12 +50,34 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnLoadMap = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnLoadRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnRecentFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSaveMap = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
+            this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
+            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
+            this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
+            this.BtnDelete = new System.Windows.Forms.ToolStripButton();
+            this.BtnAddText = new System.Windows.Forms.ToolStripButton();
+            this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
+            this.BtnFind = new System.Windows.Forms.ToolStripButton();
+            this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.MiAdvancedSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -156,6 +156,7 @@
             this.BtnDelete,
             this.BtnAddText,
             this.BtnReplaceObjects,
+            this.BtnFind,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
@@ -170,6 +171,134 @@
             this.toolStrip1.Size = new System.Drawing.Size(801, 30);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            // 
+            // CbLayer
+            // 
+            this.CbLayer.CausesValidation = false;
+            this.CbLayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbLayer.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.CbLayer.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.CbLayer.Name = "CbLayer";
+            this.CbLayer.Size = new System.Drawing.Size(121, 23);
+            this.CbLayer.SelectedIndexChanged += new System.EventHandler(this.CbLayer_SelectedIndexChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // BtnSelectionActions
+            // 
+            this.BtnSelectionActions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MiCancelSelection,
+            this.toolStripSeparator6,
+            this.MiCopyObjects,
+            this.MiCutObjects,
+            this.MiPasteObjects,
+            this.MiDeleteObjects,
+            this.MiFillWithTemplate,
+            this.MiOverrideColors,
+            this.MiReplaceWithTemplate,
+            this.toolStripSeparator2,
+            this.MiSetSelectionColor});
+            this.BtnSelectionActions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSelectionActions.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
+            this.BtnSelectionActions.Name = "BtnSelectionActions";
+            this.BtnSelectionActions.Size = new System.Drawing.Size(68, 20);
+            this.BtnSelectionActions.Text = "Selection";
+            this.BtnSelectionActions.ToolTipText = "Selection";
+            // 
+            // MiCancelSelection
+            // 
+            this.MiCancelSelection.Name = "MiCancelSelection";
+            this.MiCancelSelection.Size = new System.Drawing.Size(237, 22);
+            this.MiCancelSelection.Text = "Cancel";
+            this.MiCancelSelection.Click += new System.EventHandler(this.MiCancelSelection_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(234, 6);
+            // 
+            // MiCopyObjects
+            // 
+            this.MiCopyObjects.Name = "MiCopyObjects";
+            this.MiCopyObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.MiCopyObjects.Size = new System.Drawing.Size(237, 22);
+            this.MiCopyObjects.Text = "Copy objects";
+            this.MiCopyObjects.Click += new System.EventHandler(this.MiCopyObjects_Click);
+            // 
+            // MiCutObjects
+            // 
+            this.MiCutObjects.Name = "MiCutObjects";
+            this.MiCutObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.MiCutObjects.Size = new System.Drawing.Size(237, 22);
+            this.MiCutObjects.Text = "Cut objects";
+            this.MiCutObjects.Click += new System.EventHandler(this.MiCutObjects_Click);
+            // 
+            // MiPasteObjects
+            // 
+            this.MiPasteObjects.Name = "MiPasteObjects";
+            this.MiPasteObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.MiPasteObjects.Size = new System.Drawing.Size(237, 22);
+            this.MiPasteObjects.Text = "Paste objects";
+            this.MiPasteObjects.Click += new System.EventHandler(this.MiPasteObjects_Click);
+            // 
+            // MiDeleteObjects
+            // 
+            this.MiDeleteObjects.Name = "MiDeleteObjects";
+            this.MiDeleteObjects.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.MiDeleteObjects.Size = new System.Drawing.Size(237, 22);
+            this.MiDeleteObjects.Text = "Delete objects";
+            this.MiDeleteObjects.Click += new System.EventHandler(this.MiDeleteObjects_Click);
+            // 
+            // MiFillWithTemplate
+            // 
+            this.MiFillWithTemplate.Name = "MiFillWithTemplate";
+            this.MiFillWithTemplate.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.F)));
+            this.MiFillWithTemplate.Size = new System.Drawing.Size(237, 22);
+            this.MiFillWithTemplate.Text = "Fill with template";
+            this.MiFillWithTemplate.Click += new System.EventHandler(this.MiFillWithTemplate_Click);
+            // 
+            // MiOverrideColors
+            // 
+            this.MiOverrideColors.Name = "MiOverrideColors";
+            this.MiOverrideColors.Size = new System.Drawing.Size(237, 22);
+            this.MiOverrideColors.Text = "Override colors";
+            this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
+            // 
+            // MiReplaceWithTemplate
+            // 
+            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
+            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(237, 22);
+            this.MiReplaceWithTemplate.Text = "Replace with template";
+            this.MiReplaceWithTemplate.Click += new System.EventHandler(this.MiReplaceWithTemplate_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(234, 6);
+            // 
+            // MiSetSelectionColor
+            // 
+            this.MiSetSelectionColor.Name = "MiSetSelectionColor";
+            this.MiSetSelectionColor.Size = new System.Drawing.Size(237, 22);
+            this.MiSetSelectionColor.Text = "Set selection color";
+            this.MiSetSelectionColor.Click += new System.EventHandler(this.MiSetSelectionColor_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
             // 
             // BtnNew
             // 
@@ -267,22 +396,6 @@
             this.BtnExportJson.Text = "JSON";
             this.BtnExportJson.Click += new System.EventHandler(this.BtnExportJson_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
-            // 
-            // CbLayer
-            // 
-            this.CbLayer.CausesValidation = false;
-            this.CbLayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbLayer.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.CbLayer.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.CbLayer.Name = "CbLayer";
-            this.CbLayer.Size = new System.Drawing.Size(121, 23);
-            this.CbLayer.SelectedIndexChanged += new System.EventHandler(this.CbLayer_SelectedIndexChanged);
-            // 
             // BtnViewAll
             // 
             this.BtnViewAll.Checked = true;
@@ -352,12 +465,6 @@
             this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
             this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
-            // 
             // BtnPutTemplate
             // 
             this.BtnPutTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -402,6 +509,17 @@
             this.BtnReplaceObjects.ToolTipText = "Replace objects (CTRL+5)";
             this.BtnReplaceObjects.Click += new System.EventHandler(this.BtnReplaceObjects_Click);
             // 
+            // BtnFind
+            // 
+            this.BtnFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnFind.Image = global::TileGameMaker.Properties.Resources.find;
+            this.BtnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnFind.Name = "BtnFind";
+            this.BtnFind.Size = new System.Drawing.Size(23, 20);
+            this.BtnFind.Text = "toolStripButton1";
+            this.BtnFind.ToolTipText = "Find objects (CTRL+F)";
+            this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
+            // 
             // BtnSelect
             // 
             this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -412,112 +530,6 @@
             this.BtnSelect.Text = "toolStripButton1";
             this.BtnSelect.ToolTipText = "Selection mode (CTRL+6)";
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
-            // 
-            // BtnSelectionActions
-            // 
-            this.BtnSelectionActions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiCancelSelection,
-            this.MiAdvancedSelection,
-            this.toolStripSeparator6,
-            this.MiCopyObjects,
-            this.MiCutObjects,
-            this.MiPasteObjects,
-            this.MiDeleteObjects,
-            this.MiFillWithTemplate,
-            this.MiOverrideColors,
-            this.MiReplaceWithTemplate,
-            this.toolStripSeparator2,
-            this.MiSetSelectionColor});
-            this.BtnSelectionActions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSelectionActions.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
-            this.BtnSelectionActions.Name = "BtnSelectionActions";
-            this.BtnSelectionActions.Size = new System.Drawing.Size(68, 20);
-            this.BtnSelectionActions.Text = "Selection";
-            this.BtnSelectionActions.ToolTipText = "Selection";
-            // 
-            // MiCancelSelection
-            // 
-            this.MiCancelSelection.Name = "MiCancelSelection";
-            this.MiCancelSelection.Size = new System.Drawing.Size(205, 22);
-            this.MiCancelSelection.Text = "Cancel";
-            this.MiCancelSelection.Click += new System.EventHandler(this.MiCancelSelection_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(202, 6);
-            // 
-            // MiCopyObjects
-            // 
-            this.MiCopyObjects.Name = "MiCopyObjects";
-            this.MiCopyObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.MiCopyObjects.Size = new System.Drawing.Size(205, 22);
-            this.MiCopyObjects.Text = "Copy objects";
-            this.MiCopyObjects.Click += new System.EventHandler(this.MiCopyObjects_Click);
-            // 
-            // MiCutObjects
-            // 
-            this.MiCutObjects.Name = "MiCutObjects";
-            this.MiCutObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.MiCutObjects.Size = new System.Drawing.Size(205, 22);
-            this.MiCutObjects.Text = "Cut objects";
-            this.MiCutObjects.Click += new System.EventHandler(this.MiCutObjects_Click);
-            // 
-            // MiPasteObjects
-            // 
-            this.MiPasteObjects.Name = "MiPasteObjects";
-            this.MiPasteObjects.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.MiPasteObjects.Size = new System.Drawing.Size(205, 22);
-            this.MiPasteObjects.Text = "Paste objects";
-            this.MiPasteObjects.Click += new System.EventHandler(this.MiPasteObjects_Click);
-            // 
-            // MiDeleteObjects
-            // 
-            this.MiDeleteObjects.Name = "MiDeleteObjects";
-            this.MiDeleteObjects.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.MiDeleteObjects.Size = new System.Drawing.Size(205, 22);
-            this.MiDeleteObjects.Text = "Delete objects";
-            this.MiDeleteObjects.Click += new System.EventHandler(this.MiDeleteObjects_Click);
-            // 
-            // MiFillWithTemplate
-            // 
-            this.MiFillWithTemplate.Name = "MiFillWithTemplate";
-            this.MiFillWithTemplate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.MiFillWithTemplate.Size = new System.Drawing.Size(205, 22);
-            this.MiFillWithTemplate.Text = "Fill with template";
-            this.MiFillWithTemplate.Click += new System.EventHandler(this.MiFillWithTemplate_Click);
-            // 
-            // MiOverrideColors
-            // 
-            this.MiOverrideColors.Name = "MiOverrideColors";
-            this.MiOverrideColors.Size = new System.Drawing.Size(205, 22);
-            this.MiOverrideColors.Text = "Override colors";
-            this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
-            // 
-            // MiReplaceWithTemplate
-            // 
-            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
-            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(205, 22);
-            this.MiReplaceWithTemplate.Text = "Replace with template";
-            this.MiReplaceWithTemplate.Click += new System.EventHandler(this.MiReplaceWithTemplate_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
-            // 
-            // MiSetSelectionColor
-            // 
-            this.MiSetSelectionColor.Name = "MiSetSelectionColor";
-            this.MiSetSelectionColor.Size = new System.Drawing.Size(205, 22);
-            this.MiSetSelectionColor.Text = "Set selection color";
-            this.MiSetSelectionColor.Click += new System.EventHandler(this.MiSetSelectionColor_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 23);
             // 
             // BtnZoomIn
             // 
@@ -573,14 +585,6 @@
             this.BtnScreenshot.Text = "toolStripButton1";
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
-            // 
-            // MiAdvancedSelection
-            // 
-            this.MiAdvancedSelection.Name = "MiAdvancedSelection";
-            this.MiAdvancedSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.MiAdvancedSelection.Size = new System.Drawing.Size(217, 22);
-            this.MiAdvancedSelection.Text = "Advanced selection";
-            this.MiAdvancedSelection.Click += new System.EventHandler(this.MiAdvancedSelection_Click);
             // 
             // MapEditorPanel
             // 
@@ -651,6 +655,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem BtnExport;
         private System.Windows.Forms.ToolStripMenuItem BtnExportJson;
-        private System.Windows.Forms.ToolStripMenuItem MiAdvancedSelection;
+        private System.Windows.Forms.ToolStripButton BtnFind;
     }
 }

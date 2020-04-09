@@ -120,11 +120,11 @@
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
     <Compile Include="Util\UserSettings.cs" />
-    <Compile Include="Windows\AdvancedSelectionWindow.cs">
+    <Compile Include="Windows\SearchWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\AdvancedSelectionWindow.Designer.cs">
-      <DependentUpon>AdvancedSelectionWindow.cs</DependentUpon>
+    <Compile Include="Windows\SearchWindow.Designer.cs">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\BaseWindow.cs">
       <SubType>Form</SubType>
@@ -255,8 +255,8 @@
     <EmbeddedResource Include="Panels\WorkspacePanel.resx">
       <DependentUpon>WorkspacePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\AdvancedSelectionWindow.resx">
-      <DependentUpon>AdvancedSelectionWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\SearchWindow.resx">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ColorEditorWindow.resx">
       <DependentUpon>ColorEditorWindow.cs</DependentUpon>
@@ -406,6 +406,7 @@
     <None Include="Resources\database_lightning.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\document_page_next.png" />
+    <None Include="Resources\find.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

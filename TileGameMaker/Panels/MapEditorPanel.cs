@@ -29,7 +29,7 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
         private ObjectBlockSelection Selection;
-        private AdvancedSelectionWindow AdvancedSelectionWindow;
+        private SearchWindow SearchWindow;
         private ToolTip Tooltip;
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled;
@@ -63,7 +63,7 @@ namespace TileGameMaker.Panels
             LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new ObjectBlockSelection();
-            AdvancedSelectionWindow = new AdvancedSelectionWindow(Editor, this, Display);
+            SearchWindow = new SearchWindow(Editor, this, Display);
 
             Tooltip = new ToolTip();
             Tooltip.IsBalloon = true;
@@ -943,6 +943,9 @@ namespace TileGameMaker.Panels
                     case Keys.N:
                         ConfirmNewMap();
                         break;
+                    case Keys.F:
+                        FindObjects();
+                        break;
                     case Keys.D1:
                         SetMode(EditMode.Draw);
                         break;
@@ -1050,9 +1053,14 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void MiAdvancedSelection_Click(object sender, EventArgs e)
+        private void BtnFind_Click(object sender, EventArgs e)
         {
-            AdvancedSelectionWindow.Show();
+            FindObjects();
+        }
+
+        private void FindObjects()
+        {
+            SearchWindow.Show();
         }
     }
 }

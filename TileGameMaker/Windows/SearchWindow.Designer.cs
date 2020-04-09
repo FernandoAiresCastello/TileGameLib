@@ -1,6 +1,6 @@
 ﻿namespace TileGameMaker.Windows
 {
-    partial class AdvancedSelectionWindow
+    partial class SearchWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -47,6 +47,8 @@
             this.BtnOverrideColors = new System.Windows.Forms.Button();
             this.BtnReplace = new System.Windows.Forms.Button();
             this.BtnOverrideTileIndex = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BtnTileIndex
@@ -155,17 +157,17 @@
             this.TxtProperties.Multiline = true;
             this.TxtProperties.Name = "TxtProperties";
             this.TxtProperties.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtProperties.Size = new System.Drawing.Size(257, 147);
+            this.TxtProperties.Size = new System.Drawing.Size(257, 185);
             this.TxtProperties.TabIndex = 10;
             this.TxtProperties.WordWrap = false;
             // 
             // BtnSelect
             // 
-            this.BtnSelect.Location = new System.Drawing.Point(12, 321);
+            this.BtnSelect.Location = new System.Drawing.Point(296, 321);
             this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.Size = new System.Drawing.Size(260, 32);
+            this.BtnSelect.Size = new System.Drawing.Size(162, 32);
             this.BtnSelect.TabIndex = 11;
-            this.BtnSelect.Text = "Search and select";
+            this.BtnSelect.Text = "Find and select";
             this.BtnSelect.UseVisualStyleBackColor = true;
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
@@ -240,11 +242,32 @@
             this.BtnOverrideTileIndex.UseVisualStyleBackColor = true;
             this.BtnOverrideTileIndex.Click += new System.EventHandler(this.BtnOverrideTileIndex_Click);
             // 
-            // AdvancedSelectionWindow
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(293, 273);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Find by ID only:";
+            // 
+            // TxtId
+            // 
+            this.TxtId.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(296, 295);
+            this.TxtId.MaxLength = 10;
+            this.TxtId.Name = "TxtId";
+            this.TxtId.Size = new System.Drawing.Size(162, 20);
+            this.TxtId.TabIndex = 21;
+            this.TxtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // SearchWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 365);
+            this.Controls.Add(this.TxtId);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.BtnOverrideTileIndex);
             this.Controls.Add(this.BtnReplace);
             this.Controls.Add(this.BtnOverrideColors);
@@ -264,10 +287,11 @@
             this.Controls.Add(this.BtnTileForeColor);
             this.Controls.Add(this.TxtTileIndex);
             this.Controls.Add(this.BtnTileIndex);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "AdvancedSelectionWindow";
+            this.Name = "SearchWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Advanced selection";
+            this.Text = "Find objects";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSelectionWindow_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -295,5 +319,7 @@
         private System.Windows.Forms.Button BtnOverrideColors;
         private System.Windows.Forms.Button BtnReplace;
         private System.Windows.Forms.Button BtnOverrideTileIndex;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtId;
     }
 }
