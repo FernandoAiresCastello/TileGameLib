@@ -2,7 +2,8 @@
 	THINGS TO DO
 -------------------------------------------------------------------------------
 	New features:
-		- Find and select objects in map editor
+		- Allow to expand map editor area by hiding all other panels
+		- Apply the same properties to many objects at once
 		- "Rearrange mode" in color picker
 		- Template object library
 		- "Wrap around" map flag

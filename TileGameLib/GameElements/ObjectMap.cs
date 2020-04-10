@@ -280,6 +280,11 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
+        public PositionedObject GetPositionedObject(ObjectPosition pos)
+        {
+            return new PositionedObject(this, GetObject(pos), pos);
+        }
+
         public PositionedObject GetObjectUnder(ObjectPosition pos)
         {
             if (pos.Layer <= 0)

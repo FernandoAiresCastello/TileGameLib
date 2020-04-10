@@ -95,14 +95,19 @@ namespace TileGameLib.GameElements
             return new ObjectPosition(Layer, X + dx, Y + dy);
         }
 
-        public ObjectPosition Above()
+        public ObjectPosition AtLayer(int layer)
         {
-            return new ObjectPosition(Layer + 1, X, Y);
+            return new ObjectPosition(layer, X, Y);
         }
 
-        public ObjectPosition Under()
+        public ObjectPosition Above(int height = 1)
         {
-            return new ObjectPosition(Layer - 1, X, Y);
+            return new ObjectPosition(Layer + height, X, Y);
+        }
+
+        public ObjectPosition Under(int depth = 1)
+        {
+            return new ObjectPosition(Layer - depth, X, Y);
         }
 
         public ObjectPosition North(int distance = 1)

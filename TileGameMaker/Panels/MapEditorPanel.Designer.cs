@@ -72,11 +72,11 @@
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnFind = new System.Windows.Forms.ToolStripButton();
+            this.BtnRunScript = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
-            this.BtnToggleTooltip = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -157,13 +157,13 @@
             this.BtnAddText,
             this.BtnReplaceObjects,
             this.BtnFind,
+            this.BtnRunScript,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
             this.BtnZoomIn,
             this.BtnZoomOut,
             this.BtnGrid,
-            this.BtnToggleTooltip,
             this.BtnScreenshot});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -520,6 +520,17 @@
             this.BtnFind.ToolTipText = "Find objects (CTRL+F)";
             this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
             // 
+            // BtnRunScript
+            // 
+            this.BtnRunScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRunScript.Image = global::TileGameMaker.Properties.Resources.script_lightning;
+            this.BtnRunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRunScript.Name = "BtnRunScript";
+            this.BtnRunScript.Size = new System.Drawing.Size(23, 20);
+            this.BtnRunScript.Text = "toolStripButton1";
+            this.BtnRunScript.ToolTipText = "Run editor script";
+            this.BtnRunScript.Click += new System.EventHandler(this.BtnRunScript_Click);
+            // 
             // BtnSelect
             // 
             this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -563,17 +574,6 @@
             this.BtnGrid.Text = "toolStripButton1";
             this.BtnGrid.ToolTipText = "Toggle grid";
             this.BtnGrid.Click += new System.EventHandler(this.BtnGrid_Click);
-            // 
-            // BtnToggleTooltip
-            // 
-            this.BtnToggleTooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnToggleTooltip.Image = global::TileGameMaker.Properties.Resources.tooltip_baloon;
-            this.BtnToggleTooltip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnToggleTooltip.Name = "BtnToggleTooltip";
-            this.BtnToggleTooltip.Size = new System.Drawing.Size(23, 20);
-            this.BtnToggleTooltip.Text = "toolStripButton1";
-            this.BtnToggleTooltip.ToolTipText = "Toggle tooltips";
-            this.BtnToggleTooltip.Click += new System.EventHandler(this.BtnToggleTooltip_Click);
             // 
             // BtnScreenshot
             // 
@@ -632,7 +632,6 @@
         private System.Windows.Forms.ToolStripButton BtnPutTemplate;
         private System.Windows.Forms.ToolStripButton BtnSetBackColor;
         private System.Windows.Forms.ToolStripButton BtnDelete;
-        private System.Windows.Forms.ToolStripButton BtnToggleTooltip;
         private System.Windows.Forms.ToolStripDropDownButton BtnSelectionActions;
         private System.Windows.Forms.ToolStripMenuItem MiCutObjects;
         private System.Windows.Forms.ToolStripMenuItem MiCancelSelection;
@@ -656,5 +655,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnExport;
         private System.Windows.Forms.ToolStripMenuItem BtnExportJson;
         private System.Windows.Forms.ToolStripButton BtnFind;
+        private System.Windows.Forms.ToolStripButton BtnRunScript;
     }
 }

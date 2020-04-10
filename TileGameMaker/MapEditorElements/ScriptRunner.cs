@@ -4,25 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.GameElements;
+using TileGameLib.Util;
 
 namespace TileGameMaker.MapEditorElements
 {
-    public class MacroPlayer
+    public class ScriptRunner
     {
         private readonly ObjectMap Map;
 
-        public MacroPlayer(ObjectMap map)
+        public ScriptRunner(ObjectMap map)
         {
             Map = map;
         }
 
-        public string Execute(string macro)
+        public void Test(string message)
         {
-            string result = "Ok";
-            
-            // TODO
-
-            return result;
+            Alert.Info("This is a test message. You wrote:\n" + message);
         }
     }
 }

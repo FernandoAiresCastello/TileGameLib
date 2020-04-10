@@ -30,6 +30,7 @@ namespace TileGameMaker.Panels
         private int Layer;
         private ObjectBlockSelection Selection;
         private SearchWindow SearchWindow;
+        private ScriptWindow ScriptWindow;
         private ToolTip Tooltip;
         private Point CurrentTooltipPoint;
         private bool TooltipEnabled;
@@ -64,6 +65,7 @@ namespace TileGameMaker.Panels
             Layer = 0;
             Selection = new ObjectBlockSelection();
             SearchWindow = new SearchWindow(Editor, this, Display);
+            ScriptWindow = new ScriptWindow(Map);
 
             Tooltip = new ToolTip();
             Tooltip.IsBalloon = true;
@@ -418,12 +420,6 @@ namespace TileGameMaker.Panels
         {
             Display.ShowGrid = !Display.ShowGrid;
             Refresh();
-        }
-
-        private void BtnToggleTooltip_Click(object sender, EventArgs e)
-        {
-            TooltipEnabled = !TooltipEnabled;
-            BtnToggleTooltip.Checked = TooltipEnabled;
         }
 
         private void BtnAddText_Click(object sender, EventArgs e) => SetMode(EditMode.TextInput);
@@ -978,6 +974,9 @@ namespace TileGameMaker.Panels
                     case Keys.Escape:
                         CancelSelection();
                         break;
+                    case Keys.F5:
+                        OpenScriptWindow();
+                        break;
                 }
             }
         }
@@ -1061,6 +1060,16 @@ namespace TileGameMaker.Panels
         private void FindObjects()
         {
             SearchWindow.Show();
+        }
+
+        private void BtnRunScript_Click(object sender, EventArgs e)
+        {
+            OpenScriptWindow();
+        }
+
+        private void OpenScriptWindow()
+        {
+            ScriptWindow.Show();
         }
     }
 }

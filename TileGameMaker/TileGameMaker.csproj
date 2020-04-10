@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapEditorElements\MacroPlayer.cs" />
+    <Compile Include="MapEditorElements\ScriptRunner.cs" />
     <Compile Include="MapEditorElements\MapProperties.cs" />
     <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
     <Compile Include="MapEditorElements\RecentFiles.cs" />
@@ -120,6 +120,12 @@
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
     <Compile Include="Util\UserSettings.cs" />
+    <Compile Include="Windows\ScriptWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ScriptWindow.Designer.cs">
+      <DependentUpon>ScriptWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SearchWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,9 @@
     <EmbeddedResource Include="Panels\WorkspacePanel.resx">
       <DependentUpon>WorkspacePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ScriptWindow.resx">
+      <DependentUpon>ScriptWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\SearchWindow.resx">
       <DependentUpon>SearchWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,6 +350,9 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\page_white_text.png" />
+    <None Include="Resources\script_lightning1.png" />
+    <None Include="Resources\script_lightning.png" />
     <None Include="Resources\music.png" />
     <None Include="Resources\tag_blue_add.png" />
     <None Include="Resources\save_close.png" />
@@ -407,6 +419,7 @@
     <None Include="Resources\add.png" />
     <None Include="Resources\document_page_next.png" />
     <None Include="Resources\find.png" />
+    <None Include="Resources\check_boxes_series.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>
