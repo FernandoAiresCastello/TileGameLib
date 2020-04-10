@@ -159,11 +159,11 @@
     <Compile Include="Windows\DataExtractorWindow.Designer.cs">
       <DependentUpon>DataExtractorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ObjectPropertiesEditWindow.cs">
+    <Compile Include="Windows\ObjectEditWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\ObjectPropertiesEditWindow.Designer.cs">
-      <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
+    <Compile Include="Windows\ObjectEditWindow.Designer.cs">
+      <DependentUpon>ObjectEditWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\RangeInputWindow.cs">
       <SubType>Form</SubType>
@@ -279,8 +279,8 @@
     <EmbeddedResource Include="Windows\DataExtractorWindow.resx">
       <DependentUpon>DataExtractorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\ObjectPropertiesEditWindow.resx">
-      <DependentUpon>ObjectPropertiesEditWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Windows\ObjectEditWindow.resx">
+      <DependentUpon>ObjectEditWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\RangeInputWindow.resx">
       <DependentUpon>RangeInputWindow.cs</DependentUpon>
@@ -420,6 +420,7 @@
     <None Include="Resources\document_page_next.png" />
     <None Include="Resources\find.png" />
     <None Include="Resources\check_boxes_series.png" />
+    <None Include="Resources\brick_edit.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             Tileset = tileset;
+            KeyPreview = true;
 
             TileEditor = new TileEditor8x8Display(TilePanel, Config.ReadInt("TileEditorZoom"));
 
@@ -35,18 +36,18 @@ namespace TileGameMaker.Windows
             TileEditor.MouseMove += TileEditor_MouseMove;
             TileEditor.MouseLeave += TileEditor_MouseLeave;
             TileEditor.MouseDown += TileEditor_MouseDown;
-
-            TxtStringRep.KeyDown += TxtStringRep_KeyDown;
+            KeyDown += TileEditor8x8Window_KeyDown;
             TxtStringRep.Visible = false;
 
             HoverLabel.Text = "";
         }
 
-        private void TxtStringRep_KeyDown(object sender, KeyEventArgs e)
+        private void TileEditor8x8Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Undo();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
                 Close();
             }
         }

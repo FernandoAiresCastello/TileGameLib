@@ -35,12 +35,24 @@ namespace TileGameMaker.Windows
         {
             InitializeComponent();
             Tileset = tileset;
+            KeyPreview = true;
 
             TileEditor = new TileEditor16x16Display(TilePanel, Config.ReadInt("TileEditorZoom"));
 
             TileEditor.ShowGrid = true;
             TileEditor.MouseMove += TileEditor_MouseMove;
             TileEditor.MouseDown += TileEditor_MouseDown;
+            KeyDown += TileEditor16x16Window_KeyDown;
+        }
+
+        private void TileEditor16x16Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                Close();
+            }
         }
 
         public void SetTiles(int indexTL, int indexTR, int indexBL, int indexBR)

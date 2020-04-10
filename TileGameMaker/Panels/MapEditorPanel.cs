@@ -36,7 +36,7 @@ namespace TileGameMaker.Panels
         private bool TooltipEnabled;
         private ObjectBlockClipboard ClipboardObjects;
 
-        private enum EditMode { Draw, Delete, TextInput, Selection, Replace }
+        private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
         private EditMode Mode;
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
@@ -133,7 +133,9 @@ namespace TileGameMaker.Panels
 
             Focus();
 
-            ObjectCell cell = Map.GetCell(new ObjectPosition(Layer, point));
+            ObjectPosition pos = new ObjectPosition(Layer, point);
+            PositionedObject obj = Map.GetPositionedObject(pos);
+            ObjectCell cell = Map.GetCell(pos);
 
             if (Mode == EditMode.Draw)
             {
@@ -194,6 +196,17 @@ namespace TileGameMaker.Panels
                 else if (e.Button == MouseButtons.Right)
                 {
                     CancelSelection();
+                }
+            }
+            else if (Mode == EditMode.EditObject)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    EditObject(obj, pos);
+                }
+                else
+                {
+                    CopyObjectToTemplate(cell);
                 }
             }
         }
@@ -427,6 +440,7 @@ namespace TileGameMaker.Panels
         private void BtnDeleteMode_Click(object sender, EventArgs e) => SetMode(EditMode.Delete);
         private void BtnReplaceObjects_Click(object sender, EventArgs e) => SetMode(EditMode.Replace);
         private void BtnSelect_Click(object sender, EventArgs e) => SetMode(EditMode.Selection);
+        private void BtnEditObject_Click(object sender, EventArgs e) => SetMode(EditMode.EditObject);
 
         private void SetMode(EditMode mode)
         {
@@ -461,6 +475,10 @@ namespace TileGameMaker.Panels
                     button = BtnReplaceObjects;
                     SetReplaceModeLabel();
                     break;
+                case EditMode.EditObject:
+                    Display.Cursor = GetCursor(Properties.Resources.brick_edit);
+                    button = BtnEditObject;
+                    break;
             }
 
             if (button != null)
@@ -479,6 +497,7 @@ namespace TileGameMaker.Panels
             BtnSelect.Checked = false;
             BtnDelete.Checked = false;
             BtnReplaceObjects.Checked = false;
+            BtnEditObject.Checked = false;
 
             button.Checked = true;
         }
@@ -1070,6 +1089,13 @@ namespace TileGameMaker.Panels
         private void OpenScriptWindow()
         {
             ScriptWindow.Show();
+        }
+
+        private void EditObject(PositionedObject po, ObjectPosition pos)
+        {
+            ObjectEditWindow win = new ObjectEditWindow(Editor, po, Map, pos);
+            if (win.ShowDialog(this) == DialogResult.OK)
+                Map.SetObject(win.EditedObject, pos);
         }
     }
 }

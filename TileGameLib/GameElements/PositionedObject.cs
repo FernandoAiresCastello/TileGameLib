@@ -24,6 +24,18 @@ namespace TileGameLib.GameElements
             Position = position;
         }
 
+        public PositionedObject(PositionedObject other)
+        {
+            Map = other.Map;
+            Object = other.Object.Copy();
+            Position = other.Position.Copy();
+        }
+
+        public PositionedObject Copy()
+        {
+            return new PositionedObject(this);
+        }
+
         public override string ToString()
         {
             return Map.Name + " " + Object.ToString() + " " + Position.ToString();

@@ -29,6 +29,18 @@ namespace TileGameMaker.Windows
             Display = display;
             InitializeComponent();
             TopMost = true;
+            KeyPreview = true;
+            KeyDown += SearchWindow_KeyDown;
+        }
+
+        private void SearchWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                Close();
+            }
         }
 
         private void BtnTileIndex_Click(object sender, EventArgs e)
