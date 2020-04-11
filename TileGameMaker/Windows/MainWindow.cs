@@ -49,8 +49,6 @@ namespace TileGameMaker.Windows
             AddControl(MapEditor.TemplateControl, TemplatePanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
             AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
-            AddControl(MapEditor.ScriptPanel, ScriptPanel);
-
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -156,15 +154,6 @@ namespace TileGameMaker.Windows
         {
             WorkspaceWindow window = new WorkspaceWindow(MapEditor);
             window.ShowDialog(this);
-        }
-
-        private void BtnToggleScript_Click(object sender, EventArgs e)
-        {
-            bool visible = MapAndScriptSplitContainer.Panel2Collapsed;
-            MapAndScriptSplitContainer.Panel2Collapsed = !visible;
-
-            if (visible)
-                MapEditor.ScriptPanel.Focus();
         }
 
         private void BtnOpenMusicComposer_Click(object sender, EventArgs e)

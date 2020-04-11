@@ -2,12 +2,17 @@
 	THINGS TO DO
 -------------------------------------------------------------------------------
 	New features:
+		- Change all copy() methods to constructor receiving other object of same type
+		- Add .tgini file type to globally manage game in the engine
+		- Add checksum to map file
+		- Refactor map editor panel class
 		- Allow to expand map editor area by hiding all other panels
 		- Apply the same properties to many objects at once
 		- "Rearrange mode" in color picker
 		- Template object library
 		- "Wrap around" map flag
 		- "Infinite" map flag
+		- Option to embed map files into game executable
 -------------------------------------------------------------------------------
 	Improvements or changes to existing features:
 		(none)

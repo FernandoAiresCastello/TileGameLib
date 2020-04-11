@@ -111,7 +111,7 @@ namespace TileGameLib.File
             int height = file.ReadShort();
             int backColor = file.ReadShort();
             string musicFile = file.ReadStringNullTerminated();
-            string script = file.ReadStringNullTerminated();
+            string text = file.ReadStringNullTerminated();
 
             ObjectMap map = new ObjectMap(name, width, height, backColor);
 
@@ -120,7 +120,7 @@ namespace TileGameLib.File
             map.Layers.Clear();
             map.AddLayers(layerCount);
             map.MusicFile = musicFile;
-            map.Text = script;
+            map.Text = text;
 
             foreach (ObjectLayer layer in map.Layers)
             {

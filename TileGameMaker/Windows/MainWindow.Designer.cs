@@ -33,7 +33,6 @@
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnViewWorkspace = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnToggleScript = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnOpenMusicComposer = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +46,6 @@
             this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MapAndScriptSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MapEditorPanel = new System.Windows.Forms.Panel();
-            this.ScriptPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
@@ -59,7 +57,6 @@
             this.MapAndCommandLineSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapAndScriptSplitContainer)).BeginInit();
             this.MapAndScriptSplitContainer.Panel1.SuspendLayout();
-            this.MapAndScriptSplitContainer.Panel2.SuspendLayout();
             this.MapAndScriptSplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +92,6 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnViewWorkspace,
-            this.BtnToggleScript,
             this.BtnDataExtractor,
             this.BtnOpenMusicComposer});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
@@ -111,14 +107,6 @@
             this.BtnViewWorkspace.Text = "View workspace";
             this.BtnViewWorkspace.Click += new System.EventHandler(this.BtnViewWorkspace_Click);
             // 
-            // BtnToggleScript
-            // 
-            this.BtnToggleScript.Image = global::TileGameMaker.Properties.Resources.page_white_text;
-            this.BtnToggleScript.Name = "BtnToggleScript";
-            this.BtnToggleScript.Size = new System.Drawing.Size(234, 22);
-            this.BtnToggleScript.Text = "Toggle map text editor";
-            this.BtnToggleScript.Click += new System.EventHandler(this.BtnToggleScript_Click);
-            // 
             // BtnDataExtractor
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
@@ -131,8 +119,8 @@
             // 
             this.BtnOpenMusicComposer.Image = global::TileGameMaker.Properties.Resources.music;
             this.BtnOpenMusicComposer.Name = "BtnOpenMusicComposer";
-            this.BtnOpenMusicComposer.Size = new System.Drawing.Size(234, 22);
-            this.BtnOpenMusicComposer.Text = "Music composer (beepbox.co)";
+            this.BtnOpenMusicComposer.Size = new System.Drawing.Size(203, 22);
+            this.BtnOpenMusicComposer.Text = "Online music composer";
             this.BtnOpenMusicComposer.Click += new System.EventHandler(this.BtnOpenMusicComposer_Click);
             // 
             // helpToolStripMenuItem
@@ -254,10 +242,6 @@
             // MapAndScriptSplitContainer.Panel1
             // 
             this.MapAndScriptSplitContainer.Panel1.Controls.Add(this.MapEditorPanel);
-            // 
-            // MapAndScriptSplitContainer.Panel2
-            // 
-            this.MapAndScriptSplitContainer.Panel2.Controls.Add(this.ScriptPanel);
             this.MapAndScriptSplitContainer.Panel2Collapsed = true;
             this.MapAndScriptSplitContainer.Size = new System.Drawing.Size(516, 398);
             this.MapAndScriptSplitContainer.SplitterDistance = 350;
@@ -271,15 +255,6 @@
             this.MapEditorPanel.Name = "MapEditorPanel";
             this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
             this.MapEditorPanel.TabIndex = 1;
-            // 
-            // ScriptPanel
-            // 
-            this.ScriptPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ScriptPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ScriptPanel.Location = new System.Drawing.Point(0, 0);
-            this.ScriptPanel.Name = "ScriptPanel";
-            this.ScriptPanel.Size = new System.Drawing.Size(96, 100);
-            this.ScriptPanel.TabIndex = 0;
             // 
             // CommandLinePanel
             // 
@@ -318,7 +293,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).EndInit();
             this.MapAndCommandLineSplitContainer.ResumeLayout(false);
             this.MapAndScriptSplitContainer.Panel1.ResumeLayout(false);
-            this.MapAndScriptSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MapAndScriptSplitContainer)).EndInit();
             this.MapAndScriptSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -345,8 +319,6 @@
         private System.Windows.Forms.Panel CommandLinePanel;
         private System.Windows.Forms.ToolStripMenuItem BtnDataExtractor;
         private System.Windows.Forms.SplitContainer MapAndScriptSplitContainer;
-        private System.Windows.Forms.Panel ScriptPanel;
-        private System.Windows.Forms.ToolStripMenuItem BtnToggleScript;
         private System.Windows.Forms.ToolStripMenuItem BtnViewWorkspace;
         private System.Windows.Forms.ToolStripMenuItem BtnOpenMusicComposer;
     }
