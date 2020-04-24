@@ -34,7 +34,7 @@ namespace TileGameLib.File
             file.WriteShort(map.Height);
             file.WriteShort(map.BackColor);
             file.WriteStringNullTerminated(StringOrEmpty(map.MusicFile));
-            file.WriteStringNullTerminated(StringOrEmpty(map.Text));
+            file.WriteStringNullTerminated(StringOrEmpty(map.ScriptFile));
             file.WriteByte((byte)map.Layers.Count);
 
             foreach (ObjectLayer layer in map.Layers)
@@ -120,7 +120,7 @@ namespace TileGameLib.File
             map.Layers.Clear();
             map.AddLayers(layerCount);
             map.MusicFile = musicFile;
-            map.Text = text;
+            map.ScriptFile = text;
 
             foreach (ObjectLayer layer in map.Layers)
             {

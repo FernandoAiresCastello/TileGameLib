@@ -21,7 +21,7 @@ namespace TileGameLib.GameElements
         public string MusicFile { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public string Text { get; set; }
+        public string ScriptFile { get; set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
         public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
@@ -64,7 +64,7 @@ namespace TileGameLib.GameElements
             Height = other.Height;
             BackColor = other.BackColor;
             MusicFile = other.MusicFile;
-            Text = other.Text;
+            ScriptFile = other.ScriptFile;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();
