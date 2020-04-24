@@ -67,6 +67,7 @@
       <DependentUpon>DebuggerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine\GameEngine.cs" />
+    <Compile Include="Engine\MapEntity.cs" />
     <Compile Include="Engine\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>

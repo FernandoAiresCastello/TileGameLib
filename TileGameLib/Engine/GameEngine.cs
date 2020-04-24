@@ -229,11 +229,11 @@ namespace TileGameLib.Engine
             EnterMap(map.Id);
         }
 
-        public void EnterMap(string id)
+        public void EnterMap(string mapId)
         {
-            MapController nextController = MapControllers.Get(id);
+            MapController nextController = MapControllers.Get(mapId);
             if (nextController == null)
-                throw new TileGameLibException($"Map with id {id} not found");
+                throw new TileGameLibException($"Map with id {mapId} not found");
 
             bool transitionNotCancelled = OnMapTransition(MapController, nextController);
 
@@ -256,9 +256,9 @@ namespace TileGameLib.Engine
                 EnterMap(PreviousMapController.Map);
         }
 
-        public void ReloadMap(string name)
+        public void ReloadMap(string mapId)
         {
-            MapController controller = MapControllers.Get(name);
+            MapController controller = MapControllers.Get(mapId);
             controller.Map.SetEqual(MapFile.LoadFromRawBytes(GetMapPath(controller.MapFile)));
             SetMapController(controller);
             controller.OnLoad();
