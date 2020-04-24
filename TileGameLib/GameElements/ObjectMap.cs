@@ -363,6 +363,16 @@ namespace TileGameLib.GameElements
             return objects;
         }
 
+        public PositionedObject FindObjectByProperty(string property)
+        {
+            List<PositionedObject> objs = FindObjectsByProperty(property);
+
+            if (objs.Count > 1)
+                throw new TileGameLibException($"Multiple ({objs.Count}) objects found with property {property}");
+
+            return objs.Count == 1 ? objs[0] : null;
+        }
+
         public List<PositionedObject> FindObjectsByPropertyValue(string property, object value)
         {
             List<PositionedObject> objects = new List<PositionedObject>();
@@ -386,6 +396,16 @@ namespace TileGameLib.GameElements
             }
 
             return objects;
+        }
+
+        public PositionedObject FindObjectByPropertyValue(string property, object value)
+        {
+            List<PositionedObject> objs = FindObjectsByPropertyValue(property, value);
+
+            if (objs.Count > 1)
+                throw new TileGameLibException($"Multiple ({objs.Count}) objects found with property {property} = {value}");
+
+            return objs.Count == 1 ? objs[0] : null;
         }
 
         public List<PositionedObject> FindObjectsEqual(GameObject other)
