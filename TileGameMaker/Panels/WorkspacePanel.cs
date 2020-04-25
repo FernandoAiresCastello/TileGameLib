@@ -48,6 +48,8 @@ namespace TileGameMaker.Panels
             if (MapEditor.WorkspacePath == null)
                 return;
 
+            WorkspaceGrid.Rows.Clear();
+
             var filenames = Directory.EnumerateFiles(MapEditor.WorkspacePath);
 
             foreach (string name in filenames)
