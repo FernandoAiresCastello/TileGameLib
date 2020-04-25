@@ -141,8 +141,10 @@ namespace TileGameMaker.Panels
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    if (ModifierKeys == Keys.Control)
+                    if (ModifierKeys == Keys.Shift)
                         DeleteObject(cell);
+                    else if (ModifierKeys == Keys.Control)
+                        EditObject(obj, pos);
                     else
                         PutCurrentObject(cell);
                 }
@@ -338,7 +340,7 @@ namespace TileGameMaker.Panels
 
         private void PutCurrentObject(ObjectCell cell)
         {
-            cell.SetObjectEqual(Editor.SelectedObject);
+            cell.SetObjectEqual(Editor.CopyObjectFromClipboard());
             RenderMap();
         }
 
@@ -395,7 +397,7 @@ namespace TileGameMaker.Panels
         private void CopyObjectToTemplate(ObjectCell cell)
         {
             if (!cell.IsEmpty)
-                Editor.SelectedObject = cell.Object;
+                Editor.CopyObjectToClipboard(cell.Object);
             else
                 Alert.Warning("Can't copy from empty cell");
         }
@@ -510,7 +512,7 @@ namespace TileGameMaker.Panels
                 return;
 
             bool vertical = win.TextOrientation.Trim().ToLower().Equals("vertical");
-            Tile tile = Editor.SelectedTile;
+            Tile tile = Editor.CopyObjectFromClipboard().Tile;
             ObjectPosition pos = new ObjectPosition(Layer, x, y);
 
             if (vertical)
@@ -594,11 +596,10 @@ namespace TileGameMaker.Panels
             Editor.MapFile = file;
             Editor.UpdateMapProperties();
             Editor.ResizeMap(Map.Width, Map.Height);
-            Editor.SelectedObject = Editor.BlankObject;
+            Editor.ClearClipboard();
             Editor.RecentFiles.Add(file);
             UpdateRecentFileList();
             UpdateLayerComboBox();
-            Alert.Info("File loaded successfully!");
         }
 
         private void UpdateRecentFileList()
@@ -678,9 +679,8 @@ namespace TileGameMaker.Panels
                 Editor.MapFile = file;
                 Editor.UpdateMapProperties();
                 Editor.ResizeMap(Map.Width, Map.Height);
-                Editor.SelectedObject = Editor.BlankObject;
+                Editor.ClearClipboard();
                 UpdateLayerComboBox();
-                Alert.Info("File loaded successfully!");
             }
         }
 
@@ -808,20 +808,20 @@ namespace TileGameMaker.Panels
             {
                 if (Alert.Confirm($"The clicked cell is empty. This will put the template object in all empty cells in the current layer (layer {Layer}). Are you sure?"))
                 {
-                    Map.FillEmptyCells(Editor.SelectedObject, Layer);
+                    Map.FillEmptyCells(Editor.CopyObjectFromClipboard(), Layer);
                     Display.Refresh();
                 }
             }
             else if (Alert.Confirm("This will replace with the template all objects in all layers that are equal to the clicked object. Are you sure?"))
             {
-                Map.ReplaceObjects(o, Editor.SelectedObject);
+                Map.ReplaceObjects(o, Editor.CopyObjectFromClipboard());
                 Display.Refresh();
             }
         }
 
         public void ReplaceObjectsWithTemplate(List<ObjectPosition> positions)
         {
-            Map.SetObjects(Editor.SelectedObject, positions);
+            Map.SetObjects(Editor.CopyObjectFromClipboard(), positions);
             Display.Refresh();
         }
 
@@ -849,7 +849,7 @@ namespace TileGameMaker.Panels
         {
             List<ObjectCell> selectedCells = Map.GetCells(Selection.GetSelectedPositions(Layer));
             foreach (ObjectCell cell in selectedCells)
-                cell.SetObjectEqual(Editor.SelectedObject);
+                cell.SetObjectEqual(Editor.CopyObjectFromClipboard());
 
             Display.Refresh();
         }

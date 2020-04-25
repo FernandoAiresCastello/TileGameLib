@@ -22,39 +22,22 @@ namespace TileGameMaker.MapEditorElements
         public string MapName => MapPropertyGridControl.Properties.Name;
         public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
-
         public ObjectMap Map { get; private set; }
         public Palette Palette { get; private set; }
         public Tileset Tileset { get; private set; }
-
         public MainWindow MainWindow { get; private set; }
         public MapEditorPanel MapEditorControl { get; private set; }
         public TilePickerPanel TilePickerControl { get; private set; }
         public ColorPickerPanel ColorPickerControl { get; private set; }
-        public TemplatePanel TemplateControl { get; private set; }
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
         public WorkspacePanel WorkspacePanel { get; private set; }
-
         public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
-
         public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
         public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
-
+        private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();
-
-        public GameObject SelectedObject
-        {
-            get => GetSelectedObject();
-            set => SetSelectedObject(value);
-        }
-
-        public Tile SelectedTile
-        {
-            get => GetSelectedTile();
-            set => SetSelectedTile(value);
-        }
 
         public MapEditor(MainWindow mainWindow)
         {
@@ -77,7 +60,6 @@ namespace TileGameMaker.MapEditorElements
                 Map.Tileset = Tileset;
 
             MapEditorControl = new MapEditorPanel(this);
-            TemplateControl = new TemplatePanel(this);
             TilePickerControl = new TilePickerPanel(this, 8);
             ColorPickerControl = new ColorPickerPanel(this);
             CommandLinePanel = new CommandLinePanel(this);
@@ -88,17 +70,64 @@ namespace TileGameMaker.MapEditorElements
             WorkspacePanel.UpdateWorkspace();
 
             Children.Add(TilePickerControl);
-            Children.Add(TemplateControl);
             Children.Add(ColorPickerControl);
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
             Children.Add(WorkspacePanel);
+
+            ClipboardObject = CreateBlankObject();
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveUserSettings();
+        }
+
+        public void ClearClipboard()
+        {
+            ClipboardObject = BlankObject;
+        }
+
+        public void SetNewClipboardObject(Tile firstFrame)
+        {
+            ClipboardObject = new GameObject(firstFrame);
+        }
+
+        public void CopyObjectToClipboard(GameObject o)
+        {
+            ClipboardObject = new GameObject(o);
+            UpdatePickerPanelsWithClipboardTile();
+        }
+
+        private void UpdatePickerPanelsWithClipboardTile()
+        {
+            Tile tile = ClipboardObject.Tile;
+            TilePickerControl.SetTileIndex(tile.Index);
+            ColorPickerControl.SetForeColorIndex(tile.ForeColor);
+            ColorPickerControl.SetBackColorIndex(tile.BackColor);
+            TilePickerControl.Refresh();
+            ColorPickerControl.Refresh();
+        }
+
+        public GameObject CopyObjectFromClipboard()
+        {
+            return new GameObject(ClipboardObject);
+        }
+
+        public void SetClipboardTileIndex(int tileIx)
+        {
+            ClipboardObject.Tile.Index = tileIx;
+        }
+
+        public void SetClipboardForeColor(int forecolor)
+        {
+            ClipboardObject.Tile.ForeColor = forecolor;
+        }
+
+        public void SetClipboardBackColor(int backcolor)
+        {
+            ClipboardObject.Tile.BackColor = backcolor;
         }
 
         private void SaveUserSettings()
@@ -188,47 +217,6 @@ namespace TileGameMaker.MapEditorElements
         private GameObject CreateBlankObject()
         {
             return new GameObject(new Tile(0, Palette.Black, Palette.White));
-        }
-
-        private Tile GetSelectedTile()
-        {
-            return new Tile(
-                TilePickerControl.SelectedTile,
-                ColorPickerControl.SelectedForeColor,
-                ColorPickerControl.SelectedBackColor);
-        }
-
-        private void SetSelectedTile(Tile tile)
-        {
-            TilePickerControl.SetTileIndex(tile.Index);
-            ColorPickerControl.SetForeColorIndex(tile.ForeColor);
-            ColorPickerControl.SetBackColorIndex(tile.BackColor);
-            TilePickerControl.Refresh();
-            ColorPickerControl.Refresh();
-            TemplateControl.Refresh();
-        }
-
-        private GameObject GetSelectedObject()
-        {
-            GameObject o = new GameObject();
-            o.Visible = TemplateControl.Object.Visible;
-            o.Properties.SetEqual(TemplateControl.Properties);
-            o.Animation.SetEqual(TemplateControl.CroppedAnimation);
-            return o;
-        }
-
-        private void SetSelectedObject(GameObject o)
-        {
-            if (o == null)
-                return;
-
-            TemplateControl.Object.SetEqual(o);
-            TemplateControl.UpdateAnimation(o.Animation);
-            Tile firstFrame = o.Animation.FirstFrame;
-            TilePickerControl.SetTileIndex(firstFrame.Index);
-            ColorPickerControl.SetForeColorIndex(firstFrame.ForeColor);
-            ColorPickerControl.SetBackColorIndex(firstFrame.BackColor);
-            TemplateControl.Refresh();
         }
     }
 }

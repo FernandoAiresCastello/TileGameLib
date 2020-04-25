@@ -140,6 +140,7 @@
             this.size.HeaderText = "KB";
             this.size.Name = "size";
             this.size.ReadOnly = true;
+            this.size.Visible = false;
             // 
             // lastmodified
             // 
@@ -147,6 +148,7 @@
             this.lastmodified.HeaderText = "Last modified";
             this.lastmodified.Name = "lastmodified";
             this.lastmodified.ReadOnly = true;
+            this.lastmodified.Visible = false;
             // 
             // WorkspacePanel
             // 

@@ -59,7 +59,7 @@ namespace TileGameMaker.Panels
             ColorEditorWindow.Subscribe(this);
             ColorEditorWindow.Subscribe(ColorPicker);
             ColorEditorWindow.Subscribe(editor.MapEditorControl);
-            ColorEditorWindow.Subscribe(editor.TemplateControl);
+            //ColorEditorWindow.Subscribe(editor.TemplateControl);
 
             UpdateDefaultPaletteMenu();
             UpdatePanelColors();
@@ -124,9 +124,15 @@ namespace TileGameMaker.Panels
                 return;
 
             if (e.Button == MouseButtons.Left)
+            {
                 ColorPicker.SelectedForeColor = colorIx;
+                MapEditor.SetClipboardForeColor(colorIx);
+            }
             else if (e.Button == MouseButtons.Right)
+            {
                 ColorPicker.SelectedBackColor = colorIx;
+                MapEditor.SetClipboardBackColor(colorIx);
+            }
 
             Refresh();
             UpdatePanelColors();
@@ -188,6 +194,8 @@ namespace TileGameMaker.Panels
             int temp = ColorPicker.SelectedForeColor;
             ColorPicker.SelectedForeColor = ColorPicker.SelectedBackColor;
             ColorPicker.SelectedBackColor = temp;
+            MapEditor.SetClipboardForeColor(ColorPicker.SelectedForeColor);
+            MapEditor.SetClipboardBackColor(ColorPicker.SelectedBackColor);
             UpdatePanelColors();
             UpdateStatus();
             Refresh();

@@ -40,17 +40,17 @@
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
-            this.TemplatePanel = new System.Windows.Forms.Panel();
+            this.WorkspacePanel = new System.Windows.Forms.Panel();
             this.ColorPickerPanel = new System.Windows.Forms.Panel();
             this.TilePickerPanel = new System.Windows.Forms.Panel();
             this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
             this.CentralSplitContainer = new System.Windows.Forms.SplitContainer();
             this.MapEditorPanel = new System.Windows.Forms.Panel();
-            this.CommandLinePanel = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TemplateLibraryPanel = new System.Windows.Forms.Panel();
+            this.CommandLinePanel = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -168,7 +168,7 @@
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.MainLayout.Controls.Add(this.MapPropertiesPanel, 2, 1);
-            this.MainLayout.Controls.Add(this.TemplatePanel, 2, 0);
+            this.MainLayout.Controls.Add(this.WorkspacePanel, 2, 0);
             this.MainLayout.Controls.Add(this.ColorPickerPanel, 0, 1);
             this.MainLayout.Controls.Add(this.TilePickerPanel, 0, 0);
             this.MainLayout.Controls.Add(this.MapAndCommandLineSplitContainer, 1, 0);
@@ -191,14 +191,14 @@
             this.MapPropertiesPanel.Size = new System.Drawing.Size(126, 338);
             this.MapPropertiesPanel.TabIndex = 4;
             // 
-            // TemplatePanel
+            // WorkspacePanel
             // 
-            this.TemplatePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TemplatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TemplatePanel.Location = new System.Drawing.Point(655, 3);
-            this.TemplatePanel.Name = "TemplatePanel";
-            this.TemplatePanel.Size = new System.Drawing.Size(126, 54);
-            this.TemplatePanel.TabIndex = 3;
+            this.WorkspacePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WorkspacePanel.Location = new System.Drawing.Point(655, 3);
+            this.WorkspacePanel.Name = "WorkspacePanel";
+            this.WorkspacePanel.Size = new System.Drawing.Size(126, 54);
+            this.WorkspacePanel.TabIndex = 3;
             // 
             // ColorPickerPanel
             // 
@@ -265,6 +265,41 @@
             this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
             this.MapEditorPanel.TabIndex = 1;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TemplateLibraryPanel, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.904632F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.09537F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(96, 100);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 4);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Template Library";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TemplateLibraryPanel
+            // 
+            this.TemplateLibraryPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TemplateLibraryPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TemplateLibraryPanel.Location = new System.Drawing.Point(3, 7);
+            this.TemplateLibraryPanel.Name = "TemplateLibraryPanel";
+            this.TemplateLibraryPanel.Size = new System.Drawing.Size(90, 90);
+            this.TemplateLibraryPanel.TabIndex = 1;
+            // 
             // CommandLinePanel
             // 
             this.CommandLinePanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -280,41 +315,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TemplateLibraryPanel, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.904632F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.09537F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(162, 398);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Template Library";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TemplateLibraryPanel
-            // 
-            this.TemplateLibraryPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TemplateLibraryPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TemplateLibraryPanel.Location = new System.Drawing.Point(3, 22);
-            this.TemplateLibraryPanel.Name = "TemplateLibraryPanel";
-            this.TemplateLibraryPanel.Size = new System.Drawing.Size(156, 373);
-            this.TemplateLibraryPanel.TabIndex = 1;
             // 
             // MainWindow
             // 
@@ -356,7 +356,7 @@
         private System.Windows.Forms.TableLayoutPanel WindowLayout;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
         private System.Windows.Forms.Panel MapPropertiesPanel;
-        private System.Windows.Forms.Panel TemplatePanel;
+        private System.Windows.Forms.Panel WorkspacePanel;
         private System.Windows.Forms.Panel ColorPickerPanel;
         private System.Windows.Forms.Panel TilePickerPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
