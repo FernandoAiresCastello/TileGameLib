@@ -224,6 +224,12 @@ namespace TileGameLib.Engine
             return map;
         }
 
+        public void AddMap(ObjectMap map, MapController controller)
+        {
+            MapControllers.AddController(map, controller);
+            controller.OnLoad();
+        }
+
         public void EnterMap(ObjectMap map)
         {
             EnterMap(map.Id);

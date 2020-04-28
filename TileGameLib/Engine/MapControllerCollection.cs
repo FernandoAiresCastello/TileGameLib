@@ -53,6 +53,16 @@ namespace TileGameLib.Engine
             return controller.Map;
         }
 
+        public void AddController(ObjectMap map, MapController controller)
+        {
+            if (HasMap(map.Id))
+                throw new TileGameLibException($"There is already a map with id {map.Id}");
+
+            controller.Map = map;
+            controller.MapFile = null;
+            Controllers.Add(controller.Map, controller);
+        }
+
         public void RemoveController(MapController controller)
         {
             Controllers.Remove(controller.Map);
