@@ -1,7 +1,7 @@
 # Tile Game Maker
 #### Framework and editor for pseudo-8-bit tile-based game creation
 
-<p align="center">
+<p align="center"><br>
 ★ <a href="https://trello.com/b/K9Jb3DE4" target="_blank">Click here to view this project board on Trello!</a> ★<br>
 ★ <a href="mailto:facastello+jl1fywoeimmmjrfbnmvh@boards.trello.com" target="_blank">Click here to send suggestions and feature requests via e-mail!</a> ★
 </p>
