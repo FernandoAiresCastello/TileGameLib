@@ -3,7 +3,6 @@
 
 <p align="center"><br>
 ★ <a href="https://trello.com/b/K9Jb3DE4" target="_blank">Click here to view the development project board on Trello!</a> ★<br>
-★ <a href="mailto:facastello+jl1fywoeimmmjrfbnmvh@boards.trello.com" target="_blank">Click here to send feature requests and bug reports via e-mail!</a> ★
 </p>
   
 #### Description:
