@@ -22,14 +22,16 @@ namespace TileGameLib.Engine
         public bool Paused { set; get; }
         public GameWindow Window { get; private set; }
 
+        public ObjectMap Ui => UiMap;
+
         protected MapController MapController;
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
         protected DebuggerWindow Debugger;
-        protected MapRenderer MainMapRenderer;
-        protected MapRenderer UiMapRenderer;
-        protected ObjectMap UiMap;
+        protected MapRenderer MapRenderer;
+        protected MapRenderer UiRenderer;
 
+        private ObjectMap UiMap;
         private readonly Timer CycleTimer;
         private readonly SoundPlayer BgmPlayer;
         private readonly SoundPlayer SfxPlayer;
@@ -49,19 +51,12 @@ namespace TileGameLib.Engine
             SfxPlayer = new SoundPlayer();
             Debugger = new DebuggerWindow(this);
 
-            CreateMapRenderers();
+            MapRenderer = new MapRenderer(Window.Display);
+            MapRenderer.Viewport = new Rectangle(0, 0, Window.Display.Cols, Window.Display.Rows);
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
             CycleTimer.Tick += CycleTimer_Tick;
-        }
-
-        private void CreateMapRenderers()
-        {
-            MainMapRenderer = new MapRenderer(Window.Display);
-            MainMapRenderer.Viewport = new Rectangle(0, 0, Window.Display.Cols, Window.Display.Rows);
-
-            UiMapRenderer = new MapRenderer(Window.Display);
         }
 
         public void Run()
@@ -200,7 +195,7 @@ namespace TileGameLib.Engine
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
-            MainMapRenderer.Map = map;
+            MapRenderer.Map = map;
             controller.OnLoad();
             return map;
         }
@@ -208,16 +203,29 @@ namespace TileGameLib.Engine
         public void AddMap(ObjectMap map, MapController controller)
         {
             MapControllers.AddController(map, controller);
-            MainMapRenderer.Map = map;
+            MapRenderer.Map = map;
             controller.OnLoad();
         }
 
-        public void LoadUiMap(string uiMapFile, int viewΧ, int viewY, int viewWidth, int viewHeight)
+        public void CreateUiMap(int width, int height, int backColor, int viewX, int viewY, int viewWidth, int viewHeight)
         {
-            UiMap = MapFile.LoadFromRawBytes(uiMapFile);
-            UiMapRenderer.Map = UiMap;
-            UiMapRenderer.Viewport = new Rectangle(viewΧ, viewY, viewWidth, viewHeight);
-            UiMapRenderer.ClearViewportBeforeRender = false;
+            SetUiMap(new ObjectMap("uidefault", width, height, backColor), viewX, viewY, viewWidth, viewHeight);
+        }
+
+        public void LoadUiMap(string uiMapFile, int viewX, int viewY, int viewWidth, int viewHeight)
+        {
+            SetUiMap(MapFile.LoadFromRawBytes(uiMapFile), viewX, viewY, viewWidth, viewHeight);
+        }
+
+        private void SetUiMap(ObjectMap map, int viewΧ, int viewY, int viewWidth, int viewHeight)
+        {
+            UiMap = map;
+            if (UiRenderer == null)
+                UiRenderer = new MapRenderer(Window.Display);
+
+            UiRenderer.Map = UiMap;
+            UiRenderer.Viewport = new Rectangle(viewΧ, viewY, viewWidth, viewHeight);
+            UiRenderer.ClearViewportBeforeRender = false;
         }
 
         public void EnterMap(ObjectMap map)
@@ -285,7 +293,7 @@ namespace TileGameLib.Engine
 
         public void ScrollMap(int dx, int dy)
         {
-            MainMapRenderer.ScrollByDistance(dx, dy);
+            MapRenderer.ScrollByDistance(dx, dy);
         }
     }
 }
