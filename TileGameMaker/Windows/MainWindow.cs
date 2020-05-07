@@ -55,7 +55,7 @@ namespace TileGameMaker.Windows
         {
             if (e.KeyCode == Keys.F12)
             {
-                Test();
+                RunTestEngine();
                 return;
             }
 
@@ -90,12 +90,7 @@ namespace TileGameMaker.Windows
             ShowSplashWindow();
         }
 
-        private void MiOpenTestWindow_Click(object sender, EventArgs e)
-        {
-            Test();
-        }
-
-        private void Test()
+        private void RunTestEngine()
         {
             TestEngine engine = new TestEngine();
             engine.Run(this);

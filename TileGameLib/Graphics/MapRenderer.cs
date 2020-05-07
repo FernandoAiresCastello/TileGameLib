@@ -13,11 +13,13 @@ namespace TileGameLib.Graphics
     public class MapRenderer
     {
         public ObjectMap Map { set; get; }
-        public Point Scroll { set; get; }
         public Rectangle Viewport { set; get; }
+        public bool ClearViewportBeforeRender { set; get; }
         public bool AnimationEnabled { set; get; }
         public bool AutoRefresh { set; get; }
         public bool RenderInvisibleObjects { set; get; }
+
+        private Point Scroll { set; get; }
 
         public int RefreshInterval
         {
@@ -61,6 +63,7 @@ namespace TileGameLib.Graphics
             RenderSingleLayer = false;
             SingleLayerToRender = 0;
             RenderInvisibleObjects = false;
+            ClearViewportBeforeRender = true;
 
             AutoRefresh = true;
             RefreshTimer = new Timer();
@@ -155,8 +158,9 @@ namespace TileGameLib.Graphics
 
             Disp.Graphics.Tileset = Map.Tileset;
             Disp.Graphics.Palette = Map.Palette;
-            Disp.Graphics.ClearRect(Map.BackColor, 
-                Viewport.X, Viewport.Y, Viewport.Width, Viewport.Height);
+
+            if (ClearViewportBeforeRender)
+                Disp.Graphics.ClearRect(Map.BackColor, Viewport.X, Viewport.Y, Viewport.Width, Viewport.Height);
 
             if (RenderSingleLayer)
             {

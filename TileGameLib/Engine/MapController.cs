@@ -13,12 +13,8 @@ namespace TileGameLib.Engine
     public class MapController
     {
         public GameEngine Engine { set; get; }
-        public GameWindow Window { set; get; }
         public ObjectMap Map { set; get; }
         public string MapFile { set; get; }
-
-        public UserInterface Ui => Window.Ui;
-        public MapRenderer MapRenderer => Window.Ui.MapRenderer;
 
         public MapController()
         {
@@ -47,12 +43,6 @@ namespace TileGameLib.Engine
             // Override this to do stuff on every cycle
             // Called by the engine immediately after it globally handles the cycle
             // Does not get called if the engine is paused
-        }
-
-        public virtual void OnDrawUi()
-        {
-            // Override this to continuously print stuff to the UI
-            // Called by the engine immediately after it draws the global UI
         }
 
         public virtual void OnKeyDown(KeyEventArgs e)

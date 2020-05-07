@@ -14,8 +14,6 @@ namespace TileGameLib.Engine
 {
     public class GameWindow : TiledDisplayWindow
     {
-        public UserInterface Ui { get; private set; }
-
         private readonly GameEngine Engine;
 
         public GameWindow(GameEngine engine, string title, int cols, int rows, int zoom) :
@@ -28,7 +26,6 @@ namespace TileGameLib.Engine
         {
             Text = title;
             Engine = engine;
-            Ui = new UserInterface(Display);
         }
 
         protected override void HandleKeyDownEvent(KeyEventArgs e)

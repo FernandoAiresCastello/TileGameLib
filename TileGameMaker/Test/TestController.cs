@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,16 @@ namespace TileGameMaker.Test
 {
     public class TestController : MapController
     {
-        public override void OnEnter()
-        {
-            Ui.SetModalMessage("msg", "Hello world");
-        }
-
         public override void OnKeyDown(KeyEventArgs e)
         {
-        }
-
-        public override void OnDrawUi()
-        {
-            int y = 19;
-            Ui.Print("H 100", 0, y++, 1);
-            Ui.Print("M  20", 0, y++, 1);
-            Ui.Print("G   0", 0, y++, 1);
+            if (e.KeyCode == Keys.Right)
+                Engine.ScrollMap(1, 0);
+            else if (e.KeyCode == Keys.Left)
+                Engine.ScrollMap(-1, 0);
+            else if (e.KeyCode == Keys.Up)
+                Engine.ScrollMap(0, -1);
+            else if (e.KeyCode == Keys.Down)
+                Engine.ScrollMap(0, 1);
         }
     }
 }

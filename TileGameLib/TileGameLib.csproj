@@ -67,16 +67,11 @@
       <DependentUpon>DebuggerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine\GameEngine.cs" />
-    <Compile Include="Engine\MapEntity.cs" />
     <Compile Include="Engine\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Engine\MapController.cs" />
     <Compile Include="Engine\MapControllerCollection.cs" />
-    <Compile Include="Engine\TextInput.cs" />
-    <Compile Include="Engine\UserInterface.cs" />
-    <Compile Include="Engine\UserInterfaceMessage.cs" />
-    <Compile Include="Engine\UserInterfacePlaceholder.cs" />
     <Compile Include="Engine\Variables.cs" />
     <Compile Include="File\FileExtensions.cs" />
     <Compile Include="File\MapExportFormat.cs" />

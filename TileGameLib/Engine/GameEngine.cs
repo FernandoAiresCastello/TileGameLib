@@ -18,43 +18,50 @@ namespace TileGameLib.Engine
 {
     public class GameEngine
     {
-        public string MapsBasePath { set; get; }
+        public string MapsPath { set; get; }
         public bool Paused { set; get; }
         public GameWindow Window { get; private set; }
 
-        protected UserInterface Ui => Window.Ui;
         protected MapController MapController;
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
         protected DebuggerWindow Debugger;
+        protected MapRenderer MainMapRenderer;
+        protected MapRenderer UiMapRenderer;
+        protected ObjectMap UiMap;
 
         private readonly Timer CycleTimer;
-        private readonly Timer UiRefreshTimer;
         private readonly SoundPlayer BgmPlayer;
         private readonly SoundPlayer SfxPlayer;
 
-        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval, string mapsBasePath = null) :
-            this(winTitle, winCols, winRows, zoom, uiRefreshInterval, cycleInterval, true, true, mapsBasePath)
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int cycleInterval, string mapsPath = null) :
+            this(winTitle, winCols, winRows, zoom, cycleInterval, true, true, mapsPath)
         {
         }
 
-        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int uiRefreshInterval, int cycleInterval,
-            bool allowFullscreenWindow, bool allowResizeWindow, string mapsBasePath = null)
+        public GameEngine(string winTitle, int winCols, int winRows, int zoom, int cycleInterval,
+            bool allowFullscreenWindow, bool allowResizeWindow, string mapsPath = null)
         {
-            MapsBasePath = mapsBasePath;
+            MapsPath = mapsPath;
             Window = new GameWindow(this, winTitle, winCols, winRows, zoom, allowFullscreenWindow, allowResizeWindow);
             MapControllers = new MapControllerCollection();
             BgmPlayer = new SoundPlayer();
             SfxPlayer = new SoundPlayer();
             Debugger = new DebuggerWindow(this);
 
+            CreateMapRenderers();
+
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
             CycleTimer.Tick += CycleTimer_Tick;
+        }
 
-            UiRefreshTimer = new Timer();
-            UiRefreshTimer.Interval = uiRefreshInterval;
-            UiRefreshTimer.Tick += UiRefreshTimer_Tick;
+        private void CreateMapRenderers()
+        {
+            MainMapRenderer = new MapRenderer(Window.Display);
+            MainMapRenderer.Viewport = new Rectangle(0, 0, Window.Display.Cols, Window.Display.Rows);
+
+            UiMapRenderer = new MapRenderer(Window.Display);
         }
 
         public void Run()
@@ -66,7 +73,6 @@ namespace TileGameLib.Engine
         {
             OnStart();
             CycleTimer.Start();
-            UiRefreshTimer.Start();
 
             if (parent == null)
                 Application.Run(Window);
@@ -83,17 +89,6 @@ namespace TileGameLib.Engine
         {
             // Override this to initialize the engine
             // Called once immediately before the engine starts running
-        }
-
-        public virtual void OnDrawUi()
-        {
-            // Override this to globally and continuously print stuff to the UI
-            // Called whenever the graphics refresh timer interval elapses
-
-            if (Ui.HasModalMessage)
-            {
-                Ui.CurrentModalMessage.Draw();
-            }
         }
 
         public virtual void OnExecuteCycle()
@@ -135,22 +130,9 @@ namespace TileGameLib.Engine
 
         public void HandleKeyDownEvent(KeyEventArgs e)
         {
-            if (Ui.TextInput.IsActive)
-            {
-                Ui.TextInput.HandleKeyEvent(e);
-            }
-            else if (Ui.HasModalMessage && e.KeyCode == Keys.Enter)
-            {
-                Ui.NextModalMessagePage();
-            }
-            else
-            {
-                bool global = OnKeyDown(e);
-                if (!global && !Paused && MapController != null)
-                    MapController.OnKeyDown(e);
-            }
-
-            Window.Ui.DrawMap();
+            bool global = OnKeyDown(e);
+            if (!global && !Paused && MapController != null)
+                MapController.OnKeyDown(e);
         }
 
         public void HandleKeyUpEvent(KeyEventArgs e)
@@ -158,11 +140,9 @@ namespace TileGameLib.Engine
             bool global = OnKeyUp(e);
             if (!global && !Paused && MapController != null)
                 MapController.OnKeyUp(e);
-
-            Window.Ui.DrawMap();
         }
 
-        public void PlaySound(string soundFile)
+        public void PlaySoundEffect(string soundFile)
         {
             SfxPlayer.SoundLocation = soundFile;
             SfxPlayer.Play();
@@ -196,10 +176,10 @@ namespace TileGameLib.Engine
 
         protected string GetMapPath(string mapFile)
         {
-            if (string.IsNullOrWhiteSpace(MapsBasePath))
+            if (string.IsNullOrWhiteSpace(MapsPath))
                 return mapFile;
 
-            string basePath = MapsBasePath.Replace('\\', '/');
+            string basePath = MapsPath.Replace('\\', '/');
             string mapPath = "";
 
             if (string.IsNullOrWhiteSpace(basePath))
@@ -220,6 +200,7 @@ namespace TileGameLib.Engine
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
+            MainMapRenderer.Map = map;
             controller.OnLoad();
             return map;
         }
@@ -227,7 +208,16 @@ namespace TileGameLib.Engine
         public void AddMap(ObjectMap map, MapController controller)
         {
             MapControllers.AddController(map, controller);
+            MainMapRenderer.Map = map;
             controller.OnLoad();
+        }
+
+        public void LoadUiMap(string uiMapFile, int viewΧ, int viewY, int viewWidth, int viewHeight)
+        {
+            UiMap = MapFile.LoadFromRawBytes(uiMapFile);
+            UiMapRenderer.Map = UiMap;
+            UiMapRenderer.Viewport = new Rectangle(viewΧ, viewY, viewWidth, viewHeight);
+            UiMapRenderer.ClearViewportBeforeRender = false;
         }
 
         public void EnterMap(ObjectMap map)
@@ -275,17 +265,7 @@ namespace TileGameLib.Engine
             PreviousMapController = MapController;
             MapController = controller;
             MapController.Engine = this;
-            MapController.Window = Window;
-            Window.Ui.SetGameMap(MapController.Map);
-        }
-
-        private void UiRefreshTimer_Tick(object sender, EventArgs e)
-        {
-            Window.Ui.Draw();
-
-            OnDrawUi();
-            if (MapController != null)
-                MapController.OnDrawUi();
+            //Window.Ui.SetGameMap(MapController.Map); // MainMapRenderer = MapController.Map
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)
@@ -301,6 +281,11 @@ namespace TileGameLib.Engine
         public void ShowDebugWindow()
         {
             Debugger.Show();
+        }
+
+        public void ScrollMap(int dx, int dy)
+        {
+            MainMapRenderer.ScrollByDistance(dx, dy);
         }
     }
 }
