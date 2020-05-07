@@ -18,7 +18,7 @@ using TileGameLib.GameElements;
 
 namespace TileGameMaker.Panels
 {
-    public partial class TilePickerPanel : BasePanel
+    public partial class TilePickerPanel : UserControl
     {
         public bool PopOutAllowed
         {
@@ -182,7 +182,6 @@ namespace TileGameMaker.Panels
                     TileEditor16x16Window.Subscribe(this);
                     TileEditor16x16Window.Subscribe(TilePicker);
                     TileEditor16x16Window.Subscribe(MapEditor.MapEditorControl);
-                    //TileEditor16x16Window.Subscribe(MapEditor.TemplateControl);
                     TileEditor16x16Window.SetTiles(tileIx, tileIx + 1, tileIx + 2, tileIx + 3);
                     TileEditor16x16Window.Show(this);
                 }
@@ -197,7 +196,6 @@ namespace TileGameMaker.Panels
                 TileEditor8x8Window.Subscribe(this);
                 TileEditor8x8Window.Subscribe(TilePicker);
                 TileEditor8x8Window.Subscribe(MapEditor.MapEditorControl);
-                //TileEditor8x8Window.Subscribe(MapEditor.TemplateControl);
                 TileEditor8x8Window.SetTile(tileIx);
                 TileEditor8x8Window.Show(this);
             }
@@ -229,7 +227,6 @@ namespace TileGameMaker.Panels
         {
             PasteTile(TilePicker.TileIndex);
             Refresh();
-            //MapEditor.TemplateControl.Refresh();
         }
 
         private void BtnExportRawBytes_Click(object sender, EventArgs e)

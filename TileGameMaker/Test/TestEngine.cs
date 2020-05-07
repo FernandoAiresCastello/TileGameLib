@@ -20,6 +20,10 @@ namespace TileGameMaker.Test
 
         public TestEngine() : base("Test", Cols, Rows, Zoom, CycleInterval, true, true)
         {
+            LoadUiMap(@"C:\Fernando\Proj\C#\Lightbringer\data\uimain.tgmap", 0, 0, 25, 25);
+            EnterMap(LoadMap(@"C:\Fernando\Proj\C#\Lightbringer\data\overworld.tgmap", new TestController()));
+
+            MainMapRenderer.Viewport = new Rectangle(1, 1, 18, 18);
         }
 
         public override bool OnKeyDown(KeyEventArgs e)

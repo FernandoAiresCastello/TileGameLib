@@ -42,6 +42,8 @@ namespace TileGameMaker.Windows
             else
                 WindowState = FormWindowState.Maximized;
 
+            CentralSplitContainer.Panel1Collapsed = true;
+
             MapEditor = new MapEditor(this);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);
             AddControl(MapEditor.TilePickerControl, TilePickerPanel);

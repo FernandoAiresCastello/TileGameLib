@@ -20,7 +20,7 @@ using System.IO;
 
 namespace TileGameMaker.Panels
 {
-    public partial class MapEditorPanel : BasePanel
+    public partial class MapEditorPanel : UserControl
     {
         public TiledDisplay Display { get; private set; }
 

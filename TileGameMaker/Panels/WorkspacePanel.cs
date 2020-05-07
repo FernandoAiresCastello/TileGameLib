@@ -14,7 +14,7 @@ using TileGameLib.File;
 
 namespace TileGameMaker.Panels
 {
-    public partial class WorkspacePanel : BasePanel
+    public partial class WorkspacePanel : UserControl
     {
         public MapEditor MapEditor { get; set; }
         public bool CloseOnLoadFile { get; set; } = true;

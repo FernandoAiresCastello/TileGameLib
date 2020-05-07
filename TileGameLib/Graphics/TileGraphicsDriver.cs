@@ -53,16 +53,16 @@ namespace TileGameLib.Graphics
             return TileBuffer.Tiles[col, row].Copy();
         }
 
-        public new void Clear(int palIndex0)
+        public new void Clear(int color)
         {
-            Fill(Tile.Blank.Index, Tile.Blank.ForeColor, palIndex0);
+            Fill(Tile.Blank.Index, Tile.Blank.ForeColor, color);
         }
 
-        public void ClearRect(int palIndex0, int x, int y, int width, int height)
+        public void ClearRect(int color, int x, int y, int width, int height)
         {
             for (int px = x; px < x + width; px++)
                 for (int py = y; py < y + height; py++)
-                    PutTile(px, py, Tile.Blank.Index, Tile.Blank.ForeColor, palIndex0);
+                    PutTile(px, py, Tile.Blank.Index, Tile.Blank.ForeColor, color);
         }
 
         public void Fill(Tile tile)
@@ -70,14 +70,14 @@ namespace TileGameLib.Graphics
             Fill(tile.Index, tile.ForeColor, tile.BackColor);
         }
 
-        public void Fill(int charIndex, int palIndex1, int palIndex0)
+        public void Fill(int charIndex, int forecolor, int backcolor)
         {
             for (int y = 0; y < Rows; y++)
                 for (int x = 0; x < Cols; x++)
-                    PutTile(x, y, charIndex, palIndex1, palIndex0);
+                    PutTile(x, y, charIndex, forecolor, backcolor);
         }
 
-        public void PutString(int x, int y, string str, int palIndex1, int palIndex0)
+        public void PutString(int x, int y, string str, int forecolor, int backcolor)
         {
             int px = x;
 
@@ -96,7 +96,7 @@ namespace TileGameLib.Graphics
                     else
                     {
                         if (x < Cols && y < Rows)
-                            PutTile(x++, y, ch, palIndex1, palIndex0);
+                            PutTile(x++, y, ch, forecolor, backcolor);
                     }
                 }
             }
@@ -107,12 +107,12 @@ namespace TileGameLib.Graphics
             PutTile(col, row, tile.Index, tile.ForeColor, tile.BackColor);
         }
 
-        public void PutTile(int col, int row, int charIndex, int palIndex1, int palIndex0)
+        public void PutTile(int col, int row, int charIndex, int forecolor, int backcolor)
         {
             if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
             {
-                TileBuffer.Tiles[col, row].Set(charIndex, palIndex1, palIndex0);
-                DrawTile(col, row, Palette.Get(palIndex1), Palette.Get(palIndex0), Tileset.Get(charIndex).PixelRows);
+                TileBuffer.Tiles[col, row].Set(charIndex, forecolor, backcolor);
+                DrawTile(col, row, Palette.Get(forecolor), Palette.Get(backcolor), Tileset.Get(charIndex).PixelRows);
             }
             else
             {

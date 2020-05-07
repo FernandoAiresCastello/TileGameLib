@@ -17,7 +17,7 @@ using TileGameLib.Graphics;
 
 namespace TileGameMaker.Panels
 {
-    public partial class ColorPickerPanel : BasePanel
+    public partial class ColorPickerPanel : UserControl
     {
         public int SelectedForeColor => ColorPicker.SelectedForeColor;
         public int SelectedBackColor => ColorPicker.SelectedBackColor;

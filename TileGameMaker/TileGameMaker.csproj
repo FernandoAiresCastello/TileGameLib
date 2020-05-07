@@ -110,9 +110,6 @@
     <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Panels\BasePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="TiledDisplays\TileEditor16x16Display.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -243,9 +240,6 @@
     <Compile Include="Windows\WorkspaceWindow.Designer.cs">
       <DependentUpon>WorkspaceWindow.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Panels\BasePanel.resx">
-      <DependentUpon>BasePanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Panels\CommandLinePanel.resx">
       <DependentUpon>CommandLinePanel.cs</DependentUpon>
     </EmbeddedResource>

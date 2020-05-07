@@ -11,7 +11,7 @@ using TileGameMaker.MapEditorElements;
 
 namespace TileGameMaker.Panels
 {
-    public partial class MapTextPanel : BasePanel
+    public partial class MapTextPanel : UserControl
     {
         public string Script
         {
