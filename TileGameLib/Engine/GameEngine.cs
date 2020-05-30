@@ -195,7 +195,6 @@ namespace TileGameLib.Engine
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
-            MapRenderer.Map = map;
             controller.OnLoad();
             return map;
         }
@@ -230,28 +229,39 @@ namespace TileGameLib.Engine
 
         public void EnterMap(ObjectMap map)
         {
-            EnterMap(map.Id);
+            EnterMapById(map.Id);
         }
 
-        public void EnterMap(string mapId)
+        public void EnterMapByName(string mapName)
         {
-            MapController nextController = MapControllers.Get(mapId);
-            if (nextController == null)
+            MapController controller = MapControllers.FindByName(mapName);
+            if (controller == null)
+                throw new TileGameLibException($"Map with name {mapName} not found");
+
+            EnterMapById(controller.Map.Id);
+        }
+
+        public void EnterMapById(string mapId)
+        {
+            MapController controller = MapControllers.FindById(mapId);
+            if (controller == null)
                 throw new TileGameLibException($"Map with id {mapId} not found");
 
-            bool transitionNotCancelled = OnMapTransition(MapController, nextController);
+            bool transitionNotCancelled = OnMapTransition(MapController, controller);
 
             if (transitionNotCancelled)
             {
                 if (MapController != null)
                     MapController.OnLeave();
 
-                SetMapController(nextController);
+                SetMapController(controller);
                 MapController.OnEnter();
 
                 if (MapController.Map.HasMusic)
                     PlayMusicLoop(MapController.Map.MusicFile);
             }
+
+            MapRenderer.Map = controller.Map;
         }
 
         public void EnterPreviousMap()
@@ -262,10 +272,16 @@ namespace TileGameLib.Engine
 
         public void ReloadMap(string mapId)
         {
-            MapController controller = MapControllers.Get(mapId);
+            MapController controller = MapControllers.FindById(mapId);
             controller.Map.SetEqual(MapFile.LoadFromRawBytes(GetMapPath(controller.MapFile)));
             SetMapController(controller);
             controller.OnLoad();
+            EnterMap(controller.Map);
+        }
+
+        public void ReloadCurrentMap()
+        {
+            ReloadMap(MapController.Map.Id);
         }
 
         private void SetMapController(MapController controller)

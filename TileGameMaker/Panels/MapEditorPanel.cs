@@ -576,6 +576,7 @@ namespace TileGameMaker.Panels
                 MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
+                Editor.WorkspacePanel.UpdateWorkspace();
                 Alert.Info("File saved successfully!");
             }
         }

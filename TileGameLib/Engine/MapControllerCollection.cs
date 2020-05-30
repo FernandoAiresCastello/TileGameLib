@@ -20,7 +20,12 @@ namespace TileGameLib.Engine
             Controllers = new Dictionary<ObjectMap, MapController>();
         }
 
-        public MapController Get(string id)
+        public bool HasMap(string id)
+        {
+            return FindById(id) != null;
+        }
+
+        public MapController FindById(string id)
         {
             foreach (var mapAndController in Controllers)
             {
@@ -31,10 +36,16 @@ namespace TileGameLib.Engine
             return null;
         }
 
-        public bool HasMap(string id)
+        public MapController FindByName(string name)
         {
-            return Get(id) != null;
-        }
+            foreach (var mapAndController in Controllers)
+            {
+                if (mapAndController.Key.Name.Equals(name))
+                    return mapAndController.Value;
+            }
+
+            return null;
+       }
 
         public ObjectMap AddController(string mapFile, MapController controller)
         {
