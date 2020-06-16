@@ -145,7 +145,8 @@ namespace TileGameLib.Graphics
         public void Render()
         {
             if (Map == null)
-                throw new TileGameLibException("Unable to render map. Map reference is null");
+                return;
+
             if (Viewport.IsEmpty)
                 throw new TileGameLibException("Unable to render map. Map viewport has size 0");
             if (Viewport.X < 0 || Viewport.Y < 0)

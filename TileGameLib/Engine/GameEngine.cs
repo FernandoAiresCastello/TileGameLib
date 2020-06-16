@@ -20,14 +20,14 @@ namespace TileGameLib.Engine
     {
         public string MapsPath { set; get; }
         public bool Paused { set; get; }
-        public GameWindow Window { get; private set; }
-
+        public GameWindow Window { get; protected set; }
         public ObjectMap Ui => UiMap;
+        public DebuggerWindow Debugger { get; protected set; }
 
+        protected bool Running = false;
         protected MapController MapController;
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
-        protected DebuggerWindow Debugger;
         protected MapRenderer MapRenderer;
         protected MapRenderer UiRenderer;
 
@@ -35,6 +35,18 @@ namespace TileGameLib.Engine
         private readonly Timer CycleTimer;
         private readonly SoundPlayer BgmPlayer;
         private readonly SoundPlayer SfxPlayer;
+
+        public GameEngine()
+        {
+            MapControllers = new MapControllerCollection();
+            BgmPlayer = new SoundPlayer();
+            SfxPlayer = new SoundPlayer();
+            Debugger = new DebuggerWindow(this);
+
+            CycleTimer = new Timer();
+            CycleTimer.Interval = 1;
+            CycleTimer.Tick += CycleTimer_Tick;
+        }
 
         public GameEngine(string winTitle, int winCols, int winRows, int zoom, int cycleInterval, string mapsPath = null) :
             this(winTitle, winCols, winRows, zoom, cycleInterval, true, true, mapsPath)
@@ -66,6 +78,7 @@ namespace TileGameLib.Engine
 
         public void Run(Form parent)
         {
+            Running = true;
             OnStart();
             CycleTimer.Start();
 
@@ -75,9 +88,20 @@ namespace TileGameLib.Engine
                 Window.ShowDialog(parent);
         }
 
+        public void Stop()
+        {
+            Running = false;
+            CycleTimer.Stop();
+        }
+
         public void Exit()
         {
-            Window.Close();
+            Stop();
+
+            if (Window != null)
+                Window.Close();
+            
+            Application.Exit();
         }
 
         public virtual void OnStart()
@@ -289,7 +313,6 @@ namespace TileGameLib.Engine
             PreviousMapController = MapController;
             MapController = controller;
             MapController.Engine = this;
-            //Window.Ui.SetGameMap(MapController.Map); // MainMapRenderer = MapController.Map
         }
 
         private void CycleTimer_Tick(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace TileGameLib.Engine
     {
         private readonly GameEngine Engine;
 
-        public GameWindow(GameEngine engine, string title, int cols, int rows, int zoom) :
+        public GameWindow(GameEngine engine, string title, int cols, int rows, int zoom = 1) :
             this(engine, title, cols, rows, zoom, true, true)
         {
         }
