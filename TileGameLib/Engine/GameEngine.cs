@@ -21,7 +21,6 @@ namespace TileGameLib.Engine
         public string MapsPath { set; get; }
         public bool Paused { set; get; }
         public GameWindow Window { get; protected set; }
-        public ObjectMap Ui => UiMap;
         public DebuggerWindow Debugger { get; protected set; }
 
         protected bool Running = false;
@@ -29,9 +28,7 @@ namespace TileGameLib.Engine
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
         protected MapRenderer MapRenderer;
-        protected MapRenderer UiRenderer;
 
-        private ObjectMap UiMap;
         private readonly Timer CycleTimer;
         private readonly SoundPlayer BgmPlayer;
         private readonly SoundPlayer SfxPlayer;
@@ -228,27 +225,6 @@ namespace TileGameLib.Engine
             MapControllers.AddController(map, controller);
             MapRenderer.Map = map;
             controller.OnLoad();
-        }
-
-        public void CreateUiMap(int width, int height, int backColor, int viewX, int viewY, int viewWidth, int viewHeight)
-        {
-            SetUiMap(new ObjectMap("uidefault", width, height, backColor), viewX, viewY, viewWidth, viewHeight);
-        }
-
-        public void LoadUiMap(string uiMapFile, int viewX, int viewY, int viewWidth, int viewHeight)
-        {
-            SetUiMap(MapFile.LoadFromRawBytes(uiMapFile), viewX, viewY, viewWidth, viewHeight);
-        }
-
-        private void SetUiMap(ObjectMap map, int viewΧ, int viewY, int viewWidth, int viewHeight)
-        {
-            UiMap = map;
-            if (UiRenderer == null)
-                UiRenderer = new MapRenderer(Window.Display);
-
-            UiRenderer.Map = UiMap;
-            UiRenderer.Viewport = new Rectangle(viewΧ, viewY, viewWidth, viewHeight);
-            UiRenderer.ClearViewportBeforeRender = false;
         }
 
         public void EnterMap(ObjectMap map)
