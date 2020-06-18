@@ -199,5 +199,16 @@ namespace TileGameMaker.Windows
         {
             TxtFrames.Value = Animation.Size;
         }
+
+        private void BtnAddTemplate_Click(object sender, EventArgs e)
+        {
+            TextInputWindow win = new TextInputWindow("Enter template object name");
+            win.EnableOrientationChange = false;
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                Editor.TemplateObjects.Add(new TemplateObject(win.Text, NewData.Object));
+            }
+        }
     }
 }

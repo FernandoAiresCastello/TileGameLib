@@ -85,7 +85,10 @@ namespace TileGameLib.GameElements
 
         public Tile GetFrame(int index)
         {
-            return Frames[index % Frames.Count];
+            if (Frames.Count > 0)
+                return Frames[index % Frames.Count];
+            else
+                return null;
         }
 
         public override bool Equals(object o)

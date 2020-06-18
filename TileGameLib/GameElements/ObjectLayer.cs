@@ -89,6 +89,14 @@ namespace TileGameLib.GameElements
                 throw GetInvalidLayerPositionException(x, y);
         }
 
+        public void PutObject(GameObject o, int x, int y)
+        {
+            if (x >= 0 && y >= 0 && x < Width && y < Height)
+                ObjectCells[x, y].PutObject(o);
+            else
+                throw GetInvalidLayerPositionException(x, y);
+        }
+
         public void DeleteObject(int x, int y)
         {
             ObjectCells[x, y].DeleteObject();

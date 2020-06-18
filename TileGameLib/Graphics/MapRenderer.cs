@@ -54,6 +54,11 @@ namespace TileGameLib.Graphics
         {
         }
 
+        public MapRenderer(ObjectMap map, TiledDisplay disp, Rectangle viewport)
+            : this(map, disp, viewport, new Point(0, 0))
+        {
+        }
+
         public MapRenderer(ObjectMap map, TiledDisplay disp, Rectangle viewport, Point scroll)
         {
             Map = map;
@@ -202,7 +207,8 @@ namespace TileGameLib.Graphics
             if (o != null && (o.Visible || RenderInvisibleObjects))
             {
                 Tile tile = o.Animation.GetFrame(AnimationFrame);
-                Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
+                if (tile != null)
+                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
             }
         }
     }

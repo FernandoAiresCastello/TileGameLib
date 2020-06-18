@@ -38,11 +38,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ChkVisible = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnRevert = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnApply = new System.Windows.Forms.Button();
-            this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
+            this.BtnAddTemplate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFrames)).BeginInit();
@@ -186,12 +187,26 @@
             this.label3.Text = "Properties";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // PropertyGrid
+            // 
+            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PropertyGrid.Location = new System.Drawing.Point(5, 92);
+            this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.PropertyGrid.Name = "PropertyGrid";
+            this.PropertyGrid.Size = new System.Drawing.Size(232, 159);
+            this.PropertyGrid.TabIndex = 8;
+            // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel2.Controls.Add(this.BtnAddTemplate, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnRevert, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnClear, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
@@ -208,10 +223,10 @@
             // 
             this.BtnRevert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnRevert.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnRevert.Location = new System.Drawing.Point(77, 4);
+            this.BtnRevert.Location = new System.Drawing.Point(58, 4);
             this.BtnRevert.Margin = new System.Windows.Forms.Padding(0);
             this.BtnRevert.Name = "BtnRevert";
-            this.BtnRevert.Size = new System.Drawing.Size(77, 29);
+            this.BtnRevert.Size = new System.Drawing.Size(58, 29);
             this.BtnRevert.TabIndex = 2;
             this.BtnRevert.UseVisualStyleBackColor = true;
             this.BtnRevert.Click += new System.EventHandler(this.BtnRevert_Click);
@@ -220,10 +235,10 @@
             // 
             this.BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnClear.Image = global::TileGameMaker.Properties.Resources.draw_eraser;
-            this.BtnClear.Location = new System.Drawing.Point(154, 4);
+            this.BtnClear.Location = new System.Drawing.Point(174, 4);
             this.BtnClear.Margin = new System.Windows.Forms.Padding(0);
             this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(78, 29);
+            this.BtnClear.Size = new System.Drawing.Size(58, 29);
             this.BtnClear.TabIndex = 1;
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
@@ -235,22 +250,22 @@
             this.BtnApply.Location = new System.Drawing.Point(0, 4);
             this.BtnApply.Margin = new System.Windows.Forms.Padding(0);
             this.BtnApply.Name = "BtnApply";
-            this.BtnApply.Size = new System.Drawing.Size(77, 29);
+            this.BtnApply.Size = new System.Drawing.Size(58, 29);
             this.BtnApply.TabIndex = 0;
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
-            // PropertyGrid
+            // BtnAddTemplate
             // 
-            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PropertyGrid.Location = new System.Drawing.Point(5, 92);
-            this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
-            this.PropertyGrid.Name = "PropertyGrid";
-            this.PropertyGrid.Size = new System.Drawing.Size(232, 159);
-            this.PropertyGrid.TabIndex = 8;
+            this.BtnAddTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddTemplate.Image = global::TileGameMaker.Properties.Resources.folder_brick;
+            this.BtnAddTemplate.Location = new System.Drawing.Point(116, 4);
+            this.BtnAddTemplate.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnAddTemplate.Name = "BtnAddTemplate";
+            this.BtnAddTemplate.Size = new System.Drawing.Size(58, 29);
+            this.BtnAddTemplate.TabIndex = 3;
+            this.BtnAddTemplate.UseVisualStyleBackColor = true;
+            this.BtnAddTemplate.Click += new System.EventHandler(this.BtnAddTemplate_Click);
             // 
             // ObjectEditWindow
             // 
@@ -292,5 +307,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button BtnClearAnim;
         private System.Windows.Forms.Panel AnimationPanel;
+        private System.Windows.Forms.Button BtnAddTemplate;
     }
 }

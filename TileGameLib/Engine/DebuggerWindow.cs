@@ -33,7 +33,7 @@ namespace TileGameLib.Engine
             Hide();
         }
 
-        public void Log(object o)
+        public void Print(object o)
         {
             TxtLog.AppendText(o.ToString() + Environment.NewLine);
         }

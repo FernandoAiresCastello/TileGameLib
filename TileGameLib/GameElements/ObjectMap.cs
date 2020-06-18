@@ -141,6 +141,11 @@ namespace TileGameLib.GameElements
             }
         }
 
+        public void PutObject(GameObject o, ObjectPosition pos)
+        {
+            Layers[pos.Layer].PutObject(o, pos.X, pos.Y);
+        }
+
         public void SetObject(GameObject o, ObjectPosition pos)
         {
             Layers[pos.Layer].SetObject(o, pos.X, pos.Y);

@@ -93,6 +93,7 @@
     <Compile Include="GameElements\PropertyList.cs" />
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
+    <Compile Include="GameElements\TemplateObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />

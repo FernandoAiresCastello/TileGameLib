@@ -32,6 +32,14 @@ namespace TileGameLib.GameElements
             Object = null;
         }
 
+        public void PutObject(GameObject o)
+        {
+            if (Object == null)
+                Object = new GameObject();
+
+            Object = o;
+        }
+
         public void SetObjectEqual(GameObject other)
         {
             if (Object == null)

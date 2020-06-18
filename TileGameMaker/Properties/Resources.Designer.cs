@@ -353,6 +353,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folder_brick {
+            get {
+                object obj = ResourceManager.GetObject("folder_brick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_vertical_open {
             get {
                 object obj = ResourceManager.GetObject("folder_vertical_open", resourceCulture);
