@@ -533,7 +533,6 @@ namespace TileGameMaker.Panels
             bool success = false;
 
             Map.Name = Editor.MapName;
-            Map.MusicFile = Editor.MapMusic;
 
             if (string.IsNullOrWhiteSpace(Editor.MapFile))
             {
@@ -572,7 +571,6 @@ namespace TileGameMaker.Panels
             {
                 Map.GenerateId();
                 Map.Name = Editor.MapName;
-                Map.MusicFile = Editor.MapMusic;
                 MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
@@ -698,7 +696,6 @@ namespace TileGameMaker.Panels
             Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
-            Map.MusicFile = "";
             Editor.ResizeMap(Editor.DefaultMapWidth, Editor.DefaultMapHeight);
             Editor.MapFile = null;
             Editor.UpdateMapProperties();

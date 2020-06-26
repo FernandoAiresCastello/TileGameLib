@@ -18,13 +18,10 @@ namespace TileGameLib.GameElements
         public Tileset Tileset { get; set; } = new Tileset();
         public Palette Palette { get; set; } = new Palette();
         public int BackColor { set; get; }
-        public string MusicFile { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public string ScriptFile { get; set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
-        public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
         public const string DefaultName = "Untitled";
 
@@ -63,8 +60,6 @@ namespace TileGameLib.GameElements
             Width = other.Width;
             Height = other.Height;
             BackColor = other.BackColor;
-            MusicFile = other.MusicFile;
-            ScriptFile = other.ScriptFile;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();

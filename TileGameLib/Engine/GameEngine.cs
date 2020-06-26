@@ -256,9 +256,6 @@ namespace TileGameLib.Engine
 
                 SetMapController(controller);
                 MapController.OnEnter();
-
-                if (MapController.Map.HasMusic)
-                    PlayMusicLoop(MapController.Map.MusicFile);
             }
 
             MapRenderer.Map = controller.Map;

@@ -20,10 +20,6 @@ namespace TileGameMaker.MapEditorElements
         public int Layers { set; get; }
         public string Width { set; get; }
         public string Height { set; get; }
-        [Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-        public string Music { set; get; }
-        [Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
-        public string Script { set; get; }
         [ReadOnly(true)]
         public string Path { set; get; }
         [ReadOnly(true)]
@@ -42,9 +38,7 @@ namespace TileGameMaker.MapEditorElements
             Name = map.Name;
             Width = map.Width.ToString();
             Height = map.Height.ToString();
-            Music = map.MusicFile;
             Layers = map.Layers.Count;
-            Script = map.ScriptFile;
         }
     }
 }

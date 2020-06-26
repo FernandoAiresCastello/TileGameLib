@@ -20,7 +20,6 @@ namespace TileGameMaker.MapEditorElements
         public string WorkspacePath { get; set; }
         public string MapFile { get; set; }
         public string MapName => MapPropertyGridControl.Properties.Name;
-        public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
         public ObjectMap Map { get; private set; }
         public Palette Palette { get; private set; }
