@@ -43,7 +43,6 @@
             this.BtnRevert = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnApply = new System.Windows.Forms.Button();
-            this.BtnAddTemplate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFrames)).BeginInit();
@@ -206,9 +205,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
-            this.tableLayoutPanel2.Controls.Add(this.BtnAddTemplate, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.BtnRevert, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.BtnClear, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnRevert, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.BtnClear, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 251);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -223,7 +221,7 @@
             // 
             this.BtnRevert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnRevert.Image = global::TileGameMaker.Properties.Resources.undo;
-            this.BtnRevert.Location = new System.Drawing.Point(58, 4);
+            this.BtnRevert.Location = new System.Drawing.Point(116, 4);
             this.BtnRevert.Margin = new System.Windows.Forms.Padding(0);
             this.BtnRevert.Name = "BtnRevert";
             this.BtnRevert.Size = new System.Drawing.Size(58, 29);
@@ -254,18 +252,6 @@
             this.BtnApply.TabIndex = 0;
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
-            // 
-            // BtnAddTemplate
-            // 
-            this.BtnAddTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnAddTemplate.Image = global::TileGameMaker.Properties.Resources.folder_brick;
-            this.BtnAddTemplate.Location = new System.Drawing.Point(116, 4);
-            this.BtnAddTemplate.Margin = new System.Windows.Forms.Padding(0);
-            this.BtnAddTemplate.Name = "BtnAddTemplate";
-            this.BtnAddTemplate.Size = new System.Drawing.Size(58, 29);
-            this.BtnAddTemplate.TabIndex = 3;
-            this.BtnAddTemplate.UseVisualStyleBackColor = true;
-            this.BtnAddTemplate.Click += new System.EventHandler(this.BtnAddTemplate_Click);
             // 
             // ObjectEditWindow
             // 
@@ -307,6 +293,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button BtnClearAnim;
         private System.Windows.Forms.Panel AnimationPanel;
-        private System.Windows.Forms.Button BtnAddTemplate;
     }
 }

@@ -36,7 +36,6 @@ namespace TileGameMaker.MapEditorElements
         public RecentFiles RecentFiles { get; private set; }
         public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
         public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
-        public readonly List<TemplateObject> TemplateObjects = new List<TemplateObject>();
         private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();
 

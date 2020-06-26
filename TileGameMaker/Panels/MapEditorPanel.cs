@@ -1095,26 +1095,5 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.SetObject(win.EditedObject, pos);
         }
-
-        private void BtnTemplateObjects_DropDownOpening(object sender, EventArgs e)
-        {
-            foreach (TemplateObject o in Editor.TemplateObjects)
-            {
-                if (!BtnTemplateObjects.DropDownItems.ContainsKey(o.Name))
-                {
-                    ToolStripMenuItem item = new ToolStripMenuItem(o.Name);
-                    item.Tag = o;
-                    item.Click += BtnTemplateObjectItem_Click;
-                    BtnTemplateObjects.DropDownItems.Add(item);
-                }
-            }
-        }
-
-        private void BtnTemplateObjectItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = sender as ToolStripMenuItem;
-            TemplateObject o = item.Tag as TemplateObject;
-            // todo
-        }
     }
 }
