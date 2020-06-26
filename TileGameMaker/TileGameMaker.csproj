@@ -81,6 +81,12 @@
     <Compile Include="Panels\CommandLinePanel.Designer.cs">
       <DependentUpon>CommandLinePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\GameObjectPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\GameObjectPanel.Designer.cs">
+      <DependentUpon>GameObjectPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\MapPropertyGridPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </Compile>
     <EmbeddedResource Include="Panels\CommandLinePanel.resx">
       <DependentUpon>CommandLinePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\GameObjectPanel.resx">
+      <DependentUpon>GameObjectPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\MapPropertyGridPanel.resx">
       <DependentUpon>MapPropertyGridPanel.cs</DependentUpon>
