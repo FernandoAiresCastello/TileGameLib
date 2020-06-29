@@ -23,10 +23,10 @@ namespace TileGameLib.Graphics
 
         public enum Default
         {
+            Empty,
             Basic,
-            Classic,
-            MSX,
             CodePage437,
+            MSX,
             Intellivision
         }
 
@@ -151,7 +151,7 @@ namespace TileGameLib.Graphics
             switch (defaultTiles)
             {
                 case Default.Basic: InitDefaultBasic(); break;
-                case Default.Classic: InitDefaultClassic(); break;
+                case Default.Empty: InitDefaultEmpty(); break;
                 case Default.MSX: InitDefaultMSX(); break;
                 case Default.CodePage437: InitDefaultCodePage437(); break;
                 case Default.Intellivision: InitDefaultIntellivision(); break;
@@ -159,6 +159,11 @@ namespace TileGameLib.Graphics
                 default:
                     throw new TileGameLibException("Invalid tileset default: " + defaultTiles);
             }
+        }
+
+        public void InitDefaultEmpty()
+        {
+            Clear();
         }
 
         public void InitDefaultBasic()
@@ -260,12 +265,6 @@ namespace TileGameLib.Graphics
             Set(i++, 0x0e, 0x18, 0x18, 0x70, 0x18, 0x18, 0x0e, 0x00);
             Set(i++, 0x18, 0x18, 0x18, 0x00, 0x18, 0x18, 0x18, 0x00);
             Set(i++, 0x70, 0x18, 0x18, 0x0e, 0x18, 0x18, 0x70, 0x00);
-        }
-
-        public void InitDefaultClassic()
-        {
-            Clear();
-            //int i = 0;
         }
 
         public void InitDefaultMSX()

@@ -18,23 +18,28 @@ namespace TileGameLib.GameElements
         public Tileset Tileset { get; set; } = new Tileset();
         public Palette Palette { get; set; } = new Palette();
         public int BackColor { set; get; }
-        public string MusicFile { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public string ScriptFile { get; set; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
-        public bool HasMusic => !string.IsNullOrWhiteSpace(MusicFile);
 
         public const string DefaultName = "Untitled";
 
-        public ObjectMap(int width, int height) : this(DefaultName, width, height, 0)
+        public ObjectMap(int width, int height) : this(DefaultName, 1, width, height, 0)
         {
-            GenerateId();
             BackColor = Palette.White;
         }
 
-        public ObjectMap(string name, int width, int height, int backColor)
+        public ObjectMap(int layers, int width, int height) : this(DefaultName, layers, width, height, 0)
+        {
+            BackColor = Palette.White;
+        }
+
+        public ObjectMap(string name, int width, int height, int backColor) : this(name, 1, width, height, backColor)
+        {
+        }
+
+        public ObjectMap(string name, int layers, int width, int height, int backColor)
         {
             GenerateId();
 
@@ -43,7 +48,8 @@ namespace TileGameLib.GameElements
             Height = height;
             BackColor = backColor;
 
-            AddLayer();
+            for (int i = 0; i < layers; i++)
+                AddLayer();
         }
 
         public ObjectMap(ObjectMap other)
@@ -63,8 +69,6 @@ namespace TileGameLib.GameElements
             Width = other.Width;
             Height = other.Height;
             BackColor = other.BackColor;
-            MusicFile = other.MusicFile;
-            ScriptFile = other.ScriptFile;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();
@@ -157,7 +161,8 @@ namespace TileGameLib.GameElements
                 SetObject(o, pos);
         }
 
-        public void SetHorizontalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        public void SetHorizontalStringOfObjects(
+            string text, ObjectPosition pos, int foreColor, int backColor, PropertyList props = null)
         {
             int initialX = pos.X;
             text = text.Replace("\r", "");
@@ -174,6 +179,9 @@ namespace TileGameLib.GameElements
                     if (IsWithinBounds(pos))
                     {
                         GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        if (props != null)
+                            o.Properties.SetEqual(props);
+
                         SetObject(o, pos);
                         pos = pos.East();
                     }
@@ -181,7 +189,8 @@ namespace TileGameLib.GameElements
             }
         }
 
-        public void SetVerticalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        public void SetVerticalStringOfObjects(
+            string text, ObjectPosition pos, int foreColor, int backColor, PropertyList props = null)
         {
             int initialY = pos.Y;
             text = text.Replace("\r", "");
@@ -198,6 +207,9 @@ namespace TileGameLib.GameElements
                     if (IsWithinBounds(pos))
                     {
                         GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        if (props != null)
+                            o.Properties.SetEqual(props);
+
                         SetObject(o, pos);
                         pos = pos.South();
                     }

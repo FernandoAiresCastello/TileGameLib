@@ -256,9 +256,6 @@ namespace TileGameLib.Engine
 
                 SetMapController(controller);
                 MapController.OnEnter();
-
-                if (MapController.Map.HasMusic)
-                    PlayMusicLoop(MapController.Map.MusicFile);
             }
 
             MapRenderer.Map = controller.Map;
@@ -306,9 +303,14 @@ namespace TileGameLib.Engine
             Debugger.Show();
         }
 
-        public void ScrollMap(int dx, int dy)
+        public void ScrollMapByDistance(int dx, int dy)
         {
             MapRenderer.ScrollByDistance(dx, dy);
+        }
+
+        public void ScrollMapToCenter(ObjectPosition pos)
+        {
+            MapRenderer.ScrollToCenter(pos.Point);
         }
     }
 }

@@ -15,13 +15,13 @@ namespace TileGameMaker.Test
         public override void OnKeyDown(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right)
-                Engine.ScrollMap(1, 0);
+                Engine.ScrollMapByDistance(1, 0);
             else if (e.KeyCode == Keys.Left)
-                Engine.ScrollMap(-1, 0);
+                Engine.ScrollMapByDistance(-1, 0);
             else if (e.KeyCode == Keys.Up)
-                Engine.ScrollMap(0, -1);
+                Engine.ScrollMapByDistance(0, -1);
             else if (e.KeyCode == Keys.Down)
-                Engine.ScrollMap(0, 1);
+                Engine.ScrollMapByDistance(0, 1);
         }
     }
 }

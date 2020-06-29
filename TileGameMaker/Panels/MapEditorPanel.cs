@@ -31,10 +31,8 @@ namespace TileGameMaker.Panels
         private ObjectBlockSelection Selection;
         private SearchWindow SearchWindow;
         private ScriptWindow ScriptWindow;
-        private ToolTip Tooltip;
-        private Point CurrentTooltipPoint;
-        private bool TooltipEnabled;
         private ObjectBlockClipboard ClipboardObjects;
+        private GameObjectPanel GameObjectPanel;
 
         private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
         private EditMode Mode;
@@ -66,10 +64,7 @@ namespace TileGameMaker.Panels
             Selection = new ObjectBlockSelection();
             SearchWindow = new SearchWindow(Editor, this, Display);
             ScriptWindow = new ScriptWindow(Map);
-
-            Tooltip = new ToolTip();
-            Tooltip.IsBalloon = true;
-            TooltipEnabled = false;
+            GameObjectPanel = editor.GameObjectPanel;
 
             Display.MouseMove += Disp_MouseMove;
             Display.MouseDown += Disp_MouseDown;
@@ -291,51 +286,15 @@ namespace TileGameMaker.Panels
             else if (Mode == EditMode.Replace)
                 SetReplaceModeLabel();
             else
-                LbEditModeInfo.Text = position.ToString();
+                LbEditModeInfo.Text = "";
 
-            GameObject o = Map.GetObject(position);
-
-            if (o != null)
-            {
-                if (Mode != EditMode.Selection && Mode != EditMode.Replace)
-                {
-                    LbEditModeInfo.Text += " → " + o.ToString();
-                    ShowTooltip(o, position);
-                }
-            }
-            else
-            {
-                HideTooltip();
-            }
+            GameObjectPanel.Update(new PositionedCell(Map, position));
         }
 
-        private void ShowTooltip(GameObject o, ObjectPosition position)
+        private void OnDisplayMouseLeave(EventArgs e)
         {
-            if (position.Point != CurrentTooltipPoint)
-            {
-                CurrentTooltipPoint = position.Point;
-                Tooltip.SetToolTip(Display, TooltipEnabled ? GetTooltipText(o, position) : null);
-            }
-        }
-
-        private void HideTooltip()
-        {
-            Tooltip.Hide(Display);
-            CurrentTooltipPoint = new Point(-1, -1);
-        }
-
-        private string GetTooltipText(GameObject o, ObjectPosition position)
-        {
-            StringBuilder properties = new StringBuilder();
-            foreach (KeyValuePair<string, string> prop in o.Properties.Entries)
-                properties.Append($"    {prop.Key} = {prop.Value}\n");
-
-            return 
-                $"{position}\n" +
-                $"Visible: {o.Visible}\n" +
-                $"Frames: {o.Animation.Frames.Count}\n" +
-                "Properties: \n" +
-                "{\n" + properties + "}";
+            LbEditModeInfo.Text = "";
+            GameObjectPanel.Clear();
         }
 
         private void PutCurrentObject(ObjectCell cell)
@@ -357,7 +316,7 @@ namespace TileGameMaker.Panels
 
         private void Disp_MouseLeave(object sender, EventArgs e)
         {
-            LbEditModeInfo.Text = "";
+            OnDisplayMouseLeave(e);
         }
 
         public override void Refresh()
@@ -533,7 +492,6 @@ namespace TileGameMaker.Panels
             bool success = false;
 
             Map.Name = Editor.MapName;
-            Map.MusicFile = Editor.MapMusic;
 
             if (string.IsNullOrWhiteSpace(Editor.MapFile))
             {
@@ -572,7 +530,6 @@ namespace TileGameMaker.Panels
             {
                 Map.GenerateId();
                 Map.Name = Editor.MapName;
-                Map.MusicFile = Editor.MapMusic;
                 MapFile.SaveAsRawBytes(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
@@ -698,7 +655,6 @@ namespace TileGameMaker.Panels
             Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
-            Map.MusicFile = "";
             Editor.ResizeMap(Editor.DefaultMapWidth, Editor.DefaultMapHeight);
             Editor.MapFile = null;
             Editor.UpdateMapProperties();
@@ -1094,27 +1050,6 @@ namespace TileGameMaker.Panels
             ObjectEditWindow win = new ObjectEditWindow(Editor, po, Map, pos);
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.SetObject(win.EditedObject, pos);
-        }
-
-        private void BtnTemplateObjects_DropDownOpening(object sender, EventArgs e)
-        {
-            foreach (TemplateObject o in Editor.TemplateObjects)
-            {
-                if (!BtnTemplateObjects.DropDownItems.ContainsKey(o.Name))
-                {
-                    ToolStripMenuItem item = new ToolStripMenuItem(o.Name);
-                    item.Tag = o;
-                    item.Click += BtnTemplateObjectItem_Click;
-                    BtnTemplateObjects.DropDownItems.Add(item);
-                }
-            }
-        }
-
-        private void BtnTemplateObjectItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = sender as ToolStripMenuItem;
-            TemplateObject o = item.Tag as TemplateObject;
-            // todo
         }
     }
 }

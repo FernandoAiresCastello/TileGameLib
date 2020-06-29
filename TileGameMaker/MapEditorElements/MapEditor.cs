@@ -20,7 +20,6 @@ namespace TileGameMaker.MapEditorElements
         public string WorkspacePath { get; set; }
         public string MapFile { get; set; }
         public string MapName => MapPropertyGridControl.Properties.Name;
-        public string MapMusic => MapPropertyGridControl.Properties.Music;
         public GameObject BlankObject => CreateBlankObject();
         public ObjectMap Map { get; private set; }
         public Palette Palette { get; private set; }
@@ -32,11 +31,11 @@ namespace TileGameMaker.MapEditorElements
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
         public WorkspacePanel WorkspacePanel { get; private set; }
+        public GameObjectPanel GameObjectPanel { get; private set; }
         public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
         public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
         public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
-        public readonly List<TemplateObject> TemplateObjects = new List<TemplateObject>();
         private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();
 
@@ -60,6 +59,7 @@ namespace TileGameMaker.MapEditorElements
             else
                 Map.Tileset = Tileset;
 
+            GameObjectPanel = new GameObjectPanel(this);
             MapEditorControl = new MapEditorPanel(this);
             TilePickerControl = new TilePickerPanel(this, 8);
             ColorPickerControl = new ColorPickerPanel(this);
@@ -76,6 +76,7 @@ namespace TileGameMaker.MapEditorElements
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
             Children.Add(WorkspacePanel);
+            Children.Add(GameObjectPanel);
 
             ClipboardObject = CreateBlankObject();
         }

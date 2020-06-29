@@ -79,8 +79,7 @@ namespace TileGameLib.GameElements
                 for (int x = 0; x < Area.Width; x++)
                 {
                     ObjectPosition position = new ObjectPosition(Layer, x + Area.X, y + Area.Y);
-                    ObjectCell cell = Map.GetCell(position);
-                    cells[x, y] = new PositionedCell(cell, position);
+                    cells[x, y] = new PositionedCell(Map, position);
                 }
             }
 

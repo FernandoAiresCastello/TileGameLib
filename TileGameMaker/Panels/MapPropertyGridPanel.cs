@@ -44,7 +44,6 @@ namespace TileGameMaker.Panels
         private void BtnApply_Click(object sender, EventArgs e)
         {
             MapEditor.Map.Name = Properties.Name;
-            MapEditor.Map.MusicFile = Properties.Music;
 
             bool widthOk = int.TryParse(Properties.Width, out int width);
             bool heightOk = int.TryParse(Properties.Height, out int height);

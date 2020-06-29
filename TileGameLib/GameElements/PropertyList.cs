@@ -11,6 +11,8 @@ namespace TileGameLib.GameElements
     {
         public Dictionary<string, string> Entries { get; set; } = new Dictionary<string, string>();
 
+        public int Size => Entries.Count;
+
         public PropertyList()
         {
         }
