@@ -25,13 +25,21 @@ namespace TileGameLib.GameElements
 
         public const string DefaultName = "Untitled";
 
-        public ObjectMap(int width, int height) : this(DefaultName, width, height, 0)
+        public ObjectMap(int width, int height) : this(DefaultName, 1, width, height, 0)
         {
-            GenerateId();
             BackColor = Palette.White;
         }
 
-        public ObjectMap(string name, int width, int height, int backColor)
+        public ObjectMap(int layers, int width, int height) : this(DefaultName, layers, width, height, 0)
+        {
+            BackColor = Palette.White;
+        }
+
+        public ObjectMap(string name, int width, int height, int backColor) : this(name, 1, width, height, backColor)
+        {
+        }
+
+        public ObjectMap(string name, int layers, int width, int height, int backColor)
         {
             GenerateId();
 
@@ -40,7 +48,8 @@ namespace TileGameLib.GameElements
             Height = height;
             BackColor = backColor;
 
-            AddLayer();
+            for (int i = 0; i < layers; i++)
+                AddLayer();
         }
 
         public ObjectMap(ObjectMap other)
@@ -152,7 +161,8 @@ namespace TileGameLib.GameElements
                 SetObject(o, pos);
         }
 
-        public void SetHorizontalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        public void SetHorizontalStringOfObjects(
+            string text, ObjectPosition pos, int foreColor, int backColor, PropertyList props = null)
         {
             int initialX = pos.X;
             text = text.Replace("\r", "");
@@ -169,6 +179,9 @@ namespace TileGameLib.GameElements
                     if (IsWithinBounds(pos))
                     {
                         GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        if (props != null)
+                            o.Properties.SetEqual(props);
+
                         SetObject(o, pos);
                         pos = pos.East();
                     }
@@ -176,7 +189,8 @@ namespace TileGameLib.GameElements
             }
         }
 
-        public void SetVerticalStringOfObjects(string text, ObjectPosition pos, int foreColor, int backColor)
+        public void SetVerticalStringOfObjects(
+            string text, ObjectPosition pos, int foreColor, int backColor, PropertyList props = null)
         {
             int initialY = pos.Y;
             text = text.Replace("\r", "");
@@ -193,6 +207,9 @@ namespace TileGameLib.GameElements
                     if (IsWithinBounds(pos))
                     {
                         GameObject o = new GameObject(new Tile(ch, foreColor, backColor));
+                        if (props != null)
+                            o.Properties.SetEqual(props);
+
                         SetObject(o, pos);
                         pos = pos.South();
                     }
