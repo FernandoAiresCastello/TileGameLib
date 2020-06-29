@@ -35,7 +35,12 @@ namespace TileGameLib.Engine
 
         public void Print(object o)
         {
-            TxtLog.AppendText(o.ToString() + Environment.NewLine);
+            TxtLog.AppendText(o.ToString());
+        }
+
+        public void Println(object o)
+        {
+            Print((o != null ? o.ToString() : "") + Environment.NewLine);
         }
     }
 }
