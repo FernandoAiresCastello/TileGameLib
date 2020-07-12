@@ -21,7 +21,7 @@ namespace TileGameLib.File
                 case PaletteExportFormat.HexadecimalRgb: SaveAsHexadecimalRgb(palette, file); break;
                 case PaletteExportFormat.HexadecimalCsv: SaveAsHexadecimalCsv(palette, file); break;
 
-                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
+                default: throw new TGLException("Invalid export format: " + format.ToString());
             }
         }
 
@@ -33,7 +33,7 @@ namespace TileGameLib.File
                 case PaletteExportFormat.HexadecimalRgb: return LoadFromHexadecimalRgb(file);
                 case PaletteExportFormat.HexadecimalCsv: return LoadFromHexadecimalCsv(file);
 
-                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
+                default: throw new TGLException("Invalid export format: " + format.ToString());
             }
         }
 

@@ -67,7 +67,7 @@ namespace TileGameLib.File
         public void WriteShort(int value)
         {
             if (value < 0 || value > ushort.MaxValue)
-                throw new TileGameLibException($"Cannot write value {value} as ushort");
+                throw new TGLException($"Cannot write value {value} as ushort");
 
             foreach (byte b in BitConverter.GetBytes((ushort)value))
                 WriteByte(b);
@@ -76,7 +76,7 @@ namespace TileGameLib.File
         public void WriteInt(int value)
         {
             if (value < 0)
-                throw new TileGameLibException($"Cannot write value {value} as type uint");
+                throw new TGLException($"Cannot write value {value} as type uint");
 
             foreach (byte b in BitConverter.GetBytes((uint)value))
                 WriteByte(b);
@@ -139,7 +139,7 @@ namespace TileGameLib.File
         private void AssertValidPtr()
         {
             if (EndOfFile)
-                throw new TileGameLibException($"Cannot read past file length: index = {ReadPtr}, length = {Length}");
+                throw new TGLException($"Cannot read past file length: index = {ReadPtr}, length = {Length}");
         }
 
         public void SaveToPhysicalFile(string path)

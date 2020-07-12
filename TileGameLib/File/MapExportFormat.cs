@@ -23,7 +23,7 @@ namespace TileGameLib.File
                 case MapExportFormat.Json: return FileExtensions.MapJson;
             }
 
-            throw new TileGameLibException("Invalid export format: " + format.ToString());
+            throw new TGLException("Invalid export format: " + format.ToString());
         }
     }
 }

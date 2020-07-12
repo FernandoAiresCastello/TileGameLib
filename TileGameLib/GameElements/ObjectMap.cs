@@ -20,6 +20,7 @@ namespace TileGameLib.GameElements
         public int BackColor { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public string Extra { set; get; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
 
@@ -69,6 +70,7 @@ namespace TileGameLib.GameElements
             Width = other.Width;
             Height = other.Height;
             BackColor = other.BackColor;
+            Extra = other.Extra;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);
             Layers.Clear();
@@ -385,7 +387,7 @@ namespace TileGameLib.GameElements
             List<PositionedObject> objs = FindObjectsByProperty(property);
 
             if (objs.Count > 1)
-                throw new TileGameLibException($"Multiple ({objs.Count}) objects found with property {property}");
+                throw new TGLException($"Multiple ({objs.Count}) objects found with property {property}");
 
             return objs.Count == 1 ? objs[0] : null;
         }
@@ -420,7 +422,7 @@ namespace TileGameLib.GameElements
             List<PositionedObject> objs = FindObjectsByPropertyValue(property, value);
 
             if (objs.Count > 1)
-                throw new TileGameLibException($"Multiple ({objs.Count}) objects found with property {property} = {value}");
+                throw new TGLException($"Multiple ({objs.Count}) objects found with property {property} = {value}");
 
             return objs.Count == 1 ? objs[0] : null;
         }

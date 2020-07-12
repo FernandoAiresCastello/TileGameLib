@@ -14,7 +14,7 @@ namespace TileGameLib.Util
         public static string Encipher(string input, int key)
         {
             if (key < 0 || key > Keys)
-                throw new TileGameLibException("Cipher key must be between 0 and " + Keys);
+                throw new TGLException("Cipher key must be between 0 and " + Keys);
 
             StringBuilder output = new StringBuilder();
 
@@ -27,7 +27,7 @@ namespace TileGameLib.Util
         public static string Decipher(string input, int key)
         {
             if (key < 0 || key > Keys)
-                throw new TileGameLibException("Cipher key must be between 0 and " + Keys);
+                throw new TGLException("Cipher key must be between 0 and " + Keys);
 
             return Encipher(input, Keys - key);
         }
@@ -35,7 +35,7 @@ namespace TileGameLib.Util
         private static char Cipher(char ch, int key)
         {
             if (key < 0 || key > Keys)
-                throw new TileGameLibException("Cipher key must be between 0 and " + Keys);
+                throw new TGLException("Cipher key must be between 0 and " + Keys);
 
             if (!char.IsLetter(ch))
                 return ch;

@@ -28,7 +28,7 @@ namespace TileGameLib.Util
         public static void Except(string msg)
         {
             MessageBox.Show(msg, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            throw new TileGameLibException(msg);
+            throw new TGLException(msg);
         }
 
         public static bool Confirm(string msg)

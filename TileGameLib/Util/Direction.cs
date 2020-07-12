@@ -74,7 +74,7 @@ namespace TileGameLib.Util
                 case Direction.Northwest: return "northwest";
             }
 
-            throw new TileGameLibException("Invalid direction: " + direction);
+            throw new TGLException("Invalid direction: " + direction);
         }
 
         public static Direction GetByName(string name)
@@ -92,7 +92,7 @@ namespace TileGameLib.Util
                 case "northwest": return Direction.Northwest;
             }
 
-            throw new TileGameLibException("Invalid direction name: " + name);
+            throw new TGLException("Invalid direction name: " + name);
         }
     }
 }

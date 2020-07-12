@@ -153,11 +153,11 @@ namespace TileGameLib.Graphics
                 return;
 
             if (Viewport.IsEmpty)
-                throw new TileGameLibException("Unable to render map. Map viewport has size 0");
+                throw new TGLException("Unable to render map. Map viewport has size 0");
             if (Viewport.X < 0 || Viewport.Y < 0)
-                throw new TileGameLibException("Unable to render map. Map viewport has a negative position");
+                throw new TGLException("Unable to render map. Map viewport has a negative position");
             if (Viewport.X + Viewport.Width > Disp.Cols || Viewport.Y + Viewport.Height > Disp.Rows)
-                throw new TileGameLibException("Unable to render map. Map viewport extends beyond display area");
+                throw new TGLException("Unable to render map. Map viewport extends beyond display area");
 
             Tileset originalTileset = Disp.Graphics.Tileset;
             Palette originalPalette = Disp.Graphics.Palette;

@@ -38,7 +38,7 @@ namespace TileGameLib.GameElements
         public void CopyTo(ObjectCellBlock other)
         {
             if (!SizeEquals(other))
-                throw new TileGameLibException("The cell blocks must be the same width and height");
+                throw new TGLException("The cell blocks must be the same width and height");
 
             PositionedCell[,] srcCells = Cells;
             PositionedCell[,] destCells = other.Cells;

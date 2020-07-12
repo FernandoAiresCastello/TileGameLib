@@ -85,7 +85,7 @@
     <Compile Include="GameElements\ObjectCollision.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
-    <Compile Include="Exceptions\TileGameLibException.cs" />
+    <Compile Include="Exceptions\TGLException.cs" />
     <Compile Include="File\MemoryFile.cs" />
     <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />

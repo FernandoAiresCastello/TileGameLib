@@ -50,12 +50,12 @@ namespace TileGameLib.Engine
         public ObjectMap AddController(string mapFile, MapController controller)
         {
             if (!System.IO.File.Exists(mapFile))
-                throw new TileGameLibException($"Map file not found: {mapFile}");
+                throw new TGLException($"Map file not found: {mapFile}");
 
             ObjectMap map = MapFile.LoadFromRawBytes(mapFile);
 
             if (HasMap(map.Id))
-                throw new TileGameLibException($"There is already a map with id {map.Id}");
+                throw new TGLException($"There is already a map with id {map.Id}");
 
             controller.Map = map;
             controller.MapFile = Path.GetFileName(mapFile);
@@ -67,7 +67,7 @@ namespace TileGameLib.Engine
         public void AddController(ObjectMap map, MapController controller)
         {
             if (HasMap(map.Id))
-                throw new TileGameLibException($"There is already a map with id {map.Id}");
+                throw new TGLException($"There is already a map with id {map.Id}");
 
             controller.Map = map;
             controller.MapFile = null;

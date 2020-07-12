@@ -32,7 +32,7 @@ namespace TileGameLib.GameElements
             if (Has(property))
                 return Entries[property];
 
-            throw new TileGameLibException($"Property {property} not found");
+            throw new TGLException($"Property {property} not found");
         }
 
         public int GetAsNumber(string property)
@@ -41,12 +41,12 @@ namespace TileGameLib.GameElements
             {
                 bool isNumeric = int.TryParse(GetAsString(property), out int numericValue);
                 if (!isNumeric)
-                    throw new TileGameLibException($"Property {property} is not a numeric property");
+                    throw new TGLException($"Property {property} is not a numeric property");
 
                 return numericValue;
             }
 
-            throw new TileGameLibException($"Property {property} not found");
+            throw new TGLException($"Property {property} not found");
         }
 
         public string[] GetSeriesAsString(string propertyPrefix)

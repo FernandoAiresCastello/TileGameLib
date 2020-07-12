@@ -125,7 +125,7 @@ namespace TileGameLib.Graphics
                     return index;
             }
 
-            throw new TileGameLibException("Black color (0x000000) not found");
+            throw new TGLException("Black color (0x000000) not found");
         }
 
         private int GetWhite()
@@ -137,7 +137,7 @@ namespace TileGameLib.Graphics
                     return index;
             }
 
-            throw new TileGameLibException("White color (0xffffff) not found");
+            throw new TGLException("White color (0xffffff) not found");
         }
 
         public float GetBrightness(int index)
@@ -238,7 +238,7 @@ namespace TileGameLib.Graphics
                 case Default.ROYGBIV: InitDefaultROYGBIV(); break;
 
                 default:
-                    throw new TileGameLibException("Invalid palette default: " + defaultPalette);
+                    throw new TGLException("Invalid palette default: " + defaultPalette);
             }
         }
 

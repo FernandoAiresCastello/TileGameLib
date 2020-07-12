@@ -25,7 +25,7 @@ namespace TileGameLib.File
                 case PaletteExportFormat.HexadecimalCsv: return FileExtensions.PaletteCsv;
             }
 
-            throw new TileGameLibException("Invalid export format: " + format.ToString());
+            throw new TGLException("Invalid export format: " + format.ToString());
         }
     }
 }

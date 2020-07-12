@@ -157,7 +157,7 @@ namespace TileGameLib.Graphics
                 case Default.Intellivision: InitDefaultIntellivision(); break;
 
                 default:
-                    throw new TileGameLibException("Invalid tileset default: " + defaultTiles);
+                    throw new TGLException("Invalid tileset default: " + defaultTiles);
             }
         }
 

@@ -115,9 +115,9 @@ namespace TileGameLib.GameElements
             throw GetInvalidLayerPositionException(x, y);
         }
 
-        private TileGameLibException GetInvalidLayerPositionException(int x, int y)
+        private TGLException GetInvalidLayerPositionException(int x, int y)
         {
-            return new TileGameLibException(
+            return new TGLException(
                 string.Format("Invalid layer position X:{0} Y:{1}. Layer size is {2}x{3}", 
                 x, y, Width, Height));
         }

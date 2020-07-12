@@ -71,7 +71,7 @@ namespace TileGameLib.Graphics
         public int GetPixel(int pixelIndex)
         {
             if (pixelIndex < 0 || pixelIndex >= PixelCount)
-                throw new TileGameLibException($"Pixel index out of bounds. Index: {pixelIndex} Pixels: {PixelCount}");
+                throw new TGLException($"Pixel index out of bounds. Index: {pixelIndex} Pixels: {PixelCount}");
 
             return FastBitmap.Pixels[pixelIndex];
         }

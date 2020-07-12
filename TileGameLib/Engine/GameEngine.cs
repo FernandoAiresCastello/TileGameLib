@@ -22,6 +22,7 @@ namespace TileGameLib.Engine
         public bool Paused { set; get; }
         public GameWindow Window { get; protected set; }
         public DebuggerWindow Debugger { get; protected set; }
+        public long Cycle { get; protected set; }
 
         protected bool Running = false;
         protected MapController MapController;
@@ -77,6 +78,7 @@ namespace TileGameLib.Engine
         {
             Running = true;
             OnStart();
+            Cycle = 0;
             CycleTimer.Start();
 
             if (parent == null)
@@ -236,7 +238,7 @@ namespace TileGameLib.Engine
         {
             MapController controller = MapControllers.FindByName(mapName);
             if (controller == null)
-                throw new TileGameLibException($"Map with name {mapName} not found");
+                throw new TGLException($"Map with name {mapName} not found");
 
             EnterMapById(controller.Map.Id);
         }
@@ -245,7 +247,7 @@ namespace TileGameLib.Engine
         {
             MapController controller = MapControllers.FindById(mapId);
             if (controller == null)
-                throw new TileGameLibException($"Map with id {mapId} not found");
+                throw new TGLException($"Map with id {mapId} not found");
 
             bool transitionNotCancelled = OnMapTransition(MapController, controller);
 
@@ -295,6 +297,8 @@ namespace TileGameLib.Engine
                 OnExecuteCycle();
                 if (MapController != null)
                     MapController.OnExecuteCycle();
+
+                Cycle++;
             }
         }
 

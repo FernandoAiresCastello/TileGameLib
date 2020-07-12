@@ -550,14 +550,21 @@ namespace TileGameMaker.Panels
 
         public void LoadMap(string file)
         {
-            MapFile.LoadFromRawBytes(ref Map, file);
-            Editor.MapFile = file;
-            Editor.UpdateMapProperties();
-            Editor.ResizeMap(Map.Width, Map.Height);
-            Editor.ClearClipboard();
-            Editor.RecentFiles.Add(file);
-            UpdateRecentFileList();
-            UpdateLayerComboBox();
+            try
+            {
+                MapFile.LoadFromRawBytes(ref Map, file);
+                Editor.MapFile = file;
+                Editor.UpdateMapProperties();
+                Editor.ResizeMap(Map.Width, Map.Height);
+                Editor.ClearClipboard();
+                Editor.RecentFiles.Add(file);
+                UpdateRecentFileList();
+                UpdateLayerComboBox();
+            }
+            catch (Exception ex)
+            {
+                Alert.Error(ex.Message);
+            }
         }
 
         private void UpdateRecentFileList()

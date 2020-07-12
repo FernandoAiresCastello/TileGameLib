@@ -19,7 +19,7 @@ namespace TileGameLib.File
                 case TilesetExportFormat.BinaryStrings: SaveAsBinaryStrings(tileset, file); break;
                 case TilesetExportFormat.HexadecimalCsv: SaveAsHexadecimalCsv(tileset, file); break;
 
-                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
+                default: throw new TGLException("Invalid export format: " + format.ToString());
             }
         }
 
@@ -31,7 +31,7 @@ namespace TileGameLib.File
                 case TilesetExportFormat.BinaryStrings: return LoadFromBinaryStrings(file);
                 case TilesetExportFormat.HexadecimalCsv: return LoadFromHexadecimalCsv(file);
 
-                default: throw new TileGameLibException("Invalid export format: " + format.ToString());
+                default: throw new TGLException("Invalid export format: " + format.ToString());
             }
         }
 

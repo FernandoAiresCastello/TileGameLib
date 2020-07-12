@@ -25,7 +25,7 @@ namespace TileGameLib.File
                 case TilesetExportFormat.BinaryStrings: return FileExtensions.TilesetBinaryStrings;
             }
 
-            throw new TileGameLibException("Invalid export format: " + format.ToString());
+            throw new TGLException("Invalid export format: " + format.ToString());
         }
     }
 }

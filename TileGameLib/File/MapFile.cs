@@ -88,6 +88,7 @@ namespace TileGameLib.File
                     file.WriteByte(row);
             }
 
+            file.WriteStringNullTerminated(StringOrEmpty(map.Extra));
             return file;
         }
 
@@ -101,7 +102,7 @@ namespace TileGameLib.File
         {
             string header = file.ReadStringNullTerminated();
             if (!Header.Equals(header))
-                throw new TileGameLibException("Invalid file format");
+                throw new TGLException("Invalid file format");
 
             string id = file.ReadStringNullTerminated();
             string name = file.ReadStringNullTerminated();
@@ -178,6 +179,7 @@ namespace TileGameLib.File
                     pixels.PixelRows[i] = file.ReadByte();
             }
 
+            map.Extra = file.ReadStringNullTerminated();
             return map;
         }
 
