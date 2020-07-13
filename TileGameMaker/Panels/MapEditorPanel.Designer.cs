@@ -64,10 +64,11 @@
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
             this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnRemoveLayer = new System.Windows.Forms.ToolStripButton();
+            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.BtnSetOutOfBoundsObject = new System.Windows.Forms.ToolStripButton();
-            this.BtnRenderInvisibleObjects = new System.Windows.Forms.ToolStripButton();
+            this.BtnSetExtra = new System.Windows.Forms.ToolStripButton();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
@@ -150,10 +151,11 @@
             this.BtnViewAll,
             this.BtnAddLayer,
             this.BtnRemoveLayer,
+            this.BtnRenderInvisibleObjects,
             this.BtnClearLayer,
             this.BtnSetBackColor,
             this.BtnSetOutOfBoundsObject,
-            this.BtnRenderInvisibleObjects,
+            this.BtnSetExtra,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
             this.BtnDelete,
@@ -435,6 +437,18 @@
             this.BtnRemoveLayer.ToolTipText = "Remove layer";
             this.BtnRemoveLayer.Click += new System.EventHandler(this.BtnRemoveLayer_Click);
             // 
+            // BtnRenderInvisibleObjects
+            // 
+            this.BtnRenderInvisibleObjects.CheckOnClick = true;
+            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
+            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
+            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
+            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
+            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
+            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
+            // 
             // BtnClearLayer
             // 
             this.BtnClearLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -468,17 +482,16 @@
             this.BtnSetOutOfBoundsObject.ToolTipText = "Set out of bounds object";
             this.BtnSetOutOfBoundsObject.Click += new System.EventHandler(this.BtnSetOutOfBoundsObject_Click);
             // 
-            // BtnRenderInvisibleObjects
+            // BtnSetExtra
             // 
-            this.BtnRenderInvisibleObjects.CheckOnClick = true;
-            this.BtnRenderInvisibleObjects.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRenderInvisibleObjects.Image = global::TileGameMaker.Properties.Resources.eye;
-            this.BtnRenderInvisibleObjects.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRenderInvisibleObjects.Name = "BtnRenderInvisibleObjects";
-            this.BtnRenderInvisibleObjects.Size = new System.Drawing.Size(23, 20);
-            this.BtnRenderInvisibleObjects.Text = "toolStripButton1";
-            this.BtnRenderInvisibleObjects.ToolTipText = "Render invisible objects";
-            this.BtnRenderInvisibleObjects.Click += new System.EventHandler(this.BtnRenderInvisibleObjects_Click);
+            this.BtnSetExtra.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSetExtra.Image = global::TileGameMaker.Properties.Resources.evernote;
+            this.BtnSetExtra.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSetExtra.Name = "BtnSetExtra";
+            this.BtnSetExtra.Size = new System.Drawing.Size(23, 20);
+            this.BtnSetExtra.Text = "toolStripButton1";
+            this.BtnSetExtra.ToolTipText = "Set extra";
+            this.BtnSetExtra.Click += new System.EventHandler(this.BtnSetExtra_Click);
             // 
             // BtnPutTemplate
             // 
@@ -684,5 +697,6 @@
         private System.Windows.Forms.ToolStripButton BtnRunScript;
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
+        private System.Windows.Forms.ToolStripButton BtnSetExtra;
     }
 }

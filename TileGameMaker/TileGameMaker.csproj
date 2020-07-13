@@ -426,6 +426,7 @@
     <None Include="Resources\check_boxes_series.png" />
     <None Include="Resources\brick_edit.png" />
     <None Include="Resources\folder_brick.png" />
+    <None Include="Resources\evernote.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

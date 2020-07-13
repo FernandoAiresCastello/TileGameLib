@@ -1065,5 +1065,13 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.OutOfBoundsObject = win.EditedObject;
         }
+
+        private void BtnSetExtra_Click(object sender, EventArgs e)
+        {
+            TextInputWindow win = new TextInputWindow("Set map extra");
+            win.EnableOrientationChange = false;
+            if (win.ShowDialog(this, Map.Extra) == DialogResult.OK)
+                Map.Extra = win.Text;
+        }
     }
 }
