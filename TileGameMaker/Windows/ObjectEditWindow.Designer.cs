@@ -43,6 +43,7 @@
             this.BtnRevert = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnApply = new System.Windows.Forms.Button();
+            this.BtnSetEqualToClipboard = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFrames)).BeginInit();
@@ -205,6 +206,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel2.Controls.Add(this.BtnSetEqualToClipboard, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnRevert, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnClear, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
@@ -253,6 +255,18 @@
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
+            // BtnSetEqualToClipboard
+            // 
+            this.BtnSetEqualToClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetEqualToClipboard.Image = global::TileGameMaker.Properties.Resources.page_white_paste;
+            this.BtnSetEqualToClipboard.Location = new System.Drawing.Point(58, 4);
+            this.BtnSetEqualToClipboard.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnSetEqualToClipboard.Name = "BtnSetEqualToClipboard";
+            this.BtnSetEqualToClipboard.Size = new System.Drawing.Size(58, 29);
+            this.BtnSetEqualToClipboard.TabIndex = 3;
+            this.BtnSetEqualToClipboard.UseVisualStyleBackColor = true;
+            this.BtnSetEqualToClipboard.Click += new System.EventHandler(this.BtnSetEqualToClipboard_Click);
+            // 
             // ObjectEditWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,5 +307,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button BtnClearAnim;
         private System.Windows.Forms.Panel AnimationPanel;
+        private System.Windows.Forms.Button BtnSetEqualToClipboard;
     }
 }

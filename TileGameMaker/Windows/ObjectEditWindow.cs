@@ -18,12 +18,26 @@ namespace TileGameMaker.Windows
 {
     public partial class ObjectEditWindow : Form
     {
-        public GameObject EditedObject => NewData.Object;
+        public GameObject EditedObject
+        {
+            get
+            {
+                if (NewData != null)
+                    return NewData.Object;
+                else if (NewObject != null)
+                    return NewObject;
+                else
+                    return null;
+            }
+        }
+
         public ObjectAnimation Animation => AnimationStrip.Animation;
 
         private readonly MapEditor Editor;
         private readonly PositionedObject OriginalData;
         private PositionedObject NewData;
+        private readonly GameObject OriginalObject;
+        private GameObject NewObject;
         private readonly AnimationStripDisplay AnimationStrip;
         private const int MaxFrames = 8;
         private readonly bool IsNewObject;
@@ -31,6 +45,32 @@ namespace TileGameMaker.Windows
         private ObjectEditWindow()
         {
             InitializeComponent();
+        }
+
+        public ObjectEditWindow(MapEditor editor, GameObject o)
+        {
+            InitializeComponent();
+            Editor = editor;
+            KeyPreview = true;
+            KeyDown += ObjectEditWindow_KeyDown;
+            IsNewObject = o == null;
+
+            if (o == null)
+                o = editor.BlankObject;
+
+            OriginalObject = o;
+
+            AnimationStrip = new AnimationStripDisplay(AnimationPanel,
+                MaxFrames, 1, 3, Editor.BlankObject.Animation.FirstFrame);
+
+            AnimationStrip.Graphics.Tileset = editor.Map.Tileset;
+            AnimationStrip.Graphics.Palette = editor.Map.Palette;
+
+            TxtFrames.Minimum = 1;
+            TxtFrames.Maximum = MaxFrames;
+            TxtFrames.ValueChanged += TxtFrames_ValueChanged;
+
+            AnimationStrip.MouseDown += AnimationStrip_MouseDown;
         }
 
         public ObjectEditWindow(MapEditor editor, PositionedObject po, ObjectMap map, ObjectPosition pos)
@@ -46,6 +86,7 @@ namespace TileGameMaker.Windows
                 po.Object = editor.BlankObject;
 
             OriginalData = po;
+            OriginalObject = po.Object;
 
             AnimationStrip = new AnimationStripDisplay(AnimationPanel,
                 MaxFrames, 1, 3, Editor.BlankObject.Animation.FirstFrame);
@@ -121,13 +162,23 @@ namespace TileGameMaker.Windows
 
         public DialogResult ShowDialog(Control parent)
         {
-            ObjectPosition position = OriginalData.Position;
+            if (OriginalData != null)
+            {
+                ObjectPosition position = OriginalData.Position;
 
-            Text = (IsNewObject ? "Create new object" : "Edit object") + 
-                $" @ L{position.Layer} X{position.X} Y{position.Y}";
+                Text = (IsNewObject ? "Create new object" : "Edit object") +
+                    $" @ L{position.Layer} X{position.X} Y{position.Y}";
 
-            NewData = new PositionedObject(OriginalData);
-            NewData.Object.Id = OriginalData.Object.Id;
+                NewData = new PositionedObject(OriginalData);
+                NewData.Object.Id = OriginalData.Object.Id;
+            }
+            else if (OriginalObject != null)
+            {
+                Text = IsNewObject ? "Set out of bounds object" : "Edit out of bounds object";
+
+                NewObject = new GameObject(OriginalObject);
+                NewObject.Id = OriginalObject.Id;
+            }
 
             UpdateInterface();
 
@@ -136,10 +187,21 @@ namespace TileGameMaker.Windows
 
         private void UpdateInterface()
         {
-            ChkVisible.Checked = NewData.Object.Visible;
-            PropertyGrid.UpdateProperties(NewData.Object);
-            TxtFrames.Value = NewData.Object.Animation.Size;
-            AnimationStrip.Animation = NewData.Object.Animation;
+            if (NewData != null)
+            {
+                ChkVisible.Checked = NewData.Object.Visible;
+                PropertyGrid.UpdateProperties(NewData.Object);
+                TxtFrames.Value = NewData.Object.Animation.Size;
+                AnimationStrip.Animation = NewData.Object.Animation;
+            }
+            else if (NewObject != null)
+            {
+                ChkVisible.Checked = NewObject.Visible;
+                PropertyGrid.UpdateProperties(NewObject);
+                TxtFrames.Value = NewObject.Animation.Size;
+                AnimationStrip.Animation = NewObject.Animation;
+            }
+            
             Refresh();
         }
 
@@ -154,16 +216,35 @@ namespace TileGameMaker.Windows
             else if (frames < Animation.Size)
                 Animation.Frames.RemoveRange(frames, Animation.Size - frames);
 
-            NewData.Object.Animation = new ObjectAnimation(Animation);
-            NewData.Object.Visible = ChkVisible.Checked;
-            NewData.Object.Properties = PropertyGrid.Properties;
+            if (NewData != null)
+            {
+                NewData.Object.Animation = new ObjectAnimation(Animation);
+                NewData.Object.Visible = ChkVisible.Checked;
+                NewData.Object.Properties = PropertyGrid.Properties;
+            }
+            else if (NewObject != null)
+            {
+                NewObject.Animation = new ObjectAnimation(Animation);
+                NewObject.Visible = ChkVisible.Checked;
+                NewObject.Properties = PropertyGrid.Properties;
+            }
+
             Close();
         }
 
         private void BtnRevert_Click(object sender, EventArgs e)
         {
-            NewData.Object = OriginalData.Object.Copy();
-            NewData.Object.Id = OriginalData.Object.Id;
+            if (NewData != null)
+            {
+                NewData.Object = OriginalData.Object.Copy();
+                NewData.Object.Id = OriginalData.Object.Id;
+            }
+            else if (NewObject != null)
+            {
+                NewObject = OriginalObject.Copy();
+                NewObject.Id = OriginalObject.Id;
+            }
+
             UpdateInterface();
         }
 
@@ -180,17 +261,37 @@ namespace TileGameMaker.Windows
 
         private void ClearObject()
         {
-            NewData.Object.Visible = true;
-            NewData.Object.Properties.RemoveAll();
-            NewData.Object.Id = OriginalData.Object.Id;
+            if (NewData != null)
+            {
+                NewData.Object.Visible = true;
+                NewData.Object.Properties.RemoveAll();
+                NewData.Object.Id = OriginalData.Object.Id;
+            }
+            else if (NewObject != null)
+            {
+                NewObject.Visible = true;
+                NewObject.Properties.RemoveAll();
+                NewObject.Id = OriginalObject.Id;
+            }
+
             ClearAnimation();
         }
 
         private void ClearAnimation()
         {
-            NewData.Object.Animation.Clear();
-            NewData.Object.Animation.AddFrame(Editor.BlankObject.Tile);
-            AnimationStrip.Animation = NewData.Object.Animation;
+            if (NewData != null)
+            {
+                NewData.Object.Animation.Clear();
+                NewData.Object.Animation.AddFrame(Editor.BlankObject.Tile);
+                AnimationStrip.Animation = NewData.Object.Animation;
+            }
+            else if (NewObject != null)
+            {
+                NewObject.Animation.Clear();
+                NewObject.Animation.AddFrame(Editor.BlankObject.Tile);
+                AnimationStrip.Animation = NewObject.Animation;
+            }
+
             AnimationStrip.Refresh();
             UpdateAnimationFrameCounter();
         }
@@ -198,6 +299,22 @@ namespace TileGameMaker.Windows
         private void UpdateAnimationFrameCounter()
         {
             TxtFrames.Value = Animation.Size;
+        }
+
+        private void BtnSetEqualToClipboard_Click(object sender, EventArgs e)
+        {
+            if (NewData != null)
+            {
+                NewData.Object.SetEqual(Editor.GetClipboardObject());
+                NewData.Object.Id = OriginalData.Object.Id;
+            }
+            else if (NewObject != null)
+            {
+                NewObject.SetEqual(Editor.GetClipboardObject());
+                NewObject.Id = OriginalObject.Id;
+            }
+
+            UpdateInterface();
         }
     }
 }

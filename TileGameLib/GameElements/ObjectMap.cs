@@ -20,6 +20,7 @@ namespace TileGameLib.GameElements
         public int BackColor { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public GameObject OutOfBoundsObject { get; set; }
         public string Extra { set; get; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
@@ -70,6 +71,7 @@ namespace TileGameLib.GameElements
             Width = other.Width;
             Height = other.Height;
             BackColor = other.BackColor;
+            OutOfBoundsObject = other.OutOfBoundsObject;
             Extra = other.Extra;
             Tileset.SetEqual(other.Tileset);
             Palette.SetEqual(other.Palette);

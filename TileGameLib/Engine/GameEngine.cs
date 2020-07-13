@@ -29,6 +29,8 @@ namespace TileGameLib.Engine
         protected MapController PreviousMapController;
         protected readonly MapControllerCollection MapControllers;
         protected MapRenderer MapRenderer;
+        protected ObjectMap Overlay;
+        protected MapRenderer OverlayRenderer;
 
         private readonly Timer CycleTimer;
         private readonly SoundPlayer BgmPlayer;
@@ -63,6 +65,10 @@ namespace TileGameLib.Engine
 
             MapRenderer = new MapRenderer(Window.Display);
             MapRenderer.Viewport = new Rectangle(0, 0, Window.Display.Cols, Window.Display.Rows);
+
+            OverlayRenderer = new MapRenderer(Window.Display);
+            OverlayRenderer.Viewport = new Rectangle(0, 0, Window.Display.Cols, Window.Display.Rows);
+            OverlayRenderer.ClearViewportBeforeRender = false;
 
             CycleTimer = new Timer();
             CycleTimer.Interval = cycleInterval;
@@ -215,6 +221,21 @@ namespace TileGameLib.Engine
             return mapPath;
         }
 
+        public void LoadOverlay(string mapFile)
+        {
+            if (!System.IO.File.Exists(mapFile))
+                throw new TGLException($"Overlay map file not found: {mapFile}");
+
+            Overlay = MapFile.LoadFromRawBytes(mapFile);
+            OverlayRenderer.Map = Overlay;
+        }
+
+        public void SetOverlay(ObjectMap overlayMap)
+        {
+            Overlay = overlayMap;
+            OverlayRenderer.Map = Overlay;
+        }
+
         public ObjectMap LoadMap(string mapFile, MapController controller)
         {
             ObjectMap map = MapControllers.AddController(GetMapPath(mapFile), controller);
@@ -305,6 +326,16 @@ namespace TileGameLib.Engine
         public void ShowDebugWindow()
         {
             Debugger.Show();
+        }
+
+        public void SetWindowSize(int width, int height)
+        {
+            Window.Size = new Size(width, height);
+        }
+
+        public void SetMapViewport(int x, int y, int width, int height)
+        {
+            MapRenderer.Viewport = new Rectangle(x, y, width, height);
         }
 
         public void ScrollMapByDistance(int dx, int dy)

@@ -14,14 +14,8 @@ namespace TileGameLib.File
     public static class MapFile
     {
         private static readonly string Header = "TGLMAP01";
-
         private static readonly byte EmptyCell = 0;
         private static readonly byte OccupiedCell = 1;
-
-        private static string StringOrEmpty(string str)
-        {
-            return !string.IsNullOrWhiteSpace(str) ? str : "";
-        }
 
         public static MemoryFile SaveAsRawBytes(ObjectMap map)
         {
@@ -86,6 +80,23 @@ namespace TileGameLib.File
             {
                 foreach (byte row in pixels.PixelRows)
                     file.WriteByte(row);
+            }
+
+            GameObject oob = map.OutOfBoundsObject;
+            if (oob != null)
+            {
+                file.WriteByte(1);
+                file.WriteByte((byte)oob.Animation.Size);
+                foreach (Tile tile in oob.Animation.Frames)
+                {
+                    file.WriteShort((short)tile.Index);
+                    file.WriteByte((byte)tile.ForeColor);
+                    file.WriteByte((byte)tile.BackColor);
+                }
+            }
+            else
+            {
+                file.WriteByte(0);
             }
 
             file.WriteStringNullTerminated(StringOrEmpty(map.Extra));
@@ -179,6 +190,31 @@ namespace TileGameLib.File
                     pixels.PixelRows[i] = file.ReadByte();
             }
 
+            byte hasOutOfBoundsObject = file.ReadByte();
+
+            if (hasOutOfBoundsObject == 1)
+            {
+                int frameCount = file.ReadByte();
+
+                GameObject oob = new GameObject();
+                oob.Visible = true;
+                oob.Animation.Clear();
+                oob.Animation.AddFrames(frameCount, Tile.Blank);
+
+                foreach (Tile tile in oob.Animation.Frames)
+                {
+                    tile.Index = file.ReadShort();
+                    tile.ForeColor = file.ReadByte();
+                    tile.BackColor = file.ReadByte();
+                }
+
+                map.OutOfBoundsObject = oob;
+            }
+            else
+            {
+                map.OutOfBoundsObject = null;
+            }
+
             map.Extra = file.ReadStringNullTerminated();
             return map;
         }
@@ -208,6 +244,11 @@ namespace TileGameLib.File
             MemoryFile file = new MemoryFile();
             file.WriteString(json);
             file.SaveToPhysicalFile(path);
+        }
+
+        private static string StringOrEmpty(string str)
+        {
+            return !string.IsNullOrWhiteSpace(str) ? str : "";
         }
     }
 }

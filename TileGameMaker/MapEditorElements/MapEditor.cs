@@ -102,6 +102,11 @@ namespace TileGameMaker.MapEditorElements
             UpdatePickerPanelsWithClipboardTile();
         }
 
+        public GameObject GetClipboardObject()
+        {
+            return new GameObject(ClipboardObject);
+        }
+
         private void UpdatePickerPanelsWithClipboardTile()
         {
             Tile tile = ClipboardObject.Tile;

@@ -47,10 +47,10 @@ namespace TileGameMaker.Panels
 
             Print($"[Cell]");
             Print($"    Layer: {pos.Layer}, X: {pos.X}, Y: {pos.Y}");
-            Print();
 
             if (o != null)
             {
+                Print();
                 Print($"[Object]");
                 Print($"    ID: {o.Id}");
                 Print($"    Visible: {o.Visible}");
@@ -60,6 +60,27 @@ namespace TileGameMaker.Panels
                 if (o.Properties.Size > 0)
                 {
                     foreach (KeyValuePair<string, string> prop in o.Properties.Entries)
+                        Print($"        {prop.Key} = {prop.Value}");
+                }
+                else
+                {
+                    Print($"        <empty>");
+                }
+            }
+
+            GameObject clipboardObject = MapEditor.GetClipboardObject();
+
+            if (clipboardObject != null)
+            {
+                Print();
+                Print($"[ClipboardObject]");
+                Print($"    Visible: {clipboardObject.Visible}");
+                Print($"    Frames: {clipboardObject.Animation.Size}");
+                Print($"    Properties: ");
+
+                if (clipboardObject.Properties.Size > 0)
+                {
+                    foreach (KeyValuePair<string, string> prop in clipboardObject.Properties.Entries)
                         Print($"        {prop.Key} = {prop.Value}");
                 }
                 else

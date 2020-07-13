@@ -1058,5 +1058,12 @@ namespace TileGameMaker.Panels
             if (win.ShowDialog(this) == DialogResult.OK)
                 Map.SetObject(win.EditedObject, pos);
         }
+
+        private void BtnSetOutOfBoundsObject_Click(object sender, EventArgs e)
+        {
+            ObjectEditWindow win = new ObjectEditWindow(Editor, Map.OutOfBoundsObject);
+            if (win.ShowDialog(this) == DialogResult.OK)
+                Map.OutOfBoundsObject = win.EditedObject;
+        }
     }
 }

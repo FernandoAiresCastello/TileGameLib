@@ -196,6 +196,8 @@ namespace TileGameLib.Graphics
 
                     if (sourceX >= 0 && sourceY >= 0 && sourceX < Map.Width && sourceY < Map.Height)
                         RenderCell(layer.GetCell(sourceX, sourceY), destX, destY);
+                    else
+                        RenderOutOfBoundsObject(destX, destY);
                 }
             }
         }
@@ -207,6 +209,18 @@ namespace TileGameLib.Graphics
             if (o != null && (o.Visible || RenderInvisibleObjects))
             {
                 Tile tile = o.Animation.GetFrame(AnimationFrame);
+                if (tile != null)
+                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
+            }
+        }
+
+        private void RenderOutOfBoundsObject(int x, int y)
+        {
+            GameObject oob = Map.OutOfBoundsObject;
+
+            if (oob != null && (oob.Visible || RenderInvisibleObjects))
+            {
+                Tile tile = Map.OutOfBoundsObject.Animation.GetFrame(AnimationFrame);
                 if (tile != null)
                     Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
             }

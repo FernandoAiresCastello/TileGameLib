@@ -353,6 +353,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\select_by_difference.png" />
     <None Include="Resources\page_white_text.png" />
     <None Include="Resources\script_lightning1.png" />
     <None Include="Resources\script_lightning.png" />
