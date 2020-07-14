@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.MapEditorElements;
 using TileGameLib.GameElements;
+using TileGameLib.Components;
+using TileGameMaker.Windows;
 
 namespace TileGameMaker.Panels
 {
     public partial class GameObjectPanel : UserControl
     {
         public MapEditor MapEditor { get; set; }
+
+        private TiledDisplay ClipboardDisplay;
 
         public GameObjectPanel() : this(null)
         {
@@ -24,72 +28,116 @@ namespace TileGameMaker.Panels
         {
             MapEditor = editor;
             InitializeComponent();
+            ClipboardDisplay = new TiledDisplay(ClipboardPanel, 1, 1, 5);
+            ClipboardDisplay.Graphics.Palette = editor.Palette;
+            ClipboardDisplay.Graphics.Tileset = editor.Tileset;
+            ClipboardDisplay.Click += ClipboardDisplay_Click;
+        }
+
+        private void ClipboardDisplay_Click(object sender, EventArgs e)
+        {
+            ObjectEditWindow win = new ObjectEditWindow(MapEditor, MapEditor.GetClipboardObject());
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                MapEditor.CopyObjectToClipboard(win.EditedObject);
+                UpdateClipboardView();
+                Update();
+            }
+        }
+
+        private void Clear(TextBox field)
+        {
+            field.Clear();
         }
 
         public void Clear()
         {
-            TxtObject.Clear();
+            ClearPointedToObjectView();
+            ClearClipboardObjectView();
         }
 
-        private void Print(string line = null)
+        public void ClearPointedToObjectView()
+        {
+            Clear(TxtObject);
+        }
+
+        public void ClearClipboardObjectView()
+        {
+            Clear(TxtClipboard);
+        }
+
+        private void Print(TextBox field, string line = null)
         {
             if (line != null)
-                TxtObject.AppendText(line + Environment.NewLine);
+                field.AppendText(line + Environment.NewLine);
             else
-                TxtObject.AppendText(Environment.NewLine);
+                field.AppendText(Environment.NewLine);
         }
 
         public void Update(PositionedCell pc)
         {
-            Clear();
-            GameObject o = pc.Cell.Object;
-            ObjectPosition pos = pc.Position;
+            UpdatePointedToObjectView(pc);
+            UpdateClipboardView();
+            Update();
+        }
 
-            Print($"[Cell]");
-            Print($"    Layer: {pos.Layer}, X: {pos.X}, Y: {pos.Y}");
-
-            if (o != null)
-            {
-                Print();
-                Print($"[Object]");
-                Print($"    ID: {o.Id}");
-                Print($"    Visible: {o.Visible}");
-                Print($"    Frames: {o.Animation.Size}");
-                Print($"    Properties: ");
-
-                if (o.Properties.Size > 0)
-                {
-                    foreach (KeyValuePair<string, string> prop in o.Properties.Entries)
-                        Print($"        {prop.Key} = {prop.Value}");
-                }
-                else
-                {
-                    Print($"        <empty>");
-                }
-            }
+        public void UpdateClipboardView()
+        {
+            ClearClipboardObjectView();
 
             GameObject clipboardObject = MapEditor.GetClipboardObject();
 
             if (clipboardObject != null)
             {
-                Print();
-                Print($"[ClipboardObject]");
-                Print($"    Visible: {clipboardObject.Visible}");
-                Print($"    Frames: {clipboardObject.Animation.Size}");
-                Print($"    Properties: ");
+                ClipboardDisplay.Graphics.PutTile(0, 0, clipboardObject.Tile);
+                ClipboardDisplay.Refresh();
+
+                Print(TxtClipboard, $"[ClipboardObject]");
+                Print(TxtClipboard, $"    Visible: {clipboardObject.Visible}");
+                Print(TxtClipboard, $"    Frames: {clipboardObject.Animation.Size}");
+                Print(TxtClipboard, $"    Properties: ");
 
                 if (clipboardObject.Properties.Size > 0)
                 {
                     foreach (KeyValuePair<string, string> prop in clipboardObject.Properties.Entries)
-                        Print($"        {prop.Key} = {prop.Value}");
+                        Print(TxtClipboard, $"        {prop.Key} = {prop.Value}");
                 }
                 else
                 {
-                    Print($"        <empty>");
+                    Print(TxtClipboard, $"        <empty>");
                 }
             }
+        }
 
-            Update();
+        public void UpdatePointedToObjectView(PositionedCell pc)
+        {
+            ClearPointedToObjectView();
+
+            GameObject o = pc.Cell.Object;
+            ObjectPosition pos = pc.Position;
+
+            Print(TxtObject, $"[Cell]");
+            Print(TxtObject, $"    Layer: {pos.Layer}, X: {pos.X}, Y: {pos.Y}");
+
+            if (o != null)
+            {
+                Print(TxtObject);
+                Print(TxtObject, $"[Object]");
+                Print(TxtObject, $"    ID: {o.Id}");
+                Print(TxtObject, $"    Visible: {o.Visible}");
+                Print(TxtObject, $"    Frames: {o.Animation.Size}");
+                Print(TxtObject, $"    Properties: ");
+
+                if (o.Properties.Size > 0)
+                {
+                    foreach (KeyValuePair<string, string> prop in o.Properties.Entries)
+                        Print(TxtObject, $"        {prop.Key} = {prop.Value}");
+                }
+                else
+                {
+                    Print(TxtObject, $"        <empty>");
+                }
+            }
         }
     }
 }

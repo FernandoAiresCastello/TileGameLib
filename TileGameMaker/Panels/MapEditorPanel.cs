@@ -294,7 +294,7 @@ namespace TileGameMaker.Panels
         private void OnDisplayMouseLeave(EventArgs e)
         {
             LbEditModeInfo.Text = "";
-            GameObjectPanel.Clear();
+            GameObjectPanel.ClearPointedToObjectView();
         }
 
         private void PutCurrentObject(ObjectCell cell)

@@ -126,18 +126,21 @@ namespace TileGameMaker.MapEditorElements
         {
             ClipboardObject.Tile.Index = tileIx;
             ClipboardObject = new GameObject(new Tile(ClipboardObject.Tile));
+            GameObjectPanel.UpdateClipboardView();
         }
 
         public void SetClipboardForeColor(int forecolor)
         {
             ClipboardObject.Tile.ForeColor = forecolor;
             ClipboardObject = new GameObject(new Tile(ClipboardObject.Tile));
+            GameObjectPanel.UpdateClipboardView();
         }
 
         public void SetClipboardBackColor(int backcolor)
         {
             ClipboardObject.Tile.BackColor = backcolor;
             ClipboardObject = new GameObject(new Tile(ClipboardObject.Tile));
+            GameObjectPanel.UpdateClipboardView();
         }
 
         private void SaveUserSettings()
