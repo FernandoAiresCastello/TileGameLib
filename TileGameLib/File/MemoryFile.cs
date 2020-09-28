@@ -58,6 +58,11 @@ namespace TileGameLib.File
                 WriteByte((byte)ch);
         }
 
+        public void WriteLine(string str = "")
+        {
+            WriteString(str + "\n");
+        }
+
         public void WriteStringNullTerminated(string str)
         {
             WriteString(str);

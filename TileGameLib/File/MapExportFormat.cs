@@ -10,7 +10,8 @@ namespace TileGameLib.File
     public enum MapExportFormat
     {
         Raw,
-        Json
+        Json,
+        PlainText
     }
 
     public static class MapExportFileExtension
@@ -21,6 +22,7 @@ namespace TileGameLib.File
             {
                 case MapExportFormat.Raw: return FileExtensions.MapRaw;
                 case MapExportFormat.Json: return FileExtensions.MapJson;
+                case MapExportFormat.PlainText: return FileExtensions.MapPlainText;
             }
 
             throw new TGLException("Invalid export format: " + format.ToString());

@@ -1023,7 +1023,10 @@ namespace TileGameMaker.Panels
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = Editor.WorkspacePath;
-            dialog.Filter = $"TileGameMaker map JSON file (*.{fileExt})|*.{fileExt}";
+            if (format == MapExportFormat.Json)
+                dialog.Filter = $"TileGameMaker JSON map file (*.{fileExt})|*.{fileExt}";
+            else if (format == MapExportFormat.PlainText)
+                dialog.Filter = $"TileGameMaker plain text map file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -1072,6 +1075,11 @@ namespace TileGameMaker.Panels
             win.EnableOrientationChange = false;
             if (win.ShowDialog(this, Map.Extra) == DialogResult.OK)
                 Map.Extra = win.Text;
+        }
+
+        private void BtnExportPlainText(object sender, EventArgs e)
+        {
+            Export(MapExportFormat.PlainText);
         }
     }
 }

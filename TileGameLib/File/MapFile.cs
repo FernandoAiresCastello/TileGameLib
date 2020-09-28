@@ -235,7 +235,10 @@ namespace TileGameLib.File
 
         public static void Export(MapExportFormat format, ObjectMap map, string path)
         {
-            ExportJson(map, path);
+            if (format == MapExportFormat.Json)
+                ExportJson(map, path);
+            else if (format == MapExportFormat.PlainText)
+                ExportPlainText(map, path);
         }
 
         private static void ExportJson(ObjectMap map, string path)
@@ -246,9 +249,105 @@ namespace TileGameLib.File
             file.SaveToPhysicalFile(path);
         }
 
-        private static string StringOrEmpty(string str)
+        private static void ExportPlainText(ObjectMap map, string path)
         {
-            return !string.IsNullOrWhiteSpace(str) ? str : "";
+            StringBuilder text = new StringBuilder();
+            const string separator = "§";
+            void Append(object o) => text.Append(StringOrEmpty(o) + separator);
+
+            Append(Header);
+            Append(map.Id);
+            Append(map.Name);
+            Append(map.Width);
+            Append(map.Height);
+            Append(map.BackColor);
+            Append(map.Layers.Count);
+
+            for (int layerIndex = 0; layerIndex < map.Layers.Count; layerIndex++)
+            {
+                ObjectLayer layer = map.Layers[layerIndex];
+
+                for (int y = 0; y < layer.Height; y++)
+                {
+                    for (int x = 0; x < layer.Width; x++)
+                    {
+                        GameObject o = layer.GetObject(x, y);
+                        
+                        if (o != null)
+                        {
+                            Append(1);
+                            Append(o.Visible ? 1 : 0);
+
+                            Append(o.Animation.Size);
+                            foreach (Tile tile in o.Animation.Frames)
+                            {
+                                Append((short)tile.Index);
+                                Append((byte)tile.ForeColor);
+                                Append((byte)tile.BackColor);
+                            }
+
+                            Append(o.Properties.Entries.Count);
+                            foreach (var property in o.Properties.Entries)
+                            {
+                                Append(property.Key);
+                                Append(property.Value);
+                            }
+                        }
+                        else
+                        {
+                            Append(0);
+                        }
+                    }
+                }
+            }
+
+            Append(map.Palette.Size);
+            foreach (int argb in map.Palette.Colors)
+            {
+                Color color = Color.FromArgb(argb);
+                Append(color.R + ",");
+                Append(color.G + ",");
+                Append(color.B + ";");
+            }
+
+            Append(map.Tileset.Size);
+            foreach (TilePixels pixels in map.Tileset.Pixels)
+            {
+                foreach (byte row in pixels.PixelRows)
+                    Append(row);
+            }
+
+            GameObject oob = map.OutOfBoundsObject;
+            if (oob != null)
+            {
+                Append(1);
+
+                Append(oob.Animation.Size);
+                foreach (Tile tile in oob.Animation.Frames)
+                {
+                    Append((short)tile.Index);
+                    Append((byte)tile.ForeColor);
+                    Append((byte)tile.BackColor);
+                }
+            }
+            else
+            {
+                Append(0);
+            }
+
+            Append(map.Extra);
+
+            MemoryFile file = new MemoryFile();
+            file.WriteString(text.ToString());
+            file.SaveToPhysicalFile(path);
+        }
+
+        private static string StringOrEmpty(object o)
+        {
+            if (o == null)
+                return "";
+
+            return !string.IsNullOrWhiteSpace(o.ToString()) ? o.ToString() : "";
         }
     }
 }
