@@ -40,7 +40,7 @@ namespace TileGameMaker.Panels
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
 
-        private static readonly string MapFileExt = FileExtensions.MapPlainText;
+        private static readonly string MapFileExt = FileExtensions.Map;
         private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
 
         public MapEditorPanel()
@@ -75,7 +75,6 @@ namespace TileGameMaker.Panels
             RenderMap();
             Refresh();
             UpdateLayerComboBox();
-            UpdateRecentFileList();
         }
 
         public void ResizeMapView(int width, int height)
@@ -541,11 +540,15 @@ namespace TileGameMaker.Panels
         public void LoadMap()
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = Editor.WorkspacePath;
             dialog.Filter = MapFileFilter;
+            if (!string.IsNullOrWhiteSpace(Editor.MapFile))
+                dialog.InitialDirectory = new FileInfo(Editor.MapFile).Directory.FullName;
 
             if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                DisableControlTemporarily();
                 LoadMap(dialog.FileName);
+            }
         }
 
         public void LoadMap(string file)
@@ -558,7 +561,6 @@ namespace TileGameMaker.Panels
                 Editor.ResizeMap(Map.Width, Map.Height);
                 Editor.ClearClipboard();
                 Editor.RecentFiles.Add(file);
-                UpdateRecentFileList();
                 UpdateLayerComboBox();
             }
             catch (Exception ex)
@@ -567,40 +569,23 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void UpdateRecentFileList()
+        private void DisableControlTemporarily()
         {
-            BtnRecentFiles.DropDownItems.Clear();
-
-            foreach (string file in Editor.RecentFiles.Files)
+            Enabled = false;
+            Timer timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += (sender, e) =>
             {
-                ToolStripMenuItem fileItem = new ToolStripMenuItem(file);
-                fileItem.Click += BtnRecentFileItem_Click;
-                BtnRecentFiles.DropDownItems.Add(fileItem);
-            }
-
-            if (BtnRecentFiles.DropDownItems.Count > 0)
-            {
-                BtnRecentFiles.DropDownItems.Add(new ToolStripSeparator());
-                ToolStripMenuItem clearAll = new ToolStripMenuItem("Clear recent files list");
-                clearAll.Click += BtnClearAllRecentItems_Click;
-                BtnRecentFiles.DropDownItems.Add(clearAll);
-            }
-            else
-            {
-                BtnRecentFiles.DropDownItems.Add("(Empty)").Enabled = false;
-            }
+                Enabled = true;
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void BtnRecentFileItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem fileItem = (ToolStripMenuItem)sender;
             LoadMap(fileItem.Text);
-        }
-
-        private void BtnClearAllRecentItems_Click(object sender, EventArgs e)
-        {
-            Editor.RecentFiles.Files.Clear();
-            UpdateRecentFileList();
         }
 
         public void CreateNewMap()

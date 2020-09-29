@@ -56,7 +56,7 @@ namespace TileGameMaker.Panels
             {
                 FileInfo file = new FileInfo(name);
 
-                if (file.Extension == "." + FileExtensions.MapRaw)
+                if (file.Extension == "." + FileExtensions.Map)
                 {
                     double kb = file.Length / 1024d;
                     WorkspaceGrid.Rows.Add(file.Name, kb.ToString("0.##"), file.LastWriteTime);
