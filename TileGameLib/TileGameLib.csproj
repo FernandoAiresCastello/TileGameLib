@@ -87,7 +87,6 @@
     <Compile Include="GameElements\ObjectMap.cs" />
     <Compile Include="Exceptions\TGLException.cs" />
     <Compile Include="File\MemoryFile.cs" />
-    <Compile Include="File\MapArchive.cs" />
     <Compile Include="File\Archive.cs" />
     <Compile Include="GameElements\ObjectPosition.cs" />
     <Compile Include="GameElements\PropertyList.cs" />

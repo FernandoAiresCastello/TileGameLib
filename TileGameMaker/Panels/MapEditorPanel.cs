@@ -40,7 +40,7 @@ namespace TileGameMaker.Panels
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
 
-        private static readonly string MapFileExt = FileExtensions.MapRaw;
+        private static readonly string MapFileExt = FileExtensions.MapPlainText;
         private static readonly string MapFileFilter = $"TileGameMaker map file (*.{MapFileExt})|*.{MapFileExt}";
 
         public MapEditorPanel()
@@ -501,14 +501,14 @@ namespace TileGameMaker.Panels
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    MapFile.SaveAsRawBytes(Map, dialog.FileName);
+                    MapFile.Save(Map, dialog.FileName);
                     Editor.MapFile = dialog.FileName;
                     success = true;
                 }
             }
             else if (Alert.Confirm($"Overwrite file {Editor.MapFile}?"))
             {
-                MapFile.SaveAsRawBytes(Map, Editor.MapFile);
+                MapFile.Save(Map, Editor.MapFile);
                 success = true;
             }
 
@@ -530,7 +530,7 @@ namespace TileGameMaker.Panels
             {
                 Map.GenerateId();
                 Map.Name = Editor.MapName;
-                MapFile.SaveAsRawBytes(Map, dialog.FileName);
+                MapFile.Save(Map, dialog.FileName);
                 Editor.MapFile = dialog.FileName;
                 Editor.UpdateMapProperties();
                 Editor.WorkspacePanel.UpdateWorkspace();
@@ -552,7 +552,7 @@ namespace TileGameMaker.Panels
         {
             try
             {
-                MapFile.LoadFromRawBytes(ref Map, file);
+                MapFile.Load(ref Map, file);
                 Editor.MapFile = file;
                 Editor.UpdateMapProperties();
                 Editor.ResizeMap(Map.Width, Map.Height);
@@ -601,52 +601,6 @@ namespace TileGameMaker.Panels
         {
             Editor.RecentFiles.Files.Clear();
             UpdateRecentFileList();
-        }
-
-        public void SaveMapToArchive(string path)
-        {
-            ArchiveWindow mgr = new ArchiveWindow(path);
-
-            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Save, MapFileExt) == DialogResult.OK)
-            {
-                string entry = mgr.SelectedEntry;
-                if (mgr.Contains(entry) && !Alert.Confirm($"File \"{entry}\" already exists. Overwrite?"))
-                    return;
-
-                Map.Name = Editor.MapName;
-                MapArchive arch = new MapArchive(path);
-                string file = mgr.SelectedEntry + "." + MapFileExt;
-                arch.Save(Map, file);
-                Editor.MapFile = file;
-                Editor.UpdateMapProperties();
-                Refresh();
-                Alert.Info("File saved successfully!");
-            }
-        }
-
-        public void LoadMapFromArchive(string path)
-        {
-            ArchiveWindow mgr = new ArchiveWindow(path);
-
-            if (mgr.ShowDialog(this, ArchiveWindow.Mode.Load, MapFileExt) == DialogResult.OK)
-            {
-                string entry = mgr.SelectedEntry;
-
-                if (!mgr.Contains(entry))
-                {
-                    Alert.Warning($"File \"{entry}\" not found");
-                    return;
-                }
-
-                MapArchive arch = new MapArchive(path);
-                string file = mgr.SelectedEntry;
-                arch.Load(Map, file);
-                Editor.MapFile = file;
-                Editor.UpdateMapProperties();
-                Editor.ResizeMap(Map.Width, Map.Height);
-                Editor.ClearClipboard();
-                UpdateLayerComboBox();
-            }
         }
 
         public void CreateNewMap()
@@ -1012,29 +966,6 @@ namespace TileGameMaker.Panels
             Display.Refresh();
         }
 
-        private void BtnExportJson_Click(object sender, EventArgs e)
-        {
-            Export(MapExportFormat.Json);
-        }
-
-        public void Export(MapExportFormat format)
-        {
-            string fileExt = MapExportFileExtension.Get(format);
-
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = Editor.WorkspacePath;
-            if (format == MapExportFormat.Json)
-                dialog.Filter = $"TileGameMaker JSON map file (*.{fileExt})|*.{fileExt}";
-            else if (format == MapExportFormat.PlainText)
-                dialog.Filter = $"TileGameMaker plain text map file (*.{fileExt})|*.{fileExt}";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                MapFile.Export(format, Map, dialog.FileName);
-                Alert.Info("Map exported successfully!");
-            }
-        }
-
         private void BtnFind_Click(object sender, EventArgs e)
         {
             FindObjects();
@@ -1058,14 +989,14 @@ namespace TileGameMaker.Panels
         private void EditObject(PositionedObject po, ObjectPosition pos)
         {
             ObjectEditWindow win = new ObjectEditWindow(Editor, po, Map, pos);
-            if (win.ShowDialog(this) == DialogResult.OK)
+            if (win.ShowDialog(this, "Edit object") == DialogResult.OK)
                 Map.SetObject(win.EditedObject, pos);
         }
 
         private void BtnSetOutOfBoundsObject_Click(object sender, EventArgs e)
         {
             ObjectEditWindow win = new ObjectEditWindow(Editor, Map.OutOfBoundsObject);
-            if (win.ShowDialog(this) == DialogResult.OK)
+            if (win.ShowDialog(this, "Edit out of bounds object") == DialogResult.OK)
                 Map.OutOfBoundsObject = win.EditedObject;
         }
 
@@ -1075,11 +1006,6 @@ namespace TileGameMaker.Panels
             win.EnableOrientationChange = false;
             if (win.ShowDialog(this, Map.Extra) == DialogResult.OK)
                 Map.Extra = win.Text;
-        }
-
-        private void BtnExportPlainText(object sender, EventArgs e)
-        {
-            Export(MapExportFormat.PlainText);
         }
     }
 }

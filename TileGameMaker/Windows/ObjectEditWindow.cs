@@ -160,22 +160,19 @@ namespace TileGameMaker.Windows
             }
         }
 
-        public DialogResult ShowDialog(Control parent)
+        public DialogResult ShowDialog(Control parent, string title)
         {
             if (OriginalData != null)
             {
                 ObjectPosition position = OriginalData.Position;
 
-                Text = (IsNewObject ? "Create new object" : "Edit object") +
-                    $" @ L{position.Layer} X{position.X} Y{position.Y}";
-
+                Text = $"{title} @ L{position.Layer} X{position.X} Y{position.Y}";
                 NewData = new PositionedObject(OriginalData);
                 NewData.Object.Id = OriginalData.Object.Id;
             }
             else if (OriginalObject != null)
             {
-                Text = IsNewObject ? "Set out of bounds object" : "Edit out of bounds object";
-
+                Text = title;
                 NewObject = new GameObject(OriginalObject);
                 NewObject.Id = OriginalObject.Id;
             }

@@ -37,7 +37,7 @@ namespace TileGameMaker.Panels
         private void ClipboardDisplay_Click(object sender, EventArgs e)
         {
             ObjectEditWindow win = new ObjectEditWindow(MapEditor, MapEditor.GetClipboardObject());
-            if (win.ShowDialog(this) == DialogResult.OK)
+            if (win.ShowDialog(this, "Edit clipboard object") == DialogResult.OK)
             {
                 MapEditor.CopyObjectToClipboard(win.EditedObject);
                 UpdateClipboardView();

@@ -226,7 +226,7 @@ namespace TileGameLib.Engine
             if (!System.IO.File.Exists(mapFile))
                 throw new TGLException($"Overlay map file not found: {mapFile}");
 
-            Overlay = MapFile.LoadFromRawBytes(mapFile);
+            Overlay = MapFile.Load(mapFile);
             OverlayRenderer.Map = Overlay;
         }
 
@@ -293,7 +293,7 @@ namespace TileGameLib.Engine
         public void ReloadMap(string mapId)
         {
             MapController controller = MapControllers.FindById(mapId);
-            controller.Map.SetEqual(MapFile.LoadFromRawBytes(GetMapPath(controller.MapFile)));
+            controller.Map.SetEqual(MapFile.Load(GetMapPath(controller.MapFile)));
             SetMapController(controller);
             controller.OnLoad();
             EnterMap(controller.Map);

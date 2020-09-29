@@ -43,9 +43,6 @@
             this.BtnSaveRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveRawBytesAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnExportTBRLGPT = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnExportJson = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
@@ -208,19 +205,19 @@
             // 
             this.BtnLoadRawBytes.Name = "BtnLoadRawBytes";
             this.BtnLoadRawBytes.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.BtnLoadRawBytes.Size = new System.Drawing.Size(158, 22);
+            this.BtnLoadRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnLoadRawBytes.Text = "Open";
             this.BtnLoadRawBytes.Click += new System.EventHandler(this.BtnLoadRawBytes_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // BtnRecentFiles
             // 
             this.BtnRecentFiles.Name = "BtnRecentFiles";
-            this.BtnRecentFiles.Size = new System.Drawing.Size(158, 22);
+            this.BtnRecentFiles.Size = new System.Drawing.Size(180, 22);
             this.BtnRecentFiles.Text = "Open recent file";
             // 
             // BtnSaveMap
@@ -230,8 +227,7 @@
             this.BtnSaveMap.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnSaveRawBytes,
             this.BtnSaveRawBytesAs,
-            this.toolStripSeparator7,
-            this.BtnExport});
+            this.toolStripSeparator7});
             this.BtnSaveMap.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSaveMap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnSaveMap.Name = "BtnSaveMap";
@@ -259,29 +255,6 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(181, 6);
-            // 
-            // BtnExport
-            // 
-            this.BtnExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnExportTBRLGPT,
-            this.BtnExportJson});
-            this.BtnExport.Name = "BtnExport";
-            this.BtnExport.Size = new System.Drawing.Size(184, 22);
-            this.BtnExport.Text = "Export";
-            // 
-            // BtnExportTBRLGPT
-            // 
-            this.BtnExportTBRLGPT.Name = "BtnExportTBRLGPT";
-            this.BtnExportTBRLGPT.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportTBRLGPT.Text = "Plain text";
-            this.BtnExportTBRLGPT.Click += new System.EventHandler(this.BtnExportPlainText);
-            // 
-            // BtnExportJson
-            // 
-            this.BtnExportJson.Name = "BtnExportJson";
-            this.BtnExportJson.Size = new System.Drawing.Size(180, 22);
-            this.BtnExportJson.Text = "JSON";
-            this.BtnExportJson.Click += new System.EventHandler(this.BtnExportJson_Click);
             // 
             // toolStripSeparator3
             // 
@@ -700,13 +673,10 @@
         private System.Windows.Forms.ToolStripMenuItem BtnRecentFiles;
         private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem BtnExport;
-        private System.Windows.Forms.ToolStripMenuItem BtnExportJson;
         private System.Windows.Forms.ToolStripButton BtnFind;
         private System.Windows.Forms.ToolStripButton BtnRunScript;
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
         private System.Windows.Forms.ToolStripButton BtnSetExtra;
-        private System.Windows.Forms.ToolStripMenuItem BtnExportTBRLGPT;
     }
 }
