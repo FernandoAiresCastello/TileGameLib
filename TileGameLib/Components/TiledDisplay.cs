@@ -28,13 +28,14 @@ namespace TileGameLib.Components
         public int TileCount => Cols * Rows;
         public Color GetMainGridColor() => GridColor;
         public Color GetAuxGridColor() => AuxGridColor;
-        public int GetAuxGridInterval() => AuxGridInterval;
+        public int GetAuxGridIntervalX() => AuxGridIntervalX;
+        public int GetAuxGridIntervalY() => AuxGridIntervalY;
 
         protected Bitmap Grid;
         protected Color GridColor;
         protected Color AuxGridColor;
-        protected bool AuxGridEnabled = false;
-        protected int AuxGridInterval = 0;
+        protected int AuxGridIntervalX = 0;
+        protected int AuxGridIntervalY = 0;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
@@ -106,7 +107,7 @@ namespace TileGameLib.Components
             UpdateSize();
         }
 
-        public void SetGridColor(Color color)
+        public void SetMainGridColor(Color color)
         {
             GridColor = color;
             MakeGrid();
@@ -118,27 +119,30 @@ namespace TileGameLib.Components
             MakeGrid();
         }
 
-        public void SetAuxGridInterval(int interval)
+        public void SetAuxGridInterval(int intervalX, int intervalY)
         {
-            AuxGridInterval = interval;
-            if (AuxGridInterval <= 0)
-                EnableAltGrid(false);
-            else
-                EnableAltGrid(true);
+            SetAuxGridIntervalX(intervalX);
+            SetAuxGridIntervalY(intervalY);
+        }
 
+        public void SetAuxGridIntervalX(int interval)
+        {
+            AuxGridIntervalX = interval;
             MakeGrid();
         }
 
-        public void SetAuxGrid(Color color, int interval)
+        public void SetAuxGridIntervalY(int interval)
+        {
+            AuxGridIntervalY = interval;
+            MakeGrid();
+        }
+
+        public void SetAuxGrid(Color color, int intervalX, int intervalY)
         {
             AuxGridColor = color;
-            AuxGridInterval = interval;
+            AuxGridIntervalX = intervalX;
+            AuxGridIntervalY = intervalY;
             MakeGrid();
-        }
-
-        public void EnableAltGrid(bool enable)
-        {
-            AuxGridEnabled = enable;
         }
 
         private void UpdateSize()
@@ -294,20 +298,20 @@ namespace TileGameLib.Components
 
                 Pen gridPen = new Pen(GridColor);
                 int incY = Zoom * TilePixels.RowCount;
-                int incX = Zoom * TilePixels.RowLength;
                 for (int y = -1; y < Height; y += incY)
                     g.DrawLine(gridPen, 0, y, Width, y);
+                int incX = Zoom * TilePixels.RowLength;
                 for (int x = -1; x < Width; x += incX)
                     g.DrawLine(gridPen, x, 0, x, Height);
                 gridPen.Dispose();
 
-                if (AuxGridEnabled)
+                if (AuxGridIntervalX > 0 && AuxGridIntervalY > 0)
                 {
                     Pen altGridPen = new Pen(AuxGridColor);
-                    int altIncY = incY * AuxGridInterval;
-                    int altIncX = incX * AuxGridInterval;
+                    int altIncY = incY * AuxGridIntervalY;
                     for (int y = -1; y < Height; y += altIncY)
                         g.DrawLine(altGridPen, 0, y, Width, y);
+                    int altIncX = incX * AuxGridIntervalX;
                     for (int x = -1; x < Width; x += altIncX)
                         g.DrawLine(altGridPen, x, 0, x, Height);
                     altGridPen.Dispose();

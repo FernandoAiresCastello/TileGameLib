@@ -149,7 +149,8 @@ namespace TileGameMaker.MapEditorElements
             Settings.Set("Workspace", WorkspacePath);
             Settings.Set("MainGridColor", MapEditorControl.Display.GetMainGridColor().ToArgb().ToString());
             Settings.Set("AuxGridColor", MapEditorControl.Display.GetAuxGridColor().ToArgb().ToString());
-            Settings.Set("AuxGridInterval", MapEditorControl.Display.GetAuxGridInterval().ToString());
+            Settings.Set("AuxGridIntervalX", MapEditorControl.Display.GetAuxGridIntervalX().ToString());
+            Settings.Set("AuxGridIntervalY", MapEditorControl.Display.GetAuxGridIntervalY().ToString());
             //RecentFiles.Save();
             Settings.Save();
         }
@@ -169,7 +170,7 @@ namespace TileGameMaker.MapEditorElements
             if (Settings.Has("MainGridColor"))
             {
                 int color = int.Parse(Settings.Get("MainGridColor"));
-                MapEditorControl.Display.SetGridColor(Color.FromArgb(color));
+                MapEditorControl.Display.SetMainGridColor(Color.FromArgb(color));
             }
 
             if (Settings.Has("AuxGridColor"))
@@ -178,10 +179,16 @@ namespace TileGameMaker.MapEditorElements
                 MapEditorControl.Display.SetAuxGridColor(Color.FromArgb(color));
             }
 
-            if (Settings.Has("AuxGridInterval"))
+            if (Settings.Has("AuxGridIntervalX"))
             {
-                int interval = int.Parse(Settings.Get("AuxGridInterval"));
-                MapEditorControl.Display.SetAuxGridInterval(interval);
+                int interval = int.Parse(Settings.Get("AuxGridIntervalX"));
+                MapEditorControl.Display.SetAuxGridIntervalX(interval);
+            }
+
+            if (Settings.Has("AuxGridIntervalY"))
+            {
+                int interval = int.Parse(Settings.Get("AuxGridIntervalY"));
+                MapEditorControl.Display.SetAuxGridIntervalY(interval);
             }
 
             if (Settings.Has("TilesetFile"))

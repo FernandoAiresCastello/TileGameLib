@@ -25,10 +25,16 @@ namespace TileGameMaker.Windows
             set => BtnAuxColor.BackColor = value;
         }
 
-        public int AuxGridInterval
+        public int AuxGridIntervalX
         {
-            get => decimal.ToInt32(TxtAuxInterval.Value);
-            set => TxtAuxInterval.Value = value;
+            get => decimal.ToInt32(TxtAuxIntervalX.Value);
+            set => TxtAuxIntervalX.Value = value;
+        }
+
+        public int AuxGridIntervalY
+        {
+            get => decimal.ToInt32(TxtAuxIntervalY.Value);
+            set => TxtAuxIntervalY.Value = value;
         }
 
         private GridSetupWindow()
@@ -41,7 +47,8 @@ namespace TileGameMaker.Windows
             InitializeComponent();
             MainGridColor = display.GetMainGridColor();
             AuxGridColor = display.GetAuxGridColor();
-            AuxGridInterval = display.GetAuxGridInterval();
+            AuxGridIntervalX = display.GetAuxGridIntervalX();
+            AuxGridIntervalY = display.GetAuxGridIntervalY();
             TxtMainOpacity.Value = display.GetMainGridColor().A;
             TxtAuxOpacity.Value = display.GetAuxGridColor().A;
         }

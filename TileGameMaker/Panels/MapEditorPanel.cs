@@ -57,7 +57,7 @@ namespace TileGameMaker.Panels
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
             Display.ShowGrid = true;
-            Display.SetGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
+            Display.SetMainGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display);
             MapRenderer.RenderInvisibleObjects = true;
             BtnRenderInvisibleObjects.Checked = MapRenderer.RenderInvisibleObjects;
@@ -403,8 +403,8 @@ namespace TileGameMaker.Panels
 
             if (win.ShowDialog(this) == DialogResult.OK)
             {
-                Display.SetGridColor(win.MainGridColor);
-                Display.SetAuxGrid(win.AuxGridColor, win.AuxGridInterval);
+                Display.SetMainGridColor(win.MainGridColor);
+                Display.SetAuxGrid(win.AuxGridColor, win.AuxGridIntervalX, win.AuxGridIntervalY);
                 Refresh();
             }
         }
