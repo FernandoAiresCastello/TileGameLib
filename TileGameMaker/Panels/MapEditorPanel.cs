@@ -436,7 +436,7 @@ namespace TileGameMaker.Panels
                     SetReplaceModeLabel();
                     break;
                 case EditMode.EditObject:
-                    Display.Cursor = GetCursor(Properties.Resources.brick_edit);
+                    Display.Cursor = Cursors.Hand;
                     button = BtnEditObject;
                     break;
             }
@@ -861,6 +861,9 @@ namespace TileGameMaker.Panels
                     case Keys.F:
                         FindObjects();
                         break;
+                    case Keys.W:
+                        OpenWorkspace();
+                        break;
                     case Keys.D1:
                         SetMode(EditMode.Draw);
                         break;
@@ -991,6 +994,17 @@ namespace TileGameMaker.Panels
             win.EnableOrientationChange = false;
             if (win.ShowDialog(this, Map.Extra) == DialogResult.OK)
                 Map.Extra = win.Text;
+        }
+
+        private void BtnWorkspace_Click(object sender, EventArgs e)
+        {
+            OpenWorkspace();
+        }
+
+        private void OpenWorkspace()
+        {
+            WorkspaceWindow window = new WorkspaceWindow(Editor);
+            window.ShowDialog(this);
         }
     }
 }

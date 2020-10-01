@@ -22,6 +22,14 @@ namespace TileGameMaker.Windows
             InitializeComponent();
             WorkspacePanel.MapEditor = editor;
             WorkspacePanel.UpdateWorkspace();
+
+            KeyDown += WorkspaceWindow_KeyDown;
+        }
+
+        private void WorkspaceWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Close();
         }
     }
 }

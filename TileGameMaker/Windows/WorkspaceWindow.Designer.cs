@@ -33,8 +33,10 @@
             // 
             // WorkspacePanel
             // 
+            this.WorkspacePanel.CloseOnLoadFile = true;
             this.WorkspacePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WorkspacePanel.Location = new System.Drawing.Point(0, 0);
+            this.WorkspacePanel.MapEditor = null;
             this.WorkspacePanel.Name = "WorkspacePanel";
             this.WorkspacePanel.Size = new System.Drawing.Size(308, 450);
             this.WorkspacePanel.TabIndex = 0;
@@ -45,6 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 450);
             this.Controls.Add(this.WorkspacePanel);
+            this.KeyPreview = true;
             this.Name = "WorkspaceWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Workspace";

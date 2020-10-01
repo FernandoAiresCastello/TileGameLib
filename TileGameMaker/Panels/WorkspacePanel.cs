@@ -11,6 +11,7 @@ using TileGameMaker.MapEditorElements;
 using System.IO;
 using TileGameLib.Util;
 using TileGameLib.File;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace TileGameMaker.Panels
 {
@@ -31,13 +32,14 @@ namespace TileGameMaker.Panels
 
         private void BtnOpenWorkspace_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.RootFolder = Environment.SpecialFolder.MyComputer;
-            dialog.SelectedPath = MapEditor.WorkspacePath;
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            dialog.DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+            dialog.InitialDirectory = MapEditor.WorkspacePath;
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog(Parent.Handle) == CommonFileDialogResult.Ok)
             {
-                MapEditor.WorkspacePath = dialog.SelectedPath;
+                MapEditor.WorkspacePath = dialog.FileName;
                 UpdateWorkspace();
             }
         }

@@ -32,7 +32,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnViewWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnOpenMusicComposer = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,29 +87,18 @@
             // 
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(92, 22);
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnViewWorkspace,
             this.BtnDataExtractor,
             this.BtnOpenMusicComposer});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // BtnViewWorkspace
-            // 
-            this.BtnViewWorkspace.Image = global::TileGameMaker.Properties.Resources.folder_vertical_open;
-            this.BtnViewWorkspace.Name = "BtnViewWorkspace";
-            this.BtnViewWorkspace.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.W)));
-            this.BtnViewWorkspace.Size = new System.Drawing.Size(235, 22);
-            this.BtnViewWorkspace.Text = "View workspace";
-            this.BtnViewWorkspace.Click += new System.EventHandler(this.BtnViewWorkspace_Click);
             // 
             // BtnDataExtractor
             // 
@@ -118,7 +106,7 @@
             this.BtnDataExtractor.Name = "BtnDataExtractor";
             this.BtnDataExtractor.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.D)));
-            this.BtnDataExtractor.Size = new System.Drawing.Size(235, 22);
+            this.BtnDataExtractor.Size = new System.Drawing.Size(221, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
@@ -126,7 +114,7 @@
             // 
             this.BtnOpenMusicComposer.Image = global::TileGameMaker.Properties.Resources.music;
             this.BtnOpenMusicComposer.Name = "BtnOpenMusicComposer";
-            this.BtnOpenMusicComposer.Size = new System.Drawing.Size(235, 22);
+            this.BtnOpenMusicComposer.Size = new System.Drawing.Size(221, 22);
             this.BtnOpenMusicComposer.Text = "Online music composer";
             this.BtnOpenMusicComposer.Click += new System.EventHandler(this.BtnOpenMusicComposer_Click);
             // 
@@ -143,7 +131,7 @@
             this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
             this.MiAbout.Name = "MiAbout";
             this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MiAbout.Size = new System.Drawing.Size(135, 22);
+            this.MiAbout.Size = new System.Drawing.Size(180, 22);
             this.MiAbout.Text = "About...";
             this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 
@@ -354,7 +342,6 @@
         private System.Windows.Forms.Panel CommandLinePanel;
         private System.Windows.Forms.ToolStripMenuItem BtnDataExtractor;
         private System.Windows.Forms.SplitContainer CentralSplitContainer;
-        private System.Windows.Forms.ToolStripMenuItem BtnViewWorkspace;
         private System.Windows.Forms.ToolStripMenuItem BtnOpenMusicComposer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel MapEditorPanel;

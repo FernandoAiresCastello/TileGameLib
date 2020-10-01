@@ -147,12 +147,6 @@ namespace TileGameMaker.Windows
             }
         }
 
-        private void BtnViewWorkspace_Click(object sender, EventArgs e)
-        {
-            WorkspaceWindow window = new WorkspaceWindow(MapEditor);
-            window.ShowDialog(this);
-        }
-
         private void BtnOpenMusicComposer_Click(object sender, EventArgs e)
         {
             Process.Start("https://beepbox.co/");
