@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
@@ -363,6 +363,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\hand_point_090.png" />
     <None Include="Resources\select_by_difference.png" />
     <None Include="Resources\page_white_text.png" />
     <None Include="Resources\script_lightning1.png" />
@@ -456,7 +457,10 @@
   <PropertyGroup>
     <PostBuildEvent>cd "$(TargetDir)"
 copy "$(TargetFileName)" "$(ProjectDir)\..\Binaries\$(TargetFileName)"
-copy "$(TargetFileName).config" "$(ProjectDir)\..\Binaries\$(TargetFileName).config"</PostBuildEvent>
+copy "$(TargetFileName).config" "$(ProjectDir)\..\Binaries\$(TargetFileName).config"
+copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.dll"
+copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.Shell.dll"
+copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.ShellExtensions.dll"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>powershell -File "$(ProjectDir)SetBuildNumber.ps1"</PreBuildEvent>

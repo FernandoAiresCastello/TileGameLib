@@ -34,8 +34,10 @@ namespace TileGameMaker.Panels
         private ObjectBlockClipboard ClipboardObjects;
         private GameObjectPanel GameObjectPanel;
 
-        private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
+        private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject, FollowLink }
         private EditMode Mode;
+
+        private Stack<string> ObjectLinks = new Stack<string>();
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
@@ -203,6 +205,17 @@ namespace TileGameMaker.Panels
                 else
                 {
                     CopyObjectToTemplate(cell);
+                }
+            }
+            else if (Mode == EditMode.FollowLink)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    FollowObjectLink(cell.Object);
+                }
+                else
+                {
+                    ReturnFromObjectLink();
                 }
             }
         }
@@ -401,6 +414,7 @@ namespace TileGameMaker.Panels
         private void BtnReplaceObjects_Click(object sender, EventArgs e) => SetMode(EditMode.Replace);
         private void BtnSelect_Click(object sender, EventArgs e) => SetMode(EditMode.Selection);
         private void BtnEditObject_Click(object sender, EventArgs e) => SetMode(EditMode.EditObject);
+        private void BtnFollowLink_Click(object sender, EventArgs e) => SetMode(EditMode.FollowLink);
 
         private void SetMode(EditMode mode)
         {
@@ -436,8 +450,12 @@ namespace TileGameMaker.Panels
                     SetReplaceModeLabel();
                     break;
                 case EditMode.EditObject:
-                    Display.Cursor = Cursors.Hand;
+                    Display.Cursor = GetCursor(Properties.Resources.brick_edit);
                     button = BtnEditObject;
+                    break;
+                case EditMode.FollowLink:
+                    Display.Cursor = GetCursor(Properties.Resources.hand_point_090);
+                    button = BtnFollowLink;
                     break;
             }
 
@@ -458,6 +476,7 @@ namespace TileGameMaker.Panels
             BtnDelete.Checked = false;
             BtnReplaceObjects.Checked = false;
             BtnEditObject.Checked = false;
+            BtnFollowLink.Checked = false;
 
             button.Checked = true;
         }
@@ -545,22 +564,21 @@ namespace TileGameMaker.Panels
                 dialog.InitialDirectory = new FileInfo(Editor.MapFile).Directory.FullName;
 
             if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                DisableControlTemporarily();
                 LoadMap(dialog.FileName);
-            }
         }
 
         public void LoadMap(string file)
         {
             try
             {
+                DisableControlTemporarily();
+
                 MapFile.Load(ref Map, file);
                 Editor.MapFile = file;
                 Editor.UpdateMapProperties();
                 Editor.ResizeMap(Map.Width, Map.Height);
                 Editor.ClearClipboard();
-                Editor.RecentFiles.Add(file);
+                //Editor.RecentFiles.Add(file);
                 UpdateLayerComboBox();
             }
             catch (Exception ex)
@@ -1005,6 +1023,59 @@ namespace TileGameMaker.Panels
         {
             WorkspaceWindow window = new WorkspaceWindow(Editor);
             window.ShowDialog(this);
+        }
+
+        private void FollowObjectLink(GameObject o)
+        {
+            if (o == null)
+            {
+                Alert.Warning("The clicked cell is empty");
+            }
+            else
+            {
+                if (o.Properties.Has("link"))
+                {
+                    string linkFile = o.Properties.GetAsString("link").Trim();
+
+                    if (!string.IsNullOrEmpty(linkFile))
+                    {
+                        string currentMapFile = Editor.MapFile;
+                        string currentMapDir = new FileInfo(currentMapFile).DirectoryName;
+                        string linkFilePath = Path.Combine(currentMapDir, linkFile);
+
+                        if (File.Exists(linkFilePath))
+                        {
+                            LoadMap(linkFilePath);
+                            ObjectLinks.Push(currentMapFile);
+                        }
+                        else
+                        {
+                            Alert.Warning($"Linked file \"{linkFile}\" not found in directory {currentMapDir}");
+                        }
+                    }
+                    else
+                    {
+                        Alert.Warning("Link property is empty");
+                    }
+                }
+                else
+                {
+                    Alert.Warning("No link found");
+                }
+            }
+        }
+
+        private void ReturnFromObjectLink()
+        {
+            if (ObjectLinks.Count > 0)
+            {
+                string previousLink = ObjectLinks.Pop();
+                LoadMap(previousLink);
+            }
+            else
+            {
+                Alert.Warning("No previous link found");
+            }
         }
     }
 }

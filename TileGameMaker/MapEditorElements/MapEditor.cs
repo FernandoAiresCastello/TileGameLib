@@ -45,7 +45,7 @@ namespace TileGameMaker.MapEditorElements
             MainWindow.FormClosed += MainWindow_FormClosed;
 
             ApplyUserSettings();
-            RecentFiles = new RecentFiles();
+            //RecentFiles = new RecentFiles();
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
 
@@ -146,7 +146,7 @@ namespace TileGameMaker.MapEditorElements
         private void SaveUserSettings()
         {
             Settings.Set("Workspace", WorkspacePath);
-            RecentFiles.Save();
+            //RecentFiles.Save();
             Settings.Save();
         }
 
