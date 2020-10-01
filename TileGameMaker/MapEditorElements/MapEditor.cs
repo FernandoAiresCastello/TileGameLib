@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,7 +45,6 @@ namespace TileGameMaker.MapEditorElements
             MainWindow = mainWindow;
             MainWindow.FormClosed += MainWindow_FormClosed;
 
-            ApplyUserSettings();
             //RecentFiles = new RecentFiles();
 
             Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
@@ -67,6 +67,7 @@ namespace TileGameMaker.MapEditorElements
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             WorkspacePanel = new WorkspacePanel(this);
 
+            ApplyUserSettings();
             UpdateMapProperties();
             WorkspacePanel.UpdateWorkspace();
 
@@ -146,6 +147,9 @@ namespace TileGameMaker.MapEditorElements
         private void SaveUserSettings()
         {
             Settings.Set("Workspace", WorkspacePath);
+            Settings.Set("MainGridColor", MapEditorControl.Display.GetMainGridColor().ToArgb().ToString());
+            Settings.Set("AuxGridColor", MapEditorControl.Display.GetAuxGridColor().ToArgb().ToString());
+            Settings.Set("AuxGridInterval", MapEditorControl.Display.GetAuxGridInterval().ToString());
             //RecentFiles.Save();
             Settings.Save();
         }
@@ -160,6 +164,24 @@ namespace TileGameMaker.MapEditorElements
                 string workspace = Settings.Get("Workspace");
                 if (!string.IsNullOrWhiteSpace(workspace))
                     WorkspacePath = workspace;
+            }
+
+            if (Settings.Has("MainGridColor"))
+            {
+                int color = int.Parse(Settings.Get("MainGridColor"));
+                MapEditorControl.Display.SetGridColor(Color.FromArgb(color));
+            }
+
+            if (Settings.Has("AuxGridColor"))
+            {
+                int color = int.Parse(Settings.Get("AuxGridColor"));
+                MapEditorControl.Display.SetAuxGridColor(Color.FromArgb(color));
+            }
+
+            if (Settings.Has("AuxGridInterval"))
+            {
+                int interval = int.Parse(Settings.Get("AuxGridInterval"));
+                MapEditorControl.Display.SetAuxGridInterval(interval);
             }
 
             if (Settings.Has("TilesetFile"))

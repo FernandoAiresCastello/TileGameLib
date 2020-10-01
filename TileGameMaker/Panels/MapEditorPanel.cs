@@ -399,7 +399,14 @@ namespace TileGameMaker.Panels
 
         private void BtnGrid_Click(object sender, EventArgs e)
         {
-            ToggleGrid();
+            GridSetupWindow win = new GridSetupWindow(Display);
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                Display.SetGridColor(win.MainGridColor);
+                Display.SetAuxGrid(win.AuxGridColor, win.AuxGridInterval);
+                Refresh();
+            }
         }
 
         private void ToggleGrid()

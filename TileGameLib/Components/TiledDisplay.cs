@@ -26,9 +26,15 @@ namespace TileGameLib.Components
         public int Cols => Graphics.Cols;
         public int Rows => Graphics.Rows;
         public int TileCount => Cols * Rows;
+        public Color GetMainGridColor() => GridColor;
+        public Color GetAuxGridColor() => AuxGridColor;
+        public int GetAuxGridInterval() => AuxGridInterval;
 
         protected Bitmap Grid;
         protected Color GridColor;
+        protected Color AuxGridColor;
+        protected bool AuxGridEnabled = false;
+        protected int AuxGridInterval = 0;
         protected int MinZoom = 1;
         protected int MaxZoom = 10;
 
@@ -42,6 +48,7 @@ namespace TileGameLib.Components
             ShowCustomOverlay = false;
             StretchImage = false;
             GridColor = Color.FromArgb(50, 0, 0, 0);
+            AuxGridColor = Color.FromArgb(128, 255, 0, 0);
             TileHighlightColor = SystemColors.Highlight;
             TileHighlightColorOpacity = 128;
             SetZoom(zoom);
@@ -103,6 +110,35 @@ namespace TileGameLib.Components
         {
             GridColor = color;
             MakeGrid();
+        }
+
+        public void SetAuxGridColor(Color color)
+        {
+            AuxGridColor = color;
+            MakeGrid();
+        }
+
+        public void SetAuxGridInterval(int interval)
+        {
+            AuxGridInterval = interval;
+            if (AuxGridInterval <= 0)
+                EnableAltGrid(false);
+            else
+                EnableAltGrid(true);
+
+            MakeGrid();
+        }
+
+        public void SetAuxGrid(Color color, int interval)
+        {
+            AuxGridColor = color;
+            AuxGridInterval = interval;
+            MakeGrid();
+        }
+
+        public void EnableAltGrid(bool enable)
+        {
+            AuxGridEnabled = enable;
         }
 
         private void UpdateSize()
@@ -256,12 +292,25 @@ namespace TileGameLib.Components
             {
                 g.Clear(Color.FromArgb(0));
 
-                using (Pen pen = new Pen(GridColor))
+                Pen gridPen = new Pen(GridColor);
+                int incY = Zoom * TilePixels.RowCount;
+                int incX = Zoom * TilePixels.RowLength;
+                for (int y = -1; y < Height; y += incY)
+                    g.DrawLine(gridPen, 0, y, Width, y);
+                for (int x = -1; x < Width; x += incX)
+                    g.DrawLine(gridPen, x, 0, x, Height);
+                gridPen.Dispose();
+
+                if (AuxGridEnabled)
                 {
-                    for (int y = -1; y < Height; y += Zoom * TilePixels.RowCount)
-                        g.DrawLine(pen, 0, y, Width, y);
-                    for (int x = -1; x < Width; x += Zoom * TilePixels.RowLength)
-                        g.DrawLine(pen, x, 0, x, Height);
+                    Pen altGridPen = new Pen(AuxGridColor);
+                    int altIncY = incY * AuxGridInterval;
+                    int altIncX = incX * AuxGridInterval;
+                    for (int y = -1; y < Height; y += altIncY)
+                        g.DrawLine(altGridPen, 0, y, Width, y);
+                    for (int x = -1; x < Width; x += altIncX)
+                        g.DrawLine(altGridPen, x, 0, x, Height);
+                    altGridPen.Dispose();
                 }
             }
         }
