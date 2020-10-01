@@ -33,10 +33,13 @@
             this.TxtObject = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.TxtClipboard = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.ClipboardPanel = new System.Windows.Forms.Panel();
+            this.LbClipboard = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,7 +87,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.TxtClipboard, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ClipboardPanel, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 153);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -109,13 +112,41 @@
             this.TxtClipboard.TabIndex = 4;
             this.TxtClipboard.WordWrap = false;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel3.Controls.Add(this.ClipboardPanel, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.LbClipboard, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 138);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(218, 48);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
             // ClipboardPanel
             // 
             this.ClipboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ClipboardPanel.Location = new System.Drawing.Point(3, 138);
+            this.ClipboardPanel.Location = new System.Drawing.Point(3, 3);
             this.ClipboardPanel.Name = "ClipboardPanel";
-            this.ClipboardPanel.Size = new System.Drawing.Size(218, 48);
-            this.ClipboardPanel.TabIndex = 5;
+            this.ClipboardPanel.Size = new System.Drawing.Size(59, 42);
+            this.ClipboardPanel.TabIndex = 6;
+            // 
+            // LbClipboard
+            // 
+            this.LbClipboard.AutoSize = true;
+            this.LbClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbClipboard.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.LbClipboard.Location = new System.Drawing.Point(68, 0);
+            this.LbClipboard.Name = "LbClipboard";
+            this.LbClipboard.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.LbClipboard.Size = new System.Drawing.Size(147, 48);
+            this.LbClipboard.TabIndex = 7;
+            this.LbClipboard.Text = "Clipboard\r\nClick to edit object";
+            this.LbClipboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // GameObjectPanel
             // 
@@ -129,6 +160,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -140,6 +173,8 @@
         private System.Windows.Forms.TextBox TxtObject;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox TxtClipboard;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel ClipboardPanel;
+        private System.Windows.Forms.Label LbClipboard;
     }
 }

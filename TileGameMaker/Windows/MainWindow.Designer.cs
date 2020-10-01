@@ -87,7 +87,7 @@
             // 
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(180, 22);
+            this.MiExit.Size = new System.Drawing.Size(92, 22);
             this.MiExit.Text = "Exit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -131,7 +131,7 @@
             this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
             this.MiAbout.Name = "MiAbout";
             this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MiAbout.Size = new System.Drawing.Size(180, 22);
+            this.MiAbout.Size = new System.Drawing.Size(135, 22);
             this.MiAbout.Text = "About...";
             this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 

@@ -60,25 +60,18 @@ namespace TileGameMaker.Panels
 
         private void RemoveSelectedProperty()
         {
-            if (Grid.SelectedRows.Count > 0)
+            if (Grid.SelectedCells.Count > 0)
             {
-                bool cantDelete = false;
-
-                foreach (DataGridViewRow row in Grid.SelectedRows)
+                foreach(DataGridViewCell cell in Grid.SelectedCells)
                 {
-                    try
+                    DataGridViewRow row = cell.OwningRow;
+
+                    if (Grid.Rows.Contains(row) && !row.IsNewRow)
                     {
                         Grid.Rows.Remove(row);
                         Refresh();
                     }
-                    catch
-                    {
-                        cantDelete = true;
-                    }
                 }
-
-                if (cantDelete)
-                    Alert.Warning("Can't delete this grid row");
             }
         }
 

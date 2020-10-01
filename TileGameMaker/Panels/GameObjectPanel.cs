@@ -32,11 +32,15 @@ namespace TileGameMaker.Panels
             ClipboardDisplay.Graphics.Palette = editor.Palette;
             ClipboardDisplay.Graphics.Tileset = editor.Tileset;
             ClipboardDisplay.Click += ClipboardDisplay_Click;
+            ClipboardDisplay.Cursor = Cursors.Hand;
+            LbClipboard.Click += ClipboardDisplay_Click;
+            LbClipboard.Cursor = Cursors.Hand;
         }
 
         private void ClipboardDisplay_Click(object sender, EventArgs e)
         {
             ObjectEditWindow win = new ObjectEditWindow(MapEditor, MapEditor.GetClipboardObject());
+
             if (win.ShowDialog(this, "Edit clipboard object") == DialogResult.OK)
             {
                 MapEditor.CopyObjectToClipboard(win.EditedObject);
@@ -92,7 +96,7 @@ namespace TileGameMaker.Panels
                 ClipboardDisplay.Graphics.PutTile(0, 0, clipboardObject.Tile);
                 ClipboardDisplay.Refresh();
 
-                Print(TxtClipboard, $"[ClipboardObject]");
+                Print(TxtClipboard, $"[Clipboard]");
                 Print(TxtClipboard, $"    Visible: {clipboardObject.Visible}");
                 Print(TxtClipboard, $"    Frames: {clipboardObject.Animation.Size}");
                 Print(TxtClipboard, $"    Properties: ");
@@ -118,11 +122,11 @@ namespace TileGameMaker.Panels
 
             Print(TxtObject, $"[Cell]");
             Print(TxtObject, $"    Layer: {pos.Layer}, X: {pos.X}, Y: {pos.Y}");
+            Print(TxtObject);
+            Print(TxtObject, $"[Object]");
 
             if (o != null)
             {
-                Print(TxtObject);
-                Print(TxtObject, $"[Object]");
                 Print(TxtObject, $"    ID: {o.Id}");
                 Print(TxtObject, $"    Visible: {o.Visible}");
                 Print(TxtObject, $"    Frames: {o.Animation.Size}");
@@ -137,6 +141,10 @@ namespace TileGameMaker.Panels
                 {
                     Print(TxtObject, $"        <empty>");
                 }
+            }
+            else
+            {
+                Print(TxtObject, $"    <empty>");
             }
         }
     }
