@@ -284,9 +284,11 @@ namespace TileGameMaker.Panels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                TilePicker.Graphics.Tileset.SetEqual(TilesetFile.Import(format, dialog.FileName));
+                Tileset tileset = TilesetFile.Import(format, dialog.FileName);
+                TilePicker.Graphics.Tileset.SetEqual(tileset);
                 TilePicker.UpdateSize();
-                TilePicker.Refresh();
+                MapEditor.Map.Tileset.SetEqual(tileset);
+                MapEditor.Refresh();
                 UpdateStatus();
 
                 Alert.Info("Tileset imported successfully!");

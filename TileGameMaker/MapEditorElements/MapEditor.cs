@@ -197,7 +197,9 @@ namespace TileGameMaker.MapEditorElements
 
                 try
                 {
-                    Tileset = TilesetFile.LoadFromRawBytes(tilesetFile);
+                    Map.Tileset.SetEqual(TilesetFile.LoadFromRawBytes(tilesetFile));
+                    Tileset = Map.Tileset;
+                    Refresh();
                 }
                 catch
                 {
