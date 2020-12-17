@@ -37,7 +37,7 @@ namespace TileGameMaker.Panels
         private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject, FollowLink }
         private EditMode Mode;
 
-        private Stack<string> ObjectLinks = new Stack<string>();
+        private Stack<ObjectMap> ObjectLinks = new Stack<ObjectMap>();
 
         private static readonly int DefaultZoom = Config.ReadInt("DefaultMapEditorZoom");
         private static readonly int MaxLayers = Config.ReadInt("MapEditorMaxLayers");
@@ -73,7 +73,6 @@ namespace TileGameMaker.Panels
             Display.MouseLeave += Disp_MouseLeave;
 
             SetMode(EditMode.Draw);
-            ClearMap();
             RenderMap();
             Refresh();
             UpdateLayerComboBox();
@@ -507,91 +506,14 @@ namespace TileGameMaker.Panels
             Refresh();
         }
 
-        private void BtnSaveMapAs_Click(object sender, EventArgs e)
+        public void SetMap(ObjectMap map)
         {
-            SaveMapAs();
-        }
-
-        public void SaveMap()
-        {
-            bool success = false;
-
-            Map.Name = Editor.MapName;
-
-            if (string.IsNullOrWhiteSpace(Editor.MapFile))
-            {
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.InitialDirectory = Editor.WorkspacePath;
-                dialog.Filter = MapFileFilter;
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    MapFile.Save(Map, dialog.FileName);
-                    Editor.MapFile = dialog.FileName;
-                    success = true;
-                }
-            }
-            else if (Alert.Confirm($"Overwrite file {Editor.MapFile}?"))
-            {
-                MapFile.Save(Map, Editor.MapFile);
-                success = true;
-            }
-
-            if (success)
-            {
-                Editor.UpdateMapProperties();
-                Refresh();
-                Alert.Info("File saved successfully!");
-            }
-        }
-
-        public void SaveMapAs()
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = Editor.WorkspacePath;
-            dialog.Filter = MapFileFilter;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                Map.GenerateId();
-                Map.Name = Editor.MapName;
-                MapFile.Save(Map, dialog.FileName);
-                Editor.MapFile = dialog.FileName;
-                Editor.UpdateMapProperties();
-                Editor.WorkspacePanel.UpdateWorkspace();
-                Alert.Info("File saved successfully!");
-            }
-        }
-
-        public void LoadMap()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = MapFileFilter;
-            if (!string.IsNullOrWhiteSpace(Editor.MapFile))
-                dialog.InitialDirectory = new FileInfo(Editor.MapFile).Directory.FullName;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-                LoadMap(dialog.FileName);
-        }
-
-        public void LoadMap(string file)
-        {
-            try
-            {
-                DisableControlTemporarily();
-
-                MapFile.Load(ref Map, file);
-                Editor.MapFile = file;
-                Editor.UpdateMapProperties();
-                Editor.ResizeMap(Map.Width, Map.Height);
-                Editor.ClearClipboard();
-                //Editor.RecentFiles.Add(file);
-                UpdateLayerComboBox();
-            }
-            catch (Exception ex)
-            {
-                Alert.Error(ex.Message);
-            }
+            Map = map;
+            MapRenderer.Map = map;
+            Editor.UpdateMapProperties();
+            Editor.ResizeMap(Map.Width, Map.Height);
+            Editor.Refresh();
+            UpdateLayerComboBox();
         }
 
         private void DisableControlTemporarily()
@@ -607,12 +529,6 @@ namespace TileGameMaker.Panels
             timer.Start();
         }
 
-        private void BtnRecentFileItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem fileItem = (ToolStripMenuItem)sender;
-            LoadMap(fileItem.Text);
-        }
-
         public void CreateNewMap()
         {
             Layer = 0;
@@ -626,8 +542,7 @@ namespace TileGameMaker.Panels
             Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
-            Editor.ResizeMap(Editor.DefaultMapWidth, Editor.DefaultMapHeight);
-            Editor.MapFile = null;
+            Editor.ResizeMap(Project.DefaultMapWidth, Project.DefaultMapHeight);
             Editor.UpdateMapProperties();
             ClearMap();
             RenderMap();
@@ -874,20 +789,8 @@ namespace TileGameMaker.Panels
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.O:
-                        LoadMap();
-                        break;
-                    case Keys.S:
-                        SaveMap();
-                        break;
-                    case Keys.N:
-                        ConfirmNewMap();
-                        break;
                     case Keys.F:
                         FindObjects();
-                        break;
-                    case Keys.W:
-                        OpenWorkspace();
                         break;
                     case Keys.D1:
                         SetMode(EditMode.Draw);
@@ -926,16 +829,6 @@ namespace TileGameMaker.Panels
                         break;
                 }
             }
-        }
-
-        private void BtnSaveRawBytes_Click(object sender, EventArgs e)
-        {
-            SaveMap();
-        }
-
-        private void BtnLoadRawBytes_Click(object sender, EventArgs e)
-        {
-            LoadMap();
         }
 
         private void MiReplaceWithTemplate_Click(object sender, EventArgs e)
@@ -1023,13 +916,6 @@ namespace TileGameMaker.Panels
 
         private void BtnWorkspace_Click(object sender, EventArgs e)
         {
-            OpenWorkspace();
-        }
-
-        private void OpenWorkspace()
-        {
-            WorkspaceWindow window = new WorkspaceWindow(Editor);
-            window.ShowDialog(this);
         }
 
         private void FollowObjectLink(GameObject o)
@@ -1042,22 +928,21 @@ namespace TileGameMaker.Panels
             {
                 if (o.Properties.Has("link"))
                 {
-                    string linkFile = o.Properties.GetAsString("link").Trim();
+                    string linkedMapId = o.Properties.GetAsString("link").Trim();
 
-                    if (!string.IsNullOrEmpty(linkFile))
+                    if (!string.IsNullOrEmpty(linkedMapId))
                     {
-                        string currentMapFile = Editor.MapFile;
-                        string currentMapDir = new FileInfo(currentMapFile).DirectoryName;
-                        string linkFilePath = Path.Combine(currentMapDir, linkFile);
+                        ObjectMap currentMap = Editor.Map;
+                        ObjectMap linkedMap = Editor.Project.FindMapById(linkedMapId);
 
-                        if (File.Exists(linkFilePath))
+                        if (linkedMap != null)
                         {
-                            LoadMap(linkFilePath);
-                            ObjectLinks.Push(currentMapFile);
+                            Editor.SetMap(linkedMap);
+                            ObjectLinks.Push(currentMap);
                         }
                         else
                         {
-                            Alert.Warning($"Linked file \"{linkFile}\" not found in directory {currentMapDir}");
+                            Alert.Warning($"Linked map with ID \"{linkedMapId}\" not found in project {Editor.Project.Path}");
                         }
                     }
                     else
@@ -1076,8 +961,8 @@ namespace TileGameMaker.Panels
         {
             if (ObjectLinks.Count > 0)
             {
-                string previousLink = ObjectLinks.Pop();
-                LoadMap(previousLink);
+                ObjectMap previousMap = ObjectLinks.Pop();
+                Editor.SetMap(previousMap);
             }
             else
             {

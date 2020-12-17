@@ -9,6 +9,7 @@ namespace TileGameMaker.Util
 {
     public static class Global
     {
+        public static string ProgramTitle => "Tile Game Maker";
         public static Icon WindowIcon => Icon.FromHandle(Properties.Resources.gameboy.GetHicon());
     }
 }

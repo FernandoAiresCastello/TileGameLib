@@ -31,7 +31,7 @@ namespace TileGameMaker.Panels
 
         public void UpdateProperties()
         {
-            Properties = new MapProperties(MapEditor.Map, MapEditor.MapFile);
+            Properties = new MapProperties(MapEditor.Map);
             Grid.SelectedObject = Properties;
             Grid.Refresh();
         }
@@ -85,6 +85,8 @@ namespace TileGameMaker.Panels
             {
                 MapEditor.ResizeMap(width, height);
             }
+
+            MapEditor.ProjectPanel.UpdateMapList();
 
             Alert.Info("Map properties applied successfully");
         }

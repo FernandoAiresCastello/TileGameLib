@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapEditorPanel));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LbMapInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.LbEditModeInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnNew = new System.Windows.Forms.ToolStripButton();
-            this.BtnLoad = new System.Windows.Forms.ToolStripButton();
-            this.BtnWorkspace = new System.Windows.Forms.ToolStripButton();
-            this.BtnSave = new System.Windows.Forms.ToolStripButton();
-            this.BtnSaveAs = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.CbLayer = new System.Windows.Forms.ToolStripComboBox();
             this.BtnViewAll = new System.Windows.Forms.ToolStripButton();
             this.BtnAddLayer = new System.Windows.Forms.ToolStripButton();
@@ -75,8 +68,8 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnZoomIn = new System.Windows.Forms.ToolStripButton();
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
-            this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
+            this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -139,12 +132,6 @@
             // 
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnNew,
-            this.BtnLoad,
-            this.BtnWorkspace,
-            this.BtnSave,
-            this.BtnSaveAs,
-            this.toolStripSeparator3,
             this.CbLayer,
             this.BtnViewAll,
             this.BtnAddLayer,
@@ -176,67 +163,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(875, 30);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNew.Image = global::TileGameMaker.Properties.Resources.page_white;
-            this.BtnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(23, 20);
-            this.BtnNew.Text = "toolStripButton1";
-            this.BtnNew.ToolTipText = "Create new map (Ctrl+N)";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // BtnLoad
-            // 
-            this.BtnLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnLoad.Image = global::TileGameMaker.Properties.Resources.folder;
-            this.BtnLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnLoad.Name = "BtnLoad";
-            this.BtnLoad.Size = new System.Drawing.Size(23, 20);
-            this.BtnLoad.Text = "toolStripButton1";
-            this.BtnLoad.ToolTipText = "Open map file (Ctrl+O)";
-            this.BtnLoad.Click += new System.EventHandler(this.BtnLoadRawBytes_Click);
-            // 
-            // BtnWorkspace
-            // 
-            this.BtnWorkspace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnWorkspace.Image = ((System.Drawing.Image)(resources.GetObject("BtnWorkspace.Image")));
-            this.BtnWorkspace.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnWorkspace.Name = "BtnWorkspace";
-            this.BtnWorkspace.Size = new System.Drawing.Size(23, 20);
-            this.BtnWorkspace.Text = "BtnWorkspace";
-            this.BtnWorkspace.ToolTipText = "Open workspace (Ctrl+W)";
-            this.BtnWorkspace.Click += new System.EventHandler(this.BtnWorkspace_Click);
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSave.Image = global::TileGameMaker.Properties.Resources.diskette;
-            this.BtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(23, 20);
-            this.BtnSave.Text = "toolStripButton1";
-            this.BtnSave.ToolTipText = "Save map file (Ctrl+S)";
-            this.BtnSave.Click += new System.EventHandler(this.BtnSaveRawBytes_Click);
-            // 
-            // BtnSaveAs
-            // 
-            this.BtnSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSaveAs.Image = global::TileGameMaker.Properties.Resources.file_save_as;
-            this.BtnSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSaveAs.Name = "BtnSaveAs";
-            this.BtnSaveAs.Size = new System.Drawing.Size(23, 20);
-            this.BtnSaveAs.Text = "toolStripButton1";
-            this.BtnSaveAs.ToolTipText = "Save map file as";
-            this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveMapAs_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
             // 
             // CbLayer
             // 
@@ -572,17 +498,6 @@
             this.BtnZoomOut.ToolTipText = "Zoom out (PgDn)";
             this.BtnZoomOut.Click += new System.EventHandler(this.BtnZoomOut_Click);
             // 
-            // BtnScreenshot
-            // 
-            this.BtnScreenshot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnScreenshot.Image = global::TileGameMaker.Properties.Resources.camera;
-            this.BtnScreenshot.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnScreenshot.Name = "BtnScreenshot";
-            this.BtnScreenshot.Size = new System.Drawing.Size(23, 20);
-            this.BtnScreenshot.Text = "toolStripButton1";
-            this.BtnScreenshot.ToolTipText = "Save image";
-            this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
-            // 
             // BtnGrid
             // 
             this.BtnGrid.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -593,6 +508,17 @@
             this.BtnGrid.Text = "toolStripButton1";
             this.BtnGrid.ToolTipText = "Toggle grid";
             this.BtnGrid.Click += new System.EventHandler(this.BtnGrid_Click);
+            // 
+            // BtnScreenshot
+            // 
+            this.BtnScreenshot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnScreenshot.Image = global::TileGameMaker.Properties.Resources.camera;
+            this.BtnScreenshot.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnScreenshot.Name = "BtnScreenshot";
+            this.BtnScreenshot.Size = new System.Drawing.Size(23, 20);
+            this.BtnScreenshot.Text = "toolStripButton1";
+            this.BtnScreenshot.ToolTipText = "Save image";
+            this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
             // MapEditorPanel
             // 
@@ -620,8 +546,6 @@
         private System.Windows.Forms.ToolStripStatusLabel LbEditModeInfo;
         private System.Windows.Forms.Panel MapPanel;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton BtnNew;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton BtnAddText;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton BtnZoomIn;
@@ -656,10 +580,6 @@
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
         private System.Windows.Forms.ToolStripButton BtnSetExtra;
-        private System.Windows.Forms.ToolStripButton BtnLoad;
-        private System.Windows.Forms.ToolStripButton BtnSave;
-        private System.Windows.Forms.ToolStripButton BtnSaveAs;
-        private System.Windows.Forms.ToolStripButton BtnWorkspace;
         private System.Windows.Forms.ToolStripButton BtnFollowLink;
         private System.Windows.Forms.ToolStripButton BtnGrid;
     }

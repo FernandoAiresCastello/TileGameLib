@@ -9,10 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameLib.Components;
+using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 using TileGameMaker.MapEditorElements;
-using TileGameMaker.Test;
 using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
@@ -25,12 +25,16 @@ namespace TileGameMaker.Windows
         private static readonly int BestWidth = Config.ReadInt("MapEditorWindowBestWidth");
         private static readonly int BestHeight = Config.ReadInt("MapEditorWindowBestHeight");
 
-        public MainWindow()
+        public MainWindow(MapEditor editor)
         {
             InitializeComponent();
+            MapEditor = editor;
+
             Icon = Global.WindowIcon;
-            Shown += MainWindow_Shown;
+            Text = Global.ProgramTitle + " - " + MapEditor.Project.Path;
             KeyPreview = true;
+            Shown += MainWindow_Shown;
+            FormClosing += MainWindow_FormClosing;
             KeyDown += MainWindow_KeyDown;
 
             Rectangle screenArea = Screen.PrimaryScreen.Bounds;
@@ -44,23 +48,17 @@ namespace TileGameMaker.Windows
 
             CentralSplitContainer.Panel1Collapsed = true;
 
-            MapEditor = new MapEditor(this);
+            AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);
             AddControl(MapEditor.TilePickerControl, TilePickerPanel);
             AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);
             AddControl(MapEditor.GameObjectPanel, TopRightPanel);
+            AddControl(MapEditor.ProjectPanel, ProjectPanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
-            AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F12)
-            {
-                RunTestEngine();
-                return;
-            }
-
             MapEditor.MapEditorControl.HandleKeyEvent(sender, e);
         }
 
@@ -72,8 +70,11 @@ namespace TileGameMaker.Windows
 
         private void MainWindow_Shown(object sender, EventArgs e)
         {
-            if (!MapEditor.Settings.Has("ShowSplashWindow") || MapEditor.Settings.GetBool("ShowSplashWindow"))
-                ShowSplashWindow();
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ExitProgram();
         }
 
         private void AddControl(Control control, Control panel)
@@ -84,18 +85,17 @@ namespace TileGameMaker.Windows
 
         private void MiExit_Click(object sender, EventArgs e)
         {
+            ExitProgram();
+        }
+
+        private void ExitProgram()
+        {
             Application.Exit();
         }
 
         private void MiAbout_Click(object sender, EventArgs e)
         {
             ShowSplashWindow();
-        }
-
-        private void RunTestEngine()
-        {
-            TestEngine engine = new TestEngine();
-            engine.Run(this);
         }
 
         private void BtnToggleCommandLine_Click(object sender, EventArgs e)
@@ -147,9 +147,23 @@ namespace TileGameMaker.Windows
             }
         }
 
-        private void BtnOpenMusicComposer_Click(object sender, EventArgs e)
+        private void BtnSaveProject_Click(object sender, EventArgs e)
         {
-            Process.Start("https://beepbox.co/");
+            try
+            {
+                ProjectFile.Save(MapEditor.Project);
+                Alert.Info("Project saved successfully!");
+            }
+            catch (Exception ex)
+            {
+                Alert.Error("There was an error while saving the project:\n" + ex.StackTrace);
+            }
+        }
+
+        private void BtnCloseProject_Click(object sender, EventArgs e)
+        {
+            MapEditor.StartWindow.Show();
+            Hide();
         }
     }
 }

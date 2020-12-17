@@ -249,7 +249,7 @@ namespace TileGameMaker.Panels
             string fileExt = TilesetExportFileExtension.Get(format);
 
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.InitialDirectory = MapEditor.Project.Folder;
             dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -279,7 +279,7 @@ namespace TileGameMaker.Panels
             string fileExt = TilesetExportFileExtension.Get(format);
 
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.InitialDirectory = MapEditor.Project.Folder;
             dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -298,7 +298,7 @@ namespace TileGameMaker.Panels
         private void BtnExportToImage_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.WorkspacePath;
+            dialog.InitialDirectory = MapEditor.Project.Folder;
             dialog.Filter = $"PNG image file (*.png)|*.png";
 
             if (dialog.ShowDialog() == DialogResult.OK)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.Exceptions;
+using TileGameLib.File;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
 
@@ -12,11 +13,10 @@ namespace TileGameLib.GameElements
 {
     public class ObjectMap
     {
+        public Project Project { set; get; }
         public string Id { set; get; }
         public string Name { set; get; }
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
-        public Tileset Tileset { get; set; } = new Tileset();
-        public Palette Palette { get; set; } = new Palette();
         public int BackColor { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
@@ -24,27 +24,30 @@ namespace TileGameLib.GameElements
         public string Extra { set; get; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
+        public Tileset Tileset => Project.Tileset;
+        public Palette Palette => Project.Palette;
 
         public const string DefaultName = "Untitled";
 
-        public ObjectMap(int width, int height) : this(DefaultName, 1, width, height, 0)
+        public ObjectMap(Project project, int width, int height) : this(project, DefaultName, 1, width, height, 0)
         {
             BackColor = Palette.White;
         }
 
-        public ObjectMap(int layers, int width, int height) : this(DefaultName, layers, width, height, 0)
+        public ObjectMap(Project project, int layers, int width, int height) : this(project, DefaultName, layers, width, height, 0)
         {
             BackColor = Palette.White;
         }
 
-        public ObjectMap(string name, int width, int height, int backColor) : this(name, 1, width, height, backColor)
+        public ObjectMap(Project project, string name, int width, int height, int backColor) : this(project, name, 1, width, height, backColor)
         {
         }
 
-        public ObjectMap(string name, int layers, int width, int height, int backColor)
+        public ObjectMap(Project project, string name, int layers, int width, int height, int backColor)
         {
             GenerateId();
 
+            Project = project;
             Name = name;
             Width = width;
             Height = height;
@@ -66,6 +69,7 @@ namespace TileGameLib.GameElements
 
         public void SetEqual(ObjectMap other)
         {
+            Project = other.Project;
             Id = other.Id;
             Name = other.Name;
             Width = other.Width;
@@ -73,8 +77,6 @@ namespace TileGameLib.GameElements
             BackColor = other.BackColor;
             OutOfBoundsObject = other.OutOfBoundsObject;
             Extra = other.Extra;
-            Tileset.SetEqual(other.Tileset);
-            Palette.SetEqual(other.Palette);
             Layers.Clear();
 
             foreach (ObjectLayer layer in other.Layers)

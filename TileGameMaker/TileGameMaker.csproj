@@ -114,14 +114,12 @@
     <Compile Include="Panels\MapTextPanel.Designer.cs">
       <DependentUpon>MapTextPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\WorkspacePanel.cs">
+    <Compile Include="Panels\ProjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panels\WorkspacePanel.Designer.cs">
-      <DependentUpon>WorkspacePanel.cs</DependentUpon>
+    <Compile Include="Panels\ProjectPanel.Designer.cs">
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test\TestController.cs" />
-    <Compile Include="Test\TestEngine.cs" />
     <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -189,6 +187,12 @@
     <Compile Include="Windows\RangeInputWindow.Designer.cs">
       <DependentUpon>RangeInputWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StartWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\StartWindow.Designer.cs">
+      <DependentUpon>StartWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\TextInputWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,12 +259,6 @@
     <Compile Include="Windows\TileSelectorWindow.Designer.cs">
       <DependentUpon>TileSelectorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WorkspaceWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\WorkspaceWindow.Designer.cs">
-      <DependentUpon>WorkspaceWindow.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Panels\CommandLinePanel.resx">
       <DependentUpon>CommandLinePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,8 +274,8 @@
     <EmbeddedResource Include="Panels\MapTextPanel.resx">
       <DependentUpon>MapTextPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panels\WorkspacePanel.resx">
-      <DependentUpon>WorkspacePanel.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\ProjectPanel.resx">
+      <DependentUpon>ProjectPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
@@ -305,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\RangeInputWindow.resx">
       <DependentUpon>RangeInputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\StartWindow.resx">
+      <DependentUpon>StartWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\TextInputWindow.resx">
       <DependentUpon>TextInputWindow.cs</DependentUpon>
@@ -343,9 +344,6 @@
     <EmbeddedResource Include="Windows\TileSelectorWindow.resx">
       <DependentUpon>TileSelectorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\WorkspaceWindow.resx">
-      <DependentUpon>WorkspaceWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Resources\PressStart2P.ttf" />
     <None Include="SetBuildNumber.ps1" />
@@ -372,6 +370,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\new.png" />
     <None Include="Resources\hand_point_090.png" />
     <None Include="Resources\select_by_difference.png" />
     <None Include="Resources\page_white_text.png" />
@@ -447,6 +446,12 @@
     <None Include="Resources\brick_edit.png" />
     <None Include="Resources\folder_brick.png" />
     <None Include="Resources\evernote.png" />
+    <None Include="Resources\flag_new.png" />
+    <None Include="Resources\folder1.png" />
+    <None Include="Resources\flag_new1.png" />
+    <None Include="Resources\folder_add.png" />
+    <None Include="Resources\folder_vertical_zipper.png" />
+    <None Include="Resources\chart_organisation.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

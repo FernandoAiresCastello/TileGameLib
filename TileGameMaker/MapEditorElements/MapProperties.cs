@@ -20,20 +20,9 @@ namespace TileGameMaker.MapEditorElements
         public int Layers { set; get; }
         public string Width { set; get; }
         public string Height { set; get; }
-        [ReadOnly(true)]
-        public string Path { set; get; }
-        [ReadOnly(true)]
-        public string File { set; get; }
 
-        public MapProperties(ObjectMap map, string mapFileFullPath)
+        public MapProperties(ObjectMap map)
         {
-            if (mapFileFullPath != null)
-            {
-                FileInfo info = new FileInfo(mapFileFullPath);
-                Path = info.Directory.FullName;
-                File = info.Name;
-            }
-
             Id = map.Id;
             Name = map.Name;
             Width = map.Width.ToString();

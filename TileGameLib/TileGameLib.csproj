@@ -60,21 +60,10 @@
     <Compile Include="Components\TiledDisplayWindow.Designer.cs">
       <DependentUpon>TiledDisplayWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Engine\DebuggerWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Engine\DebuggerWindow.Designer.cs">
-      <DependentUpon>DebuggerWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Engine\GameEngine.cs" />
-    <Compile Include="Engine\GameWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Engine\MapController.cs" />
-    <Compile Include="Engine\MapControllerCollection.cs" />
-    <Compile Include="Engine\Variables.cs" />
     <Compile Include="File\FileExtensions.cs" />
     <Compile Include="File\PaletteExportFormat.cs" />
+    <Compile Include="File\Project.cs" />
+    <Compile Include="File\ProjectFile.cs" />
     <Compile Include="File\TilesetExportFormat.cs" />
     <Compile Include="File\MapFile.cs" />
     <Compile Include="File\PaletteFile.cs" />
@@ -120,9 +109,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\TiledDisplayWindow.resx">
       <DependentUpon>TiledDisplayWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Engine\DebuggerWindow.resx">
-      <DependentUpon>DebuggerWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

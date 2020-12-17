@@ -18,46 +18,42 @@ namespace TileGameMaker.MapEditorElements
 {
     public class MapEditor
     {
-        public string WorkspacePath { get; set; }
-        public string MapFile { get; set; }
         public string MapName => MapPropertyGridControl.Properties.Name;
         public GameObject BlankObject => CreateBlankObject();
         public ObjectMap Map { get; private set; }
-        public Palette Palette { get; private set; }
-        public Tileset Tileset { get; private set; }
+        public Project Project { get; set; }
+
+        public Palette Palette
+        {
+            get => Project.Palette;
+            set => Project.Palette = value;
+        }
+
+        public Tileset Tileset
+        {
+            get => Project.Tileset;
+            set => Project.Tileset = value;
+        }
+
+        public StartWindow StartWindow { get; private set; }
         public MainWindow MainWindow { get; private set; }
         public MapEditorPanel MapEditorControl { get; private set; }
         public TilePickerPanel TilePickerControl { get; private set; }
         public ColorPickerPanel ColorPickerControl { get; private set; }
         public MapPropertyGridPanel MapPropertyGridControl { get; private set; }
         public CommandLinePanel CommandLinePanel { get; private set; }
-        public WorkspacePanel WorkspacePanel { get; private set; }
+        public ProjectPanel ProjectPanel { get; private set; }
         public GameObjectPanel GameObjectPanel { get; private set; }
-        public UserSettings Settings { get; private set; }
         public RecentFiles RecentFiles { get; private set; }
-        public int DefaultMapWidth { get; private set; } = Config.ReadInt("DefaultMapWidth");
-        public int DefaultMapHeight { get; private set; } = Config.ReadInt("DefaultMapHeight");
+
         private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();
 
-        public MapEditor(MainWindow mainWindow)
+        public MapEditor(StartWindow startWindow, Project project)
         {
-            MainWindow = mainWindow;
-            MainWindow.FormClosed += MainWindow_FormClosed;
-
-            //RecentFiles = new RecentFiles();
-
-            Map = new ObjectMap(DefaultMapWidth, DefaultMapHeight);
-
-            if (Palette == null)
-                Palette = Map.Palette;
-            else
-                Map.Palette = Palette;
-
-            if (Tileset == null)
-                Tileset = Map.Tileset;
-            else
-                Map.Tileset = Tileset;
+            StartWindow = startWindow;
+            Project = project;
+            Map = Project.Maps[0];
 
             GameObjectPanel = new GameObjectPanel(this);
             MapEditorControl = new MapEditorPanel(this);
@@ -65,26 +61,27 @@ namespace TileGameMaker.MapEditorElements
             ColorPickerControl = new ColorPickerPanel(this);
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
-            WorkspacePanel = new WorkspacePanel(this);
+            ProjectPanel = new ProjectPanel(this);
 
-            ApplyUserSettings();
             UpdateMapProperties();
-            WorkspacePanel.UpdateWorkspace();
 
             Children.Add(TilePickerControl);
             Children.Add(ColorPickerControl);
             Children.Add(MapPropertyGridControl);
             Children.Add(MapEditorControl);
             Children.Add(CommandLinePanel);
-            Children.Add(WorkspacePanel);
+            Children.Add(ProjectPanel);
             Children.Add(GameObjectPanel);
 
             ClipboardObject = CreateBlankObject();
+
+            MainWindow = new MainWindow(this);
         }
 
-        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        public void SetMap(ObjectMap map)
         {
-            SaveUserSettings();
+            Map = map;
+            MapEditorControl.SetMap(map);
         }
 
         public void ClearClipboard()
@@ -144,91 +141,9 @@ namespace TileGameMaker.MapEditorElements
             GameObjectPanel.UpdateClipboardView();
         }
 
-        private void SaveUserSettings()
-        {
-            Settings.Set("Workspace", WorkspacePath);
-            Settings.Set("MainGridColor", MapEditorControl.Display.GetMainGridColor().ToArgb().ToString());
-            Settings.Set("AuxGridColor", MapEditorControl.Display.GetAuxGridColor().ToArgb().ToString());
-            Settings.Set("AuxGridIntervalX", MapEditorControl.Display.GetAuxGridIntervalX().ToString());
-            Settings.Set("AuxGridIntervalY", MapEditorControl.Display.GetAuxGridIntervalY().ToString());
-            //RecentFiles.Save();
-            Settings.Save();
-        }
-
-        private void ApplyUserSettings()
-        {
-            if (Settings == null)
-                Settings = new UserSettings();
-
-            if (Settings.Has("Workspace"))
-            {
-                string workspace = Settings.Get("Workspace");
-                if (!string.IsNullOrWhiteSpace(workspace))
-                    WorkspacePath = workspace;
-            }
-
-            if (Settings.Has("MainGridColor"))
-            {
-                int color = int.Parse(Settings.Get("MainGridColor"));
-                MapEditorControl.Display.SetMainGridColor(Color.FromArgb(color));
-            }
-
-            if (Settings.Has("AuxGridColor"))
-            {
-                int color = int.Parse(Settings.Get("AuxGridColor"));
-                MapEditorControl.Display.SetAuxGridColor(Color.FromArgb(color));
-            }
-
-            if (Settings.Has("AuxGridIntervalX"))
-            {
-                int interval = int.Parse(Settings.Get("AuxGridIntervalX"));
-                MapEditorControl.Display.SetAuxGridIntervalX(interval);
-            }
-
-            if (Settings.Has("AuxGridIntervalY"))
-            {
-                int interval = int.Parse(Settings.Get("AuxGridIntervalY"));
-                MapEditorControl.Display.SetAuxGridIntervalY(interval);
-            }
-
-            if (Settings.Has("TilesetFile"))
-            {
-                string tilesetFile = Settings.Get("TilesetFile");
-
-                try
-                {
-                    Map.Tileset.SetEqual(TilesetFile.LoadFromRawBytes(tilesetFile));
-                    Tileset = Map.Tileset;
-                    Refresh();
-                }
-                catch
-                {
-                    Alert.Error("Tileset file not found: " + tilesetFile);
-                }
-            }
-
-            if (Settings.Has("PaletteFile"))
-            {
-                string paletteFile = Settings.Get("PaletteFile");
-
-                try
-                {
-                    Palette = PaletteFile.LoadFromRawBytes(paletteFile);
-                }
-                catch
-                {
-                    Alert.Error("Palette file not found: " + paletteFile);
-                }
-            }
-
-            if (Settings.Has("DefaultMapWidth"))
-                DefaultMapWidth = Settings.GetInteger("DefaultMapWidth");
-            if (Settings.Has("DefaultMapHeight"))
-                DefaultMapHeight = Settings.GetInteger("DefaultMapHeight");
-        }
-
         public void Show()
         {
+            MainWindow.Show();
             foreach (Control ctl in Children)
                 ctl.Show();
         }

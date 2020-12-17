@@ -110,7 +110,7 @@ namespace TileGameLib.File
             file.SaveToPhysicalFile(path);
         }
 
-        public static ObjectMap Load(string path)
+        public static ObjectMap Load(Project project, string path)
         {
             MemoryFile file = new MemoryFile(path);
             string text = file.ReadAllText();
@@ -134,7 +134,7 @@ namespace TileGameLib.File
             int backColor = NextNumber();
             int layerCount = NextNumber();
 
-            ObjectMap map = new ObjectMap(name, layerCount, width, height, backColor);
+            ObjectMap map = new ObjectMap(project, name, layerCount, width, height, backColor);
             map.Id = id;
 
             for (int layerIndex = 0; layerIndex < map.Layers.Count; layerIndex++)
@@ -222,9 +222,9 @@ namespace TileGameLib.File
             return map;
         }
 
-        public static void Load(ref ObjectMap map, string path)
+        public static void Load(Project project, ref ObjectMap map, string path)
         {
-            ObjectMap loadedMap = Load(path);
+            ObjectMap loadedMap = Load(project, path);
             map.SetEqual(loadedMap);
         }
     }
