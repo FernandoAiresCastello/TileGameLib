@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace TileGameMaker.MapEditorElements
 {
-    public class RecentFiles
+    public class RecentProjects
     {
-        public const string Path = "recent.ini";
+        public const string Path = "recent_projects.ini";
 
         public List<string> Files { get; private set; } = new List<string>();
 
-        public RecentFiles()
+        public RecentProjects()
         {
             if (File.Exists(Path))
             {

@@ -83,7 +83,7 @@
     <Compile Include="MapEditorElements\ScriptRunner.cs" />
     <Compile Include="MapEditorElements\MapProperties.cs" />
     <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
-    <Compile Include="MapEditorElements\RecentFiles.cs" />
+    <Compile Include="MapEditorElements\RecentProjects.cs" />
     <Compile Include="Panels\CommandLinePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

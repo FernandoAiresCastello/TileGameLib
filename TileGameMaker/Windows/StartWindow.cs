@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -18,6 +19,8 @@ namespace TileGameMaker.Windows
 {
     public partial class StartWindow : Form
     {
+        private RecentProjects RecentProjects;
+
         public StartWindow()
         {
             InitializeComponent();
@@ -31,6 +34,20 @@ namespace TileGameMaker.Windows
             LbVersionBuild.Text = LbVersionBuild.Text
                 .Replace("{version}", version)
                 .Replace("{build}", build);
+
+            InitRecentProjectsList();
+        }
+
+        private void InitRecentProjectsList()
+        {
+            RecentProjects = new RecentProjects();
+            LstRecent.Items.AddRange(RecentProjects.Files.ToArray());
+            LstRecent.DoubleClick += LstRecent_DoubleClick;
+        }
+
+        private void LstRecent_DoubleClick(object sender, EventArgs e)
+        {
+            OpenProject((string)LstRecent.SelectedItem);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -53,11 +70,22 @@ namespace TileGameMaker.Windows
 
         private void OpenProject(string path)
         {
+            if (!File.Exists(path))
+            {
+                Alert.Error("File not found:\n\n" + path);
+                return;
+            }
+
             Project project = new Project();
             bool ok = project.Load(path);
+
             if (ok)
             {
+                RecentProjects.Add(path);
+                RecentProjects.Save();
+
                 MapEditor editor = new MapEditor(this, project);
+                editor.MapEditorControl.DisableEditorTemporarily();
                 editor.Show();
                 Hide();
             }
@@ -69,6 +97,10 @@ namespace TileGameMaker.Windows
             project.CreationDate = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             project.AddBlankMap();
             project.Save(path);
+
+            RecentProjects.Add(path);
+            RecentProjects.Save();
+
             MapEditor editor = new MapEditor(this, project);
             editor.Show();
             Hide();

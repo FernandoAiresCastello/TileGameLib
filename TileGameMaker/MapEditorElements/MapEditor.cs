@@ -44,7 +44,7 @@ namespace TileGameMaker.MapEditorElements
         public CommandLinePanel CommandLinePanel { get; private set; }
         public ProjectPanel ProjectPanel { get; private set; }
         public GameObjectPanel GameObjectPanel { get; private set; }
-        public RecentFiles RecentFiles { get; private set; }
+        public RecentProjects RecentFiles { get; private set; }
 
         private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();

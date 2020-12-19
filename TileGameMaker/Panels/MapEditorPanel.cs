@@ -516,11 +516,11 @@ namespace TileGameMaker.Panels
             UpdateLayerComboBox();
         }
 
-        private void DisableControlTemporarily()
+        public void DisableEditorTemporarily(int ms = 500)
         {
             Enabled = false;
             Timer timer = new Timer();
-            timer.Interval = 500;
+            timer.Interval = ms;
             timer.Tick += (sender, e) =>
             {
                 Enabled = true;
