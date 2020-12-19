@@ -90,6 +90,7 @@ namespace TileGameMaker.Windows
 
         private void ExitProgram()
         {
+            MapEditor.Project.Save();
             Application.Exit();
         }
 
@@ -151,17 +152,18 @@ namespace TileGameMaker.Windows
         {
             try
             {
-                ProjectFile.Save(MapEditor.Project);
+                MapEditor.Project.Save();
                 Alert.Info("Project saved successfully!");
             }
             catch (Exception ex)
             {
-                Alert.Error("There was an error while saving the project:\n" + ex.StackTrace);
+                Alert.Error("There was an error while saving the project:\n\n" + ex.StackTrace);
             }
         }
 
         private void BtnCloseProject_Click(object sender, EventArgs e)
         {
+            MapEditor.Project.Save();
             MapEditor.StartWindow.Show();
             Hide();
         }

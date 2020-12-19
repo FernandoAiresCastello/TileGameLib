@@ -59,6 +59,11 @@ namespace TileGameLib.File
             ProjectFile.Save(this);
         }
 
+        public void Save()
+        {
+            ProjectFile.Save(this);
+        }
+
         public bool Load(string path)
         {
             Path = path;
