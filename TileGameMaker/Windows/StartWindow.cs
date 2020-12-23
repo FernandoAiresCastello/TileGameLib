@@ -47,7 +47,9 @@ namespace TileGameMaker.Windows
 
         private void LstRecent_DoubleClick(object sender, EventArgs e)
         {
-            OpenProject((string)LstRecent.SelectedItem);
+            object item = LstRecent.SelectedItem;
+            if (item != null)
+                OpenProject((string)item);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
