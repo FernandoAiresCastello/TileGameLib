@@ -28,57 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TxtFrom = new System.Windows.Forms.NumericUpDown();
-            this.TxtTo = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.Txt1 = new System.Windows.Forms.NumericUpDown();
+            this.Txt2 = new System.Windows.Forms.NumericUpDown();
+            this.Lb1 = new System.Windows.Forms.Label();
+            this.Lb2 = new System.Windows.Forms.Label();
+            this.LbCaption = new System.Windows.Forms.Label();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Txt1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Txt2)).BeginInit();
             this.SuspendLayout();
             // 
-            // TxtFrom
+            // Txt1
             // 
-            this.TxtFrom.Location = new System.Drawing.Point(48, 37);
-            this.TxtFrom.Name = "TxtFrom";
-            this.TxtFrom.Size = new System.Drawing.Size(70, 20);
-            this.TxtFrom.TabIndex = 0;
+            this.Txt1.Location = new System.Drawing.Point(48, 37);
+            this.Txt1.Name = "Txt1";
+            this.Txt1.Size = new System.Drawing.Size(70, 20);
+            this.Txt1.TabIndex = 0;
             // 
-            // TxtTo
+            // Txt2
             // 
-            this.TxtTo.Location = new System.Drawing.Point(150, 37);
-            this.TxtTo.Name = "TxtTo";
-            this.TxtTo.Size = new System.Drawing.Size(70, 20);
-            this.TxtTo.TabIndex = 1;
+            this.Txt2.Location = new System.Drawing.Point(150, 37);
+            this.Txt2.Name = "Txt2";
+            this.Txt2.Size = new System.Drawing.Size(70, 20);
+            this.Txt2.TabIndex = 1;
             // 
-            // label1
+            // Lb1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "From";
+            this.Lb1.AutoSize = true;
+            this.Lb1.Location = new System.Drawing.Point(12, 39);
+            this.Lb1.Name = "Lb1";
+            this.Lb1.Size = new System.Drawing.Size(30, 13);
+            this.Lb1.TabIndex = 2;
+            this.Lb1.Text = "From";
             // 
-            // label2
+            // Lb2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(124, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "To";
+            this.Lb2.AutoSize = true;
+            this.Lb2.Location = new System.Drawing.Point(124, 39);
+            this.Lb2.Name = "Lb2";
+            this.Lb2.Size = new System.Drawing.Size(20, 13);
+            this.Lb2.TabIndex = 3;
+            this.Lb2.Text = "To";
             // 
-            // label3
+            // LbCaption
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Enter range:";
+            this.LbCaption.AutoSize = true;
+            this.LbCaption.Location = new System.Drawing.Point(12, 9);
+            this.LbCaption.Name = "LbCaption";
+            this.LbCaption.Size = new System.Drawing.Size(65, 13);
+            this.LbCaption.TabIndex = 4;
+            this.LbCaption.Text = "Enter range:";
             // 
             // BtnOk
             // 
@@ -107,18 +107,18 @@
             this.ClientSize = new System.Drawing.Size(235, 119);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TxtTo);
-            this.Controls.Add(this.TxtFrom);
+            this.Controls.Add(this.LbCaption);
+            this.Controls.Add(this.Lb2);
+            this.Controls.Add(this.Lb1);
+            this.Controls.Add(this.Txt2);
+            this.Controls.Add(this.Txt1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RangeInputWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)(this.TxtFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Txt1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Txt2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,11 +126,11 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown TxtFrom;
-        private System.Windows.Forms.NumericUpDown TxtTo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown Txt1;
+        private System.Windows.Forms.NumericUpDown Txt2;
+        private System.Windows.Forms.Label Lb1;
+        private System.Windows.Forms.Label Lb2;
+        private System.Windows.Forms.Label LbCaption;
         private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnCancel;
     }

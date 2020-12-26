@@ -31,6 +31,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LbMapInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LbViewPos = new System.Windows.Forms.ToolStripStatusLabel();
             this.LbEditModeInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.MapPanel = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -97,6 +98,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LbMapInfo,
+            this.LbViewPos,
             this.LbEditModeInfo});
             this.statusStrip1.Location = new System.Drawing.Point(0, 470);
             this.statusStrip1.Name = "statusStrip1";
@@ -111,6 +113,13 @@
             this.LbMapInfo.Name = "LbMapInfo";
             this.LbMapInfo.Size = new System.Drawing.Size(69, 15);
             this.LbMapInfo.Text = "LbMapInfo";
+            // 
+            // LbViewPos
+            // 
+            this.LbViewPos.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.LbViewPos.Name = "LbViewPos";
+            this.LbViewPos.Size = new System.Drawing.Size(68, 15);
+            this.LbViewPos.Text = "LbViewPos";
             // 
             // LbEditModeInfo
             // 
@@ -582,5 +591,6 @@
         private System.Windows.Forms.ToolStripButton BtnSetExtra;
         private System.Windows.Forms.ToolStripButton BtnFollowLink;
         private System.Windows.Forms.ToolStripButton BtnGrid;
+        private System.Windows.Forms.ToolStripStatusLabel LbViewPos;
     }
 }

@@ -19,6 +19,9 @@ namespace TileGameLib.Graphics
         public bool AutoRefresh { set; get; }
         public bool RenderInvisibleObjects { set; get; }
 
+        public int ScrollX => Scroll.X;
+        public int ScrollY => Scroll.Y;
+
         private Point Scroll { set; get; }
 
         public int RefreshInterval
@@ -134,9 +137,28 @@ namespace TileGameLib.Graphics
             Scroll = new Point(Scroll.X + dx, Scroll.Y + dy);
         }
 
+        public bool ScrollByDistanceIfInsideView(int dx, int dy)
+        {
+            int newX = Scroll.X + dx;
+            int newY = Scroll.Y + dy;
+
+            if (newX >= 0 && newY >= 0 && newX <= Map.Width - Viewport.Width && newY <= Map.Height - Viewport.Height)
+            {
+                Scroll = new Point(newX, newY);
+                return true;
+            }
+
+            return false;
+        }
+
         public void ScrollToPoint(Point point)
         {
             Scroll = new Point(point.X, point.Y);
+        }
+
+        public void ScrollToPoint(int x, int y)
+        {
+            Scroll = new Point(x, y);
         }
 
         public void ScrollToCenter(Point point)

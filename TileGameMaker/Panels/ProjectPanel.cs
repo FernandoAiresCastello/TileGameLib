@@ -167,6 +167,7 @@ namespace TileGameMaker.Panels
         private void OpenSelectedMap()
         {
             Editor.SetMap(GetSelectedMap());
+            Editor.MapEditorControl.ResetViewScroll();
         }
     }
 }

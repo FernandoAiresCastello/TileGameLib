@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fernando Aires Castello")]
 [assembly: AssemblyProduct("TileGameMaker")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyleft 2019 - 2021")]
 [assembly: AssemblyTrademark("Fernando Aires Castello")]
 [assembly: AssemblyCulture("")]
 

@@ -117,6 +117,12 @@ namespace TileGameMaker.Panels
         {
             ClearPointedToObjectView();
 
+            if (pc == null)
+            {
+                Print(TxtObject, $"[Out of bounds]");
+                return;
+            }
+
             GameObject o = pc.Cell.Object;
             ObjectPosition pos = pc.Position;
 

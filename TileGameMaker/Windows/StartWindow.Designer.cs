@@ -41,8 +41,8 @@
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.LstRecent = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -125,7 +125,7 @@
             this.LbCopyright.Name = "LbCopyright";
             this.LbCopyright.Size = new System.Drawing.Size(432, 50);
             this.LbCopyright.TabIndex = 3;
-            this.LbCopyright.Text = "(Copyleft) 2019-2020\r\nDeveloped by Fernando Aires Castello";
+            this.LbCopyright.Text = "2019 - 2021\r\nDeveloped by Fernando Aires Castello";
             this.LbCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -235,6 +235,19 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(454, 101);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
+            // LstRecent
+            // 
+            this.LstRecent.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.LstRecent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LstRecent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LstRecent.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LstRecent.FormattingEnabled = true;
+            this.LstRecent.Location = new System.Drawing.Point(13, 19);
+            this.LstRecent.Name = "LstRecent";
+            this.LstRecent.ScrollAlwaysVisible = true;
+            this.LstRecent.Size = new System.Drawing.Size(428, 69);
+            this.LstRecent.TabIndex = 2;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -244,18 +257,6 @@
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Recent projects:";
-            // 
-            // LstRecent
-            // 
-            this.LstRecent.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.LstRecent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LstRecent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LstRecent.FormattingEnabled = true;
-            this.LstRecent.Location = new System.Drawing.Point(13, 19);
-            this.LstRecent.Name = "LstRecent";
-            this.LstRecent.ScrollAlwaysVisible = true;
-            this.LstRecent.Size = new System.Drawing.Size(428, 69);
-            this.LstRecent.TabIndex = 2;
             // 
             // StartWindow
             // 

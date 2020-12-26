@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Windows
 {
@@ -14,49 +15,59 @@ namespace TileGameMaker.Windows
     {
         public int FromValue
         {
-            set { TxtFrom.Value = value; }
-            get { return decimal.ToInt32(TxtFrom.Value); }
+            set { Txt1.Value = value; }
+            get { return decimal.ToInt32(Txt1.Value); }
         }
 
         public int ToValue
         {
-            set { TxtTo.Value = value; }
-            get { return decimal.ToInt32(TxtTo.Value); }
+            set { Txt2.Value = value; }
+            get { return decimal.ToInt32(Txt2.Value); }
         }
 
         public int FromMinValue
         {
-            set { TxtFrom.Minimum = value; }
+            set { Txt1.Minimum = value; }
         }
 
         public int FromMaxValue
         {
-            set { TxtFrom.Maximum = value; }
+            set { Txt1.Maximum = value; }
         }
 
         public int ToMinValue
         {
-            set { TxtTo.Minimum = value; }
+            set { Txt2.Minimum = value; }
         }
 
         public int ToMaxValue
         {
-            set { TxtTo.Maximum = value; }
+            set { Txt2.Maximum = value; }
         }
 
         public int FromIncrement
         {
-            set { TxtFrom.Increment = value; }
+            set { Txt1.Increment = value; }
         }
 
         public int ToIncrement
         {
-            set { TxtTo.Increment = value; }
+            set { Txt2.Increment = value; }
         }
 
         public RangeInputWindow()
         {
             InitializeComponent();
+            Icon = Global.WindowIcon;
+        }
+
+        public RangeInputWindow(string labelCaption, string label1, string label2)
+        {
+            InitializeComponent();
+            Icon = Global.WindowIcon;
+            LbCaption.Text = labelCaption;
+            Lb1.Text = label1;
+            Lb2.Text = label2;
         }
     }
 }

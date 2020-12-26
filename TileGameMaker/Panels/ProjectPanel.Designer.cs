@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ToolStripAndGrid = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.MapListGrid = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TxtProjectName = new System.Windows.Forms.TextBox();
-            this.LblProjectName = new System.Windows.Forms.Label();
             this.BtnAdd = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
             this.BtnDuplicate = new System.Windows.Forms.ToolStripButton();
+            this.MapListGrid = new System.Windows.Forms.DataGridView();
             this.map = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TxtProjectName = new System.Windows.Forms.TextBox();
+            this.LblProjectName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.ToolStripAndGrid.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -95,57 +97,6 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // MapListGrid
-            // 
-            this.MapListGrid.AllowUserToAddRows = false;
-            this.MapListGrid.AllowUserToDeleteRows = false;
-            this.MapListGrid.AllowUserToResizeColumns = false;
-            this.MapListGrid.AllowUserToResizeRows = false;
-            this.MapListGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.MapListGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.MapListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.MapListGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.map,
-            this.id});
-            this.MapListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapListGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.MapListGrid.Location = new System.Drawing.Point(3, 63);
-            this.MapListGrid.MultiSelect = false;
-            this.MapListGrid.Name = "MapListGrid";
-            this.MapListGrid.ReadOnly = true;
-            this.MapListGrid.RowHeadersVisible = false;
-            this.MapListGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.MapListGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MapListGrid.Size = new System.Drawing.Size(252, 295);
-            this.MapListGrid.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.TxtProjectName);
-            this.panel1.Controls.Add(this.LblProjectName);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 24);
-            this.panel1.TabIndex = 2;
-            // 
-            // TxtProjectName
-            // 
-            this.TxtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtProjectName.Location = new System.Drawing.Point(52, 0);
-            this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(193, 20);
-            this.TxtProjectName.TabIndex = 2;
-            // 
-            // LblProjectName
-            // 
-            this.LblProjectName.AutoSize = true;
-            this.LblProjectName.Location = new System.Drawing.Point(3, 3);
-            this.LblProjectName.Name = "LblProjectName";
-            this.LblProjectName.Size = new System.Drawing.Size(43, 13);
-            this.LblProjectName.TabIndex = 0;
-            this.LblProjectName.Text = "Project:";
-            // 
             // BtnAdd
             // 
             this.BtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -176,6 +127,46 @@
             this.BtnDuplicate.Text = "Copy map";
             this.BtnDuplicate.Click += new System.EventHandler(this.BtnDuplicate_Click);
             // 
+            // MapListGrid
+            // 
+            this.MapListGrid.AllowUserToAddRows = false;
+            this.MapListGrid.AllowUserToDeleteRows = false;
+            this.MapListGrid.AllowUserToResizeColumns = false;
+            this.MapListGrid.AllowUserToResizeRows = false;
+            this.MapListGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.MapListGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MapListGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.MapListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.MapListGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.map,
+            this.id});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.MapListGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            this.MapListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapListGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.MapListGrid.Location = new System.Drawing.Point(3, 63);
+            this.MapListGrid.MultiSelect = false;
+            this.MapListGrid.Name = "MapListGrid";
+            this.MapListGrid.ReadOnly = true;
+            this.MapListGrid.RowHeadersVisible = false;
+            this.MapListGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.MapListGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.MapListGrid.Size = new System.Drawing.Size(252, 295);
+            this.MapListGrid.TabIndex = 1;
+            // 
             // map
             // 
             this.map.HeaderText = "Name";
@@ -188,7 +179,35 @@
             this.id.HeaderText = "Id";
             this.id.Name = "id";
             this.id.ReadOnly = true;
-            this.id.Width = 41;
+            this.id.Width = 44;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.TxtProjectName);
+            this.panel1.Controls.Add(this.LblProjectName);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(252, 24);
+            this.panel1.TabIndex = 2;
+            // 
+            // TxtProjectName
+            // 
+            this.TxtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtProjectName.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProjectName.Location = new System.Drawing.Point(52, 0);
+            this.TxtProjectName.Name = "TxtProjectName";
+            this.TxtProjectName.Size = new System.Drawing.Size(193, 20);
+            this.TxtProjectName.TabIndex = 2;
+            // 
+            // LblProjectName
+            // 
+            this.LblProjectName.AutoSize = true;
+            this.LblProjectName.Location = new System.Drawing.Point(3, 3);
+            this.LblProjectName.Name = "LblProjectName";
+            this.LblProjectName.Size = new System.Drawing.Size(43, 13);
+            this.LblProjectName.TabIndex = 0;
+            this.LblProjectName.Text = "Project:";
             // 
             // ProjectPanel
             // 

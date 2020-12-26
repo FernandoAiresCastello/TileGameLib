@@ -164,7 +164,6 @@ namespace TileGameMaker.MapEditorElements
             if (width != Map.Width || height != Map.Height)
                 Map.Resize(width, height);
 
-            MapEditorControl.ResizeMapView(width, height);
             Refresh();
         }
 

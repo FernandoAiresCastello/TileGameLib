@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.MapEditorElements;
 using TileGameLib.GameElements;
@@ -16,7 +11,6 @@ using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
 using System.Diagnostics;
-using System.IO;
 
 namespace TileGameMaker.Panels
 {
@@ -33,6 +27,8 @@ namespace TileGameMaker.Panels
         private ScriptWindow ScriptWindow;
         private ObjectBlockClipboard ClipboardObjects;
         private GameObjectPanel GameObjectPanel;
+        private int ViewWidth = 32;
+        private int ViewHeight = 24;
 
         private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject, FollowLink }
         private EditMode Mode;
@@ -55,10 +51,10 @@ namespace TileGameMaker.Panels
             InitializeComponent();
             Editor = editor;
             Map = editor.Map;
-            Display = new TiledDisplay(MapPanel, Map.Width, Map.Height, DefaultZoom);
+            Display = new TiledDisplay(MapPanel, ViewWidth, ViewHeight, DefaultZoom);
             Display.ShowGrid = true;
             Display.SetMainGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
-            MapRenderer = new MapRenderer(Map, Display);
+            MapRenderer = new MapRenderer(Map, Display, new Rectangle(0, 0, ViewWidth, ViewHeight));
             MapRenderer.RenderInvisibleObjects = true;
             BtnRenderInvisibleObjects.Checked = MapRenderer.RenderInvisibleObjects;
             LbEditModeInfo.Text = "";
@@ -72,16 +68,13 @@ namespace TileGameMaker.Panels
             Display.MouseDown += Disp_MouseDown;
             Display.MouseLeave += Disp_MouseLeave;
 
+            LbViewPos.Click += LbViewPos_Click;
+
             SetMode(EditMode.Draw);
             RenderMap();
             Refresh();
             UpdateLayerComboBox();
-        }
-
-        public void ResizeMapView(int width, int height)
-        {
-            Display.ResizeGraphics(width, height);
-            MapRenderer.Viewport = new Rectangle(0, 0, width, height);
+            UpdateViewLabel();
         }
 
         public void UpdateLayerComboBox()
@@ -96,10 +89,16 @@ namespace TileGameMaker.Panels
 
         private void UpdateStatusLabel()
         {
-            LbMapInfo.Text =
-                string.Format("Size: {0}x{1} Image size: {2}x{3} Layers: {4} Zoom: {5}",
-                    Map.Width, Map.Height, Map.ImageWidth, Map.ImageHeight, 
-                    Map.Layers.Count, Display.Zoom);
+            LbMapInfo.Text = string.Format("Size: {0}x{1}, Layers: {2}, Zoom: {3}",
+                Map.Width, Map.Height, Map.Layers.Count, Display.Zoom);
+        }
+
+        private void UpdateViewLabel()
+        {
+            LbViewPos.Text = string.Format("View: X{0} Y{1} - X{2} Y{3}",
+                MapRenderer.ScrollX, MapRenderer.ScrollY,
+                MapRenderer.ScrollX + MapRenderer.Viewport.Width - 1, 
+                MapRenderer.ScrollY + MapRenderer.Viewport.Height - 1);
         }
 
         private void ClearMap()
@@ -122,7 +121,7 @@ namespace TileGameMaker.Panels
 
         private void OnDisplayMouseDown(MouseEventArgs e)
         {
-            Point point = Display.GetMouseToCellPos(e.Location);
+            Point point = GetMouseToScrolledCellPos(e.Location);
             if (IsOutOfBounds(point))
                 return;
 
@@ -225,7 +224,7 @@ namespace TileGameMaker.Panels
             Selection.EndPoint = null;
             Selection.StartPoint = point;
             ClearTileSelection();
-            Display.SelectTile(point);
+            Display.SelectTile(GetUnscrolledCellPos(point));
         }
 
         private void EndSelection(Point point)
@@ -263,8 +262,14 @@ namespace TileGameMaker.Panels
             Display.DeselectAllTiles();
 
             List<Point> selectedTiles = Selection.Points;
+
             if (selectedTiles.Count > 0)
+            {
+                for (int i = 0; i < selectedTiles.Count; i++)
+                    selectedTiles[i] = GetUnscrolledCellPos(selectedTiles[i]);
+
                 Display.SelectTiles(selectedTiles);
+            }
 
             Display.Refresh();
         }
@@ -284,11 +289,31 @@ namespace TileGameMaker.Panels
             LbEditModeInfo.Text = "Replace mode";
         }
 
+        private Point GetMouseToScrolledCellPos(Point mousePos)
+        {
+            Point point = Display.GetMouseToCellPos(mousePos);
+            point.X += MapRenderer.ScrollX;
+            point.Y += MapRenderer.ScrollY;
+            return point;
+        }
+
+        private Point GetUnscrolledCellPos(Point cellPos)
+        {
+            Point pos = new Point(cellPos.X, cellPos.Y);
+            pos.X -= MapRenderer.ScrollX;
+            pos.Y -= MapRenderer.ScrollY;
+            return pos;
+        }
+
         private void OnDisplayMouseMove(MouseEventArgs e)
         {
-            Point point = Display.GetMouseToCellPos(e.Location);
+            Point point = GetMouseToScrolledCellPos(e.Location);
+
             if (IsOutOfBounds(point))
+            {
+                GameObjectPanel.Update(null);
                 return;
+            }
 
             ObjectPosition position = new ObjectPosition(Layer, point);
 
@@ -807,6 +832,33 @@ namespace TileGameMaker.Panels
                     case Keys.D5:
                         SetMode(EditMode.Selection);
                         break;
+                    case Keys.G:
+                        SelectViewScrollPos();
+                        break;
+                    case Keys.Right:
+                        if (e.Shift)
+                            ScrollViewToRightEdge();
+                        else
+                            ScrollView(1, 0);
+                        break;
+                    case Keys.Left:
+                        if (e.Shift)
+                            ScrollViewToLeftEdge();
+                        else
+                            ScrollView(-1, 0);
+                        break;
+                    case Keys.Up:
+                        if (e.Shift)
+                            ScrollViewToTopEdge();
+                        else
+                            ScrollView(0, -1);
+                        break;
+                    case Keys.Down:
+                        if (e.Shift)
+                            ScrollViewToBottomEdge();
+                        else
+                            ScrollView(0, 1);
+                        break;
                 }
             }
             else
@@ -967,6 +1019,66 @@ namespace TileGameMaker.Panels
             else
             {
                 Alert.Warning("No previous link found");
+            }
+        }
+
+        private void ScrollView(int dx, int dy)
+        {
+            if (MapRenderer.ScrollByDistanceIfInsideView(dx, dy))
+                UpdateViewLabel();
+            else
+                Alert.Warning("Can't scroll past map edges");
+        }
+
+        private void ScrollViewToRightEdge()
+        {
+            MapRenderer.ScrollToPoint(Map.Width - MapRenderer.Viewport.Width, MapRenderer.ScrollY);
+            UpdateViewLabel();
+        }
+
+        private void ScrollViewToLeftEdge()
+        {
+            MapRenderer.ScrollToPoint(0, MapRenderer.ScrollY);
+            UpdateViewLabel();
+        }
+
+        private void ScrollViewToTopEdge()
+        {
+            MapRenderer.ScrollToPoint(MapRenderer.ScrollX, 0);
+            UpdateViewLabel();
+        }
+
+        private void ScrollViewToBottomEdge()
+        {
+            MapRenderer.ScrollToPoint(MapRenderer.ScrollX, Map.Height - MapRenderer.Viewport.Height);
+            UpdateViewLabel();
+        }
+
+        public void ResetViewScroll()
+        {
+            MapRenderer.ScrollToPoint(0, 0);
+            UpdateViewLabel();
+        }
+
+        private void LbViewPos_Click(object sender, EventArgs e)
+        {
+            SelectViewScrollPos();
+        }
+
+        private void SelectViewScrollPos()
+        {
+            RangeInputWindow win = new RangeInputWindow("Enter view scroll top-left position:", "X", "Y");
+            win.FromMinValue = 0;
+            win.FromMaxValue = Map.Width - MapRenderer.Viewport.Width;
+            win.ToMinValue = 0;
+            win.ToMaxValue = Map.Height - MapRenderer.Viewport.Height;
+            win.FromValue = MapRenderer.ScrollX;
+            win.ToValue = MapRenderer.ScrollY;
+
+            if (win.ShowDialog() == DialogResult.OK)
+            {
+                MapRenderer.ScrollToPoint(win.FromValue, win.ToValue);
+                UpdateViewLabel();
             }
         }
     }
