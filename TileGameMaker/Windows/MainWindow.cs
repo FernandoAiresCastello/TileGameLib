@@ -62,19 +62,14 @@ namespace TileGameMaker.Windows
             MapEditor.MapEditorControl.HandleKeyEvent(sender, e);
         }
 
-        private void ShowSplashWindow()
-        {
-            SplashWindow splash = new SplashWindow();
-            splash.Show(this);
-        }
-
         private void MainWindow_Shown(object sender, EventArgs e)
         {
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ExitProgram();
+            if (e.CloseReason != CloseReason.ApplicationExitCall)
+                ExitProgram(e);
         }
 
         private void AddControl(Control control, Control panel)
@@ -88,15 +83,22 @@ namespace TileGameMaker.Windows
             ExitProgram();
         }
 
-        private void ExitProgram()
+        private void ExitProgram(FormClosingEventArgs e = null)
         {
-            MapEditor.Project.Save();
-            Application.Exit();
-        }
+            DialogResult result = Alert.YesNoOrCancel("Save project before exiting?");
 
-        private void MiAbout_Click(object sender, EventArgs e)
-        {
-            ShowSplashWindow();
+            if (result == DialogResult.Cancel)
+            {
+                if (e != null)
+                    e.Cancel = true;
+
+                return;
+            }
+
+            if (result == DialogResult.Yes)
+                SaveProject();
+
+            Application.Exit();
         }
 
         private void BtnToggleCommandLine_Click(object sender, EventArgs e)
@@ -150,6 +152,23 @@ namespace TileGameMaker.Windows
 
         private void BtnSaveProject_Click(object sender, EventArgs e)
         {
+            SaveProject();
+        }
+
+        private void BtnCloseProject_Click(object sender, EventArgs e)
+        {
+            DialogResult result = Alert.YesNoOrCancel("Save project before closing?");
+            if (result == DialogResult.Cancel)
+                return;
+            if (result == DialogResult.Yes)
+                SaveProject();
+
+            MapEditor.StartWindow.Show();
+            Hide();
+        }
+
+        private void SaveProject()
+        {
             try
             {
                 MapEditor.Project.Save();
@@ -159,13 +178,6 @@ namespace TileGameMaker.Windows
             {
                 Alert.Error("There was an error while saving the project:\n\n" + ex.StackTrace);
             }
-        }
-
-        private void BtnCloseProject_Click(object sender, EventArgs e)
-        {
-            MapEditor.Project.Save();
-            MapEditor.StartWindow.Show();
-            Hide();
         }
     }
 }

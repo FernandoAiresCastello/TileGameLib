@@ -166,7 +166,6 @@ namespace TileGameMaker.Panels
 
         private void OpenSelectedMap()
         {
-            Project.Save();
             Editor.SetMap(GetSelectedMap());
         }
     }

@@ -31,12 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.RightPanel = new System.Windows.Forms.Panel();
@@ -53,7 +52,6 @@
             this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.BtnCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -74,8 +72,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -90,8 +87,8 @@
             this.toolStripSeparator1,
             this.MiExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.fileToolStripMenuItem.Text = "Project";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
             // 
             // BtnSaveProject
             // 
@@ -101,6 +98,14 @@
             this.BtnSaveProject.Size = new System.Drawing.Size(180, 22);
             this.BtnSaveProject.Text = "Save project";
             this.BtnSaveProject.Click += new System.EventHandler(this.BtnSaveProject_Click);
+            // 
+            // BtnCloseProject
+            // 
+            this.BtnCloseProject.Image = global::TileGameMaker.Properties.Resources.folder_vertical_zipper;
+            this.BtnCloseProject.Name = "BtnCloseProject";
+            this.BtnCloseProject.Size = new System.Drawing.Size(180, 22);
+            this.BtnCloseProject.Text = "Close project";
+            this.BtnCloseProject.Click += new System.EventHandler(this.BtnCloseProject_Click);
             // 
             // toolStripSeparator1
             // 
@@ -112,7 +117,7 @@
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
             this.MiExit.Size = new System.Drawing.Size(180, 22);
-            this.MiExit.Text = "Exit";
+            this.MiExit.Text = "Quit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
             // toolsToolStripMenuItem
@@ -132,23 +137,6 @@
             this.BtnDataExtractor.Size = new System.Drawing.Size(221, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // MiAbout
-            // 
-            this.MiAbout.Image = global::TileGameMaker.Properties.Resources.information;
-            this.MiAbout.Name = "MiAbout";
-            this.MiAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MiAbout.Size = new System.Drawing.Size(135, 22);
-            this.MiAbout.Text = "About...";
-            this.MiAbout.Click += new System.EventHandler(this.MiAbout_Click);
             // 
             // WindowLayout
             // 
@@ -341,14 +329,6 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // BtnCloseProject
-            // 
-            this.BtnCloseProject.Image = global::TileGameMaker.Properties.Resources.folder_vertical_zipper;
-            this.BtnCloseProject.Name = "BtnCloseProject";
-            this.BtnCloseProject.Size = new System.Drawing.Size(180, 22);
-            this.BtnCloseProject.Text = "Close project";
-            this.BtnCloseProject.Click += new System.EventHandler(this.BtnCloseProject_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,8 +364,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MiExit;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MiAbout;
         private System.Windows.Forms.TableLayoutPanel WindowLayout;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
         private System.Windows.Forms.Panel TopRightPanel;

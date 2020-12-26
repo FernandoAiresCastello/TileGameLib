@@ -36,5 +36,10 @@ namespace TileGameLib.Util
             DialogResult result = MessageBox.Show(msg, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             return result == DialogResult.OK;
         }
+
+        public static DialogResult YesNoOrCancel(string msg)
+        {
+            return MessageBox.Show(msg, "Confirm", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+        }
     }
 }
