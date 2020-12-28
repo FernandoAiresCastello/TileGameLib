@@ -119,6 +119,14 @@ namespace TileGameLib.File
                 Append(map.Extra);
             }
 
+            // === PROGRAM ===
+            Append(project.Program);
+
+            // === ENGINE WINDOW PARAMS ===
+            Append(project.EngineWindowCols);
+            Append(project.EngineWindowRows);
+            Append(project.EngineWindowMagnification);
+
             MemoryFile file = new MemoryFile();
             file.WriteString(text.ToString());
             file.SaveToPhysicalFile(project.Path);
@@ -252,6 +260,14 @@ namespace TileGameLib.File
 
                 project.Maps.Add(map);
             }
+
+            // === PROGRAM ===
+            project.Program = NextString();
+
+            // === ENGINE WINDOW PARAMS ===
+            project.EngineWindowCols = NextNumber();
+            project.EngineWindowRows = NextNumber();
+            project.EngineWindowMagnification = NextNumber();
 
             return true;
         }

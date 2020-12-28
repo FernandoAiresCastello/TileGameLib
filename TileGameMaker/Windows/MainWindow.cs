@@ -179,5 +179,28 @@ namespace TileGameMaker.Windows
                 Alert.Error("There was an error while saving the project:\n\n" + ex.StackTrace);
             }
         }
+
+        private void BtnProjectSettings_Click(object sender, EventArgs e)
+        {
+            ProjectSettingsWindow win = new ProjectSettingsWindow(MapEditor.Project);
+
+            if (win.ShowDialog(this) == DialogResult.OK)
+            {
+                MapEditor.Project.Name = win.Project.Name;
+                MapEditor.Project.EngineWindowCols = win.Project.EngineWindowCols;
+                MapEditor.Project.EngineWindowRows = win.Project.EngineWindowRows;
+                MapEditor.Project.EngineWindowMagnification = win.Project.EngineWindowMagnification;
+            }
+        }
+
+        private void BtnProgramEditor_Click(object sender, EventArgs e)
+        {
+            OpenProgramEditor();
+        }
+
+        private void OpenProgramEditor()
+        {
+
+        }
     }
 }

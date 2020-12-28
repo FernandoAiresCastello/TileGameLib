@@ -136,6 +136,12 @@
     <Compile Include="Windows\GridSetupWindow.Designer.cs">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ProjectSettingsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ProjectSettingsWindow.Designer.cs">
+      <DependentUpon>ProjectSettingsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ScriptWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ProjectSettingsWindow.resx">
+      <DependentUpon>ProjectSettingsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ScriptWindow.resx">
       <DependentUpon>ScriptWindow.cs</DependentUpon>
@@ -452,6 +461,7 @@
     <None Include="Resources\folder_add.png" />
     <None Include="Resources\folder_vertical_zipper.png" />
     <None Include="Resources\chart_organisation.png" />
+    <None Include="Resources\cog_edit.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

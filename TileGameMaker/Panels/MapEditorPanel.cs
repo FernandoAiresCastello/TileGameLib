@@ -112,11 +112,16 @@ namespace TileGameMaker.Panels
                 OnDisplayMouseMove(e);
             else if (e.Button == MouseButtons.Left)
                 OnDisplayMouseDown(e);
+            else if (e.Button == MouseButtons.Middle)
+                OnDisplayMouseMoveMiddleButton(e);
         }
 
         private void Disp_MouseDown(object sender, MouseEventArgs e)
         {
-            OnDisplayMouseDown(e);
+            if (e.Button == MouseButtons.Middle)
+                OnDisplayMouseDownMiddleButton(e);
+            else
+                OnDisplayMouseDown(e);
         }
 
         private void OnDisplayMouseDown(MouseEventArgs e)
@@ -216,6 +221,14 @@ namespace TileGameMaker.Panels
                     ReturnFromObjectLink();
                 }
             }
+        }
+
+        private void OnDisplayMouseDownMiddleButton(MouseEventArgs e)
+        {
+        }
+
+        private void OnDisplayMouseMoveMiddleButton(MouseEventArgs e)
+        {
         }
 
         private void StartSelection(Point point)

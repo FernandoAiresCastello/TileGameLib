@@ -27,35 +27,10 @@ namespace TileGameMaker.Panels
         public ProjectPanel(MapEditor editor)
         {
             InitializeComponent();
-
-            TxtProjectName.Click += TxtProjectName_Click;
-            TxtProjectName.LostFocus += TxtProjectName_LostFocus;
-            TxtProjectName.TextChanged += TxtProjectName_TextChanged;
             MapListGrid.DoubleClick += MapListGrid_DoubleClick;
-
             Editor = editor;
             Project = editor.Project;
-            TxtProjectName.Text = Project.Name;
-
             UpdateMapList();
-        }
-
-        private void TxtProjectName_LostFocus(object sender, EventArgs e)
-        {
-            TxtProjectName.Text = Project.Name;
-        }
-
-        private void TxtProjectName_Click(object sender, EventArgs e)
-        {
-            TxtProjectName.SelectAll();
-        }
-
-        private void TxtProjectName_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(TxtProjectName.Text))
-                TxtProjectName.Text = Project.Name;
-            else
-                Project.Name = TxtProjectName.Text.Trim();
         }
 
         private void MapListGrid_DoubleClick(object sender, EventArgs e)
@@ -69,14 +44,14 @@ namespace TileGameMaker.Panels
 
             MapListGrid.Rows.Clear();
 
-            foreach (ObjectMap map in Project.Maps)
+            foreach (ObjectMap projectMap in Project.Maps)
             {
                 DataGridViewRow row = new DataGridViewRow();
-                row.Tag = map;
+                row.Tag = projectMap;
                 DataGridViewTextBoxCell nameCell = new DataGridViewTextBoxCell();
-                nameCell.Value = map.Name;
+                nameCell.Value = projectMap.Name;
                 DataGridViewTextBoxCell idCell = new DataGridViewTextBoxCell();
-                idCell.Value = map.Id;
+                idCell.Value = projectMap.Id;
 
                 row.Cells.Add(nameCell);
                 row.Cells.Add(idCell);
@@ -85,7 +60,7 @@ namespace TileGameMaker.Panels
 
                 foreach (DataGridViewRow currentRow in MapListGrid.Rows)
                     foreach (DataGridViewCell currentCell in currentRow.Cells)
-                        currentCell.Tag = map;
+                        currentCell.Tag = projectMap;
             }
 
             Select(selectedMap);
