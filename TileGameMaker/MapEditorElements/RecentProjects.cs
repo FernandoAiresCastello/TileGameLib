@@ -33,6 +33,12 @@ namespace TileGameMaker.MapEditorElements
                 Files.Add(file);
         }
 
+        public void Remove(string file)
+        {
+            if (Files.Contains(file))
+                Files.Remove(file);
+        }
+
         public void Save()
         {
             File.WriteAllLines(Path, Files);

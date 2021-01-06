@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartWindow));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,6 +44,9 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.LstRecent = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.CtxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.BtnOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnRemoveFromList = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -50,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.CtxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -239,6 +244,7 @@
             // 
             this.LstRecent.BackColor = System.Drawing.Color.CornflowerBlue;
             this.LstRecent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LstRecent.ContextMenuStrip = this.CtxMenu;
             this.LstRecent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LstRecent.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstRecent.FormattingEnabled = true;
@@ -258,6 +264,28 @@
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Recent projects:";
+            // 
+            // CtxMenu
+            // 
+            this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnOpenFileLocation,
+            this.BtnRemoveFromList});
+            this.CtxMenu.Name = "contextMenuStrip1";
+            this.CtxMenu.Size = new System.Drawing.Size(169, 48);
+            // 
+            // BtnOpenFileLocation
+            // 
+            this.BtnOpenFileLocation.Name = "BtnOpenFileLocation";
+            this.BtnOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+            this.BtnOpenFileLocation.Text = "Open file location";
+            this.BtnOpenFileLocation.Click += new System.EventHandler(this.BtnOpenFileLocation_Click);
+            // 
+            // BtnRemoveFromList
+            // 
+            this.BtnRemoveFromList.Name = "BtnRemoveFromList";
+            this.BtnRemoveFromList.Size = new System.Drawing.Size(180, 22);
+            this.BtnRemoveFromList.Text = "Remove from list";
+            this.BtnRemoveFromList.Click += new System.EventHandler(this.BtnRemoveFromList_Click);
             // 
             // StartWindow
             // 
@@ -279,6 +307,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.CtxMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -299,5 +328,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox LstRecent;
+        private System.Windows.Forms.ContextMenuStrip CtxMenu;
+        private System.Windows.Forms.ToolStripMenuItem BtnOpenFileLocation;
+        private System.Windows.Forms.ToolStripMenuItem BtnRemoveFromList;
     }
 }

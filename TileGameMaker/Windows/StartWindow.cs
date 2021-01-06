@@ -43,6 +43,13 @@ namespace TileGameMaker.Windows
             RecentProjects = new RecentProjects();
             LstRecent.Items.AddRange(RecentProjects.Files.ToArray());
             LstRecent.DoubleClick += LstRecent_DoubleClick;
+            LstRecent.MouseDown += LstRecent_MouseDown;
+        }
+
+        private void LstRecent_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                LstRecent.SelectedIndex = LstRecent.IndexFromPoint(e.Location);
         }
 
         private void LstRecent_DoubleClick(object sender, EventArgs e)
@@ -106,6 +113,23 @@ namespace TileGameMaker.Windows
             MapEditor editor = new MapEditor(this, project);
             editor.Show();
             Hide();
+        }
+
+        private void BtnOpenFileLocation_Click(object sender, EventArgs e)
+        {
+            string path = (string)LstRecent.SelectedItem;
+            string folder = Path.GetDirectoryName(path);
+            Process.Start("explorer.exe", folder);
+        }
+
+        private void BtnRemoveFromList_Click(object sender, EventArgs e)
+        {
+            if (Alert.Confirm("Remove this file from the list?"))
+            {
+                string path = (string)LstRecent.SelectedItem;
+                RecentProjects.Remove(path);
+                RecentProjects.Save();
+            }
         }
     }
 }
