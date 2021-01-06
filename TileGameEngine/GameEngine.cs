@@ -18,6 +18,9 @@ namespace TileGameEngine
         private GameWindow Window;
         private Interpreter Interpreter;
         private ExecutionEnvironment Environment;
+        private Timer CycleTimer;
+        
+        public long Cycle { get; private set; }
 
         public GameEngine()
         {
@@ -42,25 +45,19 @@ namespace TileGameEngine
 
             Window = new GameWindow(this, 
                 Project.EngineWindowCols, Project.EngineWindowRows, Project.EngineWindowMagnification,
-                Project.EngineWindowWidth, Project.EngineWindowHeight);
+                Project.EngineWindowWidth, Project.EngineWindowHeight, 1);
 
             Window.FormClosed += Window_FormClosed;
 
-            // BEGIN DEBUG
-            try
-            {
-                Window.Graphics.PutString(0, 0, "Hello world!", 1, 0);
-                Window.Graphics.Refresh();
-            }
-            catch (Exception e)
-            {
-                Alert.Error("Error writing test message to graphics display:\n\n" + e.Message);
-            }
-            // END DEBUG
+            Cycle = 0;
+            CycleTimer = new Timer();
+            CycleTimer.Interval = 1;
+            CycleTimer.Tick += (sender, args) => Cycle++;
 
-            Environment = new ExecutionEnvironment(Project, Window);
-            Interpreter = new Interpreter(Environment);
+            Environment = new ExecutionEnvironment(this, Project, Window);
+            Interpreter = new Interpreter(this, Environment);
             Interpreter.Start();
+            CycleTimer.Start();
 
             Application.Run(Window);
         }

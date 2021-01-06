@@ -9,11 +9,14 @@ namespace TileGameEngine
 {
     public class ExecutionEnvironment
     {
+        private readonly GameEngine Engine;
+
         public Project Project { get; private set; }
         public GameWindow Window { get; private set; }
 
-        public ExecutionEnvironment(Project project, GameWindow window)
+        public ExecutionEnvironment(GameEngine engine, Project project, GameWindow window)
         {
+            Engine = engine;
             Project = project;
             Window = window;
         }

@@ -10,6 +10,7 @@ namespace TileGameEngine
 {
     public class Interpreter
     {
+        private readonly GameEngine Engine;
         private readonly ExecutionEnvironment Env;
         private readonly Thread Thread;
         private readonly Project Project;
@@ -18,8 +19,9 @@ namespace TileGameEngine
         private readonly Commands Commands;
         private bool Running;
 
-        public Interpreter(ExecutionEnvironment env)
+        public Interpreter(GameEngine engine, ExecutionEnvironment env)
         {
+            Engine = engine;
             Env = env;
             Project = env.Project;
             Window = env.Window;
@@ -36,7 +38,7 @@ namespace TileGameEngine
 
         public void Exit()
         {
-            Thread.Abort();
+            Running = false;
         }
 
         private void Run()

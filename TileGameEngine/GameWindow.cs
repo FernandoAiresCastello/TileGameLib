@@ -11,11 +11,21 @@ namespace TileGameEngine
     public class GameWindow : TiledDisplayWindow
     {
         private readonly GameEngine Engine;
+        private readonly Timer RefreshTimer;
 
-        public GameWindow(GameEngine engine, int cols, int rows, int zoom, int width, int height) :
+        public GameWindow(GameEngine engine, int cols, int rows, int zoom, int width, int height, int refreshRate) :
             base(cols, rows, zoom, width, height, false, true, true)
         {
             Engine = engine;
+            RefreshTimer = new Timer();
+            RefreshTimer.Interval = refreshRate;
+            RefreshTimer.Tick += RefreshTimer_Tick;
+            RefreshTimer.Start();
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            Refresh();
         }
 
         protected override void HandleKeyDownEvent(KeyEventArgs e)
