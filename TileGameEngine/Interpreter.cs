@@ -10,26 +10,33 @@ namespace TileGameEngine
 {
     public class Interpreter
     {
-        private readonly Environment Env;
+        private readonly ExecutionEnvironment Env;
         private readonly Thread Thread;
         private readonly Project Project;
         private readonly GameWindow Window;
         private readonly GameProgram Program;
+        private readonly Commands Commands;
         private bool Running;
 
-        public Interpreter(Environment env)
+        public Interpreter(ExecutionEnvironment env)
         {
             Env = env;
             Project = env.Project;
             Window = env.Window;
             Thread = new Thread(Run);
             Program = new GameProgram();
+            Commands = new Commands(env);
             Running = false;
         }
 
         public void Start()
         {
             Thread.Start();
+        }
+
+        public void Exit()
+        {
+            Thread.Abort();
         }
 
         private void Run()

@@ -17,7 +17,7 @@ namespace TileGameEngine
         private Project Project;
         private GameWindow Window;
         private Interpreter Interpreter;
-        private Environment Environment;
+        private ExecutionEnvironment Environment;
 
         public GameEngine()
         {
@@ -41,13 +41,33 @@ namespace TileGameEngine
             Project.Load(gameFile);
 
             Window = new GameWindow(this, 
-                Project.EngineWindowCols, Project.EngineWindowRows, Project.EngineWindowMagnification);
+                Project.EngineWindowCols, Project.EngineWindowRows, Project.EngineWindowMagnification,
+                Project.EngineWindowWidth, Project.EngineWindowHeight);
 
-            Application.Run(Window);
+            Window.FormClosed += Window_FormClosed;
 
-            Environment = new Environment(Project, Window);
+            // BEGIN DEBUG
+            try
+            {
+                Window.Graphics.PutString(0, 0, "Hello world!", 1, 0);
+                Window.Graphics.Refresh();
+            }
+            catch (Exception e)
+            {
+                Alert.Error("Error writing test message to graphics display:\n\n" + e.Message);
+            }
+            // END DEBUG
+
+            Environment = new ExecutionEnvironment(Project, Window);
             Interpreter = new Interpreter(Environment);
             Interpreter.Start();
+
+            Application.Run(Window);
+        }
+
+        private void Window_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Interpreter.Exit();
         }
 
         public void HandleKeyDownEvent(KeyEventArgs e)

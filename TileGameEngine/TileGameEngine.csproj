@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="ExecutionEnvironment.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="GameProgram.cs" />
     <Compile Include="GameWindow.cs">
@@ -84,4 +85,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(TargetDir)"
+copy "$(TargetFileName)" "$(SolutionDir)\TileGameMaker\bin\Debug\$(TargetFileName)"
+copy "$(TargetFileName)" "$(ProjectDir)\..\Binaries\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

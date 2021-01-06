@@ -126,6 +126,8 @@ namespace TileGameLib.File
             Append(project.EngineWindowCols);
             Append(project.EngineWindowRows);
             Append(project.EngineWindowMagnification);
+            Append(project.EngineWindowWidth);
+            Append(project.EngineWindowHeight);
 
             MemoryFile file = new MemoryFile();
             file.WriteString(text.ToString());
@@ -268,6 +270,8 @@ namespace TileGameLib.File
             project.EngineWindowCols = NextNumber();
             project.EngineWindowRows = NextNumber();
             project.EngineWindowMagnification = NextNumber();
+            project.EngineWindowWidth = NextNumber();
+            project.EngineWindowHeight = NextNumber();
 
             return true;
         }

@@ -14,7 +14,6 @@ namespace TileGameEngine
 
         public void Parse(string program)
         {
-
         }
     }
 }

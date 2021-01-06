@@ -12,8 +12,8 @@ namespace TileGameEngine
     {
         private readonly GameEngine Engine;
 
-        public GameWindow(GameEngine engine, int cols, int rows, int zoom) : 
-            base(cols, rows, zoom, false, true, true)
+        public GameWindow(GameEngine engine, int cols, int rows, int zoom, int width, int height) :
+            base(cols, rows, zoom, width, height, false, true, true)
         {
             Engine = engine;
         }

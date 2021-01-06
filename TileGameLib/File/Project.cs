@@ -24,6 +24,8 @@ namespace TileGameLib.File
         public int EngineWindowCols { get; set; }
         public int EngineWindowRows { get; set; }
         public int EngineWindowMagnification { get; set; }
+        public int EngineWindowWidth { get; set; }
+        public int EngineWindowHeight { get; set; }
 
         public string Folder
         {
@@ -44,6 +46,8 @@ namespace TileGameLib.File
             EngineWindowCols = 32;
             EngineWindowRows = 24;
             EngineWindowMagnification = 2;
+            EngineWindowWidth = 640;
+            EngineWindowHeight = 480;
         }
 
         public void DeleteMap(ObjectMap map)

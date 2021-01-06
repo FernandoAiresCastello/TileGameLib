@@ -463,6 +463,7 @@
     <None Include="Resources\folder_vertical_zipper.png" />
     <None Include="Resources\chart_organisation.png" />
     <None Include="Resources\cog_edit.png" />
+    <None Include="Resources\control_play_blue.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

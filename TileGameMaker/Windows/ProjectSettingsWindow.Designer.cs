@@ -39,10 +39,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtHeight = new System.Windows.Forms.NumericUpDown();
+            this.TxtWidth = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.TxtCols)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtRows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtMagnification)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -146,6 +152,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.TxtHeight);
+            this.groupBox1.Controls.Add(this.TxtWidth);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TxtMagnification);
             this.groupBox1.Controls.Add(this.label4);
@@ -154,7 +164,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(13, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(366, 54);
+            this.groupBox1.Size = new System.Drawing.Size(366, 78);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Engine window size";
@@ -163,7 +173,7 @@
             // 
             this.BtnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.BtnOk.Image = global::TileGameMaker.Properties.Resources.tick;
-            this.BtnOk.Location = new System.Drawing.Point(116, 110);
+            this.BtnOk.Location = new System.Drawing.Point(116, 129);
             this.BtnOk.Name = "BtnOk";
             this.BtnOk.Size = new System.Drawing.Size(75, 32);
             this.BtnOk.TabIndex = 10;
@@ -174,17 +184,79 @@
             // 
             this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.BtnCancel.Location = new System.Drawing.Point(197, 110);
+            this.BtnCancel.Location = new System.Drawing.Point(197, 129);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(75, 32);
             this.BtnCancel.TabIndex = 11;
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Width:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(124, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Height";
+            // 
+            // TxtHeight
+            // 
+            this.TxtHeight.Location = new System.Drawing.Point(167, 47);
+            this.TxtHeight.Maximum = new decimal(new int[] {
+            768,
+            0,
+            0,
+            0});
+            this.TxtHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TxtHeight.Name = "TxtHeight";
+            this.TxtHeight.Size = new System.Drawing.Size(50, 20);
+            this.TxtHeight.TabIndex = 12;
+            this.TxtHeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // TxtWidth
+            // 
+            this.TxtWidth.Location = new System.Drawing.Point(68, 47);
+            this.TxtWidth.Maximum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.TxtWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TxtWidth.Name = "TxtWidth";
+            this.TxtWidth.Size = new System.Drawing.Size(50, 20);
+            this.TxtWidth.TabIndex = 11;
+            this.TxtWidth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // ProjectSettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 153);
+            this.ClientSize = new System.Drawing.Size(392, 171);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
             this.Controls.Add(this.groupBox1);
@@ -200,6 +272,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TxtMagnification)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +292,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown TxtHeight;
+        private System.Windows.Forms.NumericUpDown TxtWidth;
     }
 }

@@ -31,6 +31,8 @@ namespace TileGameMaker.Windows
             TxtCols.Value = Project.EngineWindowCols = project.EngineWindowCols;
             TxtRows.Value = Project.EngineWindowRows = project.EngineWindowRows;
             TxtMagnification.Value = Project.EngineWindowMagnification = project.EngineWindowMagnification;
+            TxtWidth.Value = Project.EngineWindowWidth = project.EngineWindowWidth;
+            TxtHeight.Value = Project.EngineWindowHeight = project.EngineWindowHeight;
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace TileGameMaker.Windows
             Project.EngineWindowCols = decimal.ToInt32(TxtCols.Value);
             Project.EngineWindowRows = decimal.ToInt32(TxtRows.Value);
             Project.EngineWindowMagnification = decimal.ToInt32(TxtMagnification.Value);
+            Project.EngineWindowWidth = decimal.ToInt32(TxtWidth.Value);
+            Project.EngineWindowHeight = decimal.ToInt32(TxtHeight.Value);
         }
     }
 }

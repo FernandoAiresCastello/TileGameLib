@@ -167,12 +167,13 @@ namespace TileGameMaker.Windows
             Hide();
         }
 
-        private void SaveProject()
+        private void SaveProject(bool showSuccessMessage = true)
         {
             try
             {
                 MapEditor.Project.Save();
-                Alert.Info("Project saved successfully!");
+                if (showSuccessMessage)
+                    Alert.Info("Project saved successfully!");
             }
             catch (Exception ex)
             {
@@ -190,6 +191,8 @@ namespace TileGameMaker.Windows
                 MapEditor.Project.EngineWindowCols = win.Project.EngineWindowCols;
                 MapEditor.Project.EngineWindowRows = win.Project.EngineWindowRows;
                 MapEditor.Project.EngineWindowMagnification = win.Project.EngineWindowMagnification;
+                MapEditor.Project.EngineWindowWidth = win.Project.EngineWindowWidth;
+                MapEditor.Project.EngineWindowHeight = win.Project.EngineWindowHeight;
             }
         }
 
@@ -201,6 +204,17 @@ namespace TileGameMaker.Windows
         private void OpenProgramEditor()
         {
 
+        }
+
+        private void BtnEngineRun_Click(object sender, EventArgs e)
+        {
+            RunEngine();
+        }
+
+        private void RunEngine()
+        {
+            SaveProject(showSuccessMessage: false);
+            Process.Start("TileGameEngine.exe", MapEditor.Project.Path);
         }
     }
 }

@@ -51,13 +51,14 @@ namespace TileGameLib.Components
         protected Point OriginalLocation;
         protected bool IsFullscreen;
 
-        public TiledDisplayWindow(int cols, int rows, int zoom, bool border, bool allowFullscreen, bool allowResize)
+        public TiledDisplayWindow(int cols, int rows, int zoom, int width, int height, bool border, bool allowFullscreen, bool allowResize)
         {
             InitializeComponent();
 
             Display = new TiledDisplay(MapPanel, cols, rows, zoom);
             Display.StretchImage = true;
             Display.Dock = DockStyle.Fill;
+            Size = new Size(width, height);
             OriginalSize = Size;
             OriginalLocation = Location;
             Fullscreen = false;
