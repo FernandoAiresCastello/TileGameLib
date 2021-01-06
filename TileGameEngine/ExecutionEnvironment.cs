@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TileGameLib.File;
+using TileGameLib.Util;
 
 namespace TileGameEngine
 {
@@ -19,6 +20,11 @@ namespace TileGameEngine
             Engine = engine;
             Project = project;
             Window = window;
+        }
+
+        public void ShowMessageBox(string msg)
+        {
+            Alert.Info(msg);
         }
     }
 }

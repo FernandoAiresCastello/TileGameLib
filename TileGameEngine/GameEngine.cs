@@ -67,6 +67,13 @@ namespace TileGameEngine
             Interpreter.Exit();
         }
 
+        public void Error(string msg)
+        {
+            Alert.Error(msg);
+            Interpreter.Exit();
+            CycleTimer.Stop();
+        }
+
         public void HandleKeyDownEvent(KeyEventArgs e)
         {
         }

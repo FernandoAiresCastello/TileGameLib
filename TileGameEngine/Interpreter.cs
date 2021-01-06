@@ -16,8 +16,9 @@ namespace TileGameEngine
         private readonly Project Project;
         private readonly GameWindow Window;
         private readonly GameProgram Program;
-        private readonly Commands Commands;
+        private readonly CommandExecutor CmdExecutor;
         private bool Running;
+        private int ProgramPtr;
 
         public Interpreter(GameEngine engine, ExecutionEnvironment env)
         {
@@ -27,7 +28,7 @@ namespace TileGameEngine
             Window = env.Window;
             Thread = new Thread(Run);
             Program = new GameProgram();
-            Commands = new Commands(env);
+            CmdExecutor = new CommandExecutor(env);
             Running = false;
         }
 
@@ -47,11 +48,26 @@ namespace TileGameEngine
                 return;
 
             Program.Parse(Project.Program);
-
+            ProgramPtr = 0;
             Running = true;
+
             while (Running)
             {
-                // todo
+                ProgramLine line = Program.GetLine(ProgramPtr);
+                CmdExecutor.Execute(line);
+
+                switch (CmdExecutor.Result)
+                {
+                    case CommandResult.Branch:
+                        ProgramPtr = CmdExecutor.BranchTo;
+                        break;
+                    case CommandResult.Error:
+                        Engine.Error(CmdExecutor.ResultMsg);
+                        break;
+                    default:
+                        ProgramPtr++;
+                        break;
+                }
             }
 
             Thread.Abort();
