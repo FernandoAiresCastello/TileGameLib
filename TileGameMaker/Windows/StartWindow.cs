@@ -35,12 +35,13 @@ namespace TileGameMaker.Windows
                 .Replace("{version}", version)
                 .Replace("{build}", build);
 
-            InitRecentProjectsList();
+            RecentProjects = new RecentProjects();
+            UpdateRecentProjectsList();
         }
 
-        private void InitRecentProjectsList()
+        private void UpdateRecentProjectsList()
         {
-            RecentProjects = new RecentProjects();
+            LstRecent.Items.Clear();
             LstRecent.Items.AddRange(RecentProjects.Files.ToArray());
             LstRecent.DoubleClick += LstRecent_DoubleClick;
             LstRecent.MouseDown += LstRecent_MouseDown;
@@ -129,6 +130,7 @@ namespace TileGameMaker.Windows
                 string path = (string)LstRecent.SelectedItem;
                 RecentProjects.Remove(path);
                 RecentProjects.Save();
+                UpdateRecentProjectsList();
             }
         }
     }
