@@ -14,8 +14,7 @@ namespace TileGameEngine
 
         private readonly ExecutionEnvironment Env;
         private ProgramLine Line;
-        private List<string> Args;
-        private int Argc;
+        private string Args;
 
         public CommandExecutor(ExecutionEnvironment env)
         {
@@ -26,17 +25,17 @@ namespace TileGameEngine
         {
             Line = line;
             Args = line.Args;
-            Argc = line.Args.Count;
 
             SetResult(CommandResult.Ok);
 
             switch (Line.Command)
             {
-                case "TEST": Test(); break;
                 case "NOP": Nop(); break;
+                case "MSGBOX": MsgBox(); break;
+                case "END": End(); break;
 
                 default:
-                    SetResult(CommandResult.Error, "Invalid command");
+                    SetResult(CommandResult.Error, "Invalid command: " + Line.Command);
                     break;
             }
         }
@@ -47,14 +46,19 @@ namespace TileGameEngine
             ResultMsg = msg;
         }
 
-        private void Test()
-        {
-            Env.ShowMessageBox("TEST command executed");
-        }
-
         private void Nop()
         {
             // Dummy (no operation)
+        }
+
+        private void End()
+        {
+            SetResult(CommandResult.Exit);
+        }
+
+        private void MsgBox()
+        {
+            Env.ShowMessageBox(Args);
         }
     }
 }

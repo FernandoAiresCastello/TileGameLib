@@ -10,15 +10,28 @@ namespace TileGameEngine
     {
         public string SrcText { get; private set; }
         public long SrcLineNumber { get; private set; }
-        public string Text { get; private set; }
-        public long LineNumber { get; private set; }
+        public long RealLineNumber { get; private set; }
         public string Command { get; private set; }
-        public List<string> Args { get; private set; }
+        public string Args { get; private set; }
 
-        public ProgramLine(long srcLineNumber, string srcText)
+        public ProgramLine(long srcLineNumber, long realLineNumber, string srcText)
         {
             SrcLineNumber = srcLineNumber;
+            RealLineNumber = realLineNumber;
             SrcText = srcText;
+
+            int cmdBoundary = srcText.IndexOf(' ');
+
+            if (cmdBoundary > 0)
+            {
+                Command = srcText.Substring(0, cmdBoundary).ToUpper();
+                Args = srcText.Substring(cmdBoundary);
+            }
+            else
+            {
+                Command = srcText.ToUpper();
+                Args = "";
+            }
         }
     }
 }

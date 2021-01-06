@@ -102,7 +102,7 @@
             this.BtnSaveProject.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSaveProject.Name = "BtnSaveProject";
             this.BtnSaveProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.BtnSaveProject.Size = new System.Drawing.Size(154, 22);
+            this.BtnSaveProject.Size = new System.Drawing.Size(180, 22);
             this.BtnSaveProject.Text = "Save";
             this.BtnSaveProject.Click += new System.EventHandler(this.BtnSaveProject_Click);
             // 
@@ -110,7 +110,8 @@
             // 
             this.BtnProgramEditor.Image = global::TileGameMaker.Properties.Resources.script_edit;
             this.BtnProgramEditor.Name = "BtnProgramEditor";
-            this.BtnProgramEditor.Size = new System.Drawing.Size(154, 22);
+            this.BtnProgramEditor.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.BtnProgramEditor.Size = new System.Drawing.Size(180, 22);
             this.BtnProgramEditor.Text = "Program Editor";
             this.BtnProgramEditor.Click += new System.EventHandler(this.BtnProgramEditor_Click);
             // 
@@ -118,20 +119,21 @@
             // 
             this.BtnProjectSettings.Image = global::TileGameMaker.Properties.Resources.cog_edit;
             this.BtnProjectSettings.Name = "BtnProjectSettings";
-            this.BtnProjectSettings.Size = new System.Drawing.Size(154, 22);
+            this.BtnProjectSettings.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.BtnProjectSettings.Size = new System.Drawing.Size(180, 22);
             this.BtnProjectSettings.Text = "Settings";
             this.BtnProjectSettings.Click += new System.EventHandler(this.BtnProjectSettings_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // BtnCloseProject
             // 
             this.BtnCloseProject.Image = global::TileGameMaker.Properties.Resources.folder_vertical_zipper;
             this.BtnCloseProject.Name = "BtnCloseProject";
-            this.BtnCloseProject.Size = new System.Drawing.Size(154, 22);
+            this.BtnCloseProject.Size = new System.Drawing.Size(180, 22);
             this.BtnCloseProject.Text = "Close";
             this.BtnCloseProject.Click += new System.EventHandler(this.BtnCloseProject_Click);
             // 
@@ -139,7 +141,7 @@
             // 
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(154, 22);
+            this.MiExit.Size = new System.Drawing.Size(180, 22);
             this.MiExit.Text = "Quit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -155,7 +157,7 @@
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
             this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(147, 22);
+            this.BtnDataExtractor.Size = new System.Drawing.Size(180, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 

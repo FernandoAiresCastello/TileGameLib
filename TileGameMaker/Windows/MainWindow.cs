@@ -203,7 +203,8 @@ namespace TileGameMaker.Windows
 
         private void OpenProgramEditor()
         {
-
+            ProgramEditorWindow win = new ProgramEditorWindow(this, MapEditor.Project);
+            win.Show(this);
         }
 
         private void BtnEngineRun_Click(object sender, EventArgs e)
@@ -211,7 +212,7 @@ namespace TileGameMaker.Windows
             RunEngine();
         }
 
-        private void RunEngine()
+        public void RunEngine()
         {
             SaveProject(showSuccessMessage: false);
             Process.Start("TileGameEngine.exe", MapEditor.Project.Path);

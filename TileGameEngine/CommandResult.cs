@@ -10,6 +10,7 @@ namespace TileGameEngine
     {
         Ok,
         Error,
-        Branch
+        Branch,
+        Exit
     }
 }

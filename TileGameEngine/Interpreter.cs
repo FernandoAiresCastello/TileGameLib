@@ -10,6 +10,8 @@ namespace TileGameEngine
 {
     public class Interpreter
     {
+        public long CurrentLineNumber { get; private set; }
+
         private readonly GameEngine Engine;
         private readonly ExecutionEnvironment Env;
         private readonly Thread Thread;
@@ -53,20 +55,37 @@ namespace TileGameEngine
 
             while (Running)
             {
-                ProgramLine line = Program.GetLine(ProgramPtr);
-                CmdExecutor.Execute(line);
-
-                switch (CmdExecutor.Result)
+                try
                 {
-                    case CommandResult.Branch:
-                        ProgramPtr = CmdExecutor.BranchTo;
+                    if (Program.IsEmpty() || ProgramPtr >= Program.LineCount)
+                    {
+                        Running = false;
                         break;
-                    case CommandResult.Error:
-                        Engine.Error(CmdExecutor.ResultMsg);
-                        break;
-                    default:
-                        ProgramPtr++;
-                        break;
+                    }
+
+                    ProgramLine line = Program.GetLine(ProgramPtr);
+                    CurrentLineNumber = line.SrcLineNumber;
+                    CmdExecutor.Execute(line);
+
+                    switch (CmdExecutor.Result)
+                    {
+                        case CommandResult.Branch:
+                            ProgramPtr = CmdExecutor.BranchTo;
+                            break;
+                        case CommandResult.Error:
+                            Engine.Error(CmdExecutor.ResultMsg);
+                            break;
+                        case CommandResult.Exit:
+                            Engine.Exit();
+                            break;
+                        default:
+                            ProgramPtr++;
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Engine.Error($"Unhandled exception in interpreter loop:\n\n{e.Message}\n\n{e.StackTrace}");
                 }
             }
 

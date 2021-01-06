@@ -8,6 +8,9 @@ namespace TileGameEngine
 {
     public class GameProgram
     {
+        public long LineCount => Lines.Count;
+        public bool IsEmpty() => Lines.Count == 0;
+
         private readonly List<ProgramLine> Lines;
 
         public GameProgram()
@@ -20,6 +23,7 @@ namespace TileGameEngine
             Lines.Clear();
             string[] srcLines = program.Split('\n');
             long srcLineNumber = 0;
+            long realLineNumber = 0;
 
             foreach (string srcLine in srcLines)
             {
@@ -27,8 +31,9 @@ namespace TileGameEngine
 
                 if (!string.IsNullOrEmpty(srcText) && !srcText.StartsWith("'"))
                 {
-                    ProgramLine line = new ProgramLine(srcLineNumber, srcText);
+                    ProgramLine line = new ProgramLine(srcLineNumber, realLineNumber, srcText);
                     Lines.Add(line);
+                    realLineNumber++;
                 }
 
                 srcLineNumber++;

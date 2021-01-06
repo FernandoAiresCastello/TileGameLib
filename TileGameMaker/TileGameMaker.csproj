@@ -136,6 +136,12 @@
     <Compile Include="Windows\GridSetupWindow.Designer.cs">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ProgramEditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ProgramEditorWindow.Designer.cs">
+      <DependentUpon>ProgramEditorWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProjectSettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ProgramEditorWindow.resx">
+      <DependentUpon>ProgramEditorWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ProjectSettingsWindow.resx">
       <DependentUpon>ProjectSettingsWindow.cs</DependentUpon>

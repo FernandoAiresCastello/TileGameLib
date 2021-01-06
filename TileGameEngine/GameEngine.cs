@@ -64,12 +64,23 @@ namespace TileGameEngine
 
         private void Window_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Interpreter.Exit();
+            Halt();
         }
 
         public void Error(string msg)
         {
-            Alert.Error(msg);
+            Alert.Error($"Error at line {Interpreter.CurrentLineNumber}:\n\n{msg}");
+            Halt();
+        }
+
+        public void Exit()
+        {
+            Halt();
+            Window.Close();
+        }
+
+        private void Halt()
+        {
             Interpreter.Exit();
             CycleTimer.Stop();
         }
