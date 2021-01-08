@@ -889,9 +889,6 @@ namespace TileGameMaker.Panels
                     case Keys.Escape:
                         CancelSelection();
                         break;
-                    case Keys.F5:
-                        OpenScriptWindow();
-                        break;
                 }
             }
         }
