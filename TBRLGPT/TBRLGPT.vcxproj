@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{8205F95F-FB30-444C-81E2-94554C272A69}</ProjectGuid>
+    <RootNamespace>TBRLGPT</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <IncludePath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Fernando\Lib\SDL2-2.0.8\include;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(SolutionDir)Builds\$(TargetName)$(TargetExt)</OutputFile>
+      <ProgramDatabaseFile>$(SolutionDir)Builds\$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(SolutionDir)Builds\$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(SolutionDir)Builds\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatedDialog.h" />
+    <ClInclude Include="Audio.h" />
+    <ClInclude Include="Char.h" />
+    <ClInclude Include="CharEditor.h" />
+    <ClInclude Include="CharInstance.h" />
+    <ClInclude Include="CharSelector.h" />
+    <ClInclude Include="CharSelector2.h" />
+    <ClInclude Include="CharSelectorEditor.h" />
+    <ClInclude Include="Charset.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="FilePath.h" />
+    <ClInclude Include="FileSelector.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="GraphicsBuffer.h" />
+    <ClInclude Include="GraphicsBufferChar.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapList.h" />
+    <ClInclude Include="MapUtils.h" />
+    <ClInclude Include="MapViewport.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuItem.h" />
+    <ClInclude Include="Miniz.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="NumberSelect.h" />
+    <ClInclude Include="NumericMenu.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectAnim.h" />
+    <ClInclude Include="ObjectChar.h" />
+    <ClInclude Include="ObjectController.h" />
+    <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="ObjectPosition.h" />
+    <ClInclude Include="Palette.h" />
+    <ClInclude Include="PaletteEditor.h" />
+    <ClInclude Include="PaletteEditor2.h" />
+    <ClInclude Include="Position.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Project.h" />
+    <ClInclude Include="Sound.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ScrollingMenu.h" />
+    <ClInclude Include="SimpleDialog.h" />
+    <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="TBRLGPT.h" />
+    <ClInclude Include="TextEditor.h" />
+    <ClInclude Include="TextPrinter.h" />
+    <ClInclude Include="TextInput.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="TimerManager.h" />
+    <ClInclude Include="UIContext.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="ConfirmDialog.h" />
+    <ClInclude Include="ZipFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimatedDialog.cpp" />
+    <ClCompile Include="Audio.c" />
+    <ClCompile Include="Char.cpp" />
+    <ClCompile Include="CharEditor.cpp" />
+    <ClCompile Include="CharSelector.cpp" />
+    <ClCompile Include="CharSelector2.cpp" />
+    <ClCompile Include="CharSelectorEditor.cpp" />
+    <ClCompile Include="Charset.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ConfirmDialog.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="FilePath.cpp" />
+    <ClCompile Include="FileSelector.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="GraphicsBuffer.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapList.cpp" />
+    <ClCompile Include="MapUtils.cpp" />
+    <ClCompile Include="MapViewport.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuItem.cpp" />
+    <ClCompile Include="Miniz.c" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="NumberSelect.cpp" />
+    <ClCompile Include="NumericMenu.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectAnim.cpp" />
+    <ClCompile Include="ObjectChar.cpp" />
+    <ClCompile Include="ObjectController.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="ObjectPosition.cpp" />
+    <ClCompile Include="Palette.cpp" />
+    <ClCompile Include="PaletteEditor.cpp" />
+    <ClCompile Include="PaletteEditor2.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="ScrollingMenu.cpp" />
+    <ClCompile Include="SimpleDialog.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="TBRLGPT.cpp" />
+    <ClCompile Include="TextEditor.cpp" />
+    <ClCompile Include="TextPrinter.cpp" />
+    <ClCompile Include="TextInput.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="UIContext.cpp" />
+    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="Viewport.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="ZipFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TBRLGPT.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Docs\TODO.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

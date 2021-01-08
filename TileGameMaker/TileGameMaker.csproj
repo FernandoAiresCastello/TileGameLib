@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Builds\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -490,12 +490,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cd "$(TargetDir)"
-copy "$(TargetFileName)" "$(ProjectDir)\..\Binaries\$(TargetFileName)"
-copy "$(TargetFileName).config" "$(ProjectDir)\..\Binaries\$(TargetFileName).config"
-copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.dll"
-copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.Shell.dll"
-copy "$(SolutionDir)packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll" "$(ProjectDir)\..\Binaries\Microsoft.WindowsAPICodePack.ShellExtensions.dll"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>powershell -File "$(ProjectDir)SetBuildNumber.ps1"</PreBuildEvent>

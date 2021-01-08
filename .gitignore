@@ -3,3 +3,16 @@ bin
 obj
 debug
 *.ini
+*.pro
+*.user
+*.vs
+*.log
+*.ilk
+*.pdb
+*.map
+*.exp
+*.dia
+*.dia~
+Data
+Debug
+Docs/Generated
