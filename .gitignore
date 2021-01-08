@@ -13,6 +13,5 @@ debug
 *.exp
 *.dia
 *.dia~
-Data
 Debug
 Docs/Generated

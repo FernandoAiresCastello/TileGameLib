@@ -6,9 +6,9 @@ using namespace TBRLGPT;
 int main(int argc, char** args)
 {
 	Project* proj = new Project();
-	proj->Load("C:\\Fernando\\Proj\\CPP20201114\\CPP20201114\\data\\CPP20201114.tgpro");
+	proj->Load("data/demos.tgpro");
 	auto maps = proj->GetMaps();
-	int mapIndex = 1;
+	int mapIndex = 0;
 	Map* map = maps[mapIndex];
 	int zoom = 3;
 	Graphics* gr = new Graphics(256, 192, zoom * 256, zoom * 192, false);
