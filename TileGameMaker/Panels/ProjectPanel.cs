@@ -108,17 +108,17 @@ namespace TileGameMaker.Panels
         {
             if (Project.Maps.Count > 1)
             {
-                ObjectMap map = GetSelectedMap();
+                ObjectMap selectedMap = GetSelectedMap();
 
-                if (map == Editor.Map)
+                if (selectedMap == Editor.Map)
                 {
                     Alert.Warning("Can't delete, this map is currently open");
                 }
                 else
                 {
-                    if (Alert.Confirm("Delete map " + map.Name + " with id " + map.Id + "?"))
+                    if (Alert.Confirm("Delete map " + selectedMap.Name + " with id " + selectedMap.Id + "?"))
                     {
-                        Project.DeleteMap(map);
+                        Project.DeleteMap(selectedMap);
                         UpdateMapList();
                     }
                 }

@@ -21,6 +21,7 @@ namespace TileGameMaker.Windows
     {
         private MapEditor MapEditor;
         private DataExtractorWindow DataExtractor;
+        private TemplateObjectWindow TemplateWindow;
 
         private static readonly int BestWidth = Config.ReadInt("MapEditorWindowBestWidth");
         private static readonly int BestHeight = Config.ReadInt("MapEditorWindowBestHeight");
@@ -216,6 +217,19 @@ namespace TileGameMaker.Windows
         {
             SaveProject(showSuccessMessage: false);
             Process.Start("TileGameEngine.exe", MapEditor.Project.Path);
+        }
+
+        private void BtnTemplateObjects_Click(object sender, EventArgs e)
+        {
+            if (TemplateWindow == null || TemplateWindow.IsDisposed)
+                TemplateWindow = new TemplateObjectWindow(this, MapEditor);
+            else if (TemplateWindow.WindowState == FormWindowState.Minimized)
+                TemplateWindow.WindowState = FormWindowState.Normal;
+
+            if (TemplateWindow.Visible)
+                TemplateWindow.Activate();
+            else
+                TemplateWindow.Show(this);
         }
     }
 }

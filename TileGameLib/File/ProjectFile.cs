@@ -129,6 +129,41 @@ namespace TileGameLib.File
             Append(project.EngineWindowWidth);
             Append(project.EngineWindowHeight);
 
+            // === TEMPLATE OBJECTS ===
+            for (int y = 0; y < project.TemplateObjects.Height; y++)
+            {
+                for (int x = 0; x < project.TemplateObjects.Width; x++)
+                {
+                    GameObject o = project.TemplateObjects.GetObject(new ObjectPosition(0, x, y));
+
+                    if (o != null)
+                    {
+                        Append(1);
+                        Append(o.Id);
+                        Append(o.Visible ? 1 : 0);
+
+                        Append(o.Animation.Size);
+                        foreach (Tile tile in o.Animation.Frames)
+                        {
+                            Append((short)tile.Index);
+                            Append((byte)tile.ForeColor);
+                            Append((byte)tile.BackColor);
+                        }
+
+                        Append(o.Properties.Entries.Count);
+                        foreach (var property in o.Properties.Entries)
+                        {
+                            Append(property.Key);
+                            Append(property.Value);
+                        }
+                    }
+                    else
+                    {
+                        Append(0);
+                    }
+                }
+            }
+
             MemoryFile file = new MemoryFile();
             file.WriteString(text.ToString());
             file.SaveToPhysicalFile(project.Path);
@@ -272,6 +307,47 @@ namespace TileGameLib.File
             project.EngineWindowMagnification = NextNumber();
             project.EngineWindowWidth = NextNumber();
             project.EngineWindowHeight = NextNumber();
+
+            // === TEMPLATE OBJECTS ===
+            project.TemplateObjects.Clear();
+            ObjectLayer templates = project.TemplateObjects.Layers[0];
+
+            for (int y = 0; y < templates.Height; y++)
+            {
+                for (int x = 0; x < templates.Width; x++)
+                {
+                    // === TEMPLATE ===
+                    int occupiedCell = NextNumber();
+                    if (occupiedCell == 1)
+                    {
+                        GameObject o = new GameObject();
+                        o.Id = NextString();
+                        o.Visible = NextNumber() > 0;
+
+                        o.Animation.Clear();
+                        int animSize = NextNumber();
+                        for (int i = 0; i < animSize; i++)
+                        {
+                            int index = NextNumber();
+                            int fgc = NextNumber();
+                            int bgc = NextNumber();
+                            o.Animation.AddFrame(new Tile(index, fgc, bgc));
+                        }
+
+                        o.Properties.RemoveAll();
+                        int propCount = NextNumber();
+                        for (int i = 0; i < propCount; i++)
+                        {
+                            string key = NextString();
+                            string value = NextString();
+                            o.Properties.Set(key, value);
+                        }
+
+                        templates.SetObject(o, x, y);
+                        templates.GetObject(x, y).Id = o.Id;
+                    }
+                }
+            }
 
             return true;
         }
