@@ -43,10 +43,10 @@
             this.BtnNew = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.LstRecent = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.CtxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.BtnOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnRemoveFromList = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -199,7 +199,7 @@
             this.BtnOpen.Name = "BtnOpen";
             this.BtnOpen.Size = new System.Drawing.Size(212, 45);
             this.BtnOpen.TabIndex = 1;
-            this.BtnOpen.Text = "Open Project";
+            this.BtnOpen.Text = "     Open Project";
             this.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnOpen.UseVisualStyleBackColor = false;
@@ -216,7 +216,7 @@
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.Size = new System.Drawing.Size(212, 45);
             this.BtnNew.TabIndex = 0;
-            this.BtnNew.Text = "New Project";
+            this.BtnNew.Text = "     New Project";
             this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnNew.UseVisualStyleBackColor = false;
@@ -254,17 +254,6 @@
             this.LstRecent.Size = new System.Drawing.Size(428, 69);
             this.LstRecent.TabIndex = 2;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Recent projects:";
-            // 
             // CtxMenu
             // 
             this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -276,16 +265,27 @@
             // BtnOpenFileLocation
             // 
             this.BtnOpenFileLocation.Name = "BtnOpenFileLocation";
-            this.BtnOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+            this.BtnOpenFileLocation.Size = new System.Drawing.Size(168, 22);
             this.BtnOpenFileLocation.Text = "Open file location";
             this.BtnOpenFileLocation.Click += new System.EventHandler(this.BtnOpenFileLocation_Click);
             // 
             // BtnRemoveFromList
             // 
             this.BtnRemoveFromList.Name = "BtnRemoveFromList";
-            this.BtnRemoveFromList.Size = new System.Drawing.Size(180, 22);
+            this.BtnRemoveFromList.Size = new System.Drawing.Size(168, 22);
             this.BtnRemoveFromList.Text = "Remove from list";
             this.BtnRemoveFromList.Click += new System.EventHandler(this.BtnRemoveFromList_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Recent projects:";
             // 
             // StartWindow
             // 

@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TemplatePropPanel = new System.Windows.Forms.Panel();
             this.PropertyList = new System.Windows.Forms.DataGridView();
+            this.gridViewPropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridViewPropertyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TemplateListPanel = new System.Windows.Forms.Panel();
             this.TemplateList = new System.Windows.Forms.DataGridView();
+            this.gridViewTemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnNewTemplate = new System.Windows.Forms.ToolStripButton();
+            this.BtnEditSelected = new System.Windows.Forms.ToolStripButton();
+            this.BtnDuplicateSelected = new System.Windows.Forms.ToolStripButton();
+            this.BtnDeleteSelected = new System.Windows.Forms.ToolStripButton();
             this.TemplateMapPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LbStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BtnEditSelected = new System.Windows.Forms.ToolStripButton();
-            this.BtnDeleteSelected = new System.Windows.Forms.ToolStripButton();
-            this.BtnNewTemplate = new System.Windows.Forms.ToolStripButton();
-            this.gridViewTemplateId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gridViewPropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gridViewPropertyValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnDuplicateSelected = new System.Windows.Forms.ToolStripButton();
+            this.BtnRearrange = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.TemplatePropPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PropertyList)).BeginInit();
@@ -94,26 +95,26 @@
             this.PropertyList.AllowUserToDeleteRows = false;
             this.PropertyList.AllowUserToResizeRows = false;
             this.PropertyList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PropertyList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PropertyList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.PropertyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PropertyList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridViewPropertyName,
             this.gridViewPropertyValue});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PropertyList.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.PropertyList.DefaultCellStyle = dataGridViewCellStyle6;
             this.PropertyList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PropertyList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.PropertyList.Location = new System.Drawing.Point(0, 0);
@@ -125,6 +126,21 @@
             this.PropertyList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PropertyList.Size = new System.Drawing.Size(556, 170);
             this.PropertyList.TabIndex = 1;
+            // 
+            // gridViewPropertyName
+            // 
+            this.gridViewPropertyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.gridViewPropertyName.FillWeight = 20F;
+            this.gridViewPropertyName.HeaderText = "Property";
+            this.gridViewPropertyName.Name = "gridViewPropertyName";
+            this.gridViewPropertyName.ReadOnly = true;
+            // 
+            // gridViewPropertyValue
+            // 
+            this.gridViewPropertyValue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.gridViewPropertyValue.HeaderText = "Value";
+            this.gridViewPropertyValue.Name = "gridViewPropertyValue";
+            this.gridViewPropertyValue.ReadOnly = true;
             // 
             // TemplateListPanel
             // 
@@ -141,25 +157,25 @@
             this.TemplateList.AllowUserToDeleteRows = false;
             this.TemplateList.AllowUserToResizeRows = false;
             this.TemplateList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TemplateList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TemplateList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.TemplateList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TemplateList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridViewTemplateId});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TemplateList.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TemplateList.DefaultCellStyle = dataGridViewCellStyle8;
             this.TemplateList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TemplateList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.TemplateList.Location = new System.Drawing.Point(0, 0);
@@ -172,6 +188,12 @@
             this.TemplateList.Size = new System.Drawing.Size(162, 388);
             this.TemplateList.TabIndex = 0;
             // 
+            // gridViewTemplateId
+            // 
+            this.gridViewTemplateId.HeaderText = "ID";
+            this.gridViewTemplateId.Name = "gridViewTemplateId";
+            this.gridViewTemplateId.ReadOnly = true;
+            // 
             // toolStrip1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.toolStrip1, 2);
@@ -179,12 +201,53 @@
             this.BtnNewTemplate,
             this.BtnEditSelected,
             this.BtnDuplicateSelected,
-            this.BtnDeleteSelected});
+            this.BtnDeleteSelected,
+            this.BtnRearrange});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(562, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BtnNewTemplate
+            // 
+            this.BtnNewTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnNewTemplate.Image = global::TileGameMaker.Properties.Resources.page_white;
+            this.BtnNewTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnNewTemplate.Name = "BtnNewTemplate";
+            this.BtnNewTemplate.Size = new System.Drawing.Size(23, 22);
+            this.BtnNewTemplate.Text = "New template";
+            this.BtnNewTemplate.Click += new System.EventHandler(this.BtnNewTemplate_Click);
+            // 
+            // BtnEditSelected
+            // 
+            this.BtnEditSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnEditSelected.Image = global::TileGameMaker.Properties.Resources.pencil;
+            this.BtnEditSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnEditSelected.Name = "BtnEditSelected";
+            this.BtnEditSelected.Size = new System.Drawing.Size(23, 22);
+            this.BtnEditSelected.Text = "Edit selected template";
+            this.BtnEditSelected.Click += new System.EventHandler(this.BtnEditSelected_Click);
+            // 
+            // BtnDuplicateSelected
+            // 
+            this.BtnDuplicateSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDuplicateSelected.Image = global::TileGameMaker.Properties.Resources.page_white_copy;
+            this.BtnDuplicateSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDuplicateSelected.Name = "BtnDuplicateSelected";
+            this.BtnDuplicateSelected.Size = new System.Drawing.Size(23, 22);
+            this.BtnDuplicateSelected.Text = "Duplicate selected template";
+            this.BtnDuplicateSelected.Click += new System.EventHandler(this.BtnDuplicateSelected_Click);
+            // 
+            // BtnDeleteSelected
+            // 
+            this.BtnDeleteSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnDeleteSelected.Image = global::TileGameMaker.Properties.Resources.delete;
+            this.BtnDeleteSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDeleteSelected.Name = "BtnDeleteSelected";
+            this.BtnDeleteSelected.Size = new System.Drawing.Size(23, 22);
+            this.BtnDeleteSelected.Text = "Delete selected template";
+            this.BtnDeleteSelected.Click += new System.EventHandler(this.BtnDeleteSelected_Click);
             // 
             // TemplateMapPanel
             // 
@@ -214,66 +277,15 @@
             this.LbStatus.Text = "LMB: Select template | RMB: New template | ESC: Minimize | F2: Rename | DEL: Dele" +
     "te";
             // 
-            // BtnEditSelected
+            // BtnRearrange
             // 
-            this.BtnEditSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnEditSelected.Image = global::TileGameMaker.Properties.Resources.pencil;
-            this.BtnEditSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnEditSelected.Name = "BtnEditSelected";
-            this.BtnEditSelected.Size = new System.Drawing.Size(23, 22);
-            this.BtnEditSelected.Text = "Edit selected template";
-            this.BtnEditSelected.Click += new System.EventHandler(this.BtnEditSelected_Click);
-            // 
-            // BtnDeleteSelected
-            // 
-            this.BtnDeleteSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnDeleteSelected.Image = global::TileGameMaker.Properties.Resources.delete;
-            this.BtnDeleteSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnDeleteSelected.Name = "BtnDeleteSelected";
-            this.BtnDeleteSelected.Size = new System.Drawing.Size(23, 22);
-            this.BtnDeleteSelected.Text = "Delete selected template";
-            this.BtnDeleteSelected.Click += new System.EventHandler(this.BtnDeleteSelected_Click);
-            // 
-            // BtnNewTemplate
-            // 
-            this.BtnNewTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnNewTemplate.Image = global::TileGameMaker.Properties.Resources.page_white;
-            this.BtnNewTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnNewTemplate.Name = "BtnNewTemplate";
-            this.BtnNewTemplate.Size = new System.Drawing.Size(23, 22);
-            this.BtnNewTemplate.Text = "New template";
-            this.BtnNewTemplate.Click += new System.EventHandler(this.BtnNewTemplate_Click);
-            // 
-            // gridViewTemplateId
-            // 
-            this.gridViewTemplateId.HeaderText = "ID";
-            this.gridViewTemplateId.Name = "gridViewTemplateId";
-            this.gridViewTemplateId.ReadOnly = true;
-            // 
-            // gridViewPropertyName
-            // 
-            this.gridViewPropertyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.gridViewPropertyName.FillWeight = 20F;
-            this.gridViewPropertyName.HeaderText = "Property";
-            this.gridViewPropertyName.Name = "gridViewPropertyName";
-            this.gridViewPropertyName.ReadOnly = true;
-            // 
-            // gridViewPropertyValue
-            // 
-            this.gridViewPropertyValue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.gridViewPropertyValue.HeaderText = "Value";
-            this.gridViewPropertyValue.Name = "gridViewPropertyValue";
-            this.gridViewPropertyValue.ReadOnly = true;
-            // 
-            // BtnDuplicateSelected
-            // 
-            this.BtnDuplicateSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnDuplicateSelected.Image = global::TileGameMaker.Properties.Resources.page_white_copy;
-            this.BtnDuplicateSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnDuplicateSelected.Name = "BtnDuplicateSelected";
-            this.BtnDuplicateSelected.Size = new System.Drawing.Size(23, 22);
-            this.BtnDuplicateSelected.Text = "Duplicate selected template";
-            this.BtnDuplicateSelected.Click += new System.EventHandler(this.BtnDuplicateSelected_Click);
+            this.BtnRearrange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRearrange.Image = global::TileGameMaker.Properties.Resources.layer_stack_arrange;
+            this.BtnRearrange.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRearrange.Name = "BtnRearrange";
+            this.BtnRearrange.Size = new System.Drawing.Size(23, 22);
+            this.BtnRearrange.Text = "Rearrange templates";
+            this.BtnRearrange.Click += new System.EventHandler(this.BtnRearrange_Click);
             // 
             // TemplateObjectWindow
             // 
@@ -318,5 +330,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gridViewPropertyValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridViewTemplateId;
         private System.Windows.Forms.ToolStripButton BtnDuplicateSelected;
+        private System.Windows.Forms.ToolStripButton BtnRearrange;
     }
 }

@@ -235,12 +235,6 @@
     <Compile Include="Panels\MapEditorPanel.Designer.cs">
       <DependentUpon>MapEditorPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\SplashWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Windows\SplashWindow.Designer.cs">
-      <DependentUpon>SplashWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="TiledDisplays\TileEditor8x8Display.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -351,9 +345,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\MapEditorPanel.resx">
       <DependentUpon>MapEditorPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\SplashWindow.resx">
-      <DependentUpon>SplashWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\TileEditor16x16Window.resx">
       <DependentUpon>TileEditor16x16Window.cs</DependentUpon>

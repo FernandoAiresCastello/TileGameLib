@@ -379,5 +379,10 @@ namespace TileGameMaker.Windows
         {
             DuplicateSelectedTemplate();
         }
+
+        private void BtnRearrange_Click(object sender, EventArgs e)
+        {
+            // todo
+        }
     }
 }

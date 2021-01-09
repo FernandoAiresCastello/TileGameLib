@@ -119,15 +119,29 @@ namespace TileGameMaker.Windows
         private void BtnOpenFileLocation_Click(object sender, EventArgs e)
         {
             string path = (string)LstRecent.SelectedItem;
+
+            if (path == null)
+            {
+                Alert.Warning("Select a file to open location");
+                return;
+            }
+
             string folder = Path.GetDirectoryName(path);
             Process.Start("explorer.exe", folder);
         }
 
         private void BtnRemoveFromList_Click(object sender, EventArgs e)
         {
+            string path = (string)LstRecent.SelectedItem;
+
+            if (path == null)
+            {
+                Alert.Warning("Select a file to remove");
+                return;
+            }
+
             if (Alert.Confirm("Remove this file from the list?"))
             {
-                string path = (string)LstRecent.SelectedItem;
                 RecentProjects.Remove(path);
                 RecentProjects.Save();
                 UpdateRecentProjectsList();
