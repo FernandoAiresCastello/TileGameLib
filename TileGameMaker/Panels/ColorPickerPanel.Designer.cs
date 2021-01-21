@@ -42,11 +42,15 @@
             this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
+            this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -136,6 +140,8 @@
             this.toolStripSplitButton2.AutoToolTip = false;
             this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripSeparator2,
             this.BtnImportRawBytes});
             this.toolStripSplitButton2.Image = global::TileGameMaker.Properties.Resources.folder;
             this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -146,8 +152,8 @@
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(127, 22);
-            this.BtnImportRawBytes.Text = "Raw bytes";
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnImportRawBytes.Text = "Bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
             // toolStripSplitButton1
@@ -155,6 +161,8 @@
             this.toolStripSplitButton1.AutoToolTip = false;
             this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToFileAsToolStripMenuItem,
+            this.toolStripSeparator3,
             this.BtnExportRawBytes,
             this.BtnExportHexRgb,
             this.BtnExportHexCsv});
@@ -167,8 +175,8 @@
             // BtnExportRawBytes
             // 
             this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(167, 22);
-            this.BtnExportRawBytes.Text = "Raw bytes";
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportRawBytes.Text = "Bytes";
             this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
             // 
             // BtnExportHexRgb
@@ -200,6 +208,14 @@
             this.BtnNew.Text = "toolStripButton1";
             this.BtnNew.ToolTipText = "Clear palette";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnRestoreDefault
+            // 
+            this.BtnRestoreDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRestoreDefault.Image = global::TileGameMaker.Properties.Resources.site_backup_and_restore;
+            this.BtnRestoreDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRestoreDefault.Name = "BtnRestoreDefault";
+            this.BtnRestoreDefault.Size = new System.Drawing.Size(29, 20);
             // 
             // PnlColorPicker
             // 
@@ -238,13 +254,29 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
-            // BtnRestoreDefault
+            // toolStripSeparator2
             // 
-            this.BtnRestoreDefault.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRestoreDefault.Image = global::TileGameMaker.Properties.Resources.site_backup_and_restore;
-            this.BtnRestoreDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRestoreDefault.Name = "BtnRestoreDefault";
-            this.BtnRestoreDefault.Size = new System.Drawing.Size(29, 20);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Enabled = false;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Import from file as:";
+            // 
+            // exportToFileAsToolStripMenuItem
+            // 
+            this.exportToFileAsToolStripMenuItem.Enabled = false;
+            this.exportToFileAsToolStripMenuItem.Name = "exportToFileAsToolStripMenuItem";
+            this.exportToFileAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToFileAsToolStripMenuItem.Text = "Export to file as:";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // ColorPickerPanel
             // 
@@ -288,5 +320,9 @@
         private System.Windows.Forms.ToolStripMenuItem BtnExportHexCsv;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripDropDownButton BtnRestoreDefault;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exportToFileAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

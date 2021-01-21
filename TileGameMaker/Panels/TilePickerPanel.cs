@@ -394,5 +394,64 @@ namespace TileGameMaker.Panels
             Refresh();
             Show();
         }
+
+        private void BtnCode_Click(object sender, EventArgs e)
+        {
+            BinaryCodeSequenceWindow win = new BinaryCodeSequenceWindow(
+                "View / edit tile sequence as code", 
+                "8 hexadecimal bytes (ex. 7E,FF,DB,FF,C3,E7,FF,7E)", SelectedTile,
+                GetTileLines, SetTileLines);
+
+            win.ShowDialog(this);
+        }
+
+        private List<string> GetTileLines(int firstTileIndex, int lastTileIndex)
+        {
+            List<string> lines = new List<string>();
+
+            for (int i = firstTileIndex; i <= lastTileIndex; i++)
+            {
+                TilePixels row = TilePicker.Tileset.Get(i);
+                lines.Add(row.ToHexCsvString());
+            }
+
+            return lines;
+        }
+
+        private void SetTileLines(int firstTileIndex, int lastTileIndex, List<string> tileBytes)
+        {
+            try
+            {
+                int listIndex = 0;
+
+                for (int i = firstTileIndex; i <= lastTileIndex; i++)
+                {
+                    if (i < TilePicker.Tileset.Size && listIndex < tileBytes.Count)
+                    {
+                        string[] rows = tileBytes[listIndex++].Split(',');
+                        int rowIndex = 0;
+                        byte row1 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row2 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row3 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row4 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row5 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row6 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row7 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
+                        byte row8 = byte.Parse(rows[rowIndex], System.Globalization.NumberStyles.HexNumber);
+
+                        TilePicker.Tileset.Set(i, row1, row2, row3, row4, row5, row6, row7, row8);
+                        TilePicker.Refresh();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Alert.Error("There was an error while setting tile sequence bytes:\n\n" + ex.Message);
+            }
+        }
     }
 }

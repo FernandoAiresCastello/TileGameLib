@@ -130,6 +130,12 @@
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
     <Compile Include="Util\UserSettings.cs" />
+    <Compile Include="Windows\BinaryCodeSequenceWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\BinaryCodeSequenceWindow.Designer.cs">
+      <DependentUpon>BinaryCodeSequenceWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GridSetupWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\ProjectPanel.resx">
       <DependentUpon>ProjectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\BinaryCodeSequenceWindow.resx">
+      <DependentUpon>BinaryCodeSequenceWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>

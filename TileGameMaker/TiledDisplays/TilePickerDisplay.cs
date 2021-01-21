@@ -15,6 +15,7 @@ namespace TileGameMaker.TiledDisplays
         public static readonly int InvalidIndex = -1;
 
         public int TileIndex { set; get; }
+        public Tileset Tileset => Graphics.Tileset;
 
         private const int TilePickerZoom = 3;
         private readonly int TilesPerRow;
