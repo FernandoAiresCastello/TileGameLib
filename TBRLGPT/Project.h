@@ -27,6 +27,7 @@ namespace TBRLGPT
 
 		bool Load(std::string filename);
 		std::vector<Map*>& GetMaps();
+		Map* GetMapByName(std::string name);
 		class Palette* GetPalette();
 		class Charset* GetCharset();
 		std::string GetProgram();

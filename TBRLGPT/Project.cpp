@@ -38,6 +38,9 @@ namespace TBRLGPT
 		Maps.clear();
 
 		std::string text = File::ReadText(filename);
+		if (text.empty())
+			return false;
+
 		std::vector<std::string> data = String::Split(text, '§');
 		int ptr = 0;
 
@@ -160,6 +163,18 @@ namespace TBRLGPT
 	std::vector<Map*>& Project::GetMaps()
 	{
 		return Maps;
+	}
+
+	Map* Project::GetMapByName(std::string name)
+	{
+		for (int i = 0; i < Maps.size(); i++)
+		{
+			Map* map = Maps[i];
+			if (map->GetName() == name)
+				return map;
+		}
+
+		return NULL;
 	}
 
 	Palette* Project::GetPalette()

@@ -9,6 +9,7 @@
 
 #include "Object.h"
 #include "StringUtils.h"
+#include "Util.h"
 
 namespace TBRLGPT
 {
@@ -19,7 +20,7 @@ namespace TBRLGPT
 
 	Object::Object(ObjectChar gfx)
 	{
-		Id = "";
+		Id = Util::GenerateId();
 		Void = false;
 		Visible = true;
 		Animation.SetFrame(0, gfx);

@@ -13,6 +13,7 @@
 #include "Charset.h"
 #include "Palette.h"
 #include "Project.h"
+#include "Util.h"
 
 namespace TBRLGPT
 {
@@ -34,10 +35,12 @@ namespace TBRLGPT
 	void Map::Init(class Project* project, std::string name, int width, int height, int layerCount)
 	{
 		Project = project;
+		Id = Util::GenerateId();
 		Name = name;
 		Width = width;
 		Height = height;
 		Layers = new std::vector<ObjectLayer*>();
+		BackColor = 0;
 		OutOfBoundsObject = new Object();
 
 		for (int i = 0; i < layerCount; i++)
