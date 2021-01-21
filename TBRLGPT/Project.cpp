@@ -165,7 +165,19 @@ namespace TBRLGPT
 		return Maps;
 	}
 
-	Map* Project::GetMapByName(std::string name)
+	Map* Project::FindMapById(std::string id)
+	{
+		for (int i = 0; i < Maps.size(); i++)
+		{
+			Map* map = Maps[i];
+			if (map->GetId() == id)
+				return map;
+		}
+
+		return NULL;
+	}
+
+	Map* Project::FindMapByName(std::string name)
 	{
 		for (int i = 0; i < Maps.size(); i++)
 		{
