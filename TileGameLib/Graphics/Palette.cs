@@ -15,12 +15,13 @@ namespace TileGameLib.Graphics
         public int White => GetWhite();
         public int Black => GetBlack();
 
-        private const Default DefaultPalette = Default.Classic;
+        private const Default DefaultPalette = Default.Classic1;
         private const int DefaultSize = 256;
 
         public enum Default
         {
-            Classic,
+            Classic1,
+            Classic2,
             ROYGBIV,
             NES,
             MSX
@@ -206,9 +207,9 @@ namespace TileGameLib.Graphics
 
         public static float GetSaturation(Color color)
         {
-            float num = ((float)color.R) / 255f;
-            float num2 = ((float)color.G) / 255f;
-            float num3 = ((float)color.B) / 255f;
+            float num = color.R / 255f;
+            float num2 = color.G / 255f;
+            float num3 = color.B / 255f;
             float num7 = 0f;
             float num4 = num;
             float num5 = num;
@@ -232,7 +233,8 @@ namespace TileGameLib.Graphics
         {
             switch (defaultPalette)
             {
-                case Default.Classic: InitDefaultClassic(); break;
+                case Default.Classic1: InitDefaultClassic1(); break;
+                case Default.Classic2: InitDefaultClassic2(); break;
                 case Default.MSX: InitDefaultMSX(); break;
                 case Default.NES: InitDefaultNES(); break;
                 case Default.ROYGBIV: InitDefaultROYGBIV(); break;
@@ -242,7 +244,142 @@ namespace TileGameLib.Graphics
             }
         }
 
-        public void InitDefaultClassic()
+        public void InitDefaultClassic1()
+        {
+            Clear();
+            int i = 0;
+
+            Set(i++, 0xFF000000);
+            Set(i++, 0xFF381400);
+            Set(i++, 0xFF441804);
+            Set(i++, 0xFF481404);
+            Set(i++, 0xFF040468);
+            Set(i++, 0xFF280478);
+            Set(i++, 0xFF340888);
+            Set(i++, 0xFF041C80);
+            Set(i++, 0xFF0C0488);
+            Set(i++, 0xFF1C2858);
+            Set(i++, 0xFF2C4000);
+            Set(i++, 0xFF084008);
+            Set(i++, 0xFF044008);
+            Set(i++, 0xFF00340C);
+            Set(i++, 0xFF243000);
+            Set(i++, 0xFF401800);
+            Set(i++, 0xFF383838);
+            Set(i++, 0xFF803008);
+            Set(i++, 0xFF9C241C);
+            Set(i++, 0xFFB01C14);
+            Set(i++, 0xFF702070);
+            Set(i++, 0xFF580C90);
+            Set(i++, 0xFF500CD0);
+            Set(i++, 0xFF082CC8);
+            Set(i++, 0xFF382CB4);
+            Set(i++, 0xFF1C4890);
+            Set(i++, 0xFF446000);
+            Set(i++, 0xFF10680C);
+            Set(i++, 0xFF046410);
+            Set(i++, 0xFF0C481C);
+            Set(i++, 0xFF204004);
+            Set(i++, 0xFF702408);
+            Set(i++, 0xFF787878);
+            Set(i++, 0xFFC85C24);
+            Set(i++, 0xFFC85020);
+            Set(i++, 0xFFDC241C);
+            Set(i++, 0xFFA430A4);
+            Set(i++, 0xFF8838A8);
+            Set(i++, 0xFF7844D0);
+            Set(i++, 0xFF444CDC);
+            Set(i++, 0xFF584CD8);
+            Set(i++, 0xFF1C70C4);
+            Set(i++, 0xFF3C9420);
+            Set(i++, 0xFF149010);
+            Set(i++, 0xFF088814);
+            Set(i++, 0xFF4C7420);
+            Set(i++, 0xFF806830);
+            Set(i++, 0xFFA8501C);
+            Set(i++, 0xFFA8A8A8);
+            Set(i++, 0xFFFC901C);
+            Set(i++, 0xFFFC801C);
+            Set(i++, 0xFFF85054);
+            Set(i++, 0xFFCC3CCC);
+            Set(i++, 0xFFC048DC);
+            Set(i++, 0xFFA050D8);
+            Set(i++, 0xFF5868FC);
+            Set(i++, 0xFF6864FC);
+            Set(i++, 0xFF4898D8);
+            Set(i++, 0xFF54A838);
+            Set(i++, 0xFF1CB814);
+            Set(i++, 0xFF08AC1C);
+            Set(i++, 0xFF649028);
+            Set(i++, 0xFFAC9838);
+            Set(i++, 0xFFBC7430);
+            Set(i++, 0xFFCCCCCC);
+            Set(i++, 0xFFFCC41C);
+            Set(i++, 0xFFFC982C);
+            Set(i++, 0xFFFC706C);
+            Set(i++, 0xFFE850E8);
+            Set(i++, 0xFFE05CFC);
+            Set(i++, 0xFFBC60FC);
+            Set(i++, 0xFF7080FC);
+            Set(i++, 0xFF8884FC);
+            Set(i++, 0xFF54B4FC);
+            Set(i++, 0xFF60D070);
+            Set(i++, 0xFF20D818);
+            Set(i++, 0xFF84D820);
+            Set(i++, 0xFFA0B034);
+            Set(i++, 0xFFD4B440);
+            Set(i++, 0xFFE09044);
+            Set(i++, 0xFFE4E4E4);
+            Set(i++, 0xFFFCD84C);
+            Set(i++, 0xFFFCC444);
+            Set(i++, 0xFFFC8C8C);
+            Set(i++, 0xFFFC6CFC);
+            Set(i++, 0xFFF07CFC);
+            Set(i++, 0xFFCC74FC);
+            Set(i++, 0xFF90A0FC);
+            Set(i++, 0xFF9898FC);
+            Set(i++, 0xFF8CD8FC);
+            Set(i++, 0xFF70F484);
+            Set(i++, 0xFF6CF040);
+            Set(i++, 0xFF98F824);
+            Set(i++, 0xFFB0D040);
+            Set(i++, 0xFFE0C838);
+            Set(i++, 0xFFF8AC58);
+            Set(i++, 0xFFF0F0F0);
+            Set(i++, 0xFFFCF454);
+            Set(i++, 0xFFFCC46C);
+            Set(i++, 0xFFFCA8AC);
+            Set(i++, 0xFFFC84F8);
+            Set(i++, 0xFFFC98FC);
+            Set(i++, 0xFFD490FC);
+            Set(i++, 0xFF9CB0FC);
+            Set(i++, 0xFFB0ACFC);
+            Set(i++, 0xFF98DCFC);
+            Set(i++, 0xFF84FC94);
+            Set(i++, 0xFF80FC58);
+            Set(i++, 0xFFB4FC58);
+            Set(i++, 0xFFD4E048);
+            Set(i++, 0xFFE0E434);
+            Set(i++, 0xFFFCC060);
+            Set(i++, 0xFFFCFCFC);
+            Set(i++, 0xFFFCFC98);
+            Set(i++, 0xFFFCE4A0);
+            Set(i++, 0xFFFCC4CC);
+            Set(i++, 0xFFFCA4FC);
+            Set(i++, 0xFFFCA8FC);
+            Set(i++, 0xFFDCA8FC);
+            Set(i++, 0xFFC0C8FC);
+            Set(i++, 0xFFC0C0FC);
+            Set(i++, 0xFFC0E8FC);
+            Set(i++, 0xFFACFCB4);
+            Set(i++, 0xFFB0FC98);
+            Set(i++, 0xFFDCFC80);
+            Set(i++, 0xFFF0FC50);
+            Set(i++, 0xFFF8FC7C);
+            Set(i++, 0xFFFCFCFC);
+        }
+
+        public void InitDefaultClassic2()
         {
             Clear();
             int i = 0;
