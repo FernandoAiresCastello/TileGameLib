@@ -1,8 +1,11 @@
-#include "Demo01.h"
+#include "Demos.h"
 
-void Demo01()
+void Demo01(UIContext* ctx)
 {
-	USING_GLOBALS
+	Project* proj = new Project();
+	Palette* pal = proj->GetPalette();
+	Charset* chr = proj->GetCharset();
+	Graphics* gr = ctx->Gr;
 
 	pal->Set(0, 0x000000);
 	pal->Set(1, 0xff0000);
@@ -75,4 +78,7 @@ void Demo01()
 			}
 		}
 	}
+
+	delete view;
+	delete proj;
 }

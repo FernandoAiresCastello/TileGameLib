@@ -116,7 +116,7 @@ namespace TBRLGPT
 					case SDLK_UP: {
 						if (ItemIndex > 0) {
 							ItemIndex--;
-							if (CursorY <= CursorHomeY)
+							if (CursorY < CursorHomeY)
 								FirstItem--;
 							else
 								CursorY--;
