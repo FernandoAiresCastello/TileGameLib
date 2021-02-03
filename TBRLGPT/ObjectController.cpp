@@ -71,11 +71,18 @@ namespace TBRLGPT
 	void ObjectController::MoveTo(int x, int y, int layer)
 	{
 		Map->MoveObject(GetPosition(), ObjectPosition(x, y, layer));
+
+		X = x;
+		Y = y;
+		Layer = layer;
 	}
 
 	void ObjectController::MoveDist(int dx, int dy)
 	{
 		Map->MoveObject(GetPosition(), GetPosition().Move(dx, dy));
+
+		X += dx;
+		Y += dy;
 	}
 
 	void ObjectController::CopyTo(int x, int y)

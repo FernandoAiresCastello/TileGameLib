@@ -60,3 +60,4 @@
 #include "Viewport.h"
 #include "ObjectPosition.h"
 #include "Project.h"
+#include "ObjectController.h"
