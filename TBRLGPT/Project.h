@@ -51,5 +51,7 @@ namespace TBRLGPT
 		int EngineWindowMagnification;
 		int EngineWindowWidth;
 		int EngineWindowHeight;
+
+		void DeleteContents();
 	};
 }

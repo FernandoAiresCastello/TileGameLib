@@ -30,17 +30,24 @@ namespace TBRLGPT
 
 	Project::~Project()
 	{
+		DeleteContents();
+	}
+
+	void Project::DeleteContents()
+	{
 		delete Palette;
 		delete Charset;
 
 		for (int i = 0; i < Maps.size(); i++) {
 			delete Maps[i];
 		}
+
+		Maps.clear();
 	}
 
 	bool Project::Load(std::string filename)
 	{
-		Maps.clear();
+		DeleteContents();
 
 		std::string text = File::ReadText(filename);
 		if (text.empty())
