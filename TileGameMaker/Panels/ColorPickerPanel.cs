@@ -36,7 +36,8 @@ namespace TileGameMaker.Panels
             InitializeComponent();
             MapEditor = editor;
 
-            ColorPicker = new ColorPickerDisplay(PnlColorPicker, 
+            ColorPicker = new ColorPickerDisplay(PnlColorPicker,
+                editor.Palette,
                 Config.ReadInt("ColorPickerCols"), 
                 Config.ReadInt("ColorPickerRows"), 
                 Config.ReadInt("ColorPickerZoom"));

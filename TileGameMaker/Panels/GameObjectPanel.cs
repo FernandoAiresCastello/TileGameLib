@@ -133,7 +133,6 @@ namespace TileGameMaker.Panels
 
             if (o != null)
             {
-                Print(TxtObject, $"    ID: {o.Id}");
                 Print(TxtObject, $"    Visible: {o.Visible}");
                 Print(TxtObject, $"    Frames: {o.Animation.Size}");
                 Print(TxtObject, $"    Properties: ");

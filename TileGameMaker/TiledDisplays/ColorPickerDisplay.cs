@@ -21,9 +21,10 @@ namespace TileGameMaker.TiledDisplays
         private readonly int SelectedBackColorSwatchTile = Config.ReadInt("ColorPickerSelectedBackColorSwatchTile");
         private readonly int SelectedBothColorsEqualSwatchTile = Config.ReadInt("ColorPickerSelectedBothColorsEqualSwatchTile");
 
-        public ColorPickerDisplay(Control parent, int cols, int rows, int zoom)
+        public ColorPickerDisplay(Control parent, Palette palette, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
+            Graphics.Palette = palette;
             SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
             SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
         }

@@ -12,7 +12,6 @@ namespace TileGameLib.GameElements
 {
     public class GameObject
     {
-        public string Id { set; get; }
         public bool Visible { set; get; }
         public ObjectAnimation Animation { set; get; } = new ObjectAnimation();
         public PropertyList Properties { set; get; } = new PropertyList();
@@ -21,20 +20,17 @@ namespace TileGameLib.GameElements
         public GameObject()
         {
             SetNull();
-            GenerateId();
         }
 
         public GameObject(GameObject other)
         {
             SetEqual(other);
-            GenerateId();
         }
 
         public GameObject(Tile singleAnimFrame)
         {
             SetNull();
             Animation.SetFrame(0, singleAnimFrame);
-            GenerateId();
         }
 
         public void SetNull()
@@ -66,7 +62,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"ID: {Id} Frames: {Animation.Frames.Count} Properties: {Properties.Entries.Count} Visible: {Visible}";
+            return $"Properties: {Properties.Entries.Count} Frames: {Animation.Frames.Count} Visible: {Visible}";
         }
 
         public override bool Equals(object obj)
@@ -82,11 +78,6 @@ namespace TileGameLib.GameElements
                 Animation.Equals(o.Animation);
         }
 
-        public virtual bool StrictEquals(object obj)
-        {
-            return Equals(obj) && Id == ((GameObject)obj).Id;
-        }
-
         public bool PropertiesEqual(object obj)
         {
             return Properties.Equals((obj as GameObject).Properties);
@@ -99,12 +90,7 @@ namespace TileGameLib.GameElements
 
         public override int GetHashCode()
         {
-            return Tuple.Create(Id, Visible, Properties, Animation).GetHashCode();
-        }
-
-        private void GenerateId()
-        {
-            Id = RandomID.Generate(8);
+            return Tuple.Create(Visible, Properties, Animation).GetHashCode();
         }
     }
 }

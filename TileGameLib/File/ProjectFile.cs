@@ -139,7 +139,6 @@ namespace TileGameLib.File
                     if (o != null)
                     {
                         Append(1);
-                        Append(o.Id);
                         Append(o.Visible ? 1 : 0);
 
                         Append(o.Animation.Size);
@@ -321,7 +320,6 @@ namespace TileGameLib.File
                     if (occupiedCell == 1)
                     {
                         GameObject o = new GameObject();
-                        o.Id = NextString();
                         o.Visible = NextNumber() > 0;
 
                         o.Animation.Clear();
@@ -344,7 +342,6 @@ namespace TileGameLib.File
                         }
 
                         templates.SetObject(o, x, y);
-                        templates.GetObject(x, y).Id = o.Id;
                     }
                 }
             }

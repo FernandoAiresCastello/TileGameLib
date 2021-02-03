@@ -165,16 +165,13 @@ namespace TileGameMaker.Windows
             if (OriginalData != null)
             {
                 ObjectPosition position = OriginalData.Position;
-
                 Text = $"{title} @ L{position.Layer} X{position.X} Y{position.Y}";
                 NewData = new PositionedObject(OriginalData);
-                NewData.Object.Id = OriginalData.Object.Id;
             }
             else if (OriginalObject != null)
             {
                 Text = title;
                 NewObject = new GameObject(OriginalObject);
-                NewObject.Id = OriginalObject.Id;
             }
 
             UpdateInterface();
@@ -232,15 +229,9 @@ namespace TileGameMaker.Windows
         private void BtnRevert_Click(object sender, EventArgs e)
         {
             if (NewData != null)
-            {
                 NewData.Object = OriginalData.Object.Copy();
-                NewData.Object.Id = OriginalData.Object.Id;
-            }
             else if (NewObject != null)
-            {
                 NewObject = OriginalObject.Copy();
-                NewObject.Id = OriginalObject.Id;
-            }
 
             UpdateInterface();
         }
@@ -262,13 +253,11 @@ namespace TileGameMaker.Windows
             {
                 NewData.Object.Visible = true;
                 NewData.Object.Properties.RemoveAll();
-                NewData.Object.Id = OriginalData.Object.Id;
             }
             else if (NewObject != null)
             {
                 NewObject.Visible = true;
                 NewObject.Properties.RemoveAll();
-                NewObject.Id = OriginalObject.Id;
             }
 
             ClearAnimation();
@@ -301,15 +290,9 @@ namespace TileGameMaker.Windows
         private void BtnSetEqualToClipboard_Click(object sender, EventArgs e)
         {
             if (NewData != null)
-            {
                 NewData.Object.SetEqual(Editor.GetClipboardObject());
-                NewData.Object.Id = OriginalData.Object.Id;
-            }
             else if (NewObject != null)
-            {
                 NewObject.SetEqual(Editor.GetClipboardObject());
-                NewObject.Id = OriginalObject.Id;
-            }
 
             UpdateInterface();
         }

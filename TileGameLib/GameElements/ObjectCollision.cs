@@ -30,8 +30,8 @@ namespace TileGameLib.GameElements
             ObjectCollision other = (ObjectCollision)obj;
 
             return 
-                PositionedObject1.Object.StrictEquals(other.PositionedObject1) &&
-                PositionedObject2.Object.StrictEquals(other.PositionedObject2);
+                PositionedObject1.Object.Equals(other.PositionedObject1) &&
+                PositionedObject2.Object.Equals(other.PositionedObject2);
         }
 
         public override int GetHashCode()

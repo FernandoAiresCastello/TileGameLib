@@ -37,7 +37,7 @@ namespace TileGameMaker.Windows
             TilesetDisplay = new TilePickerDisplay(TilesetPanel, editor.Tileset, 8);
             TilesetDisplay.ShowGrid = true;
 
-            PaletteDisplay = new ColorPickerDisplay(PalettePanel, 8, 8, 3);
+            PaletteDisplay = new ColorPickerDisplay(PalettePanel, editor.Palette, 8, 8, 3);
             PaletteDisplay.ResizeGraphicsByTileCount(PaletteDisplay.Graphics.Palette.Size, 8);
             PaletteDisplay.ShowGrid = true;
 

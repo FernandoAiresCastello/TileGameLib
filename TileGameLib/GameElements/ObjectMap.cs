@@ -341,26 +341,6 @@ namespace TileGameLib.GameElements
             return po;
         }
 
-        public PositionedObject FindObjectById(string id)
-        {
-            for (int layerIndex = 0; layerIndex < Layers.Count; layerIndex++)
-            {
-                ObjectLayer layer = Layers[layerIndex];
-
-                for (int y = 0; y < Height; y++)
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        GameObject o = layer.GetObject(x, y);
-                        if (o != null && o.Id.Equals(id))
-                            return new PositionedObject(this, o, layerIndex, x, y);
-                    }
-                }
-            }
-
-            return null;
-        }
-
         public List<PositionedObject> FindObjectsByProperty(string property)
         {
             List<PositionedObject> objects = new List<PositionedObject>();
@@ -506,12 +486,8 @@ namespace TileGameLib.GameElements
 
         public void MoveObject(ObjectPosition srcPos, ObjectPosition destPos)
         {
-            string srcObjectId = GetObject(srcPos).Id;
-
             DuplicateObject(srcPos, destPos);
             DeleteObject(srcPos);
-
-            GetObject(destPos).Id = srcObjectId;
         }
 
         public GameObject MoveObjectGetPrevious(ObjectPosition srcPos, ObjectPosition destPos)

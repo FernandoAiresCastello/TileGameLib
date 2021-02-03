@@ -52,6 +52,16 @@ namespace TileGameMaker.Windows
             KeyDown += TemplateObjectWindow_KeyDown;
         }
 
+        private string GetTemplateId(GameObject o)
+        {
+            return o.Properties.GetAsString("template_id");
+        }
+
+        private void SetTemplateId(GameObject o, string templateId)
+        {
+            o.Properties.Set("template_id", templateId);
+        }
+
         private void TemplateObjectWindow_Shown(object sender, EventArgs e)
         {
             TemplateList.ClearSelection();
@@ -112,7 +122,7 @@ namespace TileGameMaker.Windows
                 UpdateProperties(o);
 
             if (updateTemplateListSelection)
-                SelectTemplateInListWithId(o.Id);
+                SelectTemplateInListWithId(o.Properties.GetAsString("template_id"));
         }
 
         private void SelectTemplateInListWithId(string id)
@@ -135,7 +145,7 @@ namespace TileGameMaker.Windows
                 {
                     GameObject o = TemplateMap.GetObject(new ObjectPosition(0, x, y));
 
-                    if (o != null && o.Id == id)
+                    if (o != null && GetTemplateId(o) == id)
                     {
                         SelectObject(TemplateMap.GetCell(new ObjectPosition(0, x, y)), 
                             updateMapEditorClipboard: updateMapEditorClipboard, 
@@ -170,15 +180,17 @@ namespace TileGameMaker.Windows
                     while (!idValid)
                     {
                         StringInputWindow nameWindow = new StringInputWindow("New template object", "Enter an ID for this template:");
-                        editedObject.Id = nameWindow.ShowDialog(this);
+                        SetTemplateId(editedObject, nameWindow.ShowDialog(this));
 
                         if (nameWindow.DialogResult == DialogResult.Cancel)
                             return;
 
-                        if (string.IsNullOrWhiteSpace(editedObject.Id))
+                        string id = GetTemplateId(editedObject);
+
+                        if (string.IsNullOrWhiteSpace(id))
                             Alert.Warning("Please enter an ID or press ESC to cancel.");
-                        else if (IsDuplicateId(editedObject.Id))
-                            Alert.Warning($"There already is a template with the ID: {editedObject.Id}\nPlease enter a different ID.");
+                        else if (IsDuplicateId(id))
+                            Alert.Warning($"There already is a template with the ID: {id}\nPlease enter a different ID.");
                         else
                             idValid = true;
                     }
@@ -186,7 +198,6 @@ namespace TileGameMaker.Windows
 
                 cell.PutObject(o);
                 cell.SetObjectEqual(editedObject);
-                cell.Object.Id = editedObject.Id;
 
                 if (newObject)
                     UpdateTemplateList();
@@ -221,7 +232,7 @@ namespace TileGameMaker.Windows
                 {
                     GameObject o = TemplateMap.GetObject(new ObjectPosition(0, x, y));
                     if (o != null)
-                        TemplateList.Rows.Add(o.Id);
+                        TemplateList.Rows.Add(GetTemplateId(o));
                 }
             }
 
@@ -251,7 +262,7 @@ namespace TileGameMaker.Windows
                 return;
 
             GameObject o = GetObjectOfSelectedTemplateInMap();
-            o.Id = newId;
+            SetTemplateId(o, newId);
             UpdateTemplateList();
         }
 
@@ -276,7 +287,7 @@ namespace TileGameMaker.Windows
                     ObjectPosition pos = new ObjectPosition(0, x, y);
                     GameObject o = TemplateMap.GetObject(pos);
 
-                    if (o != null && o.Id == selectedIdInList)
+                    if (o != null && GetTemplateId(o) == selectedIdInList)
                         return TemplateMap.GetCell(pos);
                 }
             }
@@ -299,7 +310,7 @@ namespace TileGameMaker.Windows
                     ObjectPosition pos = new ObjectPosition(0, x, y);
                     GameObject o = TemplateMap.GetObject(pos);
 
-                    if (o != null && o.Id == id)
+                    if (o != null && GetTemplateId(o) == id)
                         return o;
                 }
             }
@@ -348,7 +359,7 @@ namespace TileGameMaker.Windows
             }
 
             firstEmptyCell.SetObjectEqual(original);
-            firstEmptyCell.Object.Id = "Copy of " + original.Id;
+            SetTemplateId(firstEmptyCell.Object, "Copy of " + GetTemplateId(original));
             UpdateTemplateList();
             EditObject(firstEmptyCell);
         }
