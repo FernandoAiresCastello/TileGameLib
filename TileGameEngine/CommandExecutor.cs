@@ -32,7 +32,7 @@ namespace TileGameEngine
             {
                 case "NOP": Nop(); break;
                 case "MSGBOX": MsgBox(); break;
-                case "END": End(); break;
+                case "EXIT": Exit(); break;
 
                 default:
                     SetResult(CommandResult.Error, "Invalid command: " + Line.Command);
@@ -51,7 +51,7 @@ namespace TileGameEngine
             // Dummy (no operation)
         }
 
-        private void End()
+        private void Exit()
         {
             SetResult(CommandResult.Exit);
         }

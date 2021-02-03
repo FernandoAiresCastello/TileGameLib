@@ -18,14 +18,6 @@ namespace TBRLGPT
 	{
 	}
 
-	ObjectController::ObjectController(class Map* map, std::string objId) : Map(map)
-	{
-		ObjectPosition op = map->FindObjectById(objId);
-		X = op.X;
-		Y = op.Y;
-		Layer = op.Layer;
-	}
-
 	ObjectController::ObjectController(class Map* map, std::string objPropertyName, std::string objPropertyValue) : Map(map)
 	{
 		ObjectPosition op = map->FindObjectByProperty(objPropertyName, objPropertyValue);

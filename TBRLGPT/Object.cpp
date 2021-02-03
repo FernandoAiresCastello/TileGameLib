@@ -20,7 +20,6 @@ namespace TBRLGPT
 
 	Object::Object(ObjectChar gfx)
 	{
-		Id = Util::GenerateId();
 		Void = false;
 		Visible = true;
 		Animation.SetFrame(0, gfx);
@@ -28,7 +27,6 @@ namespace TBRLGPT
 
 	Object::Object(const Object& other)
 	{
-		Id = other.Id;
 		Void = other.Void;
 		Visible = other.Visible;
 		ObjectAnim anim = other.Animation;
@@ -38,16 +36,6 @@ namespace TBRLGPT
 
 	Object::~Object()
 	{
-	}
-
-	void Object::SetId(std::string id)
-	{
-		Id = id;
-	}
-
-	std::string Object::GetId()
-	{
-		return Id;
 	}
 
 	void Object::SetVisible(bool visible)
@@ -116,12 +104,11 @@ namespace TBRLGPT
 		return Visible;
 	}
 
-	void Object::SetVoid(bool void_)
+	void Object::SetVoid(bool isVoid)
 	{
-		Void = void_;
-		if (void_) {
-			Id = "";
-			Void = true;
+		Void = isVoid;
+
+		if (isVoid) {
 			Visible = true;
 			Animation.Clear();
 			Properties.clear();
@@ -133,15 +120,12 @@ namespace TBRLGPT
 		return Void;
 	}
 
-	void Object::SetEqual(Object other, bool copyId)
+	void Object::SetEqual(Object other)
 	{
 		Void = other.Void;
 		Visible = other.Visible;
 		Animation.SetEqual(other.Animation);
 		CopyProperties(other);
-
-		if (copyId)
-			Id = other.Id;
 	}
 
 	void Object::CopyProperties(const Object& other)

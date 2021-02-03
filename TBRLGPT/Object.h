@@ -26,13 +26,11 @@ namespace TBRLGPT
 		Object(const Object& other);
 		~Object();
 
-		void SetId(std::string id);
-		std::string GetId();
-		void SetVoid(bool void_);
+		void SetVoid(bool isVoid);
 		bool IsVoid();
 		void SetVisible(bool visible);
 		bool IsVisible();
-		void SetEqual(Object other, bool copyId);
+		void SetEqual(Object other);
 		void SetAnimation(ObjectAnim& anim);
 		ObjectAnim& GetAnimation();
 		bool HasAnimation();
@@ -46,7 +44,6 @@ namespace TBRLGPT
 		void AddToNumericProperty(std::string name, int value);
 		
 	private:
-		std::string Id;
 		bool Void;
 		bool Visible;
 		ObjectAnim Animation;

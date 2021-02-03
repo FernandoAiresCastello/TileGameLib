@@ -179,7 +179,7 @@ namespace TBRLGPT
 	{
 		Object* o = Layers->at(layer)->GetObject(x, y);
 		Object copy = Object();
-		copy.SetEqual(*o, false);
+		copy.SetEqual(*o);
 		return copy;
 	}
 
@@ -200,7 +200,7 @@ namespace TBRLGPT
 
 	void Map::SetOutOfBoundsObject(Object& oob)
 	{
-		OutOfBoundsObject->SetEqual(oob, true);
+		OutOfBoundsObject->SetEqual(oob);
 	}
 
 	Object* Map::GetOutOfBoundsObject()
@@ -216,22 +216,6 @@ namespace TBRLGPT
 	std::string Map::GetExtra()
 	{
 		return Extra;
-	}
-
-	ObjectPosition Map::FindObjectById(std::string id)
-	{
-		for (int layer = 0; layer < Layers->size(); layer++) {
-			for (int y = 0; y < Height; y++) {
-				for (int x = 0; x < Width; x++) {
-					Object* o = GetObject(x, y, layer);
-					if (o->GetId() == id) {
-						return ObjectPosition(o, x, y, layer);
-					}
-				}
-			}
-		}
-
-		return ObjectPosition();
 	}
 
 	std::vector<ObjectPosition> Map::FindObjectsByProperty(std::string name, std::string value)

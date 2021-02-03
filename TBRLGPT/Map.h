@@ -57,7 +57,6 @@ namespace TBRLGPT
 		Object* GetOutOfBoundsObject();
 		void SetExtra(std::string extra);
 		std::string GetExtra();
-		ObjectPosition FindObjectById(std::string id);
 		std::vector<ObjectPosition> FindObjectsByProperty(std::string name, std::string value);
 		ObjectPosition FindObjectByProperty(std::string name, std::string value);
 		void MoveObject(ObjectPosition orig, ObjectPosition dest);

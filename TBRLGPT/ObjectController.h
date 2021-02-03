@@ -22,7 +22,6 @@ namespace TBRLGPT
 	{
 	public:
 		ObjectController(class Map* map, int x, int y, int layer);
-		ObjectController(class Map* map, std::string objId);
 		ObjectController(class Map* map, std::string objPropertyName, std::string objPropertyValue);
 		virtual ~ObjectController();
 

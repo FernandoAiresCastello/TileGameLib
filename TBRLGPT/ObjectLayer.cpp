@@ -41,7 +41,7 @@ namespace TBRLGPT
 	void ObjectLayer::SetObject(Object object, int x, int y)
 	{
 		if (y >= 0 && y < Height && x >= 0 && x < Width) {
-			Objects[y][x].SetEqual(object, false);
+			Objects[y][x].SetEqual(object);
 			Objects[y][x].SetVoid(false);
 		}
 	}
@@ -109,7 +109,7 @@ namespace TBRLGPT
 				if (x < width && y < height) {
 					Object* ch = GetObject(x, y);
 					Object copy(*ch);
-					resizedLayer[y][x].SetEqual(copy, true);
+					resizedLayer[y][x].SetEqual(copy);
 				}
 			}
 		}
