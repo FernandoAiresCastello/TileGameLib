@@ -24,10 +24,15 @@ namespace TBRLGPT
 {
 	Project::Project()
 	{
+		Palette = new class Palette();
+		Charset = new class Charset();
 	}
 
 	Project::~Project()
 	{
+		delete Palette;
+		delete Charset;
+
 		for (int i = 0; i < Maps.size(); i++) {
 			delete Maps[i];
 		}
