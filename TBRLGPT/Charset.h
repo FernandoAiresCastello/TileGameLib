@@ -26,6 +26,7 @@ namespace TBRLGPT
 		byte* Get(int index);
 		void Clear();
 		void SetChar(int chr, int row1, int row2, int row3, int row4, int row5, int row6, int row7, int row8);
+		void SetChar(int chr, std::string row1, std::string row2, std::string row3, std::string row4, std::string row5, std::string row6, std::string row7, std::string row8);
 		void CopyChar(int dstix, int srcix);
 		void Save(std::string filename);
 		void SaveHex(std::string filename);

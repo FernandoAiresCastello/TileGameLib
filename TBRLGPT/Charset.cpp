@@ -10,6 +10,7 @@
 #include <cstdio>
 #include "Charset.h"
 #include "Char.h"
+#include "StringUtils.h"
 
 namespace TBRLGPT
 {
@@ -50,6 +51,15 @@ namespace TBRLGPT
 		pixels[5] = row6;
 		pixels[6] = row7;
 		pixels[7] = row8;
+	}
+
+	void Charset::SetChar(int chr, 
+		std::string row1, std::string row2, std::string row3, std::string row4, 
+		std::string row5, std::string row6, std::string row7, std::string row8)
+	{
+		SetChar(chr, 
+			String::BinaryToInt(row1), String::BinaryToInt(row2), String::BinaryToInt(row3), String::BinaryToInt(row4), 
+			String::BinaryToInt(row5), String::BinaryToInt(row6), String::BinaryToInt(row7), String::BinaryToInt(row8));
 	}
 
 	void Charset::CopyChar(int dstix, int srcix)
