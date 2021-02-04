@@ -151,4 +151,9 @@ namespace TBRLGPT
 	{
 		return X == other->X && Y == other->Y && Layer < other->Layer;
 	}
+
+	bool ObjectController::IsAboveOrUnder(ObjectController* other)
+	{
+		return IsAbove(other) || IsUnder(other);
+	}
 }

@@ -23,7 +23,7 @@ namespace TBRLGPT
 	public:
 		ObjectController(class Map* map, int x, int y, int layer);
 		ObjectController(class Map* map, std::string objPropertyName, std::string objPropertyValue);
-		virtual ~ObjectController();
+		~ObjectController();
 
 		Object* GetObject();
 		ObjectPosition GetPosition();
@@ -48,6 +48,7 @@ namespace TBRLGPT
 		int GetDistance(ObjectController* other);
 		bool IsAbove(ObjectController* other);
 		bool IsUnder(ObjectController* other);
+		bool IsAboveOrUnder(ObjectController* other);
 
 	private:
 		class Map* Map;
