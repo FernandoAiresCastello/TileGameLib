@@ -22,9 +22,10 @@ namespace TBRLGPT
 	class TBRLGPT_API MapViewport
 	{
 	public:
-		MapViewport(UIContext* ctx, class Map* map, int x, int y, int width, int height, int viewx, int viewy, int animationFrameDelay);
+		MapViewport(UIContext* ctx, class Map* map, int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationFrameDelay);
 		~MapViewport();
 
+		class Map* GetMap();
 		void SetMap(class Map* map);
 		void Draw();
 		void DrawLayer(int index);
@@ -50,8 +51,8 @@ namespace TBRLGPT
 		int Y;
 		int Width;
 		int Height;
-		int ViewX;
-		int ViewY;
+		int ScrollX;
+		int ScrollY;
 		Rect InvertedColorArea;
 		std::string AnimationTimerId;
 

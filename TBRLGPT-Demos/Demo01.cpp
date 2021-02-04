@@ -24,14 +24,16 @@ void Demo01(UIContext* ctx)
 		"10000001",
 		"11111111");
 
-	Map* map = new Map(proj, "test", 32, 24, 1);
+	Map* map = new Map(proj, "test", 32, 24, 2);
 	map->SetBackColor(3);
 	Object oob = Object(ObjectChar(0, 0, 0));
 	map->SetOutOfBoundsObject(oob);
 	Object objTest = Object(ObjectChar(1, 2, 3));
 	objTest.SetProperty("type", "test");
-	map->SetObject(objTest, 5, 5, 0);
+	map->SetObject(objTest, 5, 5, 1);
 	ObjectController ctl = ObjectController(map, "type", "test");
+
+	map->SetStringOfObjects("Use arrow keys to move object\nUse CTRL+arrow keys to scroll\nUse ESC key to exit", 5, 3, 1, 1, 0);
 
 	MapViewport* view = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 100);
 

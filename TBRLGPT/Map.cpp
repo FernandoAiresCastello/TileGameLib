@@ -165,6 +165,22 @@ namespace TBRLGPT
 		Layers->at(layer)->SetObject(object, x, y);
 	}
 
+	void Map::SetStringOfObjects(std::string str, int foreColor, int backColor, int x, int y, int layer)
+	{
+		int initialX = x;
+		for (int i = 0; i < str.length(); i++) {
+			int ch = str[i];
+			Object o = Object(ObjectChar(ch, foreColor, backColor));
+			if (ch == '\n') {
+				x = initialX;
+				y++;
+			}
+			else {
+				SetObject(o, x++, y, layer);
+			}
+		}
+	}
+
 	void Map::DeleteObject(int x, int y, int layer)
 	{
 		Layers->at(layer)->DeleteObject(x, y);

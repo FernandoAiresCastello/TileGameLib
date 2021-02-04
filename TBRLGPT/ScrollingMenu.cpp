@@ -27,8 +27,6 @@ namespace TBRLGPT
 		KeyPressed = 0;
 		Highlight = true;
 		CursorChar = 0x1a;
-		CursorForeColor = ctx->BackColor;
-		CursorBackColor = ctx->ForeColor;
 	}
 
 	ScrollingMenu::~ScrollingMenu()
@@ -101,6 +99,8 @@ namespace TBRLGPT
 		MaxItems = (Title.empty() ? Height : Height - 2);
 		CursorHomeY = (Title.empty() ? Y : Y + 2);
 		CursorY = CursorHomeY;
+		CursorForeColor = Ctx->BackColor;
+		CursorBackColor = Ctx->ForeColor;
 
 		bool selecting = true;
 

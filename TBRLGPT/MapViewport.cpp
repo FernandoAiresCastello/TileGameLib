@@ -28,17 +28,17 @@ namespace TBRLGPT
 	}
 
 	MapViewport::MapViewport(UIContext* ctx, class Map* map, 
-		int x, int y, int width, int height, int viewx, int viewy, int animationFrameDelay)
+		int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationFrameDelay)
 	{
 		Ctx = ctx;
 		Map = map;
-		X = x;
-		Y = y;
+		X = viewX;
+		Y = viewY;
 		Width = width;
 		Height = height;
-		ViewX = viewx;
-		ViewY = viewy;
-		Win = new Window(Ctx, x - 1, y - 1, width, height);
+		ScrollX = scrollX;
+		ScrollY = scrollY;
+		Win = new Window(Ctx, viewX - 1, viewY - 1, width, height);
 		AnimationTimerId = "MapViewportAnimationTimer_" + Util::GenerateId();
 		TimerManager::AddTimer(AnimationTimerId, animationFrameDelay, AdvanceAnimation);
 	}
@@ -47,6 +47,11 @@ namespace TBRLGPT
 	{
 		delete Win;
 		TimerManager::RemoveTimer(AnimationTimerId);
+	}
+
+	Map* MapViewport::GetMap()
+	{
+		return Map;
 	}
 
 	void MapViewport::SetMap(class Map* map)
@@ -88,8 +93,8 @@ namespace TBRLGPT
 		bool isTopLayer = layer == Map->GetTopLayer();
 		bool invertColorArea = isTopLayer && InvertedColorArea.IsValid();
 
-		int vx = ViewX;
-		int vy = ViewY;
+		int vx = ScrollX;
+		int vy = ScrollY;
 		for (int y = Y; y < Y + Height; y++) {
 			for (int x = X; x < X + Width; x++) {
 				Object* o = layer->GetObject(vx, vy);
@@ -128,7 +133,7 @@ namespace TBRLGPT
 				}
 				vx++;
 			}
-			vx = ViewX;
+			vx = ScrollX;
 			vy++;
 		}
 	}
@@ -165,14 +170,14 @@ namespace TBRLGPT
 
 	void MapViewport::SetScroll(int x, int y)
 	{
-		ViewX = x;
-		ViewY = y;
+		ScrollX = x;
+		ScrollY = y;
 	}
 
 	void MapViewport::ScrollView(int dx, int dy)
 	{
-		ViewX += dx;
-		ViewY += dy;
+		ScrollX += dx;
+		ScrollY += dy;
 	}
 
 	void MapViewport::ClearBorder()

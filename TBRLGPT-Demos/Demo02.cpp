@@ -7,18 +7,19 @@ void Demo02(UIContext* ctx)
 	Charset* chr = proj->GetCharset();
 	Graphics* gr = ctx->Gr;
 
+	gr->Clear(0x000000);
 	gr->Print(ctx->Chars, 1, 1, 0xffffff, 0x000000, "Loading...");
 	gr->Update();
 	proj->Load("data/demos.tgpro");
 
 	auto maps = proj->GetMaps();
 	int mapIndex = 0;
-
-	MapViewport* view = new MapViewport(ctx, maps[mapIndex], 0, 0, gr->Cols, gr->Rows, 0, 0, 100);
+	MapViewport* view = new MapViewport(ctx, maps[mapIndex], 0, 1, gr->Cols, gr->Rows-1, 0, 0, 100);
 
 	bool running = true;
 	while (running) {
-
+		ctx->SetColor(0xffffff, 0x000000);
+		ctx->Print(0, 0, view->GetMap()->GetName());
 		view->Draw();
 		gr->Update();
 

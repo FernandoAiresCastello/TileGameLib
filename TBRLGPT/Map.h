@@ -48,6 +48,7 @@ namespace TBRLGPT
 		void DeleteLayer(int index);
 		void DeleteAllLayers();
 		void SetObject(Object& object, int x, int y, int layer);
+		void SetStringOfObjects(std::string str, int foreColor, int backColor, int x, int y, int layer);
 		void DeleteObject(int x, int y, int layer);
 		Object* GetObject(int x, int y, int layer);
 		Object GetObjectCopy(int x, int y, int layer);
