@@ -8,79 +8,67 @@
 =============================================================================*/
 
 #include <SDL.h>
+#include <map>
 #include "TimerManager.h"
 #include "Timer.h"
 
 namespace TBRLGPT
 {
-	int TimerManager::CycleDelay = 10;
-	std::map<std::string, Timer*>* TimerManager::Timers = new std::map<std::string, Timer*>();
-	SDL_Thread* Thread;
-	bool Running = false;
-	bool Detached = false;
+	std::map<std::string, Timer> Timers;
+	SDL_Thread* Thread = NULL;
+	bool TimersRunning;
+	int ThreadDelay = 1;
 
-	static int Tick(void* data)
+	int Tick(void* data)
 	{
-		while (!Detached) {
-			if (Running) {
-				for (auto it = TimerManager::Timers->begin(); it != TimerManager::Timers->end(); it++)
-					it->second->Step();
+		while (TimersRunning) {
+			for (auto it = Timers.begin(); it != Timers.end(); it++)
+				it->second.Step();
 
-				SDL_Delay(TimerManager::CycleDelay);
-			}
+			SDL_Delay(ThreadDelay);
 		}
 
 		return 0;
 	}
 
-	TimerManager::TimerManager() : TimerManager(0)
+	void TimerManager::Init()
 	{
-	}
-
-	TimerManager::TimerManager(int cycleDelay)
-	{
-		CycleDelay = cycleDelay;
+		TimersRunning = true;
+		Timers = std::map<std::string, Timer>();
 		Thread = SDL_CreateThread(Tick, "Tick", NULL);
 	}
 
-	TimerManager::~TimerManager()
+	void TimerManager::Destroy()
 	{
+		TimersRunning = false;
+		Timers.clear();
 		SDL_DetachThread(Thread);
-		Detached = true;
-
-		for (auto it = TimerManager::Timers->begin(); it != TimerManager::Timers->end(); it++)
-			delete it->second;
-
-		delete TimerManager::Timers;
+		Thread = NULL;
 	}
 
-	void TimerManager::Start()
+	void TimerManager::SetThreadDelay(int ms)
 	{
-		Running = true;
-	}
-
-	void TimerManager::Stop()
-	{
-		Running = false;
+		ThreadDelay = ms;
 	}
 
 	void TimerManager::AddTimer(std::string id, int max, void(*onInterval)())
 	{
-		(*Timers)[id] = new Timer(max, onInterval);
+		Timers[id] = Timer(max, onInterval);
+	}
+
+	void TimerManager::RemoveTimer(std::string id)
+	{
+		auto timer = Timers.find(id);
+		Timers.erase(timer);
 	}
 
 	Timer* TimerManager::GetTimer(std::string id)
 	{
-		return (*Timers)[id];
+		return &(Timers[id]);
 	}
 
 	int TimerManager::GetTime(std::string id)
 	{
-		return (*Timers)[id]->GetTime();
-	}
-
-	void TimerManager::SetDelay(int ms)
-	{
-		CycleDelay = ms >= 0 ? ms : 0;
+		return Timers[id].GetTime();
 	}
 }

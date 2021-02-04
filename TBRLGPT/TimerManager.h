@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include <map>
 #include <string>
 #include "Global.h"
 
@@ -20,18 +19,12 @@ namespace TBRLGPT
 	class TBRLGPT_API TimerManager
 	{
 	public:
-		static std::map<std::string, Timer*>* Timers;
-		static int CycleDelay;
-		
-		TimerManager();
-		TimerManager(int cycleDelay);
-		~TimerManager();
-
-		void AddTimer(std::string id, int max, void(*onInterval)() = NULL);
-		Timer* GetTimer(std::string id);
-		int GetTime(std::string id);
-		void SetDelay(int ms);
-		void Start();
-		void Stop();
+		static void Init();
+		static void Destroy();
+		static void SetThreadDelay(int ms);
+		static void AddTimer(std::string id, int max, void(*onInterval)() = NULL);
+		static void RemoveTimer(std::string id);
+		static Timer* GetTimer(std::string id);
+		static int GetTime(std::string id);
 	};
 }

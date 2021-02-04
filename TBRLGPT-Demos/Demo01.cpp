@@ -33,7 +33,7 @@ void Demo01(UIContext* ctx)
 	map->SetObject(objTest, 5, 5, 0);
 	ObjectController ctl = ObjectController(map, "type", "test");
 
-	MapViewport* view = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 10);
+	MapViewport* view = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 100);
 
 	bool running = true;
 	while (running) {

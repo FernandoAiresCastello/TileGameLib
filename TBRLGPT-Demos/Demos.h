@@ -1,5 +1,7 @@
 #pragma once
-#include "Global.h"
+#include <TBRLGPT.h>
+
+using namespace TBRLGPT;
 
 void Demo01(UIContext* ctx);
 void Demo02(UIContext* ctx);

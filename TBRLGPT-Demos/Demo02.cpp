@@ -14,7 +14,7 @@ void Demo02(UIContext* ctx)
 	auto maps = proj->GetMaps();
 	int mapIndex = 0;
 
-	MapViewport* view = new MapViewport(ctx, maps[mapIndex], 0, 0, gr->Cols, gr->Rows, 0, 0, 25);
+	MapViewport* view = new MapViewport(ctx, maps[mapIndex], 0, 0, gr->Cols, gr->Rows, 0, 0, 100);
 
 	bool running = true;
 	while (running) {

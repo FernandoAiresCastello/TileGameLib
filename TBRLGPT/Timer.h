@@ -16,6 +16,7 @@ namespace TBRLGPT
 	class TBRLGPT_API Timer
 	{
 	public:
+		Timer();
 		Timer(int max, void(*callback)() = NULL);
 		~Timer();
 

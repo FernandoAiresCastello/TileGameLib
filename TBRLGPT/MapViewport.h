@@ -9,8 +9,8 @@
 
 #pragma once
 
+#include <string>
 #include "ObjectChar.h"
-#include "TimerManager.h"
 #include "Rect.h"
 
 namespace TBRLGPT
@@ -22,11 +22,10 @@ namespace TBRLGPT
 	class TBRLGPT_API MapViewport
 	{
 	public:
-		MapViewport(UIContext* ctx, class Map* map, int x, int y, int width, int height, int viewx, int viewy, int animDelay);
+		MapViewport(UIContext* ctx, class Map* map, int x, int y, int width, int height, int viewx, int viewy, int animationFrameDelay);
 		~MapViewport();
 
 		void SetMap(class Map* map);
-		void SetAnimationDelay(int ms);
 		void Draw();
 		void DrawLayer(int index);
 		void SetX(int x);
@@ -53,8 +52,8 @@ namespace TBRLGPT
 		int Height;
 		int ViewX;
 		int ViewY;
-		TimerManager AnimationTimer;
 		Rect InvertedColorArea;
+		std::string AnimationTimerId;
 
 		int GetMapWidth();
 		int GetMapHeight();

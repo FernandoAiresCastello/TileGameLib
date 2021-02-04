@@ -14,8 +14,10 @@
 #include "ObjectLayer.h"
 #include "Window.h"
 #include "UIContext.h"
+#include "TimerManager.h"
 #include "Timer.h"
 #include "Project.h"
+#include "Util.h"
 
 namespace TBRLGPT
 {
@@ -26,7 +28,7 @@ namespace TBRLGPT
 	}
 
 	MapViewport::MapViewport(UIContext* ctx, class Map* map, 
-		int x, int y, int width, int height, int viewx, int viewy, int animDelay)
+		int x, int y, int width, int height, int viewx, int viewy, int animationFrameDelay)
 	{
 		Ctx = ctx;
 		Map = map;
@@ -37,23 +39,19 @@ namespace TBRLGPT
 		ViewX = viewx;
 		ViewY = viewy;
 		Win = new Window(Ctx, x - 1, y - 1, width, height);
-		AnimationTimer.AddTimer("Animation", 10, AdvanceAnimation);
-		AnimationTimer.SetDelay(animDelay);
-		AnimationTimer.Start();
+		AnimationTimerId = "MapViewportAnimationTimer_" + Util::GenerateId();
+		TimerManager::AddTimer(AnimationTimerId, animationFrameDelay, AdvanceAnimation);
 	}
 
 	MapViewport::~MapViewport()
 	{
+		delete Win;
+		TimerManager::RemoveTimer(AnimationTimerId);
 	}
 
 	void MapViewport::SetMap(class Map* map)
 	{
 		Map = map;
-	}
-
-	void MapViewport::SetAnimationDelay(int ms)
-	{
-		AnimationTimer.SetDelay(ms);
 	}
 
 	void MapViewport::Draw()

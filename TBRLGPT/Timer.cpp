@@ -11,10 +11,14 @@
 
 namespace TBRLGPT
 {
+	Timer::Timer() : Timer(0, NULL)
+	{
+	}
+
 	Timer::Timer(int max, void(*callback)())
 	{
 		Time = 0;
-		MaxTime = max;
+		MaxTime = max > 0 ? max : 1;
 		Callback = callback;
 	}
 
