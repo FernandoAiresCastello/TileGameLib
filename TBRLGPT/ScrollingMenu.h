@@ -21,14 +21,13 @@ namespace TBRLGPT
 	class TBRLGPT_API ScrollingMenu
 	{
 	public:
-		ScrollingMenu(UIContext* ctx, int itemIndex = 0);
+		ScrollingMenu(UIContext* ctx, int x, int y, int w, int h, bool drawWindow, bool printIndicator);
 		~ScrollingMenu();
 
 		bool IsEmpty();
 		void AddItem(std::string text, void* object = NULL);
 		void AddItem(std::string text, byte id);
-		MenuItem* Show(int x, int y, int w, int h, bool drawWindow = true, bool printIndicator = true);
-		MenuItem* Show(std::string title, int x, int y, int w, int h, bool drawWindow, bool printIndicator);
+		MenuItem* Show();
 		int GetItemIndex();
 		int GetKeyPressed();
 		void SetHighlight(bool highlight);
@@ -39,7 +38,6 @@ namespace TBRLGPT
 	private:
 		UIContext* Ctx;
 		std::vector<MenuItem*>* Items;
-		std::string Title;
 		int ItemIndex;
 		int X;
 		int Y;

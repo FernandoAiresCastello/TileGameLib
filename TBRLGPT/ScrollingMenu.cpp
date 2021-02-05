@@ -16,14 +16,21 @@
 
 namespace TBRLGPT
 {
-	ScrollingMenu::ScrollingMenu(UIContext* ctx, int itemIndex)
+	ScrollingMenu::ScrollingMenu(UIContext* ctx, int x, int y, int w, int h, bool drawWindow, bool printIndicator)
 	{
 		Ctx = ctx;
 		Items = new std::vector<MenuItem*>();
-		ItemIndex = itemIndex;
+		X = x;
+		Y = y;
+		CursorY = Y;
+		CursorHomeY = Y;
+		Width = w;
+		Height = h;
+		DrawWindow = drawWindow;
+		PrintIndicator = printIndicator;
+		MaxItems = Height;
+		ItemIndex = 0;
 		FirstItem = 0;
-		CursorY = 0;
-		CursorHomeY = 0;
 		KeyPressed = 0;
 		Highlight = true;
 		CursorChar = 0x1a;
@@ -82,26 +89,8 @@ namespace TBRLGPT
 		CursorBackColor = color;
 	}
 
-	MenuItem* ScrollingMenu::Show(int x, int y, int w, int h, bool drawWindow, bool printIndicator)
+	MenuItem* ScrollingMenu::Show()
 	{
-		return Show("", x, y, w, h, drawWindow, printIndicator);
-	}
-
-	MenuItem* ScrollingMenu::Show(std::string title, int x, int y, int w, int h, bool drawWindow, bool printIndicator)
-	{
-		X = x;
-		Y = y;
-		Width = w;
-		Height = h;
-		DrawWindow = drawWindow;
-		PrintIndicator = printIndicator;
-		Title = title;
-		MaxItems = (Title.empty() ? Height : Height - 2);
-		CursorHomeY = (Title.empty() ? Y : Y + 2);
-		CursorY = CursorHomeY;
-		CursorForeColor = Ctx->BackColor;
-		CursorBackColor = Ctx->ForeColor;
-
 		bool selecting = true;
 
 		while (selecting) {
@@ -116,7 +105,7 @@ namespace TBRLGPT
 					case SDLK_UP: {
 						if (ItemIndex > 0) {
 							ItemIndex--;
-							if (CursorY < CursorHomeY)
+							if (CursorY <= CursorHomeY)
 								FirstItem--;
 							else
 								CursorY--;
@@ -138,10 +127,13 @@ namespace TBRLGPT
 						selecting = false;
 						break;
 					}
-					case SDLK_RETURN:
-					default:
+					case SDLK_RETURN: {
 						selecting = false;
 						break;
+					}
+					default: {
+						continue;
+					}
 				}
 			}
 		}
@@ -151,16 +143,14 @@ namespace TBRLGPT
 
 	void ScrollingMenu::Draw()
 	{
+		CursorForeColor = Ctx->BackColor;
+		CursorBackColor = Ctx->ForeColor;
+
 		int x = X;
 		int y = Y;
 		int contentOffset = DrawWindow ? 1 : 0;
 		Window win(Ctx, x, y, Width + contentOffset, Height, DrawWindow);
 		win.Draw();
-
-		if (!Title.empty()) {
-			Ctx->Print(x + contentOffset, y + contentOffset, Title);
-			y += 2;
-		}
 
 		int lastItem = FirstItem + MaxItems;
 		for (int i = FirstItem; i < lastItem; i++) {

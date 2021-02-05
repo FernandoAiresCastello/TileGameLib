@@ -72,12 +72,12 @@ namespace TBRLGPT
 	{
 		std::vector<std::string> files = File::List(Path.GetPath(), extension, true);
 
-		ScrollingMenu menu(Ctx);
+		ScrollingMenu menu(Ctx, 0, 1, Ctx->Gr->Cols - 3, Ctx->Gr->Rows - 7, true, false);
 		for (unsigned i = 0; i < files.size(); i++)
 			menu.AddItem(files[i]);
 
 		KeyPressed = 0;
-		MenuItem* item = menu.Show(0, 1, Ctx->Gr->Cols - 3, Ctx->Gr->Rows - 7, true, false);
+		MenuItem* item = menu.Show();
 		KeyPressed = menu.GetKeyPressed();
 		if (item != NULL)
 			return item->GetText();
