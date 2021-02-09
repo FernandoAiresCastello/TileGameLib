@@ -32,10 +32,9 @@ void Demo01(UIContext* ctx)
 	objTest.SetProperty("type", "test");
 	map->SetObject(objTest, 5, 5, 1);
 	ObjectController ctl = ObjectController(map, "type", "test");
+	MapViewport* view = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 100);
 
 	map->SetStringOfObjects("Use arrow keys to move object\nUse CTRL+arrow keys to scroll\nUse ESC key to exit", 5, 3, 1, 1, 0);
-
-	MapViewport* view = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 100);
 
 	bool running = true;
 	while (running) {
@@ -81,6 +80,7 @@ void Demo01(UIContext* ctx)
 		}
 	}
 
+	delete map;
 	delete view;
 	delete proj;
 }
