@@ -51,8 +51,6 @@
             this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnEditObject = new System.Windows.Forms.ToolStripButton();
             this.BtnFollowLink = new System.Windows.Forms.ToolStripButton();
-            this.BtnFind = new System.Windows.Forms.ToolStripButton();
-            this.BtnRunScript = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnSelectionActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.MiCancelSelection = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,8 +155,6 @@
             this.BtnReplaceObjects,
             this.BtnEditObject,
             this.BtnFollowLink,
-            this.BtnFind,
-            this.BtnRunScript,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
@@ -345,28 +341,6 @@
             this.BtnFollowLink.Text = "toolStripButton1";
             this.BtnFollowLink.ToolTipText = "Follow object link";
             this.BtnFollowLink.Click += new System.EventHandler(this.BtnFollowLink_Click);
-            // 
-            // BtnFind
-            // 
-            this.BtnFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnFind.Image = global::TileGameMaker.Properties.Resources.find;
-            this.BtnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnFind.Name = "BtnFind";
-            this.BtnFind.Size = new System.Drawing.Size(23, 20);
-            this.BtnFind.Text = "toolStripButton1";
-            this.BtnFind.ToolTipText = "Find objects (CTRL+F)";
-            this.BtnFind.Click += new System.EventHandler(this.BtnFind_Click);
-            // 
-            // BtnRunScript
-            // 
-            this.BtnRunScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRunScript.Image = global::TileGameMaker.Properties.Resources.script_lightning;
-            this.BtnRunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRunScript.Name = "BtnRunScript";
-            this.BtnRunScript.Size = new System.Drawing.Size(23, 20);
-            this.BtnRunScript.Text = "toolStripButton1";
-            this.BtnRunScript.ToolTipText = "Run editor script";
-            this.BtnRunScript.Click += new System.EventHandler(this.BtnRunScript_Click);
             // 
             // BtnSelect
             // 
@@ -584,8 +558,6 @@
         private System.Windows.Forms.ToolStripButton BtnRenderInvisibleObjects;
         private System.Windows.Forms.ToolStripMenuItem MiReplaceWithTemplate;
         private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
-        private System.Windows.Forms.ToolStripButton BtnFind;
-        private System.Windows.Forms.ToolStripButton BtnRunScript;
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
         private System.Windows.Forms.ToolStripButton BtnSetExtra;

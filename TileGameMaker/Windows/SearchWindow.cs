@@ -28,7 +28,6 @@ namespace TileGameMaker.Windows
             MapEditorPanel = editorPanel;
             Display = display;
             InitializeComponent();
-            TopMost = true;
             KeyPreview = true;
             KeyDown += SearchWindow_KeyDown;
         }
@@ -151,12 +150,6 @@ namespace TileGameMaker.Windows
 
             Display.SelectTiles(pos, true);
             Display.Refresh();
-        }
-
-        private void AdvancedSelectionWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            Hide();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)

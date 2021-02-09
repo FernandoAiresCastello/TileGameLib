@@ -292,7 +292,6 @@
             this.Name = "SearchWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Find objects";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedSelectionWindow_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

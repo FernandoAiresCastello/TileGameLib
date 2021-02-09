@@ -204,8 +204,9 @@ namespace TileGameMaker.Windows
 
         private void OpenProgramEditor()
         {
-            ProgramEditorWindow win = new ProgramEditorWindow(this, MapEditor.Project);
-            win.Show(this);
+            //ProgramEditorWindow win = new ProgramEditorWindow(this, MapEditor.Project);
+            //win.Show(this);
+            Alert.Warning("Function not yet implemented");
         }
 
         private void BtnEngineRun_Click(object sender, EventArgs e)

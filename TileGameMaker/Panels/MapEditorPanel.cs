@@ -23,7 +23,6 @@ namespace TileGameMaker.Panels
         private MapRenderer MapRenderer;
         private int Layer;
         private ObjectBlockSelection Selection;
-        private SearchWindow SearchWindow;
         private ScriptWindow ScriptWindow;
         private ObjectBlockClipboard ClipboardObjects;
         private GameObjectPanel GameObjectPanel;
@@ -60,7 +59,6 @@ namespace TileGameMaker.Panels
             LbEditModeInfo.Text = "";
             Layer = 0;
             Selection = new ObjectBlockSelection();
-            SearchWindow = new SearchWindow(Editor, this, Display);
             ScriptWindow = new ScriptWindow(Map);
             GameObjectPanel = editor.GameObjectPanel;
 
@@ -827,9 +825,6 @@ namespace TileGameMaker.Panels
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.F:
-                        FindObjects();
-                        break;
                     case Keys.D1:
                         SetMode(EditMode.Draw);
                         break;
@@ -932,16 +927,6 @@ namespace TileGameMaker.Panels
             }
 
             Display.Refresh();
-        }
-
-        private void BtnFind_Click(object sender, EventArgs e)
-        {
-            FindObjects();
-        }
-
-        private void FindObjects()
-        {
-            SearchWindow.Show();
         }
 
         private void BtnRunScript_Click(object sender, EventArgs e)
