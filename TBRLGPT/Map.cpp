@@ -224,16 +224,6 @@ namespace TBRLGPT
 		return OutOfBoundsObject;
 	}
 
-	void Map::SetExtra(std::string extra)
-	{
-		Extra = extra;
-	}
-
-	std::string Map::GetExtra()
-	{
-		return Extra;
-	}
-
 	std::vector<ObjectPosition> Map::FindObjectsByProperty(std::string name, std::string value)
 	{
 		std::vector<ObjectPosition> objects;

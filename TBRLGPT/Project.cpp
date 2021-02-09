@@ -152,22 +152,8 @@ namespace TBRLGPT
 				}
 			}
 
-			// === EXTRA ===
-			std::string extra = NEXT_STRING;
-			map->SetExtra(extra);
-
 			Maps.push_back(map);
 		}
-
-		// === PROGRAM ===
-		Program = NEXT_STRING;
-
-		// === ENGINE WINDOW PARAMS ===
-		EngineWindowCols = NEXT_NUMBER;
-		EngineWindowRows = NEXT_NUMBER;
-		EngineWindowMagnification = NEXT_NUMBER;
-		EngineWindowWidth = NEXT_NUMBER;
-		EngineWindowHeight = NEXT_NUMBER;
 
 		return true;
 	}
@@ -209,35 +195,5 @@ namespace TBRLGPT
 	Charset* Project::GetCharset()
 	{
 		return Charset;
-	}
-
-	std::string Project::GetProgram()
-	{
-		return Program;
-	}
-
-	int Project::GetEngineWindowCols()
-	{
-		return EngineWindowCols;
-	}
-	
-	int Project::GetEngineWindowRows()
-	{
-		return EngineWindowRows;
-	}
-
-	int Project::GetEngineWindowMagnification()
-	{
-		return EngineWindowMagnification;
-	}
-
-	int Project::GetEngineWindowWidth()
-	{
-		return EngineWindowWidth;
-	}
-
-	int Project::GetEngineWindowHeight()
-	{
-		return EngineWindowHeight;
 	}
 }

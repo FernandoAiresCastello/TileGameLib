@@ -65,7 +65,6 @@
     <Compile Include="File\Project.cs" />
     <Compile Include="File\ProjectFile.cs" />
     <Compile Include="File\TilesetExportFormat.cs" />
-    <Compile Include="File\MapFile.cs" />
     <Compile Include="File\PaletteFile.cs" />
     <Compile Include="File\TilesetFile.cs" />
     <Compile Include="GameElements\ObjectCellBlock.cs" />

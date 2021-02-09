@@ -114,20 +114,7 @@ namespace TileGameLib.File
                 {
                     Append(0);
                 }
-
-                // === EXTRA ===
-                Append(map.Extra);
             }
-
-            // === PROGRAM ===
-            Append(project.Program);
-
-            // === ENGINE WINDOW PARAMS ===
-            Append(project.EngineWindowCols);
-            Append(project.EngineWindowRows);
-            Append(project.EngineWindowMagnification);
-            Append(project.EngineWindowWidth);
-            Append(project.EngineWindowHeight);
 
             // === TEMPLATE OBJECTS ===
             for (int y = 0; y < project.TemplateObjects.Height; y++)
@@ -291,21 +278,8 @@ namespace TileGameLib.File
                     map.OutOfBoundsObject = o;
                 }
 
-                // === EXTRA ===
-                map.Extra = NextString();
-
                 project.Maps.Add(map);
             }
-
-            // === PROGRAM ===
-            project.Program = NextString();
-
-            // === ENGINE WINDOW PARAMS ===
-            project.EngineWindowCols = NextNumber();
-            project.EngineWindowRows = NextNumber();
-            project.EngineWindowMagnification = NextNumber();
-            project.EngineWindowWidth = NextNumber();
-            project.EngineWindowHeight = NextNumber();
 
             // === TEMPLATE OBJECTS ===
             project.TemplateObjects.Clear();

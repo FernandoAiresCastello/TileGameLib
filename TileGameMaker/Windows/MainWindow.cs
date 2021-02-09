@@ -182,44 +182,6 @@ namespace TileGameMaker.Windows
             }
         }
 
-        private void BtnProjectSettings_Click(object sender, EventArgs e)
-        {
-            ProjectSettingsWindow win = new ProjectSettingsWindow(MapEditor.Project);
-
-            if (win.ShowDialog(this) == DialogResult.OK)
-            {
-                MapEditor.Project.Name = win.Project.Name;
-                MapEditor.Project.EngineWindowCols = win.Project.EngineWindowCols;
-                MapEditor.Project.EngineWindowRows = win.Project.EngineWindowRows;
-                MapEditor.Project.EngineWindowMagnification = win.Project.EngineWindowMagnification;
-                MapEditor.Project.EngineWindowWidth = win.Project.EngineWindowWidth;
-                MapEditor.Project.EngineWindowHeight = win.Project.EngineWindowHeight;
-            }
-        }
-
-        private void BtnProgramEditor_Click(object sender, EventArgs e)
-        {
-            OpenProgramEditor();
-        }
-
-        private void OpenProgramEditor()
-        {
-            //ProgramEditorWindow win = new ProgramEditorWindow(this, MapEditor.Project);
-            //win.Show(this);
-            Alert.Warning("Function not yet implemented");
-        }
-
-        private void BtnEngineRun_Click(object sender, EventArgs e)
-        {
-            RunEngine();
-        }
-
-        public void RunEngine()
-        {
-            SaveProject(showSuccessMessage: false);
-            Process.Start("TileGameEngine.exe", MapEditor.Project.Path);
-        }
-
         private void BtnTemplateObjects_Click(object sender, EventArgs e)
         {
             if (TemplateWindow == null || TemplateWindow.IsDisposed)

@@ -56,8 +56,6 @@ namespace TBRLGPT
 		void Resize(int width, int height);
 		void SetOutOfBoundsObject(Object& oob);
 		Object* GetOutOfBoundsObject();
-		void SetExtra(std::string extra);
-		std::string GetExtra();
 		std::vector<ObjectPosition> FindObjectsByProperty(std::string name, std::string value);
 		ObjectPosition FindObjectByProperty(std::string name, std::string value);
 		void MoveObject(ObjectPosition orig, ObjectPosition dest);
@@ -72,6 +70,5 @@ namespace TBRLGPT
 		int Width;
 		int Height;
 		Object* OutOfBoundsObject;
-		std::string Extra;
 	};
 }

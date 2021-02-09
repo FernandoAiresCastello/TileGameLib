@@ -31,12 +31,6 @@ namespace TBRLGPT
 		Map* FindMapByName(std::string name);
 		class Palette* GetPalette();
 		class Charset* GetCharset();
-		std::string GetProgram();
-		int GetEngineWindowCols();
-		int GetEngineWindowRows();
-		int GetEngineWindowMagnification();
-		int GetEngineWindowWidth();
-		int GetEngineWindowHeight();
 
 	private:
 		std::string Path;
@@ -45,12 +39,6 @@ namespace TBRLGPT
 		class Palette* Palette;
 		class Charset* Charset;
 		std::vector<Map*> Maps;
-		std::string Program;
-		int EngineWindowCols;
-		int EngineWindowRows;
-		int EngineWindowMagnification;
-		int EngineWindowWidth;
-		int EngineWindowHeight;
 
 		void DeleteContents();
 	};

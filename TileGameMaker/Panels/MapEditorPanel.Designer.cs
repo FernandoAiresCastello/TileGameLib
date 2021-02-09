@@ -43,7 +43,6 @@
             this.BtnClearLayer = new System.Windows.Forms.ToolStripButton();
             this.BtnSetBackColor = new System.Windows.Forms.ToolStripButton();
             this.BtnSetOutOfBoundsObject = new System.Windows.Forms.ToolStripButton();
-            this.BtnSetExtra = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnPutTemplate = new System.Windows.Forms.ToolStripButton();
             this.BtnDelete = new System.Windows.Forms.ToolStripButton();
@@ -147,7 +146,6 @@
             this.BtnClearLayer,
             this.BtnSetBackColor,
             this.BtnSetOutOfBoundsObject,
-            this.BtnSetExtra,
             this.toolStripSeparator1,
             this.BtnPutTemplate,
             this.BtnDelete,
@@ -258,17 +256,6 @@
             this.BtnSetOutOfBoundsObject.Text = "BtnSetOutOfBoundsObject";
             this.BtnSetOutOfBoundsObject.ToolTipText = "Set out of bounds object";
             this.BtnSetOutOfBoundsObject.Click += new System.EventHandler(this.BtnSetOutOfBoundsObject_Click);
-            // 
-            // BtnSetExtra
-            // 
-            this.BtnSetExtra.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnSetExtra.Image = global::TileGameMaker.Properties.Resources.evernote;
-            this.BtnSetExtra.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnSetExtra.Name = "BtnSetExtra";
-            this.BtnSetExtra.Size = new System.Drawing.Size(23, 20);
-            this.BtnSetExtra.Text = "toolStripButton1";
-            this.BtnSetExtra.ToolTipText = "Set extra";
-            this.BtnSetExtra.Click += new System.EventHandler(this.BtnSetExtra_Click);
             // 
             // toolStripSeparator1
             // 
@@ -560,7 +547,6 @@
         private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
-        private System.Windows.Forms.ToolStripButton BtnSetExtra;
         private System.Windows.Forms.ToolStripButton BtnFollowLink;
         private System.Windows.Forms.ToolStripButton BtnGrid;
         private System.Windows.Forms.ToolStripStatusLabel LbViewPos;

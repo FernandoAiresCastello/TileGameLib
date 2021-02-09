@@ -34,7 +34,6 @@
             this.BtnCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnTemplateObjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnProjectSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +88,6 @@
             this.BtnCloseProject,
             this.toolStripSeparator2,
             this.BtnTemplateObjects,
-            this.BtnProjectSettings,
             this.toolStripSeparator1,
             this.MiExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -126,15 +124,6 @@
             this.BtnTemplateObjects.Size = new System.Drawing.Size(184, 22);
             this.BtnTemplateObjects.Text = "Template objects";
             this.BtnTemplateObjects.Click += new System.EventHandler(this.BtnTemplateObjects_Click);
-            // 
-            // BtnProjectSettings
-            // 
-            this.BtnProjectSettings.Image = global::TileGameMaker.Properties.Resources.cog_edit;
-            this.BtnProjectSettings.Name = "BtnProjectSettings";
-            this.BtnProjectSettings.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.BtnProjectSettings.Size = new System.Drawing.Size(184, 22);
-            this.BtnProjectSettings.Text = "Settings";
-            this.BtnProjectSettings.Click += new System.EventHandler(this.BtnProjectSettings_Click);
             // 
             // toolStripSeparator1
             // 
@@ -412,7 +401,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnSaveProject;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem BtnCloseProject;
-        private System.Windows.Forms.ToolStripMenuItem BtnProjectSettings;
         private System.Windows.Forms.ToolStripMenuItem BtnTemplateObjects;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }

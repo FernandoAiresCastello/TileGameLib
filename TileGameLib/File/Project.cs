@@ -20,12 +20,6 @@ namespace TileGameLib.File
         public Tileset Tileset { get; set; }
         public Palette Palette { get; set; }
         public List<ObjectMap> Maps { get; set; }
-        public string Program { get; set; }
-        public int EngineWindowCols { get; set; }
-        public int EngineWindowRows { get; set; }
-        public int EngineWindowMagnification { get; set; }
-        public int EngineWindowWidth { get; set; }
-        public int EngineWindowHeight { get; set; }
         public ObjectMap TemplateObjects { get; set; }
 
         public string Folder
@@ -43,12 +37,6 @@ namespace TileGameLib.File
             Tileset = new Tileset();
             Palette = new Palette();
             Maps = new List<ObjectMap>();
-            Program = string.Empty;
-            EngineWindowCols = 32;
-            EngineWindowRows = 24;
-            EngineWindowMagnification = 2;
-            EngineWindowWidth = 640;
-            EngineWindowHeight = 480;
             TemplateObjects = new ObjectMap(this, 16, 16);
         }
 

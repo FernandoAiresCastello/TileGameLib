@@ -21,7 +21,6 @@ namespace TileGameLib.GameElements
         public int Width { get; private set; }
         public int Height { get; private set; }
         public GameObject OutOfBoundsObject { get; set; }
-        public string Extra { set; get; }
         public int ImageWidth => Width * TilePixels.RowLength;
         public int ImageHeight => Height * TilePixels.RowCount;
         public Tileset Tileset => Project.Tileset;
@@ -76,7 +75,6 @@ namespace TileGameLib.GameElements
             Height = other.Height;
             BackColor = other.BackColor;
             OutOfBoundsObject = other.OutOfBoundsObject;
-            Extra = other.Extra;
             Layers.Clear();
 
             foreach (ObjectLayer layer in other.Layers)
