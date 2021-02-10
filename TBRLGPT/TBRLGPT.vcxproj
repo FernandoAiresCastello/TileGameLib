@@ -73,8 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <IncludePath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Fernando\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Fernando\Lib\SDL2-2.0.8\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>E:\Fernando\Pessoal\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>

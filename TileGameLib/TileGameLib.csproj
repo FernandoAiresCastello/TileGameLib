@@ -69,7 +69,6 @@
     <Compile Include="File\TilesetFile.cs" />
     <Compile Include="GameElements\ObjectCellBlock.cs" />
     <Compile Include="GameElements\ObjectCell.cs" />
-    <Compile Include="GameElements\ObjectCollision.cs" />
     <Compile Include="GameElements\ObjectLayer.cs" />
     <Compile Include="GameElements\ObjectMap.cs" />
     <Compile Include="Exceptions\TGLException.cs" />
