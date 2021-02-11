@@ -283,9 +283,6 @@
     <ResourceCompile Include="TBRLGPT.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Docs\TODO.md" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

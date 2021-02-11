@@ -421,9 +421,4 @@
       <Filter>Docs</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Docs\TODO.md">
-      <Filter>Docs</Filter>
-    </Text>
-  </ItemGroup>
 </Project>
