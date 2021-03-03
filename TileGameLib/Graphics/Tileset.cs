@@ -14,7 +14,7 @@ namespace TileGameLib.Graphics
         public int Size => Pixels.Count;
 
         private const Default DefaultTiles = Default.Basic;
-        private const int DefaultSize = 512;
+        private const int DefaultSize = 768;
 
         private readonly Color ImagePixelOnColor = Color.Black;
         private readonly Color ImagePixelOffColor = Color.White;

@@ -292,7 +292,7 @@
             // BtnExtractMapData
             // 
             this.BtnExtractMapData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractMapData.Location = new System.Drawing.Point(331, 162);
+            this.BtnExtractMapData.Location = new System.Drawing.Point(331, 165);
             this.BtnExtractMapData.Name = "BtnExtractMapData";
             this.BtnExtractMapData.Size = new System.Drawing.Size(106, 27);
             this.BtnExtractMapData.TabIndex = 2;
@@ -504,7 +504,7 @@
             // BtnExtractPaletteData
             // 
             this.BtnExtractPaletteData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractPaletteData.Location = new System.Drawing.Point(331, 179);
+            this.BtnExtractPaletteData.Location = new System.Drawing.Point(331, 165);
             this.BtnExtractPaletteData.Name = "BtnExtractPaletteData";
             this.BtnExtractPaletteData.Size = new System.Drawing.Size(106, 27);
             this.BtnExtractPaletteData.TabIndex = 3;
@@ -687,7 +687,7 @@
             // BtnExtractTilesetData
             // 
             this.BtnExtractTilesetData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExtractTilesetData.Location = new System.Drawing.Point(331, 179);
+            this.BtnExtractTilesetData.Location = new System.Drawing.Point(331, 165);
             this.BtnExtractTilesetData.Name = "BtnExtractTilesetData";
             this.BtnExtractTilesetData.Size = new System.Drawing.Size(106, 27);
             this.BtnExtractTilesetData.TabIndex = 3;
