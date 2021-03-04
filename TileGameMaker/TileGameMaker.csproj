@@ -265,6 +265,12 @@
     <Compile Include="Windows\TileSelectorWindow.Designer.cs">
       <DependentUpon>TileSelectorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\TilesetExportImportWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\TilesetExportImportWindow.Designer.cs">
+      <DependentUpon>TilesetExportImportWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Panels\CommandLinePanel.resx">
       <DependentUpon>CommandLinePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,6 +358,9 @@
     </Compile>
     <EmbeddedResource Include="Windows\TileSelectorWindow.resx">
       <DependentUpon>TileSelectorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\TilesetExportImportWindow.resx">
+      <DependentUpon>TilesetExportImportWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Resources\PressStart2P.ttf" />

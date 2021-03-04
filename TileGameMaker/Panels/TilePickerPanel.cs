@@ -297,17 +297,14 @@ namespace TileGameMaker.Panels
 
         private void BtnExportToImage_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.Project.Folder;
-            dialog.Filter = $"PNG image file (*.png)|*.png";
+            ExportToImage();
+        }
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                TilePicker.DrawTiles(false);
-                TilePicker.Graphics.SaveImage(dialog.FileName);
-                TilePicker.DrawTiles(true);
-                Alert.Info("Tileset successfully saved to image!");
-            }
+        private void ExportToImage()
+        {
+            TilesetExportImportWindow win = new TilesetExportImportWindow(MapEditor.Tileset);
+            win.InitialFolder = MapEditor.Project.Folder;
+            win.ShowDialog(this);
         }
 
         private void BtnSwitchTileEditor_Click(object sender, EventArgs e)
