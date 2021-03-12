@@ -50,8 +50,11 @@ namespace TBRLGPT
 		void SetObject(Object& object, int x, int y, int layer);
 		void SetStringOfObjects(std::string str, int foreColor, int backColor, int x, int y, int layer);
 		void DeleteObject(int x, int y, int layer);
+		void DeleteObject(ObjectPosition& pos);
+		void DeleteObject(Object* o);
 		Object* GetObject(int x, int y, int layer);
 		Object GetObjectCopy(int x, int y, int layer);
+		ObjectPosition GetObjectPosition(Object* o);
 		void CopyObject(ObjectPosition orig, ObjectPosition dest);
 		void Resize(int width, int height);
 		void SetOutOfBoundsObject(Object& oob);

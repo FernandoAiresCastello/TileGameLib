@@ -186,6 +186,18 @@ namespace TBRLGPT
 		Layers->at(layer)->DeleteObject(x, y);
 	}
 
+	void Map::DeleteObject(ObjectPosition& pos)
+	{
+		if (pos.IsValid())
+			DeleteObject(pos.X, pos.Y, pos.Layer);
+	}
+
+	void Map::DeleteObject(Object* o)
+	{
+		ObjectPosition pos = GetObjectPosition(o);
+		DeleteObject(pos);
+	}
+
 	Object* Map::GetObject(int x, int y, int layer)
 	{
 		return Layers->at(layer)->GetObject(x, y);
@@ -197,6 +209,22 @@ namespace TBRLGPT
 		Object copy = Object();
 		copy.SetEqual(*o);
 		return copy;
+	}
+
+	ObjectPosition Map::GetObjectPosition(Object* o)
+	{
+		for (int layer = 0; layer < Layers->size(); layer++) {
+			for (int y = 0; y < Height; y++) {
+				for (int x = 0; x < Width; x++) {
+					Object* currentObject = GetObject(x, y, layer);
+					if (currentObject == o) {
+						return ObjectPosition(o, x, y, layer);
+					}
+				}
+			}
+		}
+
+		return ObjectPosition();
 	}
 
 	void Map::CopyObject(ObjectPosition orig, ObjectPosition dest)
