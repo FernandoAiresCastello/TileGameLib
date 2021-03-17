@@ -47,13 +47,11 @@ namespace TileGameMaker.Windows
             else
                 WindowState = FormWindowState.Maximized;
 
-            CentralSplitContainer.Panel1Collapsed = true;
-
             AddControl(MapEditor.CommandLinePanel, CommandLinePanel);
             AddControl(MapEditor.MapEditorControl, MapEditorPanel);
-            AddControl(MapEditor.TilePickerControl, TilePickerPanel);
-            AddControl(MapEditor.ColorPickerControl, ColorPickerPanel);
-            AddControl(MapEditor.GameObjectPanel, TopRightPanel);
+            AddControl(MapEditor.TilePickerControl, TopLeftPanel);
+            AddControl(MapEditor.ColorPickerControl, BottomLeftPanel);
+            AddControl(MapEditor.GameObjectPanel, BottomRightPanel);
             AddControl(MapEditor.ProjectPanel, ProjectPanel);
             AddControl(MapEditor.MapPropertyGridControl, MapPropertiesPanel);
         }

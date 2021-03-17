@@ -40,34 +40,26 @@
             this.BtnDataExtractor = new System.Windows.Forms.ToolStripMenuItem();
             this.WindowLayout = new System.Windows.Forms.TableLayoutPanel();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.RightPanel = new System.Windows.Forms.Panel();
+            this.TopRightPanel = new System.Windows.Forms.Panel();
             this.ProjectAndMapPropertiesPanel = new System.Windows.Forms.TableLayoutPanel();
             this.MapPropertiesPanel = new System.Windows.Forms.Panel();
             this.ProjectPanel = new System.Windows.Forms.Panel();
-            this.TopRightPanel = new System.Windows.Forms.Panel();
-            this.ColorPickerPanel = new System.Windows.Forms.Panel();
-            this.TilePickerPanel = new System.Windows.Forms.Panel();
+            this.BottomRightPanel = new System.Windows.Forms.Panel();
+            this.BottomLeftPanel = new System.Windows.Forms.Panel();
+            this.TopLeftPanel = new System.Windows.Forms.Panel();
             this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.CentralSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.SidePanel = new System.Windows.Forms.Panel();
-            this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
-            this.RightPanel.SuspendLayout();
+            this.TopRightPanel.SuspendLayout();
             this.ProjectAndMapPropertiesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).BeginInit();
             this.MapAndCommandLineSplitContainer.Panel1.SuspendLayout();
             this.MapAndCommandLineSplitContainer.Panel2.SuspendLayout();
             this.MapAndCommandLineSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CentralSplitContainer)).BeginInit();
-            this.CentralSplitContainer.Panel1.SuspendLayout();
-            this.CentralSplitContainer.Panel2.SuspendLayout();
-            this.CentralSplitContainer.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -176,10 +168,10 @@
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.MainLayout.Controls.Add(this.RightPanel, 2, 0);
-            this.MainLayout.Controls.Add(this.TopRightPanel, 2, 1);
-            this.MainLayout.Controls.Add(this.ColorPickerPanel, 0, 1);
-            this.MainLayout.Controls.Add(this.TilePickerPanel, 0, 0);
+            this.MainLayout.Controls.Add(this.TopRightPanel, 2, 0);
+            this.MainLayout.Controls.Add(this.BottomRightPanel, 2, 1);
+            this.MainLayout.Controls.Add(this.BottomLeftPanel, 0, 1);
+            this.MainLayout.Controls.Add(this.TopLeftPanel, 0, 0);
             this.MainLayout.Controls.Add(this.MapAndCommandLineSplitContainer, 1, 0);
             this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayout.Location = new System.Drawing.Point(0, 0);
@@ -191,15 +183,15 @@
             this.MainLayout.Size = new System.Drawing.Size(784, 404);
             this.MainLayout.TabIndex = 1;
             // 
-            // RightPanel
+            // TopRightPanel
             // 
-            this.RightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RightPanel.Controls.Add(this.ProjectAndMapPropertiesPanel);
-            this.RightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RightPanel.Location = new System.Drawing.Point(655, 3);
-            this.RightPanel.Name = "RightPanel";
-            this.RightPanel.Size = new System.Drawing.Size(126, 54);
-            this.RightPanel.TabIndex = 4;
+            this.TopRightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TopRightPanel.Controls.Add(this.ProjectAndMapPropertiesPanel);
+            this.TopRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TopRightPanel.Location = new System.Drawing.Point(655, 3);
+            this.TopRightPanel.Name = "TopRightPanel";
+            this.TopRightPanel.Size = new System.Drawing.Size(126, 54);
+            this.TopRightPanel.TabIndex = 4;
             // 
             // ProjectAndMapPropertiesPanel
             // 
@@ -211,53 +203,55 @@
             this.ProjectAndMapPropertiesPanel.Location = new System.Drawing.Point(0, 0);
             this.ProjectAndMapPropertiesPanel.Name = "ProjectAndMapPropertiesPanel";
             this.ProjectAndMapPropertiesPanel.RowCount = 2;
-            this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.ProjectAndMapPropertiesPanel.Size = new System.Drawing.Size(124, 52);
             this.ProjectAndMapPropertiesPanel.TabIndex = 0;
             // 
             // MapPropertiesPanel
             // 
             this.MapPropertiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapPropertiesPanel.Location = new System.Drawing.Point(3, -113);
+            this.MapPropertiesPanel.Location = new System.Drawing.Point(0, 31);
+            this.MapPropertiesPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MapPropertiesPanel.Name = "MapPropertiesPanel";
-            this.MapPropertiesPanel.Size = new System.Drawing.Size(118, 162);
+            this.MapPropertiesPanel.Size = new System.Drawing.Size(124, 21);
             this.MapPropertiesPanel.TabIndex = 1;
             // 
             // ProjectPanel
             // 
             this.ProjectPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ProjectPanel.Location = new System.Drawing.Point(3, 3);
+            this.ProjectPanel.Location = new System.Drawing.Point(0, 0);
+            this.ProjectPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ProjectPanel.Name = "ProjectPanel";
-            this.ProjectPanel.Size = new System.Drawing.Size(118, 1);
+            this.ProjectPanel.Size = new System.Drawing.Size(124, 31);
             this.ProjectPanel.TabIndex = 0;
             // 
-            // TopRightPanel
+            // BottomRightPanel
             // 
-            this.TopRightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TopRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TopRightPanel.Location = new System.Drawing.Point(655, 63);
-            this.TopRightPanel.Name = "TopRightPanel";
-            this.TopRightPanel.Size = new System.Drawing.Size(126, 338);
-            this.TopRightPanel.TabIndex = 3;
+            this.BottomRightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BottomRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BottomRightPanel.Location = new System.Drawing.Point(655, 63);
+            this.BottomRightPanel.Name = "BottomRightPanel";
+            this.BottomRightPanel.Size = new System.Drawing.Size(126, 338);
+            this.BottomRightPanel.TabIndex = 3;
             // 
-            // ColorPickerPanel
+            // BottomLeftPanel
             // 
-            this.ColorPickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ColorPickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ColorPickerPanel.Location = new System.Drawing.Point(3, 63);
-            this.ColorPickerPanel.Name = "ColorPickerPanel";
-            this.ColorPickerPanel.Size = new System.Drawing.Size(124, 338);
-            this.ColorPickerPanel.TabIndex = 2;
+            this.BottomLeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BottomLeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BottomLeftPanel.Location = new System.Drawing.Point(3, 63);
+            this.BottomLeftPanel.Name = "BottomLeftPanel";
+            this.BottomLeftPanel.Size = new System.Drawing.Size(124, 338);
+            this.BottomLeftPanel.TabIndex = 2;
             // 
-            // TilePickerPanel
+            // TopLeftPanel
             // 
-            this.TilePickerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TilePickerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePickerPanel.Location = new System.Drawing.Point(3, 3);
-            this.TilePickerPanel.Name = "TilePickerPanel";
-            this.TilePickerPanel.Size = new System.Drawing.Size(124, 54);
-            this.TilePickerPanel.TabIndex = 1;
+            this.TopLeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TopLeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TopLeftPanel.Location = new System.Drawing.Point(3, 3);
+            this.TopLeftPanel.Name = "TopLeftPanel";
+            this.TopLeftPanel.Size = new System.Drawing.Size(124, 54);
+            this.TopLeftPanel.TabIndex = 1;
             // 
             // MapAndCommandLineSplitContainer
             // 
@@ -268,7 +262,7 @@
             // 
             // MapAndCommandLineSplitContainer.Panel1
             // 
-            this.MapAndCommandLineSplitContainer.Panel1.Controls.Add(this.CentralSplitContainer);
+            this.MapAndCommandLineSplitContainer.Panel1.Controls.Add(this.MapEditorPanel);
             // 
             // MapAndCommandLineSplitContainer.Panel2
             // 
@@ -278,56 +272,6 @@
             this.MapAndCommandLineSplitContainer.Size = new System.Drawing.Size(516, 398);
             this.MapAndCommandLineSplitContainer.SplitterDistance = 323;
             this.MapAndCommandLineSplitContainer.TabIndex = 5;
-            // 
-            // CentralSplitContainer
-            // 
-            this.CentralSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CentralSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.CentralSplitContainer.Name = "CentralSplitContainer";
-            // 
-            // CentralSplitContainer.Panel1
-            // 
-            this.CentralSplitContainer.Panel1.Controls.Add(this.tableLayoutPanel1);
-            // 
-            // CentralSplitContainer.Panel2
-            // 
-            this.CentralSplitContainer.Panel2.Controls.Add(this.MapEditorPanel);
-            this.CentralSplitContainer.Size = new System.Drawing.Size(516, 398);
-            this.CentralSplitContainer.SplitterDistance = 63;
-            this.CentralSplitContainer.TabIndex = 2;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.SidePanel, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 398F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(63, 398);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // SidePanel
-            // 
-            this.SidePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SidePanel.Location = new System.Drawing.Point(0, 0);
-            this.SidePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.SidePanel.Name = "SidePanel";
-            this.SidePanel.Size = new System.Drawing.Size(63, 398);
-            this.SidePanel.TabIndex = 4;
-            // 
-            // MapEditorPanel
-            // 
-            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
-            this.MapEditorPanel.Name = "MapEditorPanel";
-            this.MapEditorPanel.Size = new System.Drawing.Size(449, 398);
-            this.MapEditorPanel.TabIndex = 2;
             // 
             // CommandLinePanel
             // 
@@ -345,6 +289,15 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // MapEditorPanel
+            // 
+            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
+            this.MapEditorPanel.Name = "MapEditorPanel";
+            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
+            this.MapEditorPanel.TabIndex = 3;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,17 +313,12 @@
             this.WindowLayout.ResumeLayout(false);
             this.WindowLayout.PerformLayout();
             this.MainLayout.ResumeLayout(false);
-            this.RightPanel.ResumeLayout(false);
+            this.TopRightPanel.ResumeLayout(false);
             this.ProjectAndMapPropertiesPanel.ResumeLayout(false);
             this.MapAndCommandLineSplitContainer.Panel1.ResumeLayout(false);
             this.MapAndCommandLineSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MapAndCommandLineSplitContainer)).EndInit();
             this.MapAndCommandLineSplitContainer.ResumeLayout(false);
-            this.CentralSplitContainer.Panel1.ResumeLayout(false);
-            this.CentralSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.CentralSplitContainer)).EndInit();
-            this.CentralSplitContainer.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,19 +330,15 @@
         private System.Windows.Forms.ToolStripMenuItem MiExit;
         private System.Windows.Forms.TableLayoutPanel WindowLayout;
         private System.Windows.Forms.TableLayoutPanel MainLayout;
-        private System.Windows.Forms.Panel TopRightPanel;
-        private System.Windows.Forms.Panel ColorPickerPanel;
-        private System.Windows.Forms.Panel TilePickerPanel;
+        private System.Windows.Forms.Panel BottomRightPanel;
+        private System.Windows.Forms.Panel BottomLeftPanel;
+        private System.Windows.Forms.Panel TopLeftPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.SplitContainer MapAndCommandLineSplitContainer;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.Panel CommandLinePanel;
         private System.Windows.Forms.ToolStripMenuItem BtnDataExtractor;
-        private System.Windows.Forms.SplitContainer CentralSplitContainer;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel MapEditorPanel;
-        private System.Windows.Forms.Panel SidePanel;
-        private System.Windows.Forms.Panel RightPanel;
+        private System.Windows.Forms.Panel TopRightPanel;
         private System.Windows.Forms.TableLayoutPanel ProjectAndMapPropertiesPanel;
         private System.Windows.Forms.Panel MapPropertiesPanel;
         private System.Windows.Forms.Panel ProjectPanel;
@@ -403,5 +347,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnCloseProject;
         private System.Windows.Forms.ToolStripMenuItem BtnTemplateObjects;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Panel MapEditorPanel;
     }
 }
