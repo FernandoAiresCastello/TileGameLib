@@ -137,18 +137,41 @@ namespace TileGameLib.Graphics
             Scroll = new Point(Scroll.X + dx, Scroll.Y + dy);
         }
 
-        public bool ScrollByDistanceIfInsideView(int dx, int dy)
+        public void ScrollByDistanceIfInsideView(int dx, int dy)
         {
             int newX = Scroll.X + dx;
             int newY = Scroll.Y + dy;
 
             if (newX >= 0 && newY >= 0 && newX <= Map.Width - Viewport.Width && newY <= Map.Height - Viewport.Height)
-            {
                 Scroll = new Point(newX, newY);
-                return true;
-            }
+            else if (newX < 0)
+                ScrollViewToLeftEdge();
+            else if (newX > Map.Width - Viewport.Width)
+                ScrollViewToRightEdge();
+            else if (newY < 0)
+                ScrollViewToTopEdge();
+            else if (newY > Map.Height - Viewport.Height)
+                ScrollViewToBottomEdge();
+        }
 
-            return false;
+        public void ScrollViewToRightEdge()
+        {
+            ScrollToPoint(Map.Width - Viewport.Width, ScrollY);
+        }
+
+        public void ScrollViewToLeftEdge()
+        {
+            ScrollToPoint(0, ScrollY);
+        }
+
+        public void ScrollViewToTopEdge()
+        {
+            ScrollToPoint(ScrollX, 0);
+        }
+
+        public void ScrollViewToBottomEdge()
+        {
+            ScrollToPoint(ScrollX, Map.Height - Viewport.Height);
         }
 
         public void ScrollToPoint(Point point)

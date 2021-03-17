@@ -68,9 +68,17 @@
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnScrollUp = new System.Windows.Forms.Button();
+            this.BtnScrollLeft = new System.Windows.Forms.Button();
+            this.BtnScrollRight = new System.Windows.Forms.Button();
+            this.BtnScrollDown = new System.Windows.Forms.Button();
+            this.TxtScrollAmount = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.MapPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -128,6 +136,7 @@
             // 
             this.MapPanel.AutoScroll = true;
             this.MapPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MapPanel.Controls.Add(this.tableLayoutPanel1);
             this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapPanel.Location = new System.Drawing.Point(3, 33);
             this.MapPanel.Name = "MapPanel";
@@ -490,6 +499,95 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.BtnScrollDown, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.BtnScrollRight, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.BtnScrollLeft, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.BtnScrollUp, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TxtScrollAmount, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(762, 353);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(103, 77);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // BtnScrollUp
+            // 
+            this.BtnScrollUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScrollUp.FlatAppearance.BorderSize = 0;
+            this.BtnScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnScrollUp.Image = global::TileGameMaker.Properties.Resources.arrow_up;
+            this.BtnScrollUp.Location = new System.Drawing.Point(36, 3);
+            this.BtnScrollUp.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnScrollUp.Name = "BtnScrollUp";
+            this.BtnScrollUp.Size = new System.Drawing.Size(28, 20);
+            this.BtnScrollUp.TabIndex = 0;
+            this.BtnScrollUp.UseVisualStyleBackColor = true;
+            this.BtnScrollUp.Click += new System.EventHandler(this.BtnScrollUp_Click);
+            // 
+            // BtnScrollLeft
+            // 
+            this.BtnScrollLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScrollLeft.FlatAppearance.BorderSize = 0;
+            this.BtnScrollLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnScrollLeft.Image = global::TileGameMaker.Properties.Resources.arrow_left;
+            this.BtnScrollLeft.Location = new System.Drawing.Point(3, 28);
+            this.BtnScrollLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnScrollLeft.Name = "BtnScrollLeft";
+            this.BtnScrollLeft.Size = new System.Drawing.Size(28, 20);
+            this.BtnScrollLeft.TabIndex = 1;
+            this.BtnScrollLeft.UseVisualStyleBackColor = true;
+            this.BtnScrollLeft.Click += new System.EventHandler(this.BtnScrollLeft_Click);
+            // 
+            // BtnScrollRight
+            // 
+            this.BtnScrollRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScrollRight.FlatAppearance.BorderSize = 0;
+            this.BtnScrollRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnScrollRight.Image = global::TileGameMaker.Properties.Resources.arrow_right;
+            this.BtnScrollRight.Location = new System.Drawing.Point(69, 28);
+            this.BtnScrollRight.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnScrollRight.Name = "BtnScrollRight";
+            this.BtnScrollRight.Size = new System.Drawing.Size(31, 20);
+            this.BtnScrollRight.TabIndex = 2;
+            this.BtnScrollRight.UseVisualStyleBackColor = true;
+            this.BtnScrollRight.Click += new System.EventHandler(this.BtnScrollRight_Click);
+            // 
+            // BtnScrollDown
+            // 
+            this.BtnScrollDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScrollDown.FlatAppearance.BorderSize = 0;
+            this.BtnScrollDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnScrollDown.Image = global::TileGameMaker.Properties.Resources.arrow_down;
+            this.BtnScrollDown.Location = new System.Drawing.Point(36, 53);
+            this.BtnScrollDown.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnScrollDown.Name = "BtnScrollDown";
+            this.BtnScrollDown.Size = new System.Drawing.Size(28, 21);
+            this.BtnScrollDown.TabIndex = 3;
+            this.BtnScrollDown.UseVisualStyleBackColor = true;
+            this.BtnScrollDown.Click += new System.EventHandler(this.BtnScrollDown_Click);
+            // 
+            // TxtScrollAmount
+            // 
+            this.TxtScrollAmount.Location = new System.Drawing.Point(37, 29);
+            this.TxtScrollAmount.MaxLength = 3;
+            this.TxtScrollAmount.Name = "TxtScrollAmount";
+            this.TxtScrollAmount.Size = new System.Drawing.Size(26, 20);
+            this.TxtScrollAmount.TabIndex = 4;
+            this.TxtScrollAmount.Text = "1";
+            this.TxtScrollAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,8 +600,11 @@
             this.tableLayoutPanel2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.MapPanel.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -550,5 +651,11 @@
         private System.Windows.Forms.ToolStripButton BtnFollowLink;
         private System.Windows.Forms.ToolStripButton BtnGrid;
         private System.Windows.Forms.ToolStripStatusLabel LbViewPos;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button BtnScrollUp;
+        private System.Windows.Forms.Button BtnScrollDown;
+        private System.Windows.Forms.Button BtnScrollRight;
+        private System.Windows.Forms.Button BtnScrollLeft;
+        private System.Windows.Forms.TextBox TxtScrollAmount;
     }
 }

@@ -1007,33 +1007,53 @@ namespace TileGameMaker.Panels
 
         private void ScrollView(int dx, int dy)
         {
-            if (MapRenderer.ScrollByDistanceIfInsideView(dx, dy))
-                UpdateViewLabel();
-            else
-                Alert.Warning("Can't scroll past map edges");
+            bool amountOk = int.TryParse(TxtScrollAmount.Text, out int amount);
+
+            if (!amountOk)
+            {
+                amount = 1;
+                TxtScrollAmount.Text = amount.ToString();
+            }
+
+            if (amount > 1)
+            {
+                amount--;
+
+                if (dx > 0)
+                    dx += amount;
+                else if (dx < 0)
+                    dx -= amount;
+                if (dy > 0)
+                    dy += amount;
+                else if (dy < 0)
+                    dy -= amount;
+            }
+
+            MapRenderer.ScrollByDistanceIfInsideView(dx, dy);
+            UpdateViewLabel();
         }
 
         private void ScrollViewToRightEdge()
         {
-            MapRenderer.ScrollToPoint(Map.Width - MapRenderer.Viewport.Width, MapRenderer.ScrollY);
+            MapRenderer.ScrollViewToRightEdge();
             UpdateViewLabel();
         }
 
         private void ScrollViewToLeftEdge()
         {
-            MapRenderer.ScrollToPoint(0, MapRenderer.ScrollY);
+            MapRenderer.ScrollViewToLeftEdge();
             UpdateViewLabel();
         }
 
         private void ScrollViewToTopEdge()
         {
-            MapRenderer.ScrollToPoint(MapRenderer.ScrollX, 0);
+            MapRenderer.ScrollViewToTopEdge();
             UpdateViewLabel();
         }
 
         private void ScrollViewToBottomEdge()
         {
-            MapRenderer.ScrollToPoint(MapRenderer.ScrollX, Map.Height - MapRenderer.Viewport.Height);
+            MapRenderer.ScrollViewToBottomEdge();
             UpdateViewLabel();
         }
 
@@ -1063,6 +1083,26 @@ namespace TileGameMaker.Panels
                 MapRenderer.ScrollToPoint(win.FromValue, win.ToValue);
                 UpdateViewLabel();
             }
+        }
+
+        private void BtnScrollLeft_Click(object sender, EventArgs e)
+        {
+            ScrollView(-1, 0);
+        }
+
+        private void BtnScrollRight_Click(object sender, EventArgs e)
+        {
+            ScrollView(1, 0);
+        }
+
+        private void BtnScrollDown_Click(object sender, EventArgs e)
+        {
+            ScrollView(0, 1);
+        }
+
+        private void BtnScrollUp_Click(object sender, EventArgs e)
+        {
+            ScrollView(0, -1);
         }
     }
 }
