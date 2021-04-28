@@ -25,6 +25,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{8205F95F-FB30-444C-81E2-94554C272A69}.Debug|Any CPU.Build.0 = Debug|Win32
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Debug|x64.ActiveCfg = Debug|x64
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Debug|x64.Build.0 = Debug|x64
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Debug|x86.ActiveCfg = Debug|Win32
@@ -35,6 +36,7 @@ Global
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Release|x86.ActiveCfg = Release|Win32
 		{8205F95F-FB30-444C-81E2-94554C272A69}.Release|x86.Build.0 = Release|Win32
 		{FD6E2B79-EE65-4F2C-B039-4A71F099932C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{FD6E2B79-EE65-4F2C-B039-4A71F099932C}.Debug|Any CPU.Build.0 = Debug|Win32
 		{FD6E2B79-EE65-4F2C-B039-4A71F099932C}.Debug|x64.ActiveCfg = Debug|x64
 		{FD6E2B79-EE65-4F2C-B039-4A71F099932C}.Debug|x64.Build.0 = Debug|x64
 		{FD6E2B79-EE65-4F2C-B039-4A71F099932C}.Debug|x86.ActiveCfg = Debug|Win32
