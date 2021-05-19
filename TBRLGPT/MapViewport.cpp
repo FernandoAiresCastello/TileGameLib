@@ -40,6 +40,7 @@ namespace TBRLGPT
 		ScrollY = scrollY;
 		Win = new Window(Ctx, viewX - 1, viewY - 1, width, height);
 		AnimationTimerId = "MapViewportAnimationTimer_" + Util::GenerateId();
+		TimerManager::Init();
 		TimerManager::AddTimer(AnimationTimerId, animationFrameDelay, AdvanceAnimation);
 	}
 

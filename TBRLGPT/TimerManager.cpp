@@ -33,9 +33,11 @@ namespace TBRLGPT
 
 	void TimerManager::Init()
 	{
-		TimersRunning = true;
-		Timers = std::map<std::string, Timer>();
-		Thread = SDL_CreateThread(Tick, "Tick", NULL);
+		if (!TimersRunning) {
+			TimersRunning = true;
+			Timers = std::map<std::string, Timer>();
+			Thread = SDL_CreateThread(Tick, "Tick", NULL);
+		}
 	}
 
 	void TimerManager::Destroy()
