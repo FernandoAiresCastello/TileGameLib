@@ -30,7 +30,8 @@ namespace TBRLGPT
 		void Init(class Project* project, std::string name, int width, int height, int layerCount);
 		void Reset(std::string name, int width, int height, int layerCount);
 		void Destroy();
-		Project* GetProject();
+		class Project* GetProject();
+		void SetProject(class Project* proj);
 		int GetBackColor();
 		int GetWidth();
 		int GetHeight();

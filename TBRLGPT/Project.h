@@ -25,6 +25,7 @@ namespace TBRLGPT
 		Project();
 		~Project();
 
+		void AddMap(Map* map);
 		bool Load(std::string filename);
 		std::vector<Map*>& GetMaps();
 		Map* FindMapById(std::string id);

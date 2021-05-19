@@ -56,9 +56,17 @@ namespace TBRLGPT
 		delete Layers;
 	}
 
-	Project* Map::GetProject()
+	class Project* Map::GetProject()
 	{
 		return Project;
+	}
+
+	void Map::SetProject(class Project* proj)
+	{
+		Project = proj;
+		if (Project->FindMapById(this->GetId()) == NULL) {
+			Project->AddMap(this);
+		}
 	}
 
 	int Map::GetBackColor()

@@ -45,6 +45,12 @@ namespace TBRLGPT
 		Maps.clear();
 	}
 
+	void Project::AddMap(Map* map)
+	{
+		Maps.push_back(map);
+		map->SetProject(this);
+	}
+
 	bool Project::Load(std::string filename)
 	{
 		DeleteContents();
