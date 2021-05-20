@@ -32,6 +32,8 @@ namespace TBRLGPT
 		Map* FindMapByName(std::string name);
 		class Palette* GetPalette();
 		class Charset* GetCharset();
+		void SetPalette(class Palette* palette);
+		void SetCharset(class Charset* charset);
 
 	private:
 		std::string Path;

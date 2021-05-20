@@ -202,4 +202,14 @@ namespace TBRLGPT
 	{
 		return Charset;
 	}
+
+	void Project::SetPalette(class Palette* palette)
+	{
+		Palette = palette;
+	}
+
+	void Project::SetCharset(class Charset* charset)
+	{
+		Charset = charset;
+	}
 }
