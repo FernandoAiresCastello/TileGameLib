@@ -16,6 +16,7 @@ void ShowMainMenu()
 	menu->AddItem("Demo 01", 1);
 	menu->AddItem("Demo 02", 2);
 	menu->AddItem("Demo 03", 3);
+	menu->AddItem("Demo 04", 4);
 	menu->AddItem("Quit", 99);
 
 	while (running) {
@@ -36,6 +37,7 @@ void ShowMainMenu()
 			case 1: Demo01(Ctx); break;
 			case 2: Demo02(Ctx); break;
 			case 3: Demo03(Ctx); break;
+			case 4: Demo04(Ctx); break;
 			case 99: running = false; break;
 			default: break;
 		}

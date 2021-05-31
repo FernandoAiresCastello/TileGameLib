@@ -21,14 +21,8 @@
 
 namespace TBRLGPT
 {
-	int AnimationFrame = 0;
-	void AdvanceAnimation()
-	{
-		AnimationFrame++;
-	}
-
 	MapViewport::MapViewport(UIContext* ctx, class Map* map, 
-		int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationFrameDelay)
+		int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationDelay)
 	{
 		Ctx = ctx;
 		Map = map;
@@ -39,15 +33,18 @@ namespace TBRLGPT
 		ScrollX = scrollX;
 		ScrollY = scrollY;
 		Win = new Window(Ctx, viewX - 1, viewY - 1, width, height);
-		AnimationTimerId = "MapViewportAnimationTimer_" + Util::GenerateId();
-		TimerManager::Init();
-		TimerManager::AddTimer(AnimationTimerId, animationFrameDelay, AdvanceAnimation);
+		AnimationDelay = animationDelay;
+
+		Animating = true;
+		AnimationFrame = 0;
+		AnimationThread = std::thread(&MapViewport::AdvanceAnimationFrame, this);
 	}
 
 	MapViewport::~MapViewport()
 	{
 		delete Win;
-		TimerManager::RemoveTimer(AnimationTimerId);
+		Animating = false;
+		AnimationThread.join();
 	}
 
 	Map* MapViewport::GetMap()
@@ -194,5 +191,13 @@ namespace TBRLGPT
 	void MapViewport::SetInvertedColorArea(Rect area)
 	{
 		InvertedColorArea = area;
+	}
+
+	void MapViewport::AdvanceAnimationFrame()
+	{
+		while (Animating) {
+			AnimationFrame++;
+			std::this_thread::sleep_for(std::chrono::milliseconds(AnimationDelay));
+		}
 	}
 }

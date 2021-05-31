@@ -10,6 +10,7 @@
 #pragma once
 
 #include <string>
+#include <thread>
 #include "ObjectChar.h"
 #include "Rect.h"
 
@@ -22,7 +23,7 @@ namespace TBRLGPT
 	class TBRLGPT_API MapViewport
 	{
 	public:
-		MapViewport(UIContext* ctx, class Map* map, int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationFrameDelay);
+		MapViewport(UIContext* ctx, class Map* map, int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationDelay);
 		~MapViewport();
 
 		class Map* GetMap();
@@ -42,6 +43,7 @@ namespace TBRLGPT
 		void ClearBorder();
 		void DrawBorder();
 		void SetInvertedColorArea(Rect area);
+		void AdvanceAnimationFrame();
 
 	private:
 		UIContext* Ctx;
@@ -54,7 +56,10 @@ namespace TBRLGPT
 		int ScrollX;
 		int ScrollY;
 		Rect InvertedColorArea;
-		std::string AnimationTimerId;
+		bool Animating;
+		int AnimationFrame;
+		std::thread AnimationThread;
+		int AnimationDelay;
 
 		int GetMapWidth();
 		int GetMapHeight();
