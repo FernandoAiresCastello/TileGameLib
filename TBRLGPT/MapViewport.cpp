@@ -21,6 +21,22 @@
 
 namespace TBRLGPT
 {
+	MapViewport::MapViewport(UIContext* ctx, class Map* map,
+		int viewX, int viewY, int width, int height, int scrollX, int scrollY)
+	{
+		Ctx = ctx;
+		Map = map;
+		X = viewX;
+		Y = viewY;
+		Width = width;
+		Height = height;
+		ScrollX = scrollX;
+		ScrollY = scrollY;
+		Win = new Window(Ctx, viewX - 1, viewY - 1, width, height);
+		AnimationFrame = 0;
+		Animating = true;
+	}
+
 	MapViewport::MapViewport(UIContext* ctx, class Map* map, 
 		int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationDelay)
 	{
@@ -37,14 +53,16 @@ namespace TBRLGPT
 
 		Animating = true;
 		AnimationFrame = 0;
-		AnimationThread = std::thread(&MapViewport::AdvanceAnimationFrame, this);
+		AnimationThread = std::thread(&MapViewport::AdvanceAnimationFrameThread, this);
 	}
 
 	MapViewport::~MapViewport()
 	{
 		delete Win;
 		Animating = false;
-		AnimationThread.join();
+		if (AnimationThread.native_handle() != NULL) {
+			AnimationThread.join();
+		}
 	}
 
 	Map* MapViewport::GetMap()
@@ -194,6 +212,11 @@ namespace TBRLGPT
 	}
 
 	void MapViewport::AdvanceAnimationFrame()
+	{
+		AnimationFrame++;
+	}
+
+	void MapViewport::AdvanceAnimationFrameThread()
 	{
 		while (Animating) {
 			AnimationFrame++;

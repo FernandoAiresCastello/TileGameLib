@@ -23,6 +23,7 @@ namespace TBRLGPT
 	class TBRLGPT_API MapViewport
 	{
 	public:
+		MapViewport(UIContext* ctx, class Map* map, int viewX, int viewY, int width, int height, int scrollX, int scrollY);
 		MapViewport(UIContext* ctx, class Map* map, int viewX, int viewY, int width, int height, int scrollX, int scrollY, int animationDelay);
 		~MapViewport();
 
@@ -63,5 +64,6 @@ namespace TBRLGPT
 
 		int GetMapWidth();
 		int GetMapHeight();
+		void AdvanceAnimationFrameThread();
 	};
 }
