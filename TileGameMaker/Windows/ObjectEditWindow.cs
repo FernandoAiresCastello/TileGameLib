@@ -41,6 +41,7 @@ namespace TileGameMaker.Windows
         private readonly AnimationStripDisplay AnimationStrip;
         private const int MaxFrames = 8;
         private readonly bool IsNewObject;
+        private static Size? UserDefinedSize = null;
 
         private ObjectEditWindow()
         {
@@ -53,6 +54,7 @@ namespace TileGameMaker.Windows
             Editor = editor;
             KeyPreview = true;
             KeyDown += ObjectEditWindow_KeyDown;
+            Resize += ObjectEditWindow_Resize;
             IsNewObject = o == null;
 
             if (o == null)
@@ -71,6 +73,11 @@ namespace TileGameMaker.Windows
             TxtFrames.ValueChanged += TxtFrames_ValueChanged;
 
             AnimationStrip.MouseDown += AnimationStrip_MouseDown;
+
+            if (UserDefinedSize == null)
+                UserDefinedSize = Size;
+            else
+                Size = UserDefinedSize.Value;
         }
 
         public ObjectEditWindow(MapEditor editor, PositionedObject po, ObjectMap map, ObjectPosition pos)
@@ -79,6 +86,7 @@ namespace TileGameMaker.Windows
             Editor = editor;
             KeyPreview = true;
             KeyDown += ObjectEditWindow_KeyDown;
+            Resize += ObjectEditWindow_Resize;
 
             IsNewObject = po.Object == null;
 
@@ -99,6 +107,16 @@ namespace TileGameMaker.Windows
             TxtFrames.ValueChanged += TxtFrames_ValueChanged;
 
             AnimationStrip.MouseDown += AnimationStrip_MouseDown;
+
+            if (UserDefinedSize == null)
+                UserDefinedSize = Size;
+            else
+                Size = UserDefinedSize.Value;
+        }
+
+        private void ObjectEditWindow_Resize(object sender, EventArgs e)
+        {
+            UserDefinedSize = Size;
         }
 
         private void TxtFrames_ValueChanged(object sender, EventArgs e)

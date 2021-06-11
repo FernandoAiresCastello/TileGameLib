@@ -40,10 +40,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.PropertyGrid = new TileGameMaker.Panels.ObjectPropertyGridPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnSetEqualToClipboard = new System.Windows.Forms.Button();
             this.BtnRevert = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnApply = new System.Windows.Forms.Button();
-            this.BtnSetEqualToClipboard = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFrames)).BeginInit();
@@ -66,12 +66,12 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 159F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 146F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(242, 290);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(242, 289);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -87,6 +87,7 @@
             // 
             // TxtFrames
             // 
+            this.TxtFrames.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.TxtFrames.Location = new System.Drawing.Point(150, 6);
             this.TxtFrames.Maximum = new decimal(new int[] {
             20,
@@ -109,6 +110,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(0, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
@@ -136,8 +138,9 @@
             // 
             // BtnClearAnim
             // 
+            this.BtnClearAnim.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.BtnClearAnim.Image = global::TileGameMaker.Properties.Resources.broom;
-            this.BtnClearAnim.Location = new System.Drawing.Point(198, 0);
+            this.BtnClearAnim.Location = new System.Drawing.Point(198, 1);
             this.BtnClearAnim.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.BtnClearAnim.Name = "BtnClearAnim";
             this.BtnClearAnim.Size = new System.Drawing.Size(34, 28);
@@ -168,16 +171,18 @@
             // ChkVisible
             // 
             this.ChkVisible.AutoSize = true;
-            this.ChkVisible.Location = new System.Drawing.Point(172, 9);
+            this.ChkVisible.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ChkVisible.Location = new System.Drawing.Point(176, 0);
             this.ChkVisible.Margin = new System.Windows.Forms.Padding(0);
             this.ChkVisible.Name = "ChkVisible";
-            this.ChkVisible.Size = new System.Drawing.Size(56, 17);
+            this.ChkVisible.Size = new System.Drawing.Size(56, 31);
             this.ChkVisible.TabIndex = 6;
             this.ChkVisible.Text = "Visible";
             this.ChkVisible.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(0, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
@@ -189,10 +194,8 @@
             // 
             // PropertyGrid
             // 
-            this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.PropertyGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PropertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PropertyGrid.Location = new System.Drawing.Point(5, 92);
             this.PropertyGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PropertyGrid.Name = "PropertyGrid";
@@ -210,6 +213,7 @@
             this.tableLayoutPanel2.Controls.Add(this.BtnRevert, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnClear, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnApply, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(5, 251);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -218,6 +222,18 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(232, 33);
             this.tableLayoutPanel2.TabIndex = 9;
+            // 
+            // BtnSetEqualToClipboard
+            // 
+            this.BtnSetEqualToClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetEqualToClipboard.Image = global::TileGameMaker.Properties.Resources.page_white_paste;
+            this.BtnSetEqualToClipboard.Location = new System.Drawing.Point(58, 4);
+            this.BtnSetEqualToClipboard.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnSetEqualToClipboard.Name = "BtnSetEqualToClipboard";
+            this.BtnSetEqualToClipboard.Size = new System.Drawing.Size(58, 29);
+            this.BtnSetEqualToClipboard.TabIndex = 3;
+            this.BtnSetEqualToClipboard.UseVisualStyleBackColor = true;
+            this.BtnSetEqualToClipboard.Click += new System.EventHandler(this.BtnSetEqualToClipboard_Click);
             // 
             // BtnRevert
             // 
@@ -255,27 +271,16 @@
             this.BtnApply.UseVisualStyleBackColor = true;
             this.BtnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
-            // BtnSetEqualToClipboard
-            // 
-            this.BtnSetEqualToClipboard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSetEqualToClipboard.Image = global::TileGameMaker.Properties.Resources.page_white_paste;
-            this.BtnSetEqualToClipboard.Location = new System.Drawing.Point(58, 4);
-            this.BtnSetEqualToClipboard.Margin = new System.Windows.Forms.Padding(0);
-            this.BtnSetEqualToClipboard.Name = "BtnSetEqualToClipboard";
-            this.BtnSetEqualToClipboard.Size = new System.Drawing.Size(58, 29);
-            this.BtnSetEqualToClipboard.TabIndex = 3;
-            this.BtnSetEqualToClipboard.UseVisualStyleBackColor = true;
-            this.BtnSetEqualToClipboard.Click += new System.EventHandler(this.BtnSetEqualToClipboard_Click);
-            // 
             // ObjectEditWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 290);
+            this.ClientSize = new System.Drawing.Size(242, 289);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(258, 323);
             this.Name = "ObjectEditWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.tableLayoutPanel1.ResumeLayout(false);
