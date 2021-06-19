@@ -53,5 +53,10 @@ namespace TileGameMaker.Windows
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void BtnToggleWordWrap_Click(object sender, EventArgs e)
+        {
+            TxtText.WordWrap = !TxtText.WordWrap;
+        }
     }
 }

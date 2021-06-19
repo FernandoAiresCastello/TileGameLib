@@ -388,6 +388,7 @@
     <None Include="Resources\page_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\word_wrap.png" />
     <None Include="Resources\script_edit.png" />
     <None Include="Resources\new.png" />
     <None Include="Resources\hand_point_090.png" />

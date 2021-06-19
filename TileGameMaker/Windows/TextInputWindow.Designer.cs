@@ -30,12 +30,13 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BtnAccept = new System.Windows.Forms.ToolStripButton();
-            this.BtnCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LbOrientation = new System.Windows.Forms.ToolStripLabel();
             this.CmbOrientation = new System.Windows.Forms.ToolStripComboBox();
             this.TxtText = new System.Windows.Forms.TextBox();
+            this.BtnAccept = new System.Windows.Forms.ToolStripButton();
+            this.BtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.BtnToggleWordWrap = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,36 +64,14 @@
             this.BtnCancel,
             this.toolStripSeparator1,
             this.LbOrientation,
-            this.CmbOrientation});
+            this.CmbOrientation,
+            this.BtnToggleWordWrap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
             this.toolStrip1.Size = new System.Drawing.Size(539, 26);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // BtnAccept
-            // 
-            this.BtnAccept.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnAccept.Image = global::TileGameMaker.Properties.Resources.tick;
-            this.BtnAccept.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnAccept.Name = "BtnAccept";
-            this.BtnAccept.Size = new System.Drawing.Size(23, 20);
-            this.BtnAccept.Text = "toolStripButton1";
-            this.BtnAccept.ToolTipText = "Confirm";
-            this.BtnAccept.Click += new System.EventHandler(this.BtnAccept_Click);
-            // 
-            // BtnCancel
-            // 
-            this.BtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
-            this.BtnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(23, 20);
-            this.BtnCancel.Text = "toolStripButton2";
-            this.BtnCancel.ToolTipText = "Cancel";
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // toolStripSeparator1
             // 
@@ -129,6 +108,41 @@
             this.TxtText.TabIndex = 1;
             this.TxtText.WordWrap = false;
             // 
+            // BtnAccept
+            // 
+            this.BtnAccept.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnAccept.Image = global::TileGameMaker.Properties.Resources.tick;
+            this.BtnAccept.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnAccept.Name = "BtnAccept";
+            this.BtnAccept.Size = new System.Drawing.Size(23, 20);
+            this.BtnAccept.Text = "toolStripButton1";
+            this.BtnAccept.ToolTipText = "Confirm";
+            this.BtnAccept.Click += new System.EventHandler(this.BtnAccept_Click);
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnCancel.Image = global::TileGameMaker.Properties.Resources.cross;
+            this.BtnCancel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Size = new System.Drawing.Size(23, 20);
+            this.BtnCancel.Text = "toolStripButton2";
+            this.BtnCancel.ToolTipText = "Cancel";
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // BtnToggleWordWrap
+            // 
+            this.BtnToggleWordWrap.CheckOnClick = true;
+            this.BtnToggleWordWrap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnToggleWordWrap.Image = global::TileGameMaker.Properties.Resources.word_wrap;
+            this.BtnToggleWordWrap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnToggleWordWrap.Name = "BtnToggleWordWrap";
+            this.BtnToggleWordWrap.Size = new System.Drawing.Size(23, 20);
+            this.BtnToggleWordWrap.Text = "toolStripButton1";
+            this.BtnToggleWordWrap.ToolTipText = "Toggle word wrap";
+            this.BtnToggleWordWrap.Click += new System.EventHandler(this.BtnToggleWordWrap_Click);
+            // 
             // TextInputWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,5 +169,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox CmbOrientation;
         private System.Windows.Forms.ToolStripLabel LbOrientation;
+        private System.Windows.Forms.ToolStripButton BtnToggleWordWrap;
     }
 }
