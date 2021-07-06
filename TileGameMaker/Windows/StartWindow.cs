@@ -42,7 +42,6 @@ namespace TileGameMaker.Windows
         private void UpdateRecentProjectsList()
         {
             LstRecent.Items.Clear();
-            RecentProjects.Files.Reverse();
             LstRecent.Items.AddRange(RecentProjects.Files.ToArray());
             LstRecent.DoubleClick += LstRecent_DoubleClick;
             LstRecent.MouseDown += LstRecent_MouseDown;
