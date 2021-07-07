@@ -122,6 +122,24 @@ namespace TileGameMaker.Panels
                         ClearInput();
                         MapEditor.ShowCommandLine(false);
                         break;
+                    case "add_bookmark":
+                        MapEditor.AddBookmarkAtCurrentMapScroll(args);
+                        ClearInput();
+                        break;
+                    case "rem_bookmark":
+                        MapEditor.RemoveBookmark(args);
+                        ClearInput();
+                        break;
+                    case "bookmarks":
+                        Print("Bookmarks in current map (" + Map.Id + "):");
+                        foreach (MapBookmark bookmark in MapEditor.MapBookmarks.FindByMapId(Map.Id))
+                            Print(" " + bookmark.Name + " = " + bookmark.X + ", " + bookmark.Y);
+                        ClearInput();
+                        break;
+                    case "goto":
+                        MapEditor.GoToMapBookmark(args);
+                        ClearInput();
+                        break;
                     default:
                         Print("Invalid command");
                         break;

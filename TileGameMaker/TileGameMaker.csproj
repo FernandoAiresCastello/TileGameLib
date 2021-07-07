@@ -80,6 +80,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapEditorElements\MapBookmark.cs" />
+    <Compile Include="MapEditorElements\MapBookmarks.cs" />
     <Compile Include="MapEditorElements\ScriptRunner.cs" />
     <Compile Include="MapEditorElements\MapProperties.cs" />
     <Compile Include="MapEditorElements\ObjectBlockClipboard.cs" />
@@ -475,6 +477,7 @@
     <None Include="Resources\cog_edit.png" />
     <None Include="Resources\control_play_blue.png" />
     <None Include="Resources\bricks.png" />
+    <None Include="Resources\flag_flyaway_blue.png" />
     <Content Include="Resources\gameboy.ico" />
   </ItemGroup>
   <ItemGroup>

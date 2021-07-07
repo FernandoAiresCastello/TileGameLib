@@ -48,9 +48,10 @@
             this.BottomLeftPanel = new System.Windows.Forms.Panel();
             this.TopLeftPanel = new System.Windows.Forms.Panel();
             this.MapAndCommandLineSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.MapEditorPanel = new System.Windows.Forms.Panel();
             this.CommandLinePanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.MapEditorPanel = new System.Windows.Forms.Panel();
+            this.BtnCommandLine = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.WindowLayout.SuspendLayout();
             this.MainLayout.SuspendLayout();
@@ -133,7 +134,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BtnDataExtractor});
+            this.BtnDataExtractor,
+            this.BtnCommandLine});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -142,7 +144,7 @@
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
             this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(147, 22);
+            this.BtnDataExtractor.Size = new System.Drawing.Size(180, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
@@ -273,6 +275,15 @@
             this.MapAndCommandLineSplitContainer.SplitterDistance = 323;
             this.MapAndCommandLineSplitContainer.TabIndex = 5;
             // 
+            // MapEditorPanel
+            // 
+            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
+            this.MapEditorPanel.Name = "MapEditorPanel";
+            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
+            this.MapEditorPanel.TabIndex = 3;
+            // 
             // CommandLinePanel
             // 
             this.CommandLinePanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -289,14 +300,14 @@
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // MapEditorPanel
+            // BtnCommandLine
             // 
-            this.MapEditorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
-            this.MapEditorPanel.Name = "MapEditorPanel";
-            this.MapEditorPanel.Size = new System.Drawing.Size(516, 398);
-            this.MapEditorPanel.TabIndex = 3;
+            this.BtnCommandLine.Image = global::TileGameMaker.Properties.Resources.application_xp_terminal;
+            this.BtnCommandLine.Name = "BtnCommandLine";
+            this.BtnCommandLine.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.BtnCommandLine.Size = new System.Drawing.Size(180, 22);
+            this.BtnCommandLine.Text = "Command line";
+            this.BtnCommandLine.Click += new System.EventHandler(this.BtnCommandLine_Click);
             // 
             // MainWindow
             // 
@@ -348,5 +359,6 @@
         private System.Windows.Forms.ToolStripMenuItem BtnTemplateObjects;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Panel MapEditorPanel;
+        private System.Windows.Forms.ToolStripMenuItem BtnCommandLine;
     }
 }

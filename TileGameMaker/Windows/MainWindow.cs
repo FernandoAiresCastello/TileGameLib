@@ -97,6 +97,8 @@ namespace TileGameMaker.Windows
             if (result == DialogResult.Yes)
                 SaveProject();
 
+            MapEditor.MapBookmarks.Save(MapBookmarks.Filename);
+
             Application.Exit();
         }
 
@@ -191,6 +193,11 @@ namespace TileGameMaker.Windows
                 TemplateWindow.Activate();
             else
                 TemplateWindow.Show(this);
+        }
+
+        private void BtnCommandLine_Click(object sender, EventArgs e)
+        {
+            ToggleCommandLine();
         }
     }
 }

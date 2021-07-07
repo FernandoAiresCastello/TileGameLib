@@ -45,6 +45,7 @@ namespace TileGameMaker.MapEditorElements
         public ProjectPanel ProjectPanel { get; private set; }
         public GameObjectPanel GameObjectPanel { get; private set; }
         public RecentProjects RecentFiles { get; private set; }
+        public MapBookmarks MapBookmarks { get; private set; }
 
         private GameObject ClipboardObject;
         private readonly List<Control> Children = new List<Control>();
@@ -62,6 +63,10 @@ namespace TileGameMaker.MapEditorElements
             CommandLinePanel = new CommandLinePanel(this);
             MapPropertyGridControl = new MapPropertyGridPanel(this);
             ProjectPanel = new ProjectPanel(this);
+            MapBookmarks = new MapBookmarks();
+
+            if (File.Exists(MapBookmarks.Filename))
+                MapBookmarks.Load(MapBookmarks.Filename);
 
             UpdateMapProperties();
 
@@ -103,6 +108,24 @@ namespace TileGameMaker.MapEditorElements
         public GameObject GetClipboardObject()
         {
             return new GameObject(ClipboardObject);
+        }
+
+        public void AddBookmarkAtCurrentMapScroll(string name)
+        {
+            MapBookmarks.Add(Map.Id, name, 
+                MapEditorControl.ViewScrollX, MapEditorControl.ViewScrollY);
+        }
+
+        public void RemoveBookmark(string name)
+        {
+            MapBookmarks.Remove(name);
+        }
+
+        public void GoToMapBookmark(string name)
+        {
+            MapBookmark bookmark = MapBookmarks.FindByName(name);
+            if (bookmark != null)
+                MapEditorControl.ScrollViewTo(bookmark.X, bookmark.Y);
         }
 
         private void UpdatePickerPanelsWithClipboardTile()

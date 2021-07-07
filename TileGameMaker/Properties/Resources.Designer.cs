@@ -403,6 +403,16 @@ namespace TileGameMaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flag_flyaway_blue {
+            get {
+                object obj = ResourceManager.GetObject("flag_flyaway_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flag_new {
             get {
                 object obj = ResourceManager.GetObject("flag_new", resourceCulture);

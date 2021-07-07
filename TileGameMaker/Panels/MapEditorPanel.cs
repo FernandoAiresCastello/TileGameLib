@@ -18,6 +18,9 @@ namespace TileGameMaker.Panels
     {
         public TiledDisplay Display { get; private set; }
 
+        public int ViewScrollX => MapRenderer.ScrollX;
+        public int ViewScrollY => MapRenderer.ScrollY;
+
         private ObjectMap Map;
         private MapEditor Editor;
         private MapRenderer MapRenderer;
@@ -29,7 +32,7 @@ namespace TileGameMaker.Panels
         private int ViewWidth = 32;
         private int ViewHeight = 24;
 
-        private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject, FollowLink }
+        private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
         private EditMode Mode;
 
         private Stack<ObjectMap> ObjectLinks = new Stack<ObjectMap>();
@@ -206,17 +209,6 @@ namespace TileGameMaker.Panels
                 else
                 {
                     CopyObjectToTemplate(cell);
-                }
-            }
-            else if (Mode == EditMode.FollowLink)
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    FollowObjectLink(cell.Object);
-                }
-                else
-                {
-                    ReturnFromObjectLink();
                 }
             }
         }
@@ -456,7 +448,6 @@ namespace TileGameMaker.Panels
         private void BtnReplaceObjects_Click(object sender, EventArgs e) => SetMode(EditMode.Replace);
         private void BtnSelect_Click(object sender, EventArgs e) => SetMode(EditMode.Selection);
         private void BtnEditObject_Click(object sender, EventArgs e) => SetMode(EditMode.EditObject);
-        private void BtnFollowLink_Click(object sender, EventArgs e) => SetMode(EditMode.FollowLink);
 
         private void SetMode(EditMode mode)
         {
@@ -495,10 +486,6 @@ namespace TileGameMaker.Panels
                     Display.Cursor = GetCursor(Properties.Resources.brick_edit);
                     button = BtnEditObject;
                     break;
-                case EditMode.FollowLink:
-                    Display.Cursor = GetCursor(Properties.Resources.hand_point_090);
-                    button = BtnFollowLink;
-                    break;
             }
 
             if (button != null)
@@ -518,7 +505,6 @@ namespace TileGameMaker.Panels
             BtnDelete.Checked = false;
             BtnReplaceObjects.Checked = false;
             BtnEditObject.Checked = false;
-            BtnFollowLink.Checked = false;
 
             button.Checked = true;
         }
@@ -1005,7 +991,13 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void ScrollView(int dx, int dy)
+        public void ScrollViewTo(int x, int y)
+        {
+            MapRenderer.ScrollToPoint(x, y);
+            UpdateViewLabel();
+        }
+
+        public void ScrollView(int dx, int dy)
         {
             bool amountOk = int.TryParse(TxtScrollAmount.Text, out int amount);
 
