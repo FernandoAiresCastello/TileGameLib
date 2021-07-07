@@ -144,6 +144,12 @@
     <Compile Include="Windows\GridSetupWindow.Designer.cs">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MapBookmarkWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MapBookmarkWindow.Designer.cs">
+      <DependentUpon>MapBookmarkWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ScriptWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MapBookmarkWindow.resx">
+      <DependentUpon>MapBookmarkWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ScriptWindow.resx">
       <DependentUpon>ScriptWindow.cs</DependentUpon>

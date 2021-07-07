@@ -1096,5 +1096,13 @@ namespace TileGameMaker.Panels
         {
             ScrollView(0, -1);
         }
+
+        private void BtnBookmarks_Click(object sender, EventArgs e)
+        {
+            MapBookmarkWindow win = new MapBookmarkWindow(
+                Editor.MapBookmarks, Map.Id, Editor.MapEditorControl);
+
+            win.ShowDialog(this);
+        }
     }
 }

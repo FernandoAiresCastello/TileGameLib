@@ -73,6 +73,7 @@
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
+            this.BtnBookmarks = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.MapPanel.SuspendLayout();
@@ -249,6 +250,7 @@
             this.BtnAddText,
             this.BtnReplaceObjects,
             this.BtnEditObject,
+            this.BtnBookmarks,
             this.BtnSelect,
             this.BtnSelectionActions,
             this.toolStripSeparator4,
@@ -575,6 +577,16 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
+            // BtnBookmarks
+            // 
+            this.BtnBookmarks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBookmarks.Image = global::TileGameMaker.Properties.Resources.flag_flyaway_blue;
+            this.BtnBookmarks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBookmarks.Name = "BtnBookmarks";
+            this.BtnBookmarks.Size = new System.Drawing.Size(23, 20);
+            this.BtnBookmarks.Text = "Bookmarks";
+            this.BtnBookmarks.Click += new System.EventHandler(this.BtnBookmarks_Click);
+            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,5 +655,6 @@
         private System.Windows.Forms.Button BtnScrollRight;
         private System.Windows.Forms.Button BtnScrollLeft;
         private System.Windows.Forms.TextBox TxtScrollAmount;
+        private System.Windows.Forms.ToolStripButton BtnBookmarks;
     }
 }

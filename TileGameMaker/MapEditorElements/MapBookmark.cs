@@ -24,5 +24,10 @@ namespace TileGameMaker.MapEditorElements
             X = x;
             Y = y;
         }
+
+        public override string ToString()
+        {
+            return Name + " [" + X + ", " + Y + "]";
+        }
     }
 }
