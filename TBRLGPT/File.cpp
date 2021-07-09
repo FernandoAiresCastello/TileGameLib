@@ -166,6 +166,34 @@ namespace TBRLGPT
 		return NULL;
 	}
 
+	void File::WriteText(std::string filename, std::string text)
+	{
+		std::ofstream ofs(filename);
+
+		if (ofs.good()) {
+			ofs.write(text.c_str(), text.length());
+		}
+
+		ofs.flush();
+		ofs.close();
+	}
+
+	void File::WriteLines(std::string filename, std::vector<std::string> lines)
+	{
+		std::ofstream ofs(filename);
+
+		if (ofs.good()) {
+			for (int i = 0; i < lines.size(); i++) {
+				std::string line = lines[i];
+				line.append("\n");
+				ofs.write(line.c_str(), line.length());
+			}
+		}
+
+		ofs.flush();
+		ofs.close();
+	}
+
 	void File::Duplicate(std::string orig, std::string dupl)
 	{
 		CopyFile(orig.c_str(), dupl.c_str(), true);

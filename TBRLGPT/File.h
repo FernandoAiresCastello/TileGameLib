@@ -44,6 +44,8 @@ namespace TBRLGPT
 		static std::string ReadText(std::string filename);
 		static std::vector<std::string> ReadLines(std::string filename);
 		static unsigned char* Read(std::string filename, int* length);
+		static void WriteText(std::string filename, std::string text);
+		static void WriteLines(std::string filename, std::vector<std::string> lines);
 		static void Duplicate(std::string orig, std::string dupl);
 		static std::string GetParentDirectory(std::string file);
 		static std::string GetName(std::string fullPath);
