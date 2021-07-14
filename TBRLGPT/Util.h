@@ -36,6 +36,7 @@ namespace TBRLGPT
 		static unsigned WrapAdd(unsigned val, int dx, const unsigned lower, const unsigned upper);
 		static int GetDigitCount(unsigned number);
 		static std::string GenerateId();
+		static std::string GenerateId(int length);
 		static void Beep(int freq, int duration);
 	};
 }

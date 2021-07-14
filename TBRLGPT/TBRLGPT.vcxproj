@@ -201,6 +201,9 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Project.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneObject.h" />
+    <ClInclude Include="SceneView.h" />
     <ClInclude Include="Sound.h">
       <SubType>
       </SubType>
@@ -263,6 +266,9 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
+    <ClCompile Include="SceneView.cpp" />
     <ClCompile Include="ScrollingMenu.cpp" />
     <ClCompile Include="SimpleDialog.cpp" />
     <ClCompile Include="Sound.cpp" />

@@ -177,7 +177,12 @@ namespace TBRLGPT
 
 	std::string Util::GenerateId()
 	{
-		return RandomHex(4);
+		return GenerateId(6);
+	}
+
+	std::string Util::GenerateId(int length)
+	{
+		return RandomHex(length);
 	}
 
 	void Util::Beep(int freq, int duration)

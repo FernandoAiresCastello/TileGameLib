@@ -109,9 +109,6 @@
     <ClInclude Include="Window.h">
       <Filter>UI\Window</Filter>
     </ClInclude>
-    <ClInclude Include="MapViewport.h">
-      <Filter>UI\View</Filter>
-    </ClInclude>
     <ClInclude Include="UIContext.h">
       <Filter>UI\Context</Filter>
     </ClInclude>
@@ -174,6 +171,18 @@
     </ClInclude>
     <ClInclude Include="Project.h">
       <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneView.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapViewport.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,9 +285,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>UI\Window</Filter>
     </ClCompile>
-    <ClCompile Include="MapViewport.cpp">
-      <Filter>UI\View</Filter>
-    </ClCompile>
     <ClCompile Include="UIContext.cpp">
       <Filter>UI\Context</Filter>
     </ClCompile>
@@ -339,6 +345,18 @@
     <ClCompile Include="Project.cpp">
       <Filter>Project</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneView.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapViewport.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -389,9 +407,6 @@
     <Filter Include="UI\Window">
       <UniqueIdentifier>{dd9d1cc9-84ac-4b46-8241-0dc144b85fa9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\View">
-      <UniqueIdentifier>{8ea37167-050f-485e-aa7c-f6cdd552ce87}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\Select">
       <UniqueIdentifier>{b0d226be-fe0e-4fa5-9bbc-cc9de3d1abf0}</UniqueIdentifier>
     </Filter>
@@ -409,6 +424,9 @@
     </Filter>
     <Filter Include="Project">
       <UniqueIdentifier>{d676307b-0a9d-4cc2-869c-a25181616b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{a2171ee5-f460-4ea8-9ec4-a1490a92d63f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

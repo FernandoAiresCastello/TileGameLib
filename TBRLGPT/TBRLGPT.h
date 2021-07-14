@@ -61,3 +61,6 @@
 #include "ObjectPosition.h"
 #include "Project.h"
 #include "ObjectController.h"
+#include "Scene.h"
+#include "SceneObject.h"
+#include "SceneView.h"

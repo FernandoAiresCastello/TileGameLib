@@ -2,40 +2,78 @@
 
 void Demo04(UIContext* ctx)
 {
-	Project* proj = new Project();
-	Palette* pal = proj->GetPalette();
-	Charset* chr = proj->GetCharset();
+	Palette* pal = new Palette();
+	pal->InitDefaultColors();
+	Charset* chr = new Charset();
+	chr->InitDefaultCharset();
 	Graphics* gr = ctx->Gr;
-
 	gr->Clear(0x000000);
-	gr->Print(ctx->Chars, 1, 1, 0xffffff, 0x000000, "Loading...");
-	gr->Update();
-	proj->Load("data/demos.tgpro");
 
-	Map* map = proj->FindMapByName("demo03");
-	Map* stats = proj->FindMapByName("stats");
-	MapViewport* mapView = new MapViewport(ctx, map, 0, 0, 32, 24, 0, 0, 10);
-	MapViewport* statsView = new MapViewport(ctx, stats, 0, 20, 32, 4, 0, 0, 100);
+	Scene* scene = new Scene();
+	ObjectAnim anim = ObjectAnim();
+	anim.Clear();
+	anim.AddFrame(ObjectChar(1, 2, 3));
+	anim.AddFrame(ObjectChar(1, 3, 2));
+	scene->SetBackObj(anim);
+
+	SceneView* view = new SceneView(gr, chr, pal, 250);
+	view->SetPosition(5, 5);
+	view->SetSize(gr->Cols - 10, gr->Rows - 10);
+	view->SetScene(scene);
+
+	SceneObject* o = new SceneObject();
+	o->SetPosition(0, 0, 0);
+	o->GetObj()->GetAnimation().AddFrame(ObjectChar(3, 1, 5));
+	o->GetObj()->GetAnimation().AddFrame(ObjectChar(3, 5, 1));
+	scene->AddObject(o);
 
 	bool running = true;
 	while (running) {
 
-		mapView->Draw();
-		statsView->Draw();
+		view->Draw(0);
+		gr->ClearRows(0, 1, 0x000000);
+		gr->Print(chr, 0, 0, 0xffffff, 0x000000, String::Format("PX:%i PY:%i", o->GetX(), o->GetY()));
+		gr->Print(chr, 0, 1, 0xffffff, 0x000000, String::Format("VX:%i VY:%i", view->GetScrollX(), view->GetScrollY()));
 		gr->Update();
 
 		SDL_Event e = { 0 };
 		SDL_PollEvent(&e);
+		bool ctrl = Key::Ctrl();
 
 		if (e.type == SDL_KEYDOWN) {
 			auto key = e.key.keysym.sym;
 			if (key == SDLK_ESCAPE) {
 				running = false;
 			}
+			else if (key == SDLK_RIGHT) {
+				if (ctrl)
+					view->Scroll(1, 0);
+				else
+					o->Move(1, 0);
+			}
+			else if (key == SDLK_LEFT) {
+				if (ctrl)
+					view->Scroll(-1, 0);
+				else
+					o->Move(-1, 0);
+			}
+			else if (key == SDLK_DOWN) {
+				if (ctrl)
+					view->Scroll(0, 1);
+				else
+					o->Move(0, 1);
+			}
+			else if (key == SDLK_UP) {
+				if (ctrl)
+					view->Scroll(0, -1);
+				else
+					o->Move(0, -1);
+			}
 		}
 	}
 
-	delete mapView;
-	delete statsView;
-	delete proj;
+	delete view;
+	delete scene;
+	delete pal;
+	delete chr;
 }
