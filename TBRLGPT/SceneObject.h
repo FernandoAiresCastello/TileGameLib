@@ -36,7 +36,23 @@ namespace TBRLGPT
 		int GetX();
 		int GetY();
 		int GetLayer();
+		void SetEqual(SceneObject* o);
 		void Move(int dx, int dy);
+		bool CollidesInSameLayer(SceneObject* o);
+		bool CollidesInAnyLayer(SceneObject* o);
+		bool AlignsHorizontally(SceneObject* o);
+		bool AlignsVertically(SceneObject* o);
+		bool AlignsDiagonally(SceneObject* o);
+		int GetDistance(SceneObject* o);
+		bool IsWithinDistance(SceneObject* o, int dist);
+		bool IsAbove(SceneObject* o);
+		bool IsUnder(SceneObject* o);
+		SceneObject* Above();
+		SceneObject* Under();
+		SceneObject* AtDistance(int dx, int dy);
+		SceneObject* AtDistance(int dx, int dy, int layer);
+		SceneObject* AtDistanceAbove(int dx, int dy);
+		SceneObject* AtDistanceUnder(int dx, int dy);
 
 	private:
 		std::string Id;

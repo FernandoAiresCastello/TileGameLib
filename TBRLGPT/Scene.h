@@ -28,17 +28,32 @@ namespace TBRLGPT
 		void SetName(std::string name);
 		std::string GetId();
 		std::string GetName();
+		int GetLayerCount();
 		void AddObject(SceneObject* o);
+		void RemoveObject(SceneObject* o);
+		void Clear();
+		void ClearLayer(int layer);
 		std::map<std::string, SceneObject*>& GetObjs();
-		void SetBackObj(ObjectAnim& anim);
-		ObjectAnim& GetBackObj();
-		SceneObject* GetObjById(std::string id);
-		SceneObject* GetObjAt(int x, int y, int layer);
+		void SetBackObject(ObjectAnim& anim);
+		void SetBackObject(ObjectChar chr);
+		ObjectAnim& GetBackObject();
+		SceneObject* GetObjectById(std::string id);
+		SceneObject* GetObjectAt(int x, int y, int layer);
+		std::vector<SceneObject*> GetObjectsAt(int x, int y, int layer);
+		SceneObject* GetObjectByProperty(std::string prop, std::string value);
+		std::vector<SceneObject*> GetObjectsByProperty(std::string prop, std::string value);
+		std::vector<SceneObject*> GetObjectsInsideRegion(int x1, int y1, int x2, int y2);
+		std::vector<SceneObject*> GetObjectsInsideRegion(int x1, int y1, int x2, int y2, int layer);
+		std::vector<SceneObject*> GetObjectsInsideRadius(int x, int y, int radius);
+		std::vector<SceneObject*> GetObjectsInsideRadius(int x, int y, int radius, int layer);
 
 	private:
 		std::string Id;
 		std::string Name;
-		ObjectAnim BackObj;
-		std::map<std::string, SceneObject*> Objs;
+		ObjectAnim BackObject;
+		std::map<std::string, SceneObject*> Objects;
+		int LayerCount;
+
+		void CalculateLayerCount();
 	};
 }

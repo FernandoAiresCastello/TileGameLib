@@ -37,7 +37,7 @@ namespace TBRLGPT
 		int GetHeight();
 		int GetScrollX();
 		int GetScrollY();
-		void Draw(int layer);
+		void Draw();
 
 	private:
 		Graphics* Gr;
@@ -55,6 +55,7 @@ namespace TBRLGPT
 		std::thread AnimationThread;
 		int AnimationDelay;
 
+		void DrawLayer(int layer);
 		void DrawBackObjs();
 		void DrawObject(SceneObject* o);
 		void AdvanceAnimationFrameThread();

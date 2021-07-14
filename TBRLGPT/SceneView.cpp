@@ -109,10 +109,15 @@ namespace TBRLGPT
 		}
 	}
 
-	void SceneView::Draw(int layer)
+	void SceneView::Draw()
 	{
 		DrawBackObjs();
+		for (int i = 0; i < Scene->GetLayerCount(); i++)
+			DrawLayer(i);
+	}
 
+	void SceneView::DrawLayer(int layer)
+	{
 		for (auto it = Scene->GetObjs().begin(); it != Scene->GetObjs().end(); ++it) {
 			SceneObject* o = it->second;
 			if (o->GetLayer() == layer) {
@@ -123,7 +128,7 @@ namespace TBRLGPT
 
 	void SceneView::DrawBackObjs()
 	{
-		ObjectAnim& anim = Scene->GetBackObj();
+		ObjectAnim& anim = Scene->GetBackObject();
 
 		for (int py = 0; py < Height; py++) {
 			for (int px = 0; px < Width; px++) {
