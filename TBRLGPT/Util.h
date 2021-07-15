@@ -21,7 +21,11 @@ namespace TBRLGPT
 		static void Randomize();
 		static int Random(int max);
 		static byte RandomByte();
-		static std::string RandomHex(int length);
+		static std::string RandomHex(int bytes);
+		static std::string RandomString(int length);
+		static std::string RandomString(int length, std::string alphabet);
+		static std::string RandomLetters(int length, int characterCasing = 0);
+		static std::string RandomDigits(int length);
 		static bool RandomChance(int rate);
 		static int Percent(int value, int percentage);
 		static void Pause(int ms = 1, bool pumpEvents = true);

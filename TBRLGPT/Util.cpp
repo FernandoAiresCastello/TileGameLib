@@ -55,10 +55,10 @@ namespace TBRLGPT
 		return static_cast<byte>(dis(gen));
 	}
 
-	std::string Util::RandomHex(int length)
+	std::string Util::RandomHex(int bytes)
 	{
 		std::stringstream ss;
-		for (auto i = 0; i < length; i++) {
+		for (auto i = 0; i < bytes; i++) {
 			auto rc = RandomByte();
 			std::stringstream hexstream;
 			hexstream << std::hex << int(rc);
@@ -66,6 +66,43 @@ namespace TBRLGPT
 			ss << (hex.length() < 2 ? '0' + hex : hex);
 		}
 		return ss.str();
+	}
+
+	std::string Util::RandomString(int length)
+	{
+		return RandomString(length, 
+			"abcdefghijklmnopqrstuvwxyz"
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+			"0123456789");
+	}
+
+	std::string Util::RandomString(int length, std::string alphabet)
+	{
+		std::stringstream ss;
+		for (auto i = 0; i < length; i++) {
+			ss << alphabet[Random(alphabet.length())];
+		}
+		return ss.str();
+	}
+
+	std::string Util::RandomLetters(int length, int characterCasing)
+	{
+		if (characterCasing == 0) {
+			return RandomString(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		}
+		else if (characterCasing == 1) {
+			return RandomString(length, "abcdefghijklmnopqrstuvwxyz");
+		}
+		else if (characterCasing == 2) {
+			return RandomString(length, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+		}
+		
+		return "";
+	}
+
+	std::string Util::RandomDigits(int length)
+	{
+		return RandomString(length, "0123456789");
 	}
 
 	bool Util::RandomChance(int rate)
@@ -177,7 +214,7 @@ namespace TBRLGPT
 
 	std::string Util::GenerateId()
 	{
-		return GenerateId(6);
+		return GenerateId(4);
 	}
 
 	std::string Util::GenerateId(int length)
