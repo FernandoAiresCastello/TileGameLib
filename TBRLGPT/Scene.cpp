@@ -9,13 +9,14 @@
 
 #include "Scene.h"
 #include "SceneObject.h"
+#include "Util.h"
 
 namespace TBRLGPT
 {
 	Scene::Scene()
 	{
-		Id = "";
-		Name = "";
+		Id = Util::RandomString(6);
+		Name = "New Scene";
 		BackObject.SetNull();
 		LayerCount = 0;
 	}

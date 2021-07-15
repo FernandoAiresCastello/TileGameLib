@@ -7,6 +7,7 @@
     <ClCompile Include="Demo02.cpp" />
     <ClCompile Include="Demo03.cpp" />
     <ClCompile Include="Demo04.cpp" />
+    <ClCompile Include="Demo05.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenu.h" />

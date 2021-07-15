@@ -127,6 +127,7 @@
     <ClCompile Include="Demo02.cpp" />
     <ClCompile Include="Demo03.cpp" />
     <ClCompile Include="Demo04.cpp" />
+    <ClCompile Include="Demo05.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Demo01.cpp" />

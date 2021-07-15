@@ -70,19 +70,17 @@ namespace TBRLGPT
 
 	std::string Util::RandomString(int length)
 	{
-		return RandomString(length, 
-			"abcdefghijklmnopqrstuvwxyz"
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-			"0123456789");
+		return RandomString(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 	}
 
 	std::string Util::RandomString(int length, std::string alphabet)
 	{
-		std::stringstream ss;
+		std::stringbuf sb;
 		for (auto i = 0; i < length; i++) {
-			ss << alphabet[Random(alphabet.length())];
+			char ch = alphabet[Random(alphabet.length() - 1)];
+			sb.sputc(ch);
 		}
-		return ss.str();
+		return sb.str();
 	}
 
 	std::string Util::RandomLetters(int length, int characterCasing)

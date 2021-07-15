@@ -19,7 +19,7 @@ namespace TBRLGPT
 
 	SceneObject::SceneObject(class Scene* scene)
 	{
-		Id = Util::GenerateId();
+		Id = Util::RandomString(6);
 		Scene = scene;
 		Obj = new Object();
 		X = 0;

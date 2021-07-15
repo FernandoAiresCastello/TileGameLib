@@ -1,4 +1,5 @@
 #pragma once
-#include "Global.h"
+#include <TBRLGPT.h>
+using namespace TBRLGPT;
 
-void ShowMainMenu();
+void ShowMainMenu(UIContext* ctx);
