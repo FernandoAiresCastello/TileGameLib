@@ -184,7 +184,7 @@
     <ClInclude Include="MapViewport.h">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="SceneEditor.h">
+    <ClInclude Include="SceneEditorBase.h">
       <Filter>Editors</Filter>
     </ClInclude>
   </ItemGroup>
@@ -360,7 +360,7 @@
     <ClCompile Include="MapViewport.cpp">
       <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="SceneEditor.cpp">
+    <ClCompile Include="SceneEditorBase.cpp">
       <Filter>Editors</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,6 +15,9 @@
 #include "Global.h"
 #include "Rect.h"
 
+#define INFO_AREA_SEPARATOR_CHAR 1
+#define INFO_AREA_MAX_PAGES 2
+
 namespace TBRLGPT
 {
 	class Scene;
@@ -24,22 +27,22 @@ namespace TBRLGPT
 	class SceneView;
 	class SceneObject;
 
-	class TBRLGPT_API SceneEditor
+	class TBRLGPT_API SceneEditorBase
 	{
 	public:
 		int ForeColor;
 		int BackColor;
 		int InfoSeparatorColor;
 
-		SceneEditor(class Scene* scene, Graphics* gr, 
+		SceneEditorBase(class Scene* scene, Graphics* gr,
 			Charset* editorChars, Palette* editorPal,
 			Charset* sceneChars, Palette* scenePal);
 
-		~SceneEditor();
+		virtual ~SceneEditorBase();
 
 		void Run();
 
-	private:
+	protected:
 		Graphics* Gr;
 		Charset* EditorCharset;
 		Palette* EditorPalette;
@@ -51,8 +54,7 @@ namespace TBRLGPT
 		SceneObject* Cursor;
 		Rect InfoArea;
 		int InfoPage;
-		std::vector<SceneObject*> ObjTemplates;
-		SceneObject* SelectedTemplate;
+		bool InfoEnabled;
 
 		void ClearScreen();
 		int GetEditorColor(int paletteIndex);
@@ -61,13 +63,11 @@ namespace TBRLGPT
 		void PutChar(int ch, int x, int y, int fgc, int bgc);
 		void Print(std::string text, int x, int y);
 		void Print(std::string text, int x, int y, int fgc, int bgc);
-		void ClearInfoArea();
-		void DrawInfo();
 		void Draw();
-		void OnKeyPress(SDL_Keycode key);
-		void AddObjTemplate(SceneObject* o, std::string templateId);
-		SceneObject* GetObjTemplate(std::string templateId);
-		void SelectTemplate(std::string templateId);
-		void PutSelectedTemplate(int x, int y, int layer);
+		void ClearInfoArea();
+
+		virtual void DrawInfo() = 0;
+		virtual void ShowHelp() = 0;
+		virtual void OnKeyPress(SDL_Keycode key);
 	};
 }

@@ -64,4 +64,4 @@
 #include "Scene.h"
 #include "SceneObject.h"
 #include "SceneView.h"
-#include "SceneEditor.h"
+#include "SceneEditorBase.h"

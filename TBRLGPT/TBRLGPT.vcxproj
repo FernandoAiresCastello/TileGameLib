@@ -202,7 +202,7 @@
     </ClInclude>
     <ClInclude Include="Project.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneEditor.h">
+    <ClInclude Include="SceneEditorBase.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -271,7 +271,7 @@
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneEditor.cpp">
+    <ClCompile Include="SceneEditorBase.cpp">
       <SubType>
       </SubType>
     </ClCompile>

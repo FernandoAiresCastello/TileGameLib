@@ -1,5 +1,4 @@
 #include "Demos.h"
-#include "SceneEditor.h"
 
 void Demo05(UIContext* ctx)
 {
@@ -19,12 +18,6 @@ void Demo05(UIContext* ctx)
 	Graphics* gr = ctx->Gr;
 	gr->Clear(0x000000);
 
-	Scene* scene = new Scene();
-	SceneEditor* editor = new SceneEditor(scene, gr, editorChars, editorPal, sceneChars, scenePal);
-	editor->Run();
-
-	delete editor;
-	delete scene;
 	delete editorPal;
 	delete editorChars;
 }

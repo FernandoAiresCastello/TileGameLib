@@ -11,8 +11,7 @@ UIContext* Ctx = new UIContext(Gr, 0xffffff, 0x000000);
 int main(int argc, char** args)
 {
 	TimerManager::Init();
-	//ShowMainMenu(Ctx);
-	Demo05(Ctx);
+	ShowMainMenu(Ctx);
 	TimerManager::Destroy();
 
 	delete Ctx;

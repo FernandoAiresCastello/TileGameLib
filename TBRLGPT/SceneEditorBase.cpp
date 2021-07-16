@@ -7,7 +7,7 @@
 
 =============================================================================*/
 
-#include "SceneEditor.h"
+#include "SceneEditorBase.h"
 #include "Scene.h"
 #include "SceneObject.h"
 #include "Graphics.h"
@@ -18,15 +18,13 @@
 #include "StringUtils.h"
 #include "Util.h"
 
-#define INFO_AREA_SEPARATOR_CHAR 1
-#define INFO_AREA_MAX_PAGES 2
 #define DEFAULT_CURSOR_CHAR 0
-
-#define TEMPLATE_OBJ_ID_PROP "template_id"
+#define OBJ_ANIMATION_DELAY 200
+#define INFO_AREA_HEIGHT 5
 
 namespace TBRLGPT
 {
-	SceneEditor::SceneEditor(class Scene* scene, Graphics* gr, 
+	SceneEditorBase::SceneEditorBase(class Scene* scene, Graphics* gr,
 		Charset* editorChars, Palette* editorPal,
 		Charset* sceneChars, Palette* scenePal)
 	{
@@ -41,10 +39,9 @@ namespace TBRLGPT
 		BackColor = 1;
 		InfoSeparatorColor = 0;
 		InfoPage = 0;
-		SelectedTemplate = NULL;
-		const int infoAreaHeight = 5;
-		InfoArea = Rect(0, Gr->Rows - infoAreaHeight, Gr->Cols, infoAreaHeight);
-		View = new SceneView(Gr, SceneViewCharset, SceneViewPalette, 200);
+		InfoArea = Rect(0, Gr->Rows - INFO_AREA_HEIGHT, Gr->Cols, INFO_AREA_HEIGHT);
+		InfoEnabled = true;
+		View = new SceneView(Gr, SceneViewCharset, SceneViewPalette, OBJ_ANIMATION_DELAY);
 		View->SetScene(scene);
 		View->SetPosition(0, 0);
 		View->SetScroll(0, 0);
@@ -55,18 +52,12 @@ namespace TBRLGPT
 		EditorCharset->SetChar(INFO_AREA_SEPARATOR_CHAR, 0, 0, 255, 255, 255, 255, 255, 255);
 	}
 
-	SceneEditor::~SceneEditor()
+	SceneEditorBase::~SceneEditorBase()
 	{
 		delete View;
-
-		for (int i = 0; i < ObjTemplates.size(); i++) {
-			delete ObjTemplates[i];
-			ObjTemplates[i] = NULL;
-		}
-		ObjTemplates.clear();
 	}
 
-	void SceneEditor::Run()
+	void SceneEditorBase::Run()
 	{
 		ClearScreen();
 
@@ -83,22 +74,27 @@ namespace TBRLGPT
 				Running = false;
 			}
 			else if (e.type == SDL_KEYDOWN) {
-				OnKeyPress(e.key.keysym.sym);
+				if (e.key.keysym.sym == SDLK_F1) {
+					ShowHelp();
+				}
+				else {
+					OnKeyPress(e.key.keysym.sym);
+				}
 			}
 		}
 	}
 
-	void SceneEditor::ClearScreen()
+	void SceneEditorBase::ClearScreen()
 	{
 		Gr->Clear(GetEditorColor(BackColor));
 	}
 
-	int SceneEditor::GetEditorColor(int paletteIndex)
+	int SceneEditorBase::GetEditorColor(int paletteIndex)
 	{
 		return EditorPalette->Get(paletteIndex)->ToInteger();
 	}
 
-	void SceneEditor::InitCursor()
+	void SceneEditorBase::InitCursor()
 	{
 		Cursor = new SceneObject(Scene);
 		Cursor->SetLayer(2);
@@ -111,58 +107,39 @@ namespace TBRLGPT
 		Scene->AddObject(Cursor);
 	}
 
-	void SceneEditor::PutChar(int ch, int x, int y)
+	void SceneEditorBase::PutChar(int ch, int x, int y)
 	{
 		PutChar(ch, x, y, ForeColor, BackColor);
 	}
 
-	void SceneEditor::PutChar(int ch, int x, int y, int fgc, int bgc)
+	void SceneEditorBase::PutChar(int ch, int x, int y, int fgc, int bgc)
 	{
 		Gr->PutChar(EditorCharset, ch, x, y, GetEditorColor(fgc), GetEditorColor(bgc));
 	}
 
-	void SceneEditor::Print(std::string text, int x, int y)
+	void SceneEditorBase::Print(std::string text, int x, int y)
 	{
 		Print(text, x, y, ForeColor, BackColor);
 	}
 
-	void SceneEditor::Print(std::string text, int x, int y, int fgc, int bgc)
+	void SceneEditorBase::Print(std::string text, int x, int y, int fgc, int bgc)
 	{
 		Gr->Print(EditorCharset, x, y, GetEditorColor(fgc), GetEditorColor(bgc), text);
 	}
 
-	void SceneEditor::ClearInfoArea()
+	void SceneEditorBase::Draw()
+	{
+		View->Draw();
+		if (InfoEnabled)
+			DrawInfo();
+	}
+
+	void SceneEditorBase::ClearInfoArea()
 	{
 		Gr->ClearRows(InfoArea.Y, InfoArea.Y + InfoArea.Height, GetEditorColor(BackColor));
 	}
 
-	void SceneEditor::DrawInfo()
-	{
-		ClearInfoArea();
-		for (int x = InfoArea.X; x < InfoArea.Width; x++) {
-			PutChar(INFO_AREA_SEPARATOR_CHAR, x, InfoArea.Y - 1, BackColor, InfoSeparatorColor);
-		}
-
-		int x = InfoArea.X + 1;
-		int y = InfoArea.Y;
-
-		if (InfoPage == 0) {
-			Print(String::Format("%s", Scene->GetName().c_str()), x, y++);
-		}
-		else if (InfoPage == 1) {
-			Print(String::Format("Scene ID: %s", Scene->GetId().c_str()), x, y++);
-			Print(String::Format("C(%i,%i) V(%i,%i)",
-				Cursor->GetX(), Cursor->GetY(), View->GetScrollX(), View->GetScrollY()), x, y++);
-		}
-	}
-
-	void SceneEditor::Draw()
-	{
-		View->Draw();
-		DrawInfo();
-	}
-
-	void SceneEditor::OnKeyPress(SDL_Keycode key)
+	void SceneEditorBase::OnKeyPress(SDL_Keycode key)
 	{
 		const bool alt = Key::Alt();
 		const bool ctrl = Key::Ctrl();
@@ -211,43 +188,5 @@ namespace TBRLGPT
 			default:
 				break;
 		}
-	}
-
-	void SceneEditor::AddObjTemplate(SceneObject* o, std::string templateId)
-	{
-		o->GetObj()->SetProperty(TEMPLATE_OBJ_ID_PROP, templateId);
-		ObjTemplates.push_back(o);
-	}
-
-	SceneObject* SceneEditor::GetObjTemplate(std::string templateId)
-	{
-		for (int i = 0; i < ObjTemplates.size(); i++) {
-			SceneObject* o = ObjTemplates[i];
-			if (o->GetObj()->GetPropertyAsString(TEMPLATE_OBJ_ID_PROP) == templateId) {
-				return o;
-			}
-		}
-
-		return NULL;
-	}
-
-	void SceneEditor::SelectTemplate(std::string templateId)
-	{
-		SelectedTemplate = GetObjTemplate(templateId);
-	}
-
-	void SceneEditor::PutSelectedTemplate(int x, int y, int layer)
-	{
-		if (SelectedTemplate == NULL)
-			return;
-
-		SceneObject* existingObject = Scene->GetObjectAt(x, y, layer);
-		if (existingObject != NULL) {
-			Scene->RemoveObject(existingObject);
-		}
-
-		SceneObject* newObject = new SceneObject();
-		newObject->SetEqual(SelectedTemplate);
-		Scene->AddObject(newObject);
 	}
 }
