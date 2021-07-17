@@ -20,6 +20,7 @@ namespace TBRLGPT
 	public:
 		static void Randomize();
 		static int Random(int max);
+		static int Random(int min, int max);
 		static byte RandomByte();
 		static std::string RandomHex(int bytes);
 		static std::string RandomString(int length);
