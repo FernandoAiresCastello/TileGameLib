@@ -96,8 +96,9 @@ namespace TBRLGPT
 
 	void SceneEditorBase::InitCursor()
 	{
-		Cursor = new SceneObject(Scene);
+		Cursor = new SceneObject();
 		Cursor->SetLayer(2);
+		Cursor->SetScene(Scene);
 
 		ObjectAnim& anim = Cursor->GetObj()->GetAnimation();
 		anim.Clear();

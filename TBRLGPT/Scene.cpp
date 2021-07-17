@@ -66,7 +66,6 @@ namespace TBRLGPT
 
 	void Scene::AddObject(SceneObject* o)
 	{
-		o->SetScene(this);
 		Objects[o->GetId()] = o;
 		CalculateLayerCount();
 	}
@@ -128,6 +127,11 @@ namespace TBRLGPT
 	ObjectAnim& Scene::GetBackObject()
 	{
 		return BackObject;
+	}
+
+	std::map<std::string, SceneObject*>& Scene::GetObjects()
+	{
+		return Objects;
 	}
 
 	SceneObject* Scene::GetObjectById(std::string id)

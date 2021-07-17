@@ -29,6 +29,7 @@ namespace TBRLGPT
 		std::string GetId();
 		std::string GetName();
 		int GetLayerCount();
+		void CalculateLayerCount();
 		void AddObject(SceneObject* o);
 		void RemoveObject(SceneObject* o);
 		void Clear();
@@ -37,6 +38,7 @@ namespace TBRLGPT
 		void SetBackObject(ObjectAnim& anim);
 		void SetBackObject(ObjectChar chr);
 		ObjectAnim& GetBackObject();
+		std::map<std::string, SceneObject*>& GetObjects();
 		SceneObject* GetObjectById(std::string id);
 		SceneObject* GetObjectAt(int x, int y, int layer);
 		std::vector<SceneObject*> GetObjectsAt(int x, int y, int layer);
@@ -53,7 +55,5 @@ namespace TBRLGPT
 		ObjectAnim BackObject;
 		std::map<std::string, SceneObject*> Objects;
 		int LayerCount;
-
-		void CalculateLayerCount();
 	};
 }

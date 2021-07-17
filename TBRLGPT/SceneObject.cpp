@@ -13,14 +13,10 @@
 
 namespace TBRLGPT
 {
-	SceneObject::SceneObject() : SceneObject(NULL)
-	{
-	}
-
-	SceneObject::SceneObject(class Scene* scene)
+	SceneObject::SceneObject()
 	{
 		Id = Util::RandomString(6);
-		Scene = scene;
+		Scene = NULL;
 		Obj = new Object();
 		X = 0;
 		Y = 0;
@@ -35,6 +31,8 @@ namespace TBRLGPT
 	void SceneObject::SetScene(class Scene* scene)
 	{
 		Scene = scene;
+		Scene->AddObject(this);
+		Scene->CalculateLayerCount();
 	}
 
 	void SceneObject::SetId(std::string id)
@@ -68,6 +66,8 @@ namespace TBRLGPT
 	void SceneObject::SetLayer(int layer)
 	{
 		Layer = layer;
+		if (Scene != NULL)
+			Scene->CalculateLayerCount();
 	}
 
 	std::string SceneObject::GetId()

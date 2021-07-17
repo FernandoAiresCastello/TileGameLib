@@ -21,10 +21,9 @@ namespace TBRLGPT
 	{
 	public:
 		SceneObject();
-		SceneObject(class Scene* scene);
 		~SceneObject();
 
-		void SetScene(class Scene* scene);
+		void SetScene(Scene* scene);
 		void SetId(std::string id);
 		void SetPosition(int x, int y, int layer);
 		void SetPosition(int x, int y);
