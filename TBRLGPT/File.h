@@ -38,6 +38,7 @@ namespace TBRLGPT
 		static bool IsRoot(std::string directory);
 		static std::string GetRoot();
 		static bool Exists(std::string path);
+		static bool ExistsFolder(std::string path);
 		static void Create(std::string path);
 		static void CreateFolder(std::string path);
 		static void Delete(std::string path);

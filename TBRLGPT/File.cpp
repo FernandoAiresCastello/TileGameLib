@@ -101,6 +101,13 @@ namespace TBRLGPT
 		return (stat(path.c_str(), &buffer) == 0);
 	}
 
+	bool File::ExistsFolder(std::string path)
+	{
+		struct stat buffer;
+		stat(path.c_str(), &buffer);
+		return (buffer.st_mode & S_IFDIR);
+	}
+
 	void File::Create(std::string path)
 	{
 		unsigned pos = 0;
