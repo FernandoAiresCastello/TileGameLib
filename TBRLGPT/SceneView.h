@@ -37,7 +37,7 @@ namespace TBRLGPT
 		int GetHeight();
 		int GetScrollX();
 		int GetScrollY();
-		void Draw();
+		void DrawLayers(int count);
 
 	private:
 		Graphics* Gr;

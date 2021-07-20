@@ -109,10 +109,10 @@ namespace TBRLGPT
 		}
 	}
 
-	void SceneView::Draw()
+	void SceneView::DrawLayers(int count)
 	{
 		DrawBackObjs();
-		for (int i = 0; i < Scene->GetLayerCount(); i++)
+		for (int i = 0; i < count; i++)
 			DrawLayer(i);
 	}
 

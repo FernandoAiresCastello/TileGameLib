@@ -18,12 +18,16 @@ namespace TBRLGPT
 		Id = Util::RandomString(6);
 		Name = "New Scene";
 		BackObject.SetNull();
-		LayerCount = 0;
+		Bounds = NULL;
 	}
 
 	Scene::~Scene()
 	{
 		Clear();
+		if (Bounds != NULL) {
+			delete Bounds;
+			Bounds = NULL;
+		}
 	}
 
 	void Scene::SetId(std::string id)
@@ -46,28 +50,15 @@ namespace TBRLGPT
 		return Name;
 	}
 
-	int Scene::GetLayerCount()
+	bool Scene::HasObject(SceneObject* o)
 	{
-		return LayerCount;
-	}
-
-	void Scene::CalculateLayerCount()
-	{
-		int topmostLayer = 0;
-		for (auto it = Objects.begin(); it != Objects.end(); ++it) {
-			SceneObject* o = it->second;
-			if (o->GetLayer() > topmostLayer) {
-				topmostLayer = o->GetLayer();
-			}
-		}
-
-		LayerCount = topmostLayer + 1;
+		return GetObjectById(o->GetId()) != NULL;
 	}
 
 	void Scene::AddObject(SceneObject* o)
 	{
-		Objects[o->GetId()] = o;
-		CalculateLayerCount();
+		if (!HasObject(o))
+			Objects[o->GetId()] = o;
 	}
 
 	void Scene::RemoveObject(SceneObject* o)
@@ -81,7 +72,6 @@ namespace TBRLGPT
 				return;
 			}
 		}
-		CalculateLayerCount();
 	}
 
 	void Scene::Clear()
@@ -91,7 +81,6 @@ namespace TBRLGPT
 			it->second = NULL;
 		}
 		Objects.clear();
-		CalculateLayerCount();
 	}
 
 	void Scene::ClearLayer(int layer)
@@ -105,7 +94,6 @@ namespace TBRLGPT
 				++it;
 			}
 		}
-		CalculateLayerCount();
 	}
 
 	std::map<std::string, SceneObject*>& Scene::GetObjs()
@@ -237,5 +225,46 @@ namespace TBRLGPT
 		int y2 = y + radius;
 
 		return GetObjectsInsideRegion(x1, y1, x2, y2, layer);
+	}
+
+	void Scene::SetBounds(int minX, int minY, int maxX, int maxY)
+	{
+		if (Bounds == NULL)
+			Bounds = new Rect();
+
+		Bounds->X = minX;
+		Bounds->Y = minY;
+		Bounds->Width = maxX;
+		Bounds->Height = maxY;
+	}
+
+	bool Scene::HasBounds()
+	{
+		return Bounds != NULL;
+	}
+
+	Rect* Scene::GetBounds()
+	{
+		return Bounds;
+	}
+
+	void Scene::RemoveBounds()
+	{
+		delete Bounds;
+		Bounds = NULL;
+	}
+
+	bool Scene::IsWithinBounds(int x, int y)
+	{
+		return 
+			x >= Bounds->X && 
+			y >= Bounds->Y && 
+			x <= Bounds->Width && 
+			y <= Bounds->Height;
+	}
+
+	bool Scene::IsOutOfBounds(int x, int y)
+	{
+		return !IsWithinBounds(x, y);
 	}
 }

@@ -13,6 +13,7 @@
 #include <string>
 #include "Global.h"
 #include "ObjectAnim.h"
+#include "Rect.h"
 
 namespace TBRLGPT
 {
@@ -28,8 +29,7 @@ namespace TBRLGPT
 		void SetName(std::string name);
 		std::string GetId();
 		std::string GetName();
-		int GetLayerCount();
-		void CalculateLayerCount();
+		bool HasObject(SceneObject* o);
 		void AddObject(SceneObject* o);
 		void RemoveObject(SceneObject* o);
 		void Clear();
@@ -48,12 +48,18 @@ namespace TBRLGPT
 		std::vector<SceneObject*> GetObjectsInsideRegion(int x1, int y1, int x2, int y2, int layer);
 		std::vector<SceneObject*> GetObjectsInsideRadius(int x, int y, int radius);
 		std::vector<SceneObject*> GetObjectsInsideRadius(int x, int y, int radius, int layer);
+		void SetBounds(int minX, int minY, int maxX, int maxY);
+		bool HasBounds();
+		Rect* GetBounds();
+		void RemoveBounds();
+		bool IsWithinBounds(int x, int y);
+		bool IsOutOfBounds(int x, int y);
 
 	private:
 		std::string Id;
 		std::string Name;
 		ObjectAnim BackObject;
 		std::map<std::string, SceneObject*> Objects;
-		int LayerCount;
+		Rect* Bounds;
 	};
 }

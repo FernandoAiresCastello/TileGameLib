@@ -30,9 +30,15 @@ namespace TBRLGPT
 
 	void SceneObject::SetScene(class Scene* scene)
 	{
-		Scene = scene;
-		Scene->AddObject(this);
-		Scene->CalculateLayerCount();
+		if (!scene->HasObject(this)) {
+			Scene = scene;
+			Scene->AddObject(this);
+		}
+	}
+
+	class Scene* SceneObject::GetScene()
+	{
+		return Scene;
 	}
 
 	void SceneObject::SetId(std::string id)
@@ -40,34 +46,48 @@ namespace TBRLGPT
 		Id = id;
 	}
 
-	void SceneObject::SetPosition(int x, int y, int layer)
+	bool SceneObject::SetPosition(int x, int y, int layer)
 	{
-		X = x;
-		Y = y;
-		Layer = layer;
+		if (CanMoveTo(x, y)) {
+			X = x;
+			Y = y;
+			Layer = layer;
+			return true;
+		}
+		return false;
 	}
 
-	void SceneObject::SetPosition(int x, int y)
+	bool SceneObject::SetPosition(int x, int y)
 	{
-		X = x;
-		Y = y;
+		if (CanMoveTo(x, y)) {
+			X = x;
+			Y = y;
+			return true;
+		}
+		return false;
 	}
 
-	void SceneObject::SetX(int x)
+	bool SceneObject::SetX(int x)
 	{
-		X = x;
+		if (CanMoveTo(x, Y)) {
+			X = x;
+			return true;
+		}
+		return false;
 	}
 
-	void SceneObject::SetY(int y)
+	bool SceneObject::SetY(int y)
 	{
-		Y = y;
+		if (CanMoveTo(X, y)) {
+			Y = y;
+			return true;
+		}
+		return false;
 	}
 
 	void SceneObject::SetLayer(int layer)
 	{
 		Layer = layer;
-		if (Scene != NULL)
-			Scene->CalculateLayerCount();
 	}
 
 	std::string SceneObject::GetId()
@@ -105,10 +125,14 @@ namespace TBRLGPT
 		Layer = o->Layer;
 	}
 
-	void SceneObject::Move(int dx, int dy)
+	bool SceneObject::Move(int dx, int dy)
 	{
-		X += dx;
-		Y += dy;
+		if (CanMoveTo(X + dx, Y + dy)) {
+			X += dx;
+			Y += dy;
+			return true;
+		}
+		return false;
 	}
 
 	bool SceneObject::CollidesInSameLayer(SceneObject* o)
@@ -184,5 +208,23 @@ namespace TBRLGPT
 	SceneObject* SceneObject::AtDistanceUnder(int dx, int dy)
 	{
 		return AtDistance(dx, dy, Layer - 1);
+	}
+
+	bool SceneObject::CanMoveTo(int x, int y)
+	{
+		if (!Scene->HasBounds())
+			return true;
+
+		return Scene->IsWithinBounds(x, y);
+	}
+
+	bool SceneObject::IsWithinBounds()
+	{
+		return Scene->IsWithinBounds(X, Y);
+	}
+
+	bool SceneObject::IsOutOfBounds()
+	{
+		return !IsWithinBounds();
 	}
 }
