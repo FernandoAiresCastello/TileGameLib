@@ -136,8 +136,8 @@ namespace TBRLGPT
 				Gr->PutChar(Chars, ch.Index, 
 					X + px, 
 					Y + py,
-					Pal->Get(ch.ForeColorIx)->ToInteger(), 
-					Pal->Get(ch.BackColorIx)->ToInteger());
+					Pal->GetRGB(ch.ForeColorIx), 
+					Pal->GetRGB(ch.BackColorIx));
 			}
 		}
 	}
@@ -157,7 +157,7 @@ namespace TBRLGPT
 		Gr->PutChar(Chars, ch.Index, 
 			(x - ScrollX) + X, 
 			(y - ScrollY) + Y, 
-			Pal->Get(ch.ForeColorIx)->ToInteger(),
-			Pal->Get(ch.BackColorIx)->ToInteger());
+			Pal->GetRGB(ch.ForeColorIx),
+			Pal->GetRGB(ch.BackColorIx));
 	}
 }

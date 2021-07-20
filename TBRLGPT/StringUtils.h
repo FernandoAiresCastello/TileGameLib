@@ -20,12 +20,14 @@ namespace TBRLGPT
 	public:
 		static std::string Trim(std::string text);
 		static std::vector<std::string> Split(std::string& text, char separator, bool trimTokens = true);
+		static std::vector<std::string> SplitIntoEqualSizedStrings(std::string& text, int sizeOfEachString);
 		static std::string Format(const char* fmt, ...);
 		static int ToInt(std::string str);
 		static int HexToInt(std::string str);
 		static std::string IntToHex(int x, bool ucase = false);
 		static unsigned int BinaryToInt(std::string str);
 		static std::string IntToBinary(unsigned int x);
+		static std::string IntToBinary(unsigned int x, int digits);
 		static std::string ToString(int x);
 		static bool StartsWith(std::string text, char ch);
 		static bool EndsWith(std::string text, char ch);

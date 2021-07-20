@@ -28,8 +28,8 @@ namespace TBRLGPT
 			for (int y = 0; y < layer->GetHeight(); y++) {
 				for (int x = 0; x < layer->GetWidth(); x++) {
 					ObjectChar& ch = layer->GetObject(x + offsetX, y + offsetY)->GetAnimation().GetFrame(0);
-					int fgc = pal->Get(ch.ForeColorIx)->ToInteger();
-					int bgc = pal->Get(ch.BackColorIx)->ToInteger();
+					int fgc = pal->GetRGB(ch.ForeColorIx);
+					int bgc = pal->GetRGB(ch.BackColorIx);
 					ctx->Gr->PutChar(chars, ch.Index, x, y, fgc, bgc);
 				}
 			}

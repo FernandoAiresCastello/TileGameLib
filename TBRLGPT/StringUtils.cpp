@@ -37,6 +37,22 @@ namespace TBRLGPT
 		return tokens;
 	}
 
+	std::vector<std::string> String::SplitIntoEqualSizedStrings(std::string& text, int sizeOfEachString)
+	{
+		std::vector<std::string> tokens;
+		std::string token = "";
+		
+		for (int i = 0; i < text.length(); i++) {
+			token += text[i];
+			if (token.length() == sizeOfEachString) {
+				tokens.push_back(token);
+				token = "";
+			}
+		}
+
+		return tokens;
+	}
+
 	std::string String::Format(const char* fmt, ...)
 	{
 		char str[TempStrBufferLength] = { 0 };
@@ -85,6 +101,17 @@ namespace TBRLGPT
 		std::string value = "";
 		while (x != 0) { value = (x % 2 == 0 ? "0" : "1") + value; x /= 2; }
 		return value;
+	}
+
+	std::string String::IntToBinary(unsigned int x, int digits)
+	{
+		const std::string binary = IntToBinary(x);
+		std::string padding = "";
+
+		for (int i = 0; i < digits - binary.length(); i++)
+			padding += '0';
+		
+		return padding + binary;
 	}
 
 	std::string String::ToString(int x)

@@ -12,22 +12,28 @@
 
 namespace TBRLGPT
 {
-	const int Palette::Size = 256;
-
 	Palette::Palette()
 	{
-		Colors = new Color[Size];
 		InitDefaultColors();
 	}
 
 	Palette::~Palette()
 	{
-		delete[] Colors;
 	}
 
-	Color* Palette::Get(int index)
+	Color& Palette::Get(int index)
 	{
-		return &Colors[index];
+		return Colors[index];
+	}
+
+	int Palette::GetRGB(int index)
+	{
+		return Colors[index].ToInteger();
+	}
+
+	int Palette::GetSize()
+	{
+		return Colors.size();
 	}
 
 	void Palette::Set(int index, int rgb)
@@ -42,50 +48,32 @@ namespace TBRLGPT
 
 	void Palette::Clear()
 	{
-		for (int i = 0; i < Size; i++)
+		for (int i = 0; i < Colors.size(); i++)
 			Set(i, 0x000000);
 	}
 
-	void Palette::Save(std::string filename)
+	void Palette::Clear(int size)
 	{
-		FILE* fp = fopen(filename.c_str(), "wb");
-
-		for (int i = 0; i < Size; i++)
-		{
-			Color* color = Get(i);
-			fputc(color->R, fp);
-			fputc(color->G, fp);
-			fputc(color->B, fp);
-		}
-
-		fflush(fp);
-		fclose(fp);
+		Colors.clear();
+		for (int i = 0; i < size; i++)
+			Add(0, 0, 0);
 	}
 
-	void Palette::Load(std::string filename)
+	void Palette::Add(int r, int g, int b)
 	{
-		FILE* fp = fopen(filename.c_str(), "rb");
+		Colors.push_back(Color(r, g, b));
+	}
 
-		if (fp) {
-			for (int i = 0; i < Size; i++) {
-				Color* color = Get(i);
-				color->R = fgetc(fp);
-				color->G = fgetc(fp);
-				color->B = fgetc(fp);
-			}
-
-			fclose(fp);
-		}
-		else {
-			InitDefaultColors();
-		}
+	void Palette::Add(int rgb)
+	{
+		Colors.push_back(Color(rgb));
 	}
 
 	void Palette::InitDefaultColors()
 	{
-		int i = 0;
+		Clear(256);
 
-		Clear();
+		int i = 0;
 
 		Set(i++, 0x000000);
 		Set(i++, 0xffffff);

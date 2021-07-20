@@ -127,24 +127,6 @@
     <ClInclude Include="AnimatedDialog.h">
       <Filter>UI\Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="CharEditor.h">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClInclude>
-    <ClInclude Include="CharSelector2.h">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClInclude>
-    <ClInclude Include="CharSelector.h">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClInclude>
-    <ClInclude Include="PaletteEditor.h">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClInclude>
-    <ClInclude Include="PaletteEditor2.h">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClInclude>
-    <ClInclude Include="CharSelectorEditor.h">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Sound</Filter>
     </ClInclude>
@@ -183,9 +165,6 @@
     </ClInclude>
     <ClInclude Include="MapViewport.h">
       <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneEditorBase.h">
-      <Filter>Editors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -306,24 +285,6 @@
     <ClCompile Include="AnimatedDialog.cpp">
       <Filter>UI\Dialog</Filter>
     </ClCompile>
-    <ClCompile Include="CharEditor.cpp">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClCompile>
-    <ClCompile Include="CharSelector2.cpp">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClCompile>
-    <ClCompile Include="CharSelector.cpp">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClCompile>
-    <ClCompile Include="PaletteEditor.cpp">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClCompile>
-    <ClCompile Include="PaletteEditor2.cpp">
-      <Filter>Subsystems %28Legacy%29\Editors</Filter>
-    </ClCompile>
-    <ClCompile Include="CharSelectorEditor.cpp">
-      <Filter>Subsystems %28Legacy%29\Selectors</Filter>
-    </ClCompile>
     <ClCompile Include="Audio.c">
       <Filter>Sound</Filter>
     </ClCompile>
@@ -359,9 +320,6 @@
     </ClCompile>
     <ClCompile Include="MapViewport.cpp">
       <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneEditorBase.cpp">
-      <Filter>Editors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,18 +382,6 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{a2171ee5-f460-4ea8-9ec4-a1490a92d63f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Editors">
-      <UniqueIdentifier>{efbb1b0c-bbbb-4ac6-b4a3-28da75a28ecc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Subsystems %28Legacy%29">
-      <UniqueIdentifier>{ac4a2029-6192-4192-8eb3-3cf44280f3f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Subsystems %28Legacy%29\Editors">
-      <UniqueIdentifier>{39d64149-42b4-4372-8035-547fb6b3358e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Subsystems %28Legacy%29\Selectors">
-      <UniqueIdentifier>{b48b5aef-d70c-4bf6-8e3e-fa459b672e2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

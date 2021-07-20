@@ -75,7 +75,7 @@ namespace TBRLGPT
 		// === PALETTE ===
 		int paletteSize = NEXT_NUMBER;
 		Palette = new class Palette();
-		Palette->Clear();
+		Palette->Clear(paletteSize);
 		for (int i = 0; i < paletteSize; i++) {
 			int r = NEXT_NUMBER;
 			int g = NEXT_NUMBER;
@@ -86,11 +86,17 @@ namespace TBRLGPT
 		// === TILESET ===
 		int tilesetSize = NEXT_NUMBER;
 		Charset = new class Charset();
-		Charset->Clear();
+		Charset->Clear(tilesetSize);
 		for (int i = 0; i < tilesetSize; i++) {
-			byte* ch = Charset->Get(i);
-			for (int bit = 0; bit < Char::Width; bit++)
-				ch[bit] = NEXT_NUMBER;
+			Char& ch = Charset->Get(i);
+			ch.PixelRow0 = NEXT_NUMBER;
+			ch.PixelRow1 = NEXT_NUMBER;
+			ch.PixelRow2 = NEXT_NUMBER;
+			ch.PixelRow3 = NEXT_NUMBER;
+			ch.PixelRow4 = NEXT_NUMBER;
+			ch.PixelRow5 = NEXT_NUMBER;
+			ch.PixelRow6 = NEXT_NUMBER;
+			ch.PixelRow7 = NEXT_NUMBER;
 		}
 
 		// === MAPS ===

@@ -161,11 +161,7 @@
     <ClInclude Include="AnimatedDialog.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Char.h" />
-    <ClInclude Include="CharEditor.h" />
     <ClInclude Include="CharInstance.h" />
-    <ClInclude Include="CharSelector.h" />
-    <ClInclude Include="CharSelector2.h" />
-    <ClInclude Include="CharSelectorEditor.h" />
     <ClInclude Include="Charset.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="File.h" />
@@ -194,18 +190,12 @@
     <ClInclude Include="ObjectLayer.h" />
     <ClInclude Include="ObjectPosition.h" />
     <ClInclude Include="Palette.h" />
-    <ClInclude Include="PaletteEditor.h" />
-    <ClInclude Include="PaletteEditor2.h" />
     <ClInclude Include="Position.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Project.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneEditorBase.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SceneView.h" />
     <ClInclude Include="Sound.h">
@@ -234,10 +224,6 @@
     <ClCompile Include="AnimatedDialog.cpp" />
     <ClCompile Include="Audio.c" />
     <ClCompile Include="Char.cpp" />
-    <ClCompile Include="CharEditor.cpp" />
-    <ClCompile Include="CharSelector.cpp" />
-    <ClCompile Include="CharSelector2.cpp" />
-    <ClCompile Include="CharSelectorEditor.cpp" />
     <ClCompile Include="Charset.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfirmDialog.cpp" />
@@ -265,16 +251,10 @@
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectPosition.cpp" />
     <ClCompile Include="Palette.cpp" />
-    <ClCompile Include="PaletteEditor.cpp" />
-    <ClCompile Include="PaletteEditor2.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneEditorBase.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SceneView.cpp" />
     <ClCompile Include="ScrollingMenu.cpp" />

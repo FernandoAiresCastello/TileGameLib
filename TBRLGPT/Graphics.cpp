@@ -191,20 +191,32 @@ namespace TBRLGPT
 
 	void Graphics::DrawChar(Charset* charset, int index, int x, int y, int forecolor, int backcolor)
 	{
-		byte* pixels = charset->Get(index);
-
+		Char& ch = charset->Get(index);
 		const int initialX = x;
 
-		for (int i = 0; i < Char::Height; i++)
-		{
-			const unsigned int& bits = pixels[i];
-
-			for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
-				SetPixel(x, y, (bits & (1 << pos)) ? forecolor : backcolor);
-
-			y++;
-			x = initialX;
-		}
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow0 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow1 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow2 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow3 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow4 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow5 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow6 & (1 << pos)) ? forecolor : backcolor);
+		x = initialX; y++;
+		for (int pos = Char::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? forecolor : backcolor);
 	}
 
 	void Graphics::Print(Charset* charset, int x, int y, int forecolor, int backcolor, std::string str)

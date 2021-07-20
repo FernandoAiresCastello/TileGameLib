@@ -10,30 +10,32 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "Global.h"
+#include "Char.h"
 
 namespace TBRLGPT
 {
 	class TBRLGPT_API Charset
 	{
 	public:
-		static const int Size;
-		static const int PixelCount;
-
 		Charset();
 		~Charset();
 
-		byte* Get(int index);
+		Char& Get(int index);
+		std::vector<byte> GetBytes(int index);
+		int GetSize();
 		void Clear();
-		void SetChar(int chr, int row1, int row2, int row3, int row4, int row5, int row6, int row7, int row8);
-		void SetChar(int chr, std::string row1, std::string row2, std::string row3, std::string row4, std::string row5, std::string row6, std::string row7, std::string row8);
+		void Clear(int size);
+		void AddEmptyChar();
+		void AddEmptyChars(int count);
+		void Set(int chr, int row1, int row2, int row3, int row4, int row5, int row6, int row7, int row8);
+		void Set(int chr, std::string row1, std::string row2, std::string row3, std::string row4, std::string row5, std::string row6, std::string row7, std::string row8);
+		void Set(int ix, Char& ch);
 		void CopyChar(int dstix, int srcix);
-		void Save(std::string filename);
-		void SaveHex(std::string filename);
-		void Load(std::string filename);
 		void InitDefaultCharset();
 
 	private:
-		byte* Pixels;
+		std::vector<Char> Chars;
 	};
 }

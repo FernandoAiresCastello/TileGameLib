@@ -14,7 +14,7 @@ void Demo01(UIContext* ctx)
 	pal->Set(4, 0x202020);
 	pal->Set(5, 0xffffff);
 
-	chr->SetChar(1,
+	chr->Set(1,
 		"11111111",
 		"10000001",
 		"10000001",

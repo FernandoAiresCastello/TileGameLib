@@ -10,6 +10,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "Global.h"
 #include "Color.h"
 
@@ -18,20 +19,21 @@ namespace TBRLGPT
 	class TBRLGPT_API Palette
 	{
 	public:
-		static const int Size;
-
 		Palette();
 		~Palette();
 
-		Color* Get(int index);
+		Color& Get(int index);
+		int GetRGB(int index);
+		int GetSize();
+		void Clear();
+		void Clear(int size);
+		void Add(int r, int g, int b);
+		void Add(int rgb);
 		void Set(int index, int rgb);
 		void Set(int index, int r, int g, int b);
-		void Clear();
-		void Save(std::string filename);
-		void Load(std::string filename);
 		void InitDefaultColors();
 
 	private:
-		Color* Colors;
+		std::vector<Color> Colors;
 	};
 }

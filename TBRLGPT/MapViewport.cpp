@@ -117,13 +117,13 @@ namespace TBRLGPT
 				if (o) {
 					if (index == 0 && o->IsVoid()) {
 						Ctx->Gr->PutChar(chars, 0, x, y,
-							pal->Get(Map->GetBackColor())->ToInteger(),
-							pal->Get(Map->GetBackColor())->ToInteger());
+							pal->GetRGB(Map->GetBackColor()),
+							pal->GetRGB(Map->GetBackColor()));
 					}
 					else if (index == 0 || !o->IsVoid()) {
 						ObjectChar& ch = o->GetAnimation().GetFrame(AnimationFrame);
-						int fgc = pal->Get(ch.ForeColorIx)->ToInteger();
-						int bgc = pal->Get(ch.BackColorIx)->ToInteger();
+						int fgc = pal->Get(ch.ForeColorIx).ToInteger();
+						int bgc = pal->Get(ch.BackColorIx).ToInteger();
 						if (!invertColorArea) {
 							Ctx->Gr->PutChar(chars, ch.Index, x, y, fgc, bgc);
 						}
@@ -138,13 +138,13 @@ namespace TBRLGPT
 					if (anim.GetSize() > 0) {
 						ObjectChar& oob = anim.GetFrame(AnimationFrame);
 						Ctx->Gr->PutChar(chars, oob.Index, x, y,
-							pal->Get(oob.ForeColorIx)->ToInteger(),
-							pal->Get(oob.BackColorIx)->ToInteger());
+							pal->Get(oob.ForeColorIx).ToInteger(),
+							pal->Get(oob.BackColorIx).ToInteger());
 					}
 					else {
 						Ctx->Gr->PutChar(chars, 0, x, y,
-							pal->Get(Map->GetBackColor())->ToInteger(),
-							pal->Get(Map->GetBackColor())->ToInteger());
+							pal->Get(Map->GetBackColor()).ToInteger(),
+							pal->Get(Map->GetBackColor()).ToInteger());
 					}
 				}
 				vx++;
