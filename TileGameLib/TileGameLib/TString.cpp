@@ -10,19 +10,19 @@
 #include <string>
 #include <cctype>
 #include <bitset>
-#include "TGLString.h"
-#include "TGLUtil.h"
+#include "TString.h"
+#include "TUtil.h"
 
 namespace TileGameLib
 {
-	std::string TGLString::Trim(std::string text)
+	std::string TString::Trim(std::string text)
 	{
 		text.erase(0, text.find_first_not_of(" \t"));
 		text.erase(text.find_last_not_of(" \t") + 1);
 		return text;
 	}
 
-	std::vector<std::string> TGLString::Split(std::string& text, char separator, bool trimTokens)
+	std::vector<std::string> TString::Split(std::string& text, char separator, bool trimTokens)
 	{
 		std::vector<std::string> tokens;
 		std::string token;
@@ -34,7 +34,7 @@ namespace TileGameLib
 		return tokens;
 	}
 
-	std::vector<std::string> TGLString::SplitIntoEqualSizedStrings(std::string& text, int sizeOfEachString)
+	std::vector<std::string> TString::SplitIntoEqualSizedStrings(std::string& text, int sizeOfEachString)
 	{
 		std::vector<std::string> tokens;
 		std::string token = "";
@@ -50,7 +50,7 @@ namespace TileGameLib
 		return tokens;
 	}
 
-	std::string TGLString::Format(const char* fmt, ...)
+	std::string TString::Format(const char* fmt, ...)
 	{
 		char str[1000] = { 0 };
 		va_list arg;
@@ -61,7 +61,7 @@ namespace TileGameLib
 		return str;
 	}
 
-	int TGLString::ToInt(std::string str)
+	int TString::ToInt(std::string str)
 	{
 		if (str[0] == '0' && str[1] == 'x') {
 			int value = 0;
@@ -72,7 +72,7 @@ namespace TileGameLib
 		return atoi(str.c_str());
 	}
 
-	int TGLString::HexToInt(std::string str)
+	int TString::HexToInt(std::string str)
 	{
 		if (str[0] == '0' && str[1] == 'x') {
 			return ToInt(str);
@@ -80,27 +80,27 @@ namespace TileGameLib
 		return ToInt("0x" + str);
 	}
 
-	std::string TGLString::IntToHex(int x, bool ucase)
+	std::string TString::IntToHex(int x, bool ucase)
 	{
 		return ucase ? Format("%X", x) : Format("%x", x);
 	}
 
-	unsigned int TGLString::BinaryToInt(std::string str)
+	unsigned int TString::BinaryToInt(std::string str)
 	{
 		if (str[0] == '0' && str[1] == 'b') {
-			str = TGLString::Skip(str, 2);
+			str = TString::Skip(str, 2);
 		}
 		return std::stoi(str, nullptr, 2);
 	}
 
-	std::string TGLString::IntToBinary(unsigned int x)
+	std::string TString::IntToBinary(unsigned int x)
 	{
 		std::string value = "";
 		while (x != 0) { value = (x % 2 == 0 ? "0" : "1") + value; x /= 2; }
 		return value;
 	}
 
-	std::string TGLString::IntToBinary(unsigned int x, int digits)
+	std::string TString::IntToBinary(unsigned int x, int digits)
 	{
 		const std::string binary = IntToBinary(x);
 		std::string padding = "";
@@ -111,29 +111,29 @@ namespace TileGameLib
 		return padding + binary;
 	}
 
-	std::string TGLString::ToString(int x)
+	std::string TString::ToString(int x)
 	{
 		return Format("%i", x);
 	}
 
-	bool TGLString::StartsWith(std::string text, char ch)
+	bool TString::StartsWith(std::string text, char ch)
 	{
 		return !text.empty() && text[0] == ch;
 	}
 
-	bool TGLString::EndsWith(std::string text, char ch)
+	bool TString::EndsWith(std::string text, char ch)
 	{
 		return !text.empty() && text[text.size() - 1] == ch;
 	}
 
-	bool TGLString::StartsWith(std::string text, std::string prefix)
+	bool TString::StartsWith(std::string text, std::string prefix)
 	{
 		std::transform(text.begin(), text.end(), text.begin(), ::tolower);
 		std::transform(prefix.begin(), prefix.end(), prefix.begin(), ::tolower);
 		return text.find(prefix) == 0;
 	}
 
-	bool TGLString::EndsWith(std::string text, std::string suffix)
+	bool TString::EndsWith(std::string text, std::string suffix)
 	{
 		auto it = suffix.begin();
 		return text.size() >= suffix.size() && std::all_of(
@@ -141,27 +141,27 @@ namespace TileGameLib
 			[&it](const char & c) { return ::tolower(c) == ::tolower(*(it++)); });
 	}
 
-	bool TGLString::StartsWithNumber(std::string text)
+	bool TString::StartsWithNumber(std::string text)
 	{
 		return !text.empty() && isdigit(text[0]);
 	}
 
-	bool TGLString::IsNumber(std::string text)
+	bool TString::IsNumber(std::string text)
 	{
 		if (StartsWith(text, "-"))
-			text = TGLString::Skip(text, 1);
+			text = TString::Skip(text, 1);
 
 		std::string::const_iterator it = text.begin();
 		while (it != text.end() && std::isdigit(*it)) ++it;
 		return !text.empty() && it == text.end();
 	}
 
-	std::string TGLString::First(std::string text, int count)
+	std::string TString::First(std::string text, int count)
 	{
 		return text.substr(0, count);
 	}
 
-	std::string TGLString::Last(std::string text, int count)
+	std::string TString::Last(std::string text, int count)
 	{
 		if (text.size() < (unsigned)count)
 			return text;
@@ -169,7 +169,7 @@ namespace TileGameLib
 		return text.substr(text.size() - count, count);
 	}
 
-	std::string TGLString::RemoveFirst(std::string text)
+	std::string TString::RemoveFirst(std::string text)
 	{
 		if (text.size() > 0)
 			return text.substr(1, text.size());
@@ -177,7 +177,7 @@ namespace TileGameLib
 		return "";
 	}
 
-	std::string TGLString::RemoveLast(std::string text)
+	std::string TString::RemoveLast(std::string text)
 	{
 		if (text.size() > 0)
 			return text.substr(0, text.size() - 1);
@@ -185,19 +185,19 @@ namespace TileGameLib
 		return "";
 	}
 
-	std::string TGLString::RemoveFirstAndLast(std::string text)
+	std::string TString::RemoveFirstAndLast(std::string text)
 	{
 		text = RemoveFirst(text);
 		text = RemoveLast(text);
 		return text;
 	}
 
-	std::string TGLString::Skip(std::string text, int count)
+	std::string TString::Skip(std::string text, int count)
 	{
 		return text.substr(count);
 	}
 
-	std::string TGLString::ToUpper(std::string text)
+	std::string TString::ToUpper(std::string text)
 	{
 		for (unsigned i = 0; i < text.size(); i++)
 			text[i] = toupper(text[i]);
@@ -205,7 +205,7 @@ namespace TileGameLib
 		return text;
 	}
 
-	std::string TGLString::ToLower(std::string text)
+	std::string TString::ToLower(std::string text)
 	{
 		for (unsigned i = 0; i < text.size(); i++)
 			text[i] = tolower(text[i]);
@@ -213,7 +213,7 @@ namespace TileGameLib
 		return text;
 	}
 
-	std::string TGLString::RemoveAll(std::string text, std::string chars)
+	std::string TString::RemoveAll(std::string text, std::string chars)
 	{
 		for (unsigned int i = 0; i < chars.length(); i++) {
 			text.erase(remove(text.begin(), text.end(), chars[i]), text.end());
@@ -221,7 +221,7 @@ namespace TileGameLib
 		return text;
 	}
 
-	int TGLString::ShiftChar(int ch)
+	int TString::ShiftChar(int ch)
 	{
 		switch (ch) {
 		case '1': return '!';
@@ -249,26 +249,26 @@ namespace TileGameLib
 		return ch;
 	}
 
-	std::string TGLString::PadZero(int number, int digits)
+	std::string TString::PadZero(int number, int digits)
 	{
 		std::string fmt = "%0";
-		fmt += TGLString::ToString(digits);
+		fmt += TString::ToString(digits);
 		fmt += "i";
 
-		return TGLString::Format(fmt.c_str(), number);
+		return TString::Format(fmt.c_str(), number);
 	}
 
-	bool TGLString::Contains(std::string text, char search)
+	bool TString::Contains(std::string text, char search)
 	{
 		return text.find(search) != std::string::npos;
 	}
 
-	bool TGLString::Contains(std::string text, std::string search)
+	bool TString::Contains(std::string text, std::string search)
 	{
 		return text.find(search) != std::string::npos;
 	}
 
-	std::string TGLString::Join(std::vector<std::string> strings, std::string inBetween)
+	std::string TString::Join(std::vector<std::string> strings, std::string inBetween)
 	{
 		std::string str = "";
 		for (int i = 0; i < strings.size(); i++) {
@@ -282,7 +282,7 @@ namespace TileGameLib
 		return str;
 	}
 
-	std::string TGLString::Repeat(std::string text, int times)
+	std::string TString::Repeat(std::string text, int times)
 	{
 		std::string str = "";
 		for (int i = 0; i < times; i++) {
@@ -291,31 +291,31 @@ namespace TileGameLib
 		return str;
 	}
 
-	int TGLString::FindFirst(std::string text, char ch)
+	int TString::FindFirst(std::string text, char ch)
 	{
 		int index = text.find_first_of(ch);
 		return index != std::string::npos ? index : -1;
 	}
 
-	int TGLString::FindFirst(std::string text, std::string substring)
+	int TString::FindFirst(std::string text, std::string substring)
 	{
 		int index = text.find_first_of(substring);
 		return index != std::string::npos ? index : -1;
 	}
 
-	int TGLString::FindLast(std::string text, char ch)
+	int TString::FindLast(std::string text, char ch)
 	{
 		int index = text.find_last_of(ch);
 		return index != std::string::npos ? index : -1;
 	}
 
-	int TGLString::FindLast(std::string text, std::string substring)
+	int TString::FindLast(std::string text, std::string substring)
 	{
 		int index = text.find_last_of(substring);
 		return index != std::string::npos ? index : -1;
 	}
 
-	std::string TGLString::Replace(std::string text, std::string search, std::string repl)
+	std::string TString::Replace(std::string text, std::string search, std::string repl)
 	{
 		std::string replaced = std::string(text);
 		if (search.empty())

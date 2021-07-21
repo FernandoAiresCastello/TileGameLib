@@ -7,15 +7,14 @@
 #pragma once
 #include <SDL.h>
 #include <string>
-#include <tuple>
-#include "TGLGlobal.h"
-#include "TGLClass.h"
-#include "TGLCharset.h"
-#include "TGLPalette.h"
+#include "TGlobal.h"
+#include "TClass.h"
+#include "TCharset.h"
+#include "TPalette.h"
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TGLWindow : TGLClass
+	class TILEGAMELIB_API TWindow : TClass
 	{
 	public:
 		const int ScreenWidth;
@@ -25,10 +24,10 @@ namespace TileGameLib
 		const int Cols;
 		const int Rows;
 
-		TGLWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen);
-		TGLWindow(int wScr, int hScr, int zoom, bool fullscreen);
-		TGLWindow(const TGLWindow& other) = delete;
-		~TGLWindow();
+		TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen);
+		TWindow(int wScr, int hScr, int zoom, bool fullscreen);
+		TWindow(const TWindow& other) = delete;
+		~TWindow();
 
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
@@ -37,8 +36,11 @@ namespace TileGameLib
 		void SetIcon(std::string iconfile);
 		void SaveScreenshot(std::string file);
 		void Update();
-		void DrawChar(TGLCharset* chars, TGLPalette* pal, 
-			TGLCharsetIndex chrix, TGLPaletteIndex fgcix, TGLPaletteIndex bgcix, int x, int y);
+		void Clear(TPalette* pal, TPaletteIndex ix);
+		void DrawChar(TCharset* chars, TPalette* pal, 
+			TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawString(TCharset* chars, TPalette* pal,
+			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 
 	private:
 		int* Buffer;
@@ -48,15 +50,11 @@ namespace TileGameLib
 		const int PixelFormat;
 		const int BufferLength;
 
-		struct GridPosition {
-			int X;
-			int Y;
-		};
+		struct GridPosition { int X, Y; };
+		std::vector<std::vector<GridPosition>> Grid;
 
-		std::vector<std::vector<GridPosition>> GridPositions;
-
-		void Clear(TGLColorRGB rgb);
-		void SetPixel(int x, int y, TGLColorRGB rgb);
-		void PremultiplyGridPositions();
+		void ClearToRGB(TColorRGB rgb);
+		void SetPixel(int x, int y, TColorRGB rgb);
+		void PremultiplyGrid();
 	};
 }

@@ -8,12 +8,12 @@
 
 #include <string>
 #include <vector>
-#include "TGLGlobal.h"
-#include "TGLClass.h"
+#include "TGlobal.h"
+#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TGLUtil : TGLClass
+	class TILEGAMELIB_API TUtil : TClass
 	{
 	public:
 		static void Randomize();

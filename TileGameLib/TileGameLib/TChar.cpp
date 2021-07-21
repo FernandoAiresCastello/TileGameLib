@@ -5,27 +5,27 @@
 
 =============================================================================*/
 #include <sstream>
-#include "TGLChar.h"
-#include "TGLString.h"
-#include "TGLString.h"
+#include "TChar.h"
+#include "TString.h"
+#include "TString.h"
 
 namespace TileGameLib
 {
-	const int TGLChar::Width = 8;
-	const int TGLChar::Height = 8;
-	const int TGLChar::Size = Width * Height;
+	const int TChar::Width = 8;
+	const int TChar::Height = 8;
+	const int TChar::Size = Width * Height;
 
-	TGLChar::TGLChar()
+	TChar::TChar()
 	{
 		Clear();
 	}
 
-	TGLChar::TGLChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
+	TChar::TChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
 	{
 		SetFromBytes(row0, row1, row2, row3, row4, row5, row6, row7);
 	}
 
-	TGLChar::TGLChar(const TGLChar& other)
+	TChar::TChar(const TChar& other)
 	{
 		PixelRow0 = other.PixelRow0;
 		PixelRow1 = other.PixelRow1;
@@ -37,11 +37,11 @@ namespace TileGameLib
 		PixelRow7 = other.PixelRow7;
 	}
 
-	TGLChar::~TGLChar()
+	TChar::~TChar()
 	{
 	}
 
-	bool TGLChar::Equals(TGLChar& ch)
+	bool TChar::Equals(TChar& ch)
 	{
 		return
 			PixelRow0 == ch.PixelRow0 &&
@@ -54,7 +54,7 @@ namespace TileGameLib
 			PixelRow7 == ch.PixelRow7;
 	}
 
-	void TGLChar::SetEqual(TGLChar& other)
+	void TChar::SetEqual(TChar& other)
 	{
 		PixelRow0 = other.PixelRow0;
 		PixelRow1 = other.PixelRow1;
@@ -66,7 +66,7 @@ namespace TileGameLib
 		PixelRow7 = other.PixelRow7;
 	}
 
-	void TGLChar::Clear()
+	void TChar::Clear()
 	{
 		PixelRow0 = 0;
 		PixelRow1 = 0;
@@ -78,7 +78,7 @@ namespace TileGameLib
 		PixelRow7 = 0;
 	}
 
-	std::vector<byte> TGLChar::GetBytes()
+	std::vector<byte> TChar::GetBytes()
 	{
 		std::vector<byte> bytes;
 		bytes.push_back(PixelRow0);
@@ -92,7 +92,7 @@ namespace TileGameLib
 		return bytes;
 	}
 
-	void TGLChar::SetFromBytes(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
+	void TChar::SetFromBytes(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
 	{
 		PixelRow0 = row0;
 		PixelRow1 = row1;
@@ -104,7 +104,7 @@ namespace TileGameLib
 		PixelRow7 = row7;
 	}
 
-	void TGLChar::SetFromBytes(std::vector<byte> bytes)
+	void TChar::SetFromBytes(std::vector<byte> bytes)
 	{
 		PixelRow0 = bytes[0];
 		PixelRow1 = bytes[1];
@@ -116,42 +116,42 @@ namespace TileGameLib
 		PixelRow7 = bytes[7];
 	}
 
-	void TGLChar::SetFromBinaryString(std::string binary)
+	void TChar::SetFromBinaryString(std::string binary)
 	{
-		const auto rows = TGLString::SplitIntoEqualSizedStrings(binary, TGLChar::Width);
+		const auto rows = TString::SplitIntoEqualSizedStrings(binary, TChar::Width);
 		
-		PixelRow0 = TGLString::BinaryToInt(rows[0]);
-		PixelRow1 = TGLString::BinaryToInt(rows[1]);
-		PixelRow2 = TGLString::BinaryToInt(rows[2]);
-		PixelRow3 = TGLString::BinaryToInt(rows[3]);
-		PixelRow4 = TGLString::BinaryToInt(rows[4]);
-		PixelRow5 = TGLString::BinaryToInt(rows[5]);
-		PixelRow6 = TGLString::BinaryToInt(rows[6]);
-		PixelRow7 = TGLString::BinaryToInt(rows[7]);
+		PixelRow0 = TString::BinaryToInt(rows[0]);
+		PixelRow1 = TString::BinaryToInt(rows[1]);
+		PixelRow2 = TString::BinaryToInt(rows[2]);
+		PixelRow3 = TString::BinaryToInt(rows[3]);
+		PixelRow4 = TString::BinaryToInt(rows[4]);
+		PixelRow5 = TString::BinaryToInt(rows[5]);
+		PixelRow6 = TString::BinaryToInt(rows[6]);
+		PixelRow7 = TString::BinaryToInt(rows[7]);
 	}
 
-	void TGLChar::SetFromBinaryString(char* binary)
+	void TChar::SetFromBinaryString(char* binary)
 	{
 		SetFromBinaryString(std::string(binary));
 	}
 
-	std::string TGLChar::ToBinaryString()
+	std::string TChar::ToBinaryString()
 	{
 		std::stringstream buf;
 
-		buf << TGLString::IntToBinary(PixelRow0, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow1, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow2, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow3, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow4, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow5, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow6, TGLChar::Width);
-		buf << TGLString::IntToBinary(PixelRow7, TGLChar::Width);
+		buf << TString::IntToBinary(PixelRow0, TChar::Width);
+		buf << TString::IntToBinary(PixelRow1, TChar::Width);
+		buf << TString::IntToBinary(PixelRow2, TChar::Width);
+		buf << TString::IntToBinary(PixelRow3, TChar::Width);
+		buf << TString::IntToBinary(PixelRow4, TChar::Width);
+		buf << TString::IntToBinary(PixelRow5, TChar::Width);
+		buf << TString::IntToBinary(PixelRow6, TChar::Width);
+		buf << TString::IntToBinary(PixelRow7, TChar::Width);
 
 		return buf.str();
 	}
 
-	void TGLChar::ToBinaryString(char* dest)
+	void TChar::ToBinaryString(char* dest)
 	{
 		std::string binary = ToBinaryString();
 		for (int i = 0; i < binary.length(); i++)

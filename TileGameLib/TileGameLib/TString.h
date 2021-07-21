@@ -8,12 +8,12 @@
 
 #include <string>
 #include <vector>
-#include "TGLGlobal.h"
-#include "TGLClass.h"
+#include "TGlobal.h"
+#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TGLString : TGLClass
+	class TILEGAMELIB_API TString : TClass
 	{
 	public:
 		static std::string Trim(std::string text);

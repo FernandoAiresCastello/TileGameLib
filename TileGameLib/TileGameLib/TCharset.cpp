@@ -5,78 +5,78 @@
 
 =============================================================================*/
 #include <cstdio>
-#include "TGLCharset.h"
-#include "TGLChar.h"
-#include "TGLString.h"
+#include "TCharset.h"
+#include "TChar.h"
+#include "TString.h"
 
 namespace TileGameLib
 {
-	TGLCharset::TGLCharset()
+	TCharset::TCharset()
 	{
 		InitDefault();
 	}
 
-	TGLCharset::TGLCharset(const TGLCharset& other)
+	TCharset::TCharset(const TCharset& other)
 	{
 		Chars.clear();
 		for (auto& ch : other.Chars)
 			Add(ch);
 	}
 
-	TGLCharset::~TGLCharset()
+	TCharset::~TCharset()
 	{
 	}
 
-	std::vector<TGLChar>& TGLCharset::GetChars()
+	std::vector<TChar>& TCharset::GetChars()
 	{
 		return Chars;
 	}
 
-	TGLChar& TGLCharset::Get(TGLCharsetIndex ix)
+	TChar& TCharset::Get(TCharsetIndex ix)
 	{
 		return Chars[ix];
 	}
 
-	std::vector<byte> TGLCharset::GetBytes(TGLCharsetIndex ix)
+	std::vector<byte> TCharset::GetBytes(TCharsetIndex ix)
 	{
 		return Chars[ix].GetBytes();
 	}
 
-	int TGLCharset::GetSize()
+	int TCharset::GetSize()
 	{
 		return Chars.size();
 	}
 
-	void TGLCharset::Clear()
+	void TCharset::Clear()
 	{
 		for (unsigned i = 0; i < Chars.size(); i++)
 			Set(i, 0, 0, 0, 0, 0, 0, 0, 0);
 	}
 
-	void TGLCharset::DeleteAll()
+	void TCharset::DeleteAll()
 	{
 		Chars.clear();
 	}
 
-	void TGLCharset::Add(TGLChar ch)
+	void TCharset::Add(TChar ch)
 	{
 		Chars.push_back(ch);
 	}
 
-	void TGLCharset::AddBlank(int count)
+	void TCharset::AddBlank(int count)
 	{
 		for (int i = 0; i < count; i++)
-			Add(TGLChar());
+			Add(TChar());
 	}
 
-	void TGLCharset::Add(int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
+	void TCharset::Add(int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
 	{
-		Add(TGLChar(row0, row1, row2, row3, row4, row5, row6, row7));
+		Add(TChar(row0, row1, row2, row3, row4, row5, row6, row7));
 	}
 
-	void TGLCharset::Set(TGLCharsetIndex ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
+	void TCharset::Set(TCharsetIndex ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
 	{
-		TGLChar& chars = Get(ix);
+		TChar& chars = Get(ix);
 
 		chars.PixelRow0 = row0;
 		chars.PixelRow1 = row1;
@@ -88,41 +88,41 @@ namespace TileGameLib
 		chars.PixelRow7 = row7;
 	}
 
-	void TGLCharset::Set(TGLCharsetIndex ix,
+	void TCharset::Set(TCharsetIndex ix,
 		std::string row0, std::string row1, std::string row2, std::string row3, 
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
 		Set(ix, 
-			TGLString::BinaryToInt(row0),
-			TGLString::BinaryToInt(row1), 
-			TGLString::BinaryToInt(row2), 
-			TGLString::BinaryToInt(row3), 
-			TGLString::BinaryToInt(row4), 
-			TGLString::BinaryToInt(row5), 
-			TGLString::BinaryToInt(row6), 
-			TGLString::BinaryToInt(row7));
+			TString::BinaryToInt(row0),
+			TString::BinaryToInt(row1), 
+			TString::BinaryToInt(row2), 
+			TString::BinaryToInt(row3), 
+			TString::BinaryToInt(row4), 
+			TString::BinaryToInt(row5), 
+			TString::BinaryToInt(row6), 
+			TString::BinaryToInt(row7));
 	}
 
-	void TGLCharset::Set(TGLCharsetIndex ix, TGLChar& ch)
+	void TCharset::Set(TCharsetIndex ix, TChar& ch)
 	{
 		Get(ix).SetEqual(ch);
 	}
 
-	void TGLCharset::CopyChar(TGLCharsetIndex dstix, TGLCharsetIndex srcix)
+	void TCharset::CopyChar(TCharsetIndex dstix, TCharsetIndex srcix)
 	{
-		TGLChar& src = Get(srcix);
-		TGLChar& dst = Get(dstix);
+		TChar& src = Get(srcix);
+		TChar& dst = Get(dstix);
 		dst.SetEqual(src);
 	}
 
-	void TGLCharset::SetEqual(TGLCharset& other)
+	void TCharset::SetEqual(TCharset& other)
 	{
 		Chars.clear();
 		for (auto& ch : other.Chars)
 			Add(ch);
 	}
 
-	void TGLCharset::InitDefault()
+	void TCharset::InitDefault()
 	{
 		DeleteAll();
 		

@@ -8,12 +8,12 @@
 
 #include <vector>
 #include <string>
-#include "TGLGlobal.h"
-#include "TGLClass.h"
+#include "TGlobal.h"
+#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TGLChar : TGLClass
+	class TILEGAMELIB_API TChar : TClass
 	{
 	public:
 		static const int Width;
@@ -23,13 +23,13 @@ namespace TileGameLib
 		byte PixelRow0, PixelRow1, PixelRow2, PixelRow3;
 		byte PixelRow4, PixelRow5, PixelRow6, PixelRow7;
 
-		TGLChar();
-		TGLChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7);
-		TGLChar(const TGLChar& other);
-		~TGLChar();
+		TChar();
+		TChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7);
+		TChar(const TChar& other);
+		~TChar();
 
-		bool Equals(TGLChar& ch);
-		void SetEqual(TGLChar& other);
+		bool Equals(TChar& ch);
+		void SetEqual(TChar& other);
 		void Clear();
 		std::vector<byte> GetBytes();
 		void SetFromBytes(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7);

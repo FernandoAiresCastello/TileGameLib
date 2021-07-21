@@ -19,16 +19,16 @@
 #include <cstdlib>
 #include <ctime>
 #include <sys/stat.h>
-#include "TGLUtil.h"
+#include "TUtil.h"
 
 namespace TileGameLib
 {
-	void TGLUtil::Randomize()
+	void TUtil::Randomize()
 	{
 		srand((unsigned int)time(nullptr));
 	}
 
-	int TGLUtil::Random(int max)
+	int TUtil::Random(int max)
 	{
 		max++;
 
@@ -44,7 +44,7 @@ namespace TileGameLib
 		return (unsigned int)value;
 	}
 
-	int TGLUtil::Random(int min, int max)
+	int TUtil::Random(int min, int max)
 	{
 		std::random_device rd;
 		std::mt19937 gen(rd());
@@ -52,7 +52,7 @@ namespace TileGameLib
 		return static_cast<int>(dis(gen));
 	}
 
-	byte TGLUtil::RandomByte()
+	byte TUtil::RandomByte()
 	{
 		std::random_device rd;
 		std::mt19937 gen(rd());
@@ -60,7 +60,7 @@ namespace TileGameLib
 		return static_cast<byte>(dis(gen));
 	}
 
-	std::string TGLUtil::RandomHex(int bytes)
+	std::string TUtil::RandomHex(int bytes)
 	{
 		std::stringstream ss;
 		for (auto i = 0; i < bytes; i++) {
@@ -73,12 +73,12 @@ namespace TileGameLib
 		return ss.str();
 	}
 
-	std::string TGLUtil::RandomString(int length)
+	std::string TUtil::RandomString(int length)
 	{
 		return RandomString(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 	}
 
-	std::string TGLUtil::RandomString(int length, std::string alphabet)
+	std::string TUtil::RandomString(int length, std::string alphabet)
 	{
 		std::stringbuf sb;
 		for (auto i = 0; i < length; i++) {
@@ -88,7 +88,7 @@ namespace TileGameLib
 		return sb.str();
 	}
 
-	std::string TGLUtil::RandomLetters(int length, int characterCasing)
+	std::string TUtil::RandomLetters(int length, int characterCasing)
 	{
 		if (characterCasing == 0) {
 			return RandomString(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
@@ -103,12 +103,12 @@ namespace TileGameLib
 		return "";
 	}
 
-	std::string TGLUtil::RandomDigits(int length)
+	std::string TUtil::RandomDigits(int length)
 	{
 		return RandomString(length, "0123456789");
 	}
 
-	bool TGLUtil::RandomChance(int rate)
+	bool TUtil::RandomChance(int rate)
 	{
 		if (rate >= 100)
 			return true;
@@ -118,37 +118,37 @@ namespace TileGameLib
 		return false;
 	}
 
-	int TGLUtil::Percent(int value, int percentage)
+	int TUtil::Percent(int value, int percentage)
 	{
 		return value * percentage / 100;
 	}
 
-	void TGLUtil::Pause(int ms, bool pumpEvents)
+	void TUtil::Pause(int ms, bool pumpEvents)
 	{
 		SDL_Delay(ms);
 		if (pumpEvents)
 			PumpEvents();
 	}
 
-	void TGLUtil::PumpEvents()
+	void TUtil::PumpEvents()
 	{
 		SDL_PumpEvents();
 	}
 
-	void TGLUtil::Error(std::string message)
+	void TUtil::Error(std::string message)
 	{
 		MessageBox(nullptr, message.c_str(), "Error", 
 			MB_OK | MB_ICONERROR | MB_TASKMODAL | MB_SETFOREGROUND);
 	}
 
-	void TGLUtil::Abort(std::string message)
+	void TUtil::Abort(std::string message)
 	{
 		Error(message);
 		SDL_Quit();
 		exit(EXIT_FAILURE);
 	}
 
-	void TGLUtil::IntToBytes(uint val, byte bytes[4])
+	void TUtil::IntToBytes(uint val, byte bytes[4])
 	{
 		uint32_t uval = val;
 		bytes[0] = uval;
@@ -157,14 +157,14 @@ namespace TileGameLib
 		bytes[3] = uval >> 24;
 	}
 
-	uint TGLUtil::BytesToInt(byte bytes[4])
+	uint TUtil::BytesToInt(byte bytes[4])
 	{
 		uint32_t u0 = bytes[0], u1 = bytes[1], u2 = bytes[2], u3 = bytes[3];
 		uint32_t uval = u0 | (u1 << 8) | (u2 << 16) | (u3 << 24);
 		return uval;
 	}
 
-	void TGLUtil::ShortToBytes(ushort val, byte bytes[2])
+	void TUtil::ShortToBytes(ushort val, byte bytes[2])
 	{
 		byte intBytes[4];
 		IntToBytes(val, intBytes);
@@ -172,7 +172,7 @@ namespace TileGameLib
 		bytes[1] = intBytes[1];
 	}
 
-	ushort TGLUtil::BytesToShort(byte bytes[2])
+	ushort TUtil::BytesToShort(byte bytes[2])
 	{
 		byte intBytes[4];
 		intBytes[0] = bytes[0];
@@ -180,7 +180,7 @@ namespace TileGameLib
 		return BytesToInt(intBytes);
 	}
 
-	std::string TGLUtil::DateTime()
+	std::string TUtil::DateTime()
 	{
 		auto now = std::chrono::system_clock::now();
 		auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -190,7 +190,7 @@ namespace TileGameLib
 		return ss.str();
 	}
 
-	unsigned TGLUtil::WrapAdd(unsigned val, int dx, const unsigned lower, const unsigned upper)
+	unsigned TUtil::WrapAdd(unsigned val, int dx, const unsigned lower, const unsigned upper)
 	{
 		while (dx < 0) {
 			if (val == lower)
@@ -209,17 +209,17 @@ namespace TileGameLib
 		return val;
 	}
 
-	int TGLUtil::GetDigitCount(unsigned number)
+	int TUtil::GetDigitCount(unsigned number)
 	{
 		return number > 0 ? (int)log10((double)number) + 1 : 1;
 	}
 
-	std::string TGLUtil::GenerateId()
+	std::string TUtil::GenerateId()
 	{
 		return GenerateId(4);
 	}
 
-	std::string TGLUtil::GenerateId(int length)
+	std::string TUtil::GenerateId(int length)
 	{
 		return RandomHex(length);
 	}

@@ -1,73 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="TGLUtil.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLString.h">
-      <Filter>Util</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLGlobal.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="TileGameLib.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="TGLColor.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLPalette.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLCharset.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLChar.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLTile.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLClass.h">
+    <ClInclude Include="TClass.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="TGLTileSequence.h">
+    <ClInclude Include="TGlobal.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="TChar.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="TGLWindow.h">
+    <ClInclude Include="TCharset.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TPalette.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TColor.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TTile.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TTileSequence.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TWindow.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TKey.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="TUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="TString.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TGLString.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLUtil.cpp">
-      <Filter>Util</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLColor.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLPalette.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLCharset.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLChar.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLTile.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLClass.cpp">
+    <ClCompile Include="TClass.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="TGLTileSequence.cpp">
+    <ClCompile Include="TChar.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="TGLWindow.cpp">
+    <ClCompile Include="TCharset.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TPalette.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TColor.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TTile.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TTileSequence.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TWindow.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TKey.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="TString.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,9 @@
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{01d4d7dc-cf4d-42d3-bdf1-8e5636a1a814}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{d590122f-bde8-428b-b2e4-381998333d43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

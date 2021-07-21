@@ -2,22 +2,20 @@
 
 	 TileGameLib
 	 2018-2021 Developed by Fernando Aires Castello
-
+	 
 =============================================================================*/
-#include "TGLClass.h"
+#pragma once
+#include <string>
+#include "TGlobal.h"
 
 namespace TileGameLib
 {
-	TGLClass::TGLClass()
+	class TILEGAMELIB_API TClass
 	{
-	}
-	
-	TGLClass::~TGLClass()
-	{
-	}
+	public:
+		TClass();
+		virtual ~TClass();
 
-	std::string TGLClass::ToString()
-	{
-		return "TGLClass";
-	}
+		virtual std::string ToString();
+	};
 }

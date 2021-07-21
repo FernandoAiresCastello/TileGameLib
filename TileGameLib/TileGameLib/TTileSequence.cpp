@@ -4,68 +4,68 @@
 	 2018-2021 Developed by Fernando Aires Castello
 
 =============================================================================*/
-#include "TGLTileSequence.h"
+#include "TTileSequence.h"
 
 namespace TileGameLib
 {
-	TGLTileSequence::TGLTileSequence()
+	TTileSequence::TTileSequence()
 	{
 	}
 	
-	TGLTileSequence::TGLTileSequence(const TGLTileSequence& other)
+	TTileSequence::TTileSequence(const TTileSequence& other)
 	{
 		Tiles.clear();
 		for (auto& tile : other.Tiles)
 			Add(tile);
 	}
 
-	TGLTileSequence::~TGLTileSequence()
+	TTileSequence::~TTileSequence()
 	{
 	}
 
-	std::vector<TGLTile>& TGLTileSequence::GetTiles()
+	std::vector<TTile>& TTileSequence::GetTiles()
 	{
 		return Tiles;
 	}
 
-	TGLTile& TGLTileSequence::Get(int ix)
+	TTile& TTileSequence::Get(int ix)
 	{
 		return Tiles[ix];
 	}
 
-	void TGLTileSequence::Set(int ix, TGLTile tile)
+	void TTileSequence::Set(int ix, TTile tile)
 	{
 		Tiles[ix] = tile;
 	}
 
-	void TGLTileSequence::Add(TGLTile tile)
+	void TTileSequence::Add(TTile tile)
 	{
 		Tiles.push_back(tile);
 	}
 
-	void TGLTileSequence::AddBlank(int count)
+	void TTileSequence::AddBlank(int count)
 	{
 		for (int i = 0; i < count; i++)
-			Add(TGLTile());
+			Add(TTile());
 	}
 
-	int TGLTileSequence::GetSize()
+	int TTileSequence::GetSize()
 	{
 		return Tiles.size();
 	}
 
-	void TGLTileSequence::Clear()
+	void TTileSequence::Clear()
 	{
 		for (int i = 0; i < Tiles.size(); i++)
-			Set(i, TGLTile());
+			Set(i, TTile());
 	}
 
-	void TGLTileSequence::DeleteAll()
+	void TTileSequence::DeleteAll()
 	{
 		Tiles.clear();
 	}
 
-	void TGLTileSequence::SetEqual(TGLTileSequence& other)
+	void TTileSequence::SetEqual(TTileSequence& other)
 	{
 		Tiles.clear();
 		for (auto& tile : other.Tiles)

@@ -8,69 +8,69 @@
 =============================================================================*/
 
 #include <climits>
-#include "TGLColor.h"
+#include "TColor.h"
 
 namespace TileGameLib
 {
-	TGLColor::TGLColor() : 
-		TGLColor(0, 0, 0)
+	TColor::TColor() : 
+		TColor(0, 0, 0)
 	{
 	}
 
-	TGLColor::TGLColor(const TGLColor& other) : 
-		TGLColor(other.R, other.G, other.B)
+	TColor::TColor(const TColor& other) : 
+		TColor(other.R, other.G, other.B)
 	{
 	}
 
-	TGLColor::TGLColor(byte r, byte g, byte b) : 
+	TColor::TColor(byte r, byte g, byte b) : 
 		R(r), G(g), B(b)
 	{
 	}
 
-	TGLColor::TGLColor(TGLColorRGB rgb)
+	TColor::TColor(TColorRGB rgb)
 	{
 		Set(rgb);
 	}
 
-	TGLColor::~TGLColor()
+	TColor::~TColor()
 	{
 	}
 
-	TGLColorRGB TGLColor::ToColorRGB(byte r, byte g, byte b)
+	TColorRGB TColor::ToColorRGB(byte r, byte g, byte b)
 	{
 		return b | (g << CHAR_BIT) | (r << CHAR_BIT * 2);
 	}
 
-	TGLColor TGLColor::FromColorRGB(TGLColorRGB rgb)
+	TColor TColor::FromColorRGB(TColorRGB rgb)
 	{
-		return TGLColor(rgb);
+		return TColor(rgb);
 	}
 
-	bool TGLColor::Equals(TGLColor& other)
+	bool TColor::Equals(TColor& other)
 	{
 		return R == other.R && G == other.G && B == other.B;
 	}
 
-	void TGLColor::SetEqual(TGLColor& other)
+	void TColor::SetEqual(TColor& other)
 	{
 		R = other.R;
 		G = other.G;
 		B = other.B;
 	}
 
-	TGLColorRGB TGLColor::ToColorRGB()
+	TColorRGB TColor::ToColorRGB()
 	{
 		return B | (G << CHAR_BIT) | (R << CHAR_BIT * 2);
 	}
 
-	void TGLColor::Set(TGLColorRGB rgb)
+	void TColor::Set(TColorRGB rgb)
 	{
 		R = (rgb & 0xff0000) >> 16;
 		G = (rgb & 0x00ff00) >> 8;
 		B = (rgb & 0x0000ff);
 	}
 
-	void TGLColor::Set(byte r, byte g, byte b)
+	void TColor::Set(byte r, byte g, byte b)
 	{
 		R = r;
 		G = g;

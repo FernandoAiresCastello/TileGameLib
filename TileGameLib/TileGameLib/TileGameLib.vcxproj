@@ -147,51 +147,53 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TGLChar.h" />
-    <ClInclude Include="TGLCharset.h" />
-    <ClInclude Include="TGLClass.h">
+    <ClInclude Include="TKey.h" />
+    <ClInclude Include="TChar.h" />
+    <ClInclude Include="TCharset.h" />
+    <ClInclude Include="TClass.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TGLPalette.h" />
-    <ClInclude Include="TGLColor.h" />
-    <ClInclude Include="TGLString.h" />
-    <ClInclude Include="TGLGlobal.h" />
-    <ClInclude Include="TGLTile.h">
+    <ClInclude Include="TPalette.h" />
+    <ClInclude Include="TColor.h" />
+    <ClInclude Include="TString.h" />
+    <ClInclude Include="TGlobal.h" />
+    <ClInclude Include="TTile.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TGLTileSequence.h">
+    <ClInclude Include="TTileSequence.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TGLUtil.h" />
-    <ClInclude Include="TGLWindow.h">
+    <ClInclude Include="TUtil.h" />
+    <ClInclude Include="TWindow.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TGLChar.cpp" />
-    <ClCompile Include="TGLCharset.cpp" />
-    <ClCompile Include="TGLClass.cpp">
+    <ClCompile Include="TKey.cpp" />
+    <ClCompile Include="TChar.cpp" />
+    <ClCompile Include="TCharset.cpp" />
+    <ClCompile Include="TClass.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TGLPalette.cpp" />
-    <ClCompile Include="TGLColor.cpp" />
-    <ClCompile Include="TGLString.cpp" />
-    <ClCompile Include="TGLTile.cpp">
+    <ClCompile Include="TPalette.cpp" />
+    <ClCompile Include="TColor.cpp" />
+    <ClCompile Include="TString.cpp" />
+    <ClCompile Include="TTile.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TGLTileSequence.cpp">
+    <ClCompile Include="TTileSequence.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TGLUtil.cpp" />
-    <ClCompile Include="TGLWindow.cpp">
+    <ClCompile Include="TUtil.cpp" />
+    <ClCompile Include="TWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>

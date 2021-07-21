@@ -5,96 +5,96 @@
 
 =============================================================================*/
 #include <cstdio>
-#include "TGLPalette.h"
+#include "TPalette.h"
 
 namespace TileGameLib
 {
-	TGLPalette::TGLPalette()
+	TPalette::TPalette()
 	{
 		InitDefault();
 	}
 
-	TGLPalette::TGLPalette(const TGLPalette& other)
+	TPalette::TPalette(const TPalette& other)
 	{
 		Colors.clear();
 		for (auto& ch : other.Colors)
 			Add(ch);
 	}
 
-	TGLPalette::~TGLPalette()
+	TPalette::~TPalette()
 	{
 	}
 
-	std::vector<TGLColor>& TGLPalette::GetColors()
+	std::vector<TColor>& TPalette::GetColors()
 	{
 		return Colors;
 	}
 
-	TGLColor& TGLPalette::Get(TGLPaletteIndex ix)
+	TColor& TPalette::Get(TPaletteIndex ix)
 	{
 		return Colors[ix];
 	}
 
-	TGLColorRGB TGLPalette::GetColorRGB(TGLPaletteIndex ix)
+	TColorRGB TPalette::GetColorRGB(TPaletteIndex ix)
 	{
 		return Colors[ix].ToColorRGB();
 	}
 
-	int TGLPalette::GetSize()
+	int TPalette::GetSize()
 	{
 		return Colors.size();
 	}
 
-	void TGLPalette::Set(TGLPaletteIndex ix, TGLColorRGB rgb)
+	void TPalette::Set(TPaletteIndex ix, TColorRGB rgb)
 	{
 		Colors[ix].Set(rgb);
 	}
 
-	void TGLPalette::Set(TGLPaletteIndex ix, int r, int g, int b)
+	void TPalette::Set(TPaletteIndex ix, int r, int g, int b)
 	{
 		Colors[ix].Set(r, g, b);
 	}
 
-	void TGLPalette::SetEqual(TGLPalette& other)
+	void TPalette::SetEqual(TPalette& other)
 	{
 		Colors.clear();
 		for (auto& color : other.Colors)
 			Add(color);
 	}
 
-	void TGLPalette::Clear()
+	void TPalette::Clear()
 	{
 		for (int i = 0; i < Colors.size(); i++)
 			Set(i, 0x000000);
 	}
 
-	void TGLPalette::DeleteAll()
+	void TPalette::DeleteAll()
 	{
 		Colors.clear();
 	}
 
-	void TGLPalette::AddBlank(int count)
+	void TPalette::AddBlank(int count)
 	{
 		for (int i = 0; i < count; i++)
-			Add(TGLColor());
+			Add(TColor());
 	}
 
-	void TGLPalette::Add(TGLColor color)
+	void TPalette::Add(TColor color)
 	{
 		Colors.push_back(color);
 	}
 
-	void TGLPalette::Add(int r, int g, int b)
+	void TPalette::Add(int r, int g, int b)
 	{
-		Colors.push_back(TGLColor(r, g, b));
+		Colors.push_back(TColor(r, g, b));
 	}
 
-	void TGLPalette::Add(TGLColorRGB rgb)
+	void TPalette::Add(TColorRGB rgb)
 	{
-		Colors.push_back(TGLColor(rgb));
+		Colors.push_back(TColor(rgb));
 	}
 
-	void TGLPalette::InitDefault()
+	void TPalette::InitDefault()
 	{
 		DeleteAll();
 

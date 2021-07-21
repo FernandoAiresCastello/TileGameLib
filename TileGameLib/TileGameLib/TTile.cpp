@@ -4,30 +4,30 @@
 	 2018-2021 Developed by Fernando Aires Castello
 
 =============================================================================*/
-#include "TGLTile.h"
+#include "TTile.h"
 
 namespace TileGameLib
 {
-	TGLTile::TGLTile() : 
-		TGLTile(0, 0, 0)
+	TTile::TTile() : 
+		TTile(0, 0, 0)
 	{
 	}
 
-	TGLTile::TGLTile(const TGLTile& other) : 
+	TTile::TTile(const TTile& other) : 
 		Char(other.Char), ForeColor(other.ForeColor), BackColor(other.BackColor)
 	{
 	}
 
-	TGLTile::TGLTile(TGLCharsetIndex ch, TGLPaletteIndex fgc, TGLPaletteIndex bgc) :
+	TTile::TTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc) :
 		Char(ch), ForeColor(fgc), BackColor(bgc)
 	{
 	}
 
-	TGLTile::~TGLTile()
+	TTile::~TTile()
 	{
 	}
 
-	bool TGLTile::Equals(TGLTile& other)
+	bool TTile::Equals(TTile& other)
 	{
 		return 
 			Char == other.Char &&
@@ -35,7 +35,7 @@ namespace TileGameLib
 			BackColor == other.BackColor;
 	}
 
-	void TGLTile::SetEqual(TGLTile& other)
+	void TTile::SetEqual(TTile& other)
 	{
 		Char = other.Char;
 		ForeColor = other.ForeColor;
