@@ -7,13 +7,16 @@
 #pragma once
 #include <SDL.h>
 #include <string>
+#include <vector>
 #include "TGlobal.h"
 #include "TClass.h"
-#include "TCharset.h"
-#include "TPalette.h"
 
 namespace TileGameLib
 {
+	class TCharset;
+	class TPalette;
+	class TTile;
+
 	class TILEGAMELIB_API TWindow : TClass
 	{
 	public:
@@ -39,6 +42,7 @@ namespace TileGameLib
 		void Clear(TPalette* pal, TPaletteIndex ix);
 		void DrawChar(TCharset* chars, TPalette* pal, 
 			TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
 		void DrawString(TCharset* chars, TPalette* pal,
 			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 		void DrawString(TCharset* chars, TPalette* pal,

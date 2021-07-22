@@ -6,6 +6,9 @@
 =============================================================================*/
 #include "TWindow.h"
 #include "TChar.h"
+#include "TCharset.h"
+#include "TPalette.h"
+#include "TTile.h"
 
 namespace TileGameLib
 {
@@ -124,7 +127,7 @@ namespace TileGameLib
 		TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{
 		static GridPosition* grid;
-		grid = &Grid[y][x];
+		grid = &(Grid[y][x]);
 		x = grid->X;
 		y = grid->Y;
 
@@ -157,6 +160,11 @@ namespace TileGameLib
 		x = initialX; y++;
 		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
+	}
+
+	void TWindow::DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
+	{
+		DrawChar(chars, pal, tile->Char, tile->ForeColor, tile->BackColor, x, y);
 	}
 
 	void TWindow::DrawString(TCharset* chars, TPalette* pal, 

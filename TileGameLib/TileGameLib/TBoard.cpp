@@ -96,6 +96,11 @@ namespace TileGameLib
 		return !IsWithinBounds(x, y, layer);
 	}
 
+	void TBoard::SetBackColor(TPaletteIndex ix)
+	{
+		SetBackTile(TTile(0, ix, ix));
+	}
+
 	void TBoard::SetBackTile(TTile tile)
 	{
 		BackTiles->DeleteAll();
@@ -107,9 +112,34 @@ namespace TileGameLib
 		BackTiles->SetEqual(tiles);
 	}
 
+	void TBoard::AddBackTile(TTile tile)
+	{
+		BackTiles->Add(tile);
+	}
+
+	void TBoard::AddBackTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
+	{
+		BackTiles->Add(TTile(ch, fgc, bgc));
+	}
+
 	void TBoard::DeleteBackTiles()
 	{
 		BackTiles->DeleteAll();
+	}
+
+	bool TBoard::HasBackTile()
+	{
+		return !BackTiles->IsEmpty();
+	}
+
+	TPaletteIndex TBoard::GetBackColor()
+	{
+		return BackTiles->Get(0)->BackColor;
+	}
+
+	TTile* TBoard::GetBackTile(int ix)
+	{
+		return BackTiles->Get(ix);
 	}
 
 	TTileSequence* TBoard::GetBackTiles()

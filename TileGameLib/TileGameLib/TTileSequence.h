@@ -22,7 +22,7 @@ namespace TileGameLib
 		~TTileSequence();
 
 		std::vector<TTile>& GetTiles();
-		TTile& Get(int ix);
+		TTile* Get(int ix);
 		void Set(int ix, TTile tile);
 		void Add(TTile tile);
 		void AddBlank(int count = 1);

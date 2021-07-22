@@ -20,6 +20,7 @@ namespace TileGameLib
 	class TILEGAMELIB_API TObject : TClass
 	{
 	public:
+		TObject();
 		TObject(TTile tile);
 		TObject(TTileSequence tiles);
 		TObject(const TObject& other);
@@ -30,11 +31,15 @@ namespace TileGameLib
 		int GetX();
 		int GetY();
 		int GetLayer();
+		void AddTile(TTile tile);
+		void AddTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
 		void SetSingleTile(TTile tile);
 		void SetSingleTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
 		TTile* GetTile(int ix);
 		TTile* GetSingleTile();
+		bool HasTiles();
 		void SetTilesEqual(TObject& other);
+		void DeleteTiles();
 		void SetPropertiesEqual(TObject& other);
 		bool IsVisible();
 		void SetVisible(bool visible);

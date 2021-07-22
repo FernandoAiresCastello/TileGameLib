@@ -39,9 +39,12 @@ namespace TileGameLib
 		return Tiles;
 	}
 
-	TTile& TTileSequence::Get(int ix)
+	TTile* TTileSequence::Get(int ix)
 	{
-		return Tiles[ix];
+		if (!IsEmpty())
+			return &(Tiles[ix % Tiles.size()]);
+
+		return nullptr;
 	}
 
 	void TTileSequence::Set(int ix, TTile tile)

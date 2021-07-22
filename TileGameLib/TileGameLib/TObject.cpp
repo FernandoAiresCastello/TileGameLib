@@ -14,6 +14,16 @@ constexpr int IdLength = 10;
 
 namespace TileGameLib
 {
+	TObject::TObject()
+	{
+		Id = TUtil::RandomString(IdLength);
+		X = -1;
+		Y = -1;
+		Layer = -1;
+		Board = nullptr;
+		Tiles = new TTileSequence();
+	}
+
 	TObject::TObject(TTile tile)
 	{
 		Id = TUtil::RandomString(IdLength);
@@ -74,6 +84,16 @@ namespace TileGameLib
 		return Layer;
 	}
 
+	void TObject::AddTile(TTile tile)
+	{
+		Tiles->Add(tile);
+	}
+
+	void TObject::AddTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
+	{
+		AddTile(TTile(ch, fgc, bgc));
+	}
+
 	void TObject::SetSingleTile(TTile tile)
 	{
 		Tiles->DeleteAll();
@@ -87,23 +107,30 @@ namespace TileGameLib
 
 	TTile* TObject::GetTile(int ix)
 	{
-		if (ix >= 0 && ix < Tiles->GetSize())
-			return &Tiles->Get(ix);
-
-		return nullptr;
+		return Tiles->Get(ix);
 	}
 
 	TTile* TObject::GetSingleTile()
 	{
 		if (!Tiles->IsEmpty())
-			return &Tiles->Get(0);
+			return Tiles->Get(0);
 
 		return nullptr;
+	}
+
+	bool TObject::HasTiles()
+	{
+		return !Tiles->IsEmpty();
 	}
 
 	void TObject::SetTilesEqual(TObject& other)
 	{
 		Tiles->SetEqual(*other.Tiles);
+	}
+
+	void TObject::DeleteTiles()
+	{
+		Tiles->DeleteAll();
 	}
 
 	void TObject::SetPropertiesEqual(TObject& other)
