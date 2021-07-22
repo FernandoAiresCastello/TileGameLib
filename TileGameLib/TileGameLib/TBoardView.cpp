@@ -22,7 +22,8 @@ namespace TileGameLib
 		ScrollX(0), ScrollY(0),
 		Animating(true), AnimationFrame(0), AnimationDelay(animationDelay)
 	{
-		AnimationThread = std::thread(&TBoardView::AdvanceAnimationFrameThread, this);
+		if (animationDelay > 0)
+			AnimationThread = std::thread(&TBoardView::AdvanceAnimationFrameThread, this);
 	}
 
 	TBoardView::~TBoardView()
@@ -81,9 +82,9 @@ namespace TileGameLib
 		for (int viewY = Y; viewY < Y + Rows; viewY++) {
 			for (int viewX = X; viewX < X + Cols; viewX++) {
 				TObject* o = Board->GetObject(objX, objY, layer);
-				if (Board->HasBackTile() && layer == 0 && (o == nullptr || !o->HasTiles()))
+				if (Board->HasBackTile() && layer == 0 && (o == nullptr || !o->HasTiles() || !o->IsVisible()))
 					DrawBackTile(viewX, viewY);
-				else if (o != nullptr)
+				else if (o != nullptr && o->IsVisible())
 					DrawObject(o, viewX, viewY);
 
 				objX++;

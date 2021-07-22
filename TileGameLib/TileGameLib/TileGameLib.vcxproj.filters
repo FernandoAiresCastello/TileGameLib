@@ -58,6 +58,12 @@
     <ClInclude Include="TGraphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="TBoardRegion.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TFile.h">
+      <Filter>Filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TClass.cpp">
@@ -111,6 +117,12 @@
     <ClCompile Include="TGraphics.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="TBoardRegion.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TFile.cpp">
+      <Filter>Filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Global">
@@ -127,6 +139,9 @@
     </Filter>
     <Filter Include="Board">
       <UniqueIdentifier>{d43a1519-d4f9-4f7b-b3b4-9de9f1f78598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filesystem">
+      <UniqueIdentifier>{3300ce46-9bb3-4fab-a8ba-c6ff7ba7aee3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

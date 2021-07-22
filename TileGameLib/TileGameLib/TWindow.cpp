@@ -126,7 +126,7 @@ namespace TileGameLib
 	void TWindow::DrawChar(TCharset* chars, TPalette* pal,
 		TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{
-		static GridPosition* grid;
+		static TGridPosition* grid;
 		grid = &(Grid[y][x]);
 		x = grid->X;
 		y = grid->Y;
@@ -162,6 +162,13 @@ namespace TileGameLib
 			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
 	}
 
+	void TWindow::DrawChars(TCharset* chars, TPalette* pal,
+		std::vector<TCharsetIndex>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
+	{
+		for (auto& ch : str)
+			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
+	}
+
 	void TWindow::DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
 	{
 		DrawChar(chars, pal, tile->Char, tile->ForeColor, tile->BackColor, x, y);
@@ -169,13 +176,6 @@ namespace TileGameLib
 
 	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
 		std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
-	{
-		for (auto& ch : str)
-			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
-	}
-
-	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
-		std::vector<int>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{
 		for (auto& ch : str)
 			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
@@ -197,7 +197,7 @@ namespace TileGameLib
 	void TWindow::PremultiplyGrid()
 	{
 		for (int y = 0; y < Rows; y++) {
-			std::vector<GridPosition> row;
+			std::vector<TGridPosition> row;
 			for (int x = 0; x < Cols; x++) {
 				row.push_back({ x * TChar::Width, y * TChar::Height });
 			}

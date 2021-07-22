@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TFile.h" />
     <ClInclude Include="TBoard.h">
       <SubType>
       </SubType>
@@ -156,6 +157,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TBoardLayer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TBoardRegion.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -198,6 +203,7 @@
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TFile.cpp" />
     <ClCompile Include="TBoard.cpp">
       <SubType>
       </SubType>
@@ -207,6 +213,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TBoardLayer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TBoardRegion.cpp">
       <SubType>
       </SubType>
     </ClCompile>

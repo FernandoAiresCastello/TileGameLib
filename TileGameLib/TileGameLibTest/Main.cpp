@@ -10,9 +10,9 @@ int main(int argc, char** args)
 	TPalette* pal = new TPalette();
 	TGraphics* gr = new TGraphics(win, chars, pal);
 
-	TBoard* board = new TBoard(32, 24, 2);
-	board->AddBackTile('-', 1, 2);
-	board->AddBackTile('=', 2, 3);
+	TBoard* board = new TBoard(256, 256, 2);
+	board->AddBackTile('-', 10, 20);
+	board->AddBackTile('=', 11, 21);
 	TObject* o1 = new TObject();
 	o1->AddTile(1, 0, 4);
 	o1->AddTile(2, 2, 5);
@@ -24,15 +24,19 @@ int main(int argc, char** args)
 
 	TBoardView* view = new TBoardView(gr, 150);
 	view->SetBoard(board);
-	const int borderSize = 2;
-	view->SetPosition(borderSize, borderSize);
-	view->SetSize(gr->Window->Cols - 2 * borderSize, gr->Window->Rows - 2 * borderSize);
+	view->SetPosition(0, 0);
+	view->SetSize(gr->Window->Cols, 10);
+	TBoardView* view2 = new TBoardView(gr, 100);
+	view2->SetBoard(board);
+	view2->SetPosition(5, 5);
+	view2->SetSize(10, 10);
 
 	TUtil::Randomize();
 
 	while (true) {
 		win->Clear(gr->Pal, 8);
 		view->Draw();
+		view2->Draw();
 		win->Update();
 
 		SDL_Event e = { 0 };

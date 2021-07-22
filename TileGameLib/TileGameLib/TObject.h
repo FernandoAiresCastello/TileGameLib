@@ -63,11 +63,11 @@ namespace TileGameLib
 		TBoard* Board;
 		bool Visible;
 
-		struct PropertyValue {
+		struct TPropertyValue {
 			std::string String;
 			int Number;
 		};
-		std::map<std::string, PropertyValue> Properties;
+		std::map<std::string, TPropertyValue> Properties;
 
 		friend TBoard;
 	};

@@ -9,6 +9,7 @@
 #include "TGlobal.h"
 #include "TClass.h"
 #include "TObject.h"
+#include "TBoardRegion.h"
 
 namespace TileGameLib
 {
@@ -41,8 +42,12 @@ namespace TileGameLib
 		TPaletteIndex GetBackColor();
 		TTile* GetBackTile(int ix);
 		TTileSequence* GetBackTiles();
+		int GetCols();
+		int GetRows();
 		int GetLayerCount();
 		bool IsPositionEmpty(int x, int y, int layer);
+		std::vector<TObject*> FindObjectsByProperty(std::string& prop, std::string& value, TBoardRegion& region);
+		std::vector<TObject*> FindObjectsByProperty(std::string& prop, int value, TBoardRegion& region);
 
 	private:
 		std::vector<TBoardLayer*> Layers;

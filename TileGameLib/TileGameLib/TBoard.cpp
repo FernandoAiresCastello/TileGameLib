@@ -147,6 +147,16 @@ namespace TileGameLib
 		return BackTiles;
 	}
 
+	int TBoard::GetCols()
+	{
+		return Cols;
+	}
+
+	int TBoard::GetRows()
+	{
+		return Rows;
+	}
+
 	int TBoard::GetLayerCount()
 	{
 		return Layers.size();
@@ -155,5 +165,35 @@ namespace TileGameLib
 	bool TBoard::IsPositionEmpty(int x, int y, int layer)
 	{
 		return Layers[layer]->GetCell(x, y)->Obj == nullptr;
+	}
+
+	std::vector<TObject*> TBoard::FindObjectsByProperty(std::string& prop, std::string& value, TBoardRegion& region)
+	{
+		std::vector<TObject*> objs;
+		for (int layerIx = 0; layerIx < Layers.size(); layerIx++) {
+			for (int y = region.Y; y < region.Y + region.Height; y++) {
+				for (int x = region.X; x < region.X + region.Width; x++) {
+					TObject* o = GetObject(x, y, layerIx);
+					if (o != nullptr && o->HasProperty(prop, value))
+						objs.push_back(o);
+				}
+			}
+		}
+		return objs;
+	}
+
+	std::vector<TObject*> TBoard::FindObjectsByProperty(std::string& prop, int value, TBoardRegion& region)
+	{
+		std::vector<TObject*> objs;
+		for (int layerIx = 0; layerIx < Layers.size(); layerIx++) {
+			for (int y = region.Y; y < region.Y + region.Height; y++) {
+				for (int x = region.X; x < region.X + region.Width; x++) {
+					TObject* o = GetObject(x, y, layerIx);
+					if (o != nullptr && o->HasProperty(prop, value))
+						objs.push_back(o);
+				}
+			}
+		}
+		return objs;
 	}
 }
