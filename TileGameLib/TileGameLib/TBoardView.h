@@ -20,12 +20,12 @@ namespace TileGameLib
 		TBoardView(const TBoardView& other) = delete;
 		~TBoardView();
 
+		void Draw();
 		void SetBoard(TBoard* board);
 		void SetPosition(int x, int y);
 		void SetSize(int cols, int rows);
 		void SetScroll(int sx, int sy);
 		void Scroll(int dx, int dy);
-		void Draw();
 
 	private:
 		TGraphics* Gr;

@@ -8,6 +8,7 @@
 #include "TTileSequence.h"
 #include "TBoard.h"
 #include "TUtil.h"
+#include "TString.h"
 
 constexpr int IdLength = 10;
 
@@ -73,9 +74,100 @@ namespace TileGameLib
 		return Layer;
 	}
 
+	void TObject::SetSingleTile(TTile tile)
+	{
+		Tiles->DeleteAll();
+		Tiles->Add(tile);
+	}
+
+	void TObject::SetSingleTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
+	{
+		SetSingleTile(TTile(ch, fgc, bgc));
+	}
+
+	TTile* TObject::GetTile(int ix)
+	{
+		if (ix >= 0 && ix < Tiles->GetSize())
+			return &Tiles->Get(ix);
+
+		return nullptr;
+	}
+
+	TTile* TObject::GetSingleTile()
+	{
+		if (!Tiles->IsEmpty())
+			return &Tiles->Get(0);
+
+		return nullptr;
+	}
+
 	void TObject::SetTilesEqual(TObject& other)
 	{
 		Tiles->SetEqual(*other.Tiles);
+	}
+
+	void TObject::SetPropertiesEqual(TObject& other)
+	{
+		Properties.clear();
+		for (auto& prop : other.Properties)
+			Properties[prop.first] = prop.second;
+	}
+
+	bool TObject::IsVisible()
+	{
+		return Visible;
+	}
+
+	void TObject::SetVisible(bool visible)
+	{
+		Visible = visible;
+	}
+
+	void TObject::SetProperty(std::string prop, std::string value)
+	{
+		Properties[prop] = { value, TString::ToInt(value) };
+	}
+
+	void TObject::SetProperty(std::string prop, int value)
+	{
+		Properties[prop] = { TString::ToString(value), value };
+	}
+
+	std::string TObject::GetPropertyAsString(std::string prop)
+	{
+		if (HasProperty(prop))
+			return Properties[prop].String;
+
+		return "";
+	}
+
+	int TObject::GetPropertyAsNumber(std::string prop)
+	{
+		if (HasProperty(prop))
+			return Properties[prop].Number;
+
+		return 0;
+	}
+
+	bool TObject::HasProperty(std::string prop)
+	{
+		return Properties.find(prop) != Properties.end();
+	}
+
+	bool TObject::HasProperty(std::string prop, std::string value)
+	{
+		if (!HasProperty(prop))
+			return false;
+
+		return GetPropertyAsString(prop) == value;
+	}
+
+	bool TObject::HasProperty(std::string prop, int value)
+	{
+		if (!HasProperty(prop))
+			return false;
+
+		return GetPropertyAsNumber(prop) == value;
 	}
 
 	void TObject::Move(int dx, int dy)

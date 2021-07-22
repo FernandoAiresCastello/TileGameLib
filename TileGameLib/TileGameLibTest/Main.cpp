@@ -5,6 +5,18 @@ using namespace TileGameLib;
 
 int main(int argc, char** args)
 {
+	struct PropertyValue {
+		std::string String;
+		int Number;
+	};
+	std::map<std::string, PropertyValue> props;
+
+	props["test1"] = { "12345", 12345 };
+	if (props.find("test1") != props.end())
+		auto propTest1 = props["test1"];
+	if (props.find("test2") != props.end())
+		auto propTest2 = props["test2"];
+
 	TBoard* board = new TBoard(32, 24, 2);
 	TObject* o1 = new TObject(1, 2, 3);
 	TObject* o2 = new TObject(TTileSequence(TTile(4, 5, 6)));

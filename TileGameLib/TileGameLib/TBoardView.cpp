@@ -26,6 +26,10 @@ namespace TileGameLib
 	{
 	}
 
+	void TBoardView::Draw()
+	{
+	}
+
 	void TBoardView::SetBoard(TBoard* board)
 	{
 		Board = board;
@@ -53,9 +57,5 @@ namespace TileGameLib
 	{
 		ScrollX += dx;
 		ScrollY += dy;
-	}
-
-	void TBoardView::Draw()
-	{
 	}
 }
