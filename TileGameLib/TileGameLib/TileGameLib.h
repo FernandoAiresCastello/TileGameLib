@@ -19,6 +19,7 @@
 #include "TGraphics.h"
 #include "TKey.h"
 #include "TObject.h"
+#include "TProperties.h"
 #include "TBoard.h"
 #include "TBoardCell.h"
 #include "TBoardLayer.h"

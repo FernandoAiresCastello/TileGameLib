@@ -40,9 +40,6 @@
     <ClInclude Include="TString.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="TObject.h">
-      <Filter>Board</Filter>
-    </ClInclude>
     <ClInclude Include="TBoardCell.h">
       <Filter>Board</Filter>
     </ClInclude>
@@ -63,6 +60,12 @@
     </ClInclude>
     <ClInclude Include="TFile.h">
       <Filter>Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="TObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TProperties.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +102,6 @@
     <ClCompile Include="TString.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="TObject.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
     <ClCompile Include="TBoardCell.cpp">
       <Filter>Board</Filter>
     </ClCompile>
@@ -123,6 +123,12 @@
     <ClCompile Include="TFile.cpp">
       <Filter>Filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="TObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TProperties.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Global">
@@ -142,6 +148,9 @@
     </Filter>
     <Filter Include="Filesystem">
       <UniqueIdentifier>{3300ce46-9bb3-4fab-a8ba-c6ff7ba7aee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{48cb2d97-6bfa-450e-85a3-f2c142be387e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

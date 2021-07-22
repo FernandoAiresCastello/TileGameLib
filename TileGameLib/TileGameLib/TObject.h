@@ -11,6 +11,7 @@
 #include "TClass.h"
 #include "TTile.h"
 #include "TTileSequence.h"
+#include "TProperties.h"
 
 namespace TileGameLib
 {
@@ -40,9 +41,12 @@ namespace TileGameLib
 		bool HasTiles();
 		void SetTilesEqual(TObject& other);
 		void DeleteTiles();
-		void SetPropertiesEqual(TObject& other);
 		bool IsVisible();
 		void SetVisible(bool visible);
+		void Move(int dx, int dy);
+		void MoveTo(int x, int y);
+		void MoveTo(int x, int y, int layer);
+		TProperties& GetProperties();
 		void SetProperty(std::string prop, std::string value);
 		void SetProperty(std::string prop, int value);
 		std::string GetPropertyAsString(std::string prop);
@@ -50,9 +54,6 @@ namespace TileGameLib
 		bool HasProperty(std::string prop);
 		bool HasProperty(std::string prop, std::string value);
 		bool HasProperty(std::string prop, int value);
-		void Move(int dx, int dy);
-		void MoveTo(int x, int y);
-		void MoveTo(int x, int y, int layer);
 
 	private:
 		std::string Id;
@@ -62,12 +63,7 @@ namespace TileGameLib
 		TTileSequence* Tiles;
 		TBoard* Board;
 		bool Visible;
-
-		struct TPropertyValue {
-			std::string String;
-			int Number;
-		};
-		std::map<std::string, TPropertyValue> Properties;
+		TProperties Properties;
 
 		friend TBoard;
 	};

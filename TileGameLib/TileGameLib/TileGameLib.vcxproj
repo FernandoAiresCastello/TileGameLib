@@ -185,6 +185,10 @@
     </ClInclude>
     <ClInclude Include="TPalette.h" />
     <ClInclude Include="TColor.h" />
+    <ClInclude Include="TProperties.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TString.h" />
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TTile.h">
@@ -241,6 +245,10 @@
     </ClCompile>
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
+    <ClCompile Include="TProperties.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TString.cpp" />
     <ClCompile Include="TTile.cpp">
       <SubType>

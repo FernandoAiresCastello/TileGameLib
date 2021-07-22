@@ -133,13 +133,6 @@ namespace TileGameLib
 		Tiles->DeleteAll();
 	}
 
-	void TObject::SetPropertiesEqual(TObject& other)
-	{
-		Properties.clear();
-		for (auto& prop : other.Properties)
-			Properties[prop.first] = prop.second;
-	}
-
 	bool TObject::IsVisible()
 	{
 		return Visible;
@@ -148,53 +141,6 @@ namespace TileGameLib
 	void TObject::SetVisible(bool visible)
 	{
 		Visible = visible;
-	}
-
-	void TObject::SetProperty(std::string prop, std::string value)
-	{
-		Properties[prop] = { value, TString::ToInt(value) };
-	}
-
-	void TObject::SetProperty(std::string prop, int value)
-	{
-		Properties[prop] = { TString::ToString(value), value };
-	}
-
-	std::string TObject::GetPropertyAsString(std::string prop)
-	{
-		if (HasProperty(prop))
-			return Properties[prop].String;
-
-		return "";
-	}
-
-	int TObject::GetPropertyAsNumber(std::string prop)
-	{
-		if (HasProperty(prop))
-			return Properties[prop].Number;
-
-		return 0;
-	}
-
-	bool TObject::HasProperty(std::string prop)
-	{
-		return Properties.find(prop) != Properties.end();
-	}
-
-	bool TObject::HasProperty(std::string prop, std::string value)
-	{
-		if (!HasProperty(prop))
-			return false;
-
-		return GetPropertyAsString(prop) == value;
-	}
-
-	bool TObject::HasProperty(std::string prop, int value)
-	{
-		if (!HasProperty(prop))
-			return false;
-
-		return GetPropertyAsNumber(prop) == value;
 	}
 
 	void TObject::Move(int dx, int dy)
@@ -217,5 +163,45 @@ namespace TileGameLib
 		Y = y;
 		Layer = layer;
 		Board->PutObject(this, X, Y, Layer);
+	}
+
+	TProperties& TObject::GetProperties()
+	{
+		return Properties;
+	}
+
+	void TObject::SetProperty(std::string prop, std::string value)
+	{
+		Properties.Set(prop, value);
+	}
+
+	void TObject::SetProperty(std::string prop, int value)
+	{
+		Properties.Set(prop, value);
+	}
+
+	std::string TObject::GetPropertyAsString(std::string prop)
+	{
+		return Properties.GetAsString(prop);
+	}
+
+	int TObject::GetPropertyAsNumber(std::string prop)
+	{
+		return Properties.GetAsNumber(prop);
+	}
+
+	bool TObject::HasProperty(std::string prop)
+	{
+		return Properties.Has(prop);
+	}
+
+	bool TObject::HasProperty(std::string prop, std::string value)
+	{
+		return Properties.Has(prop, value);
+	}
+
+	bool TObject::HasProperty(std::string prop, int value)
+	{
+		return Properties.Has(prop, value);
 	}
 }
