@@ -16,6 +16,8 @@ namespace TileGameLib
 	{
 	public:
 		TTileSequence();
+		TTileSequence(TTile tile);
+		TTileSequence(std::vector<TTile>& tiles);
 		TTileSequence(const TTileSequence& other);
 		~TTileSequence();
 
@@ -25,6 +27,7 @@ namespace TileGameLib
 		void Add(TTile tile);
 		void AddBlank(int count = 1);
 		int GetSize();
+		bool IsEmpty();
 		void Clear();
 		void DeleteAll();
 		void SetEqual(TTileSequence& other);

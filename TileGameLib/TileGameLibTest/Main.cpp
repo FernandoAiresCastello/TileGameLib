@@ -1,9 +1,17 @@
 #include <SDL.h>
+#include <cassert>
 #include <TileGameLib.h>
 using namespace TileGameLib;
 
 int main(int argc, char** args)
 {
+	TBoard* board = new TBoard(32, 24, 2);
+	TObject* o1 = new TObject(1, 2, 3);
+	TObject* o2 = new TObject(TTileSequence(TTile(4, 5, 6)));
+	board->PutObject(o1, 10, 20, 1);
+	board->PutObject(o2, 10, 20, 1);
+	delete board;
+
 	TUtil::Randomize();
 
 	auto win = new TWindow(256, 192, 3, false);

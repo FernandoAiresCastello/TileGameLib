@@ -17,4 +17,11 @@
 #include "TTile.h"
 #include "TTileSequence.h"
 #include "TWindow.h"
+#include "TGraphics.h"
 #include "TKey.h"
+#include "TObject.h"
+#include "TBoard.h"
+#include "TBoardCell.h"
+#include "TBoardLayer.h"
+#include "TBoardView.h"
+

@@ -40,6 +40,24 @@
     <ClInclude Include="TString.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="TObject.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TBoardCell.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TBoardLayer.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TBoard.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TBoardView.h">
+      <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="TGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TClass.cpp">
@@ -75,6 +93,24 @@
     <ClCompile Include="TString.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="TObject.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TBoardCell.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TBoardLayer.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TBoard.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TBoardView.cpp">
+      <Filter>Board</Filter>
+    </ClCompile>
+    <ClCompile Include="TGraphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Global">
@@ -88,6 +124,9 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{d590122f-bde8-428b-b2e4-381998333d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Board">
+      <UniqueIdentifier>{d43a1519-d4f9-4f7b-b3b4-9de9f1f78598}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

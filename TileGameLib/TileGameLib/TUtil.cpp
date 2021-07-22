@@ -213,14 +213,4 @@ namespace TileGameLib
 	{
 		return number > 0 ? (int)log10((double)number) + 1 : 1;
 	}
-
-	std::string TUtil::GenerateId()
-	{
-		return GenerateId(4);
-	}
-
-	std::string TUtil::GenerateId(int length)
-	{
-		return RandomHex(length);
-	}
 }

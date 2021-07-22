@@ -38,7 +38,5 @@ namespace TileGameLib
 		static std::string DateTime();
 		static unsigned WrapAdd(unsigned val, int dx, const unsigned lower, const unsigned upper);
 		static int GetDigitCount(unsigned number);
-		static std::string GenerateId();
-		static std::string GenerateId(int length);
 	};
 }

@@ -132,34 +132,42 @@ namespace TileGameLib
 		TChar& ch = chars->Get(chrix);
 		TColorRGB fgc = pal->GetColorRGB(fgcix);
 		TColorRGB bgc = pal->GetColorRGB(bgcix);
+		int pos;
 
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow0 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow1 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow2 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow3 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow4 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow5 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow6 & (1 << pos)) ? fgc : bgc);
 		x = initialX; y++;
-		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++)
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
 			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
 	}
 
 	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
 		std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
+	{
+		for (auto& ch : str)
+			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
+	}
+
+	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
+		std::vector<int>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{
 		for (auto& ch : str)
 			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);

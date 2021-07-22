@@ -41,6 +41,8 @@ namespace TileGameLib
 			TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 		void DrawString(TCharset* chars, TPalette* pal,
 			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawString(TCharset* chars, TPalette* pal,
+			std::vector<int>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 
 	private:
 		int* Buffer;

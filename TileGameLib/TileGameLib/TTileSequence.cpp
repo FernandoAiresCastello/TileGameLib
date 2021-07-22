@@ -11,6 +11,17 @@ namespace TileGameLib
 	TTileSequence::TTileSequence()
 	{
 	}
+
+	TTileSequence::TTileSequence(TTile tile)
+	{
+		Add(tile);
+	}
+
+	TTileSequence::TTileSequence(std::vector<TTile>& tiles)
+	{
+		for (auto& tile : tiles)
+			Add(tile);
+	}
 	
 	TTileSequence::TTileSequence(const TTileSequence& other)
 	{
@@ -52,6 +63,11 @@ namespace TileGameLib
 	int TTileSequence::GetSize()
 	{
 		return Tiles.size();
+	}
+
+	bool TTileSequence::IsEmpty()
+	{
+		return GetSize() == 0;
 	}
 
 	void TTileSequence::Clear()
