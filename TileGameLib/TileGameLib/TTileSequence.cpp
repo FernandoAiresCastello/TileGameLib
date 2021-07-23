@@ -84,10 +84,10 @@ namespace TileGameLib
 		Tiles.clear();
 	}
 
-	void TTileSequence::SetEqual(TTileSequence& other)
+	void TTileSequence::SetEqual(TTileSequence* other)
 	{
 		Tiles.clear();
-		for (auto& tile : other.Tiles)
+		for (auto& tile : other->Tiles)
 			Add(tile);
 	}
 }

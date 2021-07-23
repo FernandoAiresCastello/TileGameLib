@@ -109,7 +109,7 @@ namespace TileGameLib
 
 	void TBoard::SetBackTiles(TTileSequence tiles)
 	{
-		BackTiles->SetEqual(tiles);
+		BackTiles->SetEqual(&tiles);
 	}
 
 	void TBoard::AddBackTile(TTile tile)

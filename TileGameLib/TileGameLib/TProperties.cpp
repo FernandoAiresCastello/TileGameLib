@@ -15,6 +15,9 @@ namespace TileGameLib
 	
 	TProperties::TProperties(const TProperties& other)
 	{
+		Clear();
+		for (auto& it : Properties)
+			Properties[it.first] = it.second;
 	}
 
 	TProperties::~TProperties()

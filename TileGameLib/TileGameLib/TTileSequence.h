@@ -30,7 +30,7 @@ namespace TileGameLib
 		bool IsEmpty();
 		void Clear();
 		void DeleteAll();
-		void SetEqual(TTileSequence& other);
+		void SetEqual(TTileSequence* other);
 
 	private:
 		std::vector<TTile> Tiles;

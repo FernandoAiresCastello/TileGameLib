@@ -123,9 +123,9 @@ namespace TileGameLib
 		return !Tiles->IsEmpty();
 	}
 
-	void TObject::SetTilesEqual(TObject& other)
+	void TObject::SetTilesEqual(TObject* other)
 	{
-		Tiles->SetEqual(*other.Tiles);
+		Tiles->SetEqual(other->Tiles);
 	}
 
 	void TObject::DeleteTiles()
@@ -210,9 +210,9 @@ namespace TileGameLib
 		return Properties.Has(prop, value);
 	}
 
-	void TObject::SetPropertiesEqual(TObject& other)
+	void TObject::SetPropertiesEqual(TObject* other)
 	{
-		Properties.SetEqual(other.Properties);
+		Properties.SetEqual(other->Properties);
 	}
 
 	TObject* TObject::GetObjectUnder()

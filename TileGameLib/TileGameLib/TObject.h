@@ -39,7 +39,7 @@ namespace TileGameLib
 		TTile* GetTile(int ix);
 		TTile* GetSingleTile();
 		bool HasTiles();
-		void SetTilesEqual(TObject& other);
+		void SetTilesEqual(TObject* other);
 		void DeleteTiles();
 		bool IsVisible();
 		void SetVisible(bool visible);
@@ -55,7 +55,7 @@ namespace TileGameLib
 		bool HasProperty(std::string prop);
 		bool HasProperty(std::string prop, std::string value);
 		bool HasProperty(std::string prop, int value);
-		void SetPropertiesEqual(TObject& other);
+		void SetPropertiesEqual(TObject* other);
 		TObject* GetObjectUnder();
 		TObject* GetObjectAbove();
 		TObject* GetObjectAtDistance(int dx, int dy);

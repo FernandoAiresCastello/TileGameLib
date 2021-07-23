@@ -23,6 +23,7 @@ namespace TileGameLib
 		};
 
 		TFile(std::string path, Mode mode);
+		TFile(const TFile& other) = delete;
 		~TFile();
 
 		static std::vector<std::string> List(std::string directory, std::string pattern, 
