@@ -170,6 +170,11 @@ namespace TileGameLib
 		return Properties;
 	}
 
+	void TObject::ClearProperties()
+	{
+		Properties.Clear();
+	}
+
 	void TObject::SetProperty(std::string prop, std::string value)
 	{
 		Properties.Set(prop, value);
@@ -203,5 +208,30 @@ namespace TileGameLib
 	bool TObject::HasProperty(std::string prop, int value)
 	{
 		return Properties.Has(prop, value);
+	}
+
+	void TObject::SetPropertiesEqual(TObject& other)
+	{
+		Properties.SetEqual(other.Properties);
+	}
+
+	TObject* TObject::GetObjectUnder()
+	{
+		return Board->GetObject(X, Y, Layer - 1);
+	}
+
+	TObject* TObject::GetObjectAbove()
+	{
+		return Board->GetObject(X, Y, Layer + 1);
+	}
+
+	TObject* TObject::GetObjectAtDistance(int dx, int dy)
+	{
+		return GetObjectAtDistance(dx, dy, Layer);
+	}
+
+	TObject* TObject::GetObjectAtDistance(int dx, int dy, int layer)
+	{
+		return Board->GetObject(X + dx, Y + dy, layer);
 	}
 }

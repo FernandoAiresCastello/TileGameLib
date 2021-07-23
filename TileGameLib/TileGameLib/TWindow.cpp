@@ -126,6 +126,9 @@ namespace TileGameLib
 	void TWindow::DrawChar(TCharset* chars, TPalette* pal,
 		TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{
+		if (x < 0 || y < 0 || x >= Cols || y >= Rows)
+			return;
+
 		static TGridPosition* grid;
 		grid = &(Grid[y][x]);
 		x = grid->X;

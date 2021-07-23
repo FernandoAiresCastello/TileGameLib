@@ -47,6 +47,7 @@ namespace TileGameLib
 		void MoveTo(int x, int y);
 		void MoveTo(int x, int y, int layer);
 		TProperties& GetProperties();
+		void ClearProperties();
 		void SetProperty(std::string prop, std::string value);
 		void SetProperty(std::string prop, int value);
 		std::string GetPropertyAsString(std::string prop);
@@ -54,15 +55,20 @@ namespace TileGameLib
 		bool HasProperty(std::string prop);
 		bool HasProperty(std::string prop, std::string value);
 		bool HasProperty(std::string prop, int value);
+		void SetPropertiesEqual(TObject& other);
+		TObject* GetObjectUnder();
+		TObject* GetObjectAbove();
+		TObject* GetObjectAtDistance(int dx, int dy);
+		TObject* GetObjectAtDistance(int dx, int dy, int layer);
 
 	private:
 		std::string Id;
 		int X;
 		int Y;
 		int Layer;
-		TTileSequence* Tiles;
-		TBoard* Board;
 		bool Visible;
+		TBoard* Board;
+		TTileSequence* Tiles;
 		TProperties Properties;
 
 		friend TBoard;
