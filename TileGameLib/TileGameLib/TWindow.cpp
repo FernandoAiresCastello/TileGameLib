@@ -123,6 +123,30 @@ namespace TileGameLib
 		ClearToRGB(pal->GetColorRGB(ix));
 	}
 
+	void TWindow::ClearAt(TPalette* pal, TPaletteIndex ix, int x, int y)
+	{
+		if (x < 0 || y < 0 || x >= Cols || y >= Rows)
+			return;
+
+		static TGridPosition* grid;
+		grid = &(Grid[y][x]);
+		x = grid->X;
+		y = grid->Y;
+
+		for (int px = x; px < x + TChar::Width; px++) {
+			for (int py = y; py < y + TChar::Height; py++) {
+				SetPixel(px, py, pal->GetColorRGB(ix));
+			}
+		}
+	}
+
+	void TWindow::ClearRect(TPalette* pal, TPaletteIndex ix, int x, int y, int w, int h)
+	{
+		for (int px = x; px < x + w; px++)
+			for (int py = y; py < y + h; py++)
+				ClearAt(pal, ix, px, py);
+	}
+
 	void TWindow::DrawChar(TCharset* chars, TPalette* pal,
 		TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{

@@ -12,13 +12,17 @@
 namespace TileGameLib
 {
 	class TBoard;
-	class TGraphics;
 	class TObject;
+	class TCharset;
+	class TPalette;
+	class TWindow;
 
 	class TILEGAMELIB_API TBoardView : TClass
 	{
 	public:
-		TBoardView(TGraphics* gr, int animationDelay);
+		TBoardView(TBoard* board, TWindow* window, TCharset* chars, TPalette* pal, 
+			int x, int y, int cols, int rows, int animationDelay);
+
 		TBoardView(const TBoardView& other) = delete;
 		~TBoardView();
 
@@ -31,8 +35,10 @@ namespace TileGameLib
 		void AdvanceAnimationFrame();
 
 	private:
-		TGraphics* Gr;
 		TBoard* Board;
+		TWindow* Window;
+		TCharset* Charset;
+		TPalette* Palette;
 		int X;
 		int Y;
 		int Cols;

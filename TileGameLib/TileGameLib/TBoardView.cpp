@@ -6,7 +6,6 @@
 =============================================================================*/
 #include "TBoardView.h"
 #include "TBoard.h"
-#include "TGraphics.h"
 #include "TWindow.h"
 #include "TCharset.h"
 #include "TPalette.h"
@@ -16,10 +15,11 @@
 
 namespace TileGameLib
 {
-	TBoardView::TBoardView(TGraphics* gr, int animationDelay) :
-		Gr(gr), Board(nullptr), 
-		X(0), Y(0), Cols(gr->Window->Cols), Rows(gr->Window->Rows), 
-		ScrollX(0), ScrollY(0),
+	TBoardView::TBoardView(TBoard* board, TWindow* window, TCharset* chars, TPalette* pal, 
+		int x, int y, int cols, int rows, int animationDelay) :
+
+		Board(board), Window(window), Charset(chars), Palette(pal),
+		X(x), Y(y), Cols(cols), Rows(rows), ScrollX(0), ScrollY(0),
 		Animating(true), AnimationFrame(0), AnimationDelay(animationDelay)
 	{
 		if (animationDelay > 0)
@@ -96,12 +96,12 @@ namespace TileGameLib
 
 	void TBoardView::DrawBackTile(int viewX, int viewY)
 	{
-		Gr->Window->DrawTile(Gr->Chars, Gr->Pal, Board->GetBackTile(AnimationFrame), viewX, viewY);
+		Window->DrawTile(Charset, Palette, Board->GetBackTile(AnimationFrame), viewX, viewY);
 	}
 
 	void TBoardView::DrawObject(TObject* o, int viewX, int viewY)
 	{
-		Gr->Window->DrawTile(Gr->Chars, Gr->Pal, o->GetTile(AnimationFrame), viewX, viewY);
+		Window->DrawTile(Charset, Palette, o->GetTile(AnimationFrame), viewX, viewY);
 	}
 
 	void TBoardView::AdvanceAnimationFrameThread()

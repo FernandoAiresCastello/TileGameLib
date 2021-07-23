@@ -40,6 +40,8 @@ namespace TileGameLib
 		void SaveScreenshot(std::string file);
 		void Update();
 		void Clear(TPalette* pal, TPaletteIndex ix);
+		void ClearAt(TPalette* pal, TPaletteIndex ix, int x, int y);
+		void ClearRect(TPalette* pal, TPaletteIndex ix, int x, int y, int w, int h);
 		void DrawChar(TCharset* chars, TPalette* pal, 
 			TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 		void DrawChars(TCharset* chars, TPalette* pal,

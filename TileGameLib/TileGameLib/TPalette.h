@@ -16,6 +16,8 @@ namespace TileGameLib
 	class TILEGAMELIB_API TPalette : TClass
 	{
 	public:
+		static TPalette* Default;
+
 		TPalette();
 		TPalette(const TPalette& other);
 		~TPalette();
@@ -33,6 +35,8 @@ namespace TileGameLib
 		void Set(TPaletteIndex ix, TColorRGB rgb);
 		void Set(TPaletteIndex ix, int r, int g, int b);
 		void SetEqual(TPalette& other);
+		void Load(std::string filename);
+		void Save(std::string filename);
 		void InitDefault();
 
 	private:

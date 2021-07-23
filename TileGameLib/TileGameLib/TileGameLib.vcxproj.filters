@@ -52,9 +52,6 @@
     <ClInclude Include="TBoardView.h">
       <Filter>Board</Filter>
     </ClInclude>
-    <ClInclude Include="TGraphics.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="TBoardRegion.h">
       <Filter>Board</Filter>
     </ClInclude>
@@ -113,9 +110,6 @@
     </ClCompile>
     <ClCompile Include="TBoardView.cpp">
       <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TGraphics.cpp">
-      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="TBoardRegion.cpp">
       <Filter>Board</Filter>

@@ -20,7 +20,7 @@ namespace TileGameLib
 	{
 		Fp = fopen(path.c_str(), mode == ReadBinary ? "rb" : "wb");
 		LengthRead = 0;
-		DataRead = mode == ReadBinary ? TFile::Read(path, &LengthRead) : NULL;
+		DataRead = mode == ReadBinary ? TFile::ReadBytes(path, &LengthRead) : NULL;
 		ReadPtr = 0;
 	}
 
@@ -153,7 +153,18 @@ namespace TileGameLib
 		return TString::Split(file, '\n');
 	}
 
-	unsigned char* TFile::Read(std::string filename, int* length)
+	std::vector<int> TFile::ReadBytes(std::string filename)
+	{
+		std::vector<int> bytes;
+		int length = -1;
+		unsigned char* data = TFile::ReadBytes(filename, &length);
+		for (int i = 0; i < length; i++) {
+			bytes.push_back(data[i]);
+		}
+		return bytes;
+	}
+
+	unsigned char* TFile::ReadBytes(std::string filename, int* length)
 	{
 		std::ifstream ifs(filename, std::ios::binary | std::ios::ate);
 
@@ -196,6 +207,13 @@ namespace TileGameLib
 
 		ofs.flush();
 		ofs.close();
+	}
+
+	void TFile::WriteBytes(std::string filename, std::vector<int>& bytes)
+	{
+		TFile file(filename, Mode::WriteBinary);
+		for (auto& byte : bytes)
+			file.WriteByte(byte);
 	}
 
 	void TFile::Duplicate(std::string orig, std::string dupl)

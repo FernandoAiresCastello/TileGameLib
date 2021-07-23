@@ -8,9 +8,13 @@
 #include "TCharset.h"
 #include "TChar.h"
 #include "TString.h"
+#include "TFile.h"
+#include "TUtil.h"
 
 namespace TileGameLib
 {
+	TCharset* TCharset::Default = new TCharset();
+
 	TCharset::TCharset()
 	{
 		InitDefault();
@@ -25,6 +29,7 @@ namespace TileGameLib
 
 	TCharset::~TCharset()
 	{
+		delete TCharset::Default;
 	}
 
 	std::vector<TChar>& TCharset::GetChars()
@@ -120,6 +125,34 @@ namespace TileGameLib
 		Chars.clear();
 		for (auto& ch : other.Chars)
 			Add(ch);
+	}
+
+	void TCharset::Load(std::string filename)
+	{
+		DeleteAll();
+		auto bytes = TFile::ReadBytes(filename);
+		for (int i = 0; i < bytes.size(); i += 8) {
+			Add(bytes[i + 0], bytes[i + 1], bytes[i + 2], bytes[i + 3],
+				bytes[i + 4], bytes[i + 5], bytes[i + 6], bytes[i + 7]);
+		}
+	}
+
+	void TCharset::Save(std::string filename)
+	{
+		std::vector<int> bytes;
+
+		for (auto& ch : Chars) {
+			bytes.push_back(ch.PixelRow0);
+			bytes.push_back(ch.PixelRow1);
+			bytes.push_back(ch.PixelRow2);
+			bytes.push_back(ch.PixelRow3);
+			bytes.push_back(ch.PixelRow4);
+			bytes.push_back(ch.PixelRow5);
+			bytes.push_back(ch.PixelRow6);
+			bytes.push_back(ch.PixelRow7);
+		}
+
+		TFile::WriteBytes(filename, bytes);
 	}
 
 	void TCharset::InitDefault()
@@ -381,6 +414,6 @@ namespace TileGameLib
 		Add(0x78, 0x0c, 0x38, 0x0c, 0x78, 0x00, 0x00, 0x00);
 		Add(0x78, 0x0c, 0x38, 0x60, 0x7c, 0x00, 0x00, 0x00);
 		Add(0x00, 0x00, 0x3c, 0x3c, 0x3c, 0x3c, 0x00, 0x00);
-		Add(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+		Add(0xff, 0x81, 0x81, 0x81, 0x81, 0x81, 0x81, 0xff);
 	}
 }

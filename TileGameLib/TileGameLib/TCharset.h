@@ -16,6 +16,8 @@ namespace TileGameLib
 	class TILEGAMELIB_API TCharset : TClass
 	{
 	public:
+		static TCharset* Default;
+
 		TCharset();
 		TCharset(const TCharset& other);
 		~TCharset();
@@ -34,6 +36,8 @@ namespace TileGameLib
 		void Set(TCharsetIndex ix, TChar& ch);
 		void CopyChar(TCharsetIndex dstix, TCharsetIndex srcix);
 		void SetEqual(TCharset& other);
+		void Load(std::string filename);
+		void Save(std::string filename);
 		void InitDefault();
 
 	private:

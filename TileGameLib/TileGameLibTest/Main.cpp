@@ -5,29 +5,32 @@ using namespace TileGameLib;
 
 int main(int argc, char** args)
 {
+	//TPalette::Default->Load("data/atari7800.pal");
+	//TCharset::Default->Load("data/msx.chr");
+
 	TWindow* win = new TWindow(256, 192, 3, false);
-	TCharset* chars = new TCharset();
-	TPalette* pal = new TPalette();
-	TGraphics* gr = new TGraphics(win, chars, pal);
 
 	int x = 1;
 	int y = 1;
 	const int initialX = x;
-	const int colorsPerRow = 16;
-	const int tilesPerRow = 24;
+	const int colorsPerRow = 29;
+	const int tilesPerRow = 29;
 
-	for (int i = 0; i < pal->GetSize(); i++) {
-		win->DrawChar(chars, pal, 0, i, i, x, y);
+	const int palSize = TPalette::Default->GetSize();
+	for (int i = 0; i < palSize; i++) {
+		win->DrawChar(TCharset::Default, TPalette::Default, 0, i, i, x, y);
 		x++;
 		if ((i + 1) % colorsPerRow == 0) {
 			x = initialX;
 			y++;
 		}
 	}
-
-	y++;
-	for (int i = 0; i < chars->GetSize(); i++) {
-		win->DrawChar(chars, pal, i, 1, 0, x, y);
+	
+	x = 1;
+	y += 2;
+	const int chrSize = TCharset::Default->GetSize();
+	for (int i = 0; i < chrSize; i++) {
+		win->DrawChar(TCharset::Default, TPalette::Default, i, 15, 0, x, y);
 		x++;
 		if ((i + 1) % tilesPerRow == 0) {
 			x = initialX;

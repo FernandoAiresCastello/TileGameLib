@@ -40,9 +40,11 @@ namespace TileGameLib
 		static void Delete(std::string path);
 		static std::string ReadText(std::string filename);
 		static std::vector<std::string> ReadLines(std::string filename);
-		static unsigned char* Read(std::string filename, int* length);
+		static std::vector<int> ReadBytes(std::string filename);
+		static unsigned char* ReadBytes(std::string filename, int* length);
 		static void WriteText(std::string filename, std::string text);
 		static void WriteLines(std::string filename, std::vector<std::string> lines);
+		static void WriteBytes(std::string filename, std::vector<int>& bytes);
 		static void Duplicate(std::string orig, std::string dupl);
 		static std::string GetParentDirectory(std::string file);
 		static std::string GetName(std::string fullPath);

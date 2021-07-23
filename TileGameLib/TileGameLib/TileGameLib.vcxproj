@@ -168,10 +168,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TGraphics.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TKey.h" />
     <ClInclude Include="TChar.h" />
     <ClInclude Include="TCharset.h" />
@@ -225,10 +221,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TBoardView.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TGraphics.cpp">
       <SubType>
       </SubType>
     </ClCompile>
