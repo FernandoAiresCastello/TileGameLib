@@ -49,6 +49,9 @@ namespace TileGameLib
 		void DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
 		void DrawString(TCharset* chars, TPalette* pal,
 			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawFrame(TCharset* chars, TPalette* pal, 
+			TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y, int w, int h);
+		void SetFrameChars(int tl, int tr, int bl, int br, int hl, int vl, int blank);
 
 	private:
 		int* Buffer;

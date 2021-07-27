@@ -34,10 +34,13 @@ namespace TileGameLib
 		int GetLayer();
 		void AddTile(TTile tile);
 		void AddTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
+		void AddBlankTiles(int count);
 		void SetSingleTile(TTile tile);
 		void SetSingleTile(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
 		TTile* GetTile(int ix);
 		TTile* GetSingleTile();
+		void SetTile(int ix, TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
+		void SetTile(int ix, TTile tile);
 		bool HasTiles();
 		void SetTilesEqual(TObject* other);
 		void DeleteTiles();

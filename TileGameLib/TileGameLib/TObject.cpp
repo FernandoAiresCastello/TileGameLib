@@ -20,6 +20,7 @@ namespace TileGameLib
 		X = -1;
 		Y = -1;
 		Layer = -1;
+		Visible = true;
 		Board = nullptr;
 		Tiles = new TTileSequence();
 	}
@@ -30,6 +31,7 @@ namespace TileGameLib
 		X = -1;
 		Y = -1;
 		Layer = -1;
+		Visible = true;
 		Board = nullptr;
 		Tiles = new TTileSequence(tile);
 	}
@@ -40,6 +42,7 @@ namespace TileGameLib
 		X = -1;
 		Y = -1;
 		Layer = -1;
+		Visible = true;
 		Board = nullptr;
 		Tiles = new TTileSequence(tiles);
 	}
@@ -50,6 +53,7 @@ namespace TileGameLib
 		X = other.X;
 		Y = other.Y;
 		Layer = other.Layer;
+		Visible = other.Visible;
 		Board = other.Board;
 		Tiles = new TTileSequence(*other.Tiles);
 	}
@@ -94,6 +98,12 @@ namespace TileGameLib
 		AddTile(TTile(ch, fgc, bgc));
 	}
 
+	void TObject::AddBlankTiles(int count)
+	{
+		for (int i = 0; i < count; i++)
+			AddTile(TTile());
+	}
+
 	void TObject::SetSingleTile(TTile tile)
 	{
 		Tiles->DeleteAll();
@@ -116,6 +126,16 @@ namespace TileGameLib
 			return Tiles->Get(0);
 
 		return nullptr;
+	}
+
+	void TObject::SetTile(int ix, TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
+	{
+		Tiles->Set(ix, ch, fgc, bgc);
+	}
+
+	void TObject::SetTile(int ix, TTile tile)
+	{
+		Tiles->Set(ix, tile);
 	}
 
 	bool TObject::HasTiles()

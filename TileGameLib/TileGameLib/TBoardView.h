@@ -32,6 +32,12 @@ namespace TileGameLib
 		void SetSize(int cols, int rows);
 		void SetScroll(int sx, int sy);
 		void Scroll(int dx, int dy);
+		int GetX();
+		int GetY();
+		int GetCols();
+		int GetRows();
+		int GetScrollX();
+		int GetScrollY();
 		void AdvanceAnimationFrame();
 
 	private:

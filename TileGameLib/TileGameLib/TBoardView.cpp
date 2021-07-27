@@ -63,6 +63,36 @@ namespace TileGameLib
 		ScrollY += dy;
 	}
 
+	int TBoardView::GetX()
+	{
+		return X;
+	}
+
+	int TBoardView::GetY()
+	{
+		return Y;
+	}
+
+	int TBoardView::GetCols()
+	{
+		return Cols;
+	}
+
+	int TBoardView::GetRows()
+	{
+		return Rows;
+	}
+
+	int TBoardView::GetScrollX()
+	{
+		return ScrollX;
+	}
+
+	int TBoardView::GetScrollY()
+	{
+		return ScrollY;
+	}
+
 	void TBoardView::AdvanceAnimationFrame()
 	{
 		AnimationFrame++;

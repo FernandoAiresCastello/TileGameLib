@@ -24,7 +24,9 @@ namespace TileGameLib
 		std::vector<TTile>& GetTiles();
 		TTile* Get(int ix);
 		void Set(int ix, TTile tile);
+		void Set(int ix, TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
 		void Add(TTile tile);
+		void Add(int ix, TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc);
 		void AddBlank(int count = 1);
 		int GetSize();
 		bool IsEmpty();

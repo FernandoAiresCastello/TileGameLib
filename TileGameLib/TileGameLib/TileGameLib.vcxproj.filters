@@ -35,10 +35,10 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="TUtil.h">
-      <Filter>Util</Filter>
+      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="TString.h">
-      <Filter>Util</Filter>
+      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="TBoardCell.h">
       <Filter>Board</Filter>
@@ -94,10 +94,10 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="TUtil.cpp">
-      <Filter>Util</Filter>
+      <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="TString.cpp">
-      <Filter>Util</Filter>
+      <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="TBoardCell.cpp">
       <Filter>Board</Filter>
@@ -131,9 +131,6 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{e04c1662-9e59-41a4-a9d2-0b2aaa7e8ebf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Util">
-      <UniqueIdentifier>{01d4d7dc-cf4d-42d3-bdf1-8e5636a1a814}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{d590122f-bde8-428b-b2e4-381998333d43}</UniqueIdentifier>
     </Filter>
@@ -145,6 +142,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{48cb2d97-6bfa-450e-85a3-f2c142be387e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{01d4d7dc-cf4d-42d3-bdf1-8e5636a1a814}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

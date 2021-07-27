@@ -12,6 +12,16 @@
 
 namespace TileGameLib
 {
+	struct FrameChar {
+		int Blank = 0x00;
+		int TopLeft = 0xDA;
+		int TopRight = 0xBF;
+		int BottomLeft = 0xC0;
+		int BottomRight = 0xD9;
+		int HorizontalLine = 0xC4;
+		int VerticalLine = 0xB3;
+	} FrameChar;
+
 	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen) :
 		ScreenWidth(wScr), ScreenHeight(hScr), 
 		WindowWidth(wWnd), WindowHeight(hWnd),
@@ -206,6 +216,39 @@ namespace TileGameLib
 	{
 		for (auto& ch : str)
 			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
+	}
+
+	void TWindow::DrawFrame(TCharset* chars, TPalette* pal, 
+		TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y, int w, int h)
+	{
+		for (int py = y; py < y + h; py++)
+			for (int px = x; px < x + w; px++)
+				DrawChar(chars, pal, FrameChar.Blank, fgcix, bgcix, px, py);
+
+		DrawChar(chars, pal, FrameChar.TopLeft, fgcix, bgcix, x, y);
+		DrawChar(chars, pal, FrameChar.TopRight, fgcix, bgcix, x + w + 1, y);
+		DrawChar(chars, pal, FrameChar.BottomLeft, fgcix, bgcix, x, y + h + 1);
+		DrawChar(chars, pal, FrameChar.BottomRight, fgcix, bgcix, x + w + 1, y + h + 1);
+		
+		for (int px = x + 1; px < x + 1 + w; px++) {
+			DrawChar(chars, pal, FrameChar.HorizontalLine, fgcix, bgcix, px, y);
+			DrawChar(chars, pal, FrameChar.HorizontalLine, fgcix, bgcix, px, y + h + 1);
+		}
+		for (int py = y + 1; py < y + 1 + h; py++) {
+			DrawChar(chars, pal, FrameChar.VerticalLine, fgcix, bgcix, x, py);
+			DrawChar(chars, pal, FrameChar.VerticalLine, fgcix, bgcix, x + w + 1, py);
+		}
+	}
+
+	void TWindow::SetFrameChars(int tl, int tr, int bl, int br, int hl, int vl, int blank)
+	{
+		FrameChar.TopLeft = tl;
+		FrameChar.TopRight = tr;
+		FrameChar.BottomLeft = bl;
+		FrameChar.BottomRight = br;
+		FrameChar.HorizontalLine = hl;
+		FrameChar.VerticalLine = vl;
+		FrameChar.Blank = blank;
 	}
 
 	void TWindow::ClearToRGB(TColorRGB rgb)
