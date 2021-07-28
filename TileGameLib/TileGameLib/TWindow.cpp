@@ -201,6 +201,39 @@ namespace TileGameLib
 		DrawChar(chars, pal, tile->Char, tile->ForeColor, tile->BackColor, x, y);
 	}
 
+	void TWindow::DrawSpriteTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
+	{
+		const int initialX = x;
+		TChar& ch = chars->Get(tile->Char);
+		TColorRGB fgc = pal->GetColorRGB(tile->ForeColor);
+		TColorRGB bgc = pal->GetColorRGB(tile->BackColor);
+		int pos;
+
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow0 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow1 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow2 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow3 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow4 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow5 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow6 & (1 << pos)) ? fgc : bgc);
+		x = initialX; y++;
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
+			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
+	}
+
 	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
 		std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
 	{

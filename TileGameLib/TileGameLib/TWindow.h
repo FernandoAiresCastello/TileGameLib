@@ -47,6 +47,7 @@ namespace TileGameLib
 		void DrawChars(TCharset* chars, TPalette* pal,
 			std::vector<TCharsetIndex>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 		void DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
+		void DrawSpriteTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
 		void DrawString(TCharset* chars, TPalette* pal,
 			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 
