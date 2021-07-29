@@ -58,6 +58,7 @@ namespace TileGameLib
 		bool HasProperty(std::string prop);
 		bool HasProperty(std::string prop, std::string value);
 		bool HasProperty(std::string prop, int value);
+		void AddToNumericProperty(std::string prop, int value);
 		void SetPropertiesEqual(TObject* other);
 		TObject* GetObjectUnder();
 		TObject* GetObjectAbove();

@@ -230,6 +230,12 @@ namespace TileGameLib
 		return Properties.Has(prop, value);
 	}
 
+	void TObject::AddToNumericProperty(std::string prop, int value)
+	{
+		int currentValue = GetPropertyAsNumber(prop);
+		SetProperty(prop, currentValue + value);
+	}
+
 	void TObject::SetPropertiesEqual(TObject* other)
 	{
 		Properties.SetEqual(other->Properties);
