@@ -26,7 +26,6 @@ namespace TileGameLib
 
 	TPalette::~TPalette()
 	{
-		delete TPalette::Default;
 	}
 
 	std::vector<TColor>& TPalette::GetColors()

@@ -29,7 +29,6 @@ namespace TileGameLib
 
 	TCharset::~TCharset()
 	{
-		delete TCharset::Default;
 	}
 
 	std::vector<TChar>& TCharset::GetChars()

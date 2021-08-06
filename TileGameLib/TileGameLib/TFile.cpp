@@ -134,23 +134,15 @@ namespace TileGameLib
 
 	std::string TFile::ReadText(std::string filename)
 	{
-		std::string text;
-		std::string line;
-		std::ifstream file(filename);
-
-		if (file.is_open()) {
-			while (getline(file, line))
-				text += line + "\n";
-		}
-
-		file.close();
+		int length = 0;
+		std::string text = std::string((const char*)ReadBytes(filename, &length), length);
 		return text;
 	}
 
 	std::vector<std::string> TFile::ReadLines(std::string filename)
 	{
-		std::string file = ReadText(filename);
-		return TString::Split(file, '\n');
+		std::string file = TString::Replace(ReadText(filename), "\r", "");
+		return TString::Split(file, '\n', false);
 	}
 
 	std::vector<int> TFile::ReadBytes(std::string filename)

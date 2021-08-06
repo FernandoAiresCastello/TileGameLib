@@ -9,10 +9,11 @@
 #include <string>
 #include <cstdio>
 #include "TGlobal.h"
+#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TFile
+	class TILEGAMELIB_API TFile : TClass
 	{
 	public:
 		static const std::string CurrentDirectory;

@@ -32,6 +32,7 @@ namespace TileGameLib
 		TWindow(const TWindow& other) = delete;
 		~TWindow();
 
+		void* GetHandle();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		void SetTitle(std::string title);

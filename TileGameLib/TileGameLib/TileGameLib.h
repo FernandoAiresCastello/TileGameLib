@@ -9,6 +9,7 @@
 #include "TClass.h"
 #include "TUtil.h"
 #include "TString.h"
+#include "TFile.h"
 #include "TColor.h"
 #include "TPalette.h"
 #include "TChar.h"

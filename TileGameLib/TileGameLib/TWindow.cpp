@@ -4,6 +4,8 @@
 	 2018-2021 Developed by Fernando Aires Castello
 
 =============================================================================*/
+#include <Windows.h>
+#include <SDL_syswm.h>
 #include "TWindow.h"
 #include "TChar.h"
 #include "TCharset.h"
@@ -58,6 +60,14 @@ namespace TileGameLib
 		SDL_Quit();
 
 		delete[] Buffer;
+	}
+
+	void* TWindow::GetHandle()
+	{
+		SDL_SysWMinfo wmInfo;
+		SDL_VERSION(&wmInfo.version);
+		SDL_GetWindowWMInfo(Window, &wmInfo);
+		return wmInfo.info.win.window;
 	}
 
 	void TWindow::SetFullscreen(bool full)
