@@ -26,6 +26,8 @@ namespace TileGameLib
 		TBoardView(const TBoardView& other) = delete;
 		~TBoardView();
 
+		void SetEnabled(bool enabled);
+		bool IsEnabled();
 		void Draw();
 		void SetBoard(TBoard* board);
 		void SetPosition(int x, int y);
@@ -45,6 +47,7 @@ namespace TileGameLib
 		TWindow* Window;
 		TCharset* Charset;
 		TPalette* Palette;
+		bool Enabled;
 		int X;
 		int Y;
 		int Cols;

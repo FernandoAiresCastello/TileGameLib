@@ -18,7 +18,7 @@ namespace TileGameLib
 	TBoardView::TBoardView(TBoard* board, TWindow* window, TCharset* chars, TPalette* pal, 
 		int x, int y, int cols, int rows, int animationDelay) :
 
-		Board(board), Window(window), Charset(chars), Palette(pal),
+		Board(board), Window(window), Charset(chars), Palette(pal), Enabled(true),
 		X(x), Y(y), Cols(cols), Rows(rows), ScrollX(0), ScrollY(0),
 		Animating(true), AnimationFrame(0), AnimationDelay(animationDelay)
 	{
@@ -98,10 +98,22 @@ namespace TileGameLib
 		AnimationFrame++;
 	}
 
+	void TBoardView::SetEnabled(bool enabled)
+	{
+		Enabled = enabled;
+	}
+
+	bool TBoardView::IsEnabled()
+	{
+		return Enabled;
+	}
+
 	void TBoardView::Draw()
 	{
-		for (int i = 0; i < Board->GetLayerCount(); i++)
-			DrawLayer(i);
+		if (Enabled) {
+			for (int i = 0; i < Board->GetLayerCount(); i++)
+				DrawLayer(i);
+		}
 	}
 
 	void TBoardView::DrawLayer(int layer)
