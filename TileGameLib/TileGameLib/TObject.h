@@ -43,6 +43,7 @@ namespace TileGameLib
 		void SetTile(int ix, TTile tile);
 		bool HasTiles();
 		void SetTilesEqual(TObject* other);
+		void SetTilesEqual(TTileSequence* tileseq);
 		void DeleteTiles();
 		bool IsVisible();
 		void SetVisible(bool visible);

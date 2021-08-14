@@ -68,6 +68,9 @@ namespace TileGameLib
 			sscanf(str.c_str(), "%x", &value);
 			return value;
 		}
+		else if (str[0] == '0' && str[1] == 'b') {
+			return BinaryToInt(str);
+		}
 
 		return atoi(str.c_str());
 	}
@@ -139,6 +142,16 @@ namespace TileGameLib
 		return text.size() >= suffix.size() && std::all_of(
 			std::next(text.begin(), text.size() - suffix.size()), text.end(), 
 			[&it](const char & c) { return ::tolower(c) == ::tolower(*(it++)); });
+	}
+
+	bool TString::StartsAndEndsWith(std::string text, char ch)
+	{
+		return StartsWith(text, ch) && EndsWith(text, ch);
+	}
+
+	bool TString::StartsAndEndsWith(std::string text, std::string str)
+	{
+		return StartsWith(text, str) && EndsWith(text, str);
 	}
 
 	bool TString::StartsWithNumber(std::string text)

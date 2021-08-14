@@ -62,7 +62,7 @@ namespace TileGameLib
 		Tiles.push_back(tile);
 	}
 
-	void TTileSequence::Add(int ix, TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
+	void TTileSequence::Add(TCharsetIndex ch, TPaletteIndex fgc, TPaletteIndex bgc)
 	{
 		Add(TTile(ch, fgc, bgc));
 	}

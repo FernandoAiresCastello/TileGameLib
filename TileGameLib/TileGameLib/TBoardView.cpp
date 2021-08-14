@@ -111,7 +111,7 @@ namespace TileGameLib
 
 		for (int viewY = Y; viewY < Y + Rows; viewY++) {
 			for (int viewX = X; viewX < X + Cols; viewX++) {
-				TObject* o = Board->GetObject(objX, objY, layer);
+				TObject* o = Board->GetObjectAt(objX, objY, layer);
 				if (Board->HasBackTile() && layer == 0 && (o == nullptr || !o->HasTiles() || !o->IsVisible()))
 					DrawBackTile(viewX, viewY);
 				else if (o != nullptr && o->IsVisible())

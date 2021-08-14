@@ -27,7 +27,7 @@ namespace TileGameLib
 		void ClearLayer(int layer);
 		void AddLayer();
 		void PutObject(TObject* o, int x, int y, int layer);
-		TObject* GetObject(int x, int y, int layer);
+		TObject* GetObjectAt(int x, int y, int layer);
 		void DeleteObject(int x, int y, int layer);
 		void RemoveObject(int x, int y, int layer);
 		bool IsWithinBounds(int x, int y, int layer);

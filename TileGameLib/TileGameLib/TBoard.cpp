@@ -61,7 +61,7 @@ namespace TileGameLib
 		}
 	}
 
-	TObject* TBoard::GetObject(int x, int y, int layer)
+	TObject* TBoard::GetObjectAt(int x, int y, int layer)
 	{
 		if (IsWithinBounds(x, y, layer))
 			return Layers[layer]->GetCell(x, y)->Obj;
@@ -173,7 +173,7 @@ namespace TileGameLib
 		for (int layerIx = 0; layerIx < Layers.size(); layerIx++) {
 			for (int y = region.Y; y < region.Y + region.Height; y++) {
 				for (int x = region.X; x < region.X + region.Width; x++) {
-					TObject* o = GetObject(x, y, layerIx);
+					TObject* o = GetObjectAt(x, y, layerIx);
 					if (o != nullptr && o->HasProperty(prop, value))
 						objs.push_back(o);
 				}
@@ -188,7 +188,7 @@ namespace TileGameLib
 		for (int layerIx = 0; layerIx < Layers.size(); layerIx++) {
 			for (int y = region.Y; y < region.Y + region.Height; y++) {
 				for (int x = region.X; x < region.X + region.Width; x++) {
-					TObject* o = GetObject(x, y, layerIx);
+					TObject* o = GetObjectAt(x, y, layerIx);
 					if (o != nullptr && o->HasProperty(prop, value))
 						objs.push_back(o);
 				}

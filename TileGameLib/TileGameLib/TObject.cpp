@@ -148,6 +148,11 @@ namespace TileGameLib
 		Tiles->SetEqual(other->Tiles);
 	}
 
+	void TObject::SetTilesEqual(TTileSequence* tileseq)
+	{
+		Tiles->SetEqual(tileseq);
+	}
+
 	void TObject::DeleteTiles()
 	{
 		Tiles->DeleteAll();
@@ -243,12 +248,12 @@ namespace TileGameLib
 
 	TObject* TObject::GetObjectUnder()
 	{
-		return Board->GetObject(X, Y, Layer - 1);
+		return Board->GetObjectAt(X, Y, Layer - 1);
 	}
 
 	TObject* TObject::GetObjectAbove()
 	{
-		return Board->GetObject(X, Y, Layer + 1);
+		return Board->GetObjectAt(X, Y, Layer + 1);
 	}
 
 	TObject* TObject::GetObjectAtDistance(int dx, int dy)
@@ -258,6 +263,6 @@ namespace TileGameLib
 
 	TObject* TObject::GetObjectAtDistance(int dx, int dy, int layer)
 	{
-		return Board->GetObject(X + dx, Y + dy, layer);
+		return Board->GetObjectAt(X + dx, Y + dy, layer);
 	}
 }
