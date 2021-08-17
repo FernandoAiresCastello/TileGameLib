@@ -116,8 +116,16 @@ namespace TileGameLib
 		}
 	}
 
+	TBoard* TBoardView::GetBoard()
+	{
+		return Board;
+	}
+
 	void TBoardView::DrawLayer(int layer)
 	{
+		if (Board == nullptr)
+			return;
+
 		int objX = ScrollX;
 		int objY = ScrollY;
 

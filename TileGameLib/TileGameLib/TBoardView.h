@@ -29,6 +29,7 @@ namespace TileGameLib
 		void SetEnabled(bool enabled);
 		bool IsEnabled();
 		void Draw();
+		TBoard* GetBoard();
 		void SetBoard(TBoard* board);
 		void SetPosition(int x, int y);
 		void SetSize(int cols, int rows);
