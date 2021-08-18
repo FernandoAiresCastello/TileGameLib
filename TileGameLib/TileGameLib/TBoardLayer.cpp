@@ -20,11 +20,6 @@ namespace TileGameLib
 
 	TBoardLayer::~TBoardLayer()
 	{
-		Clear();
-
-		for (int i = 0; i < Rows; i++)
-			delete[] Cells[i];
-
 		delete Cells;
 	}
 
