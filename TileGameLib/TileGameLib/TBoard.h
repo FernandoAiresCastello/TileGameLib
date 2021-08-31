@@ -6,6 +6,7 @@
 =============================================================================*/
 #pragma once
 #include <vector>
+#include <string>
 #include "TGlobal.h"
 #include "TClass.h"
 #include "TObject.h"
@@ -26,6 +27,8 @@ namespace TileGameLib
 		void Clear();
 		void ClearLayer(int layer);
 		void AddLayer();
+		void SetName(std::string name);
+		std::string GetName();
 		void PutObject(TObject* o, int x, int y, int layer);
 		TObject* GetObjectAt(int x, int y, int layer);
 		void DeleteObject(int x, int y, int layer);
@@ -50,6 +53,7 @@ namespace TileGameLib
 		std::vector<TObject*> FindObjectsByProperty(std::string& prop, int value, TBoardRegion& region);
 
 	private:
+		std::string Name;
 		std::vector<TBoardLayer*> Layers;
 		int Cols;
 		int Rows;

@@ -46,6 +46,16 @@ namespace TileGameLib
 		Layers.push_back(new TBoardLayer(Cols, Rows));
 	}
 
+	void TBoard::SetName(std::string name)
+	{
+		Name = name;
+	}
+
+	std::string TBoard::GetName()
+	{
+		return Name;
+	}
+
 	void TBoard::PutObject(TObject* o, int x, int y, int layer)
 	{
 		if (IsWithinBounds(x, y, layer)) {
