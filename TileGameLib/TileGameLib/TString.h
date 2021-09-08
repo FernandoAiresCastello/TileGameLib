@@ -32,6 +32,8 @@ namespace TileGameLib
 		static bool EndsWith(std::string text, std::string suffix);
 		static bool StartsAndEndsWith(std::string text, char ch);
 		static bool StartsAndEndsWith(std::string text, std::string str);
+		static bool IsEnclosedBy(std::string text, char preffix, char suffix);
+		static bool IsEnclosedBy(std::string text, std::string preffix, std::string suffix);
 		static bool StartsWithNumber(std::string text);
 		static bool IsNumber(std::string text);
 		static std::string First(std::string text, int count);

@@ -154,6 +154,16 @@ namespace TileGameLib
 		return StartsWith(text, str) && EndsWith(text, str);
 	}
 
+	bool TString::IsEnclosedBy(std::string text, char preffix, char suffix)
+	{
+		return StartsWith(text, preffix) && EndsWith(text, suffix);
+	}
+
+	bool TString::IsEnclosedBy(std::string text, std::string preffix, std::string suffix)
+	{
+		return StartsWith(text, preffix) && EndsWith(text, suffix);
+	}
+
 	bool TString::StartsWithNumber(std::string text)
 	{
 		return !text.empty() && isdigit(text[0]);
