@@ -98,14 +98,14 @@ namespace TileGameLib
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
 		Set(ix, 
-			String::BinaryToInt(row0),
-			String::BinaryToInt(row1), 
-			String::BinaryToInt(row2), 
-			String::BinaryToInt(row3), 
-			String::BinaryToInt(row4), 
-			String::BinaryToInt(row5), 
-			String::BinaryToInt(row6), 
-			String::BinaryToInt(row7));
+			String::ToInt(row0),
+			String::ToInt(row1), 
+			String::ToInt(row2), 
+			String::ToInt(row3), 
+			String::ToInt(row4), 
+			String::ToInt(row5), 
+			String::ToInt(row6), 
+			String::ToInt(row7));
 	}
 
 	void TCharset::Set(TCharsetIndex ix, TChar& ch)

@@ -121,14 +121,14 @@ namespace TileGameLib
 	{
 		const auto rows = String::SplitIntoEqualSizedStrings(binary, TChar::Width);
 		
-		PixelRow0 = String::BinaryToInt(rows[0]);
-		PixelRow1 = String::BinaryToInt(rows[1]);
-		PixelRow2 = String::BinaryToInt(rows[2]);
-		PixelRow3 = String::BinaryToInt(rows[3]);
-		PixelRow4 = String::BinaryToInt(rows[4]);
-		PixelRow5 = String::BinaryToInt(rows[5]);
-		PixelRow6 = String::BinaryToInt(rows[6]);
-		PixelRow7 = String::BinaryToInt(rows[7]);
+		PixelRow0 = String::ToInt(rows[0]);
+		PixelRow1 = String::ToInt(rows[1]);
+		PixelRow2 = String::ToInt(rows[2]);
+		PixelRow3 = String::ToInt(rows[3]);
+		PixelRow4 = String::ToInt(rows[4]);
+		PixelRow5 = String::ToInt(rows[5]);
+		PixelRow6 = String::ToInt(rows[6]);
+		PixelRow7 = String::ToInt(rows[7]);
 	}
 
 	void TChar::SetFromBinaryString(char* binary)
