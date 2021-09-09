@@ -218,7 +218,7 @@ namespace TileGameLib
 	{
 		int pathDelimiterIndex = String::FindLast(file, '/');
 		if (pathDelimiterIndex > 0) {
-			return String::First(file, pathDelimiterIndex);
+			return String::GetFirstChars(file, pathDelimiterIndex);
 		}
 		return "";
 	}
@@ -227,7 +227,7 @@ namespace TileGameLib
 	{
 		int pathDelimiterIndex = String::FindLast(fullPath, '/');
 		if (pathDelimiterIndex > 0) {
-			std::string name = String::Last(fullPath, fullPath.length() - pathDelimiterIndex - 1);
+			std::string name = String::GetLastChars(fullPath, fullPath.length() - pathDelimiterIndex - 1);
 			return name;
 		}
 		return fullPath;
