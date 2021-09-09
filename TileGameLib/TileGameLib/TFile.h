@@ -8,8 +8,13 @@
 #include <vector>
 #include <string>
 #include <cstdio>
+#include <CppUtils/CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
+
+using byte = CppUtils::byte;
+using ushort = CppUtils::ushort;
+using uint = CppUtils::uint;
 
 namespace TileGameLib
 {

@@ -5,8 +5,11 @@
 
 =============================================================================*/
 #pragma once
+#include <CppUtils/CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
+
+using byte = CppUtils::byte;
 
 namespace TileGameLib
 {

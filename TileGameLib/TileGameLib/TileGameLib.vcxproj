@@ -84,7 +84,7 @@
       <Optimization>MaxSpeed</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Fernando\Lib\SDL2-2.0.8\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Fernando\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\CppUtils\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
@@ -96,8 +96,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(SolutionDir)..\Builds\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\CppUtils\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;CppUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(SolutionDir)..\Builds\$(TargetName).pdb</ProgramDatabaseFile>
       <ProfileGuidedDatabase>$(SolutionDir)..\Builds\$(TargetName).pgd</ProfileGuidedDatabase>
@@ -185,7 +185,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TString.h" />
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TTile.h">
       <SubType>
@@ -195,7 +194,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TUtil.h" />
     <ClInclude Include="TWindow.h">
       <SubType>
       </SubType>
@@ -241,7 +239,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TString.cpp" />
     <ClCompile Include="TTile.cpp">
       <SubType>
       </SubType>
@@ -250,7 +247,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TUtil.cpp" />
     <ClCompile Include="TWindow.cpp">
       <SubType>
       </SubType>

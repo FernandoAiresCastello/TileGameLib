@@ -7,9 +7,10 @@
 #include <cstdio>
 #include "TCharset.h"
 #include "TChar.h"
-#include "TString.h"
+#include <CppUtils/CppUtils.h>
 #include "TFile.h"
-#include "TUtil.h"
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -97,14 +98,14 @@ namespace TileGameLib
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
 		Set(ix, 
-			TString::BinaryToInt(row0),
-			TString::BinaryToInt(row1), 
-			TString::BinaryToInt(row2), 
-			TString::BinaryToInt(row3), 
-			TString::BinaryToInt(row4), 
-			TString::BinaryToInt(row5), 
-			TString::BinaryToInt(row6), 
-			TString::BinaryToInt(row7));
+			String::BinaryToInt(row0),
+			String::BinaryToInt(row1), 
+			String::BinaryToInt(row2), 
+			String::BinaryToInt(row3), 
+			String::BinaryToInt(row4), 
+			String::BinaryToInt(row5), 
+			String::BinaryToInt(row6), 
+			String::BinaryToInt(row7));
 	}
 
 	void TCharset::Set(TCharsetIndex ix, TChar& ch)

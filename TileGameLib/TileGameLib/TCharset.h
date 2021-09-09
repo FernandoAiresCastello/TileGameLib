@@ -7,9 +7,12 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <CppUtils/CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
 #include "TChar.h"
+
+using byte = CppUtils::byte;
 
 namespace TileGameLib
 {

@@ -5,10 +5,9 @@
 
 =============================================================================*/
 #pragma once
+
 #include "TGlobal.h"
 #include "TClass.h"
-#include "TUtil.h"
-#include "TString.h"
 #include "TFile.h"
 #include "TColor.h"
 #include "TPalette.h"

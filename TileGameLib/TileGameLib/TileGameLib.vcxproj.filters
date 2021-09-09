@@ -34,12 +34,6 @@
     <ClInclude Include="TKey.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="TUtil.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="TString.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="TBoardCell.h">
       <Filter>Board</Filter>
     </ClInclude>
@@ -93,12 +87,6 @@
     <ClCompile Include="TKey.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="TUtil.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="TString.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="TBoardCell.cpp">
       <Filter>Board</Filter>
     </ClCompile>
@@ -142,9 +130,6 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{48cb2d97-6bfa-450e-85a3-f2c142be387e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{01d4d7dc-cf4d-42d3-bdf1-8e5636a1a814}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

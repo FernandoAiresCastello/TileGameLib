@@ -14,10 +14,6 @@
 
 namespace TileGameLib
 {
-	typedef unsigned char byte;
-	typedef unsigned short ushort;
-	typedef unsigned int uint;
-	
 	typedef int TPaletteIndex;
 	typedef int TCharsetIndex;
 	typedef int TColorRGB;

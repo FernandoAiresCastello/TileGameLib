@@ -5,9 +5,10 @@
 
 =============================================================================*/
 #include <sstream>
+#include <CppUtils/CppUtils.h>
 #include "TChar.h"
-#include "TString.h"
-#include "TString.h"
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -118,16 +119,16 @@ namespace TileGameLib
 
 	void TChar::SetFromBinaryString(std::string binary)
 	{
-		const auto rows = TString::SplitIntoEqualSizedStrings(binary, TChar::Width);
+		const auto rows = String::SplitIntoEqualSizedStrings(binary, TChar::Width);
 		
-		PixelRow0 = TString::BinaryToInt(rows[0]);
-		PixelRow1 = TString::BinaryToInt(rows[1]);
-		PixelRow2 = TString::BinaryToInt(rows[2]);
-		PixelRow3 = TString::BinaryToInt(rows[3]);
-		PixelRow4 = TString::BinaryToInt(rows[4]);
-		PixelRow5 = TString::BinaryToInt(rows[5]);
-		PixelRow6 = TString::BinaryToInt(rows[6]);
-		PixelRow7 = TString::BinaryToInt(rows[7]);
+		PixelRow0 = String::BinaryToInt(rows[0]);
+		PixelRow1 = String::BinaryToInt(rows[1]);
+		PixelRow2 = String::BinaryToInt(rows[2]);
+		PixelRow3 = String::BinaryToInt(rows[3]);
+		PixelRow4 = String::BinaryToInt(rows[4]);
+		PixelRow5 = String::BinaryToInt(rows[5]);
+		PixelRow6 = String::BinaryToInt(rows[6]);
+		PixelRow7 = String::BinaryToInt(rows[7]);
 	}
 
 	void TChar::SetFromBinaryString(char* binary)
@@ -139,14 +140,14 @@ namespace TileGameLib
 	{
 		std::stringstream buf;
 
-		buf << TString::IntToBinary(PixelRow0, TChar::Width);
-		buf << TString::IntToBinary(PixelRow1, TChar::Width);
-		buf << TString::IntToBinary(PixelRow2, TChar::Width);
-		buf << TString::IntToBinary(PixelRow3, TChar::Width);
-		buf << TString::IntToBinary(PixelRow4, TChar::Width);
-		buf << TString::IntToBinary(PixelRow5, TChar::Width);
-		buf << TString::IntToBinary(PixelRow6, TChar::Width);
-		buf << TString::IntToBinary(PixelRow7, TChar::Width);
+		buf << String::IntToBinary(PixelRow0, TChar::Width);
+		buf << String::IntToBinary(PixelRow1, TChar::Width);
+		buf << String::IntToBinary(PixelRow2, TChar::Width);
+		buf << String::IntToBinary(PixelRow3, TChar::Width);
+		buf << String::IntToBinary(PixelRow4, TChar::Width);
+		buf << String::IntToBinary(PixelRow5, TChar::Width);
+		buf << String::IntToBinary(PixelRow6, TChar::Width);
+		buf << String::IntToBinary(PixelRow7, TChar::Width);
 
 		return buf.str();
 	}

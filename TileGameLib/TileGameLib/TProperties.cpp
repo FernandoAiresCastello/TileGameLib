@@ -5,7 +5,9 @@
 
 =============================================================================*/
 #include "TProperties.h"
-#include "TString.h"
+#include <CppUtils/CppUtils.h>
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -36,12 +38,12 @@ namespace TileGameLib
 
 	void TProperties::Set(std::string prop, std::string value)
 	{
-		Properties[prop] = { value, TString::ToInt(value) };
+		Properties[prop] = { value, String::ToInt(value) };
 	}
 
 	void TProperties::Set(std::string prop, int value)
 	{
-		Properties[prop] = { TString::ToString(value), value };
+		Properties[prop] = { String::ToString(value), value };
 	}
 
 	std::string TProperties::GetAsString(std::string prop)

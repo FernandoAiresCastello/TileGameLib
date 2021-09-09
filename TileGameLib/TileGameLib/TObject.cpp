@@ -7,8 +7,9 @@
 #include "TObject.h"
 #include "TTileSequence.h"
 #include "TBoard.h"
-#include "TUtil.h"
-#include "TString.h"
+#include <CppUtils/CppUtils.h>
+
+using namespace CppUtils;
 
 constexpr int IdLength = 10;
 
@@ -16,7 +17,7 @@ namespace TileGameLib
 {
 	TObject::TObject()
 	{
-		Id = TUtil::RandomString(IdLength);
+		Id = Util::RandomString(IdLength);
 		X = -1;
 		Y = -1;
 		Layer = -1;
@@ -27,7 +28,7 @@ namespace TileGameLib
 
 	TObject::TObject(TTile tile)
 	{
-		Id = TUtil::RandomString(IdLength);
+		Id = Util::RandomString(IdLength);
 		X = -1;
 		Y = -1;
 		Layer = -1;
@@ -38,7 +39,7 @@ namespace TileGameLib
 
 	TObject::TObject(TTileSequence tiles)
 	{
-		Id = TUtil::RandomString(IdLength);
+		Id = Util::RandomString(IdLength);
 		X = -1;
 		Y = -1;
 		Layer = -1;
@@ -49,7 +50,7 @@ namespace TileGameLib
 
 	TObject::TObject(const TObject& other)
 	{
-		Id = TUtil::RandomString(IdLength);
+		Id = Util::RandomString(IdLength);
 		X = other.X;
 		Y = other.Y;
 		Layer = other.Layer;

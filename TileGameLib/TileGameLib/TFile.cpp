@@ -7,9 +7,10 @@
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
+#include <CppUtils/CppUtils.h>
 #include "TFile.h"
-#include "TUtil.h"
-#include "TString.h"
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -64,7 +65,7 @@ namespace TileGameLib
 
 	bool TFile::IsDirectory(std::string file)
 	{
-		return TString::EndsWith(file, "/");
+		return String::EndsWith(file, "/");
 	}
 
 	bool TFile::IsCurrentDirectory(std::string file)
@@ -141,8 +142,8 @@ namespace TileGameLib
 
 	std::vector<std::string> TFile::ReadLines(std::string filename)
 	{
-		std::string file = TString::Replace(ReadText(filename), "\r", "");
-		return TString::Split(file, '\n', false);
+		std::string file = String::Replace(ReadText(filename), "\r", "");
+		return String::Split(file, '\n', false);
 	}
 
 	std::vector<int> TFile::ReadBytes(std::string filename)
@@ -215,18 +216,18 @@ namespace TileGameLib
 
 	std::string TFile::GetParentDirectory(std::string file)
 	{
-		int pathDelimiterIndex = TString::FindLast(file, '/');
+		int pathDelimiterIndex = String::FindLast(file, '/');
 		if (pathDelimiterIndex > 0) {
-			return TString::First(file, pathDelimiterIndex);
+			return String::First(file, pathDelimiterIndex);
 		}
 		return "";
 	}
 
 	std::string TFile::GetName(std::string fullPath)
 	{
-		int pathDelimiterIndex = TString::FindLast(fullPath, '/');
+		int pathDelimiterIndex = String::FindLast(fullPath, '/');
 		if (pathDelimiterIndex > 0) {
-			std::string name = TString::Last(fullPath, fullPath.length() - pathDelimiterIndex - 1);
+			std::string name = String::Last(fullPath, fullPath.length() - pathDelimiterIndex - 1);
 			return name;
 		}
 		return fullPath;
@@ -246,14 +247,14 @@ namespace TileGameLib
 	void TFile::WriteShort(ushort s)
 	{
 		byte bytes[2];
-		TUtil::ShortToBytes(s, bytes);
+		Util::ShortToBytes(s, bytes);
 		fwrite(bytes, sizeof(byte), 2, Fp);
 	}
 
 	void TFile::WriteInt(uint i)
 	{
 		byte bytes[4];
-		TUtil::IntToBytes(i, bytes);
+		Util::IntToBytes(i, bytes);
 		fwrite(bytes, sizeof(byte), 4, Fp);
 	}
 
@@ -296,7 +297,7 @@ namespace TileGameLib
 		if (ValidRead())
 			bytes[3] = DataRead[ReadPtr++];
 
-		return TUtil::BytesToInt(bytes);
+		return Util::BytesToInt(bytes);
 	}
 
 	ushort TFile::ReadShort()
@@ -308,7 +309,7 @@ namespace TileGameLib
 		if (ValidRead())
 			bytes[1] = DataRead[ReadPtr++];
 
-		return TUtil::BytesToShort(bytes);
+		return Util::BytesToShort(bytes);
 	}
 
 	bool TFile::ValidRead()
