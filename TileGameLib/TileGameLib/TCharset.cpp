@@ -113,6 +113,26 @@ namespace TileGameLib
 		Get(ix).SetEqual(ch);
 	}
 
+	void TCharset::Set(TCharsetIndex ix, int rowIndex, int rowData)
+	{
+		TChar& ch = Get(ix);
+
+		switch (rowIndex)
+		{
+			case 0: ch.PixelRow0 = rowData; break;
+			case 1: ch.PixelRow1 = rowData; break;
+			case 2: ch.PixelRow2 = rowData; break;
+			case 3: ch.PixelRow3 = rowData; break;
+			case 4: ch.PixelRow4 = rowData; break;
+			case 5: ch.PixelRow5 = rowData; break;
+			case 6: ch.PixelRow6 = rowData; break;
+			case 7: ch.PixelRow7 = rowData; break;
+
+			default:
+				break;
+		}
+	}
+
 	void TCharset::CopyChar(TCharsetIndex dstix, TCharsetIndex srcix)
 	{
 		TChar& src = Get(srcix);
