@@ -54,6 +54,9 @@
     <Compile Include="Components\DisplayWindow.Designer.cs">
       <DependentUpon>DisplayWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\MCTiledDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Components\TiledDisplayWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +82,10 @@
     <Compile Include="GameElements\PositionedCell.cs" />
     <Compile Include="GameElements\PositionedObject.cs" />
     <Compile Include="Graphics\GraphicsDriver.cs" />
+    <Compile Include="Graphics\MCTile.cs" />
+    <Compile Include="Graphics\MCTileset.cs" />
+    <Compile Include="Graphics\MCTileBuffer.cs" />
+    <Compile Include="Graphics\MCTileGraphicsDriver.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />
