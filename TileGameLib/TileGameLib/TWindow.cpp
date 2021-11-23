@@ -116,6 +116,11 @@ namespace TileGameLib
 		SDL_FreeSurface(surface);
 	}
 
+	void TWindow::SetBackColor(int bgcix)
+	{
+		BackColor = bgcix;
+	}
+
 	void TWindow::Update()
 	{
 		static int pitch;
@@ -133,7 +138,7 @@ namespace TileGameLib
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
-	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y)
+	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent)
 	{
 		const int initialX = x;
 		TChar& ch = Chr->Get(chix);
@@ -141,29 +146,53 @@ namespace TileGameLib
 		int bgc = Pal->GetColorRGB(bgcix);
 		int pos;
 
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow0 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow0 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow1 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow1 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow2 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow2 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow3 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow3 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow4 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow4 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow5 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow5 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow6 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow6 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
+		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			int pixel = ch.PixelRow7 & (1 << pos);
+			if (pixel || !pixel && !transparent)
+				SetPixel(x, y, pixel ? fgc : bgc);
+		}
 	}
 
 	void TWindow::ClearToRGB(int rgb)

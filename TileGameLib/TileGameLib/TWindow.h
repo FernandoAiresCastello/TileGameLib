@@ -37,9 +37,10 @@ namespace TileGameLib
 		void SetBordered(bool bordered);
 		void SetIcon(std::string iconfile);
 		void SaveScreenshot(std::string file);
+		void SetBackColor(int bgcix);
 		void Update();
 		void Clear();
-		void DrawTile(int chix, int fgcix, int bgcix, int x, int y);
+		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent);
 
 	private:
 		int* Buffer;
