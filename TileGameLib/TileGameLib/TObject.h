@@ -18,7 +18,7 @@ namespace TileGameLib
 	class TTileSequence;
 	class TBoard;
 
-	class TILEGAMELIB_API TObject : TClass
+	class TObject : TClass
 	{
 	public:
 		TObject();

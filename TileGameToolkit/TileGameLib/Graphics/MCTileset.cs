@@ -12,6 +12,7 @@ namespace TileGameLib.Graphics
 
         public MCTileset()
         {
+            Tiles.Add(MCTile.MakeTransparent());
         }
 
         public void Add(MCTile tile)

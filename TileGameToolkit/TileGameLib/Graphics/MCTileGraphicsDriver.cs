@@ -12,18 +12,19 @@ namespace TileGameLib.Graphics
 {
     public class MCTileGraphicsDriver : GraphicsDriver
     {
-        public Palette Palette { set; get; }
+        public MCPalette Palette { set; get; }
         public MCTileset Tileset { set; get; }
         public MCTileBuffer TileBuffer { get; private set; }
+        public int BackColor { set; get; }
 
         private const char NewLineChar = '\n';
 
-        public MCTileGraphicsDriver(int cols, int rows)
-            : this(cols, rows, new MCTileset(), new Palette())
+        public MCTileGraphicsDriver(int cols, int rows, int backColor)
+            : this(cols, rows, new MCTileset(), new MCPalette(), backColor)
         {
         }
 
-        public MCTileGraphicsDriver(int cols, int rows, MCTileset tileset, Palette palette)
+        public MCTileGraphicsDriver(int cols, int rows, MCTileset tileset, MCPalette palette, int backColor)
             : base(cols * MCTile.Width, rows * MCTile.Height)
         {
             if (rows <= 0)
@@ -35,6 +36,7 @@ namespace TileGameLib.Graphics
             Palette = palette ?? throw new ArgumentNullException("palette");
 
             TileBuffer = new MCTileBuffer(cols, rows);
+            BackColor = backColor;
         }
 
         public int GetTileIndex(int col, int row)
@@ -139,7 +141,9 @@ namespace TileGameLib.Graphics
             {
                 for (int ix = 0; ix < MCTile.Width; ix++)
                 {
-                    SetPixel(x, y, tile.GetPixel(ix, iy));
+                    int paletteIndex = tile.GetPixelPaletteIndex(ix, iy);
+                    int rgb = Palette.Get(paletteIndex > 0 ? paletteIndex : BackColor);
+                    SetPixel(x, y, rgb);
                     x++;
                 }
                 x = px;

@@ -17,7 +17,7 @@ namespace TileGameLib
 	class TPalette;
 	class TTile;
 
-	class TILEGAMELIB_API TWindow : TClass
+	class TWindow : TClass
 	{
 	public:
 		const int ScreenWidth;

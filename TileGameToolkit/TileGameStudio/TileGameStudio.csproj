@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TileGameLib\TileGameLib.csproj">
+      <Project>{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}</Project>
+      <Name>TileGameLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

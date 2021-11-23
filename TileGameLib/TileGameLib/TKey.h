@@ -11,7 +11,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TKey : TClass
+	class TKey : TClass
 	{
 	public:
 		static void Wait(SDL_Keycode key);

@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.1500
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TileGameLib", "TileGameLib\TileGameLib.vcxproj", "{C846D7D6-B6B4-43C7-A395-373E7196D3DF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TileGameLibTest", "TileGameLibTest\TileGameLibTest.vcxproj", "{0A3C54DB-01D0-453B-9662-3BF57273CB2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C846D7D6-B6B4-43C7-A395-373E7196D3DF} = {C846D7D6-B6B4-43C7-A395-373E7196D3DF}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +26,14 @@ Global
 		{C846D7D6-B6B4-43C7-A395-373E7196D3DF}.Release|x64.Build.0 = Release|x64
 		{C846D7D6-B6B4-43C7-A395-373E7196D3DF}.Release|x86.ActiveCfg = Release|Win32
 		{C846D7D6-B6B4-43C7-A395-373E7196D3DF}.Release|x86.Build.0 = Release|Win32
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Debug|x64.ActiveCfg = Debug|x64
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Debug|x64.Build.0 = Debug|x64
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Debug|x86.ActiveCfg = Debug|Win32
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Debug|x86.Build.0 = Debug|Win32
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Release|x64.ActiveCfg = Release|x64
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Release|x64.Build.0 = Release|x64
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Release|x86.ActiveCfg = Release|Win32
+		{0A3C54DB-01D0-453B-9662-3BF57273CB2F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

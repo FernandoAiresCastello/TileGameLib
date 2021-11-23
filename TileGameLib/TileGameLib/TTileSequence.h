@@ -12,7 +12,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TTileSequence : TClass
+	class TTileSequence : TClass
 	{
 	public:
 		TTileSequence();

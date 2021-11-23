@@ -12,7 +12,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TProperties : TClass
+	class TProperties : TClass
 	{
 	public:
 		TProperties();

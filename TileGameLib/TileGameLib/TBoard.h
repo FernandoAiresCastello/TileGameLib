@@ -17,7 +17,7 @@ namespace TileGameLib
 	class TBoardLayer;
 	class TTileSequence;
 
-	class TILEGAMELIB_API TBoard : TClass
+	class TBoard : TClass
 	{
 	public:
 		TBoard(int cols, int rows, int layers);

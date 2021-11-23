@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <cstdio>
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
 
@@ -18,7 +18,7 @@ using uint = CppUtils::uint;
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TFile : TClass
+	class TFile : TClass
 	{
 	public:
 		static const std::string CurrentDirectory;

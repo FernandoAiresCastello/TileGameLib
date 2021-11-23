@@ -20,17 +20,16 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C846D7D6-B6B4-43C7-A395-373E7196D3DF}</ProjectGuid>
-    <RootNamespace>TileGameLib</RootNamespace>
+    <ProjectGuid>{0A3C54DB-01D0-453B-9662-3BF57273CB2F}</ProjectGuid>
+    <RootNamespace>TileGameLibTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
-    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -38,14 +37,12 @@
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
-    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -53,7 +50,6 @@
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -73,36 +69,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetExt>.lib</TargetExt>
-    <IncludePath>C:\Fernando\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Fernando\Lib\SDL2-2.0.8\x86;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level1</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Fernando\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\CppUtils\CppUtils</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>C:\Fernando\Proj\CppUtils\CppUtils;C:\Fernando\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\TileGameToolkit\TileGameLib\TileGameLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(SolutionDir)..\Builds\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\CppUtils\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;CppUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)..\Builds\$(TargetName).pdb</ProgramDatabaseFile>
-      <ProfileGuidedDatabase>$(SolutionDir)..\Builds\$(TargetName).pgd</ProfileGuidedDatabase>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-      <ImportLibrary>$(SolutionDir)..\Builds\$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>C:\Fernando\Proj\TileGameToolkit\TileGameLib\Debug;C:\Fernando\Proj\CppUtils\Debug;C:\Fernando\Lib\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;CppUtils.lib;TileGameLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -147,110 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TFile.h" />
-    <ClInclude Include="TBoard.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardCell.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardLayer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardRegion.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardView.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TKey.h" />
-    <ClInclude Include="TChar.h" />
-    <ClInclude Include="TCharset.h" />
-    <ClInclude Include="TClass.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TObject.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TPalette.h" />
-    <ClInclude Include="TColor.h" />
-    <ClInclude Include="TProperties.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TGlobal.h" />
-    <ClInclude Include="TTile.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TTileSequence.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TWindow.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TileGameLib.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="TFile.cpp" />
-    <ClCompile Include="TBoard.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardCell.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardLayer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardRegion.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardView.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TKey.cpp" />
-    <ClCompile Include="TChar.cpp" />
-    <ClCompile Include="TCharset.cpp" />
-    <ClCompile Include="TClass.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TObject.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TPalette.cpp" />
-    <ClCompile Include="TColor.cpp" />
-    <ClCompile Include="TProperties.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TTile.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TTileSequence.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TWindow.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

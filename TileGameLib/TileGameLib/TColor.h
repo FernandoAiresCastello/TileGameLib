@@ -5,7 +5,7 @@
 
 =============================================================================*/
 #pragma once
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
 
@@ -13,7 +13,7 @@ using byte = CppUtils::byte;
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TColor : TClass
+	class TColor : TClass
 	{
 	public:
 		byte R, G, B;

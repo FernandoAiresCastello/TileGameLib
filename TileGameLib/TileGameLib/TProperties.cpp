@@ -5,7 +5,7 @@
 
 =============================================================================*/
 #include "TProperties.h"
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 
 using namespace CppUtils;
 

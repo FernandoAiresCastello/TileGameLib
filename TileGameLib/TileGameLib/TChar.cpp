@@ -5,7 +5,7 @@
 
 =============================================================================*/
 #include <sstream>
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 #include "TChar.h"
 
 using namespace CppUtils;

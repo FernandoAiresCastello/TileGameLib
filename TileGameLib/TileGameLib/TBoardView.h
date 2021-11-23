@@ -17,7 +17,7 @@ namespace TileGameLib
 	class TPalette;
 	class TWindow;
 
-	class TILEGAMELIB_API TBoardView : TClass
+	class TBoardView : TClass
 	{
 	public:
 		TBoardView(TBoard* board, TWindow* window, TCharset* chars, TPalette* pal, 

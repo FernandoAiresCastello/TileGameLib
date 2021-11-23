@@ -7,7 +7,7 @@
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 #include "TFile.h"
 
 using namespace CppUtils;

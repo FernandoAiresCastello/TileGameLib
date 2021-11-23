@@ -12,7 +12,7 @@ namespace TileGameLib
 {
 	class TBoardCell;
 
-	class TILEGAMELIB_API TBoardLayer : TClass
+	class TBoardLayer : TClass
 	{
 	public:
 		TBoardLayer(int cols, int rows);

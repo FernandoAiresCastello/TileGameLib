@@ -13,7 +13,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TPalette : TClass
+	class TPalette : TClass
 	{
 	public:
 		static TPalette* Default;

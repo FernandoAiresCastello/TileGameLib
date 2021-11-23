@@ -10,7 +10,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TClass
+	class TClass
 	{
 	public:
 		TClass();

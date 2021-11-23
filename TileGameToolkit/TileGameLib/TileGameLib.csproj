@@ -86,6 +86,7 @@
     <Compile Include="Graphics\MCTileset.cs" />
     <Compile Include="Graphics\MCTileBuffer.cs" />
     <Compile Include="Graphics\MCTileGraphicsDriver.cs" />
+    <Compile Include="Graphics\MCPalette.cs" />
     <Compile Include="Graphics\TilePixels.cs" />
     <Compile Include="GameElements\ObjectAnimation.cs" />
     <Compile Include="Graphics\TileBuffer.cs" />

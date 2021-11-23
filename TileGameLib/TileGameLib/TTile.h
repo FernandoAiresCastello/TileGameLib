@@ -10,7 +10,7 @@
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TTile : TClass
+	class TTile : TClass
 	{
 	public:
 		TCharsetIndex Char;

@@ -6,12 +6,6 @@
 =============================================================================*/
 #pragma once
 
-#ifdef DLLEXPORTS
-	#define TILEGAMELIB_API __declspec(dllexport)
-#else
-	#define TILEGAMELIB_API __declspec(dllimport)
-#endif
-
 namespace TileGameLib
 {
 	typedef int TPaletteIndex;

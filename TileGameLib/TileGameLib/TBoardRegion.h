@@ -12,7 +12,7 @@ namespace TileGameLib
 {
 	class TBoard;
 
-	class TILEGAMELIB_API TBoardRegion : TClass
+	class TBoardRegion : TClass
 	{
 	public:
 		TBoardRegion(TBoard* board);

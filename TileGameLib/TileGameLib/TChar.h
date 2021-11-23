@@ -7,7 +7,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 #include "TGlobal.h"
 #include "TClass.h"
 
@@ -15,7 +15,7 @@ using byte = CppUtils::byte;
 
 namespace TileGameLib
 {
-	class TILEGAMELIB_API TChar : TClass
+	class TChar : TClass
 	{
 	public:
 		static const int Width;

@@ -20,6 +20,11 @@ namespace TileGameLib.Graphics
             SetAllPixels(TransparentColorIndex);
         }
 
+        public MCTile(string pattern)
+        {
+            SetPattern(pattern);
+        }
+
         public MCTile(MCTile other)
         {
             SetEqual(other);
@@ -60,12 +65,33 @@ namespace TileGameLib.Graphics
                     Pixels[col, row] = paletteIndex;
         }
 
-        public void SetPixel(int col, int row, int paletteIndex)
+        public void SetPattern(string pattern)
+        {
+            int col = 0;
+            int row = 0;
+
+            foreach (string ix in pattern.Split(','))
+            {
+                int paletteIndex = int.Parse(ix.Trim());
+                SetPixelPaletteIndex(col, row, paletteIndex);
+
+                col++;
+                if (col >= Width)
+                {
+                    col = 0;
+                    row++;
+                    if (row >= Height)
+                        break;
+                }
+            }
+        }
+
+        public void SetPixelPaletteIndex(int col, int row, int paletteIndex)
         {
             Pixels[col, row] = paletteIndex;
         }
 
-        public int GetPixel(int col, int row)
+        public int GetPixelPaletteIndex(int col, int row)
         {
             return Pixels[col, row];
         }

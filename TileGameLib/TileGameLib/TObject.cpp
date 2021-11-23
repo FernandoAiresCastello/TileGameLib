@@ -7,7 +7,7 @@
 #include "TObject.h"
 #include "TTileSequence.h"
 #include "TBoard.h"
-#include <CppUtils/CppUtils.h>
+#include <CppUtils.h>
 
 using namespace CppUtils;
 

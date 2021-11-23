@@ -43,7 +43,7 @@ namespace TileGameLib.Components
         {
             Parent = parent;
             DoubleBuffered = true;
-            Graphics = new MCTileGraphicsDriver(cols, rows);
+            Graphics = new MCTileGraphicsDriver(cols, rows, 0);
             Image = Graphics.Bitmap;
             ShowGrid = false;
             ShowCustomOverlay = false;
@@ -78,7 +78,7 @@ namespace TileGameLib.Components
 
         public void ResizeGraphics(int cols, int rows)
         {
-            Graphics = new MCTileGraphicsDriver(cols, rows, Graphics.Tileset, Graphics.Palette);
+            Graphics = new MCTileGraphicsDriver(cols, rows, Graphics.Tileset, Graphics.Palette, Graphics.BackColor);
             UpdateSize();
         }
 
