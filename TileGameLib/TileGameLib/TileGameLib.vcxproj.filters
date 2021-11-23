@@ -49,9 +49,6 @@
     <ClInclude Include="TBoardRegion.h">
       <Filter>Board</Filter>
     </ClInclude>
-    <ClInclude Include="TFile.h">
-      <Filter>Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="TObject.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -102,9 +99,6 @@
     <ClCompile Include="TBoardRegion.cpp">
       <Filter>Board</Filter>
     </ClCompile>
-    <ClCompile Include="TFile.cpp">
-      <Filter>Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="TObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -124,9 +118,6 @@
     </Filter>
     <Filter Include="Board">
       <UniqueIdentifier>{d43a1519-d4f9-4f7b-b3b4-9de9f1f78598}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Filesystem">
-      <UniqueIdentifier>{3300ce46-9bb3-4fab-a8ba-c6ff7ba7aee3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{48cb2d97-6bfa-450e-85a3-f2c142be387e}</UniqueIdentifier>

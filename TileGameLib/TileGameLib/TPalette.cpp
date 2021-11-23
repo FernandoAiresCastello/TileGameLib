@@ -5,8 +5,10 @@
 
 =============================================================================*/
 #include <cstdio>
+#include <CppUtils.h>
 #include "TPalette.h"
-#include "TFile.h"
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -100,7 +102,7 @@ namespace TileGameLib
 	void TPalette::Load(std::string filename)
 	{
 		DeleteAll();
-		auto bytes = TFile::ReadBytes(filename);
+		auto bytes = File::ReadBytes(filename);
 		for (int i = 0; i < bytes.size(); i += 3)
 			Add(bytes[i + 0], bytes[i + 1], bytes[i + 2]);
 	}
@@ -115,7 +117,7 @@ namespace TileGameLib
 			bytes.push_back(color.B);
 		}
 
-		TFile::WriteBytes(filename, bytes);
+		File::WriteBytes(filename, bytes);
 	}
 
 	void TPalette::InitDefault()

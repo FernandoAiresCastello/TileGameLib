@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TFile.h" />
     <ClInclude Include="TBoard.h">
       <SubType>
       </SubType>
@@ -201,7 +200,6 @@
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TFile.cpp" />
     <ClCompile Include="TBoard.cpp">
       <SubType>
       </SubType>

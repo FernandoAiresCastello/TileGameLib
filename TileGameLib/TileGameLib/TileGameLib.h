@@ -8,7 +8,6 @@
 
 #include "TGlobal.h"
 #include "TClass.h"
-#include "TFile.h"
 #include "TColor.h"
 #include "TPalette.h"
 #include "TChar.h"

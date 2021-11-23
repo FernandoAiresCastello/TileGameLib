@@ -5,10 +5,9 @@
 
 =============================================================================*/
 #include <cstdio>
+#include <CppUtils.h>
 #include "TCharset.h"
 #include "TChar.h"
-#include <CppUtils.h>
-#include "TFile.h"
 
 using namespace CppUtils;
 
@@ -150,7 +149,7 @@ namespace TileGameLib
 	void TCharset::Load(std::string filename)
 	{
 		DeleteAll();
-		auto bytes = TFile::ReadBytes(filename);
+		auto bytes = File::ReadBytes(filename);
 		for (int i = 0; i < bytes.size(); i += 8) {
 			Add(bytes[i + 0], bytes[i + 1], bytes[i + 2], bytes[i + 3],
 				bytes[i + 4], bytes[i + 5], bytes[i + 6], bytes[i + 7]);
@@ -172,7 +171,7 @@ namespace TileGameLib
 			bytes.push_back(ch.PixelRow7);
 		}
 
-		TFile::WriteBytes(filename, bytes);
+		File::WriteBytes(filename, bytes);
 	}
 
 	void TCharset::InitDefault()
