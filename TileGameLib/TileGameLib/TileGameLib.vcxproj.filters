@@ -1,126 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="TileGameLib.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TClass.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TGlobal.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TChar.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TCharset.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TPalette.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TColor.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TTile.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TTileSequence.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TWindow.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TKey.h">
-      <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="TBoardCell.h">
-      <Filter>Board</Filter>
-    </ClInclude>
-    <ClInclude Include="TBoardLayer.h">
-      <Filter>Board</Filter>
-    </ClInclude>
-    <ClInclude Include="TBoard.h">
-      <Filter>Board</Filter>
-    </ClInclude>
-    <ClInclude Include="TBoardView.h">
-      <Filter>Board</Filter>
-    </ClInclude>
-    <ClInclude Include="TBoardRegion.h">
-      <Filter>Board</Filter>
-    </ClInclude>
-    <ClInclude Include="TObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="TProperties.h">
-      <Filter>Object</Filter>
-    </ClInclude>
+    <ClInclude Include="TChar.h" />
+    <ClInclude Include="TCharset.h" />
+    <ClInclude Include="TColor.h" />
+    <ClInclude Include="TPalette.h" />
+    <ClInclude Include="TTile.h" />
+    <ClInclude Include="TWindow.h" />
+    <ClInclude Include="TKey.h" />
+    <ClInclude Include="TGlobal.h" />
+    <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TClass.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="TChar.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TCharset.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TPalette.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TColor.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TTile.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TTileSequence.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TWindow.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TKey.cpp">
-      <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="TBoardCell.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TBoardLayer.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TBoard.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TBoardView.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TBoardRegion.cpp">
-      <Filter>Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="TProperties.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Global">
-      <UniqueIdentifier>{3d60d6c4-5fa0-49c0-9212-92801231bd3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{e04c1662-9e59-41a4-a9d2-0b2aaa7e8ebf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{d590122f-bde8-428b-b2e4-381998333d43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Board">
-      <UniqueIdentifier>{d43a1519-d4f9-4f7b-b3b4-9de9f1f78598}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{48cb2d97-6bfa-450e-85a3-f2c142be387e}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="TChar.cpp" />
+    <ClCompile Include="TCharset.cpp" />
+    <ClCompile Include="TColor.cpp" />
+    <ClCompile Include="TPalette.cpp" />
+    <ClCompile Include="TTile.cpp" />
+    <ClCompile Include="TWindow.cpp" />
+    <ClCompile Include="TKey.cpp" />
   </ItemGroup>
 </Project>

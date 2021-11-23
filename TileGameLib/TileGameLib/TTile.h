@@ -6,11 +6,10 @@
 =============================================================================*/
 #pragma once
 #include "TGlobal.h"
-#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TTile : TClass
+	class TTile
 	{
 	public:
 		TCharsetIndex Char;

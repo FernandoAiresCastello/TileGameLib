@@ -199,13 +199,6 @@ namespace TileGameLib
 			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
 	}
 
-	void TWindow::DrawChars(TCharset* chars, TPalette* pal,
-		std::vector<TCharsetIndex>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
-	{
-		for (auto& ch : str)
-			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
-	}
-
 	void TWindow::DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
 	{
 		DrawChar(chars, pal, tile->Char, tile->ForeColor, tile->BackColor, x, y);

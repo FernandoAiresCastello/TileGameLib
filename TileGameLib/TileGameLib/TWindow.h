@@ -9,7 +9,6 @@
 #include <string>
 #include <vector>
 #include "TGlobal.h"
-#include "TClass.h"
 
 namespace TileGameLib
 {
@@ -17,7 +16,7 @@ namespace TileGameLib
 	class TPalette;
 	class TTile;
 
-	class TWindow : TClass
+	class TWindow
 	{
 	public:
 		const int ScreenWidth;
@@ -43,14 +42,10 @@ namespace TileGameLib
 		void Clear(TPalette* pal, TPaletteIndex ix);
 		void ClearAt(TPalette* pal, TPaletteIndex ix, int x, int y);
 		void ClearRect(TPalette* pal, TPaletteIndex ix, int x, int y, int w, int h);
-		void DrawChar(TCharset* chars, TPalette* pal, 
-			TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
-		void DrawChars(TCharset* chars, TPalette* pal,
-			std::vector<TCharsetIndex>& str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawChar(TCharset* chars, TPalette* pal, TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 		void DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
 		void DrawSpriteTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y);
-		void DrawString(TCharset* chars, TPalette* pal,
-			std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
+		void DrawString(TCharset* chars, TPalette* pal, std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y);
 
 	private:
 		int* Buffer;

@@ -9,13 +9,12 @@
 #include <string>
 #include <CppUtils.h>
 #include "TGlobal.h"
-#include "TClass.h"
 
 using byte = CppUtils::byte;
 
 namespace TileGameLib
 {
-	class TChar : TClass
+	class TChar
 	{
 	public:
 		static const int Width;

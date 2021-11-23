@@ -8,12 +8,11 @@
 #include <string>
 #include <vector>
 #include "TGlobal.h"
-#include "TClass.h"
 #include "TColor.h"
 
 namespace TileGameLib
 {
-	class TPalette : TClass
+	class TPalette
 	{
 	public:
 		static TPalette* Default;

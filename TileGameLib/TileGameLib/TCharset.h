@@ -9,14 +9,13 @@
 #include <vector>
 #include <CppUtils.h>
 #include "TGlobal.h"
-#include "TClass.h"
 #include "TChar.h"
 
 using byte = CppUtils::byte;
 
 namespace TileGameLib
 {
-	class TCharset : TClass
+	class TCharset
 	{
 	public:
 		static TCharset* Default;

@@ -7,11 +7,10 @@
 #pragma once
 #include <SDL.h>
 #include "TGlobal.h"
-#include "TClass.h"
 
 namespace TileGameLib
 {
-	class TKey : TClass
+	class TKey
 	{
 	public:
 		static void Wait(SDL_Keycode key);

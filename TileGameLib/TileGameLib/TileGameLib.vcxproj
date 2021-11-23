@@ -147,49 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="TBoard.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardCell.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardLayer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardRegion.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TBoardView.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TKey.h" />
     <ClInclude Include="TChar.h" />
     <ClInclude Include="TCharset.h" />
-    <ClInclude Include="TClass.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TObject.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TPalette.h" />
     <ClInclude Include="TColor.h" />
-    <ClInclude Include="TProperties.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TTile.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TTileSequence.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -200,48 +164,12 @@
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TBoard.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardCell.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardLayer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardRegion.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TBoardView.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TKey.cpp" />
     <ClCompile Include="TChar.cpp" />
     <ClCompile Include="TCharset.cpp" />
-    <ClCompile Include="TClass.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TObject.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
-    <ClCompile Include="TProperties.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TTile.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TTileSequence.cpp">
       <SubType>
       </SubType>
     </ClCompile>
