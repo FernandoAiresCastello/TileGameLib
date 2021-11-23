@@ -22,17 +22,17 @@ namespace TileGameLib
 		~TPalette();
 
 		std::vector<TColor>& GetColors();
-		TColor& Get(TPaletteIndex ix);
-		TColorRGB GetColorRGB(TPaletteIndex ix);
+		TColor& Get(int ix);
+		int GetColorRGB(int ix);
 		int GetSize();
 		void Clear();
 		void DeleteAll();
 		void AddBlank(int count = 1);
 		void Add(TColor color);
 		void Add(int r, int g, int b);
-		void Add(TColorRGB rgb);
-		void Set(TPaletteIndex ix, TColorRGB rgb);
-		void Set(TPaletteIndex ix, int r, int g, int b);
+		void Add(int rgb);
+		void Set(int ix, int rgb);
+		void Set(int ix, int r, int g, int b);
 		void SetEqual(TPalette& other);
 		void Load(std::string filename);
 		void Save(std::string filename);

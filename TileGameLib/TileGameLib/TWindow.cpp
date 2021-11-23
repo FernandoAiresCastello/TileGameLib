@@ -10,7 +10,6 @@
 #include "TChar.h"
 #include "TCharset.h"
 #include "TPalette.h"
-#include "TTile.h"
 
 namespace TileGameLib
 {
@@ -19,11 +18,11 @@ namespace TileGameLib
 		WindowWidth(wWnd), WindowHeight(hWnd),
 		Cols(wScr / TChar::Width), Rows(hScr / TChar::Height),
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
-		BufferLength(sizeof(int) * wScr * hScr)
+		BufferLength(sizeof(int) * wScr * hScr),
+		Chr(TCharset::Default), Pal(TPalette::Default),
+		BackColor(0)
 	{
 		Buffer = new int[BufferLength];
-		ClearToRGB(0x000000);
-		PremultiplyGrid();
 
 		SDL_Init(SDL_INIT_EVERYTHING);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
@@ -41,6 +40,7 @@ namespace TileGameLib
 		Scrtx = SDL_CreateTexture(Renderer,
 			PixelFormat, SDL_TEXTUREACCESS_STREAMING, ScreenWidth, ScreenHeight);
 
+		Clear();
 		Update();
 
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
@@ -128,50 +128,17 @@ namespace TileGameLib
 		SDL_RenderPresent(Renderer);
 	}
 
-	void TWindow::Clear(TPalette* pal, TPaletteIndex ix)
+	void TWindow::Clear()
 	{
-		ClearToRGB(pal->GetColorRGB(ix));
+		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
-	void TWindow::ClearAt(TPalette* pal, TPaletteIndex ix, int x, int y)
+	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y)
 	{
-		if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-			return;
-
-		static TGridPosition* grid;
-		grid = &(Grid[y][x]);
-		x = grid->X;
-		y = grid->Y;
-
-		for (int px = x; px < x + TChar::Width; px++) {
-			for (int py = y; py < y + TChar::Height; py++) {
-				SetPixel(px, py, pal->GetColorRGB(ix));
-			}
-		}
-	}
-
-	void TWindow::ClearRect(TPalette* pal, TPaletteIndex ix, int x, int y, int w, int h)
-	{
-		for (int px = x; px < x + w; px++)
-			for (int py = y; py < y + h; py++)
-				ClearAt(pal, ix, px, py);
-	}
-
-	void TWindow::DrawChar(TCharset* chars, TPalette* pal,
-		TCharsetIndex chrix, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
-	{
-		if (x < 0 || y < 0 || x >= Cols || y >= Rows)
-			return;
-
-		static TGridPosition* grid;
-		grid = &(Grid[y][x]);
-		x = grid->X;
-		y = grid->Y;
-
 		const int initialX = x;
-		TChar& ch = chars->Get(chrix);
-		TColorRGB fgc = pal->GetColorRGB(fgcix);
-		TColorRGB bgc = pal->GetColorRGB(bgcix);
+		TChar& ch = Chr->Get(chix);
+		int fgc = Pal->GetColorRGB(fgcix);
+		int bgc = Pal->GetColorRGB(bgcix);
 		int pos;
 
 		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
@@ -199,72 +166,16 @@ namespace TileGameLib
 			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
 	}
 
-	void TWindow::DrawTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
-	{
-		DrawChar(chars, pal, tile->Char, tile->ForeColor, tile->BackColor, x, y);
-	}
-
-	void TWindow::DrawSpriteTile(TCharset* chars, TPalette* pal, TTile* tile, int x, int y)
-	{
-		const int initialX = x;
-		TChar& ch = chars->Get(tile->Char);
-		TColorRGB fgc = pal->GetColorRGB(tile->ForeColor);
-		TColorRGB bgc = pal->GetColorRGB(tile->BackColor);
-		int pos;
-
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow0 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow1 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow2 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow3 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow4 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow5 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow6 & (1 << pos)) ? fgc : bgc);
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++)
-			SetPixel(x, y, (ch.PixelRow7 & (1 << pos)) ? fgc : bgc);
-	}
-
-	void TWindow::DrawString(TCharset* chars, TPalette* pal, 
-		std::string str, TPaletteIndex fgcix, TPaletteIndex bgcix, int x, int y)
-	{
-		for (auto& ch : str)
-			DrawChar(chars, pal, ch, fgcix, bgcix, x++, y);
-	}
-
-	void TWindow::ClearToRGB(TColorRGB rgb)
+	void TWindow::ClearToRGB(int rgb)
 	{
 		for (int y = 0; y < ScreenHeight; y++)
 			for (int x = 0; x < ScreenWidth; x++)
 				Buffer[y * ScreenWidth + x] = rgb;
 	}
 
-	void TWindow::SetPixel(int x, int y, TColorRGB rgb)
+	void TWindow::SetPixel(int x, int y, int rgb)
 	{
 		if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
 			Buffer[y * ScreenWidth + x] = rgb;
-	}
-
-	void TWindow::PremultiplyGrid()
-	{
-		for (int y = 0; y < Rows; y++) {
-			std::vector<TGridPosition> row;
-			for (int x = 0; x < Cols; x++) {
-				row.push_back({ x * TChar::Width, y * TChar::Height });
-			}
-			Grid.push_back(row);
-		}
 	}
 }

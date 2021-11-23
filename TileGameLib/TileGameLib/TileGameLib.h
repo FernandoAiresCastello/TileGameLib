@@ -11,6 +11,5 @@
 #include "TPalette.h"
 #include "TChar.h"
 #include "TCharset.h"
-#include "TTile.h"
 #include "TWindow.h"
 #include "TKey.h"

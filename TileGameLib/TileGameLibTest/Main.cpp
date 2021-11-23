@@ -4,13 +4,13 @@ using namespace TileGameLib;
 
 int main(int argc, char* argv[])
 {
-	TWindow* wnd = new TWindow(320, 240, 3, false);
+	TWindow* wnd = new TWindow(256, 192, 3, false);
 	
 	int x = 0;
 	int y = 0;
 
 	for (int i = 0; i < TPalette::Default->GetSize(); i++) {
-		wnd->DrawChar(TCharset::Default, TPalette::Default, 0xdb, i, i, x, y);
+		wnd->DrawTile(0xdb, i, i, x * 8, y * 8);
 		x++;
 		if (x >= 16) {
 			x = 0;

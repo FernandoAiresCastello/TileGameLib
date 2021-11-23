@@ -27,7 +27,7 @@ namespace TileGameLib
 	{
 	}
 
-	TColor::TColor(TColorRGB rgb)
+	TColor::TColor(int rgb)
 	{
 		Set(rgb);
 	}
@@ -36,12 +36,12 @@ namespace TileGameLib
 	{
 	}
 
-	TColorRGB TColor::ToColorRGB(byte r, byte g, byte b)
+	int TColor::ToColorRGB(byte r, byte g, byte b)
 	{
 		return b | (g << CHAR_BIT) | (r << CHAR_BIT * 2);
 	}
 
-	TColor TColor::FromColorRGB(TColorRGB rgb)
+	TColor TColor::FromColorRGB(int rgb)
 	{
 		return TColor(rgb);
 	}
@@ -58,12 +58,12 @@ namespace TileGameLib
 		B = other.B;
 	}
 
-	TColorRGB TColor::ToColorRGB()
+	int TColor::ToColorRGB()
 	{
 		return B | (G << CHAR_BIT) | (R << CHAR_BIT * 2);
 	}
 
-	void TColor::Set(TColorRGB rgb)
+	void TColor::Set(int rgb)
 	{
 		R = (rgb & 0xff0000) >> 16;
 		G = (rgb & 0x00ff00) >> 8;

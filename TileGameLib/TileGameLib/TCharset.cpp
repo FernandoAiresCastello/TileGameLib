@@ -36,12 +36,12 @@ namespace TileGameLib
 		return Chars;
 	}
 
-	TChar& TCharset::Get(TCharsetIndex ix)
+	TChar& TCharset::Get(int ix)
 	{
 		return Chars[ix];
 	}
 
-	std::vector<byte> TCharset::GetBytes(TCharsetIndex ix)
+	std::vector<byte> TCharset::GetBytes(int ix)
 	{
 		return Chars[ix].GetBytes();
 	}
@@ -78,7 +78,7 @@ namespace TileGameLib
 		Add(TChar(row0, row1, row2, row3, row4, row5, row6, row7));
 	}
 
-	void TCharset::Set(TCharsetIndex ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
+	void TCharset::Set(int ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
 	{
 		TChar& chars = Get(ix);
 
@@ -92,7 +92,7 @@ namespace TileGameLib
 		chars.PixelRow7 = row7;
 	}
 
-	void TCharset::Set(TCharsetIndex ix,
+	void TCharset::Set(int ix,
 		std::string row0, std::string row1, std::string row2, std::string row3, 
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
@@ -107,12 +107,12 @@ namespace TileGameLib
 			String::ToInt(row7));
 	}
 
-	void TCharset::Set(TCharsetIndex ix, TChar& ch)
+	void TCharset::Set(int ix, TChar& ch)
 	{
 		Get(ix).SetEqual(ch);
 	}
 
-	void TCharset::Set(TCharsetIndex ix, int rowIndex, int rowData)
+	void TCharset::Set(int ix, int rowIndex, int rowData)
 	{
 		TChar& ch = Get(ix);
 
@@ -132,7 +132,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TCharset::CopyChar(TCharsetIndex dstix, TCharsetIndex srcix)
+	void TCharset::CopyChar(int dstix, int srcix)
 	{
 		TChar& src = Get(srcix);
 		TChar& dst = Get(dstix);

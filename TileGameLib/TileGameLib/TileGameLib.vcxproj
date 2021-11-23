@@ -153,10 +153,6 @@
     <ClInclude Include="TPalette.h" />
     <ClInclude Include="TColor.h" />
     <ClInclude Include="TGlobal.h" />
-    <ClInclude Include="TTile.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TWindow.h">
       <SubType>
       </SubType>
@@ -169,10 +165,6 @@
     <ClCompile Include="TCharset.cpp" />
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
-    <ClCompile Include="TTile.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TWindow.cpp">
       <SubType>
       </SubType>

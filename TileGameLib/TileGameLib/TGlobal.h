@@ -8,7 +8,4 @@
 
 namespace TileGameLib
 {
-	typedef int TPaletteIndex;
-	typedef int TCharsetIndex;
-	typedef int TColorRGB;
 }
