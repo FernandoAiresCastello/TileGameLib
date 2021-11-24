@@ -138,6 +138,29 @@ namespace TileGameLib
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
+	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y)
+	{
+		DrawTile(chix, fgcix, bgcix, x, y, false);
+	}
+
+	void TWindow::DrawTileTransparent(int chix, int fgcix, int bgcix, int x, int y)
+	{
+		DrawTile(chix, fgcix, bgcix, x, y, true);
+	}
+
+	void TWindow::ClearToRGB(int rgb)
+	{
+		for (int y = 0; y < ScreenHeight; y++)
+			for (int x = 0; x < ScreenWidth; x++)
+				Buffer[y * ScreenWidth + x] = rgb;
+	}
+
+	void TWindow::SetPixel(int x, int y, int rgb)
+	{
+		if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
+			Buffer[y * ScreenWidth + x] = rgb;
+	}
+
 	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent)
 	{
 		const int initialX = x;
@@ -193,18 +216,5 @@ namespace TileGameLib
 			if (pixel || !pixel && !transparent)
 				SetPixel(x, y, pixel ? fgc : bgc);
 		}
-	}
-
-	void TWindow::ClearToRGB(int rgb)
-	{
-		for (int y = 0; y < ScreenHeight; y++)
-			for (int x = 0; x < ScreenWidth; x++)
-				Buffer[y * ScreenWidth + x] = rgb;
-	}
-
-	void TWindow::SetPixel(int x, int y, int rgb)
-	{
-		if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
-			Buffer[y * ScreenWidth + x] = rgb;
 	}
 }
