@@ -35,7 +35,7 @@ namespace TileGameLib
 		Renderer = SDL_CreateRenderer(Window, -1,
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 
-		SDL_RenderSetLogicalSize(Renderer, ScreenWidth, ScreenHeight);
+		SDL_RenderSetLogicalSize(Renderer, WindowWidth, WindowHeight);
 
 		Scrtx = SDL_CreateTexture(Renderer,
 			PixelFormat, SDL_TEXTUREACCESS_STREAMING, ScreenWidth, ScreenHeight);
@@ -114,6 +114,16 @@ namespace TileGameLib
 		SDL_memcpy(surface->pixels, Buffer, BufferLength);
 		SDL_SaveBMP(surface, file.c_str());
 		SDL_FreeSurface(surface);
+	}
+
+	TCharset* TWindow::GetCharset()
+	{
+		return Chr;
+	}
+
+	TPalette* TWindow::GetPalette()
+	{
+		return Pal;
 	}
 
 	void TWindow::SetBackColor(int bgcix)
