@@ -9,6 +9,7 @@
     <ClInclude Include="TKey.h" />
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TileGameLib.h" />
+    <ClInclude Include="TSound.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TChar.cpp" />
@@ -17,5 +18,6 @@
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TWindow.cpp" />
     <ClCompile Include="TKey.cpp" />
+    <ClCompile Include="TSound.cpp" />
   </ItemGroup>
 </Project>

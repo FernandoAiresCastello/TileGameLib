@@ -13,3 +13,4 @@
 #include "TCharset.h"
 #include "TWindow.h"
 #include "TKey.h"
+#include "TSound.h"

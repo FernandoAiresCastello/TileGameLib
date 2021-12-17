@@ -24,7 +24,7 @@ namespace TileGameLib
 	{
 		Buffer = new int[BufferLength];
 
-		SDL_Init(SDL_INIT_EVERYTHING);
+		SDL_Init(SDL_INIT_VIDEO);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
@@ -35,10 +35,13 @@ namespace TileGameLib
 		Renderer = SDL_CreateRenderer(Window, -1,
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 
+		SDL_SetRenderDrawBlendMode(Renderer, SDL_BLENDMODE_NONE);
 		SDL_RenderSetLogicalSize(Renderer, WindowWidth, WindowHeight);
 
 		Scrtx = SDL_CreateTexture(Renderer,
 			PixelFormat, SDL_TEXTUREACCESS_STREAMING, ScreenWidth, ScreenHeight);
+
+		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
 
 		Clear();
 		Update();
