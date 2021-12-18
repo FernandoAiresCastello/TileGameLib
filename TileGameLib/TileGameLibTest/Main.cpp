@@ -1,38 +1,22 @@
 #include <SDL.h>
 #include <TileGameLib.h>
+#include <CppUtils.h>
 using namespace TileGameLib;
+using namespace CppUtils;
 
-bool running = false;
-TWindow* wnd = new TWindow(256, 192, 3, false);
+int main(int argc, char* argv[])
+{
+	TSound* snd = new TSound();
 
-int WindowUpdateThread(void* args) {
-	running = true;
-	while (running) {
-		wnd->Update();
-	}
-	return 0;
-}
-
-int main(int argc, char* argv[]) {
-
-	SDL_CreateThread(WindowUpdateThread, "WindowUpdateThread", nullptr);
-
-	wnd->SetBackColor(14);
-	wnd->Clear();
-
-	while (running) {
-		for (int i = 0; i < 300; i++) {
-			wnd->Clear();
-			wnd->DrawTileTransparent('@', 50, 30, i, i);
-			SDL_Delay(10);
-		}
-		for (int i = 300; i >= 0; i--) {
-			wnd->Clear();
-			wnd->DrawTile('@', 50, 30, i, i);
-			SDL_Delay(10);
-		}
+	snd->PlayMainSound("440 300 550 200 660 100");
+	int i = 0;
+	while (true) {
+		SDL_Delay(3875);
+		snd->PlaySubSound("770 300");
+		i++;
+		if (i == 4)
+			snd->StopMainSound();
 	}
 
-	delete wnd;
 	return 0;
 }

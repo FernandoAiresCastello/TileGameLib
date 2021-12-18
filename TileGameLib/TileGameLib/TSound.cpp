@@ -1,21 +1,53 @@
 #include <SDL.h>
 #include <SDL_audio.h>
 #include <CppUtils.h>
+#include <string>
+#include <vector>
 #include <cmath>
 #include "TSound.h"
 using namespace CppUtils;
 
 namespace TileGameLib
 {
-	bool Running = false;
-	bool PlayingAsync = false;
-	bool Enabled = false;
-	TSoundType WaveType = TSoundType::Sine;
-	float WaveTone = 0;
-	int Length = 0;
+	enum class TSoundType { Sine };
 
+	class TSoundTone
+	{
+	public:
+		float Freq = 0;
+		int Length = 0;
+
+		TSoundTone(float freq, int length) : Freq(freq), Length(length) {}
+	};
+
+	class TSoundStream
+	{
+	public:
+		std::vector<TSoundTone> Tones;
+		int TonePtr = 0;
+
+		void AddTone(int freq, int length) { Tones.push_back(TSoundTone(freq, length)); }
+	};
+
+	TSoundStream MainStream;
+	TSoundStream SubStream;
+	bool SoundThreadRunning = false;
+	bool AudioOpen = false;
+
+	TSoundType WaveType = TSoundType::Sine;
+	float WaveFreq = 0;
+	float SamplingIndex = 0;
+	const Sint16 Amplitude = 32000;
+	const int SamplingRate = 44100;
+	const int BufferSize = 1024;
+
+	void Init();
+	void ParseTones(std::string&, TSoundStream*);
+	float SampleSine(float);
+	void GenerateSamples(short*, int);
 	void FillAudioBuffer(void*, Uint8*, int);
-	int PlayThread(void*);
+	int StartSoundThread(void*);
+	void SoundThreadLoop();
 
 	TSound::TSound()
 	{
@@ -24,10 +56,30 @@ namespace TileGameLib
 
 	TSound::~TSound()
 	{
-		Running = false;
+		SoundThreadRunning = false;
 	}
 
-	void TSound::Init()
+	void TSound::PlayMainSound(std::string data)
+	{
+		ParseTones(data, &MainStream);
+	}
+
+	void TSound::PlaySubSound(std::string data)
+	{
+		ParseTones(data, &SubStream);
+	}
+
+	void TSound::StopMainSound()
+	{
+		MainStream.Tones.clear();
+	}
+
+	void TSound::StopSubSound()
+	{
+		SubStream.Tones.clear();
+	}
+
+	void Init()
 	{
 		SDL_Init(SDL_INIT_AUDIO);
 
@@ -40,37 +92,58 @@ namespace TileGameLib
 		desired.channels = 1;
 		desired.samples = BufferSize;
 		desired.callback = &FillAudioBuffer;
-		desired.userdata = this;
 
 		idDevice = SDL_OpenAudioDevice(nullptr, 0, &desired, &returned, 0);
 
 		if (idDevice > 0) {
 			SDL_PauseAudioDevice(idDevice, 0);
-			SDL_CreateThread(PlayThread, "PlayThread", nullptr);
+			SDL_CreateThread(StartSoundThread, "PlayThread", nullptr);
 		}
 		else {
 			MsgBox::Error(String::Format("Sound system failed to start:\n\n%s", SDL_GetError()));
 		}
 	}
 
-	void TSound::GenerateSamples(short *stream, int length)
+	void ParseTones(std::string& data, TSoundStream* stream)
+	{
+		stream->TonePtr = 0;
+		stream->Tones.clear();
+
+		auto values = String::Split(String::Trim(data), ' ');
+		for (int i = 0; i < values.size(); i++) {
+			int freq = String::ToInt(String::Trim(values[i++]));
+			int length = String::ToInt(String::Trim(values[i]));
+			stream->AddTone(freq, length);
+		}
+	}
+
+	int StartSoundThread(void* dummy)
+	{
+		SoundThreadRunning = true;
+		while (SoundThreadRunning)
+			SoundThreadLoop();
+
+		return 0;
+	}
+
+	void GenerateSamples(short *stream, int length)
 	{
 		int samplesToWrite = length / sizeof(short);
 		for (int i = 0; i < samplesToWrite; i++) {
-			if (Enabled) {
+			if (AudioOpen) {
 				if (WaveType == TSoundType::Sine)
 					stream[i] = (short)(Amplitude * SampleSine(SamplingIndex));
 			}
 			else
 				stream[i] = 0;
 
-			SamplingIndex += (WaveTone * M_PI * 2) / SamplingRate;
+			SamplingIndex += (WaveFreq * M_PI * 2) / SamplingRate;
 			if (SamplingIndex >= (M_PI * 2))
 				SamplingIndex -= M_PI * 2;
 		}
 	}
 
-	float TSound::SampleSine(float index)
+	float SampleSine(float index)
 	{
 		double result = sin(index);
 		return result;
@@ -80,39 +153,34 @@ namespace TileGameLib
 	{
 		short* stream = reinterpret_cast<short*>(_stream);
 		int length = len;
-		TSound* beeper = (TSound*)userdata;
-		beeper->GenerateSamples(stream, length);
+		GenerateSamples(stream, length);
 	}
 
-	int PlayThread(void* dummy)
+	void SoundThreadLoop()
 	{
-		Running = true;
+		bool mainStreamEmpty = MainStream.Tones.empty();
+		bool subStreamEmpty = SubStream.Tones.empty();
 
-		while (Running) {
-			if (PlayingAsync) {
-				Enabled = true;
-				SDL_Delay(Length);
-				Enabled = false;
-				PlayingAsync = false;
-			}
+		AudioOpen = !mainStreamEmpty || !subStreamEmpty;
+
+		if (subStreamEmpty && !mainStreamEmpty) {
+			TSoundTone* mainTone = &MainStream.Tones[MainStream.TonePtr];
+			WaveFreq = mainTone->Freq;
+			SDL_Delay(mainTone->Length);
+
+			MainStream.TonePtr++;
+			if (MainStream.TonePtr >= MainStream.Tones.size())
+				MainStream.TonePtr = 0;
 		}
 
-		return 0;
-	}
+		if (!subStreamEmpty) {
+			TSoundTone* subTone = &SubStream.Tones[SubStream.TonePtr];
+			WaveFreq = subTone->Freq;
+			SDL_Delay(subTone->Length);
 
-	void TSound::Play(TSoundType type, int tone, int length, bool wait)
-	{
-		WaveType = type;
-		WaveTone = tone;
-		Length = length;
-
-		if (wait) {
-			Enabled = true;
-			SDL_Delay(Length);
-			Enabled = false;
-		}
-		else {
-			PlayingAsync = true;
+			SubStream.TonePtr++;
+			if (SubStream.TonePtr >= SubStream.Tones.size())
+				SubStream.Tones.clear();
 		}
 	}
 }
