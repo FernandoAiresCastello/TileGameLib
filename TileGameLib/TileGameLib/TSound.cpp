@@ -110,6 +110,7 @@ namespace TileGameLib
 
 	void InitToneFreqTable()
 	{
+		TbFreq["P"] = 0;
 		TbFreq["C0"] = 16.35;
 		TbFreq["C#0"] = 17.32;
 		TbFreq["D0"] = 18.35;
