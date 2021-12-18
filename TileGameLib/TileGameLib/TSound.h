@@ -10,13 +10,16 @@
 
 namespace TileGameLib
 {
+	enum class TSoundType { Square, Sine };
+
 	class TSound
 	{
 	public:
 		TSound();
 		~TSound();
 
-		void Beep(int freq, int length);
+		void SetType(TSoundType type);
+		void Beep(float freq, int length);
 		void PlayMainSound(std::string data);
 		void PlaySubSound(std::string data);
 		void StopMainSound();

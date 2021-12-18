@@ -8,7 +8,9 @@ int main(int argc, char* argv[])
 {
 	TSound* snd = new TSound();
 
-	snd->PlayMainSound("440 300 550 200 660 100");
+	snd->PlayMainSound("C4 300 D4 300 E4 300 F4 300 G4 300 A4 300 B4 300");
+	while (true);
+	/*
 	int i = 0;
 	while (true) {
 		SDL_Delay(3875);
@@ -17,6 +19,6 @@ int main(int argc, char* argv[])
 		if (i == 4)
 			snd->StopMainSound();
 	}
-
+	*/
 	return 0;
 }
