@@ -16,6 +16,7 @@ namespace TileGameLib
 		TSound();
 		~TSound();
 
+		void Beep(int freq, int length);
 		void PlayMainSound(std::string data);
 		void PlaySubSound(std::string data);
 		void StopMainSound();

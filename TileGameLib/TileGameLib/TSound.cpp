@@ -59,6 +59,13 @@ namespace TileGameLib
 		SoundThreadRunning = false;
 	}
 
+	void TSound::Beep(int freq, int length)
+	{
+		SubStream.TonePtr = 0;
+		SubStream.Tones.clear();
+		SubStream.AddTone(freq, length);
+	}
+
 	void TSound::PlayMainSound(std::string data)
 	{
 		ParseTones(data, &MainStream);
