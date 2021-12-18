@@ -39,12 +39,13 @@ namespace TileGameLib
 	float SamplingIndex = 0;
 	const Sint16 Amplitude = 32000;
 	const int SamplingRate = 44100;
-	const int BufferSize = 1024;
+	const int BufferSize = 8;
 
 	void Init();
 	void ParseTones(std::string&, TSoundStream*);
-	float SampleSine(float);
 	void GenerateSamples(short*, int);
+	void GenerateSilenceSample(short*, int);
+	void GenerateSineSample(short*, int);
 	void FillAudioBuffer(void*, Uint8*, int);
 	int StartSoundThread(void*);
 	void SoundThreadLoop();
@@ -133,27 +134,34 @@ namespace TileGameLib
 		return 0;
 	}
 
-	void GenerateSamples(short *stream, int length)
+	void GenerateSamples(short* stream, int length)
+	{
+		if (AudioOpen) {
+			if (WaveType == TSoundType::Sine)
+				GenerateSineSample(stream, length);
+		}
+		else {
+			GenerateSilenceSample(stream, length);
+		}
+	}
+
+	void GenerateSilenceSample(short* stream, int length)
+	{
+		int samplesToWrite = length / sizeof(short);
+		for (int i = 0; i < samplesToWrite; i++)
+			stream[i] = 0;
+	}
+
+	void GenerateSineSample(short* stream, int length)
 	{
 		int samplesToWrite = length / sizeof(short);
 		for (int i = 0; i < samplesToWrite; i++) {
-			if (AudioOpen) {
-				if (WaveType == TSoundType::Sine)
-					stream[i] = (short)(Amplitude * SampleSine(SamplingIndex));
-			}
-			else
-				stream[i] = 0;
+			stream[i] = (short)(Amplitude * sin(SamplingIndex));
 
 			SamplingIndex += (WaveFreq * M_PI * 2) / SamplingRate;
 			if (SamplingIndex >= (M_PI * 2))
 				SamplingIndex -= M_PI * 2;
 		}
-	}
-
-	float SampleSine(float index)
-	{
-		double result = sin(index);
-		return result;
 	}
 
 	void FillAudioBuffer(void* userdata, Uint8* _stream, int len)
