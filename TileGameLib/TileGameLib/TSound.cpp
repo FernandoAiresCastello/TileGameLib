@@ -39,7 +39,8 @@ namespace TileGameLib
 	float WaveFreq = 0;
 	float SamplingIndex = 0;
 	int SquareWavePeak = 1;
-	const Sint16 Amplitude = 32000;
+	const Sint16 MaxVolume = 32000;
+	Sint16 Volume = 255;
 	const int SamplingRate = 44100;
 	const int BufferSize = 8;
 	
@@ -48,6 +49,7 @@ namespace TileGameLib
 	void ParseTones(std::string&, TSoundStream*);
 	void GenerateSamples(short*, int);
 	void GenerateSilenceSamples(short*, int);
+	void GenerateNoiseSamples(short*, int);
 	void GenerateSineSamples(short*, int);
 	void GenerateSquareSamples(short*, int);
 	void FillAudioBuffer(void*, Uint8*, int);
@@ -67,6 +69,16 @@ namespace TileGameLib
 	void TSound::SetType(TSoundType type)
 	{
 		WaveType = type;
+	}
+
+	void TSound::SetVolume(int volume)
+	{
+		if (volume > MaxVolume)
+			Volume = MaxVolume;
+		else if (volume < 0)
+			Volume = 0;
+		else
+			Volume = volume;
 	}
 
 	void TSound::Beep(float freq, int length)
@@ -261,10 +273,12 @@ namespace TileGameLib
 		const int count = length / sizeof(short);
 
 		if (AudioOpen) {
-			if (WaveType == TSoundType::Sine)
-				GenerateSineSamples(stream, count);
-			else if (WaveType == TSoundType::Square)
+			if (WaveType == TSoundType::Square)
 				GenerateSquareSamples(stream, count);
+			else if (WaveType == TSoundType::Sine)
+				GenerateSineSamples(stream, count);
+			else if (WaveType == TSoundType::Noise)
+				GenerateNoiseSamples(stream, count);
 		}
 		else {
 			GenerateSilenceSamples(stream, count);
@@ -277,10 +291,23 @@ namespace TileGameLib
 			stream[i] = 0;
 	}
 
+	void GenerateNoiseSamples(short* stream, int count)
+	{
+		for (int i = 0; i < count; i++) {
+			short value = (short)Util::Random(0, Volume);
+			stream[i] = value;
+			SamplingIndex += (WaveFreq * M_PI * 2) / SamplingRate;
+			if (SamplingIndex >= (M_PI * 2)) {
+				SamplingIndex -= M_PI * 2;
+				SquareWavePeak = -SquareWavePeak;
+			}
+		}
+	}
+
 	void GenerateSineSamples(short* stream, int count)
 	{
 		for (int i = 0; i < count; i++) {
-			short value = (short)(Amplitude * sin(SamplingIndex));
+			short value = (short)(Volume * sin(SamplingIndex));
 			stream[i] = value;
 			SamplingIndex += (WaveFreq * M_PI * 2) / SamplingRate;
 			if (SamplingIndex >= (M_PI * 2))
@@ -291,7 +318,7 @@ namespace TileGameLib
 	void GenerateSquareSamples(short* stream, int count)
 	{
 		for (int i = 0; i < count; i++) {
-			short value = Amplitude * SquareWavePeak;
+			short value = Volume * SquareWavePeak;
 			stream[i] = value;
 			SamplingIndex += (WaveFreq * M_PI * 2) / SamplingRate;
 			if (SamplingIndex >= (M_PI * 2)) {
