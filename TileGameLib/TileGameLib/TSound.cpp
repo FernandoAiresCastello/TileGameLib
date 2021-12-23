@@ -252,9 +252,11 @@ namespace TileGameLib
 		stream->TonePtr = 0;
 		stream->Tones.clear();
 
-		auto values = String::Split(String::Trim(data), ' ');
+		auto values = String::Split(String::Trim(data), ' ', true);
 		for (int i = 0; i < values.size(); i++) {
-			float freq = TbFreq[String::Trim(values[i++])];
+			auto value = String::ToUpper(values[i]);
+			float freq = TbFreq[value];
+			i++;
 			int length = String::ToInt(String::Trim(values[i]));
 			stream->AddTone(freq, length);
 		}
