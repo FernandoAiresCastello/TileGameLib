@@ -6,8 +6,8 @@ using namespace CppUtils;
 
 int main(int argc, char* argv[])
 {
-	TCharset* chars = new TCharset();
-	chars->LoadFromImage("chars.bmp");
-	delete chars;
+	TPalette* pal = new TPalette();
+	pal->LoadFromImage("palette.bmp", 300, 157);
+	delete pal;
 	return 0;
 }

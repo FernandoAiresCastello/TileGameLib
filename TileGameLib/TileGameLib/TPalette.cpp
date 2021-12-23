@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <CppUtils.h>
 #include "TPalette.h"
+#include "TImage.h"
 
 using namespace CppUtils;
 
@@ -118,6 +119,20 @@ namespace TileGameLib
 		}
 
 		File::WriteBytes(filename, bytes);
+	}
+
+	void TPalette::LoadFromImage(std::string filename, int wSwatch, int hSwatch)
+	{
+		TImage* img = new TImage();
+		img->Load(filename);
+		DeleteAll();
+
+		for (int y = 0; y < img->GetHeight(); y += hSwatch) {
+			for (int x = 0; x < img->GetWidth(); x += wSwatch) {
+				TColor color = img->GetPixel(x, y);
+				Add(color);
+			}
+		}
 	}
 
 	void TPalette::InitDefault()

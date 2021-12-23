@@ -36,6 +36,7 @@ namespace TileGameLib
 		void SetEqual(TPalette& other);
 		void Load(std::string filename);
 		void Save(std::string filename);
+		void LoadFromImage(std::string filename, int wSwatch, int hSwatch);
 		void InitDefault();
 
 	private:
