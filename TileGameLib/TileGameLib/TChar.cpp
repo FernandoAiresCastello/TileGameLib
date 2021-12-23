@@ -21,6 +21,11 @@ namespace TileGameLib
 		Clear();
 	}
 
+	TChar::TChar(std::string pixels)
+	{
+		SetFromBinaryString(pixels);
+	}
+
 	TChar::TChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
 	{
 		SetFromBytes(row0, row1, row2, row3, row4, row5, row6, row7);
@@ -121,14 +126,14 @@ namespace TileGameLib
 	{
 		const auto rows = String::SplitIntoEqualSizedStrings(binary, TChar::Width);
 		
-		PixelRow0 = String::ToInt(rows[0]);
-		PixelRow1 = String::ToInt(rows[1]);
-		PixelRow2 = String::ToInt(rows[2]);
-		PixelRow3 = String::ToInt(rows[3]);
-		PixelRow4 = String::ToInt(rows[4]);
-		PixelRow5 = String::ToInt(rows[5]);
-		PixelRow6 = String::ToInt(rows[6]);
-		PixelRow7 = String::ToInt(rows[7]);
+		PixelRow0 = String::ToInt("0b" + rows[0]);
+		PixelRow1 = String::ToInt("0b" + rows[1]);
+		PixelRow2 = String::ToInt("0b" + rows[2]);
+		PixelRow3 = String::ToInt("0b" + rows[3]);
+		PixelRow4 = String::ToInt("0b" + rows[4]);
+		PixelRow5 = String::ToInt("0b" + rows[5]);
+		PixelRow6 = String::ToInt("0b" + rows[6]);
+		PixelRow7 = String::ToInt("0b" + rows[7]);
 	}
 
 	void TChar::SetFromBinaryString(char* binary)

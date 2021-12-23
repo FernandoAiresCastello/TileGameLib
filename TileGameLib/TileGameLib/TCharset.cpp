@@ -4,10 +4,12 @@
 	 2018-2021 Developed by Fernando Aires Castello
 
 =============================================================================*/
+#include <SDL.h>
 #include <cstdio>
 #include <CppUtils.h>
 #include "TCharset.h"
 #include "TChar.h"
+#include "TImage.h"
 
 using namespace CppUtils;
 
@@ -78,6 +80,11 @@ namespace TileGameLib
 		Add(TChar(row0, row1, row2, row3, row4, row5, row6, row7));
 	}
 
+	void TCharset::Add(std::string pixels)
+	{
+		Add(TChar(pixels));
+	}
+
 	void TCharset::Set(int ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
 	{
 		TChar& chars = Get(ix);
@@ -105,6 +112,12 @@ namespace TileGameLib
 			String::ToInt(row5), 
 			String::ToInt(row6), 
 			String::ToInt(row7));
+	}
+
+	void TCharset::Set(int ix, std::string pixels)
+	{
+		auto rows = String::SplitIntoEqualSizedStrings(pixels, TChar::Width);
+		Set(ix, rows[0], rows[1], rows[2], rows[3], rows[4], rows[5], rows[6], rows[7]);
 	}
 
 	void TCharset::Set(int ix, TChar& ch)
@@ -172,6 +185,47 @@ namespace TileGameLib
 		}
 
 		File::WriteBytes(filename, bytes);
+	}
+
+	void TCharset::LoadFromImage(std::string filename)
+	{
+		TImage* img = new TImage();
+		img->Load(filename);
+		DeleteAll();
+
+		int xOff = 0;
+		int yOff = 0;
+		bool finished = false;
+		const int colorThreshold = 128;
+
+		std::string allRows;
+		std::string row;
+		
+		while (!finished) {
+			allRows = "";
+			for (int y = 0; y < TChar::Height; y++) {
+				for (int x = 0; x < TChar::Width; x++) {
+					TColor pixel = img->GetPixel(x + xOff, y + yOff);
+					if (pixel.R >= colorThreshold && pixel.G >= colorThreshold && pixel.B >= colorThreshold)
+						row.append("0");
+					else
+						row.append("1");
+				}
+				allRows.append(row);
+				row = "";
+			}
+			Add(allRows);
+			xOff += TChar::Width;
+			if (xOff >= img->GetWidth()) {
+				xOff = 0;
+				yOff += TChar::Height;
+				if (yOff >= img->GetHeight()) {
+					finished = true;
+				}
+			}
+		}
+
+		delete img;
 	}
 
 	void TCharset::InitDefault()

@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TImage.h" />
     <ClInclude Include="TKey.h" />
     <ClInclude Include="TChar.h" />
     <ClInclude Include="TCharset.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TKey.cpp" />
     <ClCompile Include="TChar.cpp" />
     <ClCompile Include="TCharset.cpp" />

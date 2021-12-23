@@ -14,3 +14,4 @@
 #include "TWindow.h"
 #include "TKey.h"
 #include "TSound.h"
+#include "TImage.h"

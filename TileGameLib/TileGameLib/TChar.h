@@ -25,6 +25,7 @@ namespace TileGameLib
 		byte PixelRow4, PixelRow5, PixelRow6, PixelRow7;
 
 		TChar();
+		TChar(std::string pixels);
 		TChar(byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7);
 		TChar(const TChar& other);
 		~TChar();
