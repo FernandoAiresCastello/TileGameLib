@@ -15,6 +15,9 @@ namespace TileGameLib
 	class TSound
 	{
 	public:
+		static const int MinVolume = 0;
+		static const int MaxVolume = 32000;
+
 		TSound();
 		~TSound();
 

@@ -39,8 +39,7 @@ namespace TileGameLib
 	float WaveFreq = 0;
 	float SamplingIndex = 0;
 	int SquareWavePeak = 1;
-	const Sint16 MaxVolume = 32000;
-	Sint16 Volume = 255;
+	Sint16 Volume = TSound::MaxVolume / 8;
 	const int SamplingRate = 44100;
 	const int BufferSize = 8;
 	
@@ -75,8 +74,8 @@ namespace TileGameLib
 	{
 		if (volume > MaxVolume)
 			Volume = MaxVolume;
-		else if (volume < 0)
-			Volume = 0;
+		else if (volume < MinVolume)
+			Volume = MinVolume;
 		else
 			Volume = volume;
 	}
