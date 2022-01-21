@@ -154,6 +154,7 @@
     <ClInclude Include="TPalette.h" />
     <ClInclude Include="TColor.h" />
     <ClInclude Include="TGlobal.h" />
+    <ClInclude Include="TPixelBlock.h" />
     <ClInclude Include="TSound.h">
       <SubType>
       </SubType>
@@ -171,6 +172,7 @@
     <ClCompile Include="TCharset.cpp" />
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
+    <ClCompile Include="TPixelBlock.cpp" />
     <ClCompile Include="TSound.cpp">
       <SubType>
       </SubType>

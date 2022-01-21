@@ -14,6 +14,7 @@ namespace TileGameLib
 {
 	class TCharset;
 	class TPalette;
+	class TPixelBlock;
 
 	class TWindow
 	{
@@ -36,14 +37,16 @@ namespace TileGameLib
 		void SetTitle(std::string title);
 		void SetBordered(bool bordered);
 		void SetIcon(std::string iconfile);
+		void SetPixelSize(int wPix, int hPix);
 		void SaveScreenshot(std::string file);
 		TCharset* GetCharset();
 		TPalette* GetPalette();
 		void SetBackColor(int bgcix);
 		void Update();
 		void Clear();
-		void DrawTile(int chix, int fgcix, int bgcix, int x, int y);
-		void DrawTileTransparent(int chix, int fgcix, int bgcix, int x, int y);
+		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent);
+		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent);
+		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
 
 	private:
 		int* Buffer;
@@ -55,9 +58,10 @@ namespace TileGameLib
 		TCharset* Chr;
 		TPalette* Pal;
 		int BackColor;
+		int PixelWidth;
+		int PixelHeight;
 
 		void ClearToRGB(int rgb);
 		void SetPixel(int x, int y, int rgb);
-		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent);
 	};
 }

@@ -6,8 +6,19 @@ using namespace CppUtils;
 
 int main(int argc, char* argv[])
 {
-	TPalette* pal = new TPalette();
-	pal->LoadFromImage("palette.bmp", 300, 157);
-	delete pal;
+	TWindow* wnd = new TWindow(640, 480, 1, false);
+	wnd->SetBackColor(50);
+	wnd->Clear();
+	wnd->SetPixelSize(4, 4);
+	wnd->DrawTileString("Hello World!", 15, 40, 0, 0, false);
+	
+	TPixelBlock block(10, 4);
+	block.Fill(205);
+
+	wnd->DrawPixelBlock(&block, 10, 10);
+	wnd->Update();
+
+	TKey::WaitAny();
+	delete wnd;
 	return 0;
 }

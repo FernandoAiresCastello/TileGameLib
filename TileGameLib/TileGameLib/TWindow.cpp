@@ -10,6 +10,7 @@
 #include "TChar.h"
 #include "TCharset.h"
 #include "TPalette.h"
+#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
@@ -20,7 +21,7 @@ namespace TileGameLib
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
 		BufferLength(sizeof(int) * wScr * hScr),
 		Chr(TCharset::Default), Pal(TPalette::Default),
-		BackColor(0)
+		BackColor(0), PixelWidth(1), PixelHeight(1)
 	{
 		Buffer = new int[BufferLength];
 
@@ -111,6 +112,12 @@ namespace TileGameLib
 		SDL_FreeSurface(&icon);
 	}
 
+	void TWindow::SetPixelSize(int wPix, int hPix)
+	{
+		PixelWidth = wPix;
+		PixelHeight = hPix;
+	}
+
 	void TWindow::SaveScreenshot(std::string file)
 	{
 		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, ScreenWidth, ScreenHeight, 32, PixelFormat);
@@ -151,16 +158,6 @@ namespace TileGameLib
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
-	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y)
-	{
-		DrawTile(chix, fgcix, bgcix, x, y, false);
-	}
-
-	void TWindow::DrawTileTransparent(int chix, int fgcix, int bgcix, int x, int y)
-	{
-		DrawTile(chix, fgcix, bgcix, x, y, true);
-	}
-
 	void TWindow::ClearToRGB(int rgb)
 	{
 		for (int y = 0; y < ScreenHeight; y++)
@@ -170,8 +167,23 @@ namespace TileGameLib
 
 	void TWindow::SetPixel(int x, int y, int rgb)
 	{
-		if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
-			Buffer[y * ScreenWidth + x] = rgb;
+		if (PixelWidth == 1 && PixelHeight == 1) {
+			if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
+				Buffer[y * ScreenWidth + x] = rgb;
+		}
+		else {
+			int px = x * PixelWidth;
+			int py = y * PixelHeight;
+			const int prevX = px;
+			for (int iy = 0; iy < PixelHeight; iy++) {
+				for (int ix = 0; ix < PixelWidth; ix++) {
+					Buffer[py * ScreenWidth + px] = rgb;
+					px++;
+				}
+				px = prevX;
+				py++;
+			}
+		}
 	}
 
 	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent)
@@ -228,6 +240,26 @@ namespace TileGameLib
 			int pixel = ch.PixelRow7 & (1 << pos);
 			if (pixel || !pixel && !transparent)
 				SetPixel(x, y, pixel ? fgc : bgc);
+		}
+	}
+
+	void TWindow::DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent)
+	{
+		for (int i = 0; i < str.length(); i++) {
+			DrawTile(str[i], fgcix, bgcix, x, y, transparent);
+			x += TChar::Width;
+		}
+	}
+
+	void TWindow::DrawPixelBlock(TPixelBlock* pixels, int x, int y)
+	{
+		int ix = 0;
+		for (int py = y; py < y + pixels->Height; py++) {
+			for (int px = x; px < x + pixels->Width; px++) {
+				int& color = pixels->Colors[ix++];
+				if (color >= 0)
+					SetPixel(px, py, Pal->GetColorRGB(color));
+			}
 		}
 	}
 }

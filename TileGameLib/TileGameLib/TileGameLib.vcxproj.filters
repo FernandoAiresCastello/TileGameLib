@@ -11,6 +11,7 @@
     <ClInclude Include="TileGameLib.h" />
     <ClInclude Include="TSound.h" />
     <ClInclude Include="TImage.h" />
+    <ClInclude Include="TPixelBlock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TChar.cpp" />
@@ -21,5 +22,6 @@
     <ClCompile Include="TKey.cpp" />
     <ClCompile Include="TSound.cpp" />
     <ClCompile Include="TImage.cpp" />
+    <ClCompile Include="TPixelBlock.cpp" />
   </ItemGroup>
 </Project>
