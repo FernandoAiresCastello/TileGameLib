@@ -1,3 +1,9 @@
+/*=============================================================================
+
+	 TileGameLib
+	 2018-2022 Developed by Fernando Aires Castello
+
+=============================================================================*/
 #include <SDL.h>
 #include <SDL_audio.h>
 #include <CppUtils.h>
