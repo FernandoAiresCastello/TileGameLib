@@ -186,8 +186,27 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent)
+	void TWindow::EraseTile(int x, int y, bool snap)
 	{
+		if (snap) {
+			x *= TChar::Width;
+			y *= TChar::Height;
+		}
+
+		for (int py = y; py < y + TChar::Height; py++) {
+			for (int px = x; px < x + TChar::Width; px++) {
+				SetPixel(px, py, Pal->GetColorRGB(BackColor));
+			}
+		}
+	}
+
+	void TWindow::DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent, bool snap)
+	{
+		if (snap) {
+			x *= TChar::Width;
+			y *= TChar::Height;
+		}
+
 		const int initialX = x;
 		TChar& ch = Chr->Get(chix);
 		int fgc = Pal->GetColorRGB(fgcix);
@@ -243,11 +262,14 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent)
+	void TWindow::DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent, bool snap)
 	{
 		for (int i = 0; i < str.length(); i++) {
-			DrawTile(str[i], fgcix, bgcix, x, y, transparent);
-			x += TChar::Width;
+			DrawTile(str[i], fgcix, bgcix, x, y, transparent, snap);
+			if (snap)
+				x++;
+			else
+				x += TChar::Width;
 		}
 	}
 

@@ -38,6 +38,7 @@ namespace TileGameLib
 	TSoundStream SubStream;
 	bool SoundThreadRunning = false;
 	bool AudioOpen = false;
+	SDL_AudioDeviceID IdDevice = -1;
 
 	std::map<std::string, float> TbFreq;
 
@@ -232,7 +233,6 @@ namespace TileGameLib
 		SDL_Init(SDL_INIT_AUDIO);
 
 		SDL_AudioSpec desired, returned;
-		SDL_AudioDeviceID idDevice;
 
 		SDL_zero(desired);
 		desired.freq = SamplingRate;
@@ -241,10 +241,10 @@ namespace TileGameLib
 		desired.samples = BufferSize;
 		desired.callback = &FillAudioBuffer;
 
-		idDevice = SDL_OpenAudioDevice(nullptr, 0, &desired, &returned, 0);
+		IdDevice = SDL_OpenAudioDevice(nullptr, 0, &desired, &returned, 0);
 
-		if (idDevice > 0) {
-			SDL_PauseAudioDevice(idDevice, 0);
+		if (IdDevice > 0) {
+			SDL_PauseAudioDevice(IdDevice, 0);
 			SDL_CreateThread(StartSoundThread, "PlayThread", nullptr);
 		}
 		else {
@@ -273,6 +273,7 @@ namespace TileGameLib
 		while (SoundThreadRunning)
 			SoundThreadLoop();
 
+		SDL_CloseAudioDevice(IdDevice);
 		return 0;
 	}
 

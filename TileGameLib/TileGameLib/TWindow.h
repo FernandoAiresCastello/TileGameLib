@@ -44,8 +44,9 @@ namespace TileGameLib
 		void SetBackColor(int bgcix);
 		void Update();
 		void Clear();
-		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent);
-		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent);
+		void EraseTile(int x, int y, bool snap);
+		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
+		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
 		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
 
 	private:
