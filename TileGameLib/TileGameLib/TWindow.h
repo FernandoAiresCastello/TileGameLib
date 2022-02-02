@@ -39,6 +39,8 @@ namespace TileGameLib
 		void SetIcon(std::string iconfile);
 		void SetPixelSize(int wPix, int hPix);
 		void SaveScreenshot(std::string file);
+		int GetPixelWidth();
+		int GetPixelHeight();
 		TCharset* GetCharset();
 		TPalette* GetPalette();
 		void SetBackColor(int bgcix);

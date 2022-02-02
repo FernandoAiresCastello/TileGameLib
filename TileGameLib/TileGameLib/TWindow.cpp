@@ -126,6 +126,16 @@ namespace TileGameLib
 		SDL_FreeSurface(surface);
 	}
 
+	int TWindow::GetPixelWidth()
+	{
+		return PixelWidth;
+	}
+
+	int TWindow::GetPixelHeight()
+	{
+		return PixelHeight;
+	}
+
 	TCharset* TWindow::GetCharset()
 	{
 		return Chr;
@@ -177,7 +187,9 @@ namespace TileGameLib
 			const int prevX = px;
 			for (int iy = 0; iy < PixelHeight; iy++) {
 				for (int ix = 0; ix < PixelWidth; ix++) {
-					Buffer[py * ScreenWidth + px] = rgb;
+					if (px >= 0 && py >= 0 && px < ScreenWidth && py < ScreenHeight) {
+						Buffer[py * ScreenWidth + px] = rgb;
+					}
 					px++;
 				}
 				px = prevX;
