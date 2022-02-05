@@ -26,8 +26,8 @@ namespace TileGameLib
 		const int Cols;
 		const int Rows;
 
-		TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen);
-		TWindow(int wScr, int hScr, int zoom, bool fullscreen);
+		TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden = false);
+		TWindow(int wScr, int hScr, int zoom, bool fullscreen, bool hidden = false);
 		TWindow(const TWindow& other) = delete;
 		~TWindow();
 

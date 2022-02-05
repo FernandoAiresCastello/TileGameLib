@@ -14,7 +14,7 @@
 
 namespace TileGameLib
 {
-	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen) :
+	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden) :
 		ScreenWidth(wScr), ScreenHeight(hScr), 
 		WindowWidth(wWnd), WindowHeight(hWnd),
 		Cols(wScr / TChar::Width), Rows(hScr / TChar::Height),
@@ -48,11 +48,13 @@ namespace TileGameLib
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_RaiseWindow(Window);
 		Update();
-		Show();
+
+		if (!hidden)
+			Show();
 	}
 
-	TWindow::TWindow(int wScr, int hScr, int zoom, bool fullscreen) :
-		TWindow(wScr, hScr, zoom * wScr, zoom * hScr, fullscreen)
+	TWindow::TWindow(int wScr, int hScr, int zoom, bool fullscreen, bool hidden) :
+		TWindow(wScr, hScr, zoom * wScr, zoom * hScr, fullscreen, hidden)
 	{
 	}
 
