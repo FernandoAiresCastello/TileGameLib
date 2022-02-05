@@ -24,6 +24,7 @@ namespace TileGameLib
 		BackColor(0), PixelWidth(1), PixelHeight(1)
 	{
 		Buffer = new int[BufferLength];
+		Clear();
 
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
@@ -31,7 +32,7 @@ namespace TileGameLib
 
 		Window = SDL_CreateWindow("",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			WindowWidth, WindowHeight, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+			WindowWidth, WindowHeight, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_HIDDEN);
 
 		Renderer = SDL_CreateRenderer(Window, -1,
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
@@ -44,11 +45,10 @@ namespace TileGameLib
 
 		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
 
-		Clear();
-		Update();
-
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_RaiseWindow(Window);
+		Update();
+		Show();
 	}
 
 	TWindow::TWindow(int wScr, int hScr, int zoom, bool fullscreen) :
@@ -72,6 +72,16 @@ namespace TileGameLib
 		SDL_VERSION(&wmInfo.version);
 		SDL_GetWindowWMInfo(Window, &wmInfo);
 		return wmInfo.info.win.window;
+	}
+
+	void TWindow::Hide()
+	{
+		SDL_HideWindow(Window);
+	}
+
+	void TWindow::Show()
+	{
+		SDL_ShowWindow(Window);
 	}
 
 	void TWindow::SetFullscreen(bool full)

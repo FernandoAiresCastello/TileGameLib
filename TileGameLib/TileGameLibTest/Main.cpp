@@ -17,14 +17,6 @@ int main(int argc, char* argv[])
 	wnd->Update();
 	TKey::WaitAny();
 
-	wnd->EraseTile(1, 1, true);
-	wnd->Update();
-	TKey::WaitAny();
-
-	wnd->EraseTile(2, 2, true);
-	wnd->Update();
-	TKey::WaitAny();
-
 	delete wnd;
 	return 0;
 }
