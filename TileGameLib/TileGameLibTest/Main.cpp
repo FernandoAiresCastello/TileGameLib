@@ -6,16 +6,37 @@ using namespace CppUtils;
 
 int main(int argc, char* argv[])
 {
-	TWindow* wnd = new TWindow(640, 480, 1, false);
-	wnd->SetBackColor(50);
+	TWindow* wnd = new TWindow(800, 600, 1, false);
+	wnd->SetBackColor(0x80);
 	wnd->Clear();
-	wnd->SetPixelSize(4, 2);
-	//wnd->DrawTileString("Hello World!", 15, 40, 0, 0, false, false);
-	//wnd->DrawTileString("Hello World!", 14, 43, 1, 1, false, false);
-	wnd->DrawTile('A', 15, 40, 1, 1, false, true);
-	wnd->DrawTile('B', 15, 40, 2, 2, false, true);
-	wnd->Update();
-	TKey::WaitAny();
+
+	int sx = 0;
+	int sy = 0;
+	
+
+	while (true) {
+		wnd->RemoveBounds();
+		wnd->FillBounds(0xff0000);
+		wnd->SetPixelSize(1, 1);
+		wnd->DrawTileString("Hello World!", 15, 0, sx, sy, true, false);
+		
+		wnd->SetBounds(300, 300, 500, 500);
+		wnd->FillBounds(0x00ff00);
+		wnd->SetPixelSize(3, 3);
+		wnd->DrawTileString("This is cool", 15, 0, sx, sy, false, true);
+
+		wnd->Update();
+
+		SDL_Event e = { 0 };
+		SDL_PollEvent(&e);
+		if (e.type == SDL_KEYDOWN) {
+			SDL_Keycode key = e.key.keysym.sym;
+			if (key == SDLK_RIGHT) sx++;
+			else if (key == SDLK_LEFT) sx--;
+			else if (key == SDLK_UP) sy--;
+			else if (key == SDLK_DOWN) sy++;
+		}
+	}
 
 	delete wnd;
 	return 0;

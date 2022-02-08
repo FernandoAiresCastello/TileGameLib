@@ -21,7 +21,8 @@ namespace TileGameLib
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
 		BufferLength(sizeof(int) * wScr * hScr),
 		Chr(TCharset::Default), Pal(TPalette::Default),
-		BackColor(0), PixelWidth(1), PixelHeight(1)
+		BackColor(0), PixelWidth(1), PixelHeight(1),
+		ClipX1(0), ClipY1(0), ClipX2(wScr), ClipY2(hScr)
 	{
 		Buffer = new int[BufferLength];
 		Clear();
@@ -190,16 +191,19 @@ namespace TileGameLib
 	void TWindow::SetPixel(int x, int y, int rgb)
 	{
 		if (PixelWidth == 1 && PixelHeight == 1) {
-			if (x >= 0 && y >= 0 && x < ScreenWidth && y < ScreenHeight)
+			x += ClipX1;
+			y += ClipY1;
+			if (x - ClipX1 >= 0 && y - ClipY1 >= 0 && x < ClipX2 && y < ClipY2) {
 				Buffer[y * ScreenWidth + x] = rgb;
+			}
 		}
 		else {
-			int px = x * PixelWidth;
-			int py = y * PixelHeight;
+			int px = x * PixelWidth + ClipX1;
+			int py = y * PixelHeight + ClipY1;
 			const int prevX = px;
 			for (int iy = 0; iy < PixelHeight; iy++) {
 				for (int ix = 0; ix < PixelWidth; ix++) {
-					if (px >= 0 && py >= 0 && px < ScreenWidth && py < ScreenHeight) {
+					if (px - ClipX1 >= 0 && py - ClipY1 >= 0 && px < ClipX2 && py < ClipY2) {
 						Buffer[py * ScreenWidth + px] = rgb;
 					}
 					px++;
@@ -307,5 +311,30 @@ namespace TileGameLib
 					SetPixel(px, py, Pal->GetColorRGB(color));
 			}
 		}
+	}
+
+	void TWindow::SetBounds(int x1, int y1, int x2, int y2)
+	{
+		if (x1 < 0) x1 = 0;
+		if (y1 < 0) y1 = 0;
+		if (x2 > ScreenWidth) x2 = ScreenWidth;
+		if (y2 > ScreenHeight) y2 = ScreenHeight;
+
+		ClipX1 = x1;
+		ClipY1 = y1;
+		ClipX2 = x2;
+		ClipY2 = y2;
+	}
+
+	void TWindow::FillBounds(int rgb)
+	{
+		for (int y = ClipY1; y < ClipY2; y++)
+			for (int x = ClipX1; x < ClipX2; x++)
+				Buffer[y * ScreenWidth + x] = rgb;
+	}
+
+	void TWindow::RemoveBounds()
+	{
+		SetBounds(0, 0, ScreenWidth, ScreenHeight);
 	}
 }

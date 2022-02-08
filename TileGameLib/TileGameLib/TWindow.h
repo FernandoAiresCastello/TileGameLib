@@ -52,6 +52,9 @@ namespace TileGameLib
 		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
 		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
 		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
+		void SetBounds(int x1, int y1, int x2, int y2);
+		void FillBounds(int rgb);
+		void RemoveBounds();
 
 	private:
 		int* Buffer;
@@ -65,6 +68,10 @@ namespace TileGameLib
 		int BackColor;
 		int PixelWidth;
 		int PixelHeight;
+		int ClipX1;
+		int ClipY1;
+		int ClipX2;
+		int ClipY2;
 
 		void ClearToRGB(int rgb);
 		void SetPixel(int x, int y, int rgb);
