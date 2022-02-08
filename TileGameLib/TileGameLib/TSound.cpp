@@ -89,13 +89,13 @@ namespace TileGameLib
 
 	void TSound::Beep(float freq, int length)
 	{
-		SubStream.TonePtr = 0;
-		SubStream.Tones.clear();
 		SubStream.AddTone(freq, length);
 	}
 
 	void TSound::PlayMainSound(std::string data)
 	{
+		MainStream.TonePtr = 0;
+		MainStream.Tones.clear();
 		ParseTones(data, &MainStream);
 	}
 
@@ -106,11 +106,13 @@ namespace TileGameLib
 
 	void TSound::StopMainSound()
 	{
+		MainStream.TonePtr = 0;
 		MainStream.Tones.clear();
 	}
 
 	void TSound::StopSubSound()
 	{
+		SubStream.TonePtr = 0;
 		SubStream.Tones.clear();
 	}
 
@@ -254,9 +256,6 @@ namespace TileGameLib
 
 	void ParseTones(std::string& data, TSoundStream* stream)
 	{
-		stream->TonePtr = 0;
-		stream->Tones.clear();
-
 		auto values = String::Split(String::Trim(data), ' ', true);
 		for (int i = 0; i < values.size(); i++) {
 			auto value = String::ToUpper(values[i]);
@@ -367,8 +366,10 @@ namespace TileGameLib
 			SDL_Delay(subTone->Length);
 
 			SubStream.TonePtr++;
-			if (SubStream.TonePtr >= SubStream.Tones.size())
+			if (SubStream.TonePtr >= SubStream.Tones.size()) {
+				SubStream.TonePtr = 0;
 				SubStream.Tones.clear();
+			}
 		}
 	}
 }
