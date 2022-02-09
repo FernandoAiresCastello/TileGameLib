@@ -17,7 +17,7 @@ namespace TileGameLib
 	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden) :
 		ScreenWidth(wScr), ScreenHeight(hScr), 
 		WindowWidth(wWnd), WindowHeight(hWnd),
-		Cols(wScr / TChar::Width), Rows(hScr / TChar::Height),
+		Cols(0), Rows(0),
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
 		BufferLength(sizeof(int) * wScr * hScr),
 		Chr(TCharset::Default), Pal(TPalette::Default),
@@ -26,6 +26,7 @@ namespace TileGameLib
 	{
 		Buffer = new int[BufferLength];
 		Clear();
+		CalculateColsRows();
 
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
@@ -87,6 +88,16 @@ namespace TileGameLib
 		SDL_ShowWindow(Window);
 	}
 
+	int TWindow::GetCols()
+	{
+		return Cols;
+	}
+
+	int TWindow::GetRows()
+	{
+		return Rows;
+	}
+
 	void TWindow::SetFullscreen(bool full)
 	{
 		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -129,6 +140,7 @@ namespace TileGameLib
 	{
 		PixelWidth = wPix;
 		PixelHeight = hPix;
+		CalculateColsRows();
 	}
 
 	void TWindow::SaveScreenshot(std::string file)
@@ -212,6 +224,12 @@ namespace TileGameLib
 				py++;
 			}
 		}
+	}
+
+	void TWindow::CalculateColsRows()
+	{
+		Cols = ScreenWidth / (TChar::Width * PixelWidth);
+		Rows = ScreenHeight / (TChar::Height * PixelHeight);
 	}
 
 	void TWindow::EraseTile(int x, int y, bool snap)

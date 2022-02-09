@@ -23,8 +23,6 @@ namespace TileGameLib
 		const int ScreenHeight;
 		const int WindowWidth;
 		const int WindowHeight;
-		const int Cols;
-		const int Rows;
 
 		TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden = false);
 		TWindow(int wScr, int hScr, int zoom, bool fullscreen, bool hidden = false);
@@ -34,6 +32,8 @@ namespace TileGameLib
 		void* GetHandle();
 		void Hide();
 		void Show();
+		int GetCols();
+		int GetRows();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		void SetTitle(std::string title);
@@ -68,6 +68,8 @@ namespace TileGameLib
 		int BackColor;
 		int PixelWidth;
 		int PixelHeight;
+		int Cols;
+		int Rows;
 		int ClipX1;
 		int ClipY1;
 		int ClipX2;
@@ -75,5 +77,6 @@ namespace TileGameLib
 
 		void ClearToRGB(int rgb);
 		void SetPixel(int x, int y, int rgb);
+		void CalculateColsRows();
 	};
 }
