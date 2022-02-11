@@ -14,7 +14,7 @@
 
 namespace TileGameLib
 {
-	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden) :
+	TWindow::TWindow(int wScr, int hScr, int wWnd, int hWnd) :
 		ScreenWidth(wScr), ScreenHeight(hScr), 
 		WindowWidth(wWnd), WindowHeight(hWnd),
 		Cols(0), Rows(0),
@@ -34,7 +34,7 @@ namespace TileGameLib
 
 		Window = SDL_CreateWindow("",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			WindowWidth, WindowHeight, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_HIDDEN);
+			WindowWidth, WindowHeight, SDL_WINDOW_HIDDEN);
 
 		Renderer = SDL_CreateRenderer(Window, -1,
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
@@ -50,15 +50,8 @@ namespace TileGameLib
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_RaiseWindow(Window);
 		Update();
-
-		if (!hidden)
-			Show();
 	}
 
-	TWindow::TWindow(int wScr, int hScr, int zoom, bool fullscreen, bool hidden) :
-		TWindow(wScr, hScr, zoom * wScr, zoom * hScr, fullscreen, hidden)
-	{
-	}
 
 	TWindow::~TWindow()
 	{
@@ -68,6 +61,33 @@ namespace TileGameLib
 		SDL_Quit();
 
 		delete[] Buffer;
+	}
+
+	TWindow* TWindow::CreateWithAbsoluteSize(int wScr, int hScr)
+	{
+		return new TWindow(wScr, hScr, wScr, hScr);
+	}
+
+	TWindow* TWindow::CreateWithAbsoluteSizeStretched(int wScr, int hScr, int wWnd, int hWnd)
+	{
+		return new TWindow(wScr, hScr, wWnd, hWnd);
+	}
+
+	TWindow* TWindow::CreateWithAbsoluteSizeZoomed(int wScr, int hScr, int sizeMultiplier)
+	{
+		return new TWindow(wScr, hScr, wScr * sizeMultiplier, hScr * sizeMultiplier);
+	}
+
+	TWindow* TWindow::CreateWithPixelSizeAndTileGrid(int wPix, int hPix, int cols, int rows)
+	{
+		const int wScr = cols * TChar::Width * wPix;
+		const int hScr = rows * TChar::Height * hPix;
+
+		auto wnd = new TWindow(wScr, hScr, wScr, hScr);
+		
+		wnd->SetPixelSize(wPix, hPix);
+
+		return wnd;
 	}
 
 	void* TWindow::GetHandle()
@@ -96,6 +116,16 @@ namespace TileGameLib
 	int TWindow::GetRows()
 	{
 		return Rows;
+	}
+
+	int TWindow::GetLastCol()
+	{
+		return GetCols() - 1;
+	}
+
+	int TWindow::GetLastRow()
+	{
+		return GetRows() - 1;
 	}
 
 	void TWindow::SetFullscreen(bool full)

@@ -19,14 +19,11 @@ namespace TileGameLib
 	class TWindow
 	{
 	public:
-		const int ScreenWidth;
-		const int ScreenHeight;
-		const int WindowWidth;
-		const int WindowHeight;
-
-		TWindow(int wScr, int hScr, int wWnd, int hWnd, bool fullscreen, bool hidden = false);
-		TWindow(int wScr, int hScr, int zoom, bool fullscreen, bool hidden = false);
-		TWindow(const TWindow& other) = delete;
+		static TWindow* CreateWithAbsoluteSize(int wScr, int hScr);
+		static TWindow* CreateWithAbsoluteSizeStretched(int wScr, int hScr, int wWnd, int hWnd);
+		static TWindow* CreateWithAbsoluteSizeZoomed(int wScr, int hScr, int sizeMultiplier);
+		static TWindow* CreateWithPixelSizeAndTileGrid(int wPix, int hPix, int cols, int rows);
+		
 		~TWindow();
 
 		void* GetHandle();
@@ -34,6 +31,8 @@ namespace TileGameLib
 		void Show();
 		int GetCols();
 		int GetRows();
+		int GetLastCol();
+		int GetLastRow();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		void SetTitle(std::string title);
@@ -56,6 +55,11 @@ namespace TileGameLib
 		void FillBounds(int rgb);
 		void RemoveBounds();
 
+		const int ScreenWidth;
+		const int ScreenHeight;
+		const int WindowWidth;
+		const int WindowHeight;
+
 	private:
 		int* Buffer;
 		SDL_Window* Window;
@@ -75,6 +79,9 @@ namespace TileGameLib
 		int ClipX2;
 		int ClipY2;
 
+		TWindow(int wScr, int hScr, int wWnd, int hWnd);
+		TWindow(const TWindow& other) = delete;
+		
 		void ClearToRGB(int rgb);
 		void SetPixel(int x, int y, int rgb);
 		void CalculateColsRows();
