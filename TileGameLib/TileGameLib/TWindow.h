@@ -51,9 +51,9 @@ namespace TileGameLib
 		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
 		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
 		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
-		void SetBounds(int x1, int y1, int x2, int y2);
-		void FillBounds(int rgb);
-		void RemoveBounds();
+		void SetClip(int x1, int y1, int x2, int y2);
+		void FillClip(int rgb);
+		void RemoveClip();
 
 		const int ScreenWidth;
 		const int ScreenHeight;

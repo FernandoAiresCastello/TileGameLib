@@ -361,7 +361,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::SetBounds(int x1, int y1, int x2, int y2)
+	void TWindow::SetClip(int x1, int y1, int x2, int y2)
 	{
 		if (x1 < 0) x1 = 0;
 		if (y1 < 0) y1 = 0;
@@ -374,15 +374,15 @@ namespace TileGameLib
 		ClipY2 = y2;
 	}
 
-	void TWindow::FillBounds(int rgb)
+	void TWindow::FillClip(int rgb)
 	{
 		for (int y = ClipY1; y < ClipY2; y++)
 			for (int x = ClipX1; x < ClipX2; x++)
 				Buffer[y * ScreenWidth + x] = rgb;
 	}
 
-	void TWindow::RemoveBounds()
+	void TWindow::RemoveClip()
 	{
-		SetBounds(0, 0, ScreenWidth, ScreenHeight);
+		SetClip(0, 0, ScreenWidth, ScreenHeight);
 	}
 }

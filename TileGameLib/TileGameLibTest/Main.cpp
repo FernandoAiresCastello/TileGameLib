@@ -15,13 +15,13 @@ int main(int argc, char* argv[])
 	
 
 	while (true) {
-		wnd->RemoveBounds();
-		wnd->FillBounds(0xff0000);
+		wnd->RemoveClip();
+		wnd->FillClip(0xff0000);
 		wnd->SetPixelSize(1, 1);
 		wnd->DrawTileString("Hello World!", 15, 0, sx, sy, true, false);
 		
-		wnd->SetBounds(300, 300, 500, 500);
-		wnd->FillBounds(0x00ff00);
+		wnd->SetClip(300, 300, 500, 500);
+		wnd->FillClip(0x00ff00);
 		wnd->SetPixelSize(3, 3);
 		wnd->DrawTileString("This is cool", 15, 0, sx, sy, false, true);
 
