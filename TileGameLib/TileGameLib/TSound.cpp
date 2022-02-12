@@ -256,13 +256,21 @@ namespace TileGameLib
 
 	void ParseTones(std::string& data, TSoundStream* stream)
 	{
+		const static int MinToneLength = 30;
+		static int ToneLength = MinToneLength;
+
 		auto values = String::Split(String::Trim(data), ' ', true);
 		for (int i = 0; i < values.size(); i++) {
 			auto value = String::ToUpper(values[i]);
+			if (String::StartsWith(value, "L")) {
+				ToneLength = String::ToInt(String::Skip(value, 1)) + MinToneLength;
+				if (ToneLength < MinToneLength) {
+					ToneLength = MinToneLength;
+				}
+				continue;
+			}
 			float freq = TbFreq[value];
-			i++;
-			int length = String::ToInt(String::Trim(values[i]));
-			stream->AddTone(freq, length);
+			stream->AddTone(freq, ToneLength);
 		}
 	}
 

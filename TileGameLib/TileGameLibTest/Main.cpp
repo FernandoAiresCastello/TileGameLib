@@ -6,9 +6,10 @@ using namespace CppUtils;
 
 int main(int argc, char* argv[])
 {
-	TWindow* wnd = new TWindow(800, 600, 1, false);
+	TWindow* wnd = TWindow::CreateWithAbsoluteSize(800, 600);
 	wnd->SetBackColor(0x80);
 	wnd->Clear();
+	wnd->Show();
 
 	int sx = 0;
 	int sy = 0;
