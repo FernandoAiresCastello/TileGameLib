@@ -45,6 +45,7 @@ namespace TileGameLib
 		TCharset* GetCharset();
 		TPalette* GetPalette();
 		void SetBackColor(int bgcix);
+		int GetBackColor();
 		void Update();
 		void Clear();
 		void EraseTile(int x, int y, bool snap);

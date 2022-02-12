@@ -206,6 +206,11 @@ namespace TileGameLib
 		BackColor = bgcix;
 	}
 
+	int TWindow::GetBackColor()
+	{
+		return BackColor;
+	}
+
 	void TWindow::Update()
 	{
 		static int pitch;
