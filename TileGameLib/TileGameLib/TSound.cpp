@@ -257,20 +257,33 @@ namespace TileGameLib
 	void ParseTones(std::string& data, TSoundStream* stream)
 	{
 		const static int MinToneLength = 30;
-		static int ToneLength = MinToneLength;
+		static int ToneLength = 400;
+		static int Octave = 4;
 
-		auto values = String::Split(String::Trim(data), ' ', true);
+		auto values = String::Split(String::Trim(data), '-', true);
 		for (int i = 0; i < values.size(); i++) {
 			auto value = String::ToUpper(values[i]);
-			if (String::StartsWith(value, "L")) {
+
+			if (String::StartsWith(value, 'L')) {
 				ToneLength = String::ToInt(String::Skip(value, 1)) + MinToneLength;
 				if (ToneLength < MinToneLength) {
 					ToneLength = MinToneLength;
 				}
 				continue;
 			}
-			float freq = TbFreq[value];
-			stream->AddTone(freq, ToneLength);
+			else if (String::StartsWith(value, 'O')) {
+				Octave = String::ToInt(String::Skip(value, 1));
+				if (Octave < 0) Octave = 0;
+				else if (Octave > 8) Octave = 8;
+				continue;
+			}
+			else if (String::StartsWith(value, 'P')) {
+				stream->AddTone(TbFreq[value], ToneLength);
+			}
+			else {
+				float freq = TbFreq[value + String::ToString(Octave)];
+				stream->AddTone(freq, ToneLength);
+			}
 		}
 	}
 

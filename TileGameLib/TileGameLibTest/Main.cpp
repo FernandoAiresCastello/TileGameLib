@@ -6,6 +6,16 @@ using namespace CppUtils;
 
 int main(int argc, char* argv[])
 {
+	TSound* snd = new TSound();
+	
+	snd->SetVolume(1400);
+	snd->PlaySubSound("C-D-E-F-G-A-B");
+
+	while (true);
+
+	delete snd;
+	return 0;
+
 	TWindow* wnd = TWindow::CreateWithAbsoluteSize(800, 600);
 	wnd->SetBackColor(0x80);
 	wnd->Clear();
