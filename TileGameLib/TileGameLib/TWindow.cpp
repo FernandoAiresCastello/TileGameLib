@@ -379,11 +379,11 @@ namespace TileGameLib
 		ClipY2 = y2;
 	}
 
-	void TWindow::FillClip(int rgb)
+	void TWindow::FillClip(int color)
 	{
 		for (int y = ClipY1; y < ClipY2; y++)
 			for (int x = ClipX1; x < ClipX2; x++)
-				Buffer[y * ScreenWidth + x] = rgb;
+				Buffer[y * ScreenWidth + x] = Pal->GetColorRGB(color);
 	}
 
 	void TWindow::RemoveClip()
