@@ -36,12 +36,12 @@ namespace TileGameLib
 		return Colors;
 	}
 
-	TColor& TPalette::Get(int ix)
+	TColor& TPalette::Get(PaletteIndex ix)
 	{
 		return Colors[ix];
 	}
 
-	int TPalette::GetColorRGB(int ix)
+	RGB TPalette::GetColorRGB(PaletteIndex ix)
 	{
 		return Colors[ix].ToColorRGB();
 	}
@@ -51,12 +51,12 @@ namespace TileGameLib
 		return Colors.size();
 	}
 
-	void TPalette::Set(int ix, int rgb)
+	void TPalette::Set(PaletteIndex ix, RGB rgb)
 	{
 		Colors[ix].Set(rgb);
 	}
 
-	void TPalette::Set(int ix, int r, int g, int b)
+	void TPalette::Set(PaletteIndex ix, int r, int g, int b)
 	{
 		Colors[ix].Set(r, g, b);
 	}
@@ -95,7 +95,7 @@ namespace TileGameLib
 		Colors.push_back(TColor(r, g, b));
 	}
 
-	void TPalette::Add(int rgb)
+	void TPalette::Add(RGB rgb)
 	{
 		Colors.push_back(TColor(rgb));
 	}

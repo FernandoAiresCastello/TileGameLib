@@ -50,7 +50,6 @@ namespace TileGameLib
 	const int SamplingRate = 44100;
 	const int BufferSize = 8;
 	
-	void Init();
 	void InitToneFreqTable();
 	void ParseTones(std::string&, TSoundStream*);
 	void GenerateSamples(short*, int);
@@ -64,12 +63,34 @@ namespace TileGameLib
 
 	TSound::TSound()
 	{
-		Init();
+		InitToneFreqTable();
+
+		SDL_Init(SDL_INIT_AUDIO);
+		
+		SDL_AudioSpec desired, returned;
+		SDL_zero(desired);
+		desired.freq = SamplingRate;
+		desired.format = AUDIO_S16SYS;
+		desired.channels = 1;
+		desired.samples = BufferSize;
+		desired.callback = &FillAudioBuffer;
+
+		IdDevice = SDL_OpenAudioDevice(nullptr, 0, &desired, &returned, 0);
+
+		if (IdDevice > 0) {
+			SDL_PauseAudioDevice(IdDevice, 0);
+			SDL_CreateThread(StartSoundThread, "PlayThread", nullptr);
+		}
+		else {
+			MsgBox::Error(String::Format("Sound system failed to start:\n\n%s", SDL_GetError()));
+		}
 	}
 
 	TSound::~TSound()
 	{
 		SoundThreadRunning = false;
+		SDL_CloseAudioDevice(IdDevice);
+		SDL_AudioQuit();
 	}
 
 	void TSound::SetType(TSoundType type)
@@ -229,31 +250,6 @@ namespace TileGameLib
 		TbFreq["B8"] = 7902.13;
 	}
 
-	void Init()
-	{
-		InitToneFreqTable();
-		SDL_Init(SDL_INIT_AUDIO);
-
-		SDL_AudioSpec desired, returned;
-
-		SDL_zero(desired);
-		desired.freq = SamplingRate;
-		desired.format = AUDIO_S16SYS;
-		desired.channels = 1;
-		desired.samples = BufferSize;
-		desired.callback = &FillAudioBuffer;
-
-		IdDevice = SDL_OpenAudioDevice(nullptr, 0, &desired, &returned, 0);
-
-		if (IdDevice > 0) {
-			SDL_PauseAudioDevice(IdDevice, 0);
-			SDL_CreateThread(StartSoundThread, "PlayThread", nullptr);
-		}
-		else {
-			MsgBox::Error(String::Format("Sound system failed to start:\n\n%s", SDL_GetError()));
-		}
-	}
-
 	void ParseTones(std::string& data, TSoundStream* stream)
 	{
 		const static int MinToneLength = 30;
@@ -293,7 +289,6 @@ namespace TileGameLib
 		while (SoundThreadRunning)
 			SoundThreadLoop();
 
-		SDL_CloseAudioDevice(IdDevice);
 		return 0;
 	}
 

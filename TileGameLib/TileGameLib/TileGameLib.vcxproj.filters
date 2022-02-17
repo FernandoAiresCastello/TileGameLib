@@ -12,6 +12,9 @@
     <ClInclude Include="TSound.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TPixelBlock.h" />
+    <ClInclude Include="TPanel.h" />
+    <ClInclude Include="TRegion.h" />
+    <ClInclude Include="TTile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TChar.cpp" />
@@ -23,5 +26,7 @@
     <ClCompile Include="TSound.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TPixelBlock.cpp" />
+    <ClCompile Include="TPanel.cpp" />
+    <ClCompile Include="TTile.cpp" />
   </ItemGroup>
 </Project>

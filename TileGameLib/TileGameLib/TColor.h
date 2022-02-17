@@ -20,16 +20,16 @@ namespace TileGameLib
 		TColor();
 		TColor(const TColor& other);
 		TColor(byte r, byte g, byte b);
-		TColor(int rgb);
+		TColor(RGB rgb);
 		~TColor();
 
-		static int ToColorRGB(byte r, byte g, byte b);
-		static TColor FromColorRGB(int rgb);
+		static RGB ToColorRGB(byte r, byte g, byte b);
+		static TColor FromColorRGB(RGB rgb);
 
 		bool Equals(TColor& other);
 		void SetEqual(TColor& other);
-		int ToColorRGB();
-		void Set(int rgb);
+		RGB ToColorRGB();
+		void Set(RGB rgb);
 		void Set(byte r, byte g, byte b);
 	};
 }

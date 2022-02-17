@@ -7,8 +7,8 @@
 #pragma once
 #include <SDL.h>
 #include <string>
-#include <vector>
 #include "TGlobal.h"
+#include "TRegion.h"
 
 namespace TileGameLib
 {
@@ -19,72 +19,58 @@ namespace TileGameLib
 	class TWindow
 	{
 	public:
-		static TWindow* CreateWithAbsoluteSize(int wScr, int hScr);
-		static TWindow* CreateWithAbsoluteSizeStretched(int wScr, int hScr, int wWnd, int hWnd);
-		static TWindow* CreateWithAbsoluteSizeZoomed(int wScr, int hScr, int sizeMultiplier);
-		static TWindow* CreateWithPixelSizeAndTileGrid(int wPix, int hPix, int cols, int rows);
-		
+		TWindow();
+		TWindow(int width, int height);
 		~TWindow();
 
 		void* GetHandle();
 		void Hide();
 		void Show();
-		int GetCols();
-		int GetRows();
-		int GetLastCol();
-		int GetLastRow();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		void SetTitle(std::string title);
 		void SetBordered(bool bordered);
 		void SetIcon(std::string iconfile);
-		void SetPixelSize(int wPix, int hPix);
 		void SaveScreenshot(std::string file);
-		int GetPixelWidth();
-		int GetPixelHeight();
-		TCharset* GetCharset();
-		TPalette* GetPalette();
-		void SetBackColor(int bgcix);
+		void SetBackColor(PaletteIndex bgcix);
 		int GetBackColor();
 		void Update();
 		void Clear();
-		void EraseTile(int x, int y, bool snap);
-		void DrawTile(int chix, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
-		void DrawTileString(std::string str, int fgcix, int bgcix, int x, int y, bool transparent, bool snap);
-		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
-		void SetClip(int x1, int y1, int x2, int y2);
-		void FillClip(int color);
-		void RemoveClip();
+
+	private:
+		friend class TPanel;
 
 		const int ScreenWidth;
 		const int ScreenHeight;
 		const int WindowWidth;
 		const int WindowHeight;
+		const int PixelFormat;
+		const int BufferLength;
 
-	private:
-		int* Buffer;
+		RGB* Buffer;
 		SDL_Window* Window;
 		SDL_Renderer* Renderer;
 		SDL_Texture* Scrtx;
-		const int PixelFormat;
-		const int BufferLength;
 		TCharset* Chr;
 		TPalette* Pal;
-		int BackColor;
+		PaletteIndex BackColor;
 		int PixelWidth;
 		int PixelHeight;
-		int Cols;
-		int Rows;
-		int ClipX1;
-		int ClipY1;
-		int ClipX2;
-		int ClipY2;
+		TRegion Clip;
+		bool Grid;
+		bool TransparentTiles;
 
-		TWindow(int wScr, int hScr, int wWnd, int hWnd);
 		TWindow(const TWindow& other) = delete;
 		
-		void ClearToRGB(int rgb);
-		void SetPixel(int x, int y, int rgb);
-		void CalculateColsRows();
+		void ClearToRGB(RGB rgb);
+		void SetPixel(int x, int y, RGB rgb);
+		void SetPixelSize(int w, int h);
+		void SetClip(int x1, int y1, int x2, int y2);
+		void FillClip(PaletteIndex ix);
+		void RemoveClip();
+		void EraseTile(int x, int y);
+		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
 	};
 }

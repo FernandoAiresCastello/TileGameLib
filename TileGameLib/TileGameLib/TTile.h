@@ -5,17 +5,16 @@
 
 =============================================================================*/
 #pragma once
-
+#include <SDL.h>
 #include "TGlobal.h"
-#include "TColor.h"
-#include "TPalette.h"
-#include "TChar.h"
-#include "TCharset.h"
-#include "TWindow.h"
-#include "TKey.h"
-#include "TSound.h"
-#include "TImage.h"
-#include "TPixelBlock.h"
-#include "TRegion.h"
-#include "TTile.h"
-#include "TPanel.h"
+
+namespace TileGameLib
+{
+	class TTile
+	{
+	public:
+		CharsetIndex Char;
+		PaletteIndex ForeColor;
+		PaletteIndex BackColor;
+	};
+}

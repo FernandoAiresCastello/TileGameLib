@@ -12,7 +12,7 @@ using namespace CppUtils;
 
 namespace TileGameLib
 {
-	TImage::TImage()
+	TImage::TImage() : Width(0), Height(0)
 	{
 	}
 

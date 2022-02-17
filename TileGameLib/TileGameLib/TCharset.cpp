@@ -38,12 +38,12 @@ namespace TileGameLib
 		return Chars;
 	}
 
-	TChar& TCharset::Get(int ix)
+	TChar& TCharset::Get(CharsetIndex ix)
 	{
 		return Chars[ix];
 	}
 
-	std::vector<byte> TCharset::GetBytes(int ix)
+	std::vector<byte> TCharset::GetBytes(CharsetIndex ix)
 	{
 		return Chars[ix].GetBytes();
 	}
@@ -85,7 +85,7 @@ namespace TileGameLib
 		Add(TChar(pixels));
 	}
 
-	void TCharset::Set(int ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
+	void TCharset::Set(CharsetIndex ix, int row0, int row1, int row2, int row3, int row4, int row5, int row6, int row7)
 	{
 		TChar& chars = Get(ix);
 
@@ -99,7 +99,7 @@ namespace TileGameLib
 		chars.PixelRow7 = row7;
 	}
 
-	void TCharset::Set(int ix,
+	void TCharset::Set(CharsetIndex ix,
 		std::string row0, std::string row1, std::string row2, std::string row3, 
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
@@ -114,18 +114,18 @@ namespace TileGameLib
 			String::ToInt(row7));
 	}
 
-	void TCharset::Set(int ix, std::string pixels)
+	void TCharset::Set(CharsetIndex ix, std::string pixels)
 	{
 		auto rows = String::SplitIntoEqualSizedStrings(pixels, TChar::Width);
 		Set(ix, rows[0], rows[1], rows[2], rows[3], rows[4], rows[5], rows[6], rows[7]);
 	}
 
-	void TCharset::Set(int ix, TChar& ch)
+	void TCharset::Set(CharsetIndex ix, TChar& ch)
 	{
 		Get(ix).SetEqual(ch);
 	}
 
-	void TCharset::Set(int ix, int rowIndex, int rowData)
+	void TCharset::Set(CharsetIndex ix, int rowIndex, int rowData)
 	{
 		TChar& ch = Get(ix);
 
@@ -145,7 +145,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TCharset::CopyChar(int dstix, int srcix)
+	void TCharset::CopyChar(CharsetIndex dstix, CharsetIndex srcix)
 	{
 		TChar& src = Get(srcix);
 		TChar& dst = Get(dstix);
