@@ -9,6 +9,10 @@ A set of class libraries and tools for quick development of pseudo 8-bit games i
 
 ---
 
+![TileGameLibC](https://raw.githubusercontent.com/FernandoAiresCastello/TileGameToolkit/master/Images/TileGameLibC.png)
+
+---
+
 *Screenshot of TileGameMaker: (may be outdated)*
 
-![Screenshot](https://raw.githubusercontent.com/FernandoAiresCastello/TileGameToolkit/master/Screenshots/MainWindow.png)
+![TileGameMaker](https://raw.githubusercontent.com/FernandoAiresCastello/TileGameToolkit/master/Images/TileGameMaker.png)
