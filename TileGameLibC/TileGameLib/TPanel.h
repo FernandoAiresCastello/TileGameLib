@@ -68,5 +68,7 @@ namespace TileGameLib
 		std::vector<TRenderedPixelBlock> PixelBlocks;
 
 		TPanel(const TPanel& other) = delete;
+
+		bool IsWithinBounds(int x, int y);
 	};
 }

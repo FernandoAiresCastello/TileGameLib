@@ -47,6 +47,15 @@ namespace TileGameLib
 	{
 	}
 
+	bool TPanel::IsWithinBounds(int x, int y)
+	{
+		return 
+			x + ScrollX >= -TChar::Width && 
+			x + ScrollX < GetWidth() && 
+			y + ScrollY >= -TChar::Height && 
+			y + ScrollY < GetHeight();
+	}
+
 	void TPanel::Maximize()
 	{
 		Bounds.X1 = 0;
@@ -196,21 +205,21 @@ namespace TileGameLib
 	
 	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
-		if (x >= -TChar::Width && x < GetWidth() && y >= -TChar::Height && y < GetHeight())
+		if (IsWithinBounds(x, y))
 			Tiles.push_back({chix, fgcix, bgcix, TransparentTiles, Grid, PixelWidth, PixelHeight, x, y});
 	}
 
 	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
 		for (auto& ch : str) {
-			if (x >= -TChar::Width && x < GetWidth() && y >= -TChar::Height && y < GetHeight())
+			if (IsWithinBounds(x, y))
 				Tiles.push_back({ ch, fgcix, bgcix, TransparentTiles, true, PixelWidth, PixelHeight, x++, y });
 		}
 	}
 
 	void TPanel::AddPixelBlock(TPixelBlock* block, int x, int y)
 	{
-		if (x >= -block->Width && x < GetWidth() && y >= -block->Height && y < GetHeight())
+		if (x + ScrollX >= -block->Width && x + ScrollX < GetWidth() && y + ScrollY >= -block->Height && y + ScrollY < GetHeight())
 			PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
 	}
 
