@@ -7,6 +7,8 @@
 #include "TPanel.h"
 #include "TWindow.h"
 #include "TChar.h"
+#include "TTile.h"
+#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
@@ -194,21 +196,21 @@ namespace TileGameLib
 	
 	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
-		if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+		if (x >= -TChar::Width && x < GetWidth() && y >= -TChar::Height && y < GetHeight())
 			Tiles.push_back({chix, fgcix, bgcix, TransparentTiles, Grid, PixelWidth, PixelHeight, x, y});
 	}
 
 	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
 		for (auto& ch : str) {
-			if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+			if (x >= -TChar::Width && x < GetWidth() && y >= -TChar::Height && y < GetHeight())
 				Tiles.push_back({ ch, fgcix, bgcix, TransparentTiles, true, PixelWidth, PixelHeight, x++, y });
 		}
 	}
 
 	void TPanel::AddPixelBlock(TPixelBlock* block, int x, int y)
 	{
-		if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+		if (x >= -block->Width && x < GetWidth() && y >= -block->Height && y < GetHeight())
 			PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
 	}
 

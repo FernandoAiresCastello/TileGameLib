@@ -10,8 +10,6 @@
 #include <vector>
 #include "TGlobal.h"
 #include "TRegion.h"
-#include "TTile.h"
-#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
