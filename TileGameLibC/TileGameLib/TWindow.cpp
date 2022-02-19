@@ -71,6 +71,16 @@ namespace TileGameLib
 		return wmInfo.info.win.window;
 	}
 
+	TCharset* TWindow::GetCharset()
+	{
+		return Chr;
+	}
+
+	TPalette* TWindow::GetPalette()
+	{
+		return Pal;
+	}
+
 	void TWindow::Hide()
 	{
 		SDL_HideWindow(Window);

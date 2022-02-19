@@ -24,6 +24,8 @@ namespace TileGameLib
 		~TWindow();
 
 		void* GetHandle();
+		TCharset* GetCharset();
+		TPalette* GetPalette();
 		void Hide();
 		void Show();
 		void SetFullscreen(bool full);

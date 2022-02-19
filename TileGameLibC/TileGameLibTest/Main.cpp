@@ -15,12 +15,13 @@ void TestWindowPanels()
 	wnd->Show();
 
 	TPanel* pnl1 = new TPanel(wnd);
-	pnl1->SetBounds(50, 50, 500, 300);
+	pnl1->SetLocation(50, 50);
+	pnl1->SetSize(320, 240);
 	pnl1->SetPixelSize(4, 4);
 	pnl1->SetBackColor(0x80);
 
 	TPanel* pnl2 = new TPanel(wnd);
-	pnl2->SetBounds(200, 200, 700, 500);
+	pnl2->SetBounds(200, 200, 700, 600);
 	pnl2->SetPixelSize(2, 3);
 	pnl2->SetBackColor(0xa5);
 	pnl2->TransparentTiles = true;
@@ -34,10 +35,15 @@ void TestWindowPanels()
 
 		pnl1->Clear();
 		pnl1->DrawTile(2, 15, 0, 0, 0);
+
 		pnl2->Clear();
 		pnl2->DrawTileString("1. Scroll panel contents", mode == 1 ? 15 : 10, 0, 1, 1);
 		pnl2->DrawTileString("2. Move panel", mode == 2 ? 15 : 10, 0, 1, 2);
 		pnl2->DrawTileString("3. Resize panel", mode == 3 ? 15 : 10, 0, 1, 3);
+		
+		pnl2->DrawTileString(String::Format(" X:%03i  Y:%03i", pnl1->GetX(), pnl1->GetY()), 10, 0, 1, 10);
+		pnl2->DrawTileString(String::Format(" W:%03i  H:%03i", pnl1->GetWidth(), pnl1->GetHeight()), 10, 0, 1, 11);
+		pnl2->DrawTileString(String::Format("SX:%03i SY:%03i", pnl1->GetScrollX(), pnl1->GetScrollY()), 10, 0, 1, 12);
 
 		wnd->Update();
 

@@ -27,8 +27,15 @@ namespace TileGameLib
 
 		void Maximize();
 		void SetBounds(int x1, int y1, int x2, int y2);
+		TRegion GetBounds();
 		void Move(int dx, int dy);
 		void Resize(int dx, int dy);
+		void SetLocation(int x, int y);
+		void SetSize(int w, int h);
+		int GetWidth();
+		int GetHeight();
+		int GetX();
+		int GetY();
 		void SetPixelSize(int w, int h);
 		int GetPixelWidth();
 		int GetPixelHeight();

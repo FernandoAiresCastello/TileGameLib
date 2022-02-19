@@ -39,6 +39,11 @@ namespace TileGameLib
 		Bounds.Y2 = y2;
 	}
 
+	TRegion TPanel::GetBounds()
+	{
+		return Bounds;
+	}
+
 	void TPanel::Move(int dx, int dy)
 	{
 		TRegion prevBounds = Bounds;
@@ -65,6 +70,38 @@ namespace TileGameLib
 			Bounds = prevBounds;
 		if (Bounds.Y2 < Bounds.Y1)
 			Bounds = prevBounds;
+	}
+
+	void TPanel::SetLocation(int x, int y)
+	{
+		Bounds.X1 = x;
+		Bounds.Y1 = y;
+	}
+
+	void TPanel::SetSize(int w, int h)
+	{
+		Bounds.X2 = Bounds.X1 + w;
+		Bounds.Y2 = Bounds.Y1 + h;
+	}
+
+	int TPanel::GetWidth()
+	{
+		return Bounds.X2 - Bounds.X1;
+	}
+
+	int TPanel::GetHeight()
+	{
+		return Bounds.Y2 - Bounds.Y1;
+	}
+
+	int TPanel::GetX()
+	{
+		return Bounds.X1;
+	}
+
+	int TPanel::GetY()
+	{
+		return Bounds.Y1;
 	}
 
 	void TPanel::SetPixelSize(int w, int h)
