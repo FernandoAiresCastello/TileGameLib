@@ -39,8 +39,6 @@ namespace TileGameLib.File
         {
             MemoryFile file = new MemoryFile();
 
-            file.WriteShort(tileset.Size);
-
             foreach (TilePixels pixels in tileset.Pixels)
             {
                 foreach (byte row in pixels.PixelRows)
@@ -55,9 +53,9 @@ namespace TileGameLib.File
             MemoryFile file = new MemoryFile(path);
             Tileset tileset = new Tileset();
 
-            int tilesetSize = file.ReadShort();
+            int size = file.Length / 8;
 
-            tileset.ClearToSize(tilesetSize);
+            tileset.ClearToSize(size);
 
             try
             {

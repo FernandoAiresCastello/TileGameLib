@@ -41,8 +41,6 @@ namespace TileGameLib.File
         {
             MemoryFile file = new MemoryFile();
 
-            file.WriteShort(palette.Size);
-
             foreach (int argb in palette.Colors)
             {
                 Color color = Color.FromArgb(argb);
@@ -59,7 +57,7 @@ namespace TileGameLib.File
             MemoryFile file = new MemoryFile(path);
             Palette palette = new Palette();
 
-            int paletteSize = file.ReadShort();
+            int paletteSize = file.Length / 3;
 
             palette.Clear(paletteSize, Color.White);
 

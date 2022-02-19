@@ -2,8 +2,8 @@
 
 int main(int argc, char* argv[])
 {
-	//TestWindowPanels();
-	TestMosaic();
+	TestWindowPanels();
+	//TestMosaic();
 
 	return 0;
 }
@@ -19,6 +19,7 @@ void TestMosaic()
 	pnl->SetPixelSize(4, 4);
 	pnl->SetBackColor(0x0f);
 	pnl->Grid = true;
+	pnl->Visible = true;
 
 	int ch, fgc, bgc = 0;
 
@@ -65,6 +66,7 @@ void TestWindowPanels()
 	pnl1->SetSize(1200, 650);
 	pnl1->SetPixelSize(4, 4);
 	pnl1->SetBackColor(0x80);
+	pnl1->Visible = true;
 
 	TPanel* pnl2 = new TPanel(wnd);
 	pnl2->SetBounds(200, 200, 700, 600);
@@ -72,6 +74,7 @@ void TestWindowPanels()
 	pnl2->SetBackColor(0xa5);
 	pnl2->TransparentTiles = true;
 	pnl2->Grid = true;
+	pnl2->Visible = true;
 
 	int mode = 1;
 
@@ -113,13 +116,13 @@ void TestWindowPanels()
 
 		if (mode == 1) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl1->Scroll(1, 0);
+				pnl2->Scroll(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl1->Scroll(-1, 0);
+				pnl2->Scroll(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl1->Scroll(0, -1);
+				pnl2->Scroll(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl1->Scroll(0, 1);
+				pnl2->Scroll(0, 1);
 		}
 		else if (mode == 2) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))

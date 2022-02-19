@@ -22,12 +22,14 @@ namespace TileGameLib
 		TPanel(TWindow* wnd);
 		~TPanel();
 
+		bool Visible;
 		bool Grid;
 		bool TransparentTiles;
 
 		void Maximize();
 		void SetBounds(int x1, int y1, int x2, int y2);
 		TRegion GetBounds();
+		bool IsWithinBounds(int x, int y);
 		void Move(int dx, int dy);
 		void Resize(int dx, int dy);
 		void SetLocation(int x, int y);
@@ -68,7 +70,5 @@ namespace TileGameLib
 		std::vector<TRenderedPixelBlock> PixelBlocks;
 
 		TPanel(const TPanel& other) = delete;
-
-		bool IsWithinBounds(int x, int y);
 	};
 }

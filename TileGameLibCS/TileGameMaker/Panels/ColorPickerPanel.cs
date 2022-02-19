@@ -229,11 +229,7 @@ namespace TileGameMaker.Panels
 
         private void Export(PaletteExportFormat format)
         {
-            string fileExt = PaletteExportFileExtension.Get(format);
-
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.Project.Folder;
-            dialog.Filter = $"TileGameMaker palette file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -249,11 +245,7 @@ namespace TileGameMaker.Panels
 
         private void Import(PaletteExportFormat format)
         {
-            string fileExt = PaletteExportFileExtension.Get(format);
-
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.Project.Folder;
-            dialog.Filter = $"TileGameMaker palette file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {

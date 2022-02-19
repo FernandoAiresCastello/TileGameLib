@@ -246,11 +246,7 @@ namespace TileGameMaker.Panels
 
         private void Export(TilesetExportFormat format)
         {
-            string fileExt = TilesetExportFileExtension.Get(format);
-
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = MapEditor.Project.Folder;
-            dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -276,11 +272,7 @@ namespace TileGameMaker.Panels
 
         private void Import(TilesetExportFormat format)
         {
-            string fileExt = TilesetExportFileExtension.Get(format);
-
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = MapEditor.Project.Folder;
-            dialog.Filter = $"TileGameMaker tileset file (*.{fileExt})|*.{fileExt}";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
