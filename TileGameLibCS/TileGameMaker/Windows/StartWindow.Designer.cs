@@ -130,7 +130,7 @@
             this.LbCopyright.Name = "LbCopyright";
             this.LbCopyright.Size = new System.Drawing.Size(432, 50);
             this.LbCopyright.TabIndex = 3;
-            this.LbCopyright.Text = "2019 - 2021\r\nDeveloped by Fernando Aires Castello";
+            this.LbCopyright.Text = "2019 - 2022\r\nDeveloped by Fernando Aires Castello";
             this.LbCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
