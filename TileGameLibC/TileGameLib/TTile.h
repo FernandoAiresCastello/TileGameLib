@@ -10,8 +10,7 @@
 
 namespace TileGameLib
 {
-	class TTile
-	{
+	class TTile {
 	public:
 		CharsetIndex Char;
 		PaletteIndex ForeColor;

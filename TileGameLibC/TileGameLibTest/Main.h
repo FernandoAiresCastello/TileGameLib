@@ -6,4 +6,5 @@
 using namespace TileGameLib;
 using namespace CppUtils;
 
+void TestMosaic();
 void TestWindowPanels();

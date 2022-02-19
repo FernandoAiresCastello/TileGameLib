@@ -2,9 +2,55 @@
 
 int main(int argc, char* argv[])
 {
-	TestWindowPanels();
+	//TestWindowPanels();
+	TestMosaic();
 
 	return 0;
+}
+
+void TestMosaic()
+{
+	TWindow* wnd = new TWindow();
+	wnd->SetBackColor(0);
+	wnd->Clear();
+	wnd->Show();
+
+	TPanel* pnl = new TPanel(wnd);
+	pnl->SetPixelSize(4, 4);
+	pnl->SetBackColor(0x0f);
+	pnl->Grid = true;
+
+	int ch, fgc, bgc = 0;
+
+	while (true) {
+		wnd->Clear();
+		for (int y = 0; y < 50; y++) {
+			for (int x = 0; x < 50; x++) {
+				ch = Util::Random(255);
+				fgc = Util::Random(255);
+				bgc = Util::Random(255);
+				pnl->AddTile(ch, fgc, bgc, x, y);
+			}
+		}
+		pnl->Draw();
+		wnd->Update();
+
+		SDL_Event e;
+		SDL_PollEvent(&e);
+		if (e.type == SDL_QUIT) {
+			break;
+		}
+		else if (e.type == SDL_KEYDOWN) {
+			auto key = e.key.keysym.sym;
+			if (key == SDLK_ESCAPE)
+				break;
+			else if (key == SDLK_RETURN && TKey::Alt())
+				wnd->ToggleFullscreen();
+		}
+	}
+
+	delete pnl;
+	delete wnd;
 }
 
 void TestWindowPanels()
@@ -16,7 +62,7 @@ void TestWindowPanels()
 
 	TPanel* pnl1 = new TPanel(wnd);
 	pnl1->SetLocation(50, 50);
-	pnl1->SetSize(320, 240);
+	pnl1->SetSize(1200, 650);
 	pnl1->SetPixelSize(4, 4);
 	pnl1->SetBackColor(0x80);
 
@@ -30,20 +76,19 @@ void TestWindowPanels()
 	int mode = 1;
 
 	while (true) {
-
+		
 		wnd->Clear();
 
-		pnl1->Clear();
-		pnl1->DrawTile(2, 15, 0, 0, 0);
+		pnl1->AddTile(2, 15, 0, 0, 0);
+		pnl1->Draw();
 
-		pnl2->Clear();
-		pnl2->DrawTileString("1. Scroll panel contents", mode == 1 ? 15 : 10, 0, 1, 1);
-		pnl2->DrawTileString("2. Move panel", mode == 2 ? 15 : 10, 0, 1, 2);
-		pnl2->DrawTileString("3. Resize panel", mode == 3 ? 15 : 10, 0, 1, 3);
-		
-		pnl2->DrawTileString(String::Format(" X:%03i  Y:%03i", pnl1->GetX(), pnl1->GetY()), 10, 0, 1, 10);
-		pnl2->DrawTileString(String::Format(" W:%03i  H:%03i", pnl1->GetWidth(), pnl1->GetHeight()), 10, 0, 1, 11);
-		pnl2->DrawTileString(String::Format("SX:%03i SY:%03i", pnl1->GetScrollX(), pnl1->GetScrollY()), 10, 0, 1, 12);
+		pnl2->AddTileString("1. Scroll panel contents", mode == 1 ? 15 : 10, 0, 1, 1);
+		pnl2->AddTileString("2. Move panel", mode == 2 ? 15 : 10, 0, 1, 2);
+		pnl2->AddTileString("3. Resize panel", mode == 3 ? 15 : 10, 0, 1, 3);
+		pnl2->AddTileString(String::Format(" X:%03i  Y:%03i", pnl1->GetX(), pnl1->GetY()), 10, 0, 1, 10);
+		pnl2->AddTileString(String::Format(" W:%03i  H:%03i", pnl1->GetWidth(), pnl1->GetHeight()), 10, 0, 1, 11);
+		pnl2->AddTileString(String::Format("SX:%03i SY:%03i", pnl1->GetScrollX(), pnl1->GetScrollY()), 10, 0, 1, 12);
+		pnl2->Draw();
 
 		wnd->Update();
 

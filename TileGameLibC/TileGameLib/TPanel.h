@@ -10,6 +10,8 @@
 #include <vector>
 #include "TGlobal.h"
 #include "TRegion.h"
+#include "TTile.h"
+#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
@@ -48,11 +50,15 @@ namespace TileGameLib
 		int GetBackColor();
 		void Clear();
 		void EraseTile(int x, int y);
-		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
+		void AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void AddPixelBlock(TPixelBlock* block, int x, int y);
+		void Draw();
 
 	private:
+		class TRenderedTile;
+		class TRenderedPixelBlock;
+
 		TWindow* Wnd;
 		TRegion Bounds;
 		PaletteIndex BackColor;
@@ -60,6 +66,8 @@ namespace TileGameLib
 		int PixelHeight;
 		int ScrollX;
 		int ScrollY;
+		std::vector<TRenderedTile> Tiles;
+		std::vector<TRenderedPixelBlock> PixelBlocks;
 
 		TPanel(const TPanel& other) = delete;
 	};

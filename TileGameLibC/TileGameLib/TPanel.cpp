@@ -10,6 +10,28 @@
 
 namespace TileGameLib
 {
+	class TPanel::TRenderedTile
+	{
+	public:
+		TTile Tile;
+		bool Transparent;
+		bool AlignedToGrid;
+		int PixelWidth;
+		int PixelHeight;
+		int X;
+		int Y;
+	};
+
+	class TPanel::TRenderedPixelBlock
+	{
+	public:
+		TPixelBlock* Block;
+		int PixelWidth;
+		int PixelHeight;
+		int X;
+		int Y;
+	};
+
 	TPanel::TPanel(TWindow* wnd) : 
 		Wnd(wnd), Grid(false), TransparentTiles(false)
 	{
@@ -161,46 +183,53 @@ namespace TileGameLib
 
 	void TPanel::Clear()
 	{
-		Wnd->SetPixelSize(PixelWidth, PixelHeight);
-		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->FillClip(BackColor);
-		Wnd->RemoveClip();
+		Tiles.clear();
+		PixelBlocks.clear();
 	}
 
 	void TPanel::EraseTile(int x, int y)
 	{
-		Wnd->Grid = Grid;
-		Wnd->SetPixelSize(PixelWidth, PixelHeight);
-		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->EraseTile(x + ScrollX, y + ScrollY);
-		Wnd->RemoveClip();
+		Tiles.push_back({ 0, BackColor, BackColor, false, Grid, PixelWidth, PixelHeight, x, y });
 	}
 	
-	void TPanel::DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
-		Wnd->Grid = Grid;
-		Wnd->TransparentTiles = TransparentTiles;
-		Wnd->SetPixelSize(PixelWidth, PixelHeight);
-		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->DrawTile(chix, fgcix, bgcix, x + ScrollX, y + ScrollY);
-		Wnd->RemoveClip();
+		if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+			Tiles.push_back({chix, fgcix, bgcix, TransparentTiles, Grid, PixelWidth, PixelHeight, x, y});
 	}
 
-	void TPanel::DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
-		Wnd->Grid = Grid;
-		Wnd->TransparentTiles = TransparentTiles;
-		Wnd->SetPixelSize(PixelWidth, PixelHeight);
-		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->DrawTileString(str, fgcix, bgcix, x + ScrollX, y + ScrollY);
-		Wnd->RemoveClip();
+		for (auto& ch : str) {
+			if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+				Tiles.push_back({ ch, fgcix, bgcix, TransparentTiles, true, PixelWidth, PixelHeight, x++, y });
+		}
 	}
 
-	void TPanel::DrawPixelBlock(TPixelBlock* pixels, int x, int y)
+	void TPanel::AddPixelBlock(TPixelBlock* block, int x, int y)
 	{
-		Wnd->SetPixelSize(PixelWidth, PixelHeight);
+		if (x >= 0 && x < GetWidth() && y >= 0 && y < GetHeight())
+			PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
+	}
+
+	void TPanel::Draw()
+	{
 		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->DrawPixelBlock(pixels, x + ScrollX, y + ScrollY);
+		Wnd->FillClip(BackColor);
+
+		for (auto& rtile : Tiles) {
+			Wnd->Grid = rtile.AlignedToGrid;
+			Wnd->TransparentTiles = rtile.Transparent;
+			Wnd->SetPixelSize(rtile.PixelWidth, rtile.PixelHeight);
+			Wnd->DrawTile(rtile.Tile.Char, rtile.Tile.ForeColor, rtile.Tile.BackColor, rtile.X + ScrollX, rtile.Y + ScrollY);
+		}
+
+		for (auto& rblock : PixelBlocks) {
+			Wnd->SetPixelSize(rblock.PixelWidth, rblock.PixelHeight);
+			Wnd->DrawPixelBlock(rblock.Block, rblock.X, rblock.Y);
+		}
+
 		Wnd->RemoveClip();
+		Clear();
 	}
 }
