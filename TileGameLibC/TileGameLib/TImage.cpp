@@ -12,7 +12,7 @@ using namespace CppUtils;
 
 namespace TileGameLib
 {
-	TImage::TImage() : Width(0), Height(0)
+	TImage::TImage() : Width(0), Height(0), Size(0), Transparent(false), Transparency()
 	{
 	}
 
@@ -20,11 +20,11 @@ namespace TileGameLib
 	{
 	}
 
-	void TImage::Load(std::string filename)
+	bool TImage::Load(std::string filename)
 	{
 		if (!File::Exists(filename)) {
 			MsgBox::Error("File not found: " + filename);
-			return;
+			return false;
 		}
 
 		Pixels.clear();
@@ -33,6 +33,7 @@ namespace TileGameLib
 		const Uint8 bpp = img->format->BytesPerPixel;
 		Width = img->w;
 		Height = img->h;
+		Size = Width * Height;
 
 		for (int y = 0; y < Height; y++) {
 			for (int x = 0; x < Width; x++) {
@@ -43,6 +44,17 @@ namespace TileGameLib
 				Pixels.push_back(TColor(Color.r, Color.g, Color.b));
 			}
 		}
+
+		return true;
+	}
+
+	bool TImage::Load(std::string filename, TColor transparency)
+	{
+		if (!Load(filename))
+			return false;
+
+		SetTransparency(transparency);
+		return true;
 	}
 
 	int TImage::GetWidth()
@@ -55,12 +67,33 @@ namespace TileGameLib
 		return Height;
 	}
 
-	TColor TImage::GetPixel(int i)
+	int TImage::GetSize()
+	{
+		return Size;
+	}
+
+	bool TImage::IsTransparent()
+	{
+		return Transparent;
+	}
+
+	void TImage::SetTransparency(TColor color)
+	{
+		Transparent = true;
+		Transparency = color;
+	}
+
+	TColor& TImage::GetTransparency()
+	{
+		return Transparency;
+	}
+
+	TColor& TImage::GetPixel(int i)
 	{
 		return Pixels[i];
 	}
 
-	TColor TImage::GetPixel(int x, int y)
+	TColor& TImage::GetPixel(int x, int y)
 	{
 		return Pixels[y * Width + x];
 	}

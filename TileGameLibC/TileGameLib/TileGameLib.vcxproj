@@ -166,6 +166,7 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
       </SubType>
     </ClInclude>
     <ClInclude Include="TTile.h" />
+    <ClInclude Include="TTiledImage.h" />
     <ClInclude Include="TWindow.h">
       <SubType>
       </SubType>
@@ -186,6 +187,7 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
       </SubType>
     </ClCompile>
     <ClCompile Include="TTile.cpp" />
+    <ClCompile Include="TTiledImage.cpp" />
     <ClCompile Include="TWindow.cpp">
       <SubType>
       </SubType>

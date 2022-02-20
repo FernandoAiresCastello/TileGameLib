@@ -15,6 +15,7 @@
     <ClInclude Include="TPanel.h" />
     <ClInclude Include="TRegion.h" />
     <ClInclude Include="TTile.h" />
+    <ClInclude Include="TTiledImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TChar.cpp" />
@@ -28,5 +29,6 @@
     <ClCompile Include="TPixelBlock.cpp" />
     <ClCompile Include="TPanel.cpp" />
     <ClCompile Include="TTile.cpp" />
+    <ClCompile Include="TTiledImage.cpp" />
   </ItemGroup>
 </Project>

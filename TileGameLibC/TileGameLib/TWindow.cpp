@@ -11,6 +11,7 @@
 #include "TCharset.h"
 #include "TPalette.h"
 #include "TPixelBlock.h"
+#include "TImage.h"
 
 namespace TileGameLib
 {
@@ -338,5 +339,41 @@ namespace TileGameLib
 	void TWindow::RemoveClip()
 	{
 		SetClip(0, 0, Width, Height);
+	}
+
+	void TWindow::DrawImage(TImage* img, int x, int y, int pw, int ph)
+	{
+		PixelWidth = pw;
+		PixelHeight = ph;
+
+		const int prevX = x;
+
+		for (int iy = 0; iy < img->GetHeight(); iy++) {
+			for (int ix = 0; ix < img->GetWidth(); ix++) {
+				TColor& color = img->GetPixel(ix, iy);
+				if (img->IsTransparent() && color.Equals(img->GetTransparency()))
+					x++;
+				else
+					SetPixel(x++, y, color.ToColorRGB());
+			}
+			y++;
+			x = prevX;
+		}
+	}
+
+	void TWindow::EraseImage(TImage* img, int x, int y, int pw, int ph)
+	{
+		PixelWidth = pw;
+		PixelHeight = ph;
+
+		const int prevX = x;
+
+		for (int iy = 0; iy < img->GetHeight(); iy++) {
+			for (int ix = 0; ix < img->GetWidth(); ix++) {
+				SetPixel(x++, y, Pal->GetColorRGB(BackColor));
+			}
+			y++;
+			x = prevX;
+		}
 	}
 }

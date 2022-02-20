@@ -19,3 +19,4 @@
 #include "TRegion.h"
 #include "TTile.h"
 #include "TPanel.h"
+#include "TTiledImage.h"

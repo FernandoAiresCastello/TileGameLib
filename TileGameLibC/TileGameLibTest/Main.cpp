@@ -4,14 +4,44 @@
 using namespace TileGameLib;
 using namespace CppUtils;
 
+TWindow* Wnd = nullptr;
+
+void Halt();
+void ProcGlobalEvents();
+
+void TestImages()
+{
+	Wnd->SetBackColor(0x03);
+	Wnd->Clear();
+
+	/*TImage* img = new TImage();
+	img->Load("test.bmp", TColor(255, 0, 255));
+	Wnd->DrawImage(img, 0, 0, 5, 4);
+	Wnd->DrawImage(img, 16, 0, 5, 4);
+	Wnd->DrawImage(img, 0, 16, 5, 4);*/
+
+	TTiledImage* tiledImg = new TTiledImage("test2.bmp", 16, 16, TColor(255, 0, 255));
+	//Wnd->DrawImage(img->GetImage(), 0, 0, 4, 4);
+
+	int tile = 0;
+	while (true) {
+		ProcGlobalEvents();
+		Wnd->EraseImage(tiledImg->GetTile(tile), 0, 0, 4, 4);
+		Wnd->DrawImage(tiledImg->GetTile(tile), 0, 0, 4, 4);
+		Wnd->Update();
+		tile++;
+		if (tile >= tiledImg->GetTileCount())
+			tile = 0;
+
+		SDL_Delay(100);
+	}
+
+	delete tiledImg;
+}
+
 void TestMosaic()
 {
-	TWindow* wnd = new TWindow();
-	wnd->SetBackColor(0);
-	wnd->Clear();
-	wnd->Show();
-
-	TPanel* pnl = new TPanel(wnd);
+	TPanel* pnl = new TPanel(Wnd);
 	pnl->SetPixelSize(4, 4);
 	pnl->SetBackColor(0x0f);
 	pnl->Grid = true;
@@ -20,7 +50,7 @@ void TestMosaic()
 	int ch, fgc, bgc = 0;
 
 	while (true) {
-		wnd->Clear();
+		Wnd->Clear();
 		for (int y = 0; y < 50; y++) {
 			for (int x = 0; x < 50; x++) {
 				ch = Util::Random(255);
@@ -30,7 +60,7 @@ void TestMosaic()
 			}
 		}
 		pnl->Draw();
-		wnd->Update();
+		Wnd->Update();
 
 		SDL_Event e;
 		SDL_PollEvent(&e);
@@ -42,29 +72,23 @@ void TestMosaic()
 			if (key == SDLK_ESCAPE)
 				break;
 			else if (key == SDLK_RETURN && TKey::Alt())
-				wnd->ToggleFullscreen();
+				Wnd->ToggleFullscreen();
 		}
 	}
 
 	delete pnl;
-	delete wnd;
 }
 
 void TestWindowPanels()
 {
-	TWindow* wnd = new TWindow();
-	wnd->SetBackColor(5);
-	wnd->Clear();
-	wnd->Show();
-
-	TPanel* pnl1 = new TPanel(wnd);
+	TPanel* pnl1 = new TPanel(Wnd);
 	pnl1->SetLocation(50, 50);
 	pnl1->SetSize(1200, 650);
 	pnl1->SetPixelSize(4, 4);
 	pnl1->SetBackColor(0x80);
 	pnl1->Visible = true;
 
-	TPanel* pnl2 = new TPanel(wnd);
+	TPanel* pnl2 = new TPanel(Wnd);
 	pnl2->SetBounds(200, 200, 700, 600);
 	pnl2->SetPixelSize(2, 3);
 	pnl2->SetBackColor(0xa5);
@@ -76,7 +100,7 @@ void TestWindowPanels()
 
 	while (true) {
 		
-		wnd->Clear();
+		Wnd->Clear();
 
 		pnl1->AddTile(2, 15, 0, 0, 0);
 		pnl1->Draw();
@@ -89,7 +113,7 @@ void TestWindowPanels()
 		pnl2->AddTileString(String::Format("SX:%03i SY:%03i", pnl1->GetScrollX(), pnl1->GetScrollY()), 10, 0, 1, 12);
 		pnl2->Draw();
 
-		wnd->Update();
+		Wnd->Update();
 
 		SDL_Event e;
 		SDL_PollEvent(&e);
@@ -101,7 +125,7 @@ void TestWindowPanels()
 			if (key == SDLK_ESCAPE)
 				break;
 			else if (key == SDLK_RETURN && TKey::Alt())
-				wnd->ToggleFullscreen();
+				Wnd->ToggleFullscreen();
 			else if (key == SDLK_1)
 				mode = 1;
 			else if (key == SDLK_2)
@@ -144,13 +168,43 @@ void TestWindowPanels()
 
 	delete pnl1;
 	delete pnl2;
-	delete wnd;
+}
+
+void Halt()
+{
+	while (true) {
+		Wnd->Update();
+		ProcGlobalEvents();
+	}
+}
+
+void ProcGlobalEvents()
+{
+	SDL_Event e;
+	SDL_PollEvent(&e);
+	if (e.type == SDL_QUIT) {
+		exit(0);
+	}
+	else if (e.type == SDL_KEYDOWN) {
+		auto key = e.key.keysym.sym;
+		if (key == SDLK_ESCAPE)
+			exit(0);
+		else if (key == SDLK_RETURN && TKey::Alt())
+			Wnd->ToggleFullscreen();
+	}
 }
 
 int main(int argc, char* argv[])
 {
-	//TestWindowPanels();
-	TestMosaic();
+	Wnd = new TWindow();
+	Wnd->SetBackColor(0);
+	Wnd->Clear();
+	Wnd->Show();
 
+	//TestWindowPanels();
+	//TestMosaic();
+	TestImages();
+	
+	delete Wnd;
 	return 0;
 }

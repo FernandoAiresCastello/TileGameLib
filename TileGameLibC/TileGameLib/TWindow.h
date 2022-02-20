@@ -15,7 +15,8 @@ namespace TileGameLib
 	class TCharset;
 	class TPalette;
 	class TPixelBlock;
-
+	class TImage;
+	
 	class TWindow
 	{
 	public:
@@ -40,6 +41,8 @@ namespace TileGameLib
 		int GetBackColor();
 		void Update();
 		void Clear();
+		void DrawImage(TImage* img, int x, int y, int pw, int ph);
+		void EraseImage(TImage* img, int x, int y, int pw, int ph);
 
 	private:
 		friend class TPanel;
