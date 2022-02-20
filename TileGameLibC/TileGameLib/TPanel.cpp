@@ -35,7 +35,7 @@ namespace TileGameLib
 	};
 
 	TPanel::TPanel(TWindow* wnd) : 
-		Wnd(wnd), Visible(false), Grid(false), TransparentTiles(false)
+		Wnd(wnd), Visible(false), Grid(false), Transparency(false)
 	{
 		Maximize();
 		SetPixelSize(1, 1);
@@ -186,7 +186,6 @@ namespace TileGameLib
 		return ScrollY;
 	}
 
-
 	void TPanel::SetBackColor(PaletteIndex bgcix)
 	{
 		BackColor = bgcix;
@@ -210,8 +209,13 @@ namespace TileGameLib
 	
 	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
+		if (Grid) {
+			x *= TChar::Width;
+			y *= TChar::Height;
+		}
+
 		if (IsWithinBounds(x, y))
-			Tiles.push_back({chix, fgcix, bgcix, TransparentTiles, Grid, PixelWidth, PixelHeight, x, y});
+			Tiles.push_back({chix, fgcix, bgcix, Transparency, false, PixelWidth, PixelHeight, x, y});
 	}
 
 	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
@@ -222,7 +226,9 @@ namespace TileGameLib
 		}
 
 		for (auto& ch : str) {
-			Tiles.push_back({ ch, fgcix, bgcix, TransparentTiles, false, PixelWidth, PixelHeight, x, y });
+			if (IsWithinBounds(x, y)) {
+				Tiles.push_back({ ch, fgcix, bgcix, Transparency, false, PixelWidth, PixelHeight, x, y });
+			}
 			x += TChar::Width;
 		}
 	}

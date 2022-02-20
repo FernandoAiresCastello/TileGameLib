@@ -9,6 +9,37 @@ TWindow* Wnd = nullptr;
 void Halt();
 void ProcGlobalEvents();
 
+void TestScrolling()
+{
+	TPanel* pnl = new TPanel(Wnd);
+	pnl->SetBackColor(0x80);
+	pnl->SetPixelSize(4, 4);
+	pnl->SetBounds(50, 50, 800, 600);
+	pnl->Visible = true;
+	pnl->Transparency = true;
+	pnl->Grid = true;
+
+	while (true) {
+		Wnd->Clear();
+		pnl->AddTile(3, 15, 0, 0, 10);
+		pnl->AddTile(4, 15, 0, 1, 10);
+		pnl->AddTile(5, 15, 0, 0, 11);
+		pnl->AddTile(6, 15, 0, 1, 11);
+		pnl->AddTileString("Hello!", 15, 0, 0, 0);
+		pnl->Draw();
+		Wnd->Update();
+		ProcGlobalEvents();
+		if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
+			pnl->Scroll(1, 0);
+		if (TKey::IsPressed(SDL_SCANCODE_LEFT))
+			pnl->Scroll(-1, 0);
+		if (TKey::IsPressed(SDL_SCANCODE_UP))
+			pnl->Scroll(0, -1);
+		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
+			pnl->Scroll(0, 1);
+	}
+}
+
 void TestImages()
 {
 	Wnd->SetBackColor(0x03);
@@ -85,14 +116,17 @@ void TestWindowPanels()
 	pnl1->SetLocation(50, 50);
 	pnl1->SetSize(1200, 650);
 	pnl1->SetPixelSize(4, 4);
+	pnl1->Scroll(1, 0);
 	pnl1->SetBackColor(0x80);
 	pnl1->Visible = true;
+	pnl1->Grid = true;
 
 	TPanel* pnl2 = new TPanel(Wnd);
 	pnl2->SetBounds(200, 200, 700, 600);
 	pnl2->SetPixelSize(2, 3);
 	pnl2->SetBackColor(0xa5);
-	pnl2->TransparentTiles = true;
+	pnl2->SetScroll(-5, -20);
+	pnl2->Transparency = true;
 	pnl2->Grid = true;
 	pnl2->Visible = true;
 
@@ -201,9 +235,10 @@ int main(int argc, char* argv[])
 	Wnd->Clear();
 	Wnd->Show();
 
+	//TestScrolling();
 	//TestWindowPanels();
-	//TestMosaic();
-	TestImages();
+	TestMosaic();
+	//TestImages();
 	
 	delete Wnd;
 	return 0;
