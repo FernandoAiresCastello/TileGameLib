@@ -107,8 +107,13 @@ namespace TileGameLib
 
 	void TPanel::SetLocation(int x, int y)
 	{
+		int w = GetWidth();
+		int h = GetHeight();
+
 		Bounds.X1 = x;
 		Bounds.Y1 = y;
+		Bounds.X2 = w + x;
+		Bounds.Y2 = h + y;
 	}
 
 	void TPanel::SetSize(int w, int h)
