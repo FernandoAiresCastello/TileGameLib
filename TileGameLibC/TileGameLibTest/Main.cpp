@@ -1,12 +1,8 @@
-#include "Main.h"
-
-int main(int argc, char* argv[])
-{
-	TestWindowPanels();
-	//TestMosaic();
-
-	return 0;
-}
+#include <SDL.h>
+#include <TileGameLib.h>
+#include <CppUtils.h>
+using namespace TileGameLib;
+using namespace CppUtils;
 
 void TestMosaic()
 {
@@ -149,4 +145,12 @@ void TestWindowPanels()
 	delete pnl1;
 	delete pnl2;
 	delete wnd;
+}
+
+int main(int argc, char* argv[])
+{
+	//TestWindowPanels();
+	TestMosaic();
+
+	return 0;
 }
