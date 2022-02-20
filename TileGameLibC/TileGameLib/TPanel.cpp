@@ -51,8 +51,8 @@ namespace TileGameLib
 	{
 		Bounds.X1 = 0;
 		Bounds.Y1 = 0;
-		Bounds.X2 = Wnd->ScreenWidth;
-		Bounds.Y2 = Wnd->ScreenHeight;
+		Bounds.X2 = Wnd->Width;
+		Bounds.Y2 = Wnd->Height;
 	}
 
 	void TPanel::SetBounds(int x1, int y1, int x2, int y2)

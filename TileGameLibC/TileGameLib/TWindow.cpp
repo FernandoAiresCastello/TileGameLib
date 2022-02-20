@@ -19,8 +19,7 @@ namespace TileGameLib
 	}
 
 	TWindow::TWindow(int width, int height) :
-		ScreenWidth(width), ScreenHeight(height),
-		WindowWidth(width), WindowHeight(height),
+		Width(width), Height(height),
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
 		BufferLength(sizeof(int) * width * height),
 		Chr(TCharset::Default), Pal(TPalette::Default),
@@ -36,16 +35,16 @@ namespace TileGameLib
 
 		Window = SDL_CreateWindow("",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			WindowWidth, WindowHeight, SDL_WINDOW_HIDDEN);
+			Width, Height, SDL_WINDOW_HIDDEN);
 
 		Renderer = SDL_CreateRenderer(Window, -1,
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
 
 		SDL_SetRenderDrawBlendMode(Renderer, SDL_BLENDMODE_NONE);
-		SDL_RenderSetLogicalSize(Renderer, WindowWidth, WindowHeight);
+		SDL_RenderSetLogicalSize(Renderer, Width, Height);
 
 		Scrtx = SDL_CreateTexture(Renderer,
-			PixelFormat, SDL_TEXTUREACCESS_STREAMING, ScreenWidth, ScreenHeight);
+			PixelFormat, SDL_TEXTUREACCESS_STREAMING, Width, Height);
 
 		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
 
@@ -79,6 +78,16 @@ namespace TileGameLib
 	TPalette* TWindow::GetPalette()
 	{
 		return Pal;
+	}
+
+	int TWindow::GetWidth()
+	{
+		return Width;
+	}
+
+	int TWindow::GetHeight()
+	{
+		return Height;
 	}
 
 	void TWindow::Hide()
@@ -135,7 +144,7 @@ namespace TileGameLib
 
 	void TWindow::SaveScreenshot(std::string file)
 	{
-		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, ScreenWidth, ScreenHeight, 32, PixelFormat);
+		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, Width, Height, 32, PixelFormat);
 		SDL_memcpy(surface->pixels, Buffer, BufferLength);
 		SDL_SaveBMP(surface, file.c_str());
 		SDL_FreeSurface(surface);
@@ -170,9 +179,9 @@ namespace TileGameLib
 
 	void TWindow::ClearToRGB(RGB rgb)
 	{
-		for (int y = 0; y < ScreenHeight; y++)
-			for (int x = 0; x < ScreenWidth; x++)
-				Buffer[y * ScreenWidth + x] = rgb;
+		for (int y = 0; y < Height; y++)
+			for (int x = 0; x < Width; x++)
+				Buffer[y * Width + x] = rgb;
 	}
 
 	void TWindow::SetPixel(int x, int y, RGB rgb)
@@ -181,7 +190,7 @@ namespace TileGameLib
 			x += Clip.X1;
 			y += Clip.Y1;
 			if (x - Clip.X1 >= 0 && y - Clip.Y1 >= 0 && x < Clip.X2 && y < Clip.Y2) {
-				Buffer[y * ScreenWidth + x] = rgb;
+				Buffer[y * Width + x] = rgb;
 			}
 		}
 		else {
@@ -191,7 +200,7 @@ namespace TileGameLib
 			for (int iy = 0; iy < PixelHeight; iy++) {
 				for (int ix = 0; ix < PixelWidth; ix++) {
 					if (px - Clip.X1 >= 0 && py - Clip.Y1 >= 0 && px < Clip.X2 && py < Clip.Y2) {
-						Buffer[py * ScreenWidth + px] = rgb;
+						Buffer[py * Width + px] = rgb;
 					}
 					px++;
 				}
@@ -310,8 +319,8 @@ namespace TileGameLib
 	{
 		if (x1 < 0) x1 = 0;
 		if (y1 < 0) y1 = 0;
-		if (x2 > ScreenWidth) x2 = ScreenWidth;
-		if (y2 > ScreenHeight) y2 = ScreenHeight;
+		if (x2 > Width) x2 = Width;
+		if (y2 > Height) y2 = Height;
 
 		Clip.X1 = x1;
 		Clip.Y1 = y1;
@@ -323,11 +332,11 @@ namespace TileGameLib
 	{
 		for (int y = Clip.Y1; y < Clip.Y2; y++)
 			for (int x = Clip.X1; x < Clip.X2; x++)
-				Buffer[y * ScreenWidth + x] = Pal->GetColorRGB(ix);
+				Buffer[y * Width + x] = Pal->GetColorRGB(ix);
 	}
 
 	void TWindow::RemoveClip()
 	{
-		SetClip(0, 0, ScreenWidth, ScreenHeight);
+		SetClip(0, 0, Width, Height);
 	}
 }

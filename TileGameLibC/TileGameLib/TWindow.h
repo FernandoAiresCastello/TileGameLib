@@ -26,6 +26,8 @@ namespace TileGameLib
 		void* GetHandle();
 		TCharset* GetCharset();
 		TPalette* GetPalette();
+		int GetWidth();
+		int GetHeight();
 		void Hide();
 		void Show();
 		void SetFullscreen(bool full);
@@ -42,10 +44,8 @@ namespace TileGameLib
 	private:
 		friend class TPanel;
 
-		const int ScreenWidth;
-		const int ScreenHeight;
-		const int WindowWidth;
-		const int WindowHeight;
+		const int Width;
+		const int Height;
 		const int PixelFormat;
 		const int BufferLength;
 
