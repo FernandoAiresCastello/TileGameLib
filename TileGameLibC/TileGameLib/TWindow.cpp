@@ -15,7 +15,7 @@
 
 namespace TileGameLib
 {
-	TWindow::TWindow() : TWindow(1280, 720)
+	TWindow::TWindow() : TWindow(DefaultWidth, DefaultHeight)
 	{
 	}
 

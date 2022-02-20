@@ -20,6 +20,9 @@ namespace TileGameLib
 	class TWindow
 	{
 	public:
+		static const int DefaultWidth = 1280;
+		static const int DefaultHeight = 720;
+
 		TWindow();
 		TWindow(int width, int height);
 		~TWindow();
