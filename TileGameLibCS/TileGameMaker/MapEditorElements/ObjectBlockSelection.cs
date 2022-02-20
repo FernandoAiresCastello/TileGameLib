@@ -14,6 +14,8 @@ namespace TileGameMaker.MapEditorElements
         public Point? EndPoint { set; get; } = null;
         public Rectangle? Block => CalculateBlock();
         public List<Point> Points => BlockToPoints();
+        public int Cols => CalculateCols();
+        public int Rows => CalculateRows();
 
         public ObjectBlockSelection()
         {
@@ -60,6 +62,22 @@ namespace TileGameMaker.MapEditorElements
                 positions.Add(new ObjectPosition(layer, point));
 
             return positions;
+        }
+
+        public int CalculateCols()
+        {
+            if (StartPoint == null || EndPoint == null)
+                return 0;
+
+            return Math.Abs(EndPoint.Value.X - StartPoint.Value.X);
+        }
+
+        public int CalculateRows()
+        {
+            if (StartPoint == null || EndPoint == null)
+                return 0;
+
+            return Math.Abs(EndPoint.Value.Y - StartPoint.Value.Y);
         }
     }
 }

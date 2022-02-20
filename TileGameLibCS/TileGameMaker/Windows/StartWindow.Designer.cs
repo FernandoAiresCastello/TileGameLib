@@ -39,7 +39,6 @@
             this.LbTitle = new System.Windows.Forms.Label();
             this.LbVersionBuild = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.LstRecent = new System.Windows.Forms.ListBox();
@@ -47,6 +46,8 @@
             this.BtnOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnRemoveFromList = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnOpen = new System.Windows.Forms.Button();
+            this.BtnScratchpad = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -68,10 +69,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.18307F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.18308F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.81692F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 533);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(708, 641);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -81,7 +82,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(454, 377);
+            this.panel1.Size = new System.Drawing.Size(708, 384);
             this.panel1.TabIndex = 0;
             // 
             // MainPanel
@@ -93,7 +94,7 @@
             this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.MainPanel.Size = new System.Drawing.Size(454, 377);
+            this.MainPanel.Size = new System.Drawing.Size(708, 384);
             this.MainPanel.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -111,35 +112,35 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.595971F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.17745F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.87098F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(434, 357);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.355592F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(688, 364);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // LbCopyright
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.LbCopyright, 3);
             this.LbCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbCopyright.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbCopyright.Location = new System.Drawing.Point(1, 214);
-            this.LbCopyright.Margin = new System.Windows.Forms.Padding(1);
+            this.LbCopyright.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbCopyright.Location = new System.Drawing.Point(1, 256);
+            this.LbCopyright.Margin = new System.Windows.Forms.Padding(1, 10, 1, 5);
             this.LbCopyright.Name = "LbCopyright";
-            this.LbCopyright.Size = new System.Drawing.Size(432, 50);
+            this.LbCopyright.Size = new System.Drawing.Size(686, 60);
             this.LbCopyright.TabIndex = 3;
-            this.LbCopyright.Text = "2019 - 2022\r\nDeveloped by Fernando Aires Castello";
+            this.LbCopyright.Text = "☺ 2019-2022 \r\nDeveloped by Fernando Aires Castello";
             this.LbCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(147, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(232, 17);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(138, 120);
+            this.pictureBox1.Size = new System.Drawing.Size(223, 160);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -149,10 +150,10 @@
             this.tableLayoutPanel2.SetColumnSpan(this.LbTitle, 3);
             this.LbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LbTitle.Font = new System.Drawing.Font("Courier New", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbTitle.Location = new System.Drawing.Point(10, 173);
-            this.LbTitle.Margin = new System.Windows.Forms.Padding(10);
+            this.LbTitle.Location = new System.Drawing.Point(10, 195);
+            this.LbTitle.Margin = new System.Windows.Forms.Padding(10, 15, 10, 10);
             this.LbTitle.Name = "LbTitle";
-            this.LbTitle.Size = new System.Drawing.Size(414, 30);
+            this.LbTitle.Size = new System.Drawing.Size(668, 41);
             this.LbTitle.TabIndex = 1;
             this.LbTitle.Text = "TILE GAME MAKER";
             this.LbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -161,60 +162,46 @@
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.LbVersionBuild, 3);
             this.LbVersionBuild.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbVersionBuild.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbVersionBuild.Location = new System.Drawing.Point(1, 266);
+            this.LbVersionBuild.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbVersionBuild.Location = new System.Drawing.Point(1, 322);
             this.LbVersionBuild.Margin = new System.Windows.Forms.Padding(1);
             this.LbVersionBuild.Name = "LbVersionBuild";
-            this.LbVersionBuild.Size = new System.Drawing.Size(432, 50);
+            this.LbVersionBuild.Size = new System.Drawing.Size(686, 20);
             this.LbVersionBuild.TabIndex = 2;
-            this.LbVersionBuild.Text = "Version {version}\r\nBuild {build}";
+            this.LbVersionBuild.Text = "ALPHA Version 1";
             this.LbVersionBuild.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.BtnOpen, 1, 0);
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.44481F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.44481F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.11037F));
+            this.tableLayoutPanel3.Controls.Add(this.BtnScratchpad, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BtnOpen, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.BtnNew, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 377);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 384);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(454, 55);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(708, 56);
             this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // BtnOpen
-            // 
-            this.BtnOpen.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.BtnOpen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnOpen.Image = global::TileGameMaker.Properties.Resources.folder1;
-            this.BtnOpen.Location = new System.Drawing.Point(232, 0);
-            this.BtnOpen.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.BtnOpen.Name = "BtnOpen";
-            this.BtnOpen.Size = new System.Drawing.Size(212, 45);
-            this.BtnOpen.TabIndex = 1;
-            this.BtnOpen.Text = "     Open Project";
-            this.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnOpen.UseVisualStyleBackColor = false;
-            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
             // BtnNew
             // 
             this.BtnNew.BackColor = System.Drawing.Color.CornflowerBlue;
             this.BtnNew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNew.Image = global::TileGameMaker.Properties.Resources.flag_new;
             this.BtnNew.Location = new System.Drawing.Point(10, 0);
             this.BtnNew.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.BtnNew.Name = "BtnNew";
-            this.BtnNew.Size = new System.Drawing.Size(212, 45);
+            this.BtnNew.Size = new System.Drawing.Size(225, 46);
             this.BtnNew.TabIndex = 0;
             this.BtnNew.Text = "     New Project";
             this.BtnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -230,14 +217,14 @@
             this.tableLayoutPanel4.Controls.Add(this.LstRecent, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 432);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 440);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(454, 101);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(708, 201);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // LstRecent
@@ -251,7 +238,7 @@
             this.LstRecent.Location = new System.Drawing.Point(13, 19);
             this.LstRecent.Name = "LstRecent";
             this.LstRecent.ScrollAlwaysVisible = true;
-            this.LstRecent.Size = new System.Drawing.Size(428, 69);
+            this.LstRecent.Size = new System.Drawing.Size(682, 169);
             this.LstRecent.TabIndex = 2;
             // 
             // CtxMenu
@@ -287,11 +274,47 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Recent projects:";
             // 
+            // BtnOpen
+            // 
+            this.BtnOpen.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BtnOpen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOpen.Image = global::TileGameMaker.Properties.Resources.folder1;
+            this.BtnOpen.Location = new System.Drawing.Point(245, 0);
+            this.BtnOpen.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.BtnOpen.Name = "BtnOpen";
+            this.BtnOpen.Size = new System.Drawing.Size(225, 46);
+            this.BtnOpen.TabIndex = 2;
+            this.BtnOpen.Text = "     Open Project";
+            this.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnOpen.UseVisualStyleBackColor = false;
+            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+            // 
+            // BtnScratchpad
+            // 
+            this.BtnScratchpad.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BtnScratchpad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScratchpad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnScratchpad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnScratchpad.Image = global::TileGameMaker.Properties.Resources.lightbulb;
+            this.BtnScratchpad.Location = new System.Drawing.Point(475, 0);
+            this.BtnScratchpad.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.BtnScratchpad.Name = "BtnScratchpad";
+            this.BtnScratchpad.Size = new System.Drawing.Size(223, 46);
+            this.BtnScratchpad.TabIndex = 3;
+            this.BtnScratchpad.Text = "     Scratchpad";
+            this.BtnScratchpad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnScratchpad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnScratchpad.UseVisualStyleBackColor = false;
+            this.BtnScratchpad.Click += new System.EventHandler(this.BtnScratchpad_Click);
+            // 
             // StartWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 533);
+            this.ClientSize = new System.Drawing.Size(708, 641);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -324,12 +347,13 @@
         private System.Windows.Forms.Label LbVersionBuild;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button BtnNew;
-        private System.Windows.Forms.Button BtnOpen;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox LstRecent;
         private System.Windows.Forms.ContextMenuStrip CtxMenu;
         private System.Windows.Forms.ToolStripMenuItem BtnOpenFileLocation;
         private System.Windows.Forms.ToolStripMenuItem BtnRemoveFromList;
+        private System.Windows.Forms.Button BtnScratchpad;
+        private System.Windows.Forms.Button BtnOpen;
     }
 }

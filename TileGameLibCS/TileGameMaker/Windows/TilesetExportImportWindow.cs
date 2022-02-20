@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,13 +117,14 @@ namespace TileGameMaker.Windows
         private void Save()
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = InitialFolder;
-            dialog.Filter = $"PNG image file (*.png)|*.png";
+            dialog.AddExtension = true;
+            dialog.DefaultExt = "bmp";
+            dialog.Filter = "Bitmap image (*.bmp)|*.bmp";
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Display.Graphics.SaveImage(dialog.FileName);
-                Alert.Info("Tileset successfully saved to PNG image!");
+                Display.Graphics.SaveImage(dialog.FileName, ImageFormat.Bmp);
+                Alert.Info("Tileset image successfully saved to file!");
             }
         }
     }

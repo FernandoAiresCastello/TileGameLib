@@ -37,7 +37,7 @@ namespace TileGameMaker.Windows
             TileEditor.MouseLeave += TileEditor_MouseLeave;
             TileEditor.MouseDown += TileEditor_MouseDown;
             KeyDown += TileEditor8x8Window_KeyDown;
-            TxtStringRep.Visible = false;
+            TxtStringRep.Visible = true;
 
             HoverLabel.Text = "";
         }

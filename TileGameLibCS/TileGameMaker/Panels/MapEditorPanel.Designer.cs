@@ -55,6 +55,7 @@
             this.BtnAddText = new System.Windows.Forms.ToolStripButton();
             this.BtnReplaceObjects = new System.Windows.Forms.ToolStripButton();
             this.BtnEditObject = new System.Windows.Forms.ToolStripButton();
+            this.BtnBookmarks = new System.Windows.Forms.ToolStripButton();
             this.BtnSelect = new System.Windows.Forms.ToolStripButton();
             this.BtnSelectionActions = new System.Windows.Forms.ToolStripDropDownButton();
             this.MiCancelSelection = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,6 @@
             this.MiDeleteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiFillWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.MiOverrideColors = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiReplaceWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,7 +73,7 @@
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.BtnBookmarks = new System.Windows.Forms.ToolStripButton();
+            this.MiExportSelectionToImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.MapPanel.SuspendLayout();
@@ -416,6 +416,16 @@
             this.BtnEditObject.ToolTipText = "Edit object";
             this.BtnEditObject.Click += new System.EventHandler(this.BtnEditObject_Click);
             // 
+            // BtnBookmarks
+            // 
+            this.BtnBookmarks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBookmarks.Image = global::TileGameMaker.Properties.Resources.flag_flyaway_blue;
+            this.BtnBookmarks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBookmarks.Name = "BtnBookmarks";
+            this.BtnBookmarks.Size = new System.Drawing.Size(23, 20);
+            this.BtnBookmarks.Text = "Bookmarks";
+            this.BtnBookmarks.Click += new System.EventHandler(this.BtnBookmarks_Click);
+            // 
             // BtnSelect
             // 
             this.BtnSelect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -438,7 +448,7 @@
             this.MiDeleteObjects,
             this.MiFillWithTemplate,
             this.MiOverrideColors,
-            this.MiReplaceWithTemplate,
+            this.MiExportSelectionToImage,
             this.toolStripSeparator2,
             this.MiSetSelectionColor});
             this.BtnSelectionActions.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -508,13 +518,6 @@
             this.MiOverrideColors.Text = "Override colors";
             this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
             // 
-            // MiReplaceWithTemplate
-            // 
-            this.MiReplaceWithTemplate.Name = "MiReplaceWithTemplate";
-            this.MiReplaceWithTemplate.Size = new System.Drawing.Size(237, 22);
-            this.MiReplaceWithTemplate.Text = "Replace with template";
-            this.MiReplaceWithTemplate.Click += new System.EventHandler(this.MiReplaceWithTemplate_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -577,15 +580,12 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // BtnBookmarks
+            // MiExportSelectionToImage
             // 
-            this.BtnBookmarks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnBookmarks.Image = global::TileGameMaker.Properties.Resources.flag_flyaway_blue;
-            this.BtnBookmarks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnBookmarks.Name = "BtnBookmarks";
-            this.BtnBookmarks.Size = new System.Drawing.Size(23, 20);
-            this.BtnBookmarks.Text = "Bookmarks";
-            this.BtnBookmarks.Click += new System.EventHandler(this.BtnBookmarks_Click);
+            this.MiExportSelectionToImage.Name = "MiExportSelectionToImage";
+            this.MiExportSelectionToImage.Size = new System.Drawing.Size(237, 22);
+            this.MiExportSelectionToImage.Text = "Export to image file";
+            this.MiExportSelectionToImage.Click += new System.EventHandler(this.MiExportSelectionToImage_Click);
             // 
             // MapEditorPanel
             // 
@@ -643,7 +643,6 @@
         private System.Windows.Forms.ToolStripMenuItem MiSetSelectionColor;
         private System.Windows.Forms.ToolStripButton BtnReplaceObjects;
         private System.Windows.Forms.ToolStripButton BtnRenderInvisibleObjects;
-        private System.Windows.Forms.ToolStripMenuItem MiReplaceWithTemplate;
         private System.Windows.Forms.ToolStripMenuItem MiOverrideColors;
         private System.Windows.Forms.ToolStripButton BtnEditObject;
         private System.Windows.Forms.ToolStripButton BtnSetOutOfBoundsObject;
@@ -656,5 +655,6 @@
         private System.Windows.Forms.Button BtnScrollLeft;
         private System.Windows.Forms.TextBox TxtScrollAmount;
         private System.Windows.Forms.ToolStripButton BtnBookmarks;
+        private System.Windows.Forms.ToolStripMenuItem MiExportSelectionToImage;
     }
 }

@@ -253,6 +253,8 @@
             // 
             // BtnViewCode
             // 
+            this.BtnViewCode.Checked = true;
+            this.BtnViewCode.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BtnViewCode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BtnViewCode.Image = global::TileGameMaker.Properties.Resources.script_code;
             this.BtnViewCode.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -264,6 +266,7 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.TxtStringRep, 0, 1);
@@ -281,11 +284,11 @@
             // 
             this.TxtStringRep.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtStringRep.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtStringRep.Location = new System.Drawing.Point(3, 271);
+            this.TxtStringRep.Location = new System.Drawing.Point(5, 271);
             this.TxtStringRep.Multiline = true;
             this.TxtStringRep.Name = "TxtStringRep";
             this.TxtStringRep.ReadOnly = true;
-            this.TxtStringRep.Size = new System.Drawing.Size(414, 67);
+            this.TxtStringRep.Size = new System.Drawing.Size(410, 65);
             this.TxtStringRep.TabIndex = 5;
             this.TxtStringRep.Text = "String representations";
             // 
@@ -293,10 +296,10 @@
             // 
             this.TilePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TilePanel.Location = new System.Drawing.Point(113, 37);
+            this.TilePanel.Location = new System.Drawing.Point(115, 39);
             this.TilePanel.Margin = new System.Windows.Forms.Padding(113, 37, 113, 37);
             this.TilePanel.Name = "TilePanel";
-            this.TilePanel.Size = new System.Drawing.Size(194, 194);
+            this.TilePanel.Size = new System.Drawing.Size(190, 190);
             this.TilePanel.TabIndex = 4;
             // 
             // TileEditor8x8Window

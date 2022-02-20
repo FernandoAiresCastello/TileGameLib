@@ -93,18 +93,18 @@
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(430, 36);
+            this.BtnSave.Location = new System.Drawing.Point(430, 11);
             this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(140, 26);
+            this.BtnSave.Size = new System.Drawing.Size(138, 43);
             this.BtnSave.TabIndex = 11;
-            this.BtnSave.Text = "Export as PNG image";
+            this.BtnSave.Text = "Export";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(213, 11);
+            this.label4.Location = new System.Drawing.Point(222, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 9;
@@ -112,7 +112,7 @@
             // 
             // TxtCols
             // 
-            this.TxtCols.Location = new System.Drawing.Point(266, 33);
+            this.TxtCols.Location = new System.Drawing.Point(275, 33);
             this.TxtCols.Name = "TxtCols";
             this.TxtCols.Size = new System.Drawing.Size(48, 20);
             this.TxtCols.TabIndex = 6;
@@ -121,7 +121,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(213, 35);
+            this.label6.Location = new System.Drawing.Point(222, 35);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 5;

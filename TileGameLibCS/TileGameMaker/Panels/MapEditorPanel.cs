@@ -11,6 +11,8 @@ using TileGameMaker.Windows;
 using TileGameLib.Components;
 using TileGameMaker.Util;
 using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 
 namespace TileGameMaker.Panels
 {
@@ -416,12 +418,15 @@ namespace TileGameMaker.Panels
             {
                 Title = "Save map image",
                 AddExtension = true,
-                DefaultExt = "png",
-                Filter = "PNG image files (*.png)|*.png"
+                DefaultExt = "bmp",
+                Filter = "Bitmap image (*.bmp)|*.bmp"
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
-                Display.Graphics.SaveImage(dialog.FileName);
+            {
+                Display.Graphics.SaveImage(dialog.FileName, ImageFormat.Bmp);
+                Alert.Info("Screenshot successfully saved to file!");
+            }
         }
 
         private void BtnGrid_Click(object sender, EventArgs e)
@@ -874,11 +879,6 @@ namespace TileGameMaker.Panels
             }
         }
 
-        private void MiReplaceWithTemplate_Click(object sender, EventArgs e)
-        {
-            Alert.Warning("Feature not yet implemented");
-        }
-
         private void MiOverrideColors_Click(object sender, EventArgs e)
         {
             OverrideObjectColors(Selection.GetSelectedPositions(Layer));
@@ -1103,6 +1103,44 @@ namespace TileGameMaker.Panels
                 Editor.MapBookmarks, Map.Id, Editor.MapEditorControl);
 
             win.ShowDialog(this);
+        }
+
+        private void MiExportSelectionToImage_Click(object sender, EventArgs e)
+        {
+            Alert.Warning("This function is not yet implemented");
+            return;
+
+            // TODO: This is currently not working correctly
+
+            int w = Selection.Cols * TilePixels.RowLength;
+            int h = Selection.Rows * TilePixels.RowCount;
+            Bitmap tile = new Bitmap(w, h);
+
+            foreach (Point pt in Selection.Points)
+            {
+                int x = pt.X * TilePixels.RowLength;
+                int y = pt.Y * TilePixels.RowCount;
+                Bitmap image = Display.Graphics.Bitmap;
+                Graphics g = Graphics.FromImage(tile);
+                g.SmoothingMode = SmoothingMode.None;
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.PixelOffsetMode = PixelOffsetMode.None;
+                g.DrawImage(image, x, y, w, h);
+            }
+
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Title = "Export selection to image",
+                AddExtension = true,
+                DefaultExt = "bmp",
+                Filter = "Bitmap image (*.bmp)|*.bmp"
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                tile.Save(dialog.FileName, ImageFormat.Bmp);
+                Alert.Info("Selection image successfully exported to file!");
+            }
         }
     }
 }

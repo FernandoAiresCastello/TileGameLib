@@ -157,6 +157,9 @@ namespace TileGameLib.File
 
         public static bool Load(Project project)
         {
+            if (!System.IO.File.Exists(project.Path))
+                return false;
+
             project.Maps.Clear();
 
             MemoryFile file = new MemoryFile(project.Path);

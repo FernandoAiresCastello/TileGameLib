@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,9 @@ namespace TileGameLib.Graphics
             Clear(color.ToArgb());
         }
 
-        public void SaveImage(string file)
+        public void SaveImage(string file, ImageFormat format)
         {
-            Bitmap.Save(file);
+            Bitmap.Save(file, format);
         }
 
         public void SetPixel(int x, int y, int rgb)

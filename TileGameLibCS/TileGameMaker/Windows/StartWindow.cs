@@ -20,6 +20,7 @@ namespace TileGameMaker.Windows
     public partial class StartWindow : Form
     {
         private RecentProjects RecentProjects;
+        private readonly string ScratchpadProjectPath = "scratchpad.tgpro";
 
         public StartWindow()
         {
@@ -29,14 +30,18 @@ namespace TileGameMaker.Windows
 
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             string version = fvi.FileVersion;
-            string build = Config.ReadString("BuildNumber");
-
-            LbVersionBuild.Text = LbVersionBuild.Text
-                .Replace("{version}", version)
-                .Replace("{build}", build);
 
             RecentProjects = new RecentProjects();
             UpdateRecentProjectsList();
+
+            KeyPreview = true;
+            KeyDown += StartWindow_KeyDown;
+        }
+
+        private void StartWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Application.Exit();
         }
 
         private void UpdateRecentProjectsList()
@@ -57,7 +62,7 @@ namespace TileGameMaker.Windows
         {
             object item = LstRecent.SelectedItem;
             if (item != null)
-                OpenProject((string)item);
+                OpenProject((string)item, true);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -66,7 +71,7 @@ namespace TileGameMaker.Windows
             dialog.Title = "Select location and filename for the project";
             dialog.Filter = "TileGameMaker project file (*.tgpro)|*.tgpro";
             if (dialog.ShowDialog() == DialogResult.OK)
-                NewProject(dialog.FileName);
+                NewProject(dialog.FileName, true);
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
@@ -75,10 +80,10 @@ namespace TileGameMaker.Windows
             dialog.Title = "Select project file to open";
             dialog.Filter = "TileGameMaker project file (*.tgpro)|*.tgpro";
             if (dialog.ShowDialog() == DialogResult.OK)
-                OpenProject(dialog.FileName);
+                OpenProject(dialog.FileName, true);
         }
 
-        private void OpenProject(string path)
+        private void OpenProject(string path, bool addToRecent)
         {
             if (!File.Exists(path))
             {
@@ -91,8 +96,11 @@ namespace TileGameMaker.Windows
 
             if (ok)
             {
-                RecentProjects.Add(path);
-                RecentProjects.Save();
+                if (addToRecent)
+                {
+                    RecentProjects.Add(path);
+                    RecentProjects.Save();
+                }
 
                 MapEditor editor = new MapEditor(this, project);
                 editor.MapEditorControl.DisableEditorTemporarily();
@@ -101,15 +109,18 @@ namespace TileGameMaker.Windows
             }
         }
 
-        private void NewProject(string path)
+        private void NewProject(string path, bool addToRecent)
         {
             Project project = new Project();
             project.CreationDate = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             project.AddBlankMap();
             project.Save(path);
 
-            RecentProjects.Add(path);
-            RecentProjects.Save();
+            if (addToRecent)
+            {
+                RecentProjects.Add(path);
+                RecentProjects.Save();
+            }
 
             MapEditor editor = new MapEditor(this, project);
             editor.Show();
@@ -146,6 +157,14 @@ namespace TileGameMaker.Windows
                 RecentProjects.Save();
                 UpdateRecentProjectsList();
             }
+        }
+
+        private void BtnScratchpad_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(ScratchpadProjectPath))
+                OpenProject(ScratchpadProjectPath, false);
+            else
+                NewProject(ScratchpadProjectPath, false);
         }
     }
 }
