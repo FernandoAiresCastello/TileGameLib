@@ -235,8 +235,10 @@ namespace TileGameLib
 
 	void TPanel::AddPixelBlock(TPixelBlock* block, int x, int y)
 	{
-		if (x + ScrollX >= -block->Width && x + ScrollX < GetWidth() && y + ScrollY >= -block->Height && y + ScrollY < GetHeight())
-			PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
+		const int ax = x + ScrollX + block->Width;
+		const int ay = y + ScrollY + block->Height;
+
+		PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
 	}
 
 	void TPanel::Draw()
@@ -258,10 +260,20 @@ namespace TileGameLib
 
 		for (auto& rblock : PixelBlocks) {
 			Wnd->SetPixelSize(rblock.PixelWidth, rblock.PixelHeight);
-			Wnd->DrawPixelBlock(rblock.Block, rblock.X, rblock.Y);
+			Wnd->DrawPixelBlock(rblock.Block, rblock.X + ScrollX, rblock.Y + ScrollY);
 		}
 
 		Wnd->RemoveClip();
 		Clear();
+	}
+
+	int TPanel::GetTileCount()
+	{
+		return Tiles.size();
+	}
+	
+	int TPanel::GetPixelBlockCount()
+	{
+		return PixelBlocks.size();
 	}
 }

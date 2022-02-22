@@ -54,6 +54,8 @@ namespace TileGameLib
 		void AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void AddPixelBlock(TPixelBlock* block, int x, int y);
 		void Draw();
+		int GetTileCount();
+		int GetPixelBlockCount();
 
 	private:
 		class TRenderedTile;

@@ -9,6 +9,42 @@ TWindow* Wnd = nullptr;
 void Halt();
 void ProcGlobalEvents();
 
+void TestPixelBlock()
+{
+	TPanel* pnl = new TPanel(Wnd);
+	pnl->SetBackColor(0x80);
+	pnl->SetPixelSize(4, 4);
+	pnl->SetBounds(50, 50, 800, 600);
+	pnl->Visible = true;
+	pnl->Transparency = true;
+	pnl->Grid = true;
+
+	TPixelBlock* blk = new TPixelBlock(16, 16);
+	blk->Fill(0x36);
+
+	while (true) {
+		Wnd->Clear();
+		pnl->AddPixelBlock(blk, 0, 0);
+		pnl->AddPixelBlock(blk, 20, 20);
+		pnl->AddPixelBlock(blk, 50, 50);
+		Wnd->SetTitle(String::Format("%i", pnl->GetPixelBlockCount()));
+		pnl->Draw();
+		Wnd->Update();
+		ProcGlobalEvents();
+		if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
+			pnl->Scroll(1, 0);
+		if (TKey::IsPressed(SDL_SCANCODE_LEFT))
+			pnl->Scroll(-1, 0);
+		if (TKey::IsPressed(SDL_SCANCODE_UP))
+			pnl->Scroll(0, -1);
+		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
+			pnl->Scroll(0, 1);
+	}
+
+	delete blk;
+	delete pnl;
+}
+
 void TestScrolling()
 {
 	TPanel* pnl = new TPanel(Wnd);
@@ -38,6 +74,8 @@ void TestScrolling()
 		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
 			pnl->Scroll(0, 1);
 	}
+
+	delete pnl;
 }
 
 void TestImages()
@@ -133,7 +171,6 @@ void TestWindowPanels()
 	int mode = 1;
 
 	while (true) {
-		
 		Wnd->Clear();
 
 		pnl1->AddTile(2, 15, 0, 0, 0);
@@ -170,13 +207,13 @@ void TestWindowPanels()
 
 		if (mode == 1) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl2->Scroll(1, 0);
+				pnl1->Scroll(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl2->Scroll(-1, 0);
+				pnl1->Scroll(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl2->Scroll(0, -1);
+				pnl1->Scroll(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl2->Scroll(0, 1);
+				pnl1->Scroll(0, 1);
 		}
 		else if (mode == 2) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
@@ -235,9 +272,10 @@ int main(int argc, char* argv[])
 	Wnd->Clear();
 	Wnd->Show();
 
+	TestPixelBlock();
 	//TestScrolling();
 	//TestWindowPanels();
-	TestMosaic();
+	//TestMosaic();
 	//TestImages();
 	
 	delete Wnd;
