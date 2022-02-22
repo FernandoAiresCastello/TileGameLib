@@ -159,7 +159,6 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
     <ClInclude Include="TColor.h" />
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TPanel.h" />
-    <ClInclude Include="TPixelBlock.h" />
     <ClInclude Include="TRegion.h" />
     <ClInclude Include="TSound.h">
       <SubType>
@@ -182,7 +181,6 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
     <ClCompile Include="TPanel.cpp" />
-    <ClCompile Include="TPixelBlock.cpp" />
     <ClCompile Include="TSound.cpp">
       <SubType>
       </SubType>

@@ -10,7 +10,6 @@
 #include "TChar.h"
 #include "TCharset.h"
 #include "TPalette.h"
-#include "TPixelBlock.h"
 #include "TImage.h"
 
 namespace TileGameLib
@@ -301,18 +300,6 @@ namespace TileGameLib
 				x++;
 			else
 				x += TChar::Width;
-		}
-	}
-
-	void TWindow::DrawPixelBlock(TPixelBlock* pixels, int x, int y)
-	{
-		int ix = 0;
-		for (int py = y; py < y + pixels->Height; py++) {
-			for (int px = x; px < x + pixels->Width; px++) {
-				int& color = pixels->Colors[ix++];
-				if (color >= 0)
-					SetPixel(px, py, Pal->GetColorRGB(color));
-			}
 		}
 	}
 

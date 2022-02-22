@@ -7,7 +7,6 @@
 #include "TPanel.h"
 #include "TWindow.h"
 #include "TChar.h"
-#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
@@ -17,16 +16,6 @@ namespace TileGameLib
 		TTile Tile;
 		bool Transparent;
 		bool AlignedToGrid;
-		int PixelWidth;
-		int PixelHeight;
-		int X;
-		int Y;
-	};
-
-	class TPanel::TRenderedPixelBlock
-	{
-	public:
-		TPixelBlock* Block;
 		int PixelWidth;
 		int PixelHeight;
 		int X;
@@ -198,7 +187,6 @@ namespace TileGameLib
 	void TPanel::Clear()
 	{
 		Tiles.clear();
-		PixelBlocks.clear();
 	}
 
 	void TPanel::EraseTile(int x, int y)
@@ -237,12 +225,9 @@ namespace TileGameLib
 		}
 	}
 
-	void TPanel::AddPixelBlock(TPixelBlock* block, int x, int y)
+	int TPanel::GetTileCount()
 	{
-		const int ax = x + ScrollX + block->Width;
-		const int ay = y + ScrollY + block->Height;
-
-		PixelBlocks.push_back({block, PixelWidth, PixelHeight, x, y});
+		return Tiles.size();
 	}
 
 	void TPanel::Draw()
@@ -262,22 +247,7 @@ namespace TileGameLib
 			Wnd->DrawTile(rtile.Tile.Char, rtile.Tile.ForeColor, rtile.Tile.BackColor, rtile.X + ScrollX, rtile.Y + ScrollY);
 		}
 
-		for (auto& rblock : PixelBlocks) {
-			Wnd->SetPixelSize(rblock.PixelWidth, rblock.PixelHeight);
-			Wnd->DrawPixelBlock(rblock.Block, rblock.X + ScrollX, rblock.Y + ScrollY);
-		}
-
 		Wnd->RemoveClip();
 		Clear();
-	}
-
-	int TPanel::GetTileCount()
-	{
-		return Tiles.size();
-	}
-	
-	int TPanel::GetPixelBlockCount()
-	{
-		return PixelBlocks.size();
 	}
 }

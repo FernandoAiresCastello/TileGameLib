@@ -9,42 +9,6 @@ TWindow* Wnd = nullptr;
 void Halt();
 void ProcGlobalEvents();
 
-void TestPixelBlock()
-{
-	TPanel* pnl = new TPanel(Wnd);
-	pnl->SetBackColor(0x80);
-	pnl->SetPixelSize(4, 4);
-	pnl->SetBounds(50, 50, 800, 600);
-	pnl->Visible = true;
-	pnl->Transparency = true;
-	pnl->Grid = true;
-
-	TPixelBlock* blk = new TPixelBlock(16, 16);
-	blk->Fill(0x36);
-
-	while (true) {
-		Wnd->Clear();
-		pnl->AddPixelBlock(blk, 0, 0);
-		pnl->AddPixelBlock(blk, 20, 20);
-		pnl->AddPixelBlock(blk, 50, 50);
-		Wnd->SetTitle(String::Format("%i", pnl->GetPixelBlockCount()));
-		pnl->Draw();
-		Wnd->Update();
-		ProcGlobalEvents();
-		if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-			pnl->ScrollContents(1, 0);
-		if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-			pnl->ScrollContents(-1, 0);
-		if (TKey::IsPressed(SDL_SCANCODE_UP))
-			pnl->ScrollContents(0, -1);
-		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-			pnl->ScrollContents(0, 1);
-	}
-
-	delete blk;
-	delete pnl;
-}
-
 void TestScrolling()
 {
 	TPanel* pnl = new TPanel(Wnd);
@@ -284,7 +248,6 @@ int main(int argc, char* argv[])
 	Wnd->Clear();
 	Wnd->Show();
 
-	//TestPixelBlock();
 	TestScrolling();
 	//TestWindowPanels();
 	//TestMosaic();

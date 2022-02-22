@@ -15,7 +15,6 @@
 #include "TKey.h"
 #include "TSound.h"
 #include "TImage.h"
-#include "TPixelBlock.h"
 #include "TRegion.h"
 #include "TTile.h"
 #include "TTileSeq.h"

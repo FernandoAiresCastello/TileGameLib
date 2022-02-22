@@ -79,6 +79,5 @@ namespace TileGameLib
 		void EraseTile(int x, int y);
 		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawPixelBlock(TPixelBlock* pixels, int x, int y);
 	};
 }

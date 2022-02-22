@@ -54,14 +54,11 @@ namespace TileGameLib
 		void AddTile(TTile tile, int x, int y);
 		void AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void AddPixelBlock(TPixelBlock* block, int x, int y);
-		void Draw();
 		int GetTileCount();
-		int GetPixelBlockCount();
+		void Draw();
 
 	private:
 		class TRenderedTile;
-		class TRenderedPixelBlock;
 
 		TWindow* Wnd;
 		TRegion Bounds;
@@ -71,7 +68,6 @@ namespace TileGameLib
 		int ScrollX;
 		int ScrollY;
 		std::vector<TRenderedTile> Tiles;
-		std::vector<TRenderedPixelBlock> PixelBlocks;
 
 		TPanel(const TPanel& other) = delete;
 	};
