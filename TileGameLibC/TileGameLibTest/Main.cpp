@@ -32,13 +32,13 @@ void TestPixelBlock()
 		Wnd->Update();
 		ProcGlobalEvents();
 		if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-			pnl->Scroll(1, 0);
+			pnl->ScrollContents(1, 0);
 		if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-			pnl->Scroll(-1, 0);
+			pnl->ScrollContents(-1, 0);
 		if (TKey::IsPressed(SDL_SCANCODE_UP))
-			pnl->Scroll(0, -1);
+			pnl->ScrollContents(0, -1);
 		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-			pnl->Scroll(0, 1);
+			pnl->ScrollContents(0, 1);
 	}
 
 	delete blk;
@@ -65,14 +65,27 @@ void TestScrolling()
 		pnl->Draw();
 		Wnd->Update();
 		ProcGlobalEvents();
-		if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-			pnl->Scroll(1, 0);
-		if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-			pnl->Scroll(-1, 0);
-		if (TKey::IsPressed(SDL_SCANCODE_UP))
-			pnl->Scroll(0, -1);
-		if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-			pnl->Scroll(0, 1);
+
+		if (TKey::Alt()) {
+			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
+				pnl->ScrollContents(1, 0);
+			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
+				pnl->ScrollContents(-1, 0);
+			if (TKey::IsPressed(SDL_SCANCODE_UP))
+				pnl->ScrollContents(0, -1);
+			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
+				pnl->ScrollContents(0, 1);
+		}
+		else {
+			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
+				pnl->ScrollView(1, 0);
+			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
+				pnl->ScrollView(-1, 0);
+			if (TKey::IsPressed(SDL_SCANCODE_UP))
+				pnl->ScrollView(0, -1);
+			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
+				pnl->ScrollView(0, 1);
+		}
 	}
 
 	delete pnl;
@@ -154,7 +167,6 @@ void TestWindowPanels()
 	pnl1->SetLocation(50, 50);
 	pnl1->SetSize(1200, 650);
 	pnl1->SetPixelSize(4, 4);
-	pnl1->Scroll(1, 0);
 	pnl1->SetBackColor(0x80);
 	pnl1->Visible = true;
 	pnl1->Grid = true;
@@ -207,13 +219,13 @@ void TestWindowPanels()
 
 		if (mode == 1) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl1->Scroll(1, 0);
+				pnl1->ScrollContents(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl1->Scroll(-1, 0);
+				pnl1->ScrollContents(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl1->Scroll(0, -1);
+				pnl1->ScrollContents(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl1->Scroll(0, 1);
+				pnl1->ScrollContents(0, 1);
 		}
 		else if (mode == 2) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
@@ -272,8 +284,8 @@ int main(int argc, char* argv[])
 	Wnd->Clear();
 	Wnd->Show();
 
-	TestPixelBlock();
-	//TestScrolling();
+	//TestPixelBlock();
+	TestScrolling();
 	//TestWindowPanels();
 	//TestMosaic();
 	//TestImages();

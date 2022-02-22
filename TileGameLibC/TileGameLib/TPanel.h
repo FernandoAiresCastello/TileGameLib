@@ -10,6 +10,7 @@
 #include <vector>
 #include "TGlobal.h"
 #include "TRegion.h"
+#include "TTile.h"
 
 namespace TileGameLib
 {
@@ -42,14 +43,15 @@ namespace TileGameLib
 		int GetPixelWidth();
 		int GetPixelHeight();
 		void SetScroll(int x, int y);
-		void Scroll(int dx, int dy);
-		void Pan(int dx, int dy);
+		void ScrollContents(int dx, int dy);
+		void ScrollView(int dx, int dy);
 		int GetScrollX();
 		int GetScrollY();
 		void SetBackColor(PaletteIndex bgcix);
 		int GetBackColor();
 		void Clear();
 		void EraseTile(int x, int y);
+		void AddTile(TTile tile, int x, int y);
 		void AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void AddPixelBlock(TPixelBlock* block, int x, int y);

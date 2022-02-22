@@ -7,7 +7,6 @@
 #include "TPanel.h"
 #include "TWindow.h"
 #include "TChar.h"
-#include "TTile.h"
 #include "TPixelBlock.h"
 
 namespace TileGameLib
@@ -164,13 +163,13 @@ namespace TileGameLib
 		ScrollY = y;
 	}
 
-	void TPanel::Scroll(int dx, int dy)
+	void TPanel::ScrollContents(int dx, int dy)
 	{
 		ScrollX += dx;
 		ScrollY += dy;
 	}
 
-	void TPanel::Pan(int dx, int dy)
+	void TPanel::ScrollView(int dx, int dy)
 	{
 		ScrollX -= dx;
 		ScrollY -= dy;
@@ -204,7 +203,12 @@ namespace TileGameLib
 
 	void TPanel::EraseTile(int x, int y)
 	{
-		Tiles.push_back({ 0, BackColor, BackColor, false, Grid, PixelWidth, PixelHeight, x, y });
+		Tiles.push_back({ { 0, BackColor, BackColor }, false, Grid, PixelWidth, PixelHeight, x, y });
+	}
+
+	void TPanel::AddTile(TTile tile, int x, int y)
+	{
+		AddTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
 	}
 	
 	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
@@ -215,7 +219,7 @@ namespace TileGameLib
 		}
 
 		if (IsWithinBounds(x, y))
-			Tiles.push_back({chix, fgcix, bgcix, Transparency, false, PixelWidth, PixelHeight, x, y});
+			Tiles.push_back({ { chix, fgcix, bgcix }, Transparency, false, PixelWidth, PixelHeight, x, y });
 	}
 
 	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
@@ -227,7 +231,7 @@ namespace TileGameLib
 
 		for (auto& ch : str) {
 			if (IsWithinBounds(x, y)) {
-				Tiles.push_back({ ch, fgcix, bgcix, Transparency, false, PixelWidth, PixelHeight, x, y });
+				Tiles.push_back({ { ch, fgcix, bgcix }, Transparency, false, PixelWidth, PixelHeight, x, y });
 			}
 			x += TChar::Width;
 		}

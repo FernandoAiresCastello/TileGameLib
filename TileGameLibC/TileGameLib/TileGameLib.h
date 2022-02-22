@@ -18,5 +18,6 @@
 #include "TPixelBlock.h"
 #include "TRegion.h"
 #include "TTile.h"
+#include "TTileSeq.h"
 #include "TPanel.h"
 #include "TTiledImage.h"
