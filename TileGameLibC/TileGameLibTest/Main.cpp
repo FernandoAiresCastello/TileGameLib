@@ -7,6 +7,7 @@ using namespace CppUtils;
 TWindow* Wnd = nullptr;
 
 void Halt();
+void Pause(int ms);
 void ProcGlobalEvents();
 
 void TestScrolling()
@@ -20,12 +21,11 @@ void TestScrolling()
 	pnl->Grid = true;
 
 	while (true) {
-		Wnd->Clear();
-		pnl->DrawTile(3, 15, 0, 0, 10);
-		pnl->DrawTile(4, 15, 0, 1, 10);
-		pnl->DrawTile(5, 15, 0, 0, 11);
-		pnl->DrawTile(6, 15, 0, 1, 11);
-		pnl->DrawTileString("Hello!", 15, 0, 0, 0);
+		pnl->AddTile(3, 15, 0, 0, 10);
+		pnl->AddTile(4, 15, 0, 1, 10);
+		pnl->AddTile(5, 15, 0, 0, 11);
+		pnl->AddTile(6, 15, 0, 1, 11);
+		pnl->AddTileString("Hello!", 15, 0, 0, 0);
 		Wnd->Update();
 		ProcGlobalEvents();
 
@@ -54,29 +54,19 @@ void TestScrolling()
 
 void TestImages()
 {
-	Wnd->SetBackColor(0x03);
-	Wnd->Clear();
-
-	/*TImage* img = new TImage();
-	img->Load("test.bmp", TColor(255, 0, 255));
-	Wnd->DrawImage(img, 0, 0, 5, 4);
-	Wnd->DrawImage(img, 16, 0, 5, 4);
-	Wnd->DrawImage(img, 0, 16, 5, 4);*/
-
 	TTiledImage* tiledImg = new TTiledImage("test2.bmp", 16, 16, TColor(255, 0, 255));
-	//Wnd->DrawImage(img->GetImage(), 0, 0, 4, 4);
 
 	int tile = 0;
 	while (true) {
-		ProcGlobalEvents();
 		Wnd->EraseImage(tiledImg->GetTile(tile), 0, 0, 4, 4);
 		Wnd->DrawImage(tiledImg->GetTile(tile), 0, 0, 4, 4);
 		Wnd->Update();
+
 		tile++;
 		if (tile >= tiledImg->GetTileCount())
 			tile = 0;
 
-		SDL_Delay(100);
+		Pause(10);
 	}
 
 	delete tiledImg;
@@ -96,15 +86,17 @@ void TestMosaic()
 		Wnd->SetTitle(String::Format("Panel count: %i; pnl1 tiles: %i",
 			Wnd->GetPanelCount(), pnl->GetTileCount()));
 
-		Wnd->Clear();
+		Wnd->ClearAllPanels();
+
 		for (int y = 0; y < 30; y++) {
 			for (int x = 0; x < 40; x++) {
 				ch = Util::Random(255);
 				fgc = Util::Random(255);
 				bgc = Util::Random(255);
-				pnl->DrawTile(ch, fgc, bgc, x, y);
+				pnl->AddTile(ch, fgc, bgc, x, y);
 			}
 		}
+
 		Wnd->Update();
 
 		SDL_Event e;
@@ -128,18 +120,22 @@ void TestModalPanel()
 
 	pnl->SetLocation(10, 10);
 	pnl->SetSize(600, 400);
-	pnl->SetPixelSize(2, 2);
+	pnl->SetPixelSize(3, 3);
 	pnl->SetBackColor(0xb3);
 	pnl->Visible = true;
+	pnl->TransparentTiles = true;
 
 	while (true) {
-		pnl->Clear();
-		pnl->DrawTileString("Hello World!", 15, 0, 0, 0);
+		pnl->AddTileString("Hello World!", 0xbc, 0, 0, 0);
 		Wnd->Update();
 		SDL_Event e = { 0 };
 		SDL_PollEvent(&e);
-		if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-			break;
+		if (e.type == SDL_KEYDOWN) {
+			if (e.key.keysym.sym == SDLK_RETURN)
+				break;
+			else if (e.key.keysym.sym == SDLK_v)
+				pnl->Maximize();
+		}
 	}
 
 	Wnd->RemovePanel(pnl);
@@ -149,53 +145,51 @@ void TestPanels()
 {
 	Wnd->SetBackColor(0x33);
 
-	TPanel* pnl1 = Wnd->AddPanel();
-	pnl1->SetLocation(50, 50);
-	pnl1->SetSize(1100, 500);
-	pnl1->SetPixelSize(4, 4);
-	pnl1->SetBackColor(0x80);
-	pnl1->TransparentTiles = true;
-	pnl1->Grid = true;
-	pnl1->Visible = true;
+	// Setup MAIN panel
+	TPanel* pnlMain = Wnd->AddPanel();
+	pnlMain->SetLocation(50, 50);
+	pnlMain->SetSize(1100, 500);
+	pnlMain->SetPixelSize(4, 4);
+	pnlMain->SetBackColor(0x80);
+	pnlMain->TransparentTiles = true;
+	pnlMain->Grid = true;
+	pnlMain->Visible = true;
 
-	TPanel* pnl2 = Wnd->AddPanel();
-	pnl2->SetBounds(200, 200, 800, 600);
-	pnl2->SetPixelSize(2, 3);
-	pnl2->SetBackColor(0xa5);
-	pnl2->TransparentTiles = true;
-	pnl2->Grid = true;
-	pnl2->Visible = true;
-
-	TTileSeq anim;
-	anim.Add(3, 15, 0);
-	anim.Add(4, 10, 0);
-	anim.Add(5, 5, 0);
+	TTileSeq anim1;
+	anim1.Add(3, 15, 0);
+	anim1.Add(4, 10, 0);
+	anim1.Add(5, 5, 0);
 	TTileSeq anim2;
 	anim2.Add(0xdb, 15, 0);
 	anim2.Add(0, 15, 0);
 
+	pnlMain->AddAnimatedTile(anim1, 0, 0);
+	pnlMain->AddAnimatedTile(anim1, 1, 0);
+	pnlMain->AddAnimatedTile(anim1, 0, 1);
+	pnlMain->AddAnimatedTile(anim2, 4, 4);
+
+	// Setup INFO panel
+	TPanel* pnlInfo = Wnd->AddPanel();
+	pnlInfo->SetBounds(200, 200, 800, 600);
+	pnlInfo->SetPixelSize(2, 3);
+	pnlInfo->SetBackColor(0xa5);
+	pnlInfo->TransparentTiles = true;
+	pnlInfo->Grid = true;
+	pnlInfo->Visible = true;
+	pnlInfo->AddTileString("[1] Scroll panel contents", 10, 0, 1, 1);
+	pnlInfo->AddTileString("[2] Move panel", 10, 0, 1, 2);
+	pnlInfo->AddTileString("[3] Resize panel", 10, 0, 1, 3);
+	pnlInfo->AddTileString("[Z] Show/hide main panel", 10, 0, 1, 5);
+	pnlInfo->AddTileString("[X] Show/hide this panel", 10, 0, 1, 6);
+	pnlInfo->AddTileString("[C] Tile animation on/off", 10, 0, 1, 7);
+	pnlInfo->AddTileString("[V] Maximize main panel", 10, 0, 1, 8);
+	pnlInfo->AddTileString("[ENTER] Open/close modal panel", 10, 0, 1, 9);
+
 	int mode = 1;
 
 	while (true) {
-		Wnd->SetTitle(String::Format("Panel count: %i; pnl1/pnl2 tiles: %i/%i", 
-			Wnd->GetPanelCount(), pnl1->GetTileCount(), pnl2->GetTileCount()));
-
-		Wnd->Clear();
-
-		pnl2->DrawTileString("[1] Scroll panel contents", mode == 1 ? 15 : 10, 0, 1, 1);
-		pnl2->DrawTileString("[2] Move panel", mode == 2 ? 15 : 10, 0, 1, 2);
-		pnl2->DrawTileString("[3] Resize panel", mode == 3 ? 15 : 10, 0, 1, 3);
-		pnl2->DrawTileString("[Z] Show/hide main panel", 10, 0, 1, 5);
-		pnl2->DrawTileString("[X] Show/hide this panel", 10, 0, 1, 6);
-		pnl2->DrawTileString("[C] Tile animation on/off", 10, 0, 1, 7);
-		pnl2->DrawTileString("[ENTER] Open/close modal panel", 10, 0, 1, 8);
-		pnl1->DrawAnimatedTile(anim, 0, 0);
-		pnl1->DrawAnimatedTile(anim, 1, 0);
-		pnl1->DrawAnimatedTile(anim, 0, 1);
-		pnl1->DrawAnimatedTile(anim2, 4, 4);
-		pnl2->DrawTileString(String::Format(" X:%04i  Y:%04i", pnl1->GetX(), pnl1->GetY()), 10, 0, 1, 13);
-		pnl2->DrawTileString(String::Format(" W:%04i  H:%04i", pnl1->GetWidth(), pnl1->GetHeight()), 10, 0, 1, 14);
-		pnl2->DrawTileString(String::Format("SX:%04i SY:%04i", pnl1->GetScrollX(), pnl1->GetScrollY()), 10, 0, 1, 15);
+		Wnd->SetTitle(String::Format("Panel count: %i; pnl1/pnlInfo tiles: %i/%i", 
+			Wnd->GetPanelCount(), pnlMain->GetTileCount(), pnlInfo->GetTileCount()));
 
 		Wnd->Update();
 
@@ -217,11 +211,14 @@ void TestPanels()
 			else if (key == SDLK_3)
 				mode = 3;
 			else if (key == SDLK_z)
-				pnl1->Visible = !pnl1->Visible;
+				pnlMain->Visible = !pnlMain->Visible;
 			else if (key == SDLK_x)
-				pnl2->Visible = !pnl2->Visible;
+				pnlInfo->Visible = !pnlInfo->Visible;
 			else if (key == SDLK_c)
 				Wnd->EnableAnimation(!Wnd->IsAnimationEnabled());
+			else if (key == SDLK_v) {
+				pnlMain->Maximize();
+			}
 			else if (key == SDLK_RETURN) {
 				TestModalPanel();
 				continue;
@@ -230,33 +227,33 @@ void TestPanels()
 
 		if (mode == 1) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl1->ScrollContents(1, 0);
+				pnlMain->ScrollContents(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl1->ScrollContents(-1, 0);
+				pnlMain->ScrollContents(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl1->ScrollContents(0, -1);
+				pnlMain->ScrollContents(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl1->ScrollContents(0, 1);
+				pnlMain->ScrollContents(0, 1);
 		}
 		else if (mode == 2) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl1->Move(1, 0);
+				pnlMain->Move(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl1->Move(-1, 0);
+				pnlMain->Move(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl1->Move(0, -1);
+				pnlMain->Move(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl1->Move(0, 1);
+				pnlMain->Move(0, 1);
 		}
 		else if (mode == 3) {
 			if (TKey::IsPressed(SDL_SCANCODE_RIGHT))
-				pnl1->Resize(1, 0);
+				pnlMain->Resize(1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_LEFT))
-				pnl1->Resize(-1, 0);
+				pnlMain->Resize(-1, 0);
 			if (TKey::IsPressed(SDL_SCANCODE_UP))
-				pnl1->Resize(0, -1);
+				pnlMain->Resize(0, -1);
 			if (TKey::IsPressed(SDL_SCANCODE_DOWN))
-				pnl1->Resize(0, 1);
+				pnlMain->Resize(0, 1);
 		}
 	}
 }
@@ -266,6 +263,20 @@ void Halt()
 	while (true) {
 		Wnd->Update();
 		ProcGlobalEvents();
+	}
+}
+
+void Pause(int ms)
+{
+	if (ms <= 0) {
+		ProcGlobalEvents();
+		return;
+	}
+
+	for (int i = 0; i < ms; i++) {
+		Wnd->Update();
+		ProcGlobalEvents();
+		SDL_Delay(1);
 	}
 }
 
@@ -288,8 +299,6 @@ void ProcGlobalEvents()
 int main(int argc, char* argv[])
 {
 	Wnd = new TWindow();
-	Wnd->SetBackColor(0);
-	Wnd->Clear();
 	Wnd->Show();
 
 	//TestScrolling();

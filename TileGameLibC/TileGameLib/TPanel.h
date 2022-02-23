@@ -32,7 +32,7 @@ namespace TileGameLib
 			int Y;
 		};
 
-		TPanel(TRegion bounds);
+		TPanel(TWindow* wnd, TRegion bounds);
 		~TPanel();
 
 		bool Visible;
@@ -41,6 +41,8 @@ namespace TileGameLib
 
 		void SetBounds(TRegion bounds);
 		void SetBounds(int x1, int y1, int x2, int y2);
+		void Maximize();
+		bool IsMaximized();
 		TRegion GetBounds();
 		bool IsWithinBounds(int x, int y);
 		void Move(int dx, int dy);
@@ -59,19 +61,22 @@ namespace TileGameLib
 		void ScrollView(int dx, int dy);
 		int GetScrollX();
 		int GetScrollY();
-		void SetBackColor(PaletteIndex bgcix);
+		void SetBackColor(PaletteIndex bg);
 		int GetBackColor();
 		void Clear();
-		void EraseTile(int x, int y);
-		void DrawTile(TTile tile, int x, int y);
-		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawAnimatedTile(TTileSeq& seq, int x, int y);
+		void AddBlankTile(int x, int y);
+		void AddTile(TTile tile, int x, int y);
+		void AddTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y);
+		void AddTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y);
+		void AddAnimatedTile(TTileSeq& seq, int x, int y);
 		std::vector<TRenderedTileSeq>& GetTiles();
 		int GetTileCount();
 
 	private:
+		TWindow* Wnd;
 		TRegion Bounds;
+		TRegion PrevBounds;
+		bool Maximized;
 		PaletteIndex BackColor;
 		int PixelWidth;
 		int PixelHeight;

@@ -54,7 +54,8 @@ namespace TileGameLib
 		Clip({ 0, 0, width, height }), Grid(false), TransparentTiles(false)
 	{
 		Buffer = new RGB[BufferLength];
-		Clear();
+		
+		ClearBackground();
 
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
@@ -181,9 +182,9 @@ namespace TileGameLib
 		SDL_FreeSurface(surface);
 	}
 
-	void TWindow::SetBackColor(PaletteIndex bgcix)
+	void TWindow::SetBackColor(PaletteIndex bg)
 	{
-		BackColor = bgcix;
+		BackColor = bg;
 	}
 
 	int TWindow::GetBackColor()
@@ -191,9 +192,14 @@ namespace TileGameLib
 		return BackColor;
 	}
 
+	TRegion TWindow::GetBounds()
+	{
+		return TRegion(0, 0, Width, Height);
+	}
+
 	TPanel* TWindow::AddPanel()
 	{
-		TPanel* panel = new TPanel(TRegion(0, 0, Width, Height));
+		TPanel* panel = new TPanel(this, TRegion(0, 0, Width, Height));
 		Panels.push_back(panel);
 		return panel;
 	}
@@ -213,17 +219,6 @@ namespace TileGameLib
 
 		if (ixRemove >= 0)
 			Panels.erase(Panels.begin() + ixRemove);
-	}
-
-	void TWindow::MaximizePanel(TPanel* panel)
-	{
-		panel->SetBounds(0, 0, Width, Height);
-	}
-
-	void TWindow::ClearAllPanels()
-	{
-		for (auto& panel : Panels)
-			panel->Clear();
 	}
 
 	void TWindow::DestroyAllPanels()
@@ -263,6 +258,8 @@ namespace TileGameLib
 
 	void TWindow::Update()
 	{
+		ClearBackground();
+
 		if (!Panels.empty())
 			DrawVisiblePanels();
 
@@ -276,9 +273,8 @@ namespace TileGameLib
 		SDL_RenderPresent(Renderer);
 	}
 
-	void TWindow::Clear()
+	void TWindow::ClearBackground()
 	{
-		ClearAllPanels();
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
@@ -287,6 +283,12 @@ namespace TileGameLib
 		for (int y = 0; y < Height; y++)
 			for (int x = 0; x < Width; x++)
 				Buffer[y * Width + x] = rgb;
+	}
+
+	void TWindow::ClearAllPanels()
+	{
+		for (auto& panel : Panels)
+			panel->Clear();
 	}
 
 	void TWindow::SetPixel(int x, int y, RGB rgb)
