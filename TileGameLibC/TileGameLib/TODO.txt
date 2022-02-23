@@ -1,2 +1,10 @@
 
+Prioritized List Of Things To Do:
+
+===[ HIGH ]==================================================================================================
+
+- When updating the window, only redraw the pixels that have actually CHANGED (it currently redraws ALL pixels)
+
+===[ LOW ]===================================================================================================
+
 - When a problem occurs, use CppUtils::MsgBox to inform the user rather than crashing or throwing exceptions 

@@ -317,22 +317,15 @@ namespace TileGameLib
 		}
 	}
 
+	RGB TWindow::GetPixel(int x, int y)
+	{
+		return Buffer[y * Width + x];
+	}
+
 	void TWindow::SetPixelSize(int w, int h)
 	{
 		PixelWidth = w;
 		PixelHeight = h;
-	}
-
-	void TWindow::EraseTile(int x, int y)
-	{
-		if (Grid) {
-			x *= TChar::Width;
-			y *= TChar::Height;
-		}
-
-		for (int py = y; py < y + TChar::Height; py++)
-			for (int px = x; px < x + TChar::Width; px++)
-				SetPixel(px, py, Pal->GetColorRGB(BackColor));
 	}
 
 	void TWindow::DrawTile(TTile& tile, int x, int y)
@@ -340,66 +333,25 @@ namespace TileGameLib
 		DrawTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
 	}
 
-	void TWindow::DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TWindow::DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y)
 	{
 		if (Grid) {
 			x *= TChar::Width;
 			y *= TChar::Height;
 		}
 
-		const int initialX = x;
-		TChar& ch = Chr->Get(chix);
-		int fgc = Pal->GetColorRGB(fgcix);
-		int bgc = Pal->GetColorRGB(bgcix);
-		int pos;
+		const TChar& charPixels = Chr->Get(ch);
+		const RGB fgRGB = Pal->GetColorRGB(fg);
+		const RGB bgRGB = Pal->GetColorRGB(bg);
 
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow0 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow1 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow2 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow3 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow4 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow5 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow6 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
-		x = initialX; y++;
-		for (pos = TChar::Width - 1; pos >= 0; pos--, x++) {
-			int pixel = ch.PixelRow7 & (1 << pos);
-			if (pixel || !pixel && !TransparentTiles)
-				SetPixel(x, y, pixel ? fgc : bgc);
-		}
+		DrawByteAsPixels(charPixels.PixelRow0, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow1, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow2, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow3, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow4, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow5, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow6, x, y++, fgRGB, bgRGB);
+		DrawByteAsPixels(charPixels.PixelRow7, x, y++, fgRGB, bgRGB);
 	}
 
 	void TWindow::DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
@@ -410,6 +362,23 @@ namespace TileGameLib
 				x++;
 			else
 				x += TChar::Width;
+		}
+	}
+
+	void TWindow::DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg)
+	{
+		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++) {
+			const int pixel = value & (1 << pos);
+			if (pixel || !pixel && !TransparentTiles)
+				SetPixel(x, y, pixel ? fg : bg);
+		}
+	}
+
+	void TWindow::DrawVisiblePanels()
+	{
+		for (auto& panel : Panels) {
+			if (panel->Visible)
+				DrawPanel(panel);
 		}
 	}
 
@@ -442,14 +411,6 @@ namespace TileGameLib
 		}
 
 		RemoveClip();
-	}
-
-	void TWindow::DrawVisiblePanels()
-	{
-		for (auto& panel : Panels) {
-			if (panel->Visible)
-				DrawPanel(panel);
-		}
 	}
 
 	void TWindow::SetClip(int x1, int y1, int x2, int y2)

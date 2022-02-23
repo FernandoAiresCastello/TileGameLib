@@ -194,11 +194,6 @@ namespace TileGameLib
 		Tiles.clear();
 	}
 
-	void TPanel::AddBlankTile(int x, int y)
-	{
-		Tiles.push_back({ { 0, BackColor, BackColor }, false, Grid, PixelWidth, PixelHeight, x, y });
-	}
-
 	void TPanel::AddTile(TTile tile, int x, int y)
 	{
 		AddTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);

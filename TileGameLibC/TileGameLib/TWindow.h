@@ -9,9 +9,12 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <CppUtils.h>
 #include "TGlobal.h"
 #include "TRegion.h"
 #include "TTile.h"
+
+using byte = CppUtils::byte;
 
 namespace TileGameLib
 {
@@ -82,16 +85,17 @@ namespace TileGameLib
 		void ClearBackground();
 		void ClearToRGB(RGB rgb);
 		void SetPixel(int x, int y, RGB rgb);
+		RGB GetPixel(int x, int y);
 		void SetPixelSize(int w, int h);
 		void SetClip(int x1, int y1, int x2, int y2);
 		void FillClip(PaletteIndex ix);
 		void RemoveClip();
 		void DestroyAllPanels();
-		void EraseTile(int x, int y);
 		void DrawTile(TTile& tile, int x, int y);
-		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void DrawPanel(TPanel* panel);
+		void DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y);
+		void DrawTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y);
+		void DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg);
 		void DrawVisiblePanels();
+		void DrawPanel(TPanel* panel);
 	};
 }

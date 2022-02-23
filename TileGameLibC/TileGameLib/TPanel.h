@@ -64,7 +64,6 @@ namespace TileGameLib
 		void SetBackColor(PaletteIndex bg);
 		int GetBackColor();
 		void Clear();
-		void AddBlankTile(int x, int y);
 		void AddTile(TTile tile, int x, int y);
 		void AddTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y);
 		void AddTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y);
