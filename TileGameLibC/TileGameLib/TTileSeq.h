@@ -24,6 +24,7 @@ namespace TileGameLib
 		bool operator==(const TTileSeq& other);
 		bool operator!=(const TTileSeq& other);
 
+		bool IsEmpty();
 		int GetSize();
 		bool HasIndex(int ix);
 		void Clear();

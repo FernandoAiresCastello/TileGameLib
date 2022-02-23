@@ -6,9 +6,12 @@
 =============================================================================*/
 #pragma once
 #include <SDL.h>
+#include <map>
 #include <string>
+#include <vector>
 #include "TGlobal.h"
 #include "TRegion.h"
+#include "TTile.h"
 
 namespace TileGameLib
 {
@@ -16,6 +19,7 @@ namespace TileGameLib
 	class TPalette;
 	class TPixelBlock;
 	class TImage;
+	class TPanel;
 	
 	class TWindow
 	{
@@ -42,14 +46,19 @@ namespace TileGameLib
 		void SaveScreenshot(std::string file);
 		void SetBackColor(PaletteIndex bgcix);
 		int GetBackColor();
+		TPanel* AddPanel();
+		void RemovePanel(TPanel* panel);
+		void MaximizePanel(TPanel* panel);
+		int GetPanelCount();
+		void SetAnimationSpeed(int speed);
+		void EnableAnimation(bool enable);
+		bool IsAnimationEnabled();
 		void Update();
 		void Clear();
 		void DrawImage(TImage* img, int x, int y, int pw, int ph);
 		void EraseImage(TImage* img, int x, int y, int pw, int ph);
 
 	private:
-		friend class TPanel;
-
 		const int Width;
 		const int Height;
 		const int PixelFormat;
@@ -67,6 +76,7 @@ namespace TileGameLib
 		TRegion Clip;
 		bool Grid;
 		bool TransparentTiles;
+		std::vector<TPanel*> Panels;
 
 		TWindow(const TWindow& other) = delete;
 		
@@ -76,8 +86,13 @@ namespace TileGameLib
 		void SetClip(int x1, int y1, int x2, int y2);
 		void FillClip(PaletteIndex ix);
 		void RemoveClip();
+		void ClearAllPanels();
+		void DestroyAllPanels();
 		void EraseTile(int x, int y);
+		void DrawTile(TTile& tile, int x, int y);
 		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
 		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawPanel(TPanel* panel);
+		void DrawVisiblePanels();
 	};
 }

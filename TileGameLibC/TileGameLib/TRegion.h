@@ -13,9 +13,10 @@ namespace TileGameLib
 	class TRegion
 	{
 	public:
-		int X1 = 0;
-		int Y1 = 0;
-		int X2 = 0;
-		int Y2 = 0;
+		int X1, Y1, X2, Y2;
+
+		TRegion();
+		TRegion(const TRegion& other);
+		TRegion(int x1, int y1, int x2, int y2);
 	};
 }

@@ -181,6 +181,7 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
     <ClCompile Include="TPanel.cpp" />
+    <ClCompile Include="TRegion.cpp" />
     <ClCompile Include="TSound.cpp">
       <SubType>
       </SubType>
@@ -192,6 +193,9 @@ copy "$(OutDir)TileGameLibTest.exe" "$(SolutionDir)\Builds\TileGameLibTest.exe"<
       <SubType>
       </SubType>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

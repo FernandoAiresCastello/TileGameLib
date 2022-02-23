@@ -11,6 +11,33 @@
 #include "TCharset.h"
 #include "TPalette.h"
 #include "TImage.h"
+#include "TPanel.h"
+
+struct {
+	const int MaxSpeed = 1000;
+	int Speed = 700;
+	bool Running = false;
+	bool Enabled = true;
+	unsigned long long Frame = 0;
+	unsigned long long CachedFrame = 0;
+}
+TileAnimation;
+
+int AnimateTiles(void* dummy)
+{
+	TileAnimation.Running = true;
+
+	while (TileAnimation.Running) {
+		if (TileAnimation.Enabled)
+			TileAnimation.Frame++;
+		
+		const int delay = abs(TileAnimation.Speed - TileAnimation.MaxSpeed);
+		if (delay)
+			SDL_Delay(delay);
+	}
+
+	return 0;
+}
 
 namespace TileGameLib
 {
@@ -47,13 +74,17 @@ namespace TileGameLib
 			PixelFormat, SDL_TEXTUREACCESS_STREAMING, Width, Height);
 
 		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
-
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		
+		SDL_CreateThread(AnimateTiles, "TileAnimation", nullptr);
 	}
-
 
 	TWindow::~TWindow()
 	{
+		TileAnimation.Running = false;
+
+		DestroyAllPanels();
+
 		SDL_DestroyTexture(Scrtx);
 		SDL_DestroyRenderer(Renderer);
 		SDL_DestroyWindow(Window);
@@ -160,8 +191,81 @@ namespace TileGameLib
 		return BackColor;
 	}
 
+	TPanel* TWindow::AddPanel()
+	{
+		TPanel* panel = new TPanel(TRegion(0, 0, Width, Height));
+		Panels.push_back(panel);
+		return panel;
+	}
+
+	void TWindow::RemovePanel(TPanel* panel)
+	{
+		int ixRemove = -1;
+
+		for (auto& ownedPanel : Panels) {
+			ixRemove++;
+			if (panel == ownedPanel) {
+				delete panel;
+				panel = nullptr;
+				break;
+			}
+		}
+
+		if (ixRemove >= 0)
+			Panels.erase(Panels.begin() + ixRemove);
+	}
+
+	void TWindow::MaximizePanel(TPanel* panel)
+	{
+		panel->SetBounds(0, 0, Width, Height);
+	}
+
+	void TWindow::ClearAllPanels()
+	{
+		for (auto& panel : Panels)
+			panel->Clear();
+	}
+
+	void TWindow::DestroyAllPanels()
+	{
+		for (auto& panel : Panels) {
+			delete panel;
+			panel = nullptr;
+		}
+		Panels.clear();
+	}
+
+	int TWindow::GetPanelCount()
+	{
+		return Panels.size();
+	}
+
+	void TWindow::SetAnimationSpeed(int speed)
+	{
+		if (speed < 0)
+			speed = 0;
+		else if (speed > TileAnimation.MaxSpeed)
+			speed = TileAnimation.MaxSpeed;
+
+		TileAnimation.Speed = speed;
+	}
+
+	void TWindow::EnableAnimation(bool enable)
+	{
+		TileAnimation.Enabled = enable;
+		TileAnimation.Frame = 0;
+	}
+
+	bool TWindow::IsAnimationEnabled()
+	{
+		return TileAnimation.Enabled;
+	}
+
 	void TWindow::Update()
 	{
+		if (!Panels.empty())
+			DrawVisiblePanels();
+
 		static int pitch;
 		static void* pixels;
 
@@ -174,6 +278,7 @@ namespace TileGameLib
 
 	void TWindow::Clear()
 	{
+		ClearAllPanels();
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
@@ -223,11 +328,14 @@ namespace TileGameLib
 			y *= TChar::Height;
 		}
 
-		for (int py = y; py < y + TChar::Height; py++) {
-			for (int px = x; px < x + TChar::Width; px++) {
+		for (int py = y; py < y + TChar::Height; py++)
+			for (int px = x; px < x + TChar::Width; px++)
 				SetPixel(px, py, Pal->GetColorRGB(BackColor));
-			}
-		}
+	}
+
+	void TWindow::DrawTile(TTile& tile, int x, int y)
+	{
+		DrawTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
 	}
 
 	void TWindow::DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
@@ -300,6 +408,45 @@ namespace TileGameLib
 				x++;
 			else
 				x += TChar::Width;
+		}
+	}
+
+	void TWindow::DrawPanel(TPanel* panel)
+	{
+		if (!panel->Visible)
+			return;
+
+		TileAnimation.CachedFrame = TileAnimation.Frame;
+
+		TRegion bounds = panel->GetBounds();
+
+		SetClip(bounds.X1, bounds.Y1, bounds.X2, bounds.Y2);
+		FillClip(panel->GetBackColor());
+
+		for (auto& rtile : panel->GetTiles()) {
+			Grid = rtile.AlignedToGrid;
+			TransparentTiles = rtile.Transparent;
+			SetPixelSize(rtile.PixelWidth, rtile.PixelHeight);
+
+			TTile* tile = nullptr;
+			if (rtile.TileSeq.IsEmpty())
+				continue;
+			if (rtile.TileSeq.GetSize() == 1)
+				tile = &rtile.TileSeq.First();
+			else
+				tile = &rtile.TileSeq.Get(TileAnimation.CachedFrame % rtile.TileSeq.GetSize());
+			
+			DrawTile(*tile, rtile.X + panel->GetScrollX(), rtile.Y + panel->GetScrollY());
+		}
+
+		RemoveClip();
+	}
+
+	void TWindow::DrawVisiblePanels()
+	{
+		for (auto& panel : Panels) {
+			if (panel->Visible)
+				DrawPanel(panel);
 		}
 	}
 

@@ -1,0 +1,2 @@
+
+- When a problem occurs, use CppUtils::MsgBox to inform the user rather than crashing or throwing exceptions 

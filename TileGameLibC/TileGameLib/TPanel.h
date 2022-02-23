@@ -11,23 +11,35 @@
 #include "TGlobal.h"
 #include "TRegion.h"
 #include "TTile.h"
+#include "TTileSeq.h"
 
 namespace TileGameLib
 {
 	class TWindow;
-	class TPixelBlock;
 
 	class TPanel
 	{
 	public:
-		TPanel(TWindow* wnd);
+		class TRenderedTileSeq
+		{
+		public:
+			TTileSeq TileSeq;
+			bool Transparent;
+			bool AlignedToGrid;
+			int PixelWidth;
+			int PixelHeight;
+			int X;
+			int Y;
+		};
+
+		TPanel(TRegion bounds);
 		~TPanel();
 
 		bool Visible;
 		bool Grid;
-		bool Transparency;
+		bool TransparentTiles;
 
-		void Maximize();
+		void SetBounds(TRegion bounds);
 		void SetBounds(int x1, int y1, int x2, int y2);
 		TRegion GetBounds();
 		bool IsWithinBounds(int x, int y);
@@ -51,23 +63,21 @@ namespace TileGameLib
 		int GetBackColor();
 		void Clear();
 		void EraseTile(int x, int y);
-		void AddTile(TTile tile, int x, int y);
-		void AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
-		void AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawTile(TTile tile, int x, int y);
+		void DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y);
+		void DrawAnimatedTile(TTileSeq& seq, int x, int y);
+		std::vector<TRenderedTileSeq>& GetTiles();
 		int GetTileCount();
-		void Draw();
 
 	private:
-		class TRenderedTile;
-
-		TWindow* Wnd;
 		TRegion Bounds;
 		PaletteIndex BackColor;
 		int PixelWidth;
 		int PixelHeight;
 		int ScrollX;
 		int ScrollY;
-		std::vector<TRenderedTile> Tiles;
+		std::vector<TRenderedTileSeq> Tiles;
 
 		TPanel(const TPanel& other) = delete;
 	};

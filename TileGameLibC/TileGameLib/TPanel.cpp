@@ -7,25 +7,14 @@
 #include "TPanel.h"
 #include "TWindow.h"
 #include "TChar.h"
+#include "TTile.h"
 
 namespace TileGameLib
 {
-	class TPanel::TRenderedTile
+	TPanel::TPanel(TRegion bounds) : 
+		Visible(false), Grid(false), TransparentTiles(false)
 	{
-	public:
-		TTile Tile;
-		bool Transparent;
-		bool AlignedToGrid;
-		int PixelWidth;
-		int PixelHeight;
-		int X;
-		int Y;
-	};
-
-	TPanel::TPanel(TWindow* wnd) : 
-		Wnd(wnd), Visible(false), Grid(false), Transparency(false)
-	{
-		Maximize();
+		SetBounds(bounds);
 		SetPixelSize(1, 1);
 		SetScroll(0, 0);
 		SetBackColor(0);
@@ -33,22 +22,17 @@ namespace TileGameLib
 
 	TPanel::~TPanel()
 	{
+		Tiles.clear();
 	}
 
-	void TPanel::Maximize()
+	void TPanel::SetBounds(TRegion bounds)
 	{
-		Bounds.X1 = 0;
-		Bounds.Y1 = 0;
-		Bounds.X2 = Wnd->Width;
-		Bounds.Y2 = Wnd->Height;
+		Bounds = bounds;
 	}
 
 	void TPanel::SetBounds(int x1, int y1, int x2, int y2)
 	{
-		Bounds.X1 = x1;
-		Bounds.Y1 = y1;
-		Bounds.X2 = x2;
-		Bounds.Y2 = y2;
+		Bounds = TRegion(x1, y1, x2, y2);
 	}
 
 	TRegion TPanel::GetBounds()
@@ -194,23 +178,18 @@ namespace TileGameLib
 		Tiles.push_back({ { 0, BackColor, BackColor }, false, Grid, PixelWidth, PixelHeight, x, y });
 	}
 
-	void TPanel::AddTile(TTile tile, int x, int y)
+	void TPanel::DrawTile(TTile tile, int x, int y)
 	{
-		AddTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
+		DrawTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
 	}
 	
-	void TPanel::AddTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TPanel::DrawTile(CharsetIndex chix, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
-		if (Grid) {
-			x *= TChar::Width;
-			y *= TChar::Height;
-		}
-
-		if (IsWithinBounds(x, y))
-			Tiles.push_back({ { chix, fgcix, bgcix }, Transparency, false, PixelWidth, PixelHeight, x, y });
+		TTileSeq seq = { chix, fgcix, bgcix };
+		DrawAnimatedTile(seq, x, y);
 	}
 
-	void TPanel::AddTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TPanel::DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
 		if (Grid) {
 			x *= TChar::Width;
@@ -219,35 +198,30 @@ namespace TileGameLib
 
 		for (auto& ch : str) {
 			if (IsWithinBounds(x, y)) {
-				Tiles.push_back({ { ch, fgcix, bgcix }, Transparency, false, PixelWidth, PixelHeight, x, y });
+				Tiles.push_back({ { ch, fgcix, bgcix }, TransparentTiles, false, PixelWidth, PixelHeight, x, y });
 			}
 			x += TChar::Width;
 		}
 	}
 
+	void TPanel::DrawAnimatedTile(TTileSeq& seq, int x, int y)
+	{
+		if (Grid) {
+			x *= TChar::Width;
+			y *= TChar::Height;
+		}
+
+		if (IsWithinBounds(x, y))
+			Tiles.push_back({ seq, TransparentTiles, false, PixelWidth, PixelHeight, x, y });
+	}
+
+	std::vector<TPanel::TRenderedTileSeq>& TPanel::GetTiles()
+	{
+		return Tiles;
+	}
+
 	int TPanel::GetTileCount()
 	{
 		return Tiles.size();
-	}
-
-	void TPanel::Draw()
-	{
-		if (!Visible) {
-			Clear();
-			return;
-		}
-
-		Wnd->SetClip(Bounds.X1, Bounds.Y1, Bounds.X2, Bounds.Y2);
-		Wnd->FillClip(BackColor);
-
-		for (auto& rtile : Tiles) {
-			Wnd->Grid = rtile.AlignedToGrid;
-			Wnd->TransparentTiles = rtile.Transparent;
-			Wnd->SetPixelSize(rtile.PixelWidth, rtile.PixelHeight);
-			Wnd->DrawTile(rtile.Tile.Char, rtile.Tile.ForeColor, rtile.Tile.BackColor, rtile.X + ScrollX, rtile.Y + ScrollY);
-		}
-
-		Wnd->RemoveClip();
-		Clear();
 	}
 }

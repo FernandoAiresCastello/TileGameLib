@@ -51,6 +51,11 @@ namespace TileGameLib
 		return !operator==(other);
 	}
 
+	bool TTileSeq::IsEmpty()
+	{
+		return Tiles.empty();
+	}
+
 	int TTileSeq::GetSize()
 	{
 		return Tiles.size();
