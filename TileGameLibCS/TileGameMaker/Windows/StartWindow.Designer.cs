@@ -39,6 +39,8 @@
             this.LbTitle = new System.Windows.Forms.Label();
             this.LbVersionBuild = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnScratchpad = new System.Windows.Forms.Button();
+            this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.LstRecent = new System.Windows.Forms.ListBox();
@@ -46,8 +48,6 @@
             this.BtnOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnRemoveFromList = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnOpen = new System.Windows.Forms.Button();
-            this.BtnScratchpad = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -191,6 +191,42 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(708, 56);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
+            // BtnScratchpad
+            // 
+            this.BtnScratchpad.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BtnScratchpad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnScratchpad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnScratchpad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnScratchpad.Image = global::TileGameMaker.Properties.Resources.lightbulb;
+            this.BtnScratchpad.Location = new System.Drawing.Point(475, 0);
+            this.BtnScratchpad.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.BtnScratchpad.Name = "BtnScratchpad";
+            this.BtnScratchpad.Size = new System.Drawing.Size(223, 46);
+            this.BtnScratchpad.TabIndex = 3;
+            this.BtnScratchpad.Text = "     Scratchpad";
+            this.BtnScratchpad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnScratchpad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnScratchpad.UseVisualStyleBackColor = false;
+            this.BtnScratchpad.Click += new System.EventHandler(this.BtnScratchpad_Click);
+            // 
+            // BtnOpen
+            // 
+            this.BtnOpen.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BtnOpen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOpen.Image = global::TileGameMaker.Properties.Resources.folder1;
+            this.BtnOpen.Location = new System.Drawing.Point(245, 0);
+            this.BtnOpen.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.BtnOpen.Name = "BtnOpen";
+            this.BtnOpen.Size = new System.Drawing.Size(225, 46);
+            this.BtnOpen.TabIndex = 2;
+            this.BtnOpen.Text = "     Open Project";
+            this.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnOpen.UseVisualStyleBackColor = false;
+            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
+            // 
             // BtnNew
             // 
             this.BtnNew.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -233,12 +269,13 @@
             this.LstRecent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LstRecent.ContextMenuStrip = this.CtxMenu;
             this.LstRecent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LstRecent.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LstRecent.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LstRecent.FormattingEnabled = true;
-            this.LstRecent.Location = new System.Drawing.Point(13, 19);
+            this.LstRecent.ItemHeight = 15;
+            this.LstRecent.Location = new System.Drawing.Point(13, 23);
             this.LstRecent.Name = "LstRecent";
             this.LstRecent.ScrollAlwaysVisible = true;
-            this.LstRecent.Size = new System.Drawing.Size(682, 169);
+            this.LstRecent.Size = new System.Drawing.Size(682, 165);
             this.LstRecent.TabIndex = 2;
             // 
             // CtxMenu
@@ -266,49 +303,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(136, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Recent projects:";
-            // 
-            // BtnOpen
-            // 
-            this.BtnOpen.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.BtnOpen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnOpen.Image = global::TileGameMaker.Properties.Resources.folder1;
-            this.BtnOpen.Location = new System.Drawing.Point(245, 0);
-            this.BtnOpen.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.BtnOpen.Name = "BtnOpen";
-            this.BtnOpen.Size = new System.Drawing.Size(225, 46);
-            this.BtnOpen.TabIndex = 2;
-            this.BtnOpen.Text = "     Open Project";
-            this.BtnOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnOpen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnOpen.UseVisualStyleBackColor = false;
-            this.BtnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
-            // 
-            // BtnScratchpad
-            // 
-            this.BtnScratchpad.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.BtnScratchpad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnScratchpad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnScratchpad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnScratchpad.Image = global::TileGameMaker.Properties.Resources.lightbulb;
-            this.BtnScratchpad.Location = new System.Drawing.Point(475, 0);
-            this.BtnScratchpad.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.BtnScratchpad.Name = "BtnScratchpad";
-            this.BtnScratchpad.Size = new System.Drawing.Size(223, 46);
-            this.BtnScratchpad.TabIndex = 3;
-            this.BtnScratchpad.Text = "     Scratchpad";
-            this.BtnScratchpad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnScratchpad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnScratchpad.UseVisualStyleBackColor = false;
-            this.BtnScratchpad.Click += new System.EventHandler(this.BtnScratchpad_Click);
             // 
             // StartWindow
             // 

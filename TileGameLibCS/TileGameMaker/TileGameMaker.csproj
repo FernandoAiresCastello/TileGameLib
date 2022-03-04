@@ -375,7 +375,6 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Resources\PressStart2P.ttf" />
-    <None Include="SetBuildNumber.ps1" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
