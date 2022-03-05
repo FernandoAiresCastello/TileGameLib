@@ -13,6 +13,7 @@
 #include "TCharset.h"
 #include "TWindow.h"
 #include "TKey.h"
+#include "TGamepad.h"
 #include "TSound.h"
 #include "TImage.h"
 #include "TRegion.h"

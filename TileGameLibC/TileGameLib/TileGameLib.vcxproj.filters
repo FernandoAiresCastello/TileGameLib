@@ -42,6 +42,9 @@
     <ClInclude Include="TRegion.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="TGamepad.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TCharset.cpp">
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="TRegion.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TGamepad.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

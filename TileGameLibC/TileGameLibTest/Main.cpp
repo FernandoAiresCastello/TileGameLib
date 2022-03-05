@@ -10,6 +10,82 @@ void Halt();
 void Pause(int ms);
 void ProcGlobalEvents();
 
+void TestGamepad()
+{
+	TPanel* pnl = Wnd->AddPanel();
+	pnl->SetPixelSize(4, 4);
+	pnl->Grid = true;
+	pnl->Visible = true;
+
+	const int JOYSTICK_DEAD_ZONE = 8000;
+
+	TGamepad gpad;
+	int available = gpad.CountAvailable();
+	if (available <= 0)
+		return;
+
+	gpad.Open(0);
+
+	int btnA = 0;
+	int btnB = 0;
+	int btnX = 0;
+	int btnY = 0;
+	int btnBack = 0;
+	int btnGuide = 0;
+	int btnStart = 0;
+	int btnStickL = 0;
+	int btnStickR = 0;
+	int btnShoulderL = 0;
+	int btnShoulderR = 0;
+	int btnUp = 0;
+	int btnDown = 0;
+	int btnLeft = 0;
+	int btnRight = 0;
+
+	int axisLX = 0;
+	int axisLY = 0;
+	int axisRX = 0;
+	int axisRY = 0;
+	int axisTL = 0;
+	int axisTR = 0;
+
+	int objX = 100;
+	int objY = 100;
+
+	SDL_Event e = {};
+
+	while (true) {
+		pnl->Clear();
+		pnl->Grid = true;
+		pnl->AddTileString("Gamepad Test", 15, 0, 1, 1);
+		int y = 3;
+		pnl->AddTileString(String::Format("A:%i B:%i X:%i Y:%i", gpad.A(), gpad.B(), gpad.X(), gpad.Y()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("U:%i D:%i L:%i R:%i", gpad.Up(), gpad.Down(), gpad.Left(), gpad.Right()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("L:%i R:%i SL:%i SR:%i", gpad.L(), gpad.R(), gpad.RStick(), gpad.LStick()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Start:%i Select:%i Extra:%i", gpad.Start(), gpad.Select(), gpad.Extra()), 7, 0, 1, y++);
+		y++;
+		pnl->AddTileString(String::Format("Axis LX: %i", gpad.AxisLX()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Axis LY: %i", gpad.AxisLY()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Axis RX: %i", gpad.AxisRX()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Axis RY: %i", gpad.AxisRY()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Axis LT: %i", gpad.AxisLT()), 7, 0, 1, y++);
+		pnl->AddTileString(String::Format("Axis RT: %i", gpad.AxisRT()), 7, 0, 1, y++);
+
+		pnl->Grid = false;
+		pnl->AddTile('@', 15, 0, objX, objY);
+		Wnd->Update();
+
+		SDL_PollEvent(&e);
+		if (e.type == SDL_QUIT)
+			break;
+		else if (e.type == SDL_KEYDOWN) {
+			auto key = e.key.keysym.sym;
+			if (key == SDLK_ESCAPE)
+				break;
+		}
+	}
+}
+
 void TestScrolling()
 {
 	TPanel* pnl = Wnd->AddPanel();
@@ -301,8 +377,9 @@ int main(int argc, char* argv[])
 	Wnd = new TWindow();
 	Wnd->Show();
 
+	TestGamepad();
 	//TestScrolling();
-	TestPanels();
+	//TestPanels();
 	//TestMosaic();
 	//TestImages();
 	
