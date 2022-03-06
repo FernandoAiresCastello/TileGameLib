@@ -21,7 +21,7 @@ namespace TileGameLib
 
 		int CountAvailable();
 		int CountOpen();
-		void Open(int gamepadNumber);
+		bool Open(int gamepadNumber = 0);
 		int GetAxis(int gamepadNumber, SDL_GameControllerAxis axis);
 		int GetButton(int gamepadNumber, SDL_GameControllerButton button);
 		

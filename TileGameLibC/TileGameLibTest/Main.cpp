@@ -20,11 +20,8 @@ void TestGamepad()
 	const int JOYSTICK_DEAD_ZONE = 8000;
 
 	TGamepad gpad;
-	int available = gpad.CountAvailable();
-	if (available <= 0)
+	if (!gpad.Open())
 		return;
-
-	gpad.Open(0);
 
 	int btnA = 0;
 	int btnB = 0;

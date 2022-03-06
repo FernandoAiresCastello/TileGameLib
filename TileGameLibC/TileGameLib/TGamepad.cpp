@@ -36,7 +36,7 @@ namespace TileGameLib
 		return Gamepads.size();
 	}
 
-	void TGamepad::Open(int gamepadNumber)
+	bool TGamepad::Open(int gamepadNumber)
 	{
 		SDL_GameController* gamepad = SDL_GameControllerOpen(gamepadNumber);
 		if (gamepad) {
@@ -44,8 +44,11 @@ namespace TileGameLib
 			if (Number < 0)
 				Number = 0;
 		}
-		else
+		else {
 			MsgBox::Error(String::Format("Could not open gamepad number %i.\n\n%s", gamepadNumber, SDL_GetError()));
+			return false;
+		}
+		return true;
 	}
 
 	int TGamepad::GetAxis(int gamepadNumber, SDL_GameControllerAxis axis)
