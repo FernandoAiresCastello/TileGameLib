@@ -220,7 +220,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TPanel::AddAnimatedTile(TTileSeq& seq, int x, int y)
+	void TPanel::AddAnimatedTile(TTileSeq seq, int x, int y)
 	{
 		if (Grid) {
 			x *= TChar::Width;

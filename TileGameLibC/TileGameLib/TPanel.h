@@ -67,7 +67,7 @@ namespace TileGameLib
 		void AddTile(TTile tile, int x, int y);
 		void AddTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y);
 		void AddTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y);
-		void AddAnimatedTile(TTileSeq& seq, int x, int y);
+		void AddAnimatedTile(TTileSeq seq, int x, int y);
 		std::vector<TRenderedTileSeq>& GetTiles();
 		int GetTileCount();
 
