@@ -82,23 +82,25 @@ namespace TileGameMaker.Windows
             ExitProgram();
         }
 
-        private void ExitProgram(FormClosingEventArgs e = null)
+        private void ExitProgram(FormClosingEventArgs e = null, bool promptToSave = true)
         {
-            DialogResult result = Alert.YesNoOrCancel("Save project before exiting?");
-
-            if (result == DialogResult.Cancel)
+            if (promptToSave)
             {
-                if (e != null)
-                    e.Cancel = true;
+                DialogResult result = Alert.YesNoOrCancel("Save project before exiting?");
 
-                return;
+                if (result == DialogResult.Cancel)
+                {
+                    if (e != null)
+                        e.Cancel = true;
+
+                    return;
+                }
+
+                if (result == DialogResult.Yes)
+                    SaveProject();
             }
 
-            if (result == DialogResult.Yes)
-                SaveProject();
-
             MapEditor.MapBookmarks.Save(MapBookmarks.Filename);
-
             Application.Exit();
         }
 
@@ -164,8 +166,15 @@ namespace TileGameMaker.Windows
             if (result == DialogResult.Yes)
                 SaveProject();
 
-            MapEditor.StartWindow.Show();
-            Hide();
+            if (MapEditor.StartWindow != null)
+            {
+                MapEditor.StartWindow.Show();
+                Hide();
+            }
+            else
+            {
+                ExitProgram(null, false);
+            }
         }
 
         private void SaveProject(bool showSuccessMessage = true)

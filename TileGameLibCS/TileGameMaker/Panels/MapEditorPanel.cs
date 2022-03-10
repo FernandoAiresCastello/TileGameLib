@@ -1111,7 +1111,7 @@ namespace TileGameMaker.Panels
             return;
 
             // TODO: This is currently not working correctly
-
+            /*
             int w = Selection.Cols * TilePixels.RowLength;
             int h = Selection.Rows * TilePixels.RowCount;
             Bitmap tile = new Bitmap(w, h);
@@ -1141,6 +1141,7 @@ namespace TileGameMaker.Panels
                 tile.Save(dialog.FileName, ImageFormat.Bmp);
                 Alert.Info("Selection image successfully exported to file!");
             }
+            */
         }
     }
 }

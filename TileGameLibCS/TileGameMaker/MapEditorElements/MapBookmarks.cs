@@ -4,14 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TileGameMaker.MapEditorElements
 {
     public class MapBookmarks
     {
-        public const string Filename = "bookmarks.dat";
+        public static readonly string Filename;
 
         public List<MapBookmark> Bookmarks { set; get; }
+
+        static MapBookmarks()
+        {
+            Filename = Path.Combine(Application.StartupPath, "bookmarks.dat");
+        }
 
         public MapBookmarks()
         {
