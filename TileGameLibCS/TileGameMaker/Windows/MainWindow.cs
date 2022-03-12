@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,6 +208,24 @@ namespace TileGameMaker.Windows
         private void BtnCommandLine_Click(object sender, EventArgs e)
         {
             ToggleCommandLine();
+        }
+
+        private void BtnSaveAndExportProject_Click(object sender, EventArgs e)
+        {
+            SaveProject(false);
+
+            string projFile = Path.GetFileName(MapEditor.Project.Path);
+            string chrFile = MapEditor.Project.Name + ".chr.dat";
+            string palFile = MapEditor.Project.Name + ".pal.dat";
+            string folder = MapEditor.Project.Folder;
+
+            TilesetFile.Export(TilesetExportFormat.RawBytes, MapEditor.Tileset, Path.Combine(folder, chrFile));
+            PaletteFile.Export(PaletteExportFormat.RawBytes, MapEditor.Palette, Path.Combine(folder, palFile));
+
+            Alert.Info(
+                $"Project saved to: {projFile}\n" +
+                $"Charset exported to: {chrFile}\n" +
+                $"Palette exported to: {palFile}");
         }
     }
 }
