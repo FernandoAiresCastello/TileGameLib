@@ -13,6 +13,7 @@ debug
 *.exp
 *.dia
 *.dia~
+*.props
 Debug
 Docs/Generated
 **/bookmarks.dat
