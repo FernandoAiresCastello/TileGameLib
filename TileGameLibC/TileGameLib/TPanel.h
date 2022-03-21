@@ -37,7 +37,6 @@ namespace TileGameLib
 
 		bool Visible;
 		bool Grid;
-		bool TransparentTiles;
 
 		void SetBounds(TRegion bounds);
 		void SetBounds(int x1, int y1, int x2, int y2);
@@ -64,10 +63,10 @@ namespace TileGameLib
 		void SetBackColor(PaletteIndex bg);
 		int GetBackColor();
 		void Clear();
-		void AddTile(TTile tile, int x, int y);
-		void AddTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y);
-		void AddTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y);
-		void AddAnimatedTile(TTileSeq seq, int x, int y);
+		void AddTile(TTile tile, int x, int y, bool transparent);
+		void AddTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
+		void AddTileString(std::string str, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
+		void AddAnimatedTile(TTileSeq seq, int x, int y, bool transparent);
 		std::vector<TRenderedTileSeq>& GetTiles();
 		int GetTileCount();
 
