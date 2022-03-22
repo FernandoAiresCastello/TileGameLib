@@ -103,21 +103,12 @@ namespace TileGameLib
 		std::string row0, std::string row1, std::string row2, std::string row3, 
 		std::string row4, std::string row5, std::string row6, std::string row7)
 	{
-		Set(ix, 
-			String::ToInt(row0),
-			String::ToInt(row1), 
-			String::ToInt(row2), 
-			String::ToInt(row3), 
-			String::ToInt(row4), 
-			String::ToInt(row5), 
-			String::ToInt(row6), 
-			String::ToInt(row7));
+		Set(ix, String::Join({ row0, row1, row2, row3, row4, row5, row6, row7 }));
 	}
 
 	void TCharset::Set(CharsetIndex ix, std::string pixels)
 	{
-		auto rows = String::SplitIntoEqualSizedStrings(pixels, TChar::Width);
-		Set(ix, rows[0], rows[1], rows[2], rows[3], rows[4], rows[5], rows[6], rows[7]);
+		Get(ix).SetFromBinaryString(pixels);
 	}
 
 	void TCharset::Set(CharsetIndex ix, TChar& ch)
