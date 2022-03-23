@@ -7,8 +7,6 @@
 #include <SDL.h>
 #include <SDL_audio.h>
 #include <CppUtils.h>
-#include <map>
-#include <string>
 #include <vector>
 #include <cmath>
 #include "TSound.h"
@@ -40,8 +38,6 @@ namespace TileGameLib
 	bool AudioOpen = false;
 	SDL_AudioDeviceID IdDevice = -1;
 
-	std::map<std::string, float> TbFreq;
-
 	TSoundType WaveType = TSoundType::Square;
 	float WaveFreq = 0;
 	float SamplingIndex = 0;
@@ -50,8 +46,6 @@ namespace TileGameLib
 	const int SamplingRate = 44100;
 	const int BufferSize = 8;
 	
-	void InitToneFreqTable();
-	void ParseTones(std::string&, TSoundStream*);
 	void GenerateSamples(short*, int);
 	void GenerateSilenceSamples(short*, int);
 	void GenerateNoiseSamples(short*, int);
@@ -93,51 +87,7 @@ namespace TileGameLib
 		SDL_AudioQuit();
 	}
 
-	void TSound::SetType(TSoundType type)
-	{
-		WaveType = type;
-	}
-
-	void TSound::SetVolume(int volume)
-	{
-		if (volume > MaxVolume)
-			Volume = MaxVolume;
-		else if (volume < MinVolume)
-			Volume = MinVolume;
-		else
-			Volume = volume;
-	}
-
-	void TSound::Beep(float freq, int length)
-	{
-		SubStream.AddTone(freq, length);
-	}
-
-	void TSound::PlayMainSound(std::string data)
-	{
-		MainStream.TonePtr = 0;
-		MainStream.Tones.clear();
-		ParseTones(data, &MainStream);
-	}
-
-	void TSound::PlaySubSound(std::string data)
-	{
-		ParseTones(data, &SubStream);
-	}
-
-	void TSound::StopMainSound()
-	{
-		MainStream.TonePtr = 0;
-		MainStream.Tones.clear();
-	}
-
-	void TSound::StopSubSound()
-	{
-		SubStream.TonePtr = 0;
-		SubStream.Tones.clear();
-	}
-
-	void InitToneFreqTable()
+	void TSound::InitToneFreqTable()
 	{
 		TbFreq["P"] = 0;
 		TbFreq["C0"] = 16.35;
@@ -250,7 +200,7 @@ namespace TileGameLib
 		TbFreq["B8"] = 7902.13;
 	}
 
-	void ParseTones(std::string& data, TSoundStream* stream)
+	void TSound::ParseTones(std::string& data, TSoundStream* stream)
 	{
 		const static int MinToneLength = 30;
 		static int ToneLength = 400;
@@ -266,21 +216,62 @@ namespace TileGameLib
 					ToneLength = MinToneLength;
 				}
 				continue;
-			}
-			else if (String::StartsWith(value, 'O')) {
+			} else if (String::StartsWith(value, 'O')) {
 				Octave = String::ToInt(String::Skip(value, 1));
 				if (Octave < 0) Octave = 0;
 				else if (Octave > 8) Octave = 8;
 				continue;
-			}
-			else if (String::StartsWith(value, 'P')) {
+			} else if (String::StartsWith(value, 'P')) {
 				stream->AddTone(TbFreq[value], ToneLength);
-			}
-			else {
+			} else {
 				float freq = TbFreq[value + String::ToString(Octave)];
 				stream->AddTone(freq, ToneLength);
 			}
 		}
+	}
+
+	void TSound::SetType(TSoundType type)
+	{
+		WaveType = type;
+	}
+
+	void TSound::SetVolume(int volume)
+	{
+		if (volume > MaxVolume)
+			Volume = MaxVolume;
+		else if (volume < MinVolume)
+			Volume = MinVolume;
+		else
+			Volume = volume;
+	}
+
+	void TSound::Beep(float freq, int length)
+	{
+		SubStream.AddTone(freq, length);
+	}
+
+	void TSound::PlayMainSound(std::string data)
+	{
+		MainStream.TonePtr = 0;
+		MainStream.Tones.clear();
+		ParseTones(data, &MainStream);
+	}
+
+	void TSound::PlaySubSound(std::string data)
+	{
+		ParseTones(data, &SubStream);
+	}
+
+	void TSound::StopMainSound()
+	{
+		MainStream.TonePtr = 0;
+		MainStream.Tones.clear();
+	}
+
+	void TSound::StopSubSound()
+	{
+		SubStream.TonePtr = 0;
+		SubStream.Tones.clear();
 	}
 
 	int StartSoundThread(void* dummy)

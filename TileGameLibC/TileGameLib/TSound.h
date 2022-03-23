@@ -5,12 +5,16 @@
 
 =============================================================================*/
 #pragma once
+#include <map>
+#include <string>
 #include <SDL.h>
 #include "TGlobal.h"
 
 namespace TileGameLib
 {
 	enum class TSoundType { Square, Sine, Noise };
+
+	class TSoundStream;
 
 	class TSound
 	{
@@ -28,5 +32,11 @@ namespace TileGameLib
 		void PlaySubSound(std::string data);
 		void StopMainSound();
 		void StopSubSound();
+
+	private:
+		std::map<std::string, float> TbFreq;
+
+		void InitToneFreqTable();
+		void ParseTones(std::string&, TSoundStream*);
 	};
 }
