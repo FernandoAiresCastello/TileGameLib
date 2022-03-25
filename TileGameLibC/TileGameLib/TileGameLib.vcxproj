@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TBufferedWindow.h" />
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TKey.h" />
@@ -169,6 +170,8 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TTile.h" />
+    <ClInclude Include="TTileBuffer.h" />
+    <ClInclude Include="TTileBufferLayer.h" />
     <ClInclude Include="TTiledImage.h" />
     <ClInclude Include="TTileSeq.h" />
     <ClInclude Include="TWindow.h">
@@ -178,6 +181,7 @@
     <ClInclude Include="TileGameLib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TBufferedWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TKey.cpp" />
@@ -192,6 +196,8 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TTile.cpp" />
+    <ClCompile Include="TTileBuffer.cpp" />
+    <ClCompile Include="TTileBufferLayer.cpp" />
     <ClCompile Include="TTiledImage.cpp" />
     <ClCompile Include="TTileSeq.cpp" />
     <ClCompile Include="TWindow.cpp">

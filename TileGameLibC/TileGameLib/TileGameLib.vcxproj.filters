@@ -45,6 +45,15 @@
     <ClInclude Include="TGamepad.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="TBufferedWindow.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TTileBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="TTileBufferLayer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TCharset.cpp">
@@ -88,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="TGamepad.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="TBufferedWindow.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TTileBuffer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TTileBufferLayer.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
