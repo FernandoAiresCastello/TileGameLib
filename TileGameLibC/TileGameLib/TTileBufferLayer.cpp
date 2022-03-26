@@ -35,24 +35,20 @@ namespace TileGameLib
 			rtile.TileSeq = tile;
 			rtile.Transparent = transparent;
 		}
-		else
-			throw ERR_OUT_OF_BOUNDS;
 	}
 
 	TTileSeq& TTileBufferLayer::GetTile(int x, int y)
 	{
 		if (x >= 0 && y >= 0 && x < Cols && y < Rows)
 			return Tiles[y * Cols + x].TileSeq;
-
-		throw ERR_OUT_OF_BOUNDS;
+		
+		throw "Cannot get tile from a position out of bounds";
 	}
 
 	void TTileBufferLayer::EraseTile(int x, int y)
 	{
 		if (x >= 0 && y >= 0 && x < Cols && y < Rows)
 			Tiles[y * Cols + x].TileSeq.Clear();
-		else
-			throw ERR_OUT_OF_BOUNDS;
 	}
 
 	void TTileBufferLayer::Clear()
@@ -84,6 +80,6 @@ namespace TileGameLib
 		if (x >= 0 && y >= 0 && x < Cols && y < Rows)
 			return Tiles[y * Cols + x].Transparent;
 		else
-			throw ERR_OUT_OF_BOUNDS;
+			return false;
 	}
 }
