@@ -109,9 +109,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Docs">
-      <UniqueIdentifier>{5e67c0ec-a136-4dbf-8b47-4c8bf82ad238}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics">
       <UniqueIdentifier>{00280793-b9ac-4e32-8b57-fd8e8409d2db}</UniqueIdentifier>
     </Filter>
@@ -121,10 +118,5 @@
     <Filter Include="Input">
       <UniqueIdentifier>{8d733df8-b9a0-483e-b24e-61b40dc93af3}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="TODO.txt">
-      <Filter>Docs</Filter>
-    </Text>
   </ItemGroup>
 </Project>
