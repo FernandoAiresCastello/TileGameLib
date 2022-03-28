@@ -4,7 +4,9 @@
 	 2018-2022 Developed by Fernando Aires Castello
 
 =============================================================================*/
+#include <CppUtils.h>
 #include "TTileSeq.h"
+using namespace CppUtils;
 
 namespace TileGameLib
 {
@@ -140,5 +142,26 @@ namespace TileGameLib
 	PaletteIndex TTileSeq::GetBackColor(int ix)
 	{
 		return Tiles[ix].BackColor;
+	}
+
+	void TTileSeq::Parse(std::string tileString)
+	{
+		Clear();
+		for (auto& ts : String::Split(tileString, ';', true)) {
+			auto t = String::Split(ts, ',', true);
+			Add(String::ToInt(t[0]), String::ToInt(t[1]), String::ToInt(t[2]));
+		}
+	}
+
+	std::string TTileSeq::ToString()
+	{
+		std::string tileString;
+		for (int i = 0; i < Tiles.size(); i++) {
+			auto& tile = Tiles[i];
+			tileString += String::Format("%i,%i,%i", tile.Char, tile.ForeColor, tile.BackColor);
+			if (i < Tiles.size() - 1)
+				tileString += ";";
+		}
+		return tileString;
 	}
 }

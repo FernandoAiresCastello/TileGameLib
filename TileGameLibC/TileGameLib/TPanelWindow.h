@@ -23,15 +23,15 @@ namespace TileGameLib
 	class TImage;
 	class TPanel;
 	
-	class TWindow
+	class TPanelWindow
 	{
 	public:
 		static const int DefaultWidth = 1280;
 		static const int DefaultHeight = 720;
 
-		TWindow();
-		TWindow(int width, int height);
-		~TWindow();
+		TPanelWindow();
+		TPanelWindow(int width, int height);
+		~TPanelWindow();
 
 		void* GetHandle();
 		TCharset* GetCharset();
@@ -80,7 +80,7 @@ namespace TileGameLib
 		bool TransparentTiles;
 		std::vector<TPanel*> Panels;
 
-		TWindow(const TWindow& other) = delete;
+		TPanelWindow(const TPanelWindow& other) = delete;
 		
 		void ClearBackground();
 		void ClearToRGB(RGB rgb);

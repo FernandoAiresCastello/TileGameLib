@@ -15,7 +15,7 @@
 
 namespace TileGameLib
 {
-	class TWindow;
+	class TPanelWindow;
 
 	class TPanel
 	{
@@ -32,7 +32,7 @@ namespace TileGameLib
 			int Y;
 		};
 
-		TPanel(TWindow* wnd, TRegion bounds);
+		TPanel(TPanelWindow* wnd, TRegion bounds);
 		~TPanel();
 
 		bool Visible;
@@ -71,7 +71,7 @@ namespace TileGameLib
 		int GetTileCount();
 
 	private:
-		TWindow* Wnd;
+		TPanelWindow* Wnd;
 		TRegion Bounds;
 		TRegion PrevBounds;
 		bool Maximized;

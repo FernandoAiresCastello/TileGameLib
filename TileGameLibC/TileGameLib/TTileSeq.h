@@ -7,6 +7,7 @@
 #pragma once
 #include <SDL.h>
 #include <vector>
+#include <string>
 #include "TGlobal.h"
 #include "TTile.h"
 
@@ -42,6 +43,8 @@ namespace TileGameLib
 		CharsetIndex GetChar(int ix);
 		PaletteIndex GetForeColor(int ix);
 		PaletteIndex GetBackColor(int ix);
+		void Parse(std::string tileString);
+		std::string ToString();
 
 	private:
 		std::vector<TTile> Tiles;

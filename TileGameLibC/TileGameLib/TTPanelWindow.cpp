@@ -6,7 +6,7 @@
 =============================================================================*/
 #include <Windows.h>
 #include <SDL_syswm.h>
-#include "TWindow.h"
+#include "TPanelWindow.h"
 #include "TChar.h"
 #include "TCharset.h"
 #include "TPalette.h"
@@ -41,11 +41,11 @@ int AnimateTiles(void* dummy)
 
 namespace TileGameLib
 {
-	TWindow::TWindow() : TWindow(DefaultWidth, DefaultHeight)
+	TPanelWindow::TPanelWindow() : TPanelWindow(DefaultWidth, DefaultHeight)
 	{
 	}
 
-	TWindow::TWindow(int width, int height) :
+	TPanelWindow::TPanelWindow(int width, int height) :
 		Width(width), Height(height),
 		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
 		BufferLength(sizeof(int) * width * height),
@@ -80,7 +80,7 @@ namespace TileGameLib
 		SDL_CreateThread(AnimateTiles, "TileAnimation", nullptr);
 	}
 
-	TWindow::~TWindow()
+	TPanelWindow::~TPanelWindow()
 	{
 		TileAnimation.Running = false;
 
@@ -94,7 +94,7 @@ namespace TileGameLib
 		delete[] Buffer;
 	}
 
-	void* TWindow::GetHandle()
+	void* TPanelWindow::GetHandle()
 	{
 		SDL_SysWMinfo wmInfo;
 		SDL_VERSION(&wmInfo.version);
@@ -102,39 +102,39 @@ namespace TileGameLib
 		return wmInfo.info.win.window;
 	}
 
-	TCharset* TWindow::GetCharset()
+	TCharset* TPanelWindow::GetCharset()
 	{
 		return Chr;
 	}
 
-	TPalette* TWindow::GetPalette()
+	TPalette* TPanelWindow::GetPalette()
 	{
 		return Pal;
 	}
 
-	int TWindow::GetWidth()
+	int TPanelWindow::GetWidth()
 	{
 		return Width;
 	}
 
-	int TWindow::GetHeight()
+	int TPanelWindow::GetHeight()
 	{
 		return Height;
 	}
 
-	void TWindow::Hide()
+	void TPanelWindow::Hide()
 	{
 		SDL_HideWindow(Window);
 	}
 
-	void TWindow::Show()
+	void TPanelWindow::Show()
 	{
 		SDL_ShowWindow(Window);
 		Update();
 		SDL_RaiseWindow(Window);
 	}
 
-	void TWindow::SetFullscreen(bool full)
+	void TPanelWindow::SetFullscreen(bool full)
 	{
 		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
 		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
@@ -147,7 +147,7 @@ namespace TileGameLib
 		Update();
 	}
 
-	void TWindow::ToggleFullscreen()
+	void TPanelWindow::ToggleFullscreen()
 	{
 		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
 		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
@@ -156,17 +156,17 @@ namespace TileGameLib
 		Update();
 	}
 
-	void TWindow::SetTitle(std::string title)
+	void TPanelWindow::SetTitle(std::string title)
 	{
 		SDL_SetWindowTitle(Window, title.c_str());
 	}
 
-	void TWindow::SetBordered(bool bordered)
+	void TPanelWindow::SetBordered(bool bordered)
 	{
 		SDL_SetWindowBordered(Window, bordered ? SDL_TRUE : SDL_FALSE);
 	}
 
-	void TWindow::SetIcon(std::string iconfile)
+	void TPanelWindow::SetIcon(std::string iconfile)
 	{
 		SDL_Surface icon;
 		SDL_LoadBMP(iconfile.c_str());
@@ -174,7 +174,7 @@ namespace TileGameLib
 		SDL_FreeSurface(&icon);
 	}
 
-	void TWindow::SaveScreenshot(std::string file)
+	void TPanelWindow::SaveScreenshot(std::string file)
 	{
 		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, Width, Height, 32, PixelFormat);
 		SDL_memcpy(surface->pixels, Buffer, BufferLength);
@@ -182,29 +182,29 @@ namespace TileGameLib
 		SDL_FreeSurface(surface);
 	}
 
-	void TWindow::SetBackColor(PaletteIndex bg)
+	void TPanelWindow::SetBackColor(PaletteIndex bg)
 	{
 		BackColor = bg;
 	}
 
-	int TWindow::GetBackColor()
+	int TPanelWindow::GetBackColor()
 	{
 		return BackColor;
 	}
 
-	TRegion TWindow::GetBounds()
+	TRegion TPanelWindow::GetBounds()
 	{
 		return TRegion(0, 0, Width, Height);
 	}
 
-	TPanel* TWindow::AddPanel()
+	TPanel* TPanelWindow::AddPanel()
 	{
 		TPanel* panel = new TPanel(this, TRegion(0, 0, Width, Height));
 		Panels.push_back(panel);
 		return panel;
 	}
 
-	void TWindow::RemovePanel(TPanel* panel)
+	void TPanelWindow::RemovePanel(TPanel* panel)
 	{
 		int ixRemove = -1;
 
@@ -221,7 +221,7 @@ namespace TileGameLib
 			Panels.erase(Panels.begin() + ixRemove);
 	}
 
-	void TWindow::DestroyAllPanels()
+	void TPanelWindow::DestroyAllPanels()
 	{
 		for (auto& panel : Panels) {
 			delete panel;
@@ -230,12 +230,12 @@ namespace TileGameLib
 		Panels.clear();
 	}
 
-	int TWindow::GetPanelCount()
+	int TPanelWindow::GetPanelCount()
 	{
 		return Panels.size();
 	}
 
-	void TWindow::SetAnimationSpeed(int speed)
+	void TPanelWindow::SetAnimationSpeed(int speed)
 	{
 		if (speed < 0)
 			speed = 0;
@@ -245,18 +245,18 @@ namespace TileGameLib
 		TileAnimation.Speed = speed;
 	}
 
-	void TWindow::EnableAnimation(bool enable)
+	void TPanelWindow::EnableAnimation(bool enable)
 	{
 		TileAnimation.Enabled = enable;
 		TileAnimation.Frame = 0;
 	}
 
-	bool TWindow::IsAnimationEnabled()
+	bool TPanelWindow::IsAnimationEnabled()
 	{
 		return TileAnimation.Enabled;
 	}
 
-	void TWindow::Update()
+	void TPanelWindow::Update()
 	{
 		ClearBackground();
 
@@ -273,25 +273,25 @@ namespace TileGameLib
 		SDL_RenderPresent(Renderer);
 	}
 
-	void TWindow::ClearBackground()
+	void TPanelWindow::ClearBackground()
 	{
 		ClearToRGB(Pal->GetColorRGB(BackColor));
 	}
 
-	void TWindow::ClearToRGB(RGB rgb)
+	void TPanelWindow::ClearToRGB(RGB rgb)
 	{
 		for (int y = 0; y < Height; y++)
 			for (int x = 0; x < Width; x++)
 				Buffer[y * Width + x] = rgb;
 	}
 
-	void TWindow::ClearAllPanels()
+	void TPanelWindow::ClearAllPanels()
 	{
 		for (auto& panel : Panels)
 			panel->Clear();
 	}
 
-	void TWindow::SetPixel(int x, int y, RGB rgb)
+	void TPanelWindow::SetPixel(int x, int y, RGB rgb)
 	{
 		if (PixelWidth == 1 && PixelHeight == 1) {
 			x += Clip.X1;
@@ -317,23 +317,23 @@ namespace TileGameLib
 		}
 	}
 
-	RGB TWindow::GetPixel(int x, int y)
+	RGB TPanelWindow::GetPixel(int x, int y)
 	{
 		return Buffer[y * Width + x];
 	}
 
-	void TWindow::SetPixelSize(int w, int h)
+	void TPanelWindow::SetPixelSize(int w, int h)
 	{
 		PixelWidth = w;
 		PixelHeight = h;
 	}
 
-	void TWindow::DrawTile(TTile& tile, int x, int y)
+	void TPanelWindow::DrawTile(TTile& tile, int x, int y)
 	{
 		DrawTile(tile.Char, tile.ForeColor, tile.BackColor, x, y);
 	}
 
-	void TWindow::DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y)
+	void TPanelWindow::DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y)
 	{
 		if (Grid) {
 			x *= TChar::Width;
@@ -354,7 +354,7 @@ namespace TileGameLib
 		DrawByteAsPixels(charPixels.PixelRow7, x, y++, fgRGB, bgRGB);
 	}
 
-	void TWindow::DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
+	void TPanelWindow::DrawTileString(std::string str, PaletteIndex fgcix, PaletteIndex bgcix, int x, int y)
 	{
 		for (int i = 0; i < str.length(); i++) {
 			DrawTile(str[i], fgcix, bgcix, x, y);
@@ -365,7 +365,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg)
+	void TPanelWindow::DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg)
 	{
 		for (int pos = TChar::Width - 1; pos >= 0; pos--, x++) {
 			const int pixel = value & (1 << pos);
@@ -374,7 +374,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::DrawVisiblePanels()
+	void TPanelWindow::DrawVisiblePanels()
 	{
 		for (auto& panel : Panels) {
 			if (panel->Visible)
@@ -382,7 +382,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::DrawPanel(TPanel* panel)
+	void TPanelWindow::DrawPanel(TPanel* panel)
 	{
 		if (!panel->Visible)
 			return;
@@ -413,7 +413,7 @@ namespace TileGameLib
 		RemoveClip();
 	}
 
-	void TWindow::SetClip(int x1, int y1, int x2, int y2)
+	void TPanelWindow::SetClip(int x1, int y1, int x2, int y2)
 	{
 		if (x1 < 0) x1 = 0;
 		if (y1 < 0) y1 = 0;
@@ -426,19 +426,19 @@ namespace TileGameLib
 		Clip.Y2 = y2;
 	}
 
-	void TWindow::FillClip(PaletteIndex ix)
+	void TPanelWindow::FillClip(PaletteIndex ix)
 	{
 		for (int y = Clip.Y1; y < Clip.Y2; y++)
 			for (int x = Clip.X1; x < Clip.X2; x++)
 				Buffer[y * Width + x] = Pal->GetColorRGB(ix);
 	}
 
-	void TWindow::RemoveClip()
+	void TPanelWindow::RemoveClip()
 	{
 		SetClip(0, 0, Width, Height);
 	}
 
-	void TWindow::DrawImage(TImage* img, int x, int y, int pw, int ph)
+	void TPanelWindow::DrawImage(TImage* img, int x, int y, int pw, int ph)
 	{
 		PixelWidth = pw;
 		PixelHeight = ph;
@@ -458,7 +458,7 @@ namespace TileGameLib
 		}
 	}
 
-	void TWindow::EraseImage(TImage* img, int x, int y, int pw, int ph)
+	void TPanelWindow::EraseImage(TImage* img, int x, int y, int pw, int ph)
 	{
 		PixelWidth = pw;
 		PixelHeight = ph;

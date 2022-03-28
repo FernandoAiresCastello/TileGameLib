@@ -5,13 +5,13 @@
 
 =============================================================================*/
 #include "TPanel.h"
-#include "TWindow.h"
+#include "TPanelWindow.h"
 #include "TChar.h"
 #include "TTile.h"
 
 namespace TileGameLib
 {
-	TPanel::TPanel(TWindow* wnd, TRegion bounds) :
+	TPanel::TPanel(TPanelWindow* wnd, TRegion bounds) :
 		Wnd(wnd), Visible(false), Grid(false), Maximized(false), PrevBounds(bounds)
 	{
 		SetBounds(bounds);
