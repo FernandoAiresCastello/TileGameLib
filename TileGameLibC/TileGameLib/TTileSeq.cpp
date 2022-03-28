@@ -35,6 +35,11 @@ namespace TileGameLib
 		Set(tiles);
 	}
 
+	TTileSeq::TTileSeq(std::string tileString)
+	{
+		Parse(tileString);
+	}
+
 	bool TTileSeq::operator==(const TTileSeq& other)
 	{
 		if (Tiles.size() != other.Tiles.size())

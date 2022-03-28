@@ -21,6 +21,7 @@ namespace TileGameLib
 		TTileSeq(TTile tile);
 		TTileSeq(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);
 		TTileSeq(std::vector<TTile>& tiles);
+		TTileSeq(std::string tileString);
 
 		bool operator==(const TTileSeq& other);
 		bool operator!=(const TTileSeq& other);
