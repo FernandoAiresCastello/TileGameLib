@@ -31,8 +31,8 @@ namespace TileGameMaker.Panels
         private ScriptWindow ScriptWindow;
         private ObjectBlockClipboard ClipboardObjects;
         private GameObjectPanel GameObjectPanel;
-        private int ViewWidth = 32;
-        private int ViewHeight = 24;
+        private int ViewWidth = 40;
+        private int ViewHeight = 22;
 
         private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
         private EditMode Mode;

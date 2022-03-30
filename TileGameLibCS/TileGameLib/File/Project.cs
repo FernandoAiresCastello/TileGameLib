@@ -11,8 +11,8 @@ namespace TileGameLib.File
 {
     public class Project
     {
-        public const int DefaultMapWidth = 32;
-        public const int DefaultMapHeight = 24;
+        public const int DefaultMapWidth = 40;
+        public const int DefaultMapHeight = 22;
 
         public string Path { get; private set; }
         public string Name { get; set; }
