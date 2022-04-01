@@ -11,6 +11,7 @@ using TileGameLib.File;
 using TileGameMaker.MapEditorElements;
 using TileGameLib.GameElements;
 using TileGameLib.Util;
+using TileGameMaker.Util;
 
 namespace TileGameMaker.Panels
 {
@@ -100,7 +101,7 @@ namespace TileGameMaker.Panels
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            Project.AddBlankMap();
+            Project.AddBlankMap(Config.ReadInt("DefaultMapWidth"), Config.ReadInt("DefaultMapHeight"));
             UpdateMapList();
         }
 

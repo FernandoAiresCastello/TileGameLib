@@ -113,7 +113,7 @@ namespace TileGameMaker.Windows
         {
             Project project = new Project();
             project.CreationDate = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            project.AddBlankMap();
+            project.AddBlankMap(Config.ReadInt("MapViewWidth"), Config.ReadInt("MapViewHeight"));
             project.Save(path);
 
             if (addToRecent)

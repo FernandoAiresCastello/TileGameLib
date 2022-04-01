@@ -11,9 +11,6 @@ namespace TileGameLib.File
 {
     public class Project
     {
-        public const int DefaultMapWidth = 40;
-        public const int DefaultMapHeight = 22;
-
         public string Path { get; private set; }
         public string Name { get; set; }
         public string CreationDate { get; set; }
@@ -50,9 +47,9 @@ namespace TileGameLib.File
             return Maps.Find(map => map.Id == id);
         }
 
-        public void AddBlankMap()
+        public void AddBlankMap(int width, int height)
         {
-            Maps.Add(new ObjectMap(this, DefaultMapWidth, DefaultMapHeight));
+            Maps.Add(new ObjectMap(this, width, height));
         }
 
         public void Save(string path)

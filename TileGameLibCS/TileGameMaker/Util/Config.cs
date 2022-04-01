@@ -26,5 +26,10 @@ namespace TileGameMaker.Util
         {
             return System.Configuration.ConfigurationManager.AppSettings[key];
         }
+
+        public static bool ReadBool(string key)
+        {
+            return ReadString(key).Equals("true");
+        }
     }
 }

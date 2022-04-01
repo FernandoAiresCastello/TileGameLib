@@ -31,8 +31,8 @@ namespace TileGameMaker.Panels
         private ScriptWindow ScriptWindow;
         private ObjectBlockClipboard ClipboardObjects;
         private GameObjectPanel GameObjectPanel;
-        private int ViewWidth = 40;
-        private int ViewHeight = 22;
+        private int ViewWidth = Config.ReadInt("MapViewWidth");
+        private int ViewHeight = Config.ReadInt("MapViewHeight");
 
         private enum EditMode { Draw, Delete, TextInput, Selection, Replace, EditObject }
         private EditMode Mode;
@@ -56,7 +56,7 @@ namespace TileGameMaker.Panels
             Editor = editor;
             Map = editor.Map;
             Display = new TiledDisplay(MapPanel, ViewWidth, ViewHeight, DefaultZoom);
-            Display.ShowGrid = true;
+            Display.ShowGrid = Config.ReadBool("MapViewGridEnabled");
             Display.SetMainGridColor(Color.FromArgb(Config.ReadInt("MapEditorGridColor")));
             MapRenderer = new MapRenderer(Map, Display, new Rectangle(0, 0, ViewWidth, ViewHeight));
             MapRenderer.RenderInvisibleObjects = true;
@@ -569,7 +569,7 @@ namespace TileGameMaker.Panels
             Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
             Map.BackColor = Map.Palette.White;
-            Editor.ResizeMap(Project.DefaultMapWidth, Project.DefaultMapHeight);
+            Editor.ResizeMap(Config.ReadInt("DefaultMapWidth"), Config.ReadInt("DefaultMapHeight"));
             Editor.UpdateMapProperties();
             ClearMap();
             RenderMap();
