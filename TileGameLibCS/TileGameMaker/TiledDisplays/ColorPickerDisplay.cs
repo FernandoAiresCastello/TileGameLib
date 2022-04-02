@@ -21,6 +21,10 @@ namespace TileGameMaker.TiledDisplays
         private readonly int SelectedBackColorSwatchTile = Config.ReadInt("ColorPickerSelectedBackColorSwatchTile");
         private readonly int SelectedBothColorsEqualSwatchTile = Config.ReadInt("ColorPickerSelectedBothColorsEqualSwatchTile");
 
+        private bool RearrangeMode = false;
+        private int RearrangeColorSrc = 0;
+        private int RearrangeColorDst = 0;
+
         public ColorPickerDisplay(Control parent, Palette palette, int cols, int rows, int zoom)
             : base(parent, cols, rows, zoom)
         {
@@ -122,6 +126,27 @@ namespace TileGameMaker.TiledDisplays
             Graphics.Palette.InitDefault();
             SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
             SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
+            Refresh();
+        }
+
+        public void StartRearrange(int colorIx)
+        {
+            RearrangeMode = true;
+            RearrangeColorSrc = colorIx;
+            Refresh();
+        }
+
+        public void UpdateRearrange(int colorIx)
+        {
+            RearrangeColorDst = colorIx;
+            Refresh();
+        }
+
+        public void EndRearrange(int colorIx)
+        {
+            RearrangeMode = false;
+            RearrangeColorDst = colorIx;
+            Graphics.Palette.Swap(RearrangeColorSrc, RearrangeColorDst);
             Refresh();
         }
     }

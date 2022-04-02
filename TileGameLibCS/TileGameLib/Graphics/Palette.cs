@@ -200,6 +200,13 @@ namespace TileGameLib.Graphics
             return num7;
         }
 
+        public void Swap(int first, int second)
+        {
+            int temp = Get(first);
+            Set(first, Get(second));
+            Set(second, temp);
+        }
+
         public float GetSaturation(int index)
         {
             return GetSaturation(GetColorObject(index));

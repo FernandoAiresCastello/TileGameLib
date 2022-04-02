@@ -21,6 +21,7 @@ namespace TileGameMaker.Panels
     {
         public int SelectedForeColor => ColorPicker.SelectedForeColor;
         public int SelectedBackColor => ColorPicker.SelectedBackColor;
+        private bool RearrangeMode => BtnRearrange.Checked;
 
         private MapEditor MapEditor;
         private ColorPickerDisplay ColorPicker;
@@ -50,7 +51,9 @@ namespace TileGameMaker.Panels
             ColorPicker.ShowGrid = true;
             ColorPicker.MouseMove += ColorPicker_MouseMove;
             ColorPicker.MouseLeave += ColorPicker_MouseLeave;
-            ColorPicker.MouseDown += ColorPicker_MouseClick;
+            ColorPicker.MouseDown += ColorPicker_MouseDown;
+            ColorPicker.MouseUp += ColorPicker_MouseUp;
+            ColorPicker.MouseClick += ColorPicker_MouseClick;
             ColorPicker.MouseDoubleClick += ColorPicker_MouseDoubleClick;
 
             ForeColorPanel.MouseDown += ColorPanel_Click;
@@ -120,6 +123,9 @@ namespace TileGameMaker.Panels
 
         private void ColorPicker_MouseClick(object sender, MouseEventArgs e)
         {
+            if (RearrangeMode)
+                return;
+
             int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
                 return;
@@ -140,11 +146,33 @@ namespace TileGameMaker.Panels
             UpdateStatus();
         }
 
+        private void ColorPicker_MouseDown(object sender, MouseEventArgs e)
+        {
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
+            if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
+                return;
+
+            if (RearrangeMode)
+            {
+                if (e.Button == MouseButtons.Left)
+                    ColorPicker.StartRearrange(colorIx);
+            }
+            else
+            {
+                ColorPicker_MouseClick(sender, e);
+            }
+        }
+
         private void ColorPicker_MouseMove(object sender, MouseEventArgs e)
         {
             int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
             if (colorIx >= 0 && colorIx < ColorPicker.Graphics.Palette.Size)
             {
+                if (RearrangeMode)
+                {
+                    ColorPicker.UpdateRearrange(colorIx);
+                }
+
                 int color = ColorPicker.GetColor(colorIx);
                 string rgb = color.ToString("X").Substring(2);
                 SetHoverStatus("I: " + colorIx + " RGB: " + rgb);
@@ -152,6 +180,21 @@ namespace TileGameMaker.Panels
             else
             {
                 SetHoverStatus("");
+            }
+        }
+
+        private void ColorPicker_MouseUp(object sender, MouseEventArgs e)
+        {
+            int colorIx = ColorPicker.GetBackColorIndexAtMousePos(e.Location);
+            if (colorIx < 0 || colorIx >= ColorPicker.Graphics.Palette.Size)
+                return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if (RearrangeMode)
+                {
+                    ColorPicker.EndRearrange(colorIx);
+                }
             }
         }
 
@@ -256,6 +299,11 @@ namespace TileGameMaker.Panels
 
                 Alert.Info("Palette imported successfully!");
             }
+        }
+
+        private void BtnRearrange_Click(object sender, EventArgs e)
+        {
+            BtnRearrange.Checked = !BtnRearrange.Checked;
         }
     }
 }

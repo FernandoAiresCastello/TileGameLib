@@ -35,8 +35,12 @@
             this.ToolStripAndColorPicker = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnImportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.exportToFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnExportRawBytes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexRgb = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnExportHexCsv = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,10 +51,7 @@
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToFileAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnRearrange = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -127,7 +128,8 @@
             this.toolStripSplitButton1,
             this.toolStripSeparator1,
             this.BtnNew,
-            this.BtnRestoreDefault});
+            this.BtnRestoreDefault,
+            this.BtnRearrange});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
@@ -149,10 +151,22 @@
             this.toolStripSplitButton2.Size = new System.Drawing.Size(29, 20);
             this.toolStripSplitButton2.Text = "toolStripSplitButton1";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Enabled = false;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem1.Text = "Import from file as:";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            // 
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(175, 22);
             this.BtnImportRawBytes.Text = "Bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
@@ -172,24 +186,36 @@
             this.toolStripSplitButton1.Size = new System.Drawing.Size(29, 20);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
+            // exportToFileAsToolStripMenuItem
+            // 
+            this.exportToFileAsToolStripMenuItem.Enabled = false;
+            this.exportToFileAsToolStripMenuItem.Name = "exportToFileAsToolStripMenuItem";
+            this.exportToFileAsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.exportToFileAsToolStripMenuItem.Text = "Export to file as:";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(165, 6);
+            // 
             // BtnExportRawBytes
             // 
             this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(168, 22);
             this.BtnExportRawBytes.Text = "Bytes";
             this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
             // 
             // BtnExportHexRgb
             // 
             this.BtnExportHexRgb.Name = "BtnExportHexRgb";
-            this.BtnExportHexRgb.Size = new System.Drawing.Size(167, 22);
+            this.BtnExportHexRgb.Size = new System.Drawing.Size(168, 22);
             this.BtnExportHexRgb.Text = "Hexadecimal RGB";
             this.BtnExportHexRgb.Click += new System.EventHandler(this.BtnExportHexRgb_Click);
             // 
             // BtnExportHexCsv
             // 
             this.BtnExportHexCsv.Name = "BtnExportHexCsv";
-            this.BtnExportHexCsv.Size = new System.Drawing.Size(167, 22);
+            this.BtnExportHexCsv.Size = new System.Drawing.Size(168, 22);
             this.BtnExportHexCsv.Text = "Hexadecimal CSV";
             this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
             // 
@@ -254,29 +280,15 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
-            // toolStripSeparator2
+            // BtnRearrange
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Enabled = false;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "Import from file as:";
-            // 
-            // exportToFileAsToolStripMenuItem
-            // 
-            this.exportToFileAsToolStripMenuItem.Enabled = false;
-            this.exportToFileAsToolStripMenuItem.Name = "exportToFileAsToolStripMenuItem";
-            this.exportToFileAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportToFileAsToolStripMenuItem.Text = "Export to file as:";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.BtnRearrange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRearrange.Image = global::TileGameMaker.Properties.Resources.layer_stack_arrange;
+            this.BtnRearrange.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRearrange.Name = "BtnRearrange";
+            this.BtnRearrange.Size = new System.Drawing.Size(23, 20);
+            this.BtnRearrange.Text = "Rearrange colors";
+            this.BtnRearrange.Click += new System.EventHandler(this.BtnRearrange_Click);
             // 
             // ColorPickerPanel
             // 
@@ -324,5 +336,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exportToFileAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton BtnRearrange;
     }
 }
