@@ -16,8 +16,7 @@ namespace TileGameLib
 
 	TTileSeq::TTileSeq(const TTileSeq& other)
 	{
-		for (auto& tile : other.Tiles)
-			Add(tile);
+		*this = other;
 	}
 
 	TTileSeq::TTileSeq(TTile tile)
@@ -38,6 +37,15 @@ namespace TileGameLib
 	TTileSeq::TTileSeq(std::string tileString)
 	{
 		Parse(tileString);
+	}
+
+	TTileSeq& TTileSeq::operator=(const TTileSeq& other)
+	{
+		Tiles.clear();
+		for (auto& tile : other.Tiles)
+			Add(tile);
+
+		return *this;
 	}
 
 	bool TTileSeq::operator==(const TTileSeq& other)
