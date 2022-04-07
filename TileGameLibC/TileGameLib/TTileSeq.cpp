@@ -91,9 +91,21 @@ namespace TileGameLib
 		Tiles.push_back(tile);
 	}
 
+	void TTileSeq::Add(TTile tile, int count)
+	{
+		for (int i = 0; i < count; i++)
+			Add(tile);
+	}
+
 	void TTileSeq::Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg)
 	{
 		Tiles.push_back(TTile(ch, fg, bg));
+	}
+
+	void TTileSeq::Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int count)
+	{
+		for (int i = 0; i < count; i++)
+			Add(ch, fg, bg);
 	}
 
 	void TTileSeq::Add(std::vector<TTile>& tiles)

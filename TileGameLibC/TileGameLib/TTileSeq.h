@@ -32,7 +32,9 @@ namespace TileGameLib
 		bool HasIndex(int ix);
 		void Clear();
 		void Add(TTile tile);
+		void Add(TTile tile, int count);
 		void Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);
+		void Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int count);
 		void Add(std::vector<TTile>& tiles);
 		void Set(int ix, TTile tile);
 		void Set(int ix, CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);
