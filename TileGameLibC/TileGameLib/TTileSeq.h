@@ -8,14 +8,19 @@
 #include <SDL.h>
 #include <vector>
 #include <string>
+#include <CppUtils.h>
 #include "TGlobal.h"
 #include "TTile.h"
+
+using namespace CppUtils;
 
 namespace TileGameLib
 {
 	class TTileSeq
 	{
 	public:
+		CppProperties Prop;
+
 		TTileSeq();
 		TTileSeq(const TTileSeq& other);
 		TTileSeq(TTile tile);
