@@ -41,6 +41,7 @@ namespace TileGameLib
 
 	TTileSeq& TTileSeq::operator=(const TTileSeq& other)
 	{
+		Prop = other.Prop;
 		Tiles.clear();
 		for (auto& tile : other.Tiles)
 			Add(tile);
