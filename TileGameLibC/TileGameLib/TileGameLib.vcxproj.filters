@@ -54,6 +54,9 @@
     <ClInclude Include="TPanel.h">
       <Filter>Graphics\Window</Filter>
     </ClInclude>
+    <ClInclude Include="TPixelBlock.h">
+      <Filter>Graphics\Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -68,7 +71,7 @@
     <ClCompile Include="TBufferedWindow.cpp">
       <Filter>Graphics\Window</Filter>
     </ClCompile>
-    <ClCompile Include="TTPanelWindow.cpp">
+    <ClCompile Include="TPanelWindow.cpp">
       <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TColor.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="TPanel.cpp">
       <Filter>Graphics\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="TPixelBlock.cpp">
+      <Filter>Graphics\Tile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -164,6 +164,7 @@
     <ClInclude Include="TColor.h" />
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TPanel.h" />
+    <ClInclude Include="TPixelBlock.h" />
     <ClInclude Include="TRegion.h" />
     <ClInclude Include="TSound.h">
       <SubType>
@@ -190,6 +191,7 @@
     <ClCompile Include="TPalette.cpp" />
     <ClCompile Include="TColor.cpp" />
     <ClCompile Include="TPanel.cpp" />
+    <ClCompile Include="TPixelBlock.cpp" />
     <ClCompile Include="TRegion.cpp" />
     <ClCompile Include="TSound.cpp">
       <SubType>
@@ -200,7 +202,7 @@
     <ClCompile Include="TTileBufferLayer.cpp" />
     <ClCompile Include="TTiledImage.cpp" />
     <ClCompile Include="TTileSeq.cpp" />
-    <ClCompile Include="TTPanelWindow.cpp">
+    <ClCompile Include="TPanelWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
