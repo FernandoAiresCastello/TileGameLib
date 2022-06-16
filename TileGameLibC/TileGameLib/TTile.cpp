@@ -24,23 +24,15 @@ namespace TileGameLib
 		Char = ch;
 		ForeColor = fg;
 		BackColor = bg;
-		PixelBlock = TPixelBlock();
-	}
-
-	TTile::TTile(TPixelBlock pixels) : TTile(0, 0, 0)
-	{
-		Type = TTileType::PixelBlock;
-		PixelBlock = pixels;
 	}
 
 	bool TTile::operator==(const TTile& other)
 	{
-		return 
+		return
 			Type == other.Type &&
-			Char == other.Char && 
-			ForeColor == other.ForeColor && 
-			BackColor == other.BackColor &&
-			PixelBlock == other.PixelBlock;
+			Char == other.Char &&
+			ForeColor == other.ForeColor &&
+			BackColor == other.BackColor;
 	}
 
 	bool TTile::operator!=(const TTile& other)

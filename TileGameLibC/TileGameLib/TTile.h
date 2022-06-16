@@ -7,7 +7,6 @@
 #pragma once
 #include <SDL.h>
 #include "TGlobal.h"
-#include "TPixelBlock.h"
 
 namespace TileGameLib
 {
@@ -20,12 +19,10 @@ namespace TileGameLib
 		CharsetIndex Char;
 		PaletteIndex ForeColor;
 		PaletteIndex BackColor;
-		TPixelBlock PixelBlock;
 
 		TTile();
 		TTile(const TTile& other);
 		TTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);
-		TTile(TPixelBlock pixels);
 
 		bool operator==(const TTile& other);
 		bool operator!=(const TTile& other);
