@@ -46,60 +46,18 @@ namespace TileGameLib
 	}
 
 	TPanelWindow::TPanelWindow(int width, int height) :
-		Width(width), Height(height),
-		PixelFormat(SDL_PIXELFORMAT_ARGB8888),
-		BufferLength(sizeof(int) * width * height),
+		TWindowBase(width, height),
 		Chr(TCharset::Default), Pal(TPalette::Default),
-		BackColor(0), PixelWidth(1), PixelHeight(1),
-		Clip({ 0, 0, width, height }), Grid(false), TransparentTiles(false)
+		PixelWidth(1), PixelHeight(1), Clip({ 0, 0, width, height }), 
+		Grid(false), TransparentTiles(false)
 	{
-		Buffer = new RGB[BufferLength];
-		
-		ClearBackground();
-
-		SDL_Init(SDL_INIT_VIDEO);
-		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
-		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-
-		Window = SDL_CreateWindow("",
-			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			Width, Height, SDL_WINDOW_HIDDEN);
-
-		Renderer = SDL_CreateRenderer(Window, -1,
-			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
-
-		SDL_SetRenderDrawBlendMode(Renderer, SDL_BLENDMODE_NONE);
-		SDL_RenderSetLogicalSize(Renderer, Width, Height);
-
-		Scrtx = SDL_CreateTexture(Renderer,
-			PixelFormat, SDL_TEXTUREACCESS_STREAMING, Width, Height);
-
-		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
-		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-		
 		SDL_CreateThread(AnimateTiles, "TileAnimation", nullptr);
 	}
 
 	TPanelWindow::~TPanelWindow()
 	{
 		TileAnimation.Running = false;
-
 		DestroyAllPanels();
-
-		SDL_DestroyTexture(Scrtx);
-		SDL_DestroyRenderer(Renderer);
-		SDL_DestroyWindow(Window);
-		SDL_VideoQuit();
-
-		delete[] Buffer;
-	}
-
-	void* TPanelWindow::GetHandle()
-	{
-		SDL_SysWMinfo wmInfo;
-		SDL_VERSION(&wmInfo.version);
-		SDL_GetWindowWMInfo(Window, &wmInfo);
-		return wmInfo.info.win.window;
 	}
 
 	TCharset* TPanelWindow::GetCharset()
@@ -110,86 +68,6 @@ namespace TileGameLib
 	TPalette* TPanelWindow::GetPalette()
 	{
 		return Pal;
-	}
-
-	int TPanelWindow::GetWidth()
-	{
-		return Width;
-	}
-
-	int TPanelWindow::GetHeight()
-	{
-		return Height;
-	}
-
-	void TPanelWindow::Hide()
-	{
-		SDL_HideWindow(Window);
-	}
-
-	void TPanelWindow::Show()
-	{
-		SDL_ShowWindow(Window);
-		Update();
-		SDL_RaiseWindow(Window);
-	}
-
-	void TPanelWindow::SetFullscreen(bool full)
-	{
-		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
-		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
-
-		if ((full && isFullscreen) || (!full && !isFullscreen))
-			return;
-
-		SDL_SetWindowFullscreen(Window, full ? fullscreenFlag : 0);
-		SDL_ShowCursor(isFullscreen);
-		Update();
-	}
-
-	void TPanelWindow::ToggleFullscreen()
-	{
-		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
-		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
-		SDL_SetWindowFullscreen(Window, isFullscreen ? 0 : fullscreenFlag);
-		SDL_ShowCursor(isFullscreen);
-		Update();
-	}
-
-	void TPanelWindow::SetTitle(std::string title)
-	{
-		SDL_SetWindowTitle(Window, title.c_str());
-	}
-
-	void TPanelWindow::SetBordered(bool bordered)
-	{
-		SDL_SetWindowBordered(Window, bordered ? SDL_TRUE : SDL_FALSE);
-	}
-
-	void TPanelWindow::SetIcon(std::string iconfile)
-	{
-		SDL_Surface icon;
-		SDL_LoadBMP(iconfile.c_str());
-		SDL_SetWindowIcon(Window, &icon);
-		SDL_FreeSurface(&icon);
-	}
-
-	void TPanelWindow::SaveScreenshot(std::string file)
-	{
-		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, Width, Height, 32, PixelFormat);
-		SDL_memcpy(surface->pixels, Buffer, BufferLength);
-		SDL_SaveBMP(surface, file.c_str());
-		SDL_FreeSurface(surface);
-	}
-
-	void TPanelWindow::SetBackColor(PaletteIndex bg)
-	{
-		BackColor = bg;
-	}
-
-	int TPanelWindow::GetBackColor()
-	{
-		return BackColor;
 	}
 
 	TRegion TPanelWindow::GetBounds()
@@ -259,30 +137,10 @@ namespace TileGameLib
 	void TPanelWindow::Update()
 	{
 		ClearBackground();
-
 		if (!Panels.empty())
 			DrawVisiblePanels();
 
-		static int pitch;
-		static void* pixels;
-
-		SDL_LockTexture(Scrtx, nullptr, &pixels, &pitch);
-		SDL_memcpy(pixels, Buffer, BufferLength);
-		SDL_UnlockTexture(Scrtx);
-		SDL_RenderCopy(Renderer, Scrtx, nullptr, nullptr);
-		SDL_RenderPresent(Renderer);
-	}
-
-	void TPanelWindow::ClearBackground()
-	{
-		ClearToRGB(Pal->GetColorRGB(BackColor));
-	}
-
-	void TPanelWindow::ClearToRGB(RGB rgb)
-	{
-		for (int y = 0; y < Height; y++)
-			for (int x = 0; x < Width; x++)
-				Buffer[y * Width + x] = rgb;
+		TWindowBase::Update();
 	}
 
 	void TPanelWindow::ClearAllPanels()
@@ -315,11 +173,6 @@ namespace TileGameLib
 				py++;
 			}
 		}
-	}
-
-	RGB TPanelWindow::GetPixel(int x, int y)
-	{
-		return Buffer[y * Width + x];
 	}
 
 	void TPanelWindow::SetPixelSize(int w, int h)

@@ -11,6 +11,7 @@
 #include "TPalette.h"
 #include "TChar.h"
 #include "TCharset.h"
+#include "TWindowBase.h"
 #include "TPanelWindow.h"
 #include "TBufferedWindow.h"
 #include "TTileBuffer.h"

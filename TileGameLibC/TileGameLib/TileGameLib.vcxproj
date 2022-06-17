@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SDLPath)\include;$(CppUtilsPath)\CppUtils</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -180,6 +180,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TileGameLib.h" />
+    <ClInclude Include="TWindowBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TBufferedWindow.cpp" />
@@ -206,6 +207,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TWindowBase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -57,6 +57,9 @@
     <ClInclude Include="TImageWindow.h">
       <Filter>Graphics\Window</Filter>
     </ClInclude>
+    <ClInclude Include="TWindowBase.h">
+      <Filter>Graphics\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -111,6 +114,9 @@
       <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TImageWindow.cpp">
+      <Filter>Graphics\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="TWindowBase.cpp">
       <Filter>Graphics\Window</Filter>
     </ClCompile>
   </ItemGroup>

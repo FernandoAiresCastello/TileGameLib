@@ -13,6 +13,7 @@
 #include "TGlobal.h"
 #include "TRegion.h"
 #include "TTile.h"
+#include "TWindowBase.h"
 
 using byte = CppUtils::byte;
 
@@ -23,7 +24,7 @@ namespace TileGameLib
 	class TImage;
 	class TPanel;
 	
-	class TPanelWindow
+	class TPanelWindow : public TWindowBase
 	{
 	public:
 		static const int DefaultWidth = 1280;
@@ -33,21 +34,9 @@ namespace TileGameLib
 		TPanelWindow(int width, int height);
 		~TPanelWindow();
 
-		void* GetHandle();
+		virtual void Update();
 		TCharset* GetCharset();
 		TPalette* GetPalette();
-		int GetWidth();
-		int GetHeight();
-		void Hide();
-		void Show();
-		void SetFullscreen(bool full);
-		void ToggleFullscreen();
-		void SetTitle(std::string title);
-		void SetBordered(bool bordered);
-		void SetIcon(std::string iconfile);
-		void SaveScreenshot(std::string file);
-		void SetBackColor(PaletteIndex bg);
-		int GetBackColor();
 		TRegion GetBounds();
 		TPanel* AddPanel();
 		void RemovePanel(TPanel* panel);
@@ -55,24 +44,13 @@ namespace TileGameLib
 		void SetAnimationSpeed(int speed);
 		void EnableAnimation(bool enable);
 		bool IsAnimationEnabled();
-		void Update();
 		void ClearAllPanels();
 		void DrawImage(TImage* img, int x, int y, int pw, int ph);
 		void EraseImage(TImage* img, int x, int y, int pw, int ph);
 
 	private:
-		const int Width;
-		const int Height;
-		const int PixelFormat;
-		const int BufferLength;
-
-		RGB* Buffer;
-		SDL_Window* Window;
-		SDL_Renderer* Renderer;
-		SDL_Texture* Scrtx;
 		TCharset* Chr;
 		TPalette* Pal;
-		PaletteIndex BackColor;
 		int PixelWidth;
 		int PixelHeight;
 		TRegion Clip;
@@ -80,12 +58,7 @@ namespace TileGameLib
 		bool TransparentTiles;
 		std::vector<TPanel*> Panels;
 
-		TPanelWindow(const TPanelWindow& other) = delete;
-		
-		void ClearBackground();
-		void ClearToRGB(RGB rgb);
-		void SetPixel(int x, int y, RGB rgb);
-		RGB GetPixel(int x, int y);
+		virtual void SetPixel(int x, int y, RGB rgb);
 		void SetPixelSize(int w, int h);
 		void SetClip(int x1, int y1, int x2, int y2);
 		void FillClip(PaletteIndex ix);
