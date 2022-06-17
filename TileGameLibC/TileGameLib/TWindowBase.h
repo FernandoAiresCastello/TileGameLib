@@ -29,6 +29,7 @@ namespace TileGameLib
 		void SaveScreenshot(std::string file);
 		void SetBackColor(PaletteIndex bg);
 		int GetBackColor();
+		void ClearBackground();
 
 	protected:
 		RGB* Buffer;
@@ -40,9 +41,9 @@ namespace TileGameLib
 		const int Width;
 		const int Height;
 
-		void ClearBackground();
 		void ClearToRGB(RGB rgb);
 		virtual void SetPixel(int x, int y, RGB rgb);
+		virtual void FillRect(int x, int y, int w, int h, RGB rgb);
 		virtual RGB GetPixel(int x, int y);
 	};
 }

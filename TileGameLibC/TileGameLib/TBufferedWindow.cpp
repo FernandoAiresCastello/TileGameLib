@@ -112,19 +112,7 @@ namespace TileGameLib
 
 	void TBufferedWindow::SetPixel(int x, int y, RGB rgb)
 	{
-		int px = x * PixelWidth;
-		int py = y * PixelHeight;
-		const int prevX = px;
-		for (int iy = 0; iy < PixelHeight; iy++) {
-			for (int ix = 0; ix < PixelWidth; ix++) {
-				if (px >= 0 && py >= 0 && px < Width && py < Height) {
-					Buffer[py * Width + px] = rgb;
-				}
-				px++;
-			}
-			px = prevX;
-			py++;
-		}
+		FillRect(x, y, PixelWidth, PixelHeight, rgb);
 	}
 
 	void TBufferedWindow::DrawTile(TTile& tile, int x, int y, bool transparent)

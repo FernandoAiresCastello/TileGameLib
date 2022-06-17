@@ -26,3 +26,4 @@
 #include "TPanel.h"
 #include "TTiledImage.h"
 #include "TImageWindow.h"
+#include "TGBWindow.h"

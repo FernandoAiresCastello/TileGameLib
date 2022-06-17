@@ -1,3 +1,9 @@
+/*=============================================================================
+
+	 TileGameLib
+	 2018-2022 Developed by Fernando Aires Castello
+
+=============================================================================*/
 #include <string>
 #include <SDL_syswm.h>
 #include "TWindowBase.h"
@@ -90,6 +96,23 @@ namespace TileGameLib
 	{
 		if (x >= 0 && y >= 0 && x < Width && y < Height) {
 			Buffer[y * Width + x] = rgb;
+		}
+	}
+
+	void TWindowBase::FillRect(int x, int y, int w, int h, RGB rgb)
+	{
+		int px = x * w;
+		int py = y * h;
+		const int prevX = px;
+		for (int iy = 0; iy < w; iy++) {
+			for (int ix = 0; ix < h; ix++) {
+				if (px >= 0 && py >= 0 && px < Width && py < Height) {
+					Buffer[py * Width + px] = rgb;
+				}
+				px++;
+			}
+			px = prevX;
+			py++;
 		}
 	}
 

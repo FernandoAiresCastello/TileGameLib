@@ -37,7 +37,6 @@ namespace TileGameLib
 		TBufferedWindow(int layerCount, int cols, int rows, int pixelWidth, int pixelHeight);
 		virtual ~TBufferedWindow();
 		virtual void Update();
-		virtual void SetPixel(int x, int y, RGB rgb);
 
 		TCharset* GetCharset();
 		TPalette* GetPalette();
@@ -53,6 +52,7 @@ namespace TileGameLib
 		TPalette* Pal;
 		TTileBuffer* TileBuf;
 
+		virtual void SetPixel(int x, int y, RGB rgb);
 		void DrawTile(TTile& tile, int x, int y, bool transparent);
 		void DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
 		void DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg, bool transparent);

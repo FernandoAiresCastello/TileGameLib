@@ -1,3 +1,9 @@
+/*=============================================================================
+
+	 TileGameLib
+	 2018-2022 Developed by Fernando Aires Castello
+
+=============================================================================*/
 #include "TImageWindow.h"
 #include "TTiledImage.h"
 #include "TImage.h"

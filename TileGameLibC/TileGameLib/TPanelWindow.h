@@ -32,7 +32,7 @@ namespace TileGameLib
 
 		TPanelWindow();
 		TPanelWindow(int width, int height);
-		~TPanelWindow();
+		virtual ~TPanelWindow();
 
 		virtual void Update();
 		TCharset* GetCharset();

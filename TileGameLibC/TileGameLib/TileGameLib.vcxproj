@@ -155,6 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="TBufferedWindow.h" />
+    <ClInclude Include="TGBTile.h" />
+    <ClInclude Include="TGBWindow.h" />
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
@@ -184,6 +186,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TBufferedWindow.cpp" />
+    <ClCompile Include="TGBTile.cpp" />
+    <ClCompile Include="TGBWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
