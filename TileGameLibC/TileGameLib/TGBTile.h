@@ -6,27 +6,25 @@
 =============================================================================*/
 #pragma once
 #include <SDL.h>
-#include <string>
 #include "TGlobal.h"
 
 namespace TileGameLib
 {
-	enum class TGBTileColor { Color0, Color1, Color2, Color3 };
-
 	class TGBTile
 	{
 	public:
-		static const int Width = 8;
-		static const int Height = 8;
-		static const int Length = Width * Height;
-
-		TGBTileColor Data[Length] = { TGBTileColor::Color0 };
+		int Index;
+		PaletteIndex Color0;
+		PaletteIndex Color1;
+		PaletteIndex Color2;
+		PaletteIndex Color3;
+		bool Transparent;
 
 		TGBTile();
 		TGBTile(const TGBTile& other);
-		TGBTile(std::string data);
+		TGBTile(int index, PaletteIndex c0, PaletteIndex c1, PaletteIndex c2, PaletteIndex c3, bool transparent);
 
-		void Clear();
-		void Parse(std::string data);
+		void SetEmpty();
+		bool IsEmpty();
 	};
 }

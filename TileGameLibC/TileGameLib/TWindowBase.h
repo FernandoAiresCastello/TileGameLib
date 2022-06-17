@@ -14,6 +14,9 @@ namespace TileGameLib
 	class TWindowBase
 	{
 	public:
+		const int Width;
+		const int Height;
+
 		TWindowBase(int width, int height);
 		virtual ~TWindowBase();
 
@@ -38,8 +41,6 @@ namespace TileGameLib
 		SDL_Renderer* Renderer;
 		SDL_Texture* Scrtx;
 		const int BufferLength;
-		const int Width;
-		const int Height;
 
 		void ClearToRGB(RGB rgb);
 		virtual void SetPixel(int x, int y, RGB rgb);

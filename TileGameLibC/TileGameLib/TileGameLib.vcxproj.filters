@@ -63,6 +63,15 @@
     <ClInclude Include="TGBWindow.h">
       <Filter>Graphics\GameBoy</Filter>
     </ClInclude>
+    <ClInclude Include="TGBTileDef.h">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTileset.h">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTileLayer.h">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClInclude>
     <ClInclude Include="TGBTile.h">
       <Filter>Graphics\GameBoy</Filter>
     </ClInclude>
@@ -126,6 +135,15 @@
       <Filter>Graphics\Standard\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGBWindow.cpp">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileDef.cpp">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileset.cpp">
+      <Filter>Graphics\GameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileLayer.cpp">
       <Filter>Graphics\GameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBTile.cpp">

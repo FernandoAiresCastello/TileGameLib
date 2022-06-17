@@ -4,54 +4,42 @@
 	 2018-2022 Developed by Fernando Aires Castello
 
 =============================================================================*/
-#include <CppUtils.h>
 #include "TGBTile.h"
-
-using namespace CppUtils;
 
 namespace TileGameLib
 {
 	TGBTile::TGBTile()
 	{
-		Clear();
+		SetEmpty();
 	}
 
-	TGBTile::TGBTile(const TGBTile& other)
+	TGBTile::TGBTile(const TGBTile& other) : 
+		TGBTile(other.Index, other.Color0, other.Color1, other.Color2, other.Color3, other.Transparent)
 	{
-		for (int i = 0; i < Length; i++) {
-			Data[i] = other.Data[i];
-		}
 	}
 
-	TGBTile::TGBTile(std::string data)
+	TGBTile::TGBTile(int index, PaletteIndex c0, PaletteIndex c1, PaletteIndex c2, PaletteIndex c3, bool transparent)
 	{
-		Parse(data);
+		Index = index;
+		Color0 = c0;
+		Color1 = c1;
+		Color2 = c2;
+		Color3 = c3;
+		Transparent = transparent;
 	}
 
-	void TGBTile::Clear()
+	void TGBTile::SetEmpty()
 	{
-		for (int i = 0; i < Length; i++)
-		{
-			Data[i] = TGBTileColor::Color0;
-		}
+		Index = -1;
+		Color0 = 0;
+		Color1 = 0;
+		Color2 = 0;
+		Color3 = 0;
+		Transparent = false;
 	}
 
-	void TGBTile::Parse(std::string data)
+	bool TGBTile::IsEmpty()
 	{
-		Clear();
-		for (int i = 0; i < data.length(); i++)
-		{
-			if (i >= Length) break;
-			
-			switch (data[i])
-			{
-				case '0': Data[i] = TGBTileColor::Color0; break;
-				case '1': Data[i] = TGBTileColor::Color1; break;
-				case '2': Data[i] = TGBTileColor::Color2; break;
-				case '3': Data[i] = TGBTileColor::Color3; break;
-
-				default:  Data[i] = TGBTileColor::Color0; break;
-			}
-		}
+		return Index == -1;
 	}
 }

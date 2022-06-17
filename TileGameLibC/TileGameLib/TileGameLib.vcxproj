@@ -156,6 +156,9 @@
   <ItemGroup>
     <ClInclude Include="TBufferedWindow.h" />
     <ClInclude Include="TGBTile.h" />
+    <ClInclude Include="TGBTileDef.h" />
+    <ClInclude Include="TGBTileLayer.h" />
+    <ClInclude Include="TGBTileset.h" />
     <ClInclude Include="TGBWindow.h" />
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TImage.h" />
@@ -187,6 +190,9 @@
   <ItemGroup>
     <ClCompile Include="TBufferedWindow.cpp" />
     <ClCompile Include="TGBTile.cpp" />
+    <ClCompile Include="TGBTileDef.cpp" />
+    <ClCompile Include="TGBTileLayer.cpp" />
+    <ClCompile Include="TGBTileset.cpp" />
     <ClCompile Include="TGBWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TImage.cpp" />

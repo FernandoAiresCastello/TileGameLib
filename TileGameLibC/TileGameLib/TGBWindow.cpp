@@ -14,6 +14,9 @@ namespace TileGameLib
 		PixelWidth(pixelWidth), PixelHeight(pixelHeight),
 		Pal(TPalette::Default)
 	{
+		BackColor = 0xffffff;
+		ClearBackground();
+		Update();
 	}
 
 	TGBWindow::~TGBWindow()
@@ -25,7 +28,12 @@ namespace TileGameLib
 		TWindowBase::Update();
 	}
 
-	void TGBWindow::DrawTile(TGBTile& tile, int x, int y, 
+	void TGBWindow::SetPixel(int x, int y, RGB rgb)
+	{
+		FillRect(x, y, PixelWidth, PixelHeight, rgb);
+	}
+
+	void TGBWindow::DrawTile(TGBTileDef& tile, int x, int y,
 		PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
 		bool transparent)
 	{
@@ -34,7 +42,7 @@ namespace TileGameLib
 		RGB rgb = 0;
 		bool skip = false;
 
-		for (int i = 0; i < TGBTile::Length; i++)
+		for (int i = 0; i < TGBTileDef::Length; i++)
 		{
 			skip = false;
 
@@ -60,7 +68,7 @@ namespace TileGameLib
 				SetPixel(px, py, rgb);
 
 			px++;
-			if (px >= x + TGBTile::Width) {
+			if (px >= x + TGBTileDef::Width) {
 				px = x;
 				py++;
 			}
@@ -74,8 +82,22 @@ namespace TileGameLib
 		DrawTile(tileset.Get(tileIndex), x, y, color0, color1, color2, color3, transparent);
 	}
 
-	void TGBWindow::SetPixel(int x, int y, RGB rgb)
+	void TGBWindow::DrawTileLayer(TGBTileLayer& layer, TGBTileset& tileset, int x, int y)
 	{
-		FillRect(x, y, PixelWidth, PixelHeight, rgb);
+		int sx = x;
+		int sy = y;
+
+		for (int ly = 0; ly < layer.Rows; ly++) {
+			for (int lx = 0; lx < layer.Cols; lx++) {
+				TGBTile* tile = layer.GetTile(lx, ly);
+				if (!tile->IsEmpty()) {
+					DrawTile(tileset.Get(tile->Index), sx, sy, 
+						tile->Color0, tile->Color1, tile->Color2, tile->Color3, tile->Transparent);
+				}
+				sx += TGBTileDef::Width;
+			}
+			sx = x;
+			sy += TGBTileDef::Height;
+		}
 	}
 }

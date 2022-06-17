@@ -12,12 +12,12 @@ namespace TileGameLib
 	{
 	}
 	
-	void TGBTileset::Add(TGBTile& tile)
+	void TGBTileset::Add(TGBTileDef& tile)
 	{
 		Tiles.push_back(tile);
 	}
 
-	TGBTile& TGBTileset::Get(int index)
+	TGBTileDef& TGBTileset::Get(int index)
 	{
 		return Tiles[index];
 	}

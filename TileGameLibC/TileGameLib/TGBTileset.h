@@ -8,7 +8,7 @@
 #include <SDL.h>
 #include <vector>
 #include "TGlobal.h"
-#include "TGBTile.h"
+#include "TGBTileDef.h"
 
 namespace TileGameLib
 {
@@ -17,12 +17,12 @@ namespace TileGameLib
 	public:
 		TGBTileset();
 
-		void Add(TGBTile& tile);
-		TGBTile& Get(int index);
+		void Add(TGBTileDef& tile);
+		TGBTileDef& Get(int index);
 		void DeleteAll();
 		int GetSize();
 
 	private:
-		std::vector<TGBTile> Tiles;
+		std::vector<TGBTileDef> Tiles;
 	};
 }

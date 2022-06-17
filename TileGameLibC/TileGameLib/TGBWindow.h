@@ -9,8 +9,9 @@
 #include <string>
 #include "TGlobal.h"
 #include "TWindowBase.h"
-#include "TGBTile.h"
+#include "TGBTileDef.h"
 #include "TGBTileset.h"
+#include "TGBTileLayer.h"
 
 namespace TileGameLib
 {
@@ -26,13 +27,15 @@ namespace TileGameLib
 		virtual ~TGBWindow();
 		virtual void Update();
 
-		void DrawTile(TGBTile& tile, int x, int y, 
+		void DrawTile(TGBTileDef& tile, int x, int y,
 			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
 			bool transparent);
 
 		void DrawTile(TGBTileset& tileset, int tileIndex, int x, int y,
 			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
 			bool transparent);
+
+		void DrawTileLayer(TGBTileLayer& layer, TGBTileset& tileset, int x, int y);
 
 	private:
 		TPalette* Pal;
