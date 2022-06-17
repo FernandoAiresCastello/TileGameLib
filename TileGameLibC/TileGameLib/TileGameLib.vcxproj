@@ -157,6 +157,7 @@
     <ClInclude Include="TBufferedWindow.h" />
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TImage.h" />
+    <ClInclude Include="TImageWindow.h" />
     <ClInclude Include="TKey.h" />
     <ClInclude Include="TChar.h" />
     <ClInclude Include="TCharset.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="TBufferedWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TImage.cpp" />
+    <ClCompile Include="TImageWindow.cpp" />
     <ClCompile Include="TKey.cpp" />
     <ClCompile Include="TChar.cpp" />
     <ClCompile Include="TCharset.cpp" />

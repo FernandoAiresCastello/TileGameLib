@@ -16,6 +16,9 @@ namespace TileGameLib
 	class TTiledImage
 	{
 	public:
+		const int TileWidth;
+		const int TileHeight;
+
 		TTiledImage(std::string filename, int tileWidth, int tileHeight, TColor transparency);
 		~TTiledImage();
 
@@ -28,8 +31,6 @@ namespace TileGameLib
 
 		TImage* Img;
 		std::vector<TImage*> Tiles;
-		int TileWidth;
-		int TileHeight;
 		int Cols;
 		int Rows;
 		std::vector<TTiledPosition> TiledPositions;

@@ -16,9 +16,8 @@ namespace TileGameLib
 	};
 
 	TTiledImage::TTiledImage(std::string filename, int tileWidth, int tileHeight, TColor transparency)
+		: TileWidth(tileWidth), TileHeight(tileHeight)
 	{
-		TileWidth = tileWidth;
-		TileHeight = tileHeight;
 		Cols = 0;
 		Rows = 0;
 
