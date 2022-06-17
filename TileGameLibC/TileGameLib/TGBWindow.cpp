@@ -67,6 +67,13 @@ namespace TileGameLib
 		}
 	}
 
+	void TGBWindow::DrawTile(TGBTileset& tileset, int tileIndex, int x, int y, 
+		PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3, 
+		bool transparent)
+	{
+		DrawTile(tileset.Get(tileIndex), x, y, color0, color1, color2, color3, transparent);
+	}
+
 	void TGBWindow::SetPixel(int x, int y, RGB rgb)
 	{
 		FillRect(x, y, PixelWidth, PixelHeight, rgb);

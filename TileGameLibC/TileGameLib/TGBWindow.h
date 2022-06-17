@@ -10,6 +10,7 @@
 #include "TGlobal.h"
 #include "TWindowBase.h"
 #include "TGBTile.h"
+#include "TGBTileset.h"
 
 namespace TileGameLib
 {
@@ -24,7 +25,12 @@ namespace TileGameLib
 		TGBWindow(int pixelWidth, int pixelHeight);
 		virtual ~TGBWindow();
 		virtual void Update();
+
 		void DrawTile(TGBTile& tile, int x, int y, 
+			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
+			bool transparent);
+
+		void DrawTile(TGBTileset& tileset, int tileIndex, int x, int y,
 			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
 			bool transparent);
 
