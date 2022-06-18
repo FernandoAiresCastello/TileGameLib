@@ -7,6 +7,9 @@
 #include <CppUtils.h>
 #include "TGBWindow.h"
 #include "TPalette.h"
+#include "TGBTileset.h"
+#include "TGBTileLayer.h"
+#include "TGBWindowLayers.h"
 
 namespace TileGameLib
 {
@@ -20,23 +23,18 @@ namespace TileGameLib
 	{
 		Chr = new TGBTileset();
 		BackColor = 0xffffff;
-		Layer.Bg = new TGBTileLayer(32, 32);
-		Layer.Wnd = new TGBTileLayer(32, 32);
-
-		Update();
+		Layers = new TGBWindowLayers(this);
 	}
 
 	TGBWindow::~TGBWindow()
 	{
 		delete Chr;
-		delete Layer.Bg;
-		delete Layer.Wnd;
-		// todo: delete sprites
+		delete Layers;
 	}
 
 	void TGBWindow::Update()
 	{
-		DrawLayers();
+		Layers->Draw();
 		TWindowBase::Update();
 	}
 
@@ -53,6 +51,11 @@ namespace TileGameLib
 	void TGBWindow::SetPixel(int x, int y, RGB rgb)
 	{
 		FillRect(x, y, PixelWidth, PixelHeight, rgb);
+	}
+
+	void TGBWindow::DrawTile(TGBTile& tile, int x, int y)
+	{
+		DrawTile(tile.Index, x, y, tile.Color0, tile.Color1, tile.Color2, tile.Color3, tile.Transparent);
 	}
 
 	void TGBWindow::DrawTile(int tileIndex, int x, int y,
@@ -138,31 +141,5 @@ namespace TileGameLib
 	{
 		LayerPos.WndX = x;
 		LayerPos.WndY = y;
-	}
-
-	void TGBWindow::DrawLayers()
-	{
-		ClearBackground();
-		DrawBackgroundLayer();
-		DrawWindowLayer();
-		DrawSpriteLayer();
-	}
-
-	void TGBWindow::DrawBackgroundLayer()
-	{
-		DrawTileLayer(Layer.Bg, LayerPos.BgX, LayerPos.BgY);
-		DrawTileLayer(Layer.Bg, LayerPos.BgX - 256, LayerPos.BgY);
-		DrawTileLayer(Layer.Bg, LayerPos.BgX, LayerPos.BgY - 256);
-		DrawTileLayer(Layer.Bg, LayerPos.BgX - 256, LayerPos.BgY - 256);
-	}
-
-	void TGBWindow::DrawWindowLayer()
-	{
-		DrawTileLayer(Layer.Wnd, LayerPos.WndX, LayerPos.WndY);
-	}
-	
-	void TGBWindow::DrawSpriteLayer()
-	{
-		// todo
 	}
 }

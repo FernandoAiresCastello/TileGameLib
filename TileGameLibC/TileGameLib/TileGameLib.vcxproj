@@ -155,12 +155,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="TBufferedWindow.h" />
+    <ClInclude Include="TGBSprite.h" />
     <ClInclude Include="TGBTile.h" />
     <ClInclude Include="TGBTileDef.h" />
     <ClInclude Include="TGBTileLayer.h" />
     <ClInclude Include="TGBTileset.h" />
     <ClInclude Include="TGBWindow.h" />
     <ClInclude Include="TGamepad.h" />
+    <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
     <ClInclude Include="TKey.h" />
@@ -189,12 +191,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TBufferedWindow.cpp" />
+    <ClCompile Include="TGBSprite.cpp" />
     <ClCompile Include="TGBTile.cpp" />
     <ClCompile Include="TGBTileDef.cpp" />
     <ClCompile Include="TGBTileLayer.cpp" />
     <ClCompile Include="TGBTileset.cpp" />
     <ClCompile Include="TGBWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
+    <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
     <ClCompile Include="TKey.cpp" />

@@ -10,22 +10,20 @@
 #include <vector>
 #include "TGlobal.h"
 #include "TWindowBase.h"
-#include "TGBTileDef.h"
-#include "TGBTileset.h"
-#include "TGBTileLayer.h"
+#include "TGBTile.h"
 
 namespace TileGameLib
 {
 	class TPalette;
+	class TGBTileset;
+	class TGBTileLayer;
+	class TGBSprite;
+	class TGBWindowLayers;
 
 	class TGBWindow : public TWindowBase
 	{
 	public:
-		struct {
-			TGBTileLayer* Bg = nullptr;
-			TGBTileLayer* Wnd = nullptr;
-			// todo: sprites
-		} Layer;
+		TGBWindowLayers* Layers = nullptr;
 
 		TGBWindow(int pixelWidth, int pixelHeight);
 		virtual ~TGBWindow();
@@ -37,10 +35,13 @@ namespace TileGameLib
 		void SetWindowLayerPos(int x, int y);
 
 	private:
+		friend class TGBWindowLayers;
+
 		const int PixelBufWidth;
 		const int PixelBufHeight;
 		const int PixelWidth;
 		const int PixelHeight;
+
 		TPalette* Pal = nullptr;
 		TGBTileset* Chr = nullptr;
 
@@ -53,15 +54,12 @@ namespace TileGameLib
 
 		virtual void SetPixel(int x, int y, RGB rgb);
 
+		void DrawTile(TGBTile& tile, int x, int y);
+
 		void DrawTile(int tileIndex, int x, int y,
 			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
 			bool transparent);
 
 		void DrawTileLayer(TGBTileLayer* layer, int x, int y);
-
-		void DrawLayers();
-		void DrawBackgroundLayer();
-		void DrawWindowLayer();
-		void DrawSpriteLayer();
 	};
 }
