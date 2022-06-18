@@ -18,7 +18,6 @@ namespace TileGameLib
 		const int Cols;
 		const int Rows;
 		const int Length;
-		static const int EmptyTile = -1;
 
 		TGBTileLayer(int cols, int rows);
 		

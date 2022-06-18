@@ -7,6 +7,7 @@
 #pragma once
 #include <SDL.h>
 #include <string>
+#include <vector>
 #include "TGlobal.h"
 #include "TWindowBase.h"
 #include "TGBTileDef.h"
@@ -20,25 +21,47 @@ namespace TileGameLib
 	class TGBWindow : public TWindowBase
 	{
 	public:
-		const int PixelWidth;
-		const int PixelHeight;
+		struct {
+			TGBTileLayer* Bg = nullptr;
+			TGBTileLayer* Wnd = nullptr;
+			// todo: sprites
+		} Layer;
 
 		TGBWindow(int pixelWidth, int pixelHeight);
 		virtual ~TGBWindow();
 		virtual void Update();
-
-		void DrawTile(TGBTileDef& tile, int x, int y,
-			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
-			bool transparent);
-
-		void DrawTile(TGBTileset& tileset, int tileIndex, int x, int y,
-			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
-			bool transparent);
-
-		void DrawTileLayer(TGBTileLayer& layer, TGBTileset& tileset, int x, int y);
+		TPalette* GetPalette();
+		TGBTileset* GetTileset();
+		void SetBackgroundPos(int x, int y);
+		void ScrollBackground(int dx, int dy);
+		void SetWindowLayerPos(int x, int y);
 
 	private:
-		TPalette* Pal;
+		const int PixelBufWidth;
+		const int PixelBufHeight;
+		const int PixelWidth;
+		const int PixelHeight;
+		TPalette* Pal = nullptr;
+		TGBTileset* Chr = nullptr;
+
+		struct {
+			int BgX = 0;
+			int BgY = 0;
+			int WndX = 0;
+			int WndY = 0;
+		} LayerPos;
+
 		virtual void SetPixel(int x, int y, RGB rgb);
+
+		void DrawTile(int tileIndex, int x, int y,
+			PaletteIndex color0, PaletteIndex color1, PaletteIndex color2, PaletteIndex color3,
+			bool transparent);
+
+		void DrawTileLayer(TGBTileLayer* layer, int x, int y);
+
+		void DrawLayers();
+		void DrawBackgroundLayer();
+		void DrawWindowLayer();
+		void DrawSpriteLayer();
 	};
 }
