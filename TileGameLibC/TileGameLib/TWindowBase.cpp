@@ -82,7 +82,7 @@ namespace TileGameLib
 
 	void TWindowBase::ClearBackground()
 	{
-		ClearToRGB(BackColor);
+		ClearToRGB( BackColor);
 	}
 
 	void TWindowBase::ClearToRGB(RGB rgb)
@@ -169,12 +169,12 @@ namespace TileGameLib
 		SDL_FreeSurface(surface);
 	}
 
-	void TWindowBase::SetBackColor(PaletteIndex bg)
+	void TWindowBase::SetBackColor(RGB rgb)
 	{
-		BackColor = bg;
+		BackColor = rgb;
 	}
 
-	int TWindowBase::GetBackColor()
+	RGB TWindowBase::GetBackColor()
 	{
 		return BackColor;
 	}

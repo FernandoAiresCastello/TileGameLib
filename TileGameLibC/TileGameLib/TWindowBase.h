@@ -30,8 +30,8 @@ namespace TileGameLib
 		void SetBordered(bool bordered);
 		void SetIcon(std::string iconfile);
 		void SaveScreenshot(std::string file);
-		void SetBackColor(PaletteIndex bg);
-		int GetBackColor();
+		void SetBackColor(RGB rgb);
+		RGB GetBackColor();
 		void ClearBackground();
 
 	protected:
