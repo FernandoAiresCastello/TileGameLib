@@ -33,3 +33,4 @@
 #include "TGBTileDef.h"
 #include "TGBTile.h"
 #include "TGBSprite.h"
+#include "TTileGameBoy.h"

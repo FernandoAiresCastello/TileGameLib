@@ -13,73 +13,76 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="TBufferedWindow.h">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TPanelWindow.h">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TColor.h">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="TChar.h">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="TCharset.h">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="TPalette.h">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="TTile.h">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="TTileBuffer.h">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="TTileBufferLayer.h">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="TTileSeq.h">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="TImage.h">
-      <Filter>Graphics\Standard\Image</Filter>
+      <Filter>Graphics\Image</Filter>
     </ClInclude>
     <ClInclude Include="TTiledImage.h">
-      <Filter>Graphics\Standard\Image</Filter>
+      <Filter>Graphics\Image</Filter>
     </ClInclude>
     <ClInclude Include="TRegion.h">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="TPanel.h">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TImageWindow.h">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TWindowBase.h">
-      <Filter>Graphics\Standard\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="TGBWindow.h">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClInclude>
-    <ClInclude Include="TGBTileDef.h">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClInclude>
-    <ClInclude Include="TGBTileset.h">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClInclude>
-    <ClInclude Include="TGBTileLayer.h">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClInclude>
-    <ClInclude Include="TGBTile.h">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TGBSprite.h">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTile.h">
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTileDef.h">
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTileLayer.h">
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBTileset.h">
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TGBWindow.h">
+      <Filter>TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBWindowLayers.h">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>TileGameBoy</Filter>
+    </ClInclude>
+    <ClInclude Include="TTileGameBoy.h">
+      <Filter>TileGameBoy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,73 +96,76 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="TBufferedWindow.cpp">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TPanelWindow.cpp">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TColor.cpp">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="TChar.cpp">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="TCharset.cpp">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="TPalette.cpp">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="TTile.cpp">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="TTileBuffer.cpp">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="TTileBufferLayer.cpp">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="TTileSeq.cpp">
-      <Filter>Graphics\Standard\Tile</Filter>
+      <Filter>Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="TImage.cpp">
-      <Filter>Graphics\Standard\Image</Filter>
+      <Filter>Graphics\Image</Filter>
     </ClCompile>
     <ClCompile Include="TTiledImage.cpp">
-      <Filter>Graphics\Standard\Image</Filter>
+      <Filter>Graphics\Image</Filter>
     </ClCompile>
     <ClCompile Include="TRegion.cpp">
-      <Filter>Graphics\Standard\Core</Filter>
+      <Filter>Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="TPanel.cpp">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TImageWindow.cpp">
-      <Filter>Graphics\Standard\Window</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TWindowBase.cpp">
-      <Filter>Graphics\Standard\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="TGBWindow.cpp">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClCompile>
-    <ClCompile Include="TGBTileDef.cpp">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClCompile>
-    <ClCompile Include="TGBTileset.cpp">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClCompile>
-    <ClCompile Include="TGBTileLayer.cpp">
-      <Filter>Graphics\GameBoy</Filter>
-    </ClCompile>
-    <ClCompile Include="TGBTile.cpp">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGBSprite.cpp">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTile.cpp">
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileDef.cpp">
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileLayer.cpp">
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBTileset.cpp">
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TGBWindow.cpp">
+      <Filter>TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBWindowLayers.cpp">
-      <Filter>Graphics\GameBoy</Filter>
+      <Filter>TileGameBoy</Filter>
+    </ClCompile>
+    <ClCompile Include="TTileGameBoy.cpp">
+      <Filter>TileGameBoy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,23 +178,20 @@
     <Filter Include="Input">
       <UniqueIdentifier>{8d733df8-b9a0-483e-b24e-61b40dc93af3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Standard">
-      <UniqueIdentifier>{4b3bedf7-75de-45ee-94aa-2dffe968879c}</UniqueIdentifier>
+    <Filter Include="TileGameBoy">
+      <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Standard\Core">
+    <Filter Include="Graphics\Core">
       <UniqueIdentifier>{eba7172b-86d5-4d6e-a723-7bf586b74868}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Standard\Image">
+    <Filter Include="Graphics\Image">
       <UniqueIdentifier>{6fcb3979-6ca8-4a56-8e9c-eacb13c8584b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Standard\Tile">
+    <Filter Include="Graphics\Tile">
       <UniqueIdentifier>{92a59320-835b-43f2-9343-b20911380fb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\Standard\Window">
+    <Filter Include="Graphics\Window">
       <UniqueIdentifier>{b7f2517c-4e3b-4229-8d09-173fdd9c9389}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\GameBoy">
-      <UniqueIdentifier>{950f8cba-55ef-465a-a69d-da945b4d1af1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -181,6 +181,7 @@
     <ClInclude Include="TTileBuffer.h" />
     <ClInclude Include="TTileBufferLayer.h" />
     <ClInclude Include="TTiledImage.h" />
+    <ClInclude Include="TTileGameBoy.h" />
     <ClInclude Include="TTileSeq.h" />
     <ClInclude Include="TPanelWindow.h">
       <SubType>
@@ -216,6 +217,7 @@
     <ClCompile Include="TTileBuffer.cpp" />
     <ClCompile Include="TTileBufferLayer.cpp" />
     <ClCompile Include="TTiledImage.cpp" />
+    <ClCompile Include="TTileGameBoy.cpp" />
     <ClCompile Include="TTileSeq.cpp" />
     <ClCompile Include="TPanelWindow.cpp">
       <SubType>
