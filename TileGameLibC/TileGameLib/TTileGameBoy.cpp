@@ -27,16 +27,15 @@ namespace TileGameLib
 		Halted = false;
 
 		while (Running) {
-			if (CallbackOnCycle && !Halted) 
-				CallbackOnCycle();
+			if (CallbackOnGameLoop && !Halted)
+				CallbackOnGameLoop();
 
 			Wnd->Update();
 
 			SDL_Event e = { 0 };
 			SDL_PollEvent(&e);
 			if (e.type == SDL_QUIT) {
-				if (CallbackOnExit) CallbackOnExit();
-				exit(0);
+				Exit();
 			}
 
 			if (Halted)
@@ -46,6 +45,8 @@ namespace TileGameLib
 				const auto key = e.key.keysym.sym;
 				if (TKey::Alt() && key == SDLK_RETURN) {
 					Wnd->ToggleFullscreen();
+				} else if (key == SDLK_ESCAPE && AllowEscapeKeyToExit) {
+					Exit();
 				}
 			} else if (e.type == SDL_KEYUP) {
 				const auto button = e.key.keysym.scancode;
@@ -71,6 +72,7 @@ namespace TileGameLib
 	{
 		if (CallbackOnExit) CallbackOnExit();
 		Running = false;
+		exit(0);
 	}
 
 	void TTileGameBoy::Halt()
@@ -92,7 +94,7 @@ namespace TileGameLib
 	void TTileGameBoy::DefineButtonLeft(SDL_Scancode key) { ButtonLeft = key; }
 	void TTileGameBoy::DefineButtonRight(SDL_Scancode key) { ButtonRight = key; }
 	
-	void TTileGameBoy::OnCycle(void(*callback)()) { CallbackOnCycle = callback; }
+	void TTileGameBoy::OnGameLoop(void(*callback)()) { CallbackOnGameLoop = callback; }
 	void TTileGameBoy::OnExit(void(*callback)()) { CallbackOnExit = callback; }
 	void TTileGameBoy::OnPressA(void(*callback)()) { CallbackOnPressA = callback; }
 	void TTileGameBoy::OnPressB(void(*callback)()) { CallbackOnPressB = callback; }
@@ -108,4 +110,13 @@ namespace TileGameLib
 	void TTileGameBoy::OnReleaseDown(void(*callback)()) { CallbackOnReleaseDown = callback; }
 	void TTileGameBoy::OnReleaseLeft(void(*callback)()) { CallbackOnReleaseLeft = callback; }
 	void TTileGameBoy::OnReleaseRight(void(*callback)()) { CallbackOnReleaseRight = callback; }
+
+	bool TTileGameBoy::APressed() { return TKey::IsPressed(ButtonA); }
+	bool TTileGameBoy::BPressed() { return TKey::IsPressed(ButtonB); }
+	bool TTileGameBoy::StartPressed() { return TKey::IsPressed(ButtonStart); }
+	bool TTileGameBoy::SelectPressed() { return TKey::IsPressed(ButtonSelect); }
+	bool TTileGameBoy::UpPressed() { return TKey::IsPressed(ButtonUp); }
+	bool TTileGameBoy::DownPressed() { return TKey::IsPressed(ButtonDown); }
+	bool TTileGameBoy::LeftPressed() { return TKey::IsPressed(ButtonLeft); }
+	bool TTileGameBoy::RightPressed() { return TKey::IsPressed(ButtonRight); }
 }

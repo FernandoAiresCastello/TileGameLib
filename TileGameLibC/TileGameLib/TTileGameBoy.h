@@ -16,6 +16,9 @@ namespace TileGameLib
 	class TTileGameBoy
 	{
 	public:
+		TGBWindow* Wnd = nullptr;
+		bool AllowEscapeKeyToExit = false;
+
 		TTileGameBoy();
 		~TTileGameBoy();
 
@@ -34,7 +37,7 @@ namespace TileGameLib
 		void DefineButtonLeft(SDL_Scancode key);
 		void DefineButtonRight(SDL_Scancode key);
 
-		void OnCycle(void (*callback)());
+		void OnGameLoop(void (*callback)());
 		void OnExit(void (*callback)());
 		void OnPressA(void (*callback)());
 		void OnPressB(void (*callback)());
@@ -51,8 +54,16 @@ namespace TileGameLib
 		void OnReleaseLeft(void (*callback)());
 		void OnReleaseRight(void (*callback)());
 
+		bool APressed();
+		bool BPressed();
+		bool StartPressed();
+		bool SelectPressed();
+		bool UpPressed();
+		bool DownPressed();
+		bool LeftPressed();
+		bool RightPressed();
+
 	private:
-		TGBWindow* Wnd = nullptr;
 		bool Running = false;
 		bool Halted = false;
 
@@ -65,7 +76,7 @@ namespace TileGameLib
 		SDL_Scancode ButtonLeft = SDL_SCANCODE_LEFT;
 		SDL_Scancode ButtonRight = SDL_SCANCODE_RIGHT;
 
-		void (*CallbackOnCycle)() = nullptr;
+		void (*CallbackOnGameLoop)() = nullptr;
 		void (*CallbackOnExit)() = nullptr;
 		void (*CallbackOnPressA)() = nullptr;
 		void (*CallbackOnPressB)() = nullptr;
