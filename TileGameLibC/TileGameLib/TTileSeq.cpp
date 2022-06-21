@@ -115,6 +115,12 @@ namespace TileGameLib
 			Tiles.push_back(tile);
 	}
 
+	void TTileSeq::Pop()
+	{
+		if (!Tiles.empty())
+			Tiles.pop_back();
+	}
+
 	void TTileSeq::Set(int ix, TTile tile)
 	{
 		Tiles[ix] = tile;
