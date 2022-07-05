@@ -66,6 +66,7 @@
             this.MiDeleteObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.MiFillWithTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.MiOverrideColors = new System.Windows.Forms.ToolStripMenuItem();
+            this.MiExportSelectionToImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MiSetSelectionColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,7 +74,6 @@
             this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.BtnGrid = new System.Windows.Forms.ToolStripButton();
             this.BtnScreenshot = new System.Windows.Forms.ToolStripButton();
-            this.MiExportSelectionToImage = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.MapPanel.SuspendLayout();
@@ -96,7 +96,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(875, 490);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(721, 490);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // statusStrip1
@@ -107,7 +107,7 @@
             this.LbEditModeInfo});
             this.statusStrip1.Location = new System.Drawing.Point(0, 470);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(875, 20);
+            this.statusStrip1.Size = new System.Drawing.Size(721, 20);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
@@ -140,7 +140,7 @@
             this.MapPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapPanel.Location = new System.Drawing.Point(3, 33);
             this.MapPanel.Name = "MapPanel";
-            this.MapPanel.Size = new System.Drawing.Size(869, 434);
+            this.MapPanel.Size = new System.Drawing.Size(715, 434);
             this.MapPanel.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -156,7 +156,7 @@
             this.tableLayoutPanel1.Controls.Add(this.BtnScrollLeft, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.BtnScrollUp, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.TxtScrollAmount, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(762, 353);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(608, 353);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -261,7 +261,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(8, 5, 0, 2);
-            this.toolStrip1.Size = new System.Drawing.Size(875, 30);
+            this.toolStrip1.Size = new System.Drawing.Size(721, 30);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -518,6 +518,13 @@
             this.MiOverrideColors.Text = "Override colors";
             this.MiOverrideColors.Click += new System.EventHandler(this.MiOverrideColors_Click);
             // 
+            // MiExportSelectionToImage
+            // 
+            this.MiExportSelectionToImage.Name = "MiExportSelectionToImage";
+            this.MiExportSelectionToImage.Size = new System.Drawing.Size(237, 22);
+            this.MiExportSelectionToImage.Text = "Export to image file";
+            this.MiExportSelectionToImage.Click += new System.EventHandler(this.MiExportSelectionToImage_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -580,20 +587,13 @@
             this.BtnScreenshot.ToolTipText = "Save image";
             this.BtnScreenshot.Click += new System.EventHandler(this.BtnScreenshot_Click);
             // 
-            // MiExportSelectionToImage
-            // 
-            this.MiExportSelectionToImage.Name = "MiExportSelectionToImage";
-            this.MiExportSelectionToImage.Size = new System.Drawing.Size(237, 22);
-            this.MiExportSelectionToImage.Text = "Export to image file";
-            this.MiExportSelectionToImage.Click += new System.EventHandler(this.MiExportSelectionToImage_Click);
-            // 
             // MapEditorPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "MapEditorPanel";
-            this.Size = new System.Drawing.Size(875, 490);
+            this.Size = new System.Drawing.Size(721, 490);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MapEditorControl_KeyDown);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

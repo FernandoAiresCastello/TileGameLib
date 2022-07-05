@@ -93,7 +93,7 @@
             this.BtnSaveProject.Image = global::TileGameMaker.Properties.Resources.diskette;
             this.BtnSaveProject.Name = "BtnSaveProject";
             this.BtnSaveProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.BtnSaveProject.Size = new System.Drawing.Size(230, 22);
+            this.BtnSaveProject.Size = new System.Drawing.Size(229, 22);
             this.BtnSaveProject.Text = "Save";
             this.BtnSaveProject.Click += new System.EventHandler(this.BtnSaveProject_Click);
             // 
@@ -103,7 +103,7 @@
             this.BtnSaveAndExportProject.Name = "BtnSaveAndExportProject";
             this.BtnSaveAndExportProject.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.BtnSaveAndExportProject.Size = new System.Drawing.Size(230, 22);
+            this.BtnSaveAndExportProject.Size = new System.Drawing.Size(229, 22);
             this.BtnSaveAndExportProject.Text = "Save and export";
             this.BtnSaveAndExportProject.Click += new System.EventHandler(this.BtnSaveAndExportProject_Click);
             // 
@@ -111,34 +111,34 @@
             // 
             this.BtnCloseProject.Image = global::TileGameMaker.Properties.Resources.folder_vertical_zipper;
             this.BtnCloseProject.Name = "BtnCloseProject";
-            this.BtnCloseProject.Size = new System.Drawing.Size(230, 22);
+            this.BtnCloseProject.Size = new System.Drawing.Size(229, 22);
             this.BtnCloseProject.Text = "Close";
             this.BtnCloseProject.Click += new System.EventHandler(this.BtnCloseProject_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(227, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
             // 
             // BtnTemplateObjects
             // 
             this.BtnTemplateObjects.Image = global::TileGameMaker.Properties.Resources.bricks;
             this.BtnTemplateObjects.Name = "BtnTemplateObjects";
             this.BtnTemplateObjects.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.BtnTemplateObjects.Size = new System.Drawing.Size(230, 22);
+            this.BtnTemplateObjects.Size = new System.Drawing.Size(229, 22);
             this.BtnTemplateObjects.Text = "Template objects";
             this.BtnTemplateObjects.Click += new System.EventHandler(this.BtnTemplateObjects_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(227, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
             // MiExit
             // 
             this.MiExit.Image = global::TileGameMaker.Properties.Resources.cross;
             this.MiExit.Name = "MiExit";
-            this.MiExit.Size = new System.Drawing.Size(230, 22);
+            this.MiExit.Size = new System.Drawing.Size(229, 22);
             this.MiExit.Text = "Quit";
             this.MiExit.Click += new System.EventHandler(this.MiExit_Click);
             // 
@@ -147,14 +147,14 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnDataExtractor});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // BtnDataExtractor
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
             this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(180, 22);
+            this.BtnDataExtractor.Size = new System.Drawing.Size(147, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 
@@ -177,8 +177,8 @@
             // MainLayout
             // 
             this.MainLayout.ColumnCount = 3;
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.43367F));
-            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.72959F));
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.83673F));
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.32653F));
             this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.MainLayout.Controls.Add(this.TopRightPanel, 2, 0);
             this.MainLayout.Controls.Add(this.BottomRightPanel, 2, 1);
@@ -191,7 +191,7 @@
             this.MainLayout.Name = "MainLayout";
             this.MainLayout.RowCount = 2;
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 344F));
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 334F));
             this.MainLayout.Size = new System.Drawing.Size(784, 404);
             this.MainLayout.TabIndex = 1;
             // 
@@ -202,7 +202,7 @@
             this.TopRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopRightPanel.Location = new System.Drawing.Point(655, 3);
             this.TopRightPanel.Name = "TopRightPanel";
-            this.TopRightPanel.Size = new System.Drawing.Size(126, 54);
+            this.TopRightPanel.Size = new System.Drawing.Size(126, 64);
             this.TopRightPanel.TabIndex = 4;
             // 
             // ProjectAndMapPropertiesPanel
@@ -217,16 +217,16 @@
             this.ProjectAndMapPropertiesPanel.RowCount = 2;
             this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.ProjectAndMapPropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.ProjectAndMapPropertiesPanel.Size = new System.Drawing.Size(124, 52);
+            this.ProjectAndMapPropertiesPanel.Size = new System.Drawing.Size(124, 62);
             this.ProjectAndMapPropertiesPanel.TabIndex = 0;
             // 
             // MapPropertiesPanel
             // 
             this.MapPropertiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapPropertiesPanel.Location = new System.Drawing.Point(0, 31);
+            this.MapPropertiesPanel.Location = new System.Drawing.Point(0, 37);
             this.MapPropertiesPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MapPropertiesPanel.Name = "MapPropertiesPanel";
-            this.MapPropertiesPanel.Size = new System.Drawing.Size(124, 21);
+            this.MapPropertiesPanel.Size = new System.Drawing.Size(124, 25);
             this.MapPropertiesPanel.TabIndex = 1;
             // 
             // ProjectPanel
@@ -235,25 +235,25 @@
             this.ProjectPanel.Location = new System.Drawing.Point(0, 0);
             this.ProjectPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ProjectPanel.Name = "ProjectPanel";
-            this.ProjectPanel.Size = new System.Drawing.Size(124, 31);
+            this.ProjectPanel.Size = new System.Drawing.Size(124, 37);
             this.ProjectPanel.TabIndex = 0;
             // 
             // BottomRightPanel
             // 
             this.BottomRightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BottomRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomRightPanel.Location = new System.Drawing.Point(655, 63);
+            this.BottomRightPanel.Location = new System.Drawing.Point(655, 73);
             this.BottomRightPanel.Name = "BottomRightPanel";
-            this.BottomRightPanel.Size = new System.Drawing.Size(126, 338);
+            this.BottomRightPanel.Size = new System.Drawing.Size(126, 328);
             this.BottomRightPanel.TabIndex = 3;
             // 
             // BottomLeftPanel
             // 
             this.BottomLeftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BottomLeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomLeftPanel.Location = new System.Drawing.Point(3, 63);
+            this.BottomLeftPanel.Location = new System.Drawing.Point(3, 73);
             this.BottomLeftPanel.Name = "BottomLeftPanel";
-            this.BottomLeftPanel.Size = new System.Drawing.Size(115, 338);
+            this.BottomLeftPanel.Size = new System.Drawing.Size(126, 328);
             this.BottomLeftPanel.TabIndex = 2;
             // 
             // TopLeftPanel
@@ -262,13 +262,13 @@
             this.TopLeftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopLeftPanel.Location = new System.Drawing.Point(3, 3);
             this.TopLeftPanel.Name = "TopLeftPanel";
-            this.TopLeftPanel.Size = new System.Drawing.Size(115, 54);
+            this.TopLeftPanel.Size = new System.Drawing.Size(126, 64);
             this.TopLeftPanel.TabIndex = 1;
             // 
             // MapAndCommandLineSplitContainer
             // 
             this.MapAndCommandLineSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MapAndCommandLineSplitContainer.Location = new System.Drawing.Point(124, 3);
+            this.MapAndCommandLineSplitContainer.Location = new System.Drawing.Point(135, 3);
             this.MapAndCommandLineSplitContainer.Name = "MapAndCommandLineSplitContainer";
             this.MapAndCommandLineSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -281,7 +281,7 @@
             this.MapAndCommandLineSplitContainer.Panel2.Controls.Add(this.CommandLinePanel);
             this.MapAndCommandLineSplitContainer.Panel2Collapsed = true;
             this.MainLayout.SetRowSpan(this.MapAndCommandLineSplitContainer, 2);
-            this.MapAndCommandLineSplitContainer.Size = new System.Drawing.Size(525, 398);
+            this.MapAndCommandLineSplitContainer.Size = new System.Drawing.Size(514, 398);
             this.MapAndCommandLineSplitContainer.SplitterDistance = 323;
             this.MapAndCommandLineSplitContainer.TabIndex = 5;
             // 
@@ -291,7 +291,7 @@
             this.MapEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MapEditorPanel.Location = new System.Drawing.Point(0, 0);
             this.MapEditorPanel.Name = "MapEditorPanel";
-            this.MapEditorPanel.Size = new System.Drawing.Size(525, 398);
+            this.MapEditorPanel.Size = new System.Drawing.Size(514, 398);
             this.MapEditorPanel.TabIndex = 3;
             // 
             // CommandLinePanel
