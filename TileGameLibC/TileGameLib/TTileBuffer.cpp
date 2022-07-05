@@ -24,6 +24,11 @@ namespace TileGameLib
 		Layers[layer].SetTile(tile, x, y, transparent);
 	}
 
+	void TTileBuffer::PutChar(int ch, int layer, int x, int y, int fgc, int bgc, bool transparent)
+	{
+		Layers[layer].SetTile(TTileSeq(ch, fgc, bgc), x, y, transparent);
+	}
+
 	void TTileBuffer::Print(std::string str, int layer, int x, int y, int fgc, int bgc, bool transparent)
 	{
 		const int px = x;
