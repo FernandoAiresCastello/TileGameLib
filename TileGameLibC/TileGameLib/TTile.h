@@ -10,12 +10,9 @@
 
 namespace TileGameLib
 {
-	enum class TTileType { Indexed, PixelBlock };
-
 	class TTile
 	{
 	public:
-		TTileType Type;
 		CharsetIndex Char;
 		PaletteIndex ForeColor;
 		PaletteIndex BackColor;
