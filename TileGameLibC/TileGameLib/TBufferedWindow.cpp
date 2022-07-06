@@ -67,6 +67,16 @@ namespace TileGameLib
 		return Pal;
 	}
 
+	void TBufferedWindow::SetCharset(TCharset* chr)
+	{
+		Chr = chr;
+	}
+
+	void TBufferedWindow::SetPalette(TPalette* pal)
+	{
+		Pal = pal;
+	}
+
 	TTileBuffer* TBufferedWindow::GetBuffer()
 	{
 		return TileBuf;

@@ -40,6 +40,8 @@ namespace TileGameLib
 
 		TCharset* GetCharset();
 		TPalette* GetPalette();
+		void SetCharset(TCharset* chr);
+		void SetPalette(TPalette* pal);
 		TTileBuffer* GetBuffer();
 		int GetCols();
 		int GetRows();
