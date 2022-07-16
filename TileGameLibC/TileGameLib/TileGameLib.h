@@ -34,3 +34,5 @@
 #include "TGBTile.h"
 #include "TGBSprite.h"
 #include "TTileGameBoy.h"
+#include "TToolkitApp.h"
+#include "TTiledPanel.h"

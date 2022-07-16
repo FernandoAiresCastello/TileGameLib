@@ -181,6 +181,7 @@
     <ClInclude Include="TTileBuffer.h" />
     <ClInclude Include="TTileBufferLayer.h" />
     <ClInclude Include="TTiledImage.h" />
+    <ClInclude Include="TTiledPanel.h" />
     <ClInclude Include="TTileGameBoy.h" />
     <ClInclude Include="TTileSeq.h" />
     <ClInclude Include="TPanelWindow.h">
@@ -188,6 +189,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TileGameLib.h" />
+    <ClInclude Include="TToolkitApp.h" />
     <ClInclude Include="TWindowBase.h" />
   </ItemGroup>
   <ItemGroup>
@@ -217,12 +219,14 @@
     <ClCompile Include="TTileBuffer.cpp" />
     <ClCompile Include="TTileBufferLayer.cpp" />
     <ClCompile Include="TTiledImage.cpp" />
+    <ClCompile Include="TTiledPanel.cpp" />
     <ClCompile Include="TTileGameBoy.cpp" />
     <ClCompile Include="TTileSeq.cpp" />
     <ClCompile Include="TPanelWindow.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TToolkitApp.cpp" />
     <ClCompile Include="TWindowBase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

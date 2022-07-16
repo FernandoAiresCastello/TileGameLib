@@ -84,6 +84,12 @@
     <ClInclude Include="TTileGameBoy.h">
       <Filter>TileGameBoy</Filter>
     </ClInclude>
+    <ClInclude Include="TToolkitApp.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="TTiledPanel.h">
+      <Filter>Graphics\Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -167,6 +173,12 @@
     <ClCompile Include="TTileGameBoy.cpp">
       <Filter>TileGameBoy</Filter>
     </ClCompile>
+    <ClCompile Include="TToolkitApp.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="TTiledPanel.cpp">
+      <Filter>Graphics\Tile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -192,6 +204,9 @@
     </Filter>
     <Filter Include="Graphics\Window">
       <UniqueIdentifier>{b7f2517c-4e3b-4229-8d09-173fdd9c9389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{e62eb9fd-8068-4c12-9136-2bd81e437f45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
