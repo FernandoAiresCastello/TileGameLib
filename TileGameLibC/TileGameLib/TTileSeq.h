@@ -53,7 +53,7 @@ namespace TileGameLib
 		CharsetIndex GetChar(int ix);
 		PaletteIndex GetForeColor(int ix);
 		PaletteIndex GetBackColor(int ix);
-		void Parse(std::string tileString);
+		bool Parse(std::string tileString);
 		std::string ToString();
 
 	private:

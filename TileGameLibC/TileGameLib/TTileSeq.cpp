@@ -177,13 +177,25 @@ namespace TileGameLib
 		return Tiles[ix].BackColor;
 	}
 
-	void TTileSeq::Parse(std::string tileString)
+	bool TTileSeq::Parse(std::string tileString)
 	{
 		Clear();
-		for (auto& ts : String::Split(tileString, ';', true)) {
-			auto t = String::Split(ts, ',', true);
-			Add(String::ToInt(t[0]), String::ToInt(t[1]), String::ToInt(t[2]));
+
+		auto tiles = String::Split(tileString, ';', true);
+		if (tiles.empty()) {
+			return false;
 		}
+
+		for (auto& tile : tiles) {
+			auto t = String::Split(tile, ',', true);
+			if (t.size() == 3) {
+				Add(String::ToInt(t[0]), String::ToInt(t[1]), String::ToInt(t[2]));
+			} else {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	std::string TTileSeq::ToString()
