@@ -191,6 +191,7 @@
     <ClInclude Include="TileGameLib.h" />
     <ClInclude Include="TToolkitApp.h" />
     <ClInclude Include="TWindowBase.h" />
+    <ClInclude Include="TWindowCreationFlags.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TBufferedWindow.cpp" />
@@ -228,6 +229,7 @@
     </ClCompile>
     <ClCompile Include="TToolkitApp.cpp" />
     <ClCompile Include="TWindowBase.cpp" />
+    <ClCompile Include="TWindowCreationFlags.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

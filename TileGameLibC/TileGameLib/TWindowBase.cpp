@@ -7,6 +7,7 @@
 #include <string>
 #include <SDL_syswm.h>
 #include "TWindowBase.h"
+#include "TWindowCreationFlags.h"
 
 namespace TileGameLib
 {
@@ -19,7 +20,11 @@ namespace TileGameLib
 
 		SDL_Init(SDL_INIT_VIDEO);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
-		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+		if (TWindowCreationFlags::RenderScaleQuality) {
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, TWindowCreationFlags::RenderScaleQuality);
+		} else {
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+		}
 
 		Window = SDL_CreateWindow("",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
