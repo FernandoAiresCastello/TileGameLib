@@ -66,6 +66,11 @@ namespace TileGameLib
 		Layers[layer].Clear();
 	}
 
+	void TTileBuffer::ClearLayerRect(int layer, int x, int y, int w, int h)
+	{
+		Layers[layer].ClearRect(x, y, w, h);
+	}
+
 	void TTileBuffer::ClearAllLayers()
 	{
 		for (int i = 0; i < Layers.size(); i++)

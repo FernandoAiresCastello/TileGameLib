@@ -34,6 +34,7 @@ namespace TileGameLib
 		TTileSeq& GetTile(int layer, int x, int y);
 		void EraseTile(int layer, int x, int y);
 		void ClearLayer(int layer);
+		void ClearLayerRect(int layer, int x, int y, int w, int h);
 		void ClearAllLayers();
 		void FillLayer(int layer, TTileSeq tile, bool transparent);
 		void SetLayerVisible(int layer, bool visible);

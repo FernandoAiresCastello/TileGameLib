@@ -25,6 +25,7 @@ namespace TileGameLib
 		TTileSeq& GetTile(int x, int y);
 		void EraseTile(int x, int y);
 		void Clear();
+		void ClearRect(int x, int y, int w, int h);
 		void Fill(TTileSeq tile, bool transparent);
 		void SetVisible(bool visible);
 		bool IsVisible();

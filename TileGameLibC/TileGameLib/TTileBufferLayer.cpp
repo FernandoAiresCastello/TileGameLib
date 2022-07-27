@@ -57,6 +57,15 @@ namespace TileGameLib
 			Tiles[i].TileSeq.Clear();
 	}
 
+	void TTileBufferLayer::ClearRect(int x, int y, int w, int h)
+	{
+		for (int py = y; py <= y + h; py++) {
+			for (int px = x; px <= x + w; px++) {
+				Tiles[py * Cols + px].TileSeq.Clear();
+			}
+		}
+	}
+
 	void TTileBufferLayer::Fill(TTileSeq tile, bool transparent)
 	{
 		for (int i = 0; i < Size; i++) {
