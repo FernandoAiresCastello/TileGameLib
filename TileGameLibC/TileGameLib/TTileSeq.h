@@ -41,6 +41,7 @@ namespace TileGameLib
 		void Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);
 		void Add(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int count);
 		void Add(std::vector<TTile>& tiles);
+		void AddBlank(int count = 1);
 		void Pop();
 		void Set(int ix, TTile tile);
 		void Set(int ix, CharsetIndex ch, PaletteIndex fg, PaletteIndex bg);

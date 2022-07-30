@@ -116,6 +116,12 @@ namespace TileGameLib
 			Tiles.push_back(tile);
 	}
 
+	void TTileSeq::AddBlank(int count)
+	{
+		for (int i = 0; i < count; i++)
+			Tiles.push_back(TTile());
+	}
+
 	void TTileSeq::Pop()
 	{
 		if (!Tiles.empty())
