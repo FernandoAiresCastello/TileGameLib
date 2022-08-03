@@ -19,7 +19,7 @@ namespace TileGameLib
 	class TTileSeq
 	{
 	public:
-		void* Ext = nullptr;
+		CppProperties Prop;
 
 		TTileSeq();
 		TTileSeq(const TTileSeq& other);
