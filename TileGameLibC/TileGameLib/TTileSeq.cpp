@@ -85,6 +85,7 @@ namespace TileGameLib
 
 	void TTileSeq::Clear()
 	{
+		Prop.DeleteAll();
 		Tiles.clear();
 	}
 
