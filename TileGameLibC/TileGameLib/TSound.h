@@ -37,6 +37,7 @@ namespace TileGameLib
 		std::map<std::string, float> TbFreq;
 
 		void InitToneFreqTable();
-		void ParseTones(std::string&, TSoundStream*);
+		void ParseTones(std::string& data, TSoundStream* stream);
+		std::vector<std::string> SplitTones(std::string& data);
 	};
 }

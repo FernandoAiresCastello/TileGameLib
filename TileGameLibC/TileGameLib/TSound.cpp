@@ -206,7 +206,7 @@ namespace TileGameLib
 		static int ToneLength = 400;
 		static int Octave = 4;
 
-		auto values = String::Split(String::Trim(data), '-', true);
+		auto values = SplitTones(data);
 		for (int i = 0; i < values.size(); i++) {
 			auto value = String::ToUpper(values[i]);
 
@@ -228,6 +228,33 @@ namespace TileGameLib
 				stream->AddTone(freq, ToneLength);
 			}
 		}
+	}
+
+	std::vector<std::string> TSound::SplitTones(std::string& data)
+	{
+		data = String::Trim(data);
+		std::vector<std::string> tones;
+		std::string tone;
+
+		for (int i = 0; i < data.size(); i++) {
+			char ch = toupper(data[i]);
+			if (isalpha(ch)) {
+				if (tone != "") {
+					tones.push_back(tone);
+					tone = "";
+					i--;
+				} else {
+					tone += ch;
+				}
+			} else if (isdigit(ch) || ch == '#') {
+				tone += ch;
+			}
+		}
+		if (tone != "") {
+			tones.push_back(tone);
+		}
+
+		return tones;
 	}
 
 	void TSound::SetType(TSoundType type)
