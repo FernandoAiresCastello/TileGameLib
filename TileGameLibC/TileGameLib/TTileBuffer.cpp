@@ -13,6 +13,14 @@ namespace TileGameLib
 	{
 		for (int i = 0; i < layerCount; i++)
 			Layers.push_back(TTileBufferLayer(cols, rows));
+
+		View.X = 0;
+		View.Y = 0;
+		View.Cols = cols;
+		View.Rows = rows;
+		View.ScrollX = 0;
+		View.ScrollY = 0;
+		View.Visible = true;
 	}
 
 	TTileBuffer::~TTileBuffer()
@@ -49,6 +57,13 @@ namespace TileGameLib
 					break;
 			}
 		}
+	}
+
+	void TTileBuffer::Fill(TTileSeq tile, int layer, bool transparent)
+	{
+		for (int y = 0; y < Rows; y++)
+			for (int x = 0; x < Cols; x++)
+				Layers[layer].SetTile(tile, x, y, transparent);
 	}
 
 	TTileSeq& TTileBuffer::GetTile(int layer, int x, int y)
@@ -95,5 +110,13 @@ namespace TileGameLib
 	bool TTileBuffer::IsTileTransparent(int layer, int x, int y)
 	{
 		return Layers[layer].IsTileTransparent(x, y);
+	}
+	
+	void TTileBuffer::SetView(int x, int y, int cols, int rows)
+	{
+		View.X = x;
+		View.Y = y;
+		View.Cols = cols;
+		View.Rows = rows;
 	}
 }

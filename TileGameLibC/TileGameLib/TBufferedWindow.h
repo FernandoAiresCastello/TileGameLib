@@ -38,11 +38,13 @@ namespace TileGameLib
 		virtual ~TBufferedWindow();
 		virtual void Update();
 
+		TTileBuffer* AddBuffer(int layerCount, int cols, int rows);
+		void RemoveBuffer(int index);
+		TTileBuffer* GetBuffer(int index);
 		TCharset* GetCharset();
 		TPalette* GetPalette();
 		void SetCharset(TCharset* chr);
 		void SetPalette(TPalette* pal);
-		TTileBuffer* GetBuffer();
 		int GetCols();
 		int GetRows();
 		void SetAnimationSpeed(int speed);
@@ -52,12 +54,12 @@ namespace TileGameLib
 	private:
 		TCharset* Chr;
 		TPalette* Pal;
-		TTileBuffer* TileBuf;
+		std::vector<TTileBuffer*> TileBuffers;
 
 		virtual void SetPixel(int x, int y, RGB rgb);
 		void DrawTile(TTile& tile, int x, int y, bool transparent);
 		void DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
 		void DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg, bool transparent);
-		void DrawTileBuffer();
+		void DrawTileBuffer(TTileBuffer* buf);
 	};
 }

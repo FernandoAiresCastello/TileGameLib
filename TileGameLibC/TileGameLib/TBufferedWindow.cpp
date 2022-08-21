@@ -44,7 +44,7 @@ namespace TileGameLib
 		LayerCount(layerCount), Cols(cols), Rows(rows), LastCol(cols - 1), LastRow(rows - 1),
 		PixelWidth(pixelWidth), PixelHeight(pixelHeight)
 	{
-		TileBuf = new TTileBuffer(layerCount, cols, rows);
+		TileBuffers.push_back(new TTileBuffer(layerCount, cols, rows));
 		Buffer = new RGB[BufferLength];
 		Chr = TCharset::Default;
 		Pal = TPalette::Default;
@@ -54,7 +54,36 @@ namespace TileGameLib
 	TBufferedWindow::~TBufferedWindow()
 	{
 		BufWndTileAnimation.Running = false;
-		delete TileBuf;
+
+		for (auto& buf : TileBuffers)
+		{
+			delete buf;
+			buf = nullptr;
+		}
+
+		TileBuffers.clear();
+	}
+
+	TTileBuffer* TBufferedWindow::AddBuffer(int layerCount, int cols, int rows)
+	{
+		TTileBuffer* buf = new TTileBuffer(LayerCount, cols, rows);
+		TileBuffers.push_back(buf);
+		return buf;
+	}
+
+	void TBufferedWindow::RemoveBuffer(int index)
+	{
+		if (index >= 0 && index < TileBuffers.size())
+		{
+			delete TileBuffers[index];
+			TileBuffers[index] = nullptr;
+			TileBuffers.erase(TileBuffers.begin() + index);
+		}
+	}
+
+	TTileBuffer* TBufferedWindow::GetBuffer(int index)
+	{
+		return index >= 0 && index < TileBuffers.size() ? TileBuffers[index] : nullptr;
 	}
 
 	TCharset* TBufferedWindow::GetCharset()
@@ -75,11 +104,6 @@ namespace TileGameLib
 	void TBufferedWindow::SetPalette(TPalette* pal)
 	{
 		Pal = pal;
-	}
-
-	TTileBuffer* TBufferedWindow::GetBuffer()
-	{
-		return TileBuf;
 	}
 
 	int TBufferedWindow::GetCols()
@@ -116,7 +140,13 @@ namespace TileGameLib
 	void TBufferedWindow::Update()
 	{
 		ClearBackground();
-		DrawTileBuffer();
+		
+		for (auto& buf : TileBuffers)
+		{
+			if (buf->View.Visible)
+				DrawTileBuffer(buf);
+		}
+
 		TWindowBase::Update();
 	}
 
@@ -158,17 +188,18 @@ namespace TileGameLib
 		}
 	}
 
-	void TBufferedWindow::DrawTileBuffer()
+	void TBufferedWindow::DrawTileBuffer(TTileBuffer* buf)
 	{
 		BufWndTileAnimation.CachedFrame = BufWndTileAnimation.Frame;
 
 		for (int layer = 0; layer < LayerCount; layer++) {
-			if (!TileBuf->IsLayerVisible(layer))
+			if (!buf->IsLayerVisible(layer))
 				continue;
 
-			for (int y = 0; y < Rows; y++) {
-				for (int x = 0; x < Cols; x++) {
-					TTileSeq& tileSeq = TileBuf->GetTile(layer, x, y);
+			for (int y = 0; y < buf->View.Rows; y++) {
+				for (int x = 0; x < buf->View.Cols; x++) {
+					TTileSeq& tileSeq = buf->GetTile(layer, buf->View.ScrollX + x, buf->View.ScrollY + y);
+
 					TTile* tile = nullptr;
 					if (tileSeq.IsEmpty())
 						continue;
@@ -177,7 +208,7 @@ namespace TileGameLib
 					else
 						tile = &tileSeq.Get(BufWndTileAnimation.CachedFrame % tileSeq.GetSize());
 
-					DrawTile(*tile, x, y, TileBuf->IsTileTransparent(layer, x, y));
+					DrawTile(*tile, buf->View.X + x, buf->View.Y + y, buf->IsTileTransparent(layer, x, y));
 				}
 			}
 		}
