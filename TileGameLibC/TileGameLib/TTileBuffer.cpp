@@ -59,13 +59,6 @@ namespace TileGameLib
 		}
 	}
 
-	void TTileBuffer::Fill(TTileSeq tile, int layer, bool transparent)
-	{
-		for (int y = 0; y < Rows; y++)
-			for (int x = 0; x < Cols; x++)
-				Layers[layer].SetTile(tile, x, y, transparent);
-	}
-
 	TTileSeq& TTileBuffer::GetTile(int layer, int x, int y)
 	{
 		return Layers[layer].GetTile(x, y);

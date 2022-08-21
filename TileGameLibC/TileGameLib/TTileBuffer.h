@@ -43,7 +43,6 @@ namespace TileGameLib
 		void SetTile(TTileSeq tile, int layer, int x, int y, bool transparent);
 		void PutChar(int ch, int layer, int x, int y, int fgc, int bgc, bool transparent);
 		void Print(std::string str, int layer, int x, int y, int fgc, int bgc, bool transparent);
-		void Fill(TTileSeq tile, int layer, bool transparent);
 		TTileSeq& GetTile(int layer, int x, int y);
 		void EraseTile(int layer, int x, int y);
 		void ClearLayer(int layer);
