@@ -87,9 +87,6 @@
     <ClInclude Include="TToolkitApp.h">
       <Filter>Tools</Filter>
     </ClInclude>
-    <ClInclude Include="TTiledPanel.h">
-      <Filter>Graphics\Tile</Filter>
-    </ClInclude>
     <ClInclude Include="TWindowCreationFlags.h">
       <Filter>Graphics\Window</Filter>
     </ClInclude>
@@ -178,9 +175,6 @@
     </ClCompile>
     <ClCompile Include="TToolkitApp.cpp">
       <Filter>Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="TTiledPanel.cpp">
-      <Filter>Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="TWindowCreationFlags.cpp">
       <Filter>Graphics\Window</Filter>
