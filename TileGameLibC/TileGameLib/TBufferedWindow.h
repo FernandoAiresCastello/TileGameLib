@@ -26,7 +26,6 @@ namespace TileGameLib
 	class TBufferedWindow : public TWindowBase
 	{
 	public:
-		const int LayerCount;
 		const int Cols;
 		const int Rows;
 		const int LastCol;

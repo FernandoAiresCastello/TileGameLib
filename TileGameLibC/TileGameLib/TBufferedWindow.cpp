@@ -41,7 +41,7 @@ namespace TileGameLib
 {
 	TBufferedWindow::TBufferedWindow(int layerCount, int cols, int rows, int pixelWidth, int pixelHeight) :
 		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight)),
-		LayerCount(layerCount), Cols(cols), Rows(rows), LastCol(cols - 1), LastRow(rows - 1),
+		Cols(cols), Rows(rows), LastCol(cols - 1), LastRow(rows - 1),
 		PixelWidth(pixelWidth), PixelHeight(pixelHeight)
 	{
 		TileBuffers.push_back(new TTileBuffer(layerCount, cols, rows));
@@ -66,7 +66,7 @@ namespace TileGameLib
 
 	TTileBuffer* TBufferedWindow::AddBuffer(int layerCount, int cols, int rows)
 	{
-		TTileBuffer* buf = new TTileBuffer(LayerCount, cols, rows);
+		TTileBuffer* buf = new TTileBuffer(layerCount, cols, rows);
 		TileBuffers.push_back(buf);
 		return buf;
 	}
@@ -192,7 +192,7 @@ namespace TileGameLib
 	{
 		BufWndTileAnimation.CachedFrame = BufWndTileAnimation.Frame;
 
-		for (int layer = 0; layer < LayerCount; layer++) {
+		for (int layer = 0; layer < buf->LayerCount; layer++) {
 			if (!buf->IsLayerVisible(layer))
 				continue;
 
