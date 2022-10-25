@@ -87,7 +87,7 @@ namespace TileGameLib
 
 	void TWindowBase::ClearBackground()
 	{
-		ClearToRGB( BackColor);
+		ClearToRGB(BackColor);
 	}
 
 	void TWindowBase::ClearToRGB(RGB rgb)

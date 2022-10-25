@@ -32,6 +32,8 @@ namespace TileGameLib
 		const int LastRow;
 		const int PixelWidth;
 		const int PixelHeight;
+		const int HorizontalResolution;
+		const int VerticalResolution;
 
 		TBufferedWindow(int layerCount, int cols, int rows, int pixelWidth, int pixelHeight);
 		virtual ~TBufferedWindow();

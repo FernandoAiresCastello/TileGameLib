@@ -61,28 +61,28 @@
       <Filter>Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TGBSprite.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBTile.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBTileDef.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBTileLayer.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBTileset.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBWindow.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TGBWindowLayers.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TTileGameBoy.h">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="TToolkitApp.h">
       <Filter>Tools</Filter>
@@ -150,28 +150,28 @@
       <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGBSprite.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBTile.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBTileDef.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBTileLayer.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBTileset.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBWindow.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TGBWindowLayers.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TTileGameBoy.cpp">
-      <Filter>TileGameBoy</Filter>
+      <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="TToolkitApp.cpp">
       <Filter>Tools</Filter>
@@ -190,9 +190,6 @@
     <Filter Include="Input">
       <UniqueIdentifier>{8d733df8-b9a0-483e-b24e-61b40dc93af3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TileGameBoy">
-      <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics\Core">
       <UniqueIdentifier>{eba7172b-86d5-4d6e-a723-7bf586b74868}</UniqueIdentifier>
     </Filter>
@@ -207,6 +204,12 @@
     </Filter>
     <Filter Include="Tools">
       <UniqueIdentifier>{e62eb9fd-8068-4c12-9136-2bd81e437f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experimental">
+      <UniqueIdentifier>{f3698f09-e111-4f48-95ea-2f8a8ff7ea64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experimental\TileGameBoy">
+      <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

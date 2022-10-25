@@ -42,7 +42,8 @@ namespace TileGameLib
 	TBufferedWindow::TBufferedWindow(int layerCount, int cols, int rows, int pixelWidth, int pixelHeight) :
 		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight)),
 		Cols(cols), Rows(rows), LastCol(cols - 1), LastRow(rows - 1),
-		PixelWidth(pixelWidth), PixelHeight(pixelHeight)
+		PixelWidth(pixelWidth), PixelHeight(pixelHeight),
+		HorizontalResolution(cols * TChar::Width), VerticalResolution(rows * TChar::Height)
 	{
 		TileBuffers.push_back(new TTileBuffer(layerCount, cols, rows));
 		Buffer = new RGB[BufferLength];
