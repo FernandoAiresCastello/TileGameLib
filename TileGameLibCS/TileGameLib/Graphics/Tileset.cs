@@ -110,6 +110,11 @@ namespace TileGameLib.Graphics
             Set(second, temp);
         }
 
+        public void Truncate(int count)
+        {
+            Pixels = Pixels.GetRange(0, count);
+        }
+
         public void LoadFromImage(string file)
         {
             using (Bitmap image = (Bitmap)Image.FromFile(file))

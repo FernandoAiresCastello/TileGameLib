@@ -144,6 +144,12 @@
     <Compile Include="Windows\GridSetupWindow.Designer.cs">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\LineInputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\LineInputWindow.Designer.cs">
+      <DependentUpon>LineInputWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindow2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\GridSetupWindow.resx">
       <DependentUpon>GridSetupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\LineInputWindow.resx">
+      <DependentUpon>LineInputWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\MapBookmarkWindow.resx">
       <DependentUpon>MapBookmarkWindow.cs</DependentUpon>

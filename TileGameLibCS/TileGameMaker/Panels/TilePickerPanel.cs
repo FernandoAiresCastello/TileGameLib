@@ -459,5 +459,27 @@ namespace TileGameMaker.Panels
 
             return byte.Parse(row, System.Globalization.NumberStyles.HexNumber);
         }
+
+        private void BtnTruncate_Click(object sender, EventArgs e)
+        {
+            LineInputWindow wnd = new LineInputWindow("Enter number of tiles to keep:");
+            
+            if (wnd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    int count = wnd.NumericValue;
+                    
+                    if (count >= 0 && count < MapEditor.Tileset.Size)
+                    {
+                        TilePicker.Tileset.Truncate(count);
+                        TilePicker.Refresh();
+                    }
+                }
+                catch
+                {
+                }
+            }
+        }
     }
 }

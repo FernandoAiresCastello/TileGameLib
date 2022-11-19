@@ -45,6 +45,7 @@
             this.Txt1.Name = "Txt1";
             this.Txt1.Size = new System.Drawing.Size(70, 20);
             this.Txt1.TabIndex = 0;
+            this.Txt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Txt2
             // 
@@ -52,6 +53,7 @@
             this.Txt2.Name = "Txt2";
             this.Txt2.Size = new System.Drawing.Size(70, 20);
             this.Txt2.TabIndex = 1;
+            this.Txt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Lb1
             // 
