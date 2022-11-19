@@ -45,9 +45,7 @@
             this.BtnRotateRight = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateDown = new System.Windows.Forms.ToolStripButton();
             this.BtnRotateUp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.TilePanel = new System.Windows.Forms.Panel();
             this.PnlStrings = new System.Windows.Forms.Panel();
             this.ChkHexIndex = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,6 +56,7 @@
             this.TxtCsvHex = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtBinaryString = new System.Windows.Forms.TextBox();
+            this.TilePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -79,7 +78,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(878, 341);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(664, 288);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // statusStrip1
@@ -87,9 +86,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusLabel,
             this.HoverLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 317);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 264);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(878, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(664, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -121,11 +120,10 @@
             this.BtnRotateLeft,
             this.BtnRotateRight,
             this.BtnRotateDown,
-            this.BtnRotateUp,
-            this.toolStripSeparator2});
+            this.BtnRotateUp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(878, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(664, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -255,34 +253,21 @@
             this.BtnRotateUp.ToolTipText = "Rotate up";
             this.BtnRotateUp.Click += new System.EventHandler(this.BtnRotateUp_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.27582F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.72418F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.TilePanel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.PnlStrings, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 28);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.99115F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(872, 286);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(658, 233);
             this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // TilePanel
-            // 
-            this.TilePanel.Location = new System.Drawing.Point(115, 39);
-            this.TilePanel.Margin = new System.Windows.Forms.Padding(113, 37, 113, 37);
-            this.TilePanel.Name = "TilePanel";
-            this.TilePanel.Size = new System.Drawing.Size(212, 208);
-            this.TilePanel.TabIndex = 4;
             // 
             // PnlStrings
             // 
@@ -296,10 +281,10 @@
             this.PnlStrings.Controls.Add(this.label1);
             this.PnlStrings.Controls.Add(this.TxtBinaryString);
             this.PnlStrings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlStrings.Location = new System.Drawing.Point(448, 2);
+            this.PnlStrings.Location = new System.Drawing.Point(234, 2);
             this.PnlStrings.Margin = new System.Windows.Forms.Padding(0);
             this.PnlStrings.Name = "PnlStrings";
-            this.PnlStrings.Size = new System.Drawing.Size(422, 282);
+            this.PnlStrings.Size = new System.Drawing.Size(422, 229);
             this.PnlStrings.TabIndex = 5;
             this.PnlStrings.Click += new System.EventHandler(this.PnlStrings_Click);
             // 
@@ -332,7 +317,7 @@
             this.TxtBinaryBlock.Multiline = true;
             this.TxtBinaryBlock.Name = "TxtBinaryBlock";
             this.TxtBinaryBlock.ReadOnly = true;
-            this.TxtBinaryBlock.Size = new System.Drawing.Size(401, 174);
+            this.TxtBinaryBlock.Size = new System.Drawing.Size(401, 117);
             this.TxtBinaryBlock.TabIndex = 7;
             this.TxtBinaryBlock.TabStop = false;
             this.TxtBinaryBlock.Text = "Row 0\r\nRow 1\r\nRow 2\r\nRow 3\r\nRow 4\r\nRow 5\r\nRow 6\r\nRow 7";
@@ -406,11 +391,19 @@
             this.TxtBinaryString.Text = "0000000000000000000000000000000000000000000000000000000000000000";
             this.TxtBinaryString.Click += new System.EventHandler(this.Txt_Click);
             // 
+            // TilePanel
+            // 
+            this.TilePanel.Location = new System.Drawing.Point(12, 12);
+            this.TilePanel.Margin = new System.Windows.Forms.Padding(10);
+            this.TilePanel.Name = "TilePanel";
+            this.TilePanel.Size = new System.Drawing.Size(210, 208);
+            this.TilePanel.TabIndex = 6;
+            // 
             // TileEditor8x8Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 341);
+            this.ClientSize = new System.Drawing.Size(664, 288);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -453,8 +446,6 @@
         private System.Windows.Forms.ToolStripButton BtnRotateDown;
         private System.Windows.Forms.ToolStripButton BtnRotateUp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel TilePanel;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Panel PnlStrings;
         private System.Windows.Forms.TextBox TxtBinaryString;
         private System.Windows.Forms.Label label1;
@@ -465,5 +456,6 @@
         private System.Windows.Forms.TextBox TxtBinaryBlock;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.CheckBox ChkHexIndex;
+        private System.Windows.Forms.Panel TilePanel;
     }
 }
