@@ -104,12 +104,12 @@ namespace TileGameMaker.TiledDisplays
 
         public Color GetForeColor()
         {
-            return Color.FromArgb(Graphics.Palette.Colors[SelectedForeColor]);
+            return Graphics.Palette.GetColorObject(SelectedForeColor);
         }
 
         public Color GetBackColor()
         {
-            return Color.FromArgb(Graphics.Palette.Colors[SelectedBackColor]);
+            return Graphics.Palette.GetColorObject(SelectedBackColor);
         }
 
         public void Clear()

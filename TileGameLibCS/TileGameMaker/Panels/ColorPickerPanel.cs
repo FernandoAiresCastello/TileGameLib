@@ -87,6 +87,9 @@ namespace TileGameMaker.Panels
 
         private void DefaultPaletteItem_Click(object sender, EventArgs e)
         {
+            ColorPicker.SelectedForeColor = Config.ReadInt("DefaultTileForeColor");
+            ColorPicker.SelectedBackColor = Config.ReadInt("DefaultTileBackColor");
+
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             int defaultPaletteEnumValue = (int)item.Tag;
             ColorPicker.Graphics.Palette.InitDefault((Palette.Default)defaultPaletteEnumValue);
@@ -174,8 +177,8 @@ namespace TileGameMaker.Panels
                 }
 
                 int color = ColorPicker.GetColor(colorIx);
-                string rgb = color.ToString("X").Substring(2);
-                SetHoverStatus("H: " + colorIx + " RGB: " + rgb);
+                string rgb = color.ToString("X6").Substring(2);
+                SetHoverStatus("H: " + colorIx + " RGB 0x" + rgb);
             }
             else
             {
@@ -252,6 +255,7 @@ namespace TileGameMaker.Panels
                 ColorPicker.Clear();
                 UpdatePanelColors();
                 UpdateStatus();
+                Refresh();
             }
         }
 

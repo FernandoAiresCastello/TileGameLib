@@ -59,7 +59,7 @@ namespace TileGameLib.File
 
             int paletteSize = file.Length / 3;
 
-            palette.Clear(paletteSize, Color.White);
+            palette.Clear(paletteSize);
 
             for (int i = 0; i < palette.Size; i++)
             {

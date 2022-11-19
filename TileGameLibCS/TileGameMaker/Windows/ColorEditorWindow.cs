@@ -53,12 +53,12 @@ namespace TileGameMaker.Windows
         public void SetColor(int colorIx)
         {
             ColorIndex = colorIx;
-            Color color = Color.FromArgb(Palette.Colors[colorIx]);
+            Color color = Palette.GetColorObject(colorIx);
             Color = color;
             OriginalColor = color;
             ColorPanel.BackColor = color;
             OriginalColorPanel.BackColor = OriginalColor;
-            OriginalColorHex.Text = OriginalColor.ToArgb().ToString("X").PadLeft(6, '0').Substring(2);
+            OriginalColorHex.Text = OriginalColor.ToArgb().ToString("X6").Substring(2);
             StatusLabel.Text = "IX: " + colorIx;
 
             UpdateAllControls();

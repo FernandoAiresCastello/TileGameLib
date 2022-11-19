@@ -190,7 +190,7 @@ namespace TileGameLib.File
 
             // === PALETTE ===
             int paletteSize = NextNumber();
-            project.Palette.Clear(paletteSize, Color.White);
+            project.Palette.Clear(paletteSize);
             for (int i = 0; i < paletteSize; i++)
             {
                 int r = NextNumber();
