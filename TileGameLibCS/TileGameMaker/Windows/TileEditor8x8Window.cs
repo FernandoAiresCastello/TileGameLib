@@ -86,7 +86,7 @@ namespace TileGameMaker.Windows
             TileIndex = index;
             TileEditor.SetTile(Tileset, index);
             OriginalPixels = new TilePixels(Tileset.Get(index));
-            StatusLabel.Text = "IX: " + index + " (" + index.ToString("X2") + ")";
+            StatusLabel.Text = "IX: " + index + " (0x" + index.ToString("X2") + ")";
             UpdateStringRepresentations();
         }
 

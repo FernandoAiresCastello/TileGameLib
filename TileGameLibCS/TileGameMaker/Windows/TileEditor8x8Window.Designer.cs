@@ -291,7 +291,7 @@
             // ChkHexIndex
             // 
             this.ChkHexIndex.AutoSize = true;
-            this.ChkHexIndex.Location = new System.Drawing.Point(334, 78);
+            this.ChkHexIndex.Location = new System.Drawing.Point(334, 70);
             this.ChkHexIndex.Name = "ChkHexIndex";
             this.ChkHexIndex.Size = new System.Drawing.Size(76, 17);
             this.ChkHexIndex.TabIndex = 9;
@@ -303,7 +303,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 75);
+            this.label4.Location = new System.Drawing.Point(7, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
             this.label4.TabIndex = 8;
@@ -313,11 +313,11 @@
             // 
             this.TxtBinaryBlock.BackColor = System.Drawing.SystemColors.Control;
             this.TxtBinaryBlock.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBinaryBlock.Location = new System.Drawing.Point(9, 101);
+            this.TxtBinaryBlock.Location = new System.Drawing.Point(9, 90);
             this.TxtBinaryBlock.Multiline = true;
             this.TxtBinaryBlock.Name = "TxtBinaryBlock";
             this.TxtBinaryBlock.ReadOnly = true;
-            this.TxtBinaryBlock.Size = new System.Drawing.Size(401, 117);
+            this.TxtBinaryBlock.Size = new System.Drawing.Size(401, 128);
             this.TxtBinaryBlock.TabIndex = 7;
             this.TxtBinaryBlock.TabStop = false;
             this.TxtBinaryBlock.Text = "Row 0\r\nRow 1\r\nRow 2\r\nRow 3\r\nRow 4\r\nRow 5\r\nRow 6\r\nRow 7";
