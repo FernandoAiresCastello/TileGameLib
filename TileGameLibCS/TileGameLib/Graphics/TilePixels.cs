@@ -125,20 +125,20 @@ namespace TileGameLib.Graphics
         {
             StringBuilder str = new StringBuilder();
             foreach (byte row in PixelRows)
-                str.Append(row.ToString() + ",");
+                str.Append(row.ToString() + ", ");
 
             string csv = str.ToString();
-            return csv.Substring(0, csv.Length - 1);
+            return csv.Substring(0, csv.Length - 2); // Remove trailing comma
         }
 
         public string ToHexCsvString()
         {
             StringBuilder str = new StringBuilder();
             foreach (byte row in PixelRows)
-                str.Append(row.ToString("X2") + ",");
+                str.Append("0x" + row.ToString("x2") + ", ");
 
             string csv = str.ToString();
-            return csv.Substring(0, csv.Length - 1);
+            return csv.Substring(0, csv.Length - 2); // Remove trailing comma
         }
 
         public override int GetHashCode()

@@ -278,7 +278,8 @@ namespace TileGameMaker.Windows
         {
             if (!string.IsNullOrWhiteSpace(TxtOutput.Text))
             {
-                Clipboard.SetText(TxtOutput.Text);
+                string text = string.Join(Environment.NewLine, TxtOutput.Lines.Skip(3)); // Skip header
+                Clipboard.SetText(text);
             }
         }
     }

@@ -21,7 +21,6 @@ namespace TileGameMaker.TiledDisplays
         private readonly int SelectedBackColorSwatchTile = Config.ReadInt("ColorPickerSelectedBackColorSwatchTile");
         private readonly int SelectedBothColorsEqualSwatchTile = Config.ReadInt("ColorPickerSelectedBothColorsEqualSwatchTile");
 
-        private bool RearrangeMode = false;
         private int RearrangeColorSrc = 0;
         private int RearrangeColorDst = 0;
 
@@ -131,7 +130,6 @@ namespace TileGameMaker.TiledDisplays
 
         public void StartRearrange(int colorIx)
         {
-            RearrangeMode = true;
             RearrangeColorSrc = colorIx;
             Refresh();
         }
@@ -144,7 +142,6 @@ namespace TileGameMaker.TiledDisplays
 
         public void EndRearrange(int colorIx)
         {
-            RearrangeMode = false;
             RearrangeColorDst = colorIx;
             Graphics.Palette.Swap(RearrangeColorSrc, RearrangeColorDst);
             Refresh();

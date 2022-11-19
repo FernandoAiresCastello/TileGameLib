@@ -175,7 +175,7 @@ namespace TileGameMaker.Panels
 
                 int color = ColorPicker.GetColor(colorIx);
                 string rgb = color.ToString("X").Substring(2);
-                SetHoverStatus("I: " + colorIx + " RGB: " + rgb);
+                SetHoverStatus("H: " + colorIx + " RGB: " + rgb);
             }
             else
             {
@@ -212,9 +212,9 @@ namespace TileGameMaker.Panels
         private void UpdateStatus()
         {
             LblStatus.Text = 
-                "C: " + ColorPicker.Graphics.Palette.Size + 
-                " F: " + ColorPicker.SelectedForeColor + 
-                " B: " + ColorPicker.SelectedBackColor;
+                "SIZE: " + ColorPicker.Graphics.Palette.Size + " | " +
+                "F: " + ColorPicker.SelectedForeColor + " " +
+                "B: " + ColorPicker.SelectedBackColor;
         }
 
         private void SetHoverStatus(string status)

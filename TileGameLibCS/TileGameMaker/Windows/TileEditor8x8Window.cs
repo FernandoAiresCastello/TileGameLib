@@ -24,7 +24,7 @@ namespace TileGameMaker.Windows
         private readonly int PixelOn = Config.ReadInt("TileEditorPixelOnValue");
         private readonly int PixelOff = Config.ReadInt("TileEditorPixelOffValue");
 
-        public TileEditor8x8Window(Tileset tileset)
+        public TileEditor8x8Window(Tileset tileset, bool ptmFormatHexIndex)
         {
             InitializeComponent();
             Tileset = tileset;
@@ -37,9 +37,9 @@ namespace TileGameMaker.Windows
             TileEditor.MouseLeave += TileEditor_MouseLeave;
             TileEditor.MouseDown += TileEditor_MouseDown;
             KeyDown += TileEditor8x8Window_KeyDown;
-            TxtStringRep.Visible = true;
 
             HoverLabel.Text = "";
+            ChkHexIndex.Checked = ptmFormatHexIndex;
         }
 
         private void TileEditor8x8Window_KeyDown(object sender, KeyEventArgs e)
@@ -86,7 +86,7 @@ namespace TileGameMaker.Windows
             TileIndex = index;
             TileEditor.SetTile(Tileset, index);
             OriginalPixels = new TilePixels(Tileset.Get(index));
-            StatusLabel.Text = "IX: " + index;
+            StatusLabel.Text = "IX: " + index + " (" + index.ToString("X2") + ")";
             UpdateStringRepresentations();
         }
 
@@ -104,13 +104,45 @@ namespace TileGameMaker.Windows
 
         private void UpdateStringRepresentations()
         {
-            StringBuilder reps = new StringBuilder();
-            reps.AppendLine("B: " + Tileset.Get(TileIndex).ToBinaryString());
-            reps.AppendLine("H: " + Tileset.Get(TileIndex).ToHexCsvString());
-            reps.AppendLine("D: " + Tileset.Get(TileIndex).ToCsvString());
+            TxtBinaryString.Text = Tileset.Get(TileIndex).ToBinaryString();
+            TxtBinaryString.Select(0, 0);
+            TxtCsvHex.Text = Tileset.Get(TileIndex).ToHexCsvString();
+            TxtCsvHex.Select(0, 0);
+            TxtCsvDec.Text = Tileset.Get(TileIndex).ToCsvString();
+            TxtCsvDec.Select(0, 0);
 
-            TxtStringRep.Text = reps.ToString();
-            TxtStringRep.Select(0, 0);
+            UpdatePtmFormat();
+        }
+
+        private void UpdatePtmFormat()
+        {
+            TxtBinaryBlock.Clear();
+
+            var rows = SplitBinaryString(TxtBinaryString.Text);
+            string prefix;
+
+            if (ChkHexIndex.Checked)
+                prefix = "CHR &h" + TileIndex.ToString("x2");
+            else
+                prefix = "CHR " + TileIndex;
+
+            string suffix = "";
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                string row = rows[i];
+                TxtBinaryBlock.AppendText(prefix + "," + i + ",&b" + row + suffix + Environment.NewLine);
+            }
+
+            TxtBinaryBlock.Select(0, 0);
+        }
+
+        static List<string> SplitBinaryString(string str)
+        {
+            const int chunkSize = 8;
+            return Enumerable.Range(0, str.Length / chunkSize)
+                .Select(i => str.Substring(i * chunkSize, chunkSize))
+                .ToList();
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -177,10 +209,27 @@ namespace TileGameMaker.Windows
             OnTileChanged();
         }
 
-        private void BtnViewCode_Click(object sender, EventArgs e)
+        private void Txt_Click(object sender, EventArgs e)
         {
-            BtnViewCode.Checked = !BtnViewCode.Checked;
-            TxtStringRep.Visible = BtnViewCode.Checked;
+            TextBox textBox = sender as TextBox;
+            textBox.SelectAll();
+            //Clipboard.SetText(textBox.Text);
+        }
+
+        private void PnlStrings_Click(object sender, EventArgs e)
+        {
+            foreach (Control ctl in PnlStrings.Controls)
+            {
+                if (ctl is TextBox)
+                {
+                    (ctl as TextBox).DeselectAll();
+                }
+            }
+        }
+
+        private void ChkHexIndex_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePtmFormat();
         }
     }
 }

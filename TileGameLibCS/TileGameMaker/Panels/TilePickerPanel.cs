@@ -46,6 +46,7 @@ namespace TileGameMaker.Panels
         private TilePixels ClipboardTile = new TilePixels();
 
         private bool RearrangeMode => BtnRearrange.Checked;
+        private bool PtmFormatHexIndex = true;
 
         public TilePickerPanel()
         {
@@ -148,7 +149,7 @@ namespace TileGameMaker.Panels
             }
 
             if (tileIx >= 0 && tileIx < TilePicker.Graphics.Tileset.Size)
-                SetHoverStatus("IX: " + tileIx);
+                SetHoverStatus("H: " + tileIx + " (0x" + tileIx.ToString("X2") + ")");
             else
                 SetHoverStatus("");
         }
@@ -192,13 +193,20 @@ namespace TileGameMaker.Panels
             }
             else
             {
-                TileEditor8x8Window = new TileEditor8x8Window(MapEditor.Tileset);
+                TileEditor8x8Window = new TileEditor8x8Window(MapEditor.Tileset, PtmFormatHexIndex);
                 TileEditor8x8Window.Subscribe(this);
                 TileEditor8x8Window.Subscribe(TilePicker);
                 TileEditor8x8Window.Subscribe(MapEditor.MapEditorControl);
                 TileEditor8x8Window.SetTile(tileIx);
                 TileEditor8x8Window.Show(this);
+
+                TileEditor8x8Window.FormClosed += TileEditor8x8Window_FormClosed;
             }
+        }
+
+        private void TileEditor8x8Window_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            PtmFormatHexIndex = TileEditor8x8Window.ChkHexIndex.Checked;
         }
 
         private void TilePicker_MouseLeave(object sender, EventArgs e)
@@ -209,8 +217,8 @@ namespace TileGameMaker.Panels
         private void UpdateStatus()
         {
             StatusLabel.Text =
-                "C: " + TilePicker.Graphics.Tileset.Size +
-                " SEL: " + TilePicker.TileIndex;
+                "SIZE: " + TilePicker.Graphics.Tileset.Size + " | " +
+                "SEL: " + TilePicker.TileIndex + " (0x" + TilePicker.TileIndex.ToString("X2") + ")";
         }
 
         private void SetHoverStatus(string status)
@@ -387,8 +395,8 @@ namespace TileGameMaker.Panels
         private void BtnCode_Click(object sender, EventArgs e)
         {
             BinaryCodeSequenceWindow win = new BinaryCodeSequenceWindow(
-                "View / edit tile sequence as code", 
-                "8 hexadecimal bytes (ex. 7E,FF,DB,FF,C3,E7,FF,7E)", SelectedTile,
+                "View / edit tile sequence as code",
+                "8 hexadecimal bytes (ex. 0x00,0x00,...)", SelectedTile,
                 GetTileLines, SetTileLines);
 
             win.ShowDialog(this);
@@ -419,14 +427,14 @@ namespace TileGameMaker.Panels
                     {
                         string[] rows = tileBytes[listIndex++].Split(',');
                         int rowIndex = 0;
-                        byte row1 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row2 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row3 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row4 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row5 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row6 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row7 = byte.Parse(rows[rowIndex++], System.Globalization.NumberStyles.HexNumber);
-                        byte row8 = byte.Parse(rows[rowIndex], System.Globalization.NumberStyles.HexNumber);
+                        byte row1 = ParseTileRow(rows, rowIndex++);
+                        byte row2 = ParseTileRow(rows, rowIndex++);
+                        byte row3 = ParseTileRow(rows, rowIndex++);
+                        byte row4 = ParseTileRow(rows, rowIndex++);
+                        byte row5 = ParseTileRow(rows, rowIndex++);
+                        byte row6 = ParseTileRow(rows, rowIndex++);
+                        byte row7 = ParseTileRow(rows, rowIndex++);
+                        byte row8 = ParseTileRow(rows, rowIndex++);
 
                         TilePicker.Tileset.Set(i, row1, row2, row3, row4, row5, row6, row7, row8);
                         TilePicker.Refresh();
@@ -441,6 +449,15 @@ namespace TileGameMaker.Panels
             {
                 Alert.Error("There was an error while setting tile sequence bytes:\n\n" + ex.Message);
             }
+        }
+
+        private byte ParseTileRow(string[] rows, int ix)
+        {
+            string row = rows[ix].Trim().ToLower();
+            if (row.StartsWith("0x") || row.StartsWith("&h"))
+                row = row.Substring(2);
+
+            return byte.Parse(row, System.Globalization.NumberStyles.HexNumber);
         }
     }
 }
