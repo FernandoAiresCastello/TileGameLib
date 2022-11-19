@@ -48,7 +48,7 @@ namespace TileGameMaker.Windows
 
         private void DataExtractorWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.F5)
             {
                 Close();
             }
