@@ -152,6 +152,10 @@ namespace TileGameLib.File
                 }
             }
 
+            // === CONFIG ===
+            string config = project.Config.ToString();
+            Append(config);
+
             MemoryFile file = new MemoryFile();
             file.WriteString(text.ToString());
             file.SaveToPhysicalFile(project.Path);
@@ -324,6 +328,11 @@ namespace TileGameLib.File
                     }
                 }
             }
+
+            // === CONFIG ===
+            string config = NextString();
+            if (!string.IsNullOrWhiteSpace(config))
+                project.Config.Parse(config);
 
             return true;
         }

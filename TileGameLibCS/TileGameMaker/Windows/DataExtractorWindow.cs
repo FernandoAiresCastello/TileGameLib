@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TileGameLib.File;
 using TileGameLib.GameElements;
 using TileGameLib.Graphics;
 using TileGameLib.Util;
@@ -19,6 +20,7 @@ namespace TileGameMaker.Windows
     {
         private MapEditor MapEditor;
         private ObjectMap Map => MapEditor.Map;
+        private ConfigBundle Cfg => MapEditor.Project.Config;
 
         private DataExtractorWindow() : this(null)
         {
@@ -39,6 +41,31 @@ namespace TileGameMaker.Windows
             PaletteRangeLast.Value = PaletteRangeLast.Maximum = Map.Palette.Size - 1;
             TilesetRangeFirst.Value = 0;
             TilesetRangeLast.Value = TilesetRangeLast.Maximum = Map.Tileset.Size - 1;
+
+            KeyPreview = true;
+            KeyDown += DataExtractorWindow_KeyDown;
+        }
+
+        private void DataExtractorWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            ParseConfig();
+
+            base.OnShown(e);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            StoreConfig();
+
+            base.OnClosed(e);
         }
 
         private void BtnExtractMapData_Click(object sender, EventArgs e) => ExtractMapData();
@@ -47,6 +74,8 @@ namespace TileGameMaker.Windows
 
         private void ExtractMapData()
         {
+            StoreConfig();
+
             int layerIndex = CmbLayer.SelectedIndex;
             bool extract1stTileIndex = ChkObject1stTileIndex.Checked;
             bool extract1stTileForeColor = ChkObject1stTileForeColor.Checked;
@@ -139,6 +168,8 @@ namespace TileGameMaker.Windows
 
         private void ExtractPaletteData()
         {
+            StoreConfig();
+
             bool decimalInt = RbPaletteFmtDecInt.Checked;
             bool hexadecimalInt = RbPaletteFmtHexInt.Checked;
             bool decimalRgb = RbPaletteFmtDecRgb.Checked;
@@ -217,6 +248,8 @@ namespace TileGameMaker.Windows
 
         private void ExtractTilesetData()
         {
+            StoreConfig();
+
             bool decimalBytes = RbTileDecimal.Checked;
             bool hexadecimalBytes = RbTileHexadecimal.Checked;
             bool binaryString = RbTileBinaryString.Checked;
@@ -301,6 +334,54 @@ namespace TileGameMaker.Windows
                 string text = string.Join(Environment.NewLine, TxtOutput.Lines.Skip(3)); // Skip header
                 Clipboard.SetText(text);
             }
+        }
+
+        private void StoreConfig()
+        {
+            Cfg.SetBool("dataExtractor.tileset.decimalBytes", RbTileDecimal.Checked);
+            Cfg.SetBool("dataExtractor.tileset.hexadecimalBytes", RbTileHexadecimal.Checked);
+            Cfg.SetBool("dataExtractor.tileset.binaryString", RbTileBinaryString.Checked);
+            Cfg.SetBool("dataExtractor.tileset.base64", RbTileBase64.Checked);
+            Cfg.SetString("dataExtractor.tileset.linePreffix", TxtTileLinePrefix.Text);
+            Cfg.SetString("dataExtractor.tileset.lineSuffix", TxtTileLineSuffix.Text);
+            Cfg.SetString("dataExtractor.tileset.hexPrefix", TxtTileHexPrefix.Text);
+            Cfg.SetString("dataExtractor.tileset.byteSeparator", TxtTileByteSeparator.Text);
+            Cfg.SetBool("dataExtractor.tileset.appendTileIndex", ChkAppendTileIndex.Checked);
+
+            Cfg.SetBool("dataExtractor.palette.decimalInt", RbPaletteFmtDecInt.Checked);
+            Cfg.SetBool("dataExtractor.palette.hexadecimalInt", RbPaletteFmtHexInt.Checked);
+            Cfg.SetBool("dataExtractor.palette.decimalRgb", RbPaletteFmtDecRgb.Checked);
+            Cfg.SetBool("dataExtractor.palette.hexadecimalRgb", RbPaletteFmtHexRgb.Checked);
+            Cfg.SetBool("dataExtractor.palette.appendAlpha", ChkColorAppendAlpha.Checked);
+            Cfg.SetString("dataExtractor.palette.linePrefix", TxtColorLinePrefix.Text);
+            Cfg.SetString("dataExtractor.palette.lineSuffix", TxtColorLineSuffix.Text);
+            Cfg.SetString("dataExtractor.palette.hexPrefix", TxtColorHexPrefix.Text);
+            Cfg.SetString("dataExtractor.palette.rgbSeparator", TxtColorComponentSeparator.Text);
+            Cfg.SetBool("dataExtractor.palette.appendColorIndex", ChkAppendColorIndex.Checked);
+        }
+
+        private void ParseConfig()
+        {
+            RbTileDecimal.Checked = Cfg.GetBool("dataExtractor.tileset.decimalBytes");
+            RbTileHexadecimal.Checked = Cfg.GetBool("dataExtractor.tileset.hexadecimalBytes");
+            RbTileBinaryString.Checked = Cfg.GetBool("dataExtractor.tileset.binaryString");
+            RbTileBase64.Checked = Cfg.GetBool("dataExtractor.tileset.base64");
+            TxtTileLinePrefix.Text = Cfg.GetString("dataExtractor.tileset.linePreffix");
+            TxtTileLineSuffix.Text = Cfg.GetString("dataExtractor.tileset.lineSuffix");
+            TxtTileHexPrefix.Text = Cfg.GetString("dataExtractor.tileset.hexPrefix");
+            TxtTileByteSeparator.Text = Cfg.GetString("dataExtractor.tileset.byteSeparator");
+            ChkAppendTileIndex.Checked = Cfg.GetBool("dataExtractor.tileset.appendTileIndex");
+
+            RbPaletteFmtDecInt.Checked = Cfg.GetBool("dataExtractor.palette.decimalInt");
+            RbPaletteFmtHexInt.Checked = Cfg.GetBool("dataExtractor.palette.hexadecimalInt");
+            RbPaletteFmtDecRgb.Checked = Cfg.GetBool("dataExtractor.palette.decimalRgb");
+            RbPaletteFmtHexRgb.Checked = Cfg.GetBool("dataExtractor.palette.hexadecimalRgb");
+            ChkColorAppendAlpha.Checked = Cfg.GetBool("dataExtractor.palette.appendAlpha");
+            TxtColorLinePrefix.Text = Cfg.GetString("dataExtractor.palette.linePrefix");
+            TxtColorLineSuffix.Text = Cfg.GetString("dataExtractor.palette.lineSuffix");
+            TxtColorHexPrefix.Text = Cfg.GetString("dataExtractor.palette.hexPrefix");
+            TxtColorComponentSeparator.Text = Cfg.GetString("dataExtractor.palette.rgbSeparator");
+            ChkAppendColorIndex.Checked = Cfg.GetBool("dataExtractor.palette.appendColorIndex");
         }
     }
 }

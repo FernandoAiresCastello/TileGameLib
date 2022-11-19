@@ -154,7 +154,8 @@
             // 
             this.BtnDataExtractor.Image = global::TileGameMaker.Properties.Resources.database_lightning;
             this.BtnDataExtractor.Name = "BtnDataExtractor";
-            this.BtnDataExtractor.Size = new System.Drawing.Size(147, 22);
+            this.BtnDataExtractor.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.BtnDataExtractor.Size = new System.Drawing.Size(180, 22);
             this.BtnDataExtractor.Text = "Data extractor";
             this.BtnDataExtractor.Click += new System.EventHandler(this.BtnDataExtractor_Click);
             // 

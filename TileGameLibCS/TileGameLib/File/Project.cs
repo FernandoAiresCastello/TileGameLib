@@ -18,6 +18,7 @@ namespace TileGameLib.File
         public Palette Palette { get; set; }
         public List<ObjectMap> Maps { get; set; }
         public ObjectMap TemplateObjects { get; set; }
+        public ConfigBundle Config { get; set; }
 
         public string Folder
         {
@@ -35,6 +36,7 @@ namespace TileGameLib.File
             Palette = new Palette();
             Maps = new List<ObjectMap>();
             TemplateObjects = new ObjectMap(this, 16, 16);
+            Config = new ConfigBundle();
         }
 
         public void DeleteMap(ObjectMap map)

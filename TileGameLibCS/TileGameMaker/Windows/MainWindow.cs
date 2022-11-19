@@ -87,18 +87,15 @@ namespace TileGameMaker.Windows
         {
             if (promptToSave)
             {
-                DialogResult result = Alert.YesNoOrCancel("Save project before exiting?");
+                bool confirmed = Alert.Confirm("Exit application?");
 
-                if (result == DialogResult.Cancel)
+                if (!confirmed)
                 {
                     if (e != null)
                         e.Cancel = true;
 
                     return;
                 }
-
-                if (result == DialogResult.Yes)
-                    SaveProject();
             }
 
             MapEditor.MapBookmarks.Save(MapBookmarks.Filename);
@@ -161,11 +158,9 @@ namespace TileGameMaker.Windows
 
         private void BtnCloseProject_Click(object sender, EventArgs e)
         {
-            DialogResult result = Alert.YesNoOrCancel("Save project before closing?");
-            if (result == DialogResult.Cancel)
+            bool confirmed = Alert.Confirm("Close project?");
+            if (!confirmed)
                 return;
-            if (result == DialogResult.Yes)
-                SaveProject();
 
             if (MapEditor.StartWindow != null)
             {
