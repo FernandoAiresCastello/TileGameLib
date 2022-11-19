@@ -82,6 +82,16 @@ namespace TileGameLib
 		}
 	}
 
+	void TBufferedWindow::RemoveAllBuffersExceptDefault()
+	{
+		int count = TileBuffers.size();
+
+		for (int i = count - 1; i > 0; i--)
+		{
+			RemoveBuffer(i);
+		}
+	}
+
 	TTileBuffer* TBufferedWindow::GetBuffer(int index)
 	{
 		return index >= 0 && index < TileBuffers.size() ? TileBuffers[index] : nullptr;

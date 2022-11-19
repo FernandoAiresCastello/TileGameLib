@@ -41,6 +41,7 @@ namespace TileGameLib
 
 		TTileBuffer* AddBuffer(int layerCount, int cols, int rows);
 		void RemoveBuffer(int index);
+		void RemoveAllBuffersExceptDefault();
 		TTileBuffer* GetBuffer(int index);
 		TCharset* GetCharset();
 		TPalette* GetPalette();
