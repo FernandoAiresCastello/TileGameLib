@@ -162,6 +162,16 @@ namespace TileGameMaker.Windows
 
                 output.Append(linePrefix);
 
+                if (ChkAppendColorIndex.Checked)
+                {
+                    if (hexadecimalInt || hexadecimalRgb)
+                        output.Append("0x" + colorIndex.ToString("x2"));
+                    else
+                        output.Append(colorIndex);
+
+                    output.Append(rgbSeparator);
+                }
+
                 if (decimalInt)
                 {
                     if (appendAlpha)
@@ -228,6 +238,16 @@ namespace TileGameMaker.Windows
                 TilePixels tile = Map.Tileset.Get(tileIndex);
 
                 output.Append(linePrefix);
+                
+                if (ChkAppendTileIndex.Checked)
+                {
+                    if (hexadecimalBytes)
+                        output.Append("0x" + tileIndex.ToString("x2"));
+                    else
+                        output.Append(tileIndex);
+
+                    output.Append(byteSeparator);
+                }
 
                 if (decimalBytes)
                 {

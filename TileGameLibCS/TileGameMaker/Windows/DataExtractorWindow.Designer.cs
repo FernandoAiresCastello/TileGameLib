@@ -86,6 +86,8 @@
             this.RbTileDecimal = new System.Windows.Forms.RadioButton();
             this.BtnExtractTilesetData = new System.Windows.Forms.Button();
             this.RootPanel = new System.Windows.Forms.Panel();
+            this.ChkAppendTileIndex = new System.Windows.Forms.CheckBox();
+            this.ChkAppendColorIndex = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -320,6 +322,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ChkAppendColorIndex);
             this.tabPage2.Controls.Add(this.PaletteRangeLast);
             this.tabPage2.Controls.Add(this.PaletteRangeFirst);
             this.tabPage2.Controls.Add(this.label16);
@@ -386,7 +389,7 @@
             // ChkColorAppendAlpha
             // 
             this.ChkColorAppendAlpha.AutoSize = true;
-            this.ChkColorAppendAlpha.Location = new System.Drawing.Point(18, 145);
+            this.ChkColorAppendAlpha.Location = new System.Drawing.Point(13, 140);
             this.ChkColorAppendAlpha.Name = "ChkColorAppendAlpha";
             this.ChkColorAppendAlpha.Size = new System.Drawing.Size(148, 17);
             this.ChkColorAppendAlpha.TabIndex = 20;
@@ -514,6 +517,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.ChkAppendTileIndex);
             this.tabPage3.Controls.Add(this.TilesetRangeLast);
             this.tabPage3.Controls.Add(this.TilesetRangeFirst);
             this.tabPage3.Controls.Add(this.label15);
@@ -705,6 +709,26 @@
             this.RootPanel.Size = new System.Drawing.Size(474, 512);
             this.RootPanel.TabIndex = 1;
             // 
+            // ChkAppendTileIndex
+            // 
+            this.ChkAppendTileIndex.AutoSize = true;
+            this.ChkAppendTileIndex.Location = new System.Drawing.Point(13, 140);
+            this.ChkAppendTileIndex.Name = "ChkAppendTileIndex";
+            this.ChkAppendTileIndex.Size = new System.Drawing.Size(107, 17);
+            this.ChkAppendTileIndex.TabIndex = 35;
+            this.ChkAppendTileIndex.Text = "Append tile index";
+            this.ChkAppendTileIndex.UseVisualStyleBackColor = true;
+            // 
+            // ChkAppendColorIndex
+            // 
+            this.ChkAppendColorIndex.AutoSize = true;
+            this.ChkAppendColorIndex.Location = new System.Drawing.Point(13, 163);
+            this.ChkAppendColorIndex.Name = "ChkAppendColorIndex";
+            this.ChkAppendColorIndex.Size = new System.Drawing.Size(117, 17);
+            this.ChkAppendColorIndex.TabIndex = 36;
+            this.ChkAppendColorIndex.Text = "Append color index";
+            this.ChkAppendColorIndex.UseVisualStyleBackColor = true;
+            // 
             // DataExtractorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,5 +820,7 @@
         private System.Windows.Forms.NumericUpDown TilesetRangeFirst;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button BtnCopyOutput;
+        private System.Windows.Forms.CheckBox ChkAppendTileIndex;
+        private System.Windows.Forms.CheckBox ChkAppendColorIndex;
     }
 }
