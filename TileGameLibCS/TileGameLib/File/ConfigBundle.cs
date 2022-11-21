@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace TileGameLib.File
 {
@@ -13,12 +13,12 @@ namespace TileGameLib.File
 
         public override string ToString()
         {
-            return JsonSerializer.Serialize(Entries);
+            return JsonConvert.SerializeObject(Entries);
         }
 
         public void Parse(string str)
         {
-            Entries = JsonSerializer.Deserialize<Dictionary<string, string>>(str);
+            Entries = JsonConvert.DeserializeObject<Dictionary<string, string>>(str);
         }
 
         public void SetString(string key, string value)
