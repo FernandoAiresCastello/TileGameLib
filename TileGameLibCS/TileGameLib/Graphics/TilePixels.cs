@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TileGameLib.Exceptions;
 using TileGameLib.Util;
 
 namespace TileGameLib.Graphics
@@ -110,6 +111,40 @@ namespace TileGameLib.Graphics
         {
             for (int i = 0; i < PixelRows.Length; i++)
                 PixelRows[i] = pixels.PixelRows[i];
+        }
+
+        public void FromBinaryString(string binaryString)
+        {
+            string msgError = "Cannot parse tile pixels from given binary string: " + binaryString;
+
+            if (binaryString.Length != PixelCount)
+                throw new TGLException(msgError);
+
+            List<string> rows = SplitBinaryString(binaryString);
+
+            try
+            {
+                PixelRows[0] = Convert.ToByte(rows[0], 2);
+                PixelRows[1] = Convert.ToByte(rows[1], 2);
+                PixelRows[2] = Convert.ToByte(rows[2], 2);
+                PixelRows[3] = Convert.ToByte(rows[3], 2);
+                PixelRows[4] = Convert.ToByte(rows[4], 2);
+                PixelRows[5] = Convert.ToByte(rows[5], 2);
+                PixelRows[6] = Convert.ToByte(rows[6], 2);
+                PixelRows[7] = Convert.ToByte(rows[7], 2);
+            }
+            catch (Exception e)
+            {
+                throw new TGLException(msgError, e);
+            }
+        }
+
+        private List<string> SplitBinaryString(string str)
+        {
+            const int chunkSize = 8;
+            return Enumerable.Range(0, str.Length / chunkSize)
+                .Select(i => str.Substring(i * chunkSize, chunkSize))
+                .ToList();
         }
 
         public string ToBinaryString()
