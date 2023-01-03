@@ -1,0 +1,11 @@
+body {
+    background: #000;
+	overflow: hidden;
+}
+#TGL_Display {
+    text-align: center;
+    margin-top: 50px;
+}
+canvas {
+    border: 1px double rgba(255, 255, 255, 0.2);
+}

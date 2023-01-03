@@ -19,8 +19,9 @@ Docs/Generated
 **/bookmarks.dat
 **/scratchpad.tgpro
 TileGameLibCTest
-TileGameLibJS
-tgl
+
+# Ignore the TypeScript compiler output folder for TileGameLibJS
+js
 
 # Ignore NuGet Packages
 *.nupkg
