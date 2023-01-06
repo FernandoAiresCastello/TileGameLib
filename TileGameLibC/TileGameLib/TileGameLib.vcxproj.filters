@@ -84,11 +84,11 @@
     <ClInclude Include="TTileGameBoy.h">
       <Filter>Experimental\TileGameBoy</Filter>
     </ClInclude>
-    <ClInclude Include="TToolkitApp.h">
-      <Filter>Tools</Filter>
-    </ClInclude>
     <ClInclude Include="TWindowCreationFlags.h">
       <Filter>Graphics\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="TGL.h">
+      <Filter>TGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -173,11 +173,11 @@
     <ClCompile Include="TTileGameBoy.cpp">
       <Filter>Experimental\TileGameBoy</Filter>
     </ClCompile>
-    <ClCompile Include="TToolkitApp.cpp">
-      <Filter>Tools</Filter>
-    </ClCompile>
     <ClCompile Include="TWindowCreationFlags.cpp">
       <Filter>Graphics\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="TGL.cpp">
+      <Filter>TGL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,14 +202,14 @@
     <Filter Include="Graphics\Window">
       <UniqueIdentifier>{b7f2517c-4e3b-4229-8d09-173fdd9c9389}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tools">
-      <UniqueIdentifier>{e62eb9fd-8068-4c12-9136-2bd81e437f45}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Experimental">
       <UniqueIdentifier>{f3698f09-e111-4f48-95ea-2f8a8ff7ea64}</UniqueIdentifier>
     </Filter>
     <Filter Include="Experimental\TileGameBoy">
       <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TGL">
+      <UniqueIdentifier>{e62eb9fd-8068-4c12-9136-2bd81e437f45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 /*=============================================================================
 
 	 TileGameLib
-	 2018-2022 Developed by Fernando Aires Castello
+	 2018-2023 Developed by Fernando Aires Castello
 
 =============================================================================*/
 #pragma once
@@ -26,5 +26,4 @@
 #include "TPanel.h"
 #include "TTiledImage.h"
 #include "TImageWindow.h"
-#include "TToolkitApp.h"
 #include "TWindowCreationFlags.h"

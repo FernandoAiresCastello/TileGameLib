@@ -1,7 +1,7 @@
 /*=============================================================================
 
 	 TileGameLib
-	 2018-2022 Developed by Fernando Aires Castello
+	 2018-2023 Developed by Fernando Aires Castello
 
 =============================================================================*/
 #include "TGBTileset.h"

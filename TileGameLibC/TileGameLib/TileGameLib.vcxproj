@@ -163,6 +163,7 @@
     <ClInclude Include="TGBWindow.h" />
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
+    <ClInclude Include="TGL.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
     <ClInclude Include="TKey.h" />
@@ -188,7 +189,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TileGameLib.h" />
-    <ClInclude Include="TToolkitApp.h" />
     <ClInclude Include="TWindowBase.h" />
     <ClInclude Include="TWindowCreationFlags.h" />
   </ItemGroup>
@@ -202,6 +202,7 @@
     <ClCompile Include="TGBWindow.cpp" />
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
+    <ClCompile Include="TGL.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
     <ClCompile Include="TKey.cpp" />
@@ -225,7 +226,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TToolkitApp.cpp" />
     <ClCompile Include="TWindowBase.cpp" />
     <ClCompile Include="TWindowCreationFlags.cpp" />
   </ItemGroup>
