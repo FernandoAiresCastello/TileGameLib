@@ -87,9 +87,6 @@
     <ClInclude Include="TWindowCreationFlags.h">
       <Filter>Graphics\Window</Filter>
     </ClInclude>
-    <ClInclude Include="TGL.h">
-      <Filter>TGL</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -176,9 +173,6 @@
     <ClCompile Include="TWindowCreationFlags.cpp">
       <Filter>Graphics\Window</Filter>
     </ClCompile>
-    <ClCompile Include="TGL.cpp">
-      <Filter>TGL</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -207,9 +201,6 @@
     </Filter>
     <Filter Include="Experimental\TileGameBoy">
       <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TGL">
-      <UniqueIdentifier>{e62eb9fd-8068-4c12-9136-2bd81e437f45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
