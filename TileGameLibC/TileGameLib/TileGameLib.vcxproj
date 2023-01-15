@@ -164,6 +164,7 @@
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGLImpl.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
     <ClInclude Include="TKey.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGLImpl.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
     <ClCompile Include="TKey.cpp" />

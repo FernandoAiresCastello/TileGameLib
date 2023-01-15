@@ -97,6 +97,11 @@ namespace TileGameLib
 		return index >= 0 && index < TileBuffers.size() ? TileBuffers[index] : nullptr;
 	}
 
+	std::vector<TTileBuffer*>& TBufferedWindow::GetAllBuffers()
+	{
+		return TileBuffers;
+	}
+
 	TCharset* TBufferedWindow::GetCharset()
 	{
 		return Chr;

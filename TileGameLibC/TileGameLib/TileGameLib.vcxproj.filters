@@ -90,6 +90,9 @@
     <ClInclude Include="TGL.h">
       <Filter>TGL</Filter>
     </ClInclude>
+    <ClInclude Include="TGLImpl.h">
+      <Filter>TGL\Private</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -179,6 +182,9 @@
     <ClCompile Include="TGL.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
+    <ClCompile Include="TGLImpl.cpp">
+      <Filter>TGL\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -210,6 +216,9 @@
     </Filter>
     <Filter Include="TGL">
       <UniqueIdentifier>{49bb17d4-ebdc-4910-a6f8-fa3f4e290da3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TGL\Private">
+      <UniqueIdentifier>{b8d2ffae-0298-4e2e-b421-18b3d2f5b94f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

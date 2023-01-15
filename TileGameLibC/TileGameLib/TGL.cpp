@@ -5,44 +5,66 @@
 
 =============================================================================*/
 #include "TGL.h"
-#include "TBufferedWindow.h"
-#include "TKey.h"
-using namespace TileGameLib;
-
-TBufferedWindow* wnd = nullptr;
+#include "TGLImpl.h"
 
 void TILEGAMELIB()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	TGL_Init();
 }
 void EXIT()
 {
-	delete wnd;
-	SDL_Quit();
-	exit(0);
+	TGL_Exit();
 }
 void HALT()
 {
-	while (true) {
-		if (wnd) {
-			wnd->Update();
-		}
-		SDL_Event e;
-		SDL_PollEvent(&e);
-		if (e.type == SDL_QUIT) {
-			EXIT();
-		} else if (e.type == SDL_KEYDOWN) {
-			auto key = e.key.keysym.sym;
-			if (key == SDLK_ESCAPE) {
-				EXIT();
-			} else if (TKey::Alt() && key == SDLK_RETURN && wnd) {
-				wnd->ToggleFullscreen();
-			}
-		}
-	}
+	TGL_Halt();
 }
 void SCREEN(int cols, int rows, int layers, int hstr, int vstr)
 {
-	wnd = new TBufferedWindow(layers, cols, rows, hstr, vstr);
-	wnd->Show();
+	TGL_CreateWindow(cols, rows, layers, hstr, vstr);
+}
+void TITLE(string title)
+{
+	TGL_SetWindowTitle(title);
+}
+void PAL(int ix, int rgb)
+{
+	TGL_SetPalette(ix, rgb);
+}
+void BGCOL(int ix)
+{
+	TGL_SetWindowBackColor(ix);
+}
+void CLS()
+{
+	TGL_ClearAllBuffers();
+}
+void VSYNC()
+{
+	TGL_UpdateWindow();
+}
+void LAYER(int layer)
+{
+	TGL_SetCursorLayer(layer);
+}
+void LOCATE(int x, int y)
+{
+	TGL_SetCursorPos(x, y);
+}
+void TRON()
+{
+	TGL_SetTransparency(true);
+}
+void TROFF()
+{
+	TGL_SetTransparency(false);
+}
+void COLOR(int fg, int bg)
+{
+	TGL_SetTextForeColor(fg);
+	TGL_SetTextBackColor(bg);
+}
+void PRINT(string text)
+{
+	TGL_Print(text);
 }

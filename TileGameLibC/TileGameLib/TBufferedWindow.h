@@ -43,6 +43,7 @@ namespace TileGameLib
 		void RemoveBuffer(int index);
 		void RemoveAllBuffersExceptDefault();
 		TTileBuffer* GetBuffer(int index);
+		std::vector<TTileBuffer*>& GetAllBuffers();
 		TCharset* GetCharset();
 		TPalette* GetPalette();
 		void SetCharset(TCharset* chr);
