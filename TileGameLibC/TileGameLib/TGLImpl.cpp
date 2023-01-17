@@ -11,7 +11,8 @@ using namespace TileGameLib;
 TBufferedWindow* wnd = nullptr;
 TPalette* pal = nullptr;
 map<string, TTileBuffer*> buffers;
-TTileBuffer* selected_buf = nullptr;
+TTileBuffer* sel_buf = nullptr;
+TTileSeq work_tile;
 
 struct {
 	int layer = 0;
@@ -70,8 +71,8 @@ void TGL_CreateWindow(int cols, int rows, int layers, int hstr, int vstr)
 	pal->DeleteAll();
 	pal->AddBlank(256);
 
-	selected_buf = wnd->GetBuffer(0);
-	buffers["default"] = selected_buf;
+	sel_buf = wnd->GetBuffer(0);
+	buffers["default"] = sel_buf;
 
 	wnd->Show();
 }
@@ -124,5 +125,25 @@ void TGL_SetTextBackColor(int color)
 }
 void TGL_Print(string text)
 {
-	selected_buf->Print(text, csr.layer, csr.x, csr.y, txt_color.fg, txt_color.bg, transparency);
+	sel_buf->Print(text, csr.layer, csr.x, csr.y, txt_color.fg, txt_color.bg, transparency);
+}
+void TGL_Pause(int ms)
+{
+	for (int i = 0; i < ms; i++) {
+		if (wnd) wnd->Update();
+		TGL_ProcGlobalEvents();
+		SDL_Delay(1);
+	}
+}
+void TGL_InitWorkingTile(int ch, int fg, int bg)
+{
+	work_tile = TTileSeq(ch, fg, bg);
+}
+void TGL_AddFrameToWorkingTile(int ch, int fg, int bg)
+{
+	work_tile.Add(ch, fg, bg);
+}
+void TGL_PutWorkingTile()
+{
+	sel_buf->SetTile(work_tile, csr.layer, csr.x, csr.y, transparency);
 }

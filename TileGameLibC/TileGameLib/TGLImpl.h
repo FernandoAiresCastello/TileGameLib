@@ -28,3 +28,7 @@ void TGL_SetTransparency(bool transp);
 void TGL_SetTextForeColor(int color);
 void TGL_SetTextBackColor(int color);
 void TGL_Print(string text);
+void TGL_Pause(int ms);
+void TGL_InitWorkingTile(int ch, int fg, int bg);
+void TGL_AddFrameToWorkingTile(int ch, int fg, int bg);
+void TGL_PutWorkingTile();

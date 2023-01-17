@@ -31,7 +31,7 @@ void PAL(int ix, int rgb)
 {
 	TGL_SetPalette(ix, rgb);
 }
-void BGCOL(int ix)
+void WCOL(int ix)
 {
 	TGL_SetWindowBackColor(ix);
 }
@@ -67,4 +67,20 @@ void COLOR(int fg, int bg)
 void PRINT(string text)
 {
 	TGL_Print(text);
+}
+void PAUSE(int ms)
+{
+	TGL_Pause(ms);
+}
+void TILE_NEW(int ch, int fg, int bg)
+{
+	TGL_InitWorkingTile(ch, fg, bg);
+}
+void TILE_ADD(int ch, int fg, int bg)
+{
+	TGL_AddFrameToWorkingTile(ch, fg, bg);
+}
+void PUT()
+{
+	TGL_PutWorkingTile();
 }
