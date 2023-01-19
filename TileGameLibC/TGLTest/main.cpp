@@ -2,35 +2,41 @@
 
 int main(int argc, char* args[]) 
 {
-	TILEGAMELIB();
-	SCREEN(32, 24, 2, 4, 4);
-	TITLE("Hello World!");
+	tgl.init();
+	tgl.screen(32, 24, 2, 4, 4);
+	tgl.title("Hello World!");
 
-	PAL(0, 0x000000);
-	PAL(1, 0xffffff);
-	PAL(2, 0xff0000);
-	PAL(3, 0x00ff00);
-	PAL(4, 0x0000ff);
+	tgl.pal(0, 0x000000);
+	tgl.pal(1, 0xffffff);
+	tgl.pal(2, 0xff0000);
+	tgl.pal(3, 0x00ff00);
+	tgl.pal(4, 0x0000ff);
 
-	int i = 0;
+	tgl.chr(1,
+		"11111111"
+		"10000001"
+		"10000001"
+		"10000001"
+		"10000001"
+		"10000001"
+		"10000001"
+		"11111111"
+	);
 
-loop:
-	WCOL(i);
-	i++; if (i > 4) i = 0;
+	tgl.wcol(1);
 
-	CLS();
-	TRON();
+	tgl.cls();
+	tgl.tron();
 	
-	TILE_NEW(1, 2, 3);
-	TILE_ADD(2, 3, 2);
-	LOCATE(1, 1);
-	PUT();
+	tgl.tile_parse("1,2,3; 1,3,2");
+	tgl.locate(1, 1);
+	tgl.put();
+	tgl.locate(1, 3);
+	tgl.color(2, 3);
+	tgl.troff();
+	tgl.print("Hello World!");
 
-	PAUSE(4);
-
-	goto loop;
-
-	HALT();
+	tgl.halt();
 
 	return 0;
 }
