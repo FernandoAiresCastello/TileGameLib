@@ -24,22 +24,10 @@ void TGL::halt()
 		global_proc();
 	}
 }
-void TGL::global_proc()
+bool TGL::global_proc()
 {
 	SDL_Event e;
-	SDL_PollEvent(&e);
-	if (e.type == SDL_QUIT) {
-		exit();
-	}
-	else if (e.type == SDL_KEYDOWN) {
-		auto key = e.key.keysym.sym;
-		if (key == SDLK_ESCAPE) {
-			exit();
-		}
-		else if (TKey::Alt() && key == SDLK_RETURN && wnd) {
-			wnd->ToggleFullscreen();
-		}
-	}
+	return global_proc(&e);
 }
 void TGL::screen(int cols, int rows, int layers, int hstr, int vstr)
 {
@@ -230,11 +218,91 @@ void TGL::vol(int value)
 {
 	snd.SetVolume(value);
 }
+string TGL::input(int maxlen)
+{
+	string str = "";
+	string empty_str = string(maxlen + 1, ' ');
+	const int initial_x = csr.x;
+	const int y = 0;
+	int ix = 0;
+	bool running = true;
+
+	TTileSeq input_csr;
+	input_csr.Add(0x00, text_color.bg, text_color.fg);
+	input_csr.Add(0x00, text_color.fg, text_color.bg);
+
+	while (running) {
+		buf.sel_buf->Print(empty_str, csr.layer, initial_x, csr.y, text_color.fg, text_color.bg, transparency);
+		buf.sel_buf->Print(str, csr.layer, initial_x, csr.y, text_color.fg, text_color.bg, transparency);
+		buf.sel_buf->SetTile(input_csr, csr.layer, csr.x, csr.y, false);
+
+		wnd->Update();
+
+		SDL_Event e = { 0 };
+		if (global_proc(&e)) continue;
+
+		if (e.type == SDL_KEYDOWN) {
+			auto key = e.key.keysym.sym;
+			if (key == SDLK_RETURN) {
+				running = false;
+			}
+			else if (key == SDLK_ESCAPE) {
+				str = "";
+				running = false;
+			}
+			else if (key == SDLK_BACKSPACE && str.length() > 0) {
+				str.pop_back();
+				ix--;
+				csr.x--;
+			}
+			else if (str.length() < maxlen) {
+				if (key >= 0x20 && key < 0x7f) {
+					if (TKey::CapsLock()) {
+						key = String::ToUpper(key);
+					}
+					if (TKey::Shift()) {
+						key = String::ToUpper(String::ShiftChar(key));
+					}
+					str.push_back((char)key);
+					ix++;
+					csr.x++;
+				}
+			}
+		}
+	}
+
+	buf.sel_buf->PutChar(0x00, csr.layer, csr.x, csr.y, text_color.fg, text_color.bg, transparency);
+	return str;
+}
 
 //=============================================================================
 //								PRIVATE
 //=============================================================================
 
+bool TGL::global_proc(SDL_Event* e)
+{
+	SDL_PollEvent(e);
+
+	if (e->type == SDL_QUIT) {
+		exit();
+		return true;
+	}
+	else if (e->type == SDL_KEYDOWN) {
+		auto key = e->key.keysym.sym;
+		if (key == SDLK_PAUSE) {
+			exit();
+			return true;
+		}
+		else if (TKey::Alt() && key == SDLK_RETURN && wnd) {
+			wnd->ToggleFullscreen();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	return false;
+}
 void TGL::print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc)
 {
 	const int initial_x = csr.x;

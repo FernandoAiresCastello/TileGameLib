@@ -32,7 +32,7 @@ struct TGL
 	void init();
 	void exit();
 	void halt();
-	void global_proc();
+	bool global_proc();
 	void screen(int cols, int rows, int layers, int hstr, int vstr);
 	void title(string title);
 	void wcol(int ix);
@@ -65,6 +65,7 @@ struct TGL
 	void sound(float freq, int len);
 	void quiet();
 	void vol(int value);
+	string input(int maxlen);
 
 	//============================================================================
 
@@ -84,5 +85,6 @@ private:
 		int bg = 0;
 	} text_color;
 
+	bool global_proc(SDL_Event* e);
 	void print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc);
 };

@@ -28,6 +28,10 @@ int main(int argc, char* args[])
 	int incr = 0;
 
 	tgl.wcol(4);
+	tgl.color(2, 3);
+	tgl.locate(1, 1);
+	string text = tgl.input(1);
+
 	tgl.tile.newf(1, 1, 4);
 
 loop:
