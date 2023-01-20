@@ -164,6 +164,10 @@
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGLBuffer.h" />
+    <ClInclude Include="TGLKeyboard.h" />
+    <ClInclude Include="TGLPaletteAndTileset.h" />
+    <ClInclude Include="TGLTile.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
     <ClInclude Include="TKey.h" />
@@ -203,6 +207,10 @@
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGLBuffer.cpp" />
+    <ClCompile Include="TGLKeyboard.cpp" />
+    <ClCompile Include="TGLPaletteAndTileset.cpp" />
+    <ClCompile Include="TGLTile.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
     <ClCompile Include="TKey.cpp" />

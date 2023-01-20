@@ -90,6 +90,18 @@
     <ClInclude Include="TGL.h">
       <Filter>TGL</Filter>
     </ClInclude>
+    <ClInclude Include="TGLKeyboard.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
+    <ClInclude Include="TGLTile.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
+    <ClInclude Include="TGLBuffer.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
+    <ClInclude Include="TGLPaletteAndTileset.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -177,6 +189,18 @@
       <Filter>Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGL.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLKeyboard.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLTile.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLBuffer.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLPaletteAndTileset.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
   </ItemGroup>

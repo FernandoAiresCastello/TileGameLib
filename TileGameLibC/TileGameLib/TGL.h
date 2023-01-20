@@ -8,6 +8,10 @@
 #include <vector>
 #include <map>
 #include "TileGameLib.h"
+#include "TGLKeyboard.h"
+#include "TGLTile.h"
+#include "TGLBuffer.h"
+#include "TGLPaletteAndTileset.h"
 using namespace std;
 using namespace TileGameLib;
 
@@ -19,18 +23,22 @@ struct TGL
 	//									TGLAPI
 	//============================================================================
 
+	TGLKeyboard key;
+	TGLTile tile;
+	TGLBuffer buf;
+	TGLPalette pal;
+	TGLTileset chr;
+
 	void init();
 	void exit();
 	void halt();
 	void global_proc();
 	void screen(int cols, int rows, int layers, int hstr, int vstr);
 	void title(string title);
-	void pal(int ix, int rgb);
-	int get_pal(int ix);
-	void chr(int ix, string pixels);
-	string get_chr(int ix);
 	void wcol(int ix);
 	void cls();
+	void cll();
+	void clr(int x, int y, int w, int h);
 	void vsync();
 	void layer(int layer);
 	void locate(int x, int y);
@@ -44,22 +52,26 @@ struct TGL
 	void print_raw(string text);
 	void print_add(string text);
 	void pause(int ms);
-	void tile_new(int ch, int fg, int bg);
-	void tile_add(int ch, int fg, int bg);
-	void tile_parse(string str);
 	void put();
+	void get();
+	void del();
+	void rect(int x, int y, int w, int h);
+	void fill();
+	void mov(int dx, int dy);
+	void movb(int x, int y, int w, int h, int dx, int dy);
+	int rnd(int min, int max);
+	void play(string notes);
+	void lplay(string notes);
+	void sound(float freq, int len);
+	void quiet();
+	void vol(int value);
 
 	//============================================================================
 
 private:
 	TBufferedWindow* wnd = nullptr;
-	TPalette* palette = nullptr;
-	TCharset* charset = nullptr;
-	map<string, TTileBuffer*> buffers;
-	TTileBuffer* sel_buf = nullptr;
-	TTileSeq work_tile;
 	bool transparency = false;
-	map<string, string> vars;
+	TSound snd;
 
 	struct {
 		int layer = 0;
@@ -72,7 +84,5 @@ private:
 		int bg = 0;
 	} text_color;
 
-	void init_default_pal();
-	void init_default_chr();
 	void print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc);
 };

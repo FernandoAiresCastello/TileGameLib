@@ -6,13 +6,13 @@ int main(int argc, char* args[])
 	tgl.screen(32, 24, 2, 4, 4);
 	tgl.title("Hello World!");
 
-	tgl.pal(0, 0x000000);
-	tgl.pal(1, 0xffffff);
-	tgl.pal(2, 0xff0000);
-	tgl.pal(3, 0x00ff00);
-	tgl.pal(4, 0x0000ff);
+	tgl.pal.set(0, 0x000000);
+	tgl.pal.set(1, 0xffffff);
+	tgl.pal.set(2, 0xff0000);
+	tgl.pal.set(3, 0x00ff00);
+	tgl.pal.set(4, 0x0000ff);
 
-	tgl.chr(1,
+	tgl.chr.set(1,
 		"11111111"
 		"10000001"
 		"10000001"
@@ -23,24 +23,32 @@ int main(int argc, char* args[])
 		"11111111"
 	);
 
-	int counter = 12345;
+	int x = 0;
+	int y = 0;
+	int incr = 0;
 
 	tgl.wcol(4);
-	tgl.locate(1, 1);
-	tgl.color(0, 1);
-	tgl.println("Hello {f2}red{/f} world!");
-	tgl.println("And hello {b3}green{/b} world!");
-	tgl.println("This is the counter: %i", counter);
-	tgl.println("This is a square : {c1}");
+	tgl.tile.newf(1, 1, 4);
 
-	tgl.locate(3, 10);
-	tgl.color(2, 3);
-	tgl.print("Text");
-	tgl.locate(3, 10);
-	tgl.color(3, 2);
-	tgl.print_add("Text");
+loop:
+	tgl.fill();
+	tgl.locate(1, 1);
+	tgl.println("X: %i", x);
+	tgl.println("Y: %i", y);
+	tgl.vsync();
+	tgl.global_proc();
+
+	incr = tgl.key.shift() ? 10 : 1;
+
+	if (tgl.key.right()) x += incr;
+	if (tgl.key.left()) x -= incr;
+	if (tgl.key.down()) y += incr;
+	if (tgl.key.up()) y -= incr;
+
+	if (tgl.key.space()) tgl.play("l64cde");
+
+	goto loop;
 
 	tgl.halt();
-
 	return 0;
 }
