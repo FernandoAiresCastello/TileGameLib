@@ -23,18 +23,22 @@ int main(int argc, char* args[])
 		"11111111"
 	);
 
-	tgl.wcol(1);
+	int counter = 12345;
 
-	tgl.cls();
-	tgl.tron();
-	
-	tgl.tile_parse("1,2,3; 1,3,2");
+	tgl.wcol(4);
 	tgl.locate(1, 1);
-	tgl.put();
-	tgl.locate(1, 3);
+	tgl.color(0, 1);
+	tgl.println("Hello {f2}red{/f} world!");
+	tgl.println("And hello {b3}green{/b} world!");
+	tgl.println("This is the counter: %i", counter);
+	tgl.println("This is a square : {c1}");
+
+	tgl.locate(3, 10);
 	tgl.color(2, 3);
-	tgl.troff();
-	tgl.print("Hello World!");
+	tgl.print("Text");
+	tgl.locate(3, 10);
+	tgl.color(3, 2);
+	tgl.print_add("Text");
 
 	tgl.halt();
 

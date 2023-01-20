@@ -2,6 +2,7 @@
 	 TGL (TileGameLib)
 	 2018-2023 Developed by Fernando Aires Castello
 =============================================================================*/
+#include <cstdarg>
 #include "TGL.h"
 
 TGL tgl;
@@ -107,20 +108,46 @@ void TGL::troff()
 }
 void TGL::color(int fgc, int bgc)
 {
-	fcol(fgc);
-	bcol(bgc);
+	fcolor(fgc);
+	bcolor(bgc);
 }
-void TGL::fcol(int ix)
+void TGL::fcolor(int ix)
 {
-	txt_color.fg = ix;
+	text_color.fg = ix;
 }
-void TGL::bcol(int ix)
+void TGL::bcolor(int ix)
 {
-	txt_color.bg = ix;
+	text_color.bg = ix;
 }
-void TGL::print(string text)
+void TGL::print(const char* fmt, ...)
 {
-	sel_buf->Print(text, csr.layer, csr.x, csr.y, txt_color.fg, txt_color.bg, transparency);
+	char str[1000] = { 0 };
+	va_list arg;
+	va_start(arg, fmt);
+	vsprintf(str, fmt, arg);
+	va_end(arg);
+
+	print_tile_string(str, false, false, text_color.fg, text_color.bg);
+}
+void TGL::println(const char* fmt, ...)
+{
+	char str[1000] = { 0 };
+	va_list arg;
+	va_start(arg, fmt);
+	vsprintf(str, fmt, arg);
+	va_end(arg);
+
+	string text = str;
+	text += "\n";
+	print_tile_string(text, false, false, text_color.fg, text_color.bg);
+}
+void TGL::print_raw(string text)
+{
+	print_tile_string(text, true, false, text_color.fg, text_color.bg);
+}
+void TGL::print_add(string text)
+{
+	print_tile_string(text, false, true, text_color.fg, text_color.bg);
 }
 void TGL::pause(int ms)
 {
@@ -258,4 +285,88 @@ void TGL::init_default_chr()
 	charset->Set(0x7c, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x00);
 	charset->Set(0x7d, 0x60, 0x30, 0x30, 0x1c, 0x30, 0x30, 0x60, 0x00);
 	charset->Set(0x7e, 0x00, 0x00, 0x60, 0xf2, 0x9e, 0x0c, 0x00, 0x00);
+}
+void TGL::print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc)
+{
+	const int initial_x = csr.x;
+	bool escape = false;
+	string escape_seq = "";
+	for (int i = 0; i < text.length(); i++) {
+		int ch = text[i];
+		if (ch == '\n') {
+			csr.y++;
+			csr.x = initial_x;
+		}
+		else if (!raw && ch == '{') {
+			escape = true;
+			continue;
+		}
+		else if (!raw && ch == '}') {
+			escape = false;
+			const string upper_escape_seq = String::ToUpper(escape_seq);
+			if (String::StartsWith(upper_escape_seq, 'C')) {
+				ch = String::ToInt(String::Skip(upper_escape_seq, 1));
+				auto tile = TTileSeq(ch, fgc, bgc);
+				if (add_frames) {
+					TTileSeq* existing_tile = &sel_buf->GetTile(csr.layer, csr.x, csr.y);
+					if (existing_tile->IsEmpty()) {
+						sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+					}
+					else {
+						existing_tile->Add(tile.First());
+					}
+				}
+				else {
+					sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+				}
+				csr.x++;
+				escape_seq = "";
+				continue;
+			}
+			else if (String::StartsWith(upper_escape_seq, 'F')) {
+				fgc = String::ToInt(String::Skip(upper_escape_seq, 1));
+				escape_seq = "";
+				continue;
+			}
+			else if (String::StartsWith(upper_escape_seq, "/F")) {
+				fgc = text_color.fg;
+				escape_seq = "";
+				continue;
+			}
+			else if (String::StartsWith(upper_escape_seq, 'B')) {
+				bgc = String::ToInt(String::Skip(upper_escape_seq, 1));
+				escape_seq = "";
+				continue;
+			}
+			else if (String::StartsWith(upper_escape_seq, "/B")) {
+				bgc = text_color.bg;
+				escape_seq = "";
+				continue;
+			}
+			else {
+				continue;
+			}
+		}
+		else if (escape) {
+			escape_seq += ch;
+			continue;
+		}
+		else {
+			auto tile = TTileSeq(ch, fgc, bgc);
+			if (add_frames) {
+				TTileSeq* existing_tile = &sel_buf->GetTile(csr.layer, csr.x, csr.y);
+				if (existing_tile->IsEmpty()) {
+					sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+				}
+				else {
+					existing_tile->Add(tile.First());
+				}
+			}
+			else {
+				sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+			}
+			csr.x++;
+			escape_seq = "";
+		}
+	}
 }

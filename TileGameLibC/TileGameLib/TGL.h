@@ -37,9 +37,12 @@ struct TGL
 	void tron();
 	void troff();
 	void color(int fgc, int bgc);
-	void fcol(int ix);
-	void bcol(int ix);
-	void print(string text);
+	void fcolor(int ix);
+	void bcolor(int ix);
+	void print(const char* fmt, ...);
+	void println(const char* fmt, ...);
+	void print_raw(string text);
+	void print_add(string text);
 	void pause(int ms);
 	void tile_new(int ch, int fg, int bg);
 	void tile_add(int ch, int fg, int bg);
@@ -56,6 +59,7 @@ private:
 	TTileBuffer* sel_buf = nullptr;
 	TTileSeq work_tile;
 	bool transparency = false;
+	map<string, string> vars;
 
 	struct {
 		int layer = 0;
@@ -66,8 +70,9 @@ private:
 	struct {
 		int fg = 1;
 		int bg = 0;
-	} txt_color;
+	} text_color;
 
 	void init_default_pal();
 	void init_default_chr();
+	void print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc);
 };
