@@ -147,6 +147,30 @@ void TGL::put()
 {
 	buf.sel_buf->SetTile(tile.cur_tile, csr.layer, csr.px, csr.py, transparency);
 }
+void TGL::put_r(int count)
+{
+	for (int i = 0; i < count; i++) {
+		put(); csr.px++;
+	}
+}
+void TGL::put_d(int count)
+{
+	for (int i = 0; i < count; i++) {
+		put(); csr.py++;
+	}
+}
+void TGL::put_l(int count)
+{
+	for (int i = 0; i < count; i++) {
+		put(); csr.px--;
+	}
+}
+void TGL::put_u(int count)
+{
+	for (int i = 0; i < count; i++) {
+		put(); csr.py--;
+	}
+}
 void TGL::get()
 {
 	tile.cur_tile = buf.sel_buf->GetTile(csr.layer, csr.px, csr.py);
@@ -276,10 +300,6 @@ string TGL::input(int maxlen)
 
 	buf.sel_buf->PutChar(0x00, csr.layer, csr.px, csr.py, text_color.fg, text_color.bg, transparency);
 	return str;
-}
-void TGL::draw(string cmds)
-{
-
 }
 
 //=============================================================================

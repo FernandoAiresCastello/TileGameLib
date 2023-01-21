@@ -44,6 +44,10 @@ struct TGL
 	void print_add(string text);
 	void pause(int ms);
 	void put();
+	void put_r(int count);
+	void put_d(int count);
+	void put_l(int count);
+	void put_u(int count);
 	void get();
 	void del();
 	void rect(int x, int y, int w, int h);
@@ -57,7 +61,6 @@ struct TGL
 	void quiet();
 	void vol(int value);
 	string input(int maxlen);
-	void draw(string cmds);
 
 private:
 	TBufferedWindow* wnd = nullptr;

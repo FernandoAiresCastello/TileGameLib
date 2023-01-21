@@ -3,7 +3,7 @@
 int main(int argc, char* args[]) 
 {
 	tgl.init();
-	tgl.screen(32, 24, 2, 4, 4);
+	tgl.screen(43, 24, 2, 4, 4);
 	tgl.title("Hello World!");
 
 	tgl.pal.add("red", 0xff0000);
@@ -36,12 +36,15 @@ int main(int argc, char* args[])
 	int y = 0;
 	int incr = 0;
 
-	tgl.tile.set("smiley", "yellow", "blue");
-	tgl.tile.add("square", "red", "green");
-
 loop:
-	tgl.fill();
-	tgl.locate(1, 1);
+	tgl.tile.set("square", "red", "green");
+	tgl.locate(0, 0);
+	tgl.put_r(tgl.buf.cols() - 1);
+	tgl.put_d(tgl.buf.rows() - 1);
+	tgl.put_l(tgl.buf.cols() - 1);
+	tgl.put_u(tgl.buf.rows() - 1);
+
+	tgl.locate(10, 10);
 	tgl.println("X: %i", x);
 	tgl.println("Y: %i", y);
 	tgl.vsync();
