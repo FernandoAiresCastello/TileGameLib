@@ -36,8 +36,8 @@ int main(int argc, char* args[])
 	int y = 0;
 	int incr = 0;
 
-	tgl.tile.newf("smiley", "yellow", "blue");
-	tgl.tile.addf("square", "red", "green");
+	tgl.tile.set("smiley", "yellow", "blue");
+	tgl.tile.add("square", "red", "green");
 
 loop:
 	tgl.fill();

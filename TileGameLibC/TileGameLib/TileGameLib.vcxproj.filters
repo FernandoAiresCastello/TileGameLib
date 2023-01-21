@@ -105,6 +105,9 @@
     <ClInclude Include="TGLGlobal.h">
       <Filter>TGL</Filter>
     </ClInclude>
+    <ClInclude Include="TGLCursor.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -204,6 +207,9 @@
       <Filter>TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLPaletteAndTileset.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLCursor.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
   </ItemGroup>

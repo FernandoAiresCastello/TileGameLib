@@ -9,18 +9,16 @@
 #include "TGLTile.h"
 #include "TGLBuffer.h"
 #include "TGLPaletteAndTileset.h"
+#include "TGLCursor.h"
 
 struct TGL
 {
-	//============================================================================
-	//									TGLAPI
-	//============================================================================
-
 	TGLKeyboard key;
 	TGLTile tile;
 	TGLBuffer buf;
 	TGLPalette pal;
 	TGLTileset chr;
+	TGLCursor csr;
 
 	void init();
 	void exit();
@@ -59,19 +57,12 @@ struct TGL
 	void quiet();
 	void vol(int value);
 	string input(int maxlen);
-
-	//============================================================================
+	void draw(string cmds);
 
 private:
 	TBufferedWindow* wnd = nullptr;
 	bool transparency = false;
 	TSound snd;
-
-	struct {
-		int layer = 0;
-		int x = 0;
-		int y = 0;
-	} csr;
 
 	struct {
 		int fg = 1;

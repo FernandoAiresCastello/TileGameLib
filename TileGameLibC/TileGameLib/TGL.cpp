@@ -81,8 +81,8 @@ void TGL::layer(int layer)
 }
 void TGL::locate(int x, int y)
 {
-	csr.x = x;
-	csr.y = y;
+	csr.px = x;
+	csr.py = y;
 }
 void TGL::tron()
 {
@@ -145,15 +145,15 @@ void TGL::pause(int ms)
 }
 void TGL::put()
 {
-	buf.sel_buf->SetTile(tile.cur_tile, csr.layer, csr.x, csr.y, transparency);
+	buf.sel_buf->SetTile(tile.cur_tile, csr.layer, csr.px, csr.py, transparency);
 }
 void TGL::get()
 {
-	tile.cur_tile = buf.sel_buf->GetTile(csr.layer, csr.x, csr.y);
+	tile.cur_tile = buf.sel_buf->GetTile(csr.layer, csr.px, csr.py);
 }
 void TGL::del()
 {
-	buf.sel_buf->EraseTile(csr.layer, csr.x, csr.y);
+	buf.sel_buf->EraseTile(csr.layer, csr.px, csr.py);
 }
 void TGL::rect(int x, int y, int w, int h)
 {
@@ -169,9 +169,9 @@ void TGL::fill()
 }
 void TGL::mov(int dx, int dy)
 {
-	TTileSeq tile = buf.sel_buf->GetTile(csr.layer, csr.x, csr.y);
-	buf.sel_buf->EraseTile(csr.layer, csr.x, csr.y);
-	buf.sel_buf->SetTile(tile, csr.layer, csr.x + dx, csr.y + dy, transparency);
+	TTileSeq tile = buf.sel_buf->GetTile(csr.layer, csr.px, csr.py);
+	buf.sel_buf->EraseTile(csr.layer, csr.px, csr.py);
+	buf.sel_buf->SetTile(tile, csr.layer, csr.px + dx, csr.py + dy, transparency);
 }
 void TGL::movb(int x, int y, int w, int h, int dx, int dy)
 {
@@ -225,7 +225,7 @@ string TGL::input(int maxlen)
 {
 	string str = "";
 	string empty_str = string(maxlen + 1, ' ');
-	const int initial_x = csr.x;
+	const int initial_x = csr.px;
 	const int y = 0;
 	int ix = 0;
 	bool running = true;
@@ -235,9 +235,9 @@ string TGL::input(int maxlen)
 	input_csr.Add(0x00, text_color.fg, text_color.bg);
 
 	while (running) {
-		buf.sel_buf->Print(empty_str, csr.layer, initial_x, csr.y, text_color.fg, text_color.bg, transparency);
-		buf.sel_buf->Print(str, csr.layer, initial_x, csr.y, text_color.fg, text_color.bg, transparency);
-		buf.sel_buf->SetTile(input_csr, csr.layer, csr.x, csr.y, false);
+		buf.sel_buf->Print(empty_str, csr.layer, initial_x, csr.py, text_color.fg, text_color.bg, transparency);
+		buf.sel_buf->Print(str, csr.layer, initial_x, csr.py, text_color.fg, text_color.bg, transparency);
+		buf.sel_buf->SetTile(input_csr, csr.layer, csr.px, csr.py, false);
 
 		wnd->Update();
 
@@ -256,7 +256,7 @@ string TGL::input(int maxlen)
 			else if (key == SDLK_BACKSPACE && str.length() > 0) {
 				str.pop_back();
 				ix--;
-				csr.x--;
+				csr.px--;
 			}
 			else if (str.length() < maxlen) {
 				if (key >= 0x20 && key < 0x7f) {
@@ -268,14 +268,18 @@ string TGL::input(int maxlen)
 					}
 					str.push_back((char)key);
 					ix++;
-					csr.x++;
+					csr.px++;
 				}
 			}
 		}
 	}
 
-	buf.sel_buf->PutChar(0x00, csr.layer, csr.x, csr.y, text_color.fg, text_color.bg, transparency);
+	buf.sel_buf->PutChar(0x00, csr.layer, csr.px, csr.py, text_color.fg, text_color.bg, transparency);
 	return str;
+}
+void TGL::draw(string cmds)
+{
+
 }
 
 //=============================================================================
@@ -308,14 +312,14 @@ bool TGL::global_proc(SDL_Event* e)
 }
 void TGL::print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc)
 {
-	const int initial_x = csr.x;
+	const int initial_x = csr.px;
 	bool escape = false;
 	string escape_seq = "";
 	for (int i = 0; i < text.length(); i++) {
 		int ch = text[i];
 		if (ch == '\n') {
-			csr.y++;
-			csr.x = initial_x;
+			csr.py++;
+			csr.px = initial_x;
 		}
 		else if (!raw && ch == '{') {
 			escape = true;
@@ -328,18 +332,18 @@ void TGL::print_tile_string(string text, bool raw, bool add_frames, int fgc, int
 				ch = String::ToInt(String::Skip(upper_escape_seq, 1));
 				auto tile = TTileSeq(ch, fgc, bgc);
 				if (add_frames) {
-					TTileSeq* existing_tile = &buf.sel_buf->GetTile(csr.layer, csr.x, csr.y);
+					TTileSeq* existing_tile = &buf.sel_buf->GetTile(csr.layer, csr.px, csr.py);
 					if (existing_tile->IsEmpty()) {
-						buf.sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+						buf.sel_buf->SetTile(tile, csr.layer, csr.px, csr.py, transparency);
 					}
 					else {
 						existing_tile->Add(tile.First());
 					}
 				}
 				else {
-					buf.sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+					buf.sel_buf->SetTile(tile, csr.layer, csr.px, csr.py, transparency);
 				}
-				csr.x++;
+				csr.px++;
 				escape_seq = "";
 				continue;
 			}
@@ -374,18 +378,18 @@ void TGL::print_tile_string(string text, bool raw, bool add_frames, int fgc, int
 		else {
 			auto tile = TTileSeq(ch, fgc, bgc);
 			if (add_frames) {
-				TTileSeq* existing_tile = &buf.sel_buf->GetTile(csr.layer, csr.x, csr.y);
+				TTileSeq* existing_tile = &buf.sel_buf->GetTile(csr.layer, csr.px, csr.py);
 				if (existing_tile->IsEmpty()) {
-					buf.sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+					buf.sel_buf->SetTile(tile, csr.layer, csr.px, csr.py, transparency);
 				}
 				else {
 					existing_tile->Add(tile.First());
 				}
 			}
 			else {
-				buf.sel_buf->SetTile(tile, csr.layer, csr.x, csr.y, transparency);
+				buf.sel_buf->SetTile(tile, csr.layer, csr.px, csr.py, transparency);
 			}
-			csr.x++;
+			csr.px++;
 			escape_seq = "";
 		}
 	}
