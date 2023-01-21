@@ -12,6 +12,7 @@
 #include "TGLTileset.h"
 #include "TGLCursor.h"
 #include "TGLFile.h"
+#include "TGLString.h"
 
 struct TGL
 {
@@ -22,6 +23,7 @@ struct TGL
 	TGLTileset chr;
 	TGLCursor csr;
 	TGLFile file;
+	TGLString str;
 
 	void init();
 	void exit();

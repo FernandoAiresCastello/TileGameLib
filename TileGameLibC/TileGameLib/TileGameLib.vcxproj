@@ -165,6 +165,7 @@
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
     <ClInclude Include="TGLBuffer.h" />
+    <ClInclude Include="TGLString.h" />
     <ClInclude Include="TGLTileset.h" />
     <ClInclude Include="TGLCursor.h" />
     <ClInclude Include="TGLFile.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
     <ClCompile Include="TGLBuffer.cpp" />
+    <ClCompile Include="TGLString.cpp" />
     <ClCompile Include="TGLTileset.cpp" />
     <ClCompile Include="TGLCursor.cpp" />
     <ClCompile Include="TGLFile.cpp" />

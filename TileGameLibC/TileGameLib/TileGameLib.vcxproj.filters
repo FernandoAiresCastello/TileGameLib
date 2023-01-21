@@ -114,6 +114,9 @@
     <ClInclude Include="TGLTileset.h">
       <Filter>TGL</Filter>
     </ClInclude>
+    <ClInclude Include="TGLString.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">
@@ -222,6 +225,9 @@
       <Filter>TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLTileset.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLString.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
   </ItemGroup>
