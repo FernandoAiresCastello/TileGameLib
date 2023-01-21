@@ -166,6 +166,7 @@
     <ClInclude Include="TGL.h" />
     <ClInclude Include="TGLBuffer.h" />
     <ClInclude Include="TGLCursor.h" />
+    <ClInclude Include="TGLFile.h" />
     <ClInclude Include="TGLGlobal.h" />
     <ClInclude Include="TGLKeyboard.h" />
     <ClInclude Include="TGLPaletteAndTileset.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="TGL.cpp" />
     <ClCompile Include="TGLBuffer.cpp" />
     <ClCompile Include="TGLCursor.cpp" />
+    <ClCompile Include="TGLFile.cpp" />
     <ClCompile Include="TGLKeyboard.cpp" />
     <ClCompile Include="TGLPaletteAndTileset.cpp" />
     <ClCompile Include="TGLTile.cpp" />

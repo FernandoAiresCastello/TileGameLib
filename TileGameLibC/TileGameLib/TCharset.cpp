@@ -162,7 +162,7 @@ namespace TileGameLib
 
 	void TCharset::Save(std::string filename)
 	{
-		std::vector<int> bytes;
+		std::vector<byte> bytes;
 
 		for (auto& ch : Chars) {
 			bytes.push_back(ch.PixelRow0);

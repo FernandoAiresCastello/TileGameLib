@@ -110,7 +110,7 @@ namespace TileGameLib
 
 	void TPalette::Save(std::string filename)
 	{
-		std::vector<int> bytes;
+		std::vector<byte> bytes;
 
 		for (auto& color : Colors) {
 			bytes.push_back(color.R);

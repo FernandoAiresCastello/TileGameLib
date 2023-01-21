@@ -8,6 +8,14 @@ void TGLCursor::y(int pos)
 {
 	py = pos;
 }
+int TGLCursor::get_x()
+{
+	return px;
+}
+int TGLCursor::get_y()
+{
+	return py;
+}
 void TGLCursor::move(int dist_x, int dist_y)
 {
 	px += dist_x;

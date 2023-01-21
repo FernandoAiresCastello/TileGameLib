@@ -10,6 +10,7 @@
 #include "TGLBuffer.h"
 #include "TGLPaletteAndTileset.h"
 #include "TGLCursor.h"
+#include "TGLFile.h"
 
 struct TGL
 {
@@ -19,6 +20,7 @@ struct TGL
 	TGLPalette pal;
 	TGLTileset chr;
 	TGLCursor csr;
+	TGLFile file;
 
 	void init();
 	void exit();
@@ -42,6 +44,7 @@ struct TGL
 	void println(const char* fmt, ...);
 	void print_raw(string text);
 	void print_add(string text);
+	void putc(char ch);
 	void pause(int ms);
 	void put();
 	void put_r(int count);

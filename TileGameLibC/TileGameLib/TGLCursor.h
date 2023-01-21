@@ -9,6 +9,8 @@ struct TGLCursor
 {
 	void x(int pos);
 	void y(int pos);
+	int get_x();
+	int get_y();
 	void move(int dist_x, int dist_y);
 
 private:

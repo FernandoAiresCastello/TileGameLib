@@ -135,6 +135,12 @@ void TGL::print_add(string text)
 {
 	print_tile_string(text, false, true, text_color.fg, text_color.bg);
 }
+void TGL::putc(char ch)
+{
+	string text = "";
+	text += ch;
+	print_tile_string(text, true, false, text_color.fg, text_color.bg);
+}
 void TGL::pause(int ms)
 {
 	for (int i = 0; i < ms; i++) {
