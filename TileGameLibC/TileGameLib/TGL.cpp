@@ -40,15 +40,18 @@ void TGL::screen(int cols, int rows, int layers, int hstr, int vstr)
 
 	buf.init(wnd);
 
+	tile.palette = &pal;
+	tile.tileset = &chr;
+
 	wnd->Show();
 }
 void TGL::title(string title)
 {
 	wnd->SetTitle(title);
 }
-void TGL::wcol(int ix)
+void TGL::wcol(colorid id)
 {
-	wnd->SetBackColor(pal.get(ix));
+	wnd->SetBackColor(pal.get_rgb(id));
 }
 void TGL::cls()
 {
@@ -89,18 +92,18 @@ void TGL::troff()
 {
 	transparency = false;
 }
-void TGL::color(int fgc, int bgc)
+void TGL::color(colorid fgc, colorid bgc)
 {
 	fcolor(fgc);
 	bcolor(bgc);
 }
-void TGL::fcolor(int ix)
+void TGL::fcolor(colorid id)
 {
-	text_color.fg = ix;
+	text_color.fg = pal.get_index(id);
 }
-void TGL::bcolor(int ix)
+void TGL::bcolor(colorid id)
 {
-	text_color.bg = ix;
+	text_color.bg = pal.get_index(id);
 }
 void TGL::print(const char* fmt, ...)
 {

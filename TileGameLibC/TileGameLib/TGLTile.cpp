@@ -4,46 +4,13 @@
 =============================================================================*/
 #include "TGLTile.h"
 
-void TGLTile::newf(int ch, int fg, int bg)
+void TGLTile::newf(tileid ch, colorid fg, colorid bg)
 {
-	cur_tile = TTileSeq(ch, fg, bg);
+	cur_tile = TTileSeq(tileset->get_index(ch), palette->get_index(fg), palette->get_index(bg));
 }
-void TGLTile::add(int ch, int fg, int bg)
+void TGLTile::addf(tileid ch, colorid fg, colorid bg)
 {
-	cur_tile.Add(ch, fg, bg);
-}
-int TGLTile::getc(int ix)
-{
-	return cur_tile.GetChar(ix);
-}
-int TGLTile::getf(int ix)
-{
-	return cur_tile.GetForeColor(ix);
-}
-int TGLTile::getb(int ix)
-{
-	return cur_tile.GetBackColor(ix);
-}
-void TGLTile::color(int ix, int fg, int bg)
-{
-	setf(ix, fg);
-	setb(ix, bg);
-}
-void TGLTile::setc(int ix, int ch)
-{
-	cur_tile.SetChar(ix, ch);
-}
-void TGLTile::setf(int ix, int fg)
-{
-	cur_tile.SetForeColor(ix, fg);
-}
-void TGLTile::setb(int ix, int bg)
-{
-	cur_tile.SetBackColor(ix, bg);
-}
-void TGLTile::parse(string str)
-{
-	cur_tile.Parse(str);
+	cur_tile.Add(tileset->get_index(ch), palette->get_index(fg), palette->get_index(bg));
 }
 void TGLTile::prop(string prop, string value)
 {

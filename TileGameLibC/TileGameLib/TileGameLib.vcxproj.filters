@@ -102,6 +102,9 @@
     <ClInclude Include="TGLPaletteAndTileset.h">
       <Filter>TGL</Filter>
     </ClInclude>
+    <ClInclude Include="TGLGlobal.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TSound.cpp">

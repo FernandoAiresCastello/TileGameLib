@@ -3,19 +3,12 @@
 	 2018-2023 Developed by Fernando Aires Castello
 =============================================================================*/
 #pragma once
-#include <SDL.h>
-#include <string>
-#include <vector>
-#include <map>
-#include "TileGameLib.h"
+
+#include "TGLGlobal.h"
 #include "TGLKeyboard.h"
 #include "TGLTile.h"
 #include "TGLBuffer.h"
 #include "TGLPaletteAndTileset.h"
-using namespace std;
-using namespace TileGameLib;
-
-extern struct TGL tgl;
 
 struct TGL
 {
@@ -35,7 +28,7 @@ struct TGL
 	bool global_proc();
 	void screen(int cols, int rows, int layers, int hstr, int vstr);
 	void title(string title);
-	void wcol(int ix);
+	void wcol(colorid id);
 	void cls();
 	void cll();
 	void clr(int x, int y, int w, int h);
@@ -44,9 +37,9 @@ struct TGL
 	void locate(int x, int y);
 	void tron();
 	void troff();
-	void color(int fgc, int bgc);
-	void fcolor(int ix);
-	void bcolor(int ix);
+	void color(colorid fgc, colorid bgc);
+	void fcolor(colorid id);
+	void bcolor(colorid id);
 	void print(const char* fmt, ...);
 	void println(const char* fmt, ...);
 	void print_raw(string text);

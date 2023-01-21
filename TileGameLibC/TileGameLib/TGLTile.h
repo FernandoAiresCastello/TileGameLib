@@ -5,21 +5,15 @@
 #pragma once
 #include <string>
 #include "TileGameLib.h"
+#include "TGLGlobal.h"
+#include "TGLPaletteAndTileset.h"
 using namespace std;
 using namespace TileGameLib;
 
 struct TGLTile
 {
-	void newf(int ch, int fg, int bg);
-	void add(int ch, int fg, int bg);
-	int getc(int ix);
-	int getf(int ix);
-	int getb(int ix);
-	void color(int ix, int fg, int bg);
-	void setc(int ix, int ch);
-	void setf(int ix, int fg);
-	void setb(int ix, int bg);
-	void parse(string str);
+	void newf(tileid ch, colorid fg, colorid bg);
+	void addf(tileid ch, colorid fg, colorid bg);
 	void prop(string prop, string value);
 	string prop_s(string prop);
 	int prop_n(string prop);
@@ -27,4 +21,6 @@ struct TGLTile
 private:
 	friend struct TGL;
 	TTileSeq cur_tile;
+	TGLTileset* tileset = nullptr;
+	TGLPalette* palette = nullptr;
 };

@@ -6,13 +6,12 @@ int main(int argc, char* args[])
 	tgl.screen(32, 24, 2, 4, 4);
 	tgl.title("Hello World!");
 
-	tgl.pal.set(0, 0x000000);
-	tgl.pal.set(1, 0xffffff);
-	tgl.pal.set(2, 0xff0000);
-	tgl.pal.set(3, 0x00ff00);
-	tgl.pal.set(4, 0x0000ff);
+	tgl.pal.add("red", 0xff0000);
+	tgl.pal.add("green", 0x00ff00);
+	tgl.pal.add("blue", 0x0000ff);
+	tgl.pal.add("yellow", 0xffff00);
 
-	tgl.chr.set(1,
+	tgl.chr.add("square",
 		"11111111"
 		"10000001"
 		"10000001"
@@ -22,17 +21,23 @@ int main(int argc, char* args[])
 		"10000001"
 		"11111111"
 	);
+	tgl.chr.add("smiley",
+		"00111100"
+		"01000010"
+		"10100101"
+		"10000001"
+		"10100101"
+		"10011001"
+		"01000010"
+		"00111100"
+	);
 
 	int x = 0;
 	int y = 0;
 	int incr = 0;
 
-	tgl.wcol(4);
-	tgl.color(2, 3);
-	tgl.locate(1, 1);
-	string text = tgl.input(1);
-
-	tgl.tile.newf(1, 1, 4);
+	tgl.tile.newf("smiley", "yellow", "blue");
+	tgl.tile.addf("square", "red", "green");
 
 loop:
 	tgl.fill();

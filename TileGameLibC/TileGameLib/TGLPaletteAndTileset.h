@@ -4,38 +4,40 @@
 =============================================================================*/
 #pragma once
 #include <string>
+#include <map>
 #include "TileGameLib.h"
+#include "TGLGlobal.h"
 using namespace std;
 using namespace TileGameLib;
 
 struct TGLPalette
 {
-	void set(int ix, int rgb);
-	int get(int ix);
-	void setr(int ix, int value);
-	void setg(int ix, int value);
-	void setb(int ix, int value);
-	int getr(int ix);
-	int getg(int ix);
-	int getb(int ix);
-	int len();
+	void add(colorid id, int rgb);
+	int get_rgb(colorid id);
 
 private:
 	friend struct TGL;
+	friend struct TGLTile;
+
 	TPalette* palette = nullptr;
+	map<string, int> colorids;
 
 	void init_default();
+	int get_index(colorid id);
 };
 
 struct TGLTileset
 {
-	void set(int ix, string pixels);
-	string get(int ix);
-	int len();
+	void add(tileid id, string pixels);
+	string get_pixels(tileid id);
 
 private:
 	friend struct TGL;
+	friend struct TGLTile;
+
 	TCharset* charset = nullptr;
+	map<string, int> tileids;
 
 	void init_default();
+	int get_index(tileid id);
 };

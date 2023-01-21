@@ -4,61 +4,40 @@
 =============================================================================*/
 #include "TGLPaletteAndTileset.h"
 
-void TGLPalette::set(int ix, int rgb)
+void TGLPalette::add(colorid id, int rgb)
 {
-	palette->Set(ix, rgb);
+	int next_index = palette->GetSize();
+	palette->Add(rgb);
+	colorids[id] = next_index;
 }
-int TGLPalette::get(int ix)
+int TGLPalette::get_index(colorid id)
 {
-	return palette->GetColorRGB(ix);
+	return colorids[id];
 }
-void TGLPalette::setr(int ix, int value)
+int TGLPalette::get_rgb(colorid id)
 {
-	palette->Get(ix).R = value;
-}
-void TGLPalette::setg(int ix, int value)
-{
-	palette->Get(ix).G = value;
-}
-void TGLPalette::setb(int ix, int value)
-{
-	palette->Get(ix).B = value;
-}
-int TGLPalette::getr(int ix)
-{
-	return palette->Get(ix).R;
-}
-int TGLPalette::getg(int ix)
-{
-	return palette->Get(ix).G;
-}
-int TGLPalette::getb(int ix)
-{
-	return palette->Get(ix).B;
-}
-int TGLPalette::len()
-{
-	return palette->GetSize();
+	return palette->GetColorRGB(colorids[id]);
 }
 void TGLPalette::init_default()
 {
 	palette->DeleteAll();
-	palette->AddBlank(256);
 
-	palette->Set(0, 0x000000);
-	palette->Set(1, 0xffffff);
+	add("black", 0x000000);
+	add("white", 0xffffff);
 }
-void TGLTileset::set(int ix, string pixels)
+void TGLTileset::add(tileid id, string pixels)
 {
-	charset->Set(ix, pixels);
+	int next_index = charset->GetSize();
+	charset->Add(pixels);
+	tileids[id] = next_index;
 }
-string TGLTileset::get(int ix)
+int TGLTileset::get_index(tileid id)
 {
-	return charset->Get(ix).ToBinaryString();
+	return tileids[id];
 }
-int TGLTileset::len()
+string TGLTileset::get_pixels(tileid id)
 {
-	return charset->GetSize();
+	return charset->Get(tileids[id]).ToBinaryString();
 }
 void TGLTileset::init_default()
 {

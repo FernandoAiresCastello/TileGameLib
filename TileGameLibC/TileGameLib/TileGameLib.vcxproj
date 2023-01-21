@@ -165,6 +165,7 @@
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
     <ClInclude Include="TGLBuffer.h" />
+    <ClInclude Include="TGLGlobal.h" />
     <ClInclude Include="TGLKeyboard.h" />
     <ClInclude Include="TGLPaletteAndTileset.h" />
     <ClInclude Include="TGLTile.h" />
