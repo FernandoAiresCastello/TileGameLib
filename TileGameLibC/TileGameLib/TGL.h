@@ -8,7 +8,8 @@
 #include "TGLKeyboard.h"
 #include "TGLTile.h"
 #include "TGLBuffer.h"
-#include "TGLPaletteAndTileset.h"
+#include "TGLPalette.h"
+#include "TGLTileset.h"
 #include "TGLCursor.h"
 #include "TGLFile.h"
 

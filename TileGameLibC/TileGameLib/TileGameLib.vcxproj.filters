@@ -99,7 +99,7 @@
     <ClInclude Include="TGLBuffer.h">
       <Filter>TGL</Filter>
     </ClInclude>
-    <ClInclude Include="TGLPaletteAndTileset.h">
+    <ClInclude Include="TGLPalette.h">
       <Filter>TGL</Filter>
     </ClInclude>
     <ClInclude Include="TGLGlobal.h">
@@ -109,6 +109,9 @@
       <Filter>TGL</Filter>
     </ClInclude>
     <ClInclude Include="TGLFile.h">
+      <Filter>TGL</Filter>
+    </ClInclude>
+    <ClInclude Include="TGLTileset.h">
       <Filter>TGL</Filter>
     </ClInclude>
   </ItemGroup>
@@ -209,13 +212,16 @@
     <ClCompile Include="TGLBuffer.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
-    <ClCompile Include="TGLPaletteAndTileset.cpp">
+    <ClCompile Include="TGLPalette.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLCursor.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLFile.cpp">
+      <Filter>TGL</Filter>
+    </ClCompile>
+    <ClCompile Include="TGLTileset.cpp">
       <Filter>TGL</Filter>
     </ClCompile>
   </ItemGroup>

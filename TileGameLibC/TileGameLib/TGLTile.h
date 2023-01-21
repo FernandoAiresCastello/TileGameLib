@@ -4,7 +4,8 @@
 =============================================================================*/
 #pragma once
 #include "TGLGlobal.h"
-#include "TGLPaletteAndTileset.h"
+#include "TGLPalette.h"
+#include "TGLTileset.h"
 
 struct TGLTile
 {

@@ -309,11 +309,11 @@ string TGL::input(int maxlen)
 }
 void TGL::error(string msg)
 {
-	MsgBox::Error("TGL Runtime Error", msg);
+	MsgBox::Error(msg);
 }
 void TGL::abort(string msg)
 {
-	MsgBox::Error("TGL Fatal Error", msg);
+	MsgBox::Error(msg);
 	exit();
 }
 
