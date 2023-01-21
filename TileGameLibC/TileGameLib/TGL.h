@@ -59,11 +59,13 @@ struct TGL
 	void movb(int x, int y, int w, int h, int dx, int dy);
 	int rnd(int min, int max);
 	void play(string notes);
-	void lplay(string notes);
+	void play_loop(string notes);
 	void sound(float freq, int len);
 	void quiet();
 	void vol(int value);
 	string input(int maxlen);
+	void error(string msg);
+	void abort(string msg);
 
 private:
 	TBufferedWindow* wnd = nullptr;

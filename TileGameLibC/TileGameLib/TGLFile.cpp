@@ -24,3 +24,11 @@ bool TGLFile::exists(string file)
 {
 	return File::Exists(file);
 }
+void TGLFile::del(string file)
+{
+	File::Delete(file);
+}
+void TGLFile::copy(string src, string dst)
+{
+	File::Duplicate(src, dst);
+}

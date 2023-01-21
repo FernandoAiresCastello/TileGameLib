@@ -12,4 +12,6 @@ struct TGLFile
 	vector<byte> bload(string file);
 	void bsave(string file, vector<byte>& data);
 	bool exists(string file);
+	void del(string file);
+	void copy(string src, string dst);
 };

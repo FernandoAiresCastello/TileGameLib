@@ -234,7 +234,7 @@ void TGL::play(string notes)
 {
 	snd.PlaySubSound(notes);
 }
-void TGL::lplay(string notes)
+void TGL::play_loop(string notes)
 {
 	snd.PlayMainSound(notes);
 }
@@ -306,6 +306,15 @@ string TGL::input(int maxlen)
 
 	buf.sel_buf->PutChar(0x00, csr.layer, csr.px, csr.py, text_color.fg, text_color.bg, transparency);
 	return str;
+}
+void TGL::error(string msg)
+{
+	MsgBox::Error("TGL Runtime Error", msg);
+}
+void TGL::abort(string msg)
+{
+	MsgBox::Error("TGL Fatal Error", msg);
+	exit();
 }
 
 //=============================================================================
