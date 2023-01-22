@@ -13,6 +13,7 @@ struct TGLPalette
 private:
 	friend struct TGL;
 	friend struct TGLTile;
+	friend struct TGLSprite;
 
 	TPalette* palette = nullptr;
 	map<string, int> colorids;

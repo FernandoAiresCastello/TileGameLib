@@ -27,3 +27,5 @@
 #include "TTiledImage.h"
 #include "TImageWindow.h"
 #include "TWindowCreationFlags.h"
+#include "TSprite.h"
+#include "TSpriteList.h"

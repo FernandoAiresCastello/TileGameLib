@@ -13,6 +13,7 @@ struct TGLTileset
 private:
 	friend struct TGL;
 	friend struct TGLTile;
+	friend struct TGLSprite;
 
 	TCharset* charset = nullptr;
 	map<string, int> tileids;

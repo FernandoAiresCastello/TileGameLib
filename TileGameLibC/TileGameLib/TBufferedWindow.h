@@ -15,6 +15,7 @@
 #include "TTileSeq.h"
 #include "TTileBuffer.h"
 #include "TWindowBase.h"
+#include "TSpriteList.h"
 
 using byte = CppUtils::byte;
 
@@ -53,16 +54,25 @@ namespace TileGameLib
 		void SetAnimationSpeed(int speed);
 		void EnableAnimation(bool enable);
 		bool IsAnimationEnabled();
+		void EnableSprites(bool enable);
+		void AddSprite(TSprite sprite);
+		TSprite* GetSprite(std::string id);
+		void RemoveSprite(std::string id);
 
 	private:
 		TCharset* Chr;
 		TPalette* Pal;
 		std::vector<TTileBuffer*> TileBuffers;
+		TSpriteList Sprites;
+		bool SpritesEnabled;
 
 		virtual void SetPixel(int x, int y, RGB rgb);
 		void DrawTile(TTile& tile, int x, int y, bool transparent);
 		void DrawTile(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
+		void DrawTileAsSprite(TTile& tile, int x, int y, bool transparent);
+		void DrawTileAsSprite(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent);
 		void DrawByteAsPixels(byte value, int x, int y, PaletteIndex fg, PaletteIndex bg, bool transparent);
 		void DrawTileBuffer(TTileBuffer* buf);
+		void DrawSpriteList();
 	};
 }

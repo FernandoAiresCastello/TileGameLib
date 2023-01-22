@@ -43,6 +43,10 @@ void TGL::screen(int cols, int rows, int layers, int hstr, int vstr)
 	tile.palette = &pal;
 	tile.tileset = &chr;
 
+	spr.wnd = wnd;
+	spr.palette = &pal;
+	spr.tileset = &chr;
+
 	wnd->Show();
 }
 void TGL::title(string title)

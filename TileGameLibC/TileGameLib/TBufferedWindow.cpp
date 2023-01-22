@@ -43,7 +43,8 @@ namespace TileGameLib
 		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight)),
 		Cols(cols), Rows(rows), LastCol(cols - 1), LastRow(rows - 1),
 		PixelWidth(pixelWidth), PixelHeight(pixelHeight),
-		HorizontalResolution(cols * TChar::Width), VerticalResolution(rows * TChar::Height)
+		HorizontalResolution(cols * TChar::Width), VerticalResolution(rows * TChar::Height), 
+		SpritesEnabled(true)
 	{
 		TileBuffers.push_back(new TTileBuffer(layerCount, cols, rows));
 		Buffer = new RGB[BufferLength];
@@ -153,6 +154,26 @@ namespace TileGameLib
 		return BufWndTileAnimation.Enabled;
 	}
 
+	void TBufferedWindow::EnableSprites(bool enable)
+	{
+		SpritesEnabled = enable;
+	}
+
+	void TBufferedWindow::AddSprite(TSprite sprite)
+	{
+		Sprites.Add(sprite);
+	}
+
+	TSprite* TBufferedWindow::GetSprite(std::string id)
+	{
+		return Sprites.Find(id);
+	}
+
+	void TBufferedWindow::RemoveSprite(std::string id)
+	{
+		Sprites.Delete(id);
+	}
+
 	void TBufferedWindow::Update()
 	{
 		ClearBackground();
@@ -162,6 +183,9 @@ namespace TileGameLib
 			if (buf->View.Visible)
 				DrawTileBuffer(buf);
 		}
+
+		if (SpritesEnabled)
+			DrawSpriteList();
 
 		TWindowBase::Update();
 	}
@@ -181,6 +205,27 @@ namespace TileGameLib
 		x *= TChar::Width;
 		y *= TChar::Height;
 
+		const TChar& charPixels = Chr->Get(ch);
+		const RGB fgRGB = Pal->GetColorRGB(fg);
+		const RGB bgRGB = Pal->GetColorRGB(bg);
+
+		DrawByteAsPixels(charPixels.PixelRow0, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow1, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow2, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow3, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow4, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow5, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow6, x, y++, fgRGB, bgRGB, transparent);
+		DrawByteAsPixels(charPixels.PixelRow7, x, y++, fgRGB, bgRGB, transparent);
+	}
+
+	void TBufferedWindow::DrawTileAsSprite(TTile& tile, int x, int y, bool transparent)
+	{
+		DrawTileAsSprite(tile.Char, tile.ForeColor, tile.BackColor, x, y, transparent);
+	}
+
+	void TBufferedWindow::DrawTileAsSprite(CharsetIndex ch, PaletteIndex fg, PaletteIndex bg, int x, int y, bool transparent)
+	{
 		const TChar& charPixels = Chr->Get(ch);
 		const RGB fgRGB = Pal->GetColorRGB(fg);
 		const RGB bgRGB = Pal->GetColorRGB(bg);
@@ -226,6 +271,25 @@ namespace TileGameLib
 
 					DrawTile(*tile, buf->View.X + x, buf->View.Y + y, buf->IsTileTransparent(layer, x, y));
 				}
+			}
+		}
+	}
+
+	void TBufferedWindow::DrawSpriteList()
+	{
+		for (auto& sprite : Sprites.GetAll())
+		{
+			if (sprite.Visible)
+			{
+				TTile* tile = nullptr;
+				if (sprite.Tile.IsEmpty())
+					continue;
+				if (sprite.Tile.GetSize() == 1)
+					tile = &sprite.Tile.First();
+				else
+					tile = &sprite.Tile.Get(BufWndTileAnimation.CachedFrame % sprite.Tile.GetSize());
+
+				DrawTileAsSprite(*tile, sprite.X, sprite.Y, sprite.Transparent);
 			}
 		}
 	}

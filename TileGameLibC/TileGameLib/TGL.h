@@ -13,6 +13,7 @@
 #include "TGLCursor.h"
 #include "TGLFile.h"
 #include "TGLString.h"
+#include "TGLSprite.h"
 
 struct TGL
 {
@@ -24,6 +25,7 @@ struct TGL
 	TGLCursor csr;
 	TGLFile file;
 	TGLString str;
+	TGLSprite spr;
 
 	void init();
 	void exit();
