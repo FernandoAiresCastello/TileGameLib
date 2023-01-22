@@ -1,17 +1,18 @@
 # Tile Game Toolkit
-A set of class libraries and tools for quick development of pseudo 8-bit games in C++ or C#.
+A collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#.
+
+**Notes:**
+
+1. This toolkit is under continuous development, therefore breaking changes in the public API might be introduced at any time without prior notice. Use at your own risk.
+2. There is no dependency or interoperability between the C++ and the C# projects.
+
+**Projects included:**
 
 - [TileGameLibC](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibC) is a C++ static library (.lib). Depends on [SDL2](https://www.libsdl.org/) and [CppUtils](https://github.com/FernandoAiresCastello/CppUtils).
 
 - [TileGameLibCS/TileGameLib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibCS/TileGameLib) is a C# dynamic library (.dll). Depends on Windows Forms.
 
 - [TileGameLibCS/TileGameMaker](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibCS/TileGameMaker) is a C# desktop application (.exe). Depends on Windows Forms and TileGameLib.dll
-
----
-
-*[TileGameLibC overview:](https://app.diagrams.net/#G1NrkAArw2Rzq2ac2MTr8jZZ5TvgXNFJ4F)*
-
-![TileGameLibC](https://raw.githubusercontent.com/FernandoAiresCastello/TileGameToolkit/master/Images/TileGameLibC.png)
 
 ---
 
