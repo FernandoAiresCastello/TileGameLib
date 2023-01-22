@@ -10,17 +10,21 @@
 struct TGLSprite
 {
 	void create(spriteid spr);
-	void destroy(spriteid spr);
-	void add_tile(spriteid spr, tileid tile, colorid fg, colorid bg);
-	void show(spriteid spr);
-	void hide(spriteid spr);
-	void toggle(spriteid spr);
-	void move(spriteid spr, int dx, int dy);
-	void set_pos(spriteid spr, int x, int y);
-	void tron(spriteid spr);
-	void troff(spriteid spr);
-	void enable();
-	void disable();
+	void select(spriteid spr);
+	void destroy();
+	void add_tile(tileid tile, colorid fg, colorid bg);
+	void show();
+	void hide();
+	void toggle();
+	bool visible();
+	void move(int dx, int dy);
+	void set_pos(int x, int y);
+	int x();
+	int y();
+	void tron();
+	void troff();
+	void enable_all();
+	void disable_all();
 
 private:
 	friend struct TGL;
@@ -28,4 +32,5 @@ private:
 	TBufferedWindow* wnd = nullptr;
 	TGLTileset* tileset = nullptr;
 	TGLPalette* palette = nullptr;
+	TSprite* sel_sprite = nullptr;
 };

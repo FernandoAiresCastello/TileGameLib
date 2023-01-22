@@ -30,7 +30,7 @@ struct TGL
 	void init();
 	void exit();
 	void halt();
-	bool global_proc();
+	bool default_proc();
 	void screen(int cols, int rows, int layers, int hstr, int vstr);
 	void title(string title);
 	void wcol(colorid id);
@@ -82,6 +82,6 @@ private:
 		int bg = 0;
 	} text_color;
 
-	bool global_proc(SDL_Event* e);
+	bool process_default_events(SDL_Event* e);
 	void print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc);
 };

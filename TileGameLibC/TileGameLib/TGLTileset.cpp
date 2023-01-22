@@ -10,6 +10,12 @@ void TGLTileset::add(tileid id, string pixels)
 	charset->Add(pixels);
 	tileids[id] = next_index;
 }
+void TGLTileset::add(tileid id, byte row0, byte row1, byte row2, byte row3, byte row4, byte row5, byte row6, byte row7)
+{
+	int next_index = charset->GetSize();
+	charset->Add(row0, row1, row2, row3, row4, row5, row6, row7);
+	tileids[id] = next_index;
+}
 int TGLTileset::get_index(tileid id)
 {
 	if (tileids.find(id) == tileids.end()) {

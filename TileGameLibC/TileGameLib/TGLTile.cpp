@@ -28,11 +28,11 @@ int TGLTile::prop_n(string prop)
 {
 	return cur_tile.Prop.GetNumber(prop);
 }
-void TGLTile::store(string id)
+void TGLTile::store(presetid id)
 {
 	presets[id] = cur_tile;
 }
-void TGLTile::load(string id)
+void TGLTile::load(presetid id)
 {
 	cur_tile = presets[id];
 }

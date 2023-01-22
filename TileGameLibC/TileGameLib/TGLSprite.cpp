@@ -14,71 +14,63 @@ void TGLSprite::create(spriteid spr)
 		wnd->AddSprite(sprite);
 	}
 }
-void TGLSprite::destroy(spriteid spr)
+void TGLSprite::select(spriteid spr)
 {
-	wnd->RemoveSprite(spr);
+	sel_sprite = wnd->GetSprite(spr);
 }
-void TGLSprite::add_tile(spriteid spr, tileid tile, colorid fg, colorid bg)
+void TGLSprite::destroy()
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Tile.Add(tileset->get_index(tile), palette->get_index(fg), palette->get_index(bg));
-	}
+	wnd->RemoveSprite(sel_sprite->Id);
 }
-void TGLSprite::show(spriteid spr)
+void TGLSprite::add_tile(tileid tile, colorid fg, colorid bg)
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Visible = true;
-	}
+	sel_sprite->Tile.Add(tileset->get_index(tile), palette->get_index(fg), palette->get_index(bg));
 }
-void TGLSprite::hide(spriteid spr)
+void TGLSprite::show()
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Visible = false;
-	}
+	sel_sprite->Visible = true;
 }
-void TGLSprite::toggle(spriteid spr)
+void TGLSprite::hide()
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Visible = !sprite->Visible;
-	}
+	sel_sprite->Visible = false;
 }
-void TGLSprite::move(spriteid spr, int dx, int dy)
+void TGLSprite::toggle()
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Move(dx, dy);
-	}
+	sel_sprite->Visible = !sel_sprite->Visible;
 }
-void TGLSprite::set_pos(spriteid spr, int x, int y)
+bool TGLSprite::visible()
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->SetPos(x, y);
-	}
+	return sel_sprite->Visible;
 }
-void TGLSprite::tron(spriteid spr)
+void TGLSprite::move(int dx, int dy)
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Transparent = true;
-	}
+	sel_sprite->Move(dx, dy);
 }
-void TGLSprite::troff(spriteid spr)
+void TGLSprite::set_pos(int x, int y)
 {
-	TSprite* sprite = wnd->GetSprite(spr);
-	if (sprite) {
-		sprite->Transparent = false;
-	}
+	sel_sprite->SetPos(x, y);
 }
-void TGLSprite::enable()
+int TGLSprite::x()
+{
+	return sel_sprite->X;
+}
+int TGLSprite::y()
+{
+	return sel_sprite->Y;
+}
+void TGLSprite::tron()
+{
+	sel_sprite->Transparent = true;
+}
+void TGLSprite::troff()
+{
+	sel_sprite->Transparent = false;
+}
+void TGLSprite::enable_all()
 {
 	wnd->EnableSprites(true);
 }
-void TGLSprite::disable()
+void TGLSprite::disable_all()
 {
 	wnd->EnableSprites(false);
 }

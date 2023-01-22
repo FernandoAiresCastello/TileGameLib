@@ -20,14 +20,16 @@ void TGL::exit()
 void TGL::halt()
 {
 	while (true) {
-		if (wnd) wnd->Update();
-		global_proc();
+		default_proc();
 	}
 }
-bool TGL::global_proc()
+bool TGL::default_proc()
 {
+	if (wnd) {
+		wnd->Update();
+	}
 	SDL_Event e;
-	return global_proc(&e);
+	return process_default_events(&e);
 }
 void TGL::screen(int cols, int rows, int layers, int hstr, int vstr)
 {
@@ -148,9 +150,7 @@ void TGL::putc(char ch)
 void TGL::pause(int ms)
 {
 	for (int i = 0; i < ms; i++) {
-		if (wnd) wnd->Update();
-		global_proc();
-		SDL_Delay(1);
+		default_proc();
 	}
 }
 void TGL::put()
@@ -276,7 +276,7 @@ string TGL::input(int maxlen)
 		wnd->Update();
 
 		SDL_Event e = { 0 };
-		if (global_proc(&e)) continue;
+		if (process_default_events(&e)) continue;
 
 		if (e.type == SDL_KEYDOWN) {
 			auto key = e.key.keysym.sym;
@@ -325,7 +325,7 @@ void TGL::abort(string msg)
 //								PRIVATE
 //=============================================================================
 
-bool TGL::global_proc(SDL_Event* e)
+bool TGL::process_default_events(SDL_Event* e)
 {
 	SDL_PollEvent(e);
 

@@ -15,13 +15,13 @@ struct TGLTile
 	void prop(string prop, int value);
 	string prop_s(string prop);
 	int prop_n(string prop);
-	void store(string id);
-	void load(string id);
+	void store(presetid id);
+	void load(presetid id);
 
 private:
 	friend struct TGL;
 	TTileSeq cur_tile;
 	TGLTileset* tileset = nullptr;
 	TGLPalette* palette = nullptr;
-	map<string, TTileSeq> presets;
+	map<presetid, TTileSeq> presets;
 };
