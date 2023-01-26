@@ -7,61 +7,33 @@
 #include "TGLGlobal.h"
 #include "TGLKeyboard.h"
 #include "TGLTile.h"
-#include "TGLBuffer.h"
-#include "TGLPalette.h"
-#include "TGLTileset.h"
 #include "TGLCursor.h"
 #include "TGLFile.h"
 #include "TGLString.h"
-#include "TGLSprite.h"
 
 struct TGL
 {
-	TGLKeyboard key;
-	TGLTile tile;
-	TGLBuffer buf;
-	TGLPalette pal;
-	TGLTileset chr;
+	TGLKeyboard kb;
 	TGLCursor csr;
 	TGLFile file;
 	TGLString str;
-	TGLSprite spr;
 
 	void init();
-	void exit();
-	void halt();
-	bool default_proc();
+	int exit();
+	int halt();
+	bool sysproc();
 	void screen(int cols, int rows, int layers, int hstr, int vstr);
 	void title(string title);
-	void wcol(colorid id);
+	void bgcol(rgb color);
 	void cls();
-	void cll();
-	void clr(int x, int y, int w, int h);
 	void vsync();
-	void layer(int layer);
 	void locate(int x, int y);
 	void tron();
 	void troff();
-	void color(colorid fgc, colorid bgc);
-	void fcolor(colorid id);
-	void bcolor(colorid id);
-	void print(const char* fmt, ...);
-	void println(const char* fmt, ...);
-	void print_raw(string text);
-	void print_add(string text);
-	void putc(char ch);
+	void grid();
+	void ungrid();
+	void draw(tile& tile);
 	void pause(int ms);
-	void put();
-	void put_r(int count);
-	void put_d(int count);
-	void put_l(int count);
-	void put_u(int count);
-	void get();
-	void del();
-	void rect(int x, int y, int w, int h);
-	void fill();
-	void mov(int dx, int dy);
-	void movb(int x, int y, int w, int h, int dx, int dy);
 	int rnd(int min, int max);
 	void play(string notes);
 	void play_loop(string notes);
@@ -73,15 +45,10 @@ struct TGL
 	void abort(string msg);
 
 private:
-	TBufferedWindow* wnd = nullptr;
-	bool transparency = false;
+	TRGBWindow* wnd = nullptr;
+	bool ignore_pixel_c0 = false;
+	bool align_to_grid = true;
 	TSound snd;
 
-	struct {
-		int fg = 1;
-		int bg = 0;
-	} text_color;
-
 	bool process_default_events(SDL_Event* e);
-	void print_tile_string(string text, bool raw, bool add_frames, int fgc, int bgc);
 };

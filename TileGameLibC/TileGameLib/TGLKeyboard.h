@@ -36,11 +36,23 @@ struct TGLKeyboard
 	bool f10();
 	bool f11();
 	bool f12();
-	bool pressed(string keyname);
 	bool shift();
 	bool ctrl();
 	bool alt();
-	bool capslock();
+	bool caps();
+	int last_kcode();
+	string last_kname();
+	bool last_kname(string name);
+	void clear_last();
 
-	SDL_Scancode keyname_to_scancode(string keyname);
+private:
+	friend class TGL;
+
+	SDL_Keycode last_key_pressed = 0;
+
+	bool key(SDL_Scancode key);
+	bool key_mod(SDL_Keymod key);
+	void key_store_last(SDL_Keycode key);
+	int key_get_last_code(bool keep);
+	string key_get_last_name(bool keep);
 };

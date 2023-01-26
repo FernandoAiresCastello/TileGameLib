@@ -91,12 +91,6 @@
     <ClInclude Include="TGLTile.h">
       <Filter>Private / Internal\TGL</Filter>
     </ClInclude>
-    <ClInclude Include="TGLBuffer.h">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLPalette.h">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClInclude>
     <ClInclude Include="TGLGlobal.h">
       <Filter>Private / Internal\TGL</Filter>
     </ClInclude>
@@ -104,9 +98,6 @@
       <Filter>Private / Internal\TGL</Filter>
     </ClInclude>
     <ClInclude Include="TGLFile.h">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClInclude>
-    <ClInclude Include="TGLTileset.h">
       <Filter>Private / Internal\TGL</Filter>
     </ClInclude>
     <ClInclude Include="TGLString.h">
@@ -127,8 +118,8 @@
     <ClInclude Include="TGL.h">
       <Filter>Public API</Filter>
     </ClInclude>
-    <ClInclude Include="TGLSprite.h">
-      <Filter>Private / Internal\TGL</Filter>
+    <ClInclude Include="TRGBWindow.h">
+      <Filter>Private / Internal\Graphics\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,19 +216,10 @@
     <ClCompile Include="TGLTile.cpp">
       <Filter>Private / Internal\TGL</Filter>
     </ClCompile>
-    <ClCompile Include="TGLBuffer.cpp">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLPalette.cpp">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClCompile>
     <ClCompile Include="TGLCursor.cpp">
       <Filter>Private / Internal\TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLFile.cpp">
-      <Filter>Private / Internal\TGL</Filter>
-    </ClCompile>
-    <ClCompile Include="TGLTileset.cpp">
       <Filter>Private / Internal\TGL</Filter>
     </ClCompile>
     <ClCompile Include="TGLString.cpp">
@@ -249,8 +231,8 @@
     <ClCompile Include="TSpriteList.cpp">
       <Filter>Private / Internal\Graphics\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="TGLSprite.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+    <ClCompile Include="TRGBWindow.cpp">
+      <Filter>Private / Internal\Graphics\Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

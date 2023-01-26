@@ -164,15 +164,11 @@
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
-    <ClInclude Include="TGLBuffer.h" />
-    <ClInclude Include="TGLSprite.h" />
     <ClInclude Include="TGLString.h" />
-    <ClInclude Include="TGLTileset.h" />
     <ClInclude Include="TGLCursor.h" />
     <ClInclude Include="TGLFile.h" />
     <ClInclude Include="TGLGlobal.h" />
     <ClInclude Include="TGLKeyboard.h" />
-    <ClInclude Include="TGLPalette.h" />
     <ClInclude Include="TGLTile.h" />
     <ClInclude Include="TImage.h" />
     <ClInclude Include="TImageWindow.h" />
@@ -184,6 +180,7 @@
     <ClInclude Include="TGlobal.h" />
     <ClInclude Include="TPanel.h" />
     <ClInclude Include="TRegion.h" />
+    <ClInclude Include="TRGBWindow.h" />
     <ClInclude Include="TSound.h">
       <SubType>
       </SubType>
@@ -215,14 +212,10 @@
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
-    <ClCompile Include="TGLBuffer.cpp" />
-    <ClCompile Include="TGLSprite.cpp" />
     <ClCompile Include="TGLString.cpp" />
-    <ClCompile Include="TGLTileset.cpp" />
     <ClCompile Include="TGLCursor.cpp" />
     <ClCompile Include="TGLFile.cpp" />
     <ClCompile Include="TGLKeyboard.cpp" />
-    <ClCompile Include="TGLPalette.cpp" />
     <ClCompile Include="TGLTile.cpp" />
     <ClCompile Include="TImage.cpp" />
     <ClCompile Include="TImageWindow.cpp" />
@@ -233,6 +226,7 @@
     <ClCompile Include="TColor.cpp" />
     <ClCompile Include="TPanel.cpp" />
     <ClCompile Include="TRegion.cpp" />
+    <ClCompile Include="TRGBWindow.cpp" />
     <ClCompile Include="TSound.cpp">
       <SubType>
       </SubType>

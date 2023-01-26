@@ -152,7 +152,7 @@
     <ResourceCompile Include="TGLTest.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Images\Icons\handheld.ico" />
+    <Image Include="..\..\handheld.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

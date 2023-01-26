@@ -15,7 +15,4 @@ using namespace TileGameLib;
 
 extern struct TGL tgl;
 
-typedef string colorid;
-typedef string tileid;
-typedef string spriteid;
-typedef string presetid;
+typedef int rgb;

@@ -4,39 +4,96 @@ int main(int argc, char* args[])
 {
 	tgl.init();
 	tgl.screen(43, 24, 2, 4, 4);
+	
+	tile simple_tile;
+	simple_tile.add(
+		"00011000"
+		"00111100"
+		"01111110"
+		"12222221"
+		"12222221"
+		"13333331"
+		"13333331"
+		"11111111",
+		0x000000, 0xffffff, 0xff0000, 0x00ff00);
 
-	tgl.pal.add("red", 0xff0000);
-	tgl.pal.add("blue", 0x0000ff);
+	tile animated_tile;
+	animated_tile.add(
+		"11111111"
+		"10022331"
+		"10022331"
+		"10022331"
+		"10022331"
+		"10022331"
+		"10022331"
+		"11111111",
+		0x000000, 0xffffff, 0xff0000, 0x00ff00);
+	animated_tile.add(
+		"11111111"
+		"10000001"
+		"10000001"
+		"12222221"
+		"12222221"
+		"13333331"
+		"13333331"
+		"11111111",
+		0x000000, 0xff00ff, 0x00ffff, 0xffff00);
 
-	tgl.chr.add("empty", "0000000000000000000000000000000000000000000000000000000000000000");
-	tgl.chr.add("square", "1111111110000001100000011000000110000001100000011000000111111111");
-
-	tgl.spr.create("test");
-	tgl.spr.select("test");
-	tgl.spr.add_tile("square", "red", "black");
-	tgl.spr.add_tile("square", "blue", "black");
-	tgl.spr.tron();
-	tgl.spr.set_pos(100, 100);
-	tgl.spr.show();
-
-	int speed = 1;
+	int x = 100;
+	int y = 100;
+	int speed = 0;
 
 loop:
+	tgl.bgcol(0x000080);
 	tgl.cls();
+	tgl.troff();
+
+	tgl.grid();
+	tgl.locate(0, 0);
+	tgl.draw(simple_tile);
 	tgl.locate(1, 1);
-	tgl.println("X: %i", tgl.spr.x());
-	tgl.println("Y: %i", tgl.spr.y());
+	tgl.draw(animated_tile);
 
-	tgl.default_proc();
+	tgl.tron();
 
-	if (tgl.key.space()) speed = 3; else speed = 1;
+	tgl.locate(2, 2);
+	tgl.draw(simple_tile);
 
-	if (tgl.key.right()) tgl.spr.move(speed, 0);
-	if (tgl.key.left()) tgl.spr.move(-speed, 0);
-	if (tgl.key.up()) tgl.spr.move(0, -speed);
-	if (tgl.key.down()) tgl.spr.move(0, speed);
+	tgl.ungrid();
+	tgl.locate(96, 96);
+	tgl.draw(simple_tile);
+	tgl.locate(x, y);
+	tgl.draw(animated_tile);
+	tgl.locate(104, 104);
+	tgl.draw(simple_tile);
+
+	tgl.sysproc();
+
+	if (tgl.kb.last_kname("SPACE")) {
+		animated_tile.visible = !animated_tile.visible;
+		tgl.kb.clear_last();
+	}
+
+	if (tgl.kb.shift()) speed = 2;
+	else if (tgl.kb.ctrl()) speed = 5;
+	else if (tgl.kb.alt()) speed = 10;
+	else speed = 1;
+
+	if (tgl.kb.caps()) {
+		if (tgl.kb.last_kname("RIGHT")) x += speed;
+		if (tgl.kb.last_kname("LEFT")) x -= speed;
+		if (tgl.kb.last_kname("UP")) y -= speed;
+		if (tgl.kb.last_kname("DOWN")) y += speed;
+		tgl.kb.clear_last();
+	}
+	else {
+		if (tgl.kb.right()) x += speed;
+		if (tgl.kb.left()) x -= speed;
+		if (tgl.kb.up()) y -= speed;
+		if (tgl.kb.down()) y += speed;
+	}
 
 	goto loop;
 
-	return 0;
+	return tgl.halt();
 }

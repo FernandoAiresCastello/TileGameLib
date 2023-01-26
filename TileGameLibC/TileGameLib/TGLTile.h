@@ -4,24 +4,35 @@
 =============================================================================*/
 #pragma once
 #include "TGLGlobal.h"
-#include "TGLPalette.h"
-#include "TGLTileset.h"
 
-struct TGLTile
+struct tile_f
 {
-	void set(tileid ch, colorid fg, colorid bg);
-	void add(tileid ch, colorid fg, colorid bg);
-	void prop(string prop, string value);
-	void prop(string prop, int value);
-	string prop_s(string prop);
-	int prop_n(string prop);
-	void store(presetid id);
-	void load(presetid id);
+	string pixels;
+	rgb c0, c1, c2, c3;
+
+	tile_f();
+	tile_f(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
+
+	void set(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
+};
+
+struct tile
+{
+	static const int width = 8;
+	static const int height = 8;
+	static const int size = width * height;
+
+	static const char pixel_c0 = '0';
+	static const char pixel_c1 = '1';
+	static const char pixel_c2 = '2';
+	static const char pixel_c3 = '3';
+
+	bool visible = true;
+
+	void add(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
 
 private:
 	friend struct TGL;
-	TTileSeq cur_tile;
-	TGLTileset* tileset = nullptr;
-	TGLPalette* palette = nullptr;
-	map<presetid, TTileSeq> presets;
+
+	vector<tile_f> frames;
 };

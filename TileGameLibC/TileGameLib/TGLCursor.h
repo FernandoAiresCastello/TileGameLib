@@ -16,7 +16,6 @@ struct TGLCursor
 private:
 	friend struct TGL;
 
-	int layer;
 	int px;
 	int py;
 };

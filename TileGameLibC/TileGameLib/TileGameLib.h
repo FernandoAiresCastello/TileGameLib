@@ -29,3 +29,4 @@
 #include "TWindowCreationFlags.h"
 #include "TSprite.h"
 #include "TSpriteList.h"
+#include "TRGBWindow.h"

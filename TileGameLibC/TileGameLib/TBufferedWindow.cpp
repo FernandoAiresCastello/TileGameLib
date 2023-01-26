@@ -47,7 +47,6 @@ namespace TileGameLib
 		SpritesEnabled(true)
 	{
 		TileBuffers.push_back(new TTileBuffer(layerCount, cols, rows));
-		Buffer = new RGB[BufferLength];
 		Chr = TCharset::Default;
 		Pal = TPalette::Default;
 		SDL_CreateThread(BufWndAnimateTiles, "BufWndTileAnimation", nullptr);
