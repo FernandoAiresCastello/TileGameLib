@@ -22,11 +22,11 @@ namespace TileGameLib
 		const int HorizontalResolution;
 		const int VerticalResolution;
 
-		TRGBWindow(int cols, int rows, int layerCount, int pixelWidth, int pixelHeight);
+		TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight);
 		virtual ~TRGBWindow();
 		virtual void Update();
 
-		int GetAnimationFrameIndex();
+		int GetFrame();
 		void DrawPixels(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y);
 		void SetClip(int x1, int y1, int x2, int y2, RGB clipBackColor);
 		void SetClipBackColor(RGB rgb);

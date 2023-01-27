@@ -9,6 +9,6 @@
 using namespace std;
 using namespace TileGameLib;
 
-extern struct TGL tgl;
+extern struct TGL_Old tgl;
 
 typedef int rgb;

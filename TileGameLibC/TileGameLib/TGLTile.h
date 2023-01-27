@@ -30,7 +30,7 @@ struct tile
 	void troff();
 
 private:
-	friend struct TGL;
+	friend struct TGL_Old;
 
 	vector<tile_f> frames;
 	bool ignore_c0 = false;

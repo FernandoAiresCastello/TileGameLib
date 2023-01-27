@@ -42,7 +42,7 @@ struct TGLKeyboard
 	void clear_last();
 
 private:
-	friend class TGL;
+	friend class TGL_Old;
 
 	SDL_Keycode last_key_pressed = 0;
 

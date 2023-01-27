@@ -164,6 +164,7 @@
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGL_Old.h" />
     <ClInclude Include="TGLView.h" />
     <ClInclude Include="TGLString.h" />
     <ClInclude Include="TGLFile.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGL_Old.cpp" />
     <ClCompile Include="TGLView.cpp" />
     <ClCompile Include="TGLString.cpp" />
     <ClCompile Include="TGLFile.cpp" />

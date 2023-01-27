@@ -86,19 +86,19 @@
       <Filter>Private / Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TGLKeyboard.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClInclude>
     <ClInclude Include="TGLTile.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClInclude>
     <ClInclude Include="TGLGlobal.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClInclude>
     <ClInclude Include="TGLFile.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClInclude>
     <ClInclude Include="TGLString.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClInclude>
     <ClInclude Include="TSprite.h">
       <Filter>Private / Internal\Graphics\Sprite</Filter>
@@ -112,14 +112,17 @@
     <ClInclude Include="TGlobal.h">
       <Filter>Private / Internal\Global</Filter>
     </ClInclude>
-    <ClInclude Include="TGL.h">
-      <Filter>Public API</Filter>
-    </ClInclude>
     <ClInclude Include="TRGBWindow.h">
       <Filter>Private / Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="TGLView.h">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
+    </ClInclude>
+    <ClInclude Include="TGL_Old.h">
+      <Filter>Private / Internal\TGL_Old</Filter>
+    </ClInclude>
+    <ClInclude Include="TGL.h">
+      <Filter>Public API</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -208,16 +211,16 @@
       <Filter>Private / Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGLKeyboard.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClCompile>
     <ClCompile Include="TGLTile.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClCompile>
     <ClCompile Include="TGLFile.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClCompile>
     <ClCompile Include="TGLString.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClCompile>
     <ClCompile Include="TSprite.cpp">
       <Filter>Private / Internal\Graphics\Sprite</Filter>
@@ -229,7 +232,10 @@
       <Filter>Private / Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="TGLView.cpp">
-      <Filter>Private / Internal\TGL</Filter>
+      <Filter>Private / Internal\TGL_Old</Filter>
+    </ClCompile>
+    <ClCompile Include="TGL_Old.cpp">
+      <Filter>Private / Internal\TGL_Old</Filter>
     </ClCompile>
     <ClCompile Include="TGL.cpp">
       <Filter>Public API</Filter>
@@ -275,7 +281,7 @@
     <Filter Include="Private / Internal\Global">
       <UniqueIdentifier>{90bcb99c-2274-41d1-9092-5d9755beed73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Private / Internal\TGL">
+    <Filter Include="Private / Internal\TGL_Old">
       <UniqueIdentifier>{49bb17d4-ebdc-4910-a6f8-fa3f4e290da3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

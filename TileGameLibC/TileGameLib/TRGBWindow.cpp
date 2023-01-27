@@ -35,7 +35,7 @@ int RgbWndAnimateTiles(void* dummy)
 
 namespace TileGameLib
 {
-	TRGBWindow::TRGBWindow(int cols, int rows, int layerCount, int pixelWidth, int pixelHeight) :
+	TRGBWindow::TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight) :
 		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight)),
 		Cols(cols), Rows(rows), PixelWidth(pixelWidth), PixelHeight(pixelHeight),
 		HorizontalResolution(cols* TChar::Width), VerticalResolution(rows* TChar::Height)
@@ -56,7 +56,7 @@ namespace TileGameLib
 		TWindowBase::Update();
 	}
 
-	int TRGBWindow::GetAnimationFrameIndex()
+	int TRGBWindow::GetFrame()
 	{
 		return RgbWndTileAnimation.CachedFrame;
 	}
