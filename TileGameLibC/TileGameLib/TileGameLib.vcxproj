@@ -164,8 +164,8 @@
     <ClInclude Include="TGamepad.h" />
     <ClInclude Include="TGBWindowLayers.h" />
     <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGLView.h" />
     <ClInclude Include="TGLString.h" />
-    <ClInclude Include="TGLCursor.h" />
     <ClInclude Include="TGLFile.h" />
     <ClInclude Include="TGLGlobal.h" />
     <ClInclude Include="TGLKeyboard.h" />
@@ -212,8 +212,8 @@
     <ClCompile Include="TGamepad.cpp" />
     <ClCompile Include="TGBWindowLayers.cpp" />
     <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGLView.cpp" />
     <ClCompile Include="TGLString.cpp" />
-    <ClCompile Include="TGLCursor.cpp" />
     <ClCompile Include="TGLFile.cpp" />
     <ClCompile Include="TGLKeyboard.cpp" />
     <ClCompile Include="TGLTile.cpp" />

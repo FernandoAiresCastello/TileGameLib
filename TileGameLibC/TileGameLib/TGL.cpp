@@ -7,6 +7,11 @@
 
 TGL tgl;
 
+struct {
+	int x = 0;
+	int y = 0;
+} csr;
+
 void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -49,38 +54,42 @@ void TGL::bgcol(rgb color)
 void TGL::cls()
 {
 	wnd->ClearBackground();
+	wnd->ClearBackgroundInsideClip();
 }
 void TGL::vsync()
 {
 	wnd->Update();
 }
-void TGL::locate(int x, int y)
+void TGL::view(struct view& view)
 {
-	csr.px = x;
-	csr.py = y;
+	wnd->SetClip(view.x1, view.y1, view.x2, view.y2, view.back_color);
+	wnd->ClearBackgroundInsideClip();
 }
-void TGL::tron()
+void TGL::rview()
 {
-	ignore_pixel_c0 = true;
+	wnd->RemoveClip();
+	wnd->ClearBackground();
 }
-void TGL::troff()
+void TGL::coord(int x, int y)
 {
-	ignore_pixel_c0 = false;
+	csr.x = x;
+	csr.y = y;
 }
-void TGL::grid()
+void TGL::cell(int col, int row)
 {
-	align_to_grid = true;
-}
-void TGL::ungrid()
-{
-	align_to_grid = false;
+	csr.x = col * tile::width;
+	csr.y = row * tile::height;
 }
 void TGL::draw(tile& tile)
 {
 	if (!tile.visible) return;
 
-	tile_f frame = tile.frames[wnd->GetAnimationFrameIndex() % tile.frames.size()];
-	wnd->DrawPixels(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, ignore_pixel_c0, align_to_grid, csr.px, csr.py);
+	tile_f& frame = tile.frames[wnd->GetAnimationFrameIndex() % tile.frames.size()];
+
+	int x = wnd->HasClip() ? csr.x + wnd->GetClip().X1 : csr.x;
+	int y = wnd->HasClip() ? csr.y + wnd->GetClip().Y1 : csr.y;
+
+	wnd->DrawPixels(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, tile.ignore_c0, x, y);
 }
 void TGL::pause(int ms)
 {
@@ -92,11 +101,11 @@ int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
 }
-void TGL::play(string notes)
+void TGL::sfx(string notes)
 {
 	snd.PlaySubSound(notes);
 }
-void TGL::play_loop(string notes)
+void TGL::music(string notes)
 {
 	snd.PlayMainSound(notes);
 }
@@ -111,11 +120,7 @@ void TGL::quiet()
 }
 void TGL::vol(int value)
 {
-	snd.SetVolume(value);
-}
-string TGL::input(int maxlen)
-{
-	return "";
+	snd.SetVolume(value * 1000);
 }
 void TGL::error(string msg)
 {

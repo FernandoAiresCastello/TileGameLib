@@ -40,6 +40,8 @@ namespace TileGameLib
 		Cols(cols), Rows(rows), PixelWidth(pixelWidth), PixelHeight(pixelHeight),
 		HorizontalResolution(cols* TChar::Width), VerticalResolution(rows* TChar::Height)
 	{
+		RemoveClip();
+
 		SDL_CreateThread(RgbWndAnimateTiles, "RgbWndAnimateTiles", nullptr);
 	}
 
@@ -59,27 +61,28 @@ namespace TileGameLib
 		return RgbWndTileAnimation.CachedFrame;
 	}
 
-	void TRGBWindow::DrawPixels(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, bool alignToGrid, int x, int y)
+	void TRGBWindow::DrawPixels(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y)
 	{
-		if (alignToGrid)
-		{
-			x *= TChar::Width;
-			y *= TChar::Height;
-		}
-
 		RGB color;
 		int px = x;
 		int py = y;
+		bool hidePixel = false;
 
 		for (auto& pixel : pixels)
 		{
-			if (pixel == '1') color = c1;
-			else if (pixel == '2') color = c2;
-			else if (pixel == '3') color = c3;
-			else color = c0;
+			if (HasClip())
+				hidePixel = IsOutsideClip(px, py);
 
-			if (!ignoreC0 || (ignoreC0 && color != c0))
-				SetPixel(px, py, color);
+			if (!hidePixel)
+			{
+				if (pixel == '1') color = c1;
+				else if (pixel == '2') color = c2;
+				else if (pixel == '3') color = c3;
+				else color = c0;
+
+				if (!ignoreC0 || (ignoreC0 && color != c0))
+					SetPixel(px, py, color);
+			}
 
 			px++;
 			if (px >= x + TChar::Width)
@@ -87,6 +90,52 @@ namespace TileGameLib
 				py++;
 				px = x;
 			}
+		}
+	}
+
+	void TRGBWindow::SetClip(int x1, int y1, int x2, int y2, RGB clipBackColor)
+	{
+		Clip.Set(x1, y1, x2, y2);
+		ClipBackColor = clipBackColor;
+	}
+
+	void TRGBWindow::SetClipBackColor(RGB rgb)
+	{
+		ClipBackColor = rgb;
+	}
+
+	void TRGBWindow::RemoveClip()
+	{
+		SetClip(0, 0, 0, 0, ClipBackColor);
+	}
+
+	bool TRGBWindow::HasClip()
+	{
+		return !(Clip.X1 == 0 && Clip.Y1 == 0 && Clip.X2 == 0 && Clip.Y2 == 0);
+	}
+
+	bool TRGBWindow::IsInsideClip(int x, int y)
+	{
+		return x >= Clip.X1 && x <= Clip.X2 && y >= Clip.Y1 && y <= Clip.Y2;
+	}
+
+	bool TRGBWindow::IsOutsideClip(int x, int y)
+	{
+		return !IsInsideClip(x, y);
+	}
+
+	TRegion& TRGBWindow::GetClip()
+	{
+		return Clip;
+	}
+
+	void TRGBWindow::ClearBackgroundInsideClip()
+	{
+		if (HasClip())
+		{
+			for (int y = Clip.Y1; y <= Clip.Y2; y++)
+				for (int x = Clip.X1; x <= Clip.X2; x++)
+					SetPixel(x, y, ClipBackColor);
 		}
 	}
 

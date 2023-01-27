@@ -1,7 +1,3 @@
-/*=============================================================================
-	 TGL (TileGameLib)
-	 2018-2023 Developed by Fernando Aires Castello
-=============================================================================*/
 #pragma once
 #include "TGLGlobal.h"
 
@@ -30,9 +26,12 @@ struct tile
 	bool visible = true;
 
 	void add(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
+	void tron();
+	void troff();
 
 private:
 	friend struct TGL;
 
 	vector<tile_f> frames;
+	bool ignore_c0 = false;
 };

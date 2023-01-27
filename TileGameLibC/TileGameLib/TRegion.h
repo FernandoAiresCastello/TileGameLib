@@ -21,5 +21,7 @@ namespace TileGameLib
 
 		bool operator==(const TRegion& other);
 		bool operator!=(const TRegion& other);
+
+		void Set(int x1, int y1, int x2, int y2);
 	};
 }

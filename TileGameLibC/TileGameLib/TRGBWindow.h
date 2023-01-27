@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include "TGlobal.h"
 #include "TWindowBase.h"
+#include "TRegion.h"
 
 namespace TileGameLib
 {
@@ -26,9 +27,20 @@ namespace TileGameLib
 		virtual void Update();
 
 		int GetAnimationFrameIndex();
-		void DrawPixels(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, bool alignToGrid, int x, int y);
+		void DrawPixels(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y);
+		void SetClip(int x1, int y1, int x2, int y2, RGB clipBackColor);
+		void SetClipBackColor(RGB rgb);
+		void RemoveClip();
+		bool HasClip();
+		bool IsInsideClip(int x, int y);
+		bool IsOutsideClip(int x, int y);
+		TRegion& GetClip();
+		void ClearBackgroundInsideClip();
 
 	private:
+		TRegion Clip;
+		RGB ClipBackColor;
+
 		virtual void SetPixel(int x, int y, RGB rgb);
 	};
 }

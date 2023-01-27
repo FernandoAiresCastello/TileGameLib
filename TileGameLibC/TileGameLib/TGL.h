@@ -3,18 +3,16 @@
 	 2018-2023 Developed by Fernando Aires Castello
 =============================================================================*/
 #pragma once
-
 #include "TGLGlobal.h"
 #include "TGLKeyboard.h"
 #include "TGLTile.h"
-#include "TGLCursor.h"
 #include "TGLFile.h"
 #include "TGLString.h"
+#include "TGLView.h"
 
 struct TGL
 {
 	TGLKeyboard kb;
-	TGLCursor csr;
 	TGLFile file;
 	TGLString str;
 
@@ -27,27 +25,23 @@ struct TGL
 	void bgcol(rgb color);
 	void cls();
 	void vsync();
-	void locate(int x, int y);
-	void tron();
-	void troff();
-	void grid();
-	void ungrid();
+	void view(struct view& view);
+	void rview();
+	void coord(int x, int y);
+	void cell(int col, int row);
 	void draw(tile& tile);
 	void pause(int ms);
 	int rnd(int min, int max);
-	void play(string notes);
-	void play_loop(string notes);
+	void sfx(string notes);
+	void music(string notes);
 	void sound(float freq, int len);
 	void quiet();
 	void vol(int value);
-	string input(int maxlen);
 	void error(string msg);
 	void abort(string msg);
 
 private:
 	TRGBWindow* wnd = nullptr;
-	bool ignore_pixel_c0 = false;
-	bool align_to_grid = true;
 	TSound snd;
 
 	bool process_default_events(SDL_Event* e);

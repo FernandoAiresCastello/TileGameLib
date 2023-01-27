@@ -1,7 +1,3 @@
-/*=============================================================================
-	 TGL (TileGameLib)
-	 2018-2023 Developed by Fernando Aires Castello
-=============================================================================*/
 #include "TGLString.h"
 
 string TGLString::trim(string src)
