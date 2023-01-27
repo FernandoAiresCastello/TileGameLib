@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Experimental\TileGameBoy\TGBSprite.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBTile.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBTileDef.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBTileLayer.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBTileset.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBWindow.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TGBWindowLayers.h" />
+    <ClInclude Include="Experimental\TileGameBoy\TTileGameBoy.h" />
+    <ClInclude Include="Internal\TBufferedWindow.h" />
+    <ClInclude Include="Internal\TChar.h" />
+    <ClInclude Include="Internal\TCharset.h" />
+    <ClInclude Include="Internal\TColor.h" />
+    <ClInclude Include="Internal\TGamepad.h" />
+    <ClInclude Include="Internal\TGlobal.h" />
+    <ClInclude Include="Internal\TImage.h" />
+    <ClInclude Include="Internal\TImageWindow.h" />
+    <ClInclude Include="Internal\TKey.h" />
+    <ClInclude Include="Internal\TPalette.h" />
+    <ClInclude Include="Internal\TPanelWindow.h" />
+    <ClInclude Include="Internal\TRegion.h" />
+    <ClInclude Include="Internal\TRGBWindow.h" />
+    <ClInclude Include="Internal\TSound.h" />
+    <ClInclude Include="Internal\TSprite.h" />
+    <ClInclude Include="Internal\TSpriteList.h" />
+    <ClInclude Include="Internal\TTile.h" />
+    <ClInclude Include="Internal\TTileBuffer.h" />
+    <ClInclude Include="Internal\TTileBufferLayer.h" />
+    <ClInclude Include="Internal\TTiledImage.h" />
+    <ClInclude Include="Internal\TTileSeq.h" />
+    <ClInclude Include="Internal\TWindowBase.h" />
+    <ClInclude Include="Internal\TWindowCreationFlags.h" />
+    <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGL_global.h" />
+    <ClInclude Include="TGL_tile.h" />
+    <ClInclude Include="TGL_tile_f.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBTile.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBTileDef.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBTileLayer.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBTileset.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBWindow.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TGBWindowLayers.cpp" />
+    <ClCompile Include="Experimental\TileGameBoy\TTileGameBoy.cpp" />
+    <ClCompile Include="Internal\TBufferedWindow.cpp" />
+    <ClCompile Include="Internal\TChar.cpp" />
+    <ClCompile Include="Internal\TCharset.cpp" />
+    <ClCompile Include="Internal\TColor.cpp" />
+    <ClCompile Include="Internal\TGamepad.cpp" />
+    <ClCompile Include="Internal\TImage.cpp" />
+    <ClCompile Include="Internal\TImageWindow.cpp" />
+    <ClCompile Include="Internal\TKey.cpp" />
+    <ClCompile Include="Internal\TPalette.cpp" />
+    <ClCompile Include="Internal\TPanelWindow.cpp" />
+    <ClCompile Include="Internal\TRegion.cpp" />
+    <ClCompile Include="Internal\TRGBWindow.cpp" />
+    <ClCompile Include="Internal\TSound.cpp" />
+    <ClCompile Include="Internal\TSprite.cpp" />
+    <ClCompile Include="Internal\TSpriteList.cpp" />
+    <ClCompile Include="Internal\TTile.cpp" />
+    <ClCompile Include="Internal\TTileBuffer.cpp" />
+    <ClCompile Include="Internal\TTileBufferLayer.cpp" />
+    <ClCompile Include="Internal\TTiledImage.cpp" />
+    <ClCompile Include="Internal\TTileSeq.cpp" />
+    <ClCompile Include="Internal\TWindowBase.cpp" />
+    <ClCompile Include="Internal\TWindowCreationFlags.cpp" />
+    <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGL_tile.cpp" />
+    <ClCompile Include="TGL_tile_f.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{C846D7D6-B6B4-43C7-A395-373E7196D3DF}</ProjectGuid>
+    <RootNamespace>TGL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <MSBuildWarningsAsMessages>MSB8012</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PropertySheet.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetExt>.lib</TargetExt>
+    <IncludePath>C:\Fernando\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Fernando\Lib\SDL2-2.0.8\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level1</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SDLPath)\include;$(CppUtilsPath)\CppUtils</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(SolutionDir)..\Builds\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\CppUtils\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;CppUtils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(SolutionDir)..\Builds\$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(SolutionDir)..\Builds\$(TargetName).pgd</ProfileGuidedDatabase>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ImportLibrary>$(SolutionDir)..\Builds\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)Builds\TGL.lib"</Command>
+    </PostBuildEvent>
+    <Lib>
+      <OutputFile>$(OutDir)TGL.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
