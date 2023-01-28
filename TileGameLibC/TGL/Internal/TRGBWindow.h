@@ -16,7 +16,7 @@ namespace TGL_Internal
 		const int HorizontalResolution;
 		const int VerticalResolution;
 
-		TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight);
+		TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight, RGB backColor);
 		virtual ~TRGBWindow();
 		virtual void Update();
 

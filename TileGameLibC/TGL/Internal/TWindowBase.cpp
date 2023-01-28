@@ -5,11 +5,10 @@
 
 namespace TGL_Internal
 {
-	TWindowBase::TWindowBase(int width, int height) :
-		Width(width), Height(height), BufferLength(sizeof(int) * width * height)
+	TWindowBase::TWindowBase(int width, int height, RGB backColor) :
+		Width(width), Height(height), BufferLength(sizeof(int) * width * height), BackColor(backColor)
 	{
 		Buffer = new RGB[BufferLength];
-		BackColor = 0;
 		ClearBackground();
 
 		SDL_Init(SDL_INIT_VIDEO);
@@ -35,6 +34,8 @@ namespace TGL_Internal
 
 		SDL_SetTextureBlendMode(Scrtx, SDL_BLENDMODE_NONE);
 		SDL_SetWindowPosition(Window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+
+		Update();
 	}
 
 	TWindowBase::~TWindowBase()

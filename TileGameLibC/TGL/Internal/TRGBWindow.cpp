@@ -29,8 +29,8 @@ int RgbWndAnimateTiles(void* dummy)
 
 namespace TGL_Internal
 {
-	TRGBWindow::TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight) :
-		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight)),
+	TRGBWindow::TRGBWindow(int cols, int rows, int pixelWidth, int pixelHeight, RGB backColor) :
+		TWindowBase(cols * (TChar::Width * pixelWidth), rows * (TChar::Height * pixelHeight), backColor),
 		Cols(cols), Rows(rows), PixelWidth(pixelWidth), PixelHeight(pixelHeight),
 		HorizontalResolution(cols* TChar::Width), VerticalResolution(rows* TChar::Height)
 	{

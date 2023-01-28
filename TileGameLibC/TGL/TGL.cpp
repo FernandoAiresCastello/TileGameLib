@@ -30,7 +30,7 @@ bool TGL::sysproc()
 }
 void TGL::screen(int width, int height, int hstr, int vstr)
 {
-	wnd = new TRGBWindow(width / tile::width, height / tile::height, hstr, vstr);
+	wnd = new TRGBWindow(width / tile::width, height / tile::height, hstr, vstr, 0xffffff);
 	wnd->Show();
 }
 void TGL::bgcolor(rgb color)
@@ -49,7 +49,7 @@ bool TGL::process_default_events(SDL_Event* e)
 		auto key = e->key.keysym.sym;
 		kb_last = key;
 
-		if (key == SDLK_PAUSE) {
+		if (key == SDLK_ESCAPE || key == SDLK_PAUSE) {
 			exit();
 			return true;
 		}

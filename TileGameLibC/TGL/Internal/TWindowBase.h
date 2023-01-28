@@ -11,7 +11,7 @@ namespace TGL_Internal
 		const int Width;
 		const int Height;
 
-		TWindowBase(int width, int height);
+		TWindowBase(int width, int height, RGB backColor = 0x000000);
 		virtual ~TWindowBase();
 
 		void* GetHandle();
