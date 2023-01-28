@@ -1,4 +1,4 @@
-# TileGameMaker
+# Tile Game Maker
 
 This MSVC solution contains two projects:
 
