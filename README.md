@@ -1,22 +1,12 @@
 # Tile Game Toolkit
 A collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#.
 
-**Notes:**
-
-1. This toolkit is under continuous development, therefore breaking changes in the public API may be introduced at any time without prior notice. Use at your own risk.
-2. There is no dependency or interoperability between the C++ and the C# projects.
-3. The public API for TGL (the C++ library) is available via the header TGL.h only. Including any other internal TGL header files in your program is not supported.
+Disclaimer: This toolkit is under continuous development, therefore breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
 
 **Projects included:**
 
-- [TileGameLibC/TGL](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibC) is a C++ static library (.lib). Depends on [SDL2](https://www.libsdl.org/) and [CppUtils](https://github.com/FernandoAiresCastello/CppUtils).
+- TGL (TileGameLib) is a C++ static library (TGL.lib) built on top of SDL2.
 
-- [TileGameLibCS/TileGameLib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibCS/TileGameLib) is a C# dynamic library (.dll). Depends on Windows Forms.
+- TileGameMaker is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects.
 
-- [TileGameLibCS/TileGameMaker](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibCS/TileGameMaker) is a C# desktop application (.exe). Depends on Windows Forms and TileGameLib.dll
-
----
-
-*Screenshot of TileGameMaker: (may be outdated)*
-
-![TileGameMaker](https://raw.githubusercontent.com/FernandoAiresCastello/TileGameToolkit/master/Images/TileGameMaker.png)
+Note: There is no compatibility or interoperability between the C++ and C# projects.
