@@ -3,8 +3,9 @@
 int main(int argc, char* args[])
 {
 	tgl.init();
-	tgl.screen(256, 192, 4, 4, 0xffffff);
-	
+	tgl.title("TGL Demo");
+	tgl.screen(256, 192, 4, 4, 0xd0a080);
+
 	tile t_water;
 	t_water.add(
 		"00000000"
@@ -44,25 +45,14 @@ int main(int argc, char* args[])
 	tm_ocean.size(12, 10);
 	tm_ocean.fill(&t_water);
 
-	int tmx = -200;
-	int tmy = 0;
+	while (tgl.sysproc()) {
 
-draw_frame:
-
-	tgl.clip(50, 30, 200, 150);
-	tgl.bgcolor(0x0080ff);
-	tgl.cls();
-
-	tgl.drawtilemap(tm_ocean, tmx, tmy);
-	tgl.drawtile(t_player, 10, 10);
-
-	tgl.sysproc();
-	tmx++;
-	if (tmx > 200) {
-		tmx = -200;
+		tgl.clip(50, 30, 200, 150);
+		tgl.bgcolor(0x0080ff);
+		tgl.cls();
+		tgl.drawtilemap(tm_ocean, 0, 0);
+		tgl.drawtile(t_player, 10, 10);
 	}
 
-	goto draw_frame;
-
-	return tgl.halt();
+	return tgl.exit();
 }

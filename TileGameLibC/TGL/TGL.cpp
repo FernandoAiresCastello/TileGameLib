@@ -17,9 +17,8 @@ int TGL::exit()
 }
 int TGL::halt()
 {
-	while (true) {
-		sysproc();
-	}
+	while (sysproc());
+
 	return exit();
 }
 bool TGL::sysproc()
@@ -28,9 +27,17 @@ bool TGL::sysproc()
 	SDL_Event e;
 	return process_default_events(&e);
 }
+void TGL::title(string title)
+{
+	wnd_title = title;
+	if (wnd) {
+		wnd->SetTitle(title);
+	}
+}
 void TGL::screen(int width, int height, int hstr, int vstr, rgb back_color)
 {
 	wnd = new TRGBWindow(width / tile::width, height / tile::height, hstr, vstr, back_color);
+	wnd->SetTitle(wnd_title);
 	wnd->Show();
 }
 void TGL::bgcolor(rgb color)
@@ -87,7 +94,7 @@ bool TGL::process_default_events(SDL_Event* e)
 
 	if (e->type == SDL_QUIT) {
 		exit();
-		return true;
+		return false;
 	}
 	else if (e->type == SDL_KEYDOWN) {
 		auto key = e->key.keysym.sym;
@@ -95,15 +102,11 @@ bool TGL::process_default_events(SDL_Event* e)
 
 		if (key == SDLK_ESCAPE) {
 			exit();
-			return true;
+			return false;
 		}
 		else if (TKey::Alt() && key == SDLK_RETURN && wnd) {
 			wnd->ToggleFullscreen();
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
-	return false;
+	return true;
 }
