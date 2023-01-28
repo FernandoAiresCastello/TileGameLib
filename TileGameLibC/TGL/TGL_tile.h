@@ -6,11 +6,12 @@ struct tile
 {
 	tile();
 
+	void add(string pixels, rgb c0);
+	void add(string pixels, rgb c0, rgb c1);
+	void add(string pixels, rgb c0, rgb c1, rgb c2);
 	void add(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
-	void tron();
-	void troff();
-	void show();
-	void hide();
+
+	void sprite();
 
 private:
 	friend struct TGL;
@@ -24,6 +25,8 @@ private:
 	static const char pixel_c1 = '1';
 	static const char pixel_c2 = '2';
 	static const char pixel_c3 = '3';
+	
+	static const rgb default_color = 0x000000;
 
 	tile(const tile&) = delete;
 	tile(tile&&) = delete;

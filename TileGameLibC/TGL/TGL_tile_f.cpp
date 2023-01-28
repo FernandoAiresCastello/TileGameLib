@@ -3,7 +3,8 @@
 
 tile_f::tile_f()
 {
-	set(String::Repeat(tile::pixel_c0, tile::size), 0x000000, 0x000000, 0x000000, 0x000000);
+	set(String::Repeat(tile::pixel_c0, tile::size), 
+		tile::default_color, tile::default_color, tile::default_color, tile::default_color);
 }
 tile_f::tile_f(string pixels, rgb c0, rgb c1, rgb c2, rgb c3)
 {

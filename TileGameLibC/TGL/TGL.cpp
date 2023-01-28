@@ -24,18 +24,39 @@ int TGL::halt()
 }
 bool TGL::sysproc()
 {
-	render_frame();
+	wnd->Update();
 	SDL_Event e;
 	return process_default_events(&e);
 }
-void TGL::screen(int width, int height, int hstr, int vstr)
+void TGL::screen(int width, int height, int hstr, int vstr, rgb back_color)
 {
-	wnd = new TRGBWindow(width / tile::width, height / tile::height, hstr, vstr, 0xffffff);
+	wnd = new TRGBWindow(width / tile::width, height / tile::height, hstr, vstr, back_color);
 	wnd->Show();
 }
 void TGL::bgcolor(rgb color)
 {
 	wnd->SetBackColor(color);
+}
+void TGL::clip(int x1, int y1, int x2, int y2)
+{
+	wnd->SetClip(x1, y1, x2, y2);
+}
+void TGL::unclip()
+{
+	wnd->RemoveClip();
+}
+void TGL::cls()
+{
+	wnd->ClearBackground();
+}
+void TGL::draw(tile& tile, int x, int y)
+{
+	if (wnd->HasClip()) {
+		x += wnd->GetClip().X1;
+		y += wnd->GetClip().Y1;
+	}
+	tile_f& frame = tile.frames[wnd->GetFrame() % tile.frames.size()];
+	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, tile.ignore_c0, x, y);
 }
 bool TGL::process_default_events(SDL_Event* e)
 {
@@ -62,12 +83,4 @@ bool TGL::process_default_events(SDL_Event* e)
 		}
 	}
 	return false;
-}
-void TGL::render_frame()
-{
-	if (!wnd) return;
-
-	wnd->ClearBackground();
-	// draw_graphical_objects();
-	wnd->Update();
 }

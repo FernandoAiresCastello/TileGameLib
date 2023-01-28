@@ -26,7 +26,7 @@ namespace TGL_Internal
 		void SaveScreenshot(std::string file);
 		void SetBackColor(RGB rgb);
 		RGB GetBackColor();
-		void ClearBackground();
+		virtual void ClearBackground();
 
 	protected:
 		RGB* Buffer;

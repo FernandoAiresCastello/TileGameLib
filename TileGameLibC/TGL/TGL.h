@@ -12,8 +12,12 @@ struct TGL
 	int exit();
 	int halt();
 	bool sysproc();
-	void screen(int width, int height, int hstr, int vstr);
+	void screen(int width, int height, int hstr, int vstr, rgb back_color);
 	void bgcolor(rgb color);
+	void clip(int x1, int y1, int x2, int y2);
+	void unclip();
+	void cls();
+	void draw(tile& tile, int x, int y);
 
 private:
 	TGL_Internal::TRGBWindow* wnd = nullptr;
@@ -21,5 +25,4 @@ private:
 	SDL_Keycode kb_last = 0;
 
 	bool process_default_events(SDL_Event* e);
-	void render_frame();
 };

@@ -50,6 +50,20 @@ namespace TGL_Internal
 		TWindowBase::Update();
 	}
 
+	void TRGBWindow::ClearBackground()
+	{
+		if (HasClip())
+		{
+			for (int y = Clip.Y1; y <= Clip.Y2; y++)
+				for (int x = Clip.X1; x <= Clip.X2; x++)
+					SetPixel(x, y, BackColor);
+		}
+		else
+		{
+			TWindowBase::ClearBackground();
+		}
+	}
+
 	int TRGBWindow::GetFrame()
 	{
 		return RgbWndTileAnimation.CachedFrame;
@@ -87,20 +101,14 @@ namespace TGL_Internal
 		}
 	}
 
-	void TRGBWindow::SetClip(int x1, int y1, int x2, int y2, RGB clipBackColor)
+	void TRGBWindow::SetClip(int x1, int y1, int x2, int y2)
 	{
 		Clip.Set(x1, y1, x2, y2);
-		ClipBackColor = clipBackColor;
-	}
-
-	void TRGBWindow::SetClipBackColor(RGB rgb)
-	{
-		ClipBackColor = rgb;
 	}
 
 	void TRGBWindow::RemoveClip()
 	{
-		SetClip(0, 0, 0, 0, ClipBackColor);
+		SetClip(0, 0, 0, 0);
 	}
 
 	bool TRGBWindow::HasClip()
@@ -121,16 +129,6 @@ namespace TGL_Internal
 	TRegion& TRGBWindow::GetClip()
 	{
 		return Clip;
-	}
-
-	void TRGBWindow::ClearBackgroundInsideClip()
-	{
-		if (HasClip())
-		{
-			for (int y = Clip.Y1; y <= Clip.Y2; y++)
-				for (int x = Clip.X1; x <= Clip.X2; x++)
-					SetPixel(x, y, ClipBackColor);
-		}
 	}
 
 	void TRGBWindow::SetPixel(int x, int y, RGB rgb)
