@@ -40,20 +40,28 @@ int main(int argc, char* args[])
 		"00000000",
 		0x000000, 0xffffff, 0x00ff00, 0x0000ff);
 
+	tilemap tm_ocean;
+	tm_ocean.size(12, 10);
+	tm_ocean.fill(&t_water);
+
+	int tmx = -200;
+	int tmy = 0;
+
 draw_frame:
 
 	tgl.clip(50, 30, 200, 150);
 	tgl.bgcolor(0x0080ff);
 	tgl.cls();
 
-	tgl.draw(t_water, 0, 0);
-	tgl.draw(t_water, 8, 0);
-	tgl.draw(t_water, 0, 8);
-	tgl.draw(t_water, 8, 8);
-
-	tgl.draw(t_player, 4, 4);
+	tgl.drawtilemap(tm_ocean, tmx, tmy);
+	tgl.drawtile(t_player, 10, 10);
 
 	tgl.sysproc();
+	tmx++;
+	if (tmx > 200) {
+		tmx = -200;
+	}
+
 	goto draw_frame;
 
 	return tgl.halt();

@@ -49,14 +49,37 @@ void TGL::cls()
 {
 	wnd->ClearBackground();
 }
-void TGL::draw(tile& tile, int x, int y)
+void TGL::drawtile(tile& tile, int x, int y)
 {
+	if (!tile.visible) return;
+
 	if (wnd->HasClip()) {
 		x += wnd->GetClip().X1;
 		y += wnd->GetClip().Y1;
 	}
 	tile_f& frame = tile.frames[wnd->GetFrame() % tile.frames.size()];
 	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, tile.ignore_c0, x, y);
+}
+void TGL::drawtilemap(tilemap& tilemap, int x, int y)
+{
+	if (!tilemap.visible) return;
+
+	const int initial_x = x;
+	const int initial_y = y;
+	int current_x = x;
+	int current_y = y;
+
+	for (int y = 0; y < tilemap.rows; y++) {
+		for (int x = 0; x < tilemap.cols; x++) {
+			tile* tile = tilemap.get(x, y);
+			if (tile) {
+				drawtile(*tile, current_x, current_y);
+			}
+			current_x += tile::width;
+		}
+		current_x = initial_x;
+		current_y += tile::height;
+	}
 }
 bool TGL::process_default_events(SDL_Event* e)
 {
@@ -70,7 +93,7 @@ bool TGL::process_default_events(SDL_Event* e)
 		auto key = e->key.keysym.sym;
 		kb_last = key;
 
-		if (key == SDLK_ESCAPE || key == SDLK_PAUSE) {
+		if (key == SDLK_ESCAPE) {
 			exit();
 			return true;
 		}

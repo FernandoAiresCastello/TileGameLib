@@ -147,6 +147,9 @@
     <ClInclude Include="TGL_global.h">
       <Filter>TGL %28Public API%29</Filter>
     </ClInclude>
+    <ClInclude Include="TGL_tilemap.h">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="Internal\TTiledImage.cpp">
       <Filter>Internal %28Private API%29\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="TGL_tilemap.cpp">
+      <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

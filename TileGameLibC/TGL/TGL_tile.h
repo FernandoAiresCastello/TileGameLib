@@ -11,6 +11,8 @@ struct tile
 	void add(string pixels, rgb c0, rgb c1, rgb c2);
 	void add(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
 
+	tile_f& get(int frame_index);
+
 	void sprite();
 
 private:

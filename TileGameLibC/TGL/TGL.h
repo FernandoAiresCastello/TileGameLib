@@ -5,6 +5,8 @@
 #pragma once
 #include "TGL_global.h"
 #include "TGL_tile.h"
+#include "TGL_tile_f.h"
+#include "TGL_tilemap.h"
 
 struct TGL
 {
@@ -17,7 +19,8 @@ struct TGL
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
 	void cls();
-	void draw(tile& tile, int x, int y);
+	void drawtile(tile& tile, int x, int y);
+	void drawtilemap(tilemap& tilemap, int x, int y);
 
 private:
 	TGL_Internal::TRGBWindow* wnd = nullptr;

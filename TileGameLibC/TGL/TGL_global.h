@@ -3,7 +3,7 @@
 // SDL 2
 #include <SDL.h>
 
-// STL
+// C++ STL
 #include <string>
 #include <vector>
 #include <map>
@@ -17,7 +17,8 @@ using namespace CppUtils;
 #include "Internal/TKey.h"
 #include "Internal/TRGBWindow.h"
 
-// TGL public globals
-
-extern struct TGL tgl;
+// TGL public typedefs
 typedef int rgb;
+
+// TGL public API singleton
+extern struct TGL tgl;
