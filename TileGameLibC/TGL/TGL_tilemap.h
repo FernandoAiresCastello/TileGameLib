@@ -21,7 +21,7 @@ private:
 	tilemap(const tilemap&) = delete;
 	tilemap(tilemap&&) = delete;
 
-	bool visible;
+	bool is_visible;
 	vector<tile*> tiles;
 	int cols;
 	int rows;

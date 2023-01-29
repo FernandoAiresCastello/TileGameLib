@@ -2,7 +2,7 @@
 
 tilemap::tilemap()
 {
-	visible = true;
+	is_visible = true;
 	cols = 0;
 	rows = 0;
 	tile_count = 0;
@@ -57,9 +57,9 @@ void tilemap::clear()
 }
 void tilemap::show()
 {
-	visible = true;
+	is_visible = true;
 }
 void tilemap::hide()
 {
-	visible = false;
+	is_visible = false;
 }

@@ -45,13 +45,32 @@ int main(int argc, char* args[])
 	tm_ocean.size(12, 10);
 	tm_ocean.fill(&t_water);
 
+	int player_x = 100;
+	int player_y = 50;
+	int bg_x = 0;
+	int bg_y = 0;
+
 	while (tgl.sysproc()) {
 
 		tgl.clip(50, 30, 200, 150);
 		tgl.bgcolor(0x0080ff);
 		tgl.cls();
-		tgl.drawtilemap(tm_ocean, 0, 0);
-		tgl.drawtile(t_player, 10, 10);
+		tgl.drawtilemap(tm_ocean, bg_x, bg_y);
+		tgl.drawtile(t_player, player_x, player_y);
+
+		if (tgl.kb_esc()) tgl.exit();
+		if (tgl.kb_shift()) {
+			if (tgl.kb_right()) bg_x++;
+			if (tgl.kb_left()) bg_x--;
+			if (tgl.kb_down()) bg_y++;
+			if (tgl.kb_up()) bg_y--;
+		}
+		else {
+			if (tgl.kb_right()) player_x++;
+			if (tgl.kb_left()) player_x--;
+			if (tgl.kb_down()) player_y++;
+			if (tgl.kb_up()) player_y--;
+		}
 	}
 
 	return tgl.exit();

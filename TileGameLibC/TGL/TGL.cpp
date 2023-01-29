@@ -6,6 +6,17 @@ struct TGL tgl;
 void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+
+	if (gpad.CountAvailable()) {
+		gpad.Open();
+		has_gpad = true;
+	}
+	else {
+		has_gpad = false;
+	}
+
+	wnd = nullptr;
+	kb_last = 0;
 }
 int TGL::exit()
 {
@@ -26,6 +37,24 @@ bool TGL::sysproc()
 	wnd->Update();
 	SDL_Event e;
 	return process_default_events(&e);
+}
+bool TGL::process_default_events(SDL_Event* e)
+{
+	SDL_PollEvent(e);
+
+	if (e->type == SDL_QUIT) {
+		exit();
+		return false;
+	}
+	else if (e->type == SDL_KEYDOWN) {
+		auto key = e->key.keysym.sym;
+		kb_last = key;
+
+		if (TKey::Alt() && key == SDLK_RETURN && wnd) {
+			wnd->ToggleFullscreen();
+		}
+	}
+	return true;
 }
 void TGL::title(string title)
 {
@@ -58,7 +87,7 @@ void TGL::cls()
 }
 void TGL::drawtile(tile& tile, int x, int y)
 {
-	if (!tile.visible) return;
+	if (!tile.is_visible) return;
 
 	if (wnd->HasClip()) {
 		x += wnd->GetClip().X1;
@@ -69,7 +98,7 @@ void TGL::drawtile(tile& tile, int x, int y)
 }
 void TGL::drawtilemap(tilemap& tilemap, int x, int y)
 {
-	if (!tilemap.visible) return;
+	if (!tilemap.is_visible) return;
 
 	const int initial_x = x;
 	const int initial_y = y;
@@ -88,25 +117,132 @@ void TGL::drawtilemap(tilemap& tilemap, int x, int y)
 		current_y += tile::height;
 	}
 }
-bool TGL::process_default_events(SDL_Event* e)
+bool TGL::kb_right()
 {
-	SDL_PollEvent(e);
+	return TKey::IsPressed(SDL_SCANCODE_RIGHT);
+}
+bool TGL::kb_left()
+{
+	return TKey::IsPressed(SDL_SCANCODE_LEFT);
+}
+bool TGL::kb_down()
+{
+	return TKey::IsPressed(SDL_SCANCODE_DOWN);
+}
+bool TGL::kb_up()
+{
+	return TKey::IsPressed(SDL_SCANCODE_UP);
+}
+bool TGL::kb_space()
+{
+	return TKey::IsPressed(SDL_SCANCODE_SPACE);
+}
+bool TGL::kb_enter()
+{
+	return TKey::IsPressed(SDL_SCANCODE_RETURN);
+}
+bool TGL::kb_bs()
+{
+	return TKey::IsPressed(SDL_SCANCODE_BACKSPACE);
+}
+bool TGL::kb_tab()
+{
+	return TKey::IsPressed(SDL_SCANCODE_TAB);
+}
+bool TGL::kb_shift()
+{
+	return TKey::Shift();
+}
+bool TGL::kb_ctrl()
+{
+	return TKey::Ctrl();
+}
+bool TGL::kb_alt()
+{
+	return TKey::Alt();
+}
+bool TGL::kb_caps()
+{
+	return TKey::CapsLock();
+}
+bool TGL::kb_ins()
+{
+	return TKey::IsPressed(SDL_SCANCODE_INSERT);
+}
+bool TGL::kb_del()
+{
+	return TKey::IsPressed(SDL_SCANCODE_DELETE);
+}
+bool TGL::kb_home()
+{
+	return TKey::IsPressed(SDL_SCANCODE_HOME);
+}
+bool TGL::kb_end()
+{
+	return TKey::IsPressed(SDL_SCANCODE_END);
+}
+bool TGL::kb_pgup()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PAGEUP);
+}
+bool TGL::kb_pgdn()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PAGEDOWN);
+}
+bool TGL::kb_esc()
+{
+	return TKey::IsPressed(SDL_SCANCODE_ESCAPE);
+}
+bool TGL::kb_char(char ch)
+{
+	ch = String::ToUpper(ch);
+	
+	switch (ch) {
 
-	if (e->type == SDL_QUIT) {
-		exit();
-		return false;
-	}
-	else if (e->type == SDL_KEYDOWN) {
-		auto key = e->key.keysym.sym;
-		kb_last = key;
+		case 'A': return TKey::IsPressed(SDL_SCANCODE_A);
+		case 'B': return TKey::IsPressed(SDL_SCANCODE_B);
+		case 'C': return TKey::IsPressed(SDL_SCANCODE_C);
+		case 'D': return TKey::IsPressed(SDL_SCANCODE_D);
+		case 'E': return TKey::IsPressed(SDL_SCANCODE_E);
+		case 'F': return TKey::IsPressed(SDL_SCANCODE_F);
+		case 'G': return TKey::IsPressed(SDL_SCANCODE_G);
+		case 'H': return TKey::IsPressed(SDL_SCANCODE_H);
+		case 'I': return TKey::IsPressed(SDL_SCANCODE_I);
+		case 'J': return TKey::IsPressed(SDL_SCANCODE_J);
+		case 'K': return TKey::IsPressed(SDL_SCANCODE_K);
+		case 'L': return TKey::IsPressed(SDL_SCANCODE_L);
+		case 'M': return TKey::IsPressed(SDL_SCANCODE_M);
+		case 'N': return TKey::IsPressed(SDL_SCANCODE_N);
+		case 'O': return TKey::IsPressed(SDL_SCANCODE_O);
+		case 'P': return TKey::IsPressed(SDL_SCANCODE_P);
+		case 'Q': return TKey::IsPressed(SDL_SCANCODE_Q);
+		case 'R': return TKey::IsPressed(SDL_SCANCODE_R);
+		case 'S': return TKey::IsPressed(SDL_SCANCODE_S);
+		case 'T': return TKey::IsPressed(SDL_SCANCODE_T);
+		case 'U': return TKey::IsPressed(SDL_SCANCODE_U);
+		case 'V': return TKey::IsPressed(SDL_SCANCODE_V);
+		case 'W': return TKey::IsPressed(SDL_SCANCODE_W);
+		case 'X': return TKey::IsPressed(SDL_SCANCODE_X);
+		case 'Y': return TKey::IsPressed(SDL_SCANCODE_Y);
+		case 'Z': return TKey::IsPressed(SDL_SCANCODE_Z);
 
-		if (key == SDLK_ESCAPE) {
-			exit();
-			return false;
-		}
-		else if (TKey::Alt() && key == SDLK_RETURN && wnd) {
-			wnd->ToggleFullscreen();
-		}
+		case '0': return TKey::IsPressed(SDL_SCANCODE_0);
+		case '1': return TKey::IsPressed(SDL_SCANCODE_1);
+		case '2': return TKey::IsPressed(SDL_SCANCODE_2);
+		case '3': return TKey::IsPressed(SDL_SCANCODE_3);
+		case '4': return TKey::IsPressed(SDL_SCANCODE_4);
+		case '5': return TKey::IsPressed(SDL_SCANCODE_5);
+		case '6': return TKey::IsPressed(SDL_SCANCODE_6);
+		case '7': return TKey::IsPressed(SDL_SCANCODE_7);
+		case '8': return TKey::IsPressed(SDL_SCANCODE_8);
+		case '9': return TKey::IsPressed(SDL_SCANCODE_9);
 	}
-	return true;
+	
+	return false;
+}
+bool TGL::kb_code(int code)
+{
+	return TKey::IsPressed((SDL_Scancode)code);
+}
+void nop() {
 }

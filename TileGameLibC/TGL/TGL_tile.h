@@ -15,6 +15,10 @@ struct tile
 
 	void sprite();
 
+	void show();
+	void hide();
+	bool visible();
+
 private:
 	friend struct TGL;
 	friend struct tile_f;
@@ -34,6 +38,6 @@ private:
 	tile(tile&&) = delete;
 
 	vector<tile_f> frames;
-	bool visible;
+	bool is_visible;
 	bool ignore_c0;
 };

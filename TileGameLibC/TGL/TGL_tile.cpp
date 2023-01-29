@@ -2,7 +2,7 @@
 
 tile::tile()
 {
-	visible = true;
+	is_visible = true;
 	ignore_c0 = false;
 }
 void tile::add(string pixels, rgb c0)
@@ -28,4 +28,16 @@ tile_f& tile::get(int frame_index)
 void tile::sprite()
 {
 	ignore_c0 = true;
+}
+void tile::show()
+{
+	is_visible = true;
+}
+void tile::hide()
+{
+	is_visible = false;
+}
+bool tile::visible()
+{
+	return is_visible;
 }

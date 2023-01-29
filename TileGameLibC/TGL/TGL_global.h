@@ -14,8 +14,9 @@ using namespace std;
 using namespace CppUtils;
 
 // TGL private internals
-#include "Internal/TKey.h"
 #include "Internal/TRGBWindow.h"
+#include "Internal/TGamepad.h"
+#include "Internal/TKey.h"
 
 // TGL public typedefs
 typedef int rgb;
