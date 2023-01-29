@@ -6,13 +6,13 @@ struct TGL tgl;
 void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	
+	Util::Randomize();
 
+	has_gpad = false;
 	if (gpad.CountAvailable()) {
 		gpad.Open();
 		has_gpad = true;
-	}
-	else {
-		has_gpad = false;
 	}
 
 	wnd = nullptr;
@@ -87,19 +87,23 @@ void TGL::cls()
 }
 void TGL::drawtile(tile& tile, int x, int y)
 {
-	if (!tile.is_visible) return;
-
+	drawtile_internal(tile, x, y, false);
+}
+void TGL::drawtile_internal(tile& tile, int x, int y, bool ignore_c0)
+{
 	if (wnd->HasClip()) {
 		x += wnd->GetClip().X1;
 		y += wnd->GetClip().Y1;
 	}
 	tile_f& frame = tile.frames[wnd->GetFrame() % tile.frames.size()];
-	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, tile.ignore_c0, x, y);
+	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, ignore_c0, x, y);
 }
 void TGL::drawtilemap(tilemap& tilemap, int x, int y)
 {
-	if (!tilemap.is_visible) return;
-
+	drawtilemap_internal(tilemap, x, y, false);
+}
+void TGL::drawtilemap_internal(tilemap& tilemap, int x, int y, bool ignore_c0)
+{
 	const int initial_x = x;
 	const int initial_y = y;
 	int current_x = x;
@@ -109,13 +113,19 @@ void TGL::drawtilemap(tilemap& tilemap, int x, int y)
 		for (int x = 0; x < tilemap.cols; x++) {
 			tile* tile = tilemap.get(x, y);
 			if (tile) {
-				drawtile(*tile, current_x, current_y);
+				drawtile_internal(*tile, current_x, current_y, ignore_c0);
 			}
 			current_x += tile::width;
 		}
 		current_x = initial_x;
 		current_y += tile::height;
 	}
+}
+void TGL::drawsprite(sprite& sprite)
+{
+	if (!sprite.is_visible) return;
+
+	drawtilemap_internal(sprite.tiles, sprite.x, sprite.y, true);
 }
 bool TGL::kb_right()
 {
@@ -264,6 +274,10 @@ void TGL::quiet()
 {
 	snd.StopMainSound();
 	snd.StopSubSound();
+}
+int TGL::rnd(int min, int max)
+{
+	return Util::Random(min, max);
 }
 void nop() 
 {

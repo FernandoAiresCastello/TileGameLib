@@ -12,8 +12,6 @@ struct tilemap
 	void fill(tile* tile_ptr);
 	void del(int col, int row);
 	void clear();
-	void show();
-	void hide();
 
 private:
 	friend struct TGL;
@@ -21,9 +19,7 @@ private:
 	tilemap(const tilemap&) = delete;
 	tilemap(tilemap&&) = delete;
 
-	bool is_visible;
 	vector<tile*> tiles;
 	int cols;
 	int rows;
-	int tile_count;
 };

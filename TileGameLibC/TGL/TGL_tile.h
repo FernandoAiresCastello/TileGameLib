@@ -1,6 +1,7 @@
 #pragma once
 #include "TGL_global.h"
 #include "TGL_tile_f.h"
+#include "TGL_data.h"
 
 struct tile
 {
@@ -12,12 +13,6 @@ struct tile
 	void add(string pixels, rgb c0, rgb c1, rgb c2, rgb c3);
 
 	tile_f& get(int frame_index);
-
-	void sprite();
-
-	void show();
-	void hide();
-	bool visible();
 
 private:
 	friend struct TGL;
@@ -38,6 +33,4 @@ private:
 	tile(tile&&) = delete;
 
 	vector<tile_f> frames;
-	bool is_visible;
-	bool ignore_c0;
 };

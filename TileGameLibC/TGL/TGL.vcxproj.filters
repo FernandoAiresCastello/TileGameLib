@@ -150,7 +150,10 @@
     <ClInclude Include="TGL_tilemap.h">
       <Filter>TGL %28Public API%29</Filter>
     </ClInclude>
-    <ClInclude Include="TGL_object.h">
+    <ClInclude Include="TGL_data.h">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClInclude>
+    <ClInclude Include="TGL_sprite.h">
       <Filter>TGL %28Public API%29</Filter>
     </ClInclude>
   </ItemGroup>
@@ -257,7 +260,10 @@
     <ClCompile Include="TGL_tilemap.cpp">
       <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
-    <ClCompile Include="TGL_object.cpp">
+    <ClCompile Include="TGL_data.cpp">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClCompile>
+    <ClCompile Include="TGL_sprite.cpp">
       <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
   </ItemGroup>

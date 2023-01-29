@@ -2,20 +2,17 @@
 
 tilemap::tilemap()
 {
-	is_visible = true;
 	cols = 0;
 	rows = 0;
-	tile_count = 0;
 }
 void tilemap::size(int cols, int rows)
 {
 	if (cols > 0 && rows > 0) {
 		this->cols = cols;
 		this->rows = rows;
-		this->tile_count = cols * rows;
 
 		tiles.clear();
-		for (int i = 0; i < tile_count; i++) {
+		for (int i = 0; i < cols * rows; i++) {
 			tiles.push_back(nullptr);
 		}
 	}
@@ -54,12 +51,4 @@ void tilemap::clear()
 			del(col, row);
 		}
 	}
-}
-void tilemap::show()
-{
-	is_visible = true;
-}
-void tilemap::hide()
-{
-	is_visible = false;
 }
