@@ -244,5 +244,27 @@ bool TGL::kb_code(int code)
 {
 	return TKey::IsPressed((SDL_Scancode)code);
 }
-void nop() {
+void TGL::play(string notes)
+{
+	snd.PlaySubSound(notes);
+}
+void TGL::play_loop(string notes)
+{
+	snd.PlayMainSound(notes);
+}
+void TGL::sound(float freq, int length)
+{
+	snd.Beep(freq, length);
+}
+void TGL::vol(int vol)
+{
+	snd.SetVolume(vol * 100);
+}
+void TGL::quiet()
+{
+	snd.StopMainSound();
+	snd.StopSubSound();
+}
+void nop() 
+{
 }

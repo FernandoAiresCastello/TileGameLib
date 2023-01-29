@@ -17,6 +17,7 @@ using namespace CppUtils;
 #include "Internal/TRGBWindow.h"
 #include "Internal/TGamepad.h"
 #include "Internal/TKey.h"
+#include "Internal/TSound.h"
 
 // TGL public typedefs
 typedef int rgb;

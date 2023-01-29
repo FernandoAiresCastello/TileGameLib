@@ -4,7 +4,7 @@ int main(int argc, char* args[])
 {
 	tgl.init();
 	tgl.title("TGL Demo");
-	tgl.screen(256, 192, 4, 4, 0xd0a080);
+	tgl.screen(256, 192, 4, 4, 0xf0e0a0);
 
 	tile t_water;
 	t_water.add(
@@ -17,6 +17,7 @@ int main(int argc, char* args[])
 		"00001010"
 		"00000000",
 		0x000080, 0x2080a0);
+
 	t_water.add(
 		"00000000"
 		"00100000"
@@ -50,6 +51,9 @@ int main(int argc, char* args[])
 	int bg_x = 0;
 	int bg_y = 0;
 
+	tgl.vol(3);
+	tgl.play_loop("O3L30CDE");
+
 	while (tgl.sysproc()) {
 
 		tgl.clip(50, 30, 200, 150);
@@ -59,13 +63,13 @@ int main(int argc, char* args[])
 		tgl.drawtile(t_player, player_x, player_y);
 
 		if (tgl.kb_esc()) tgl.exit();
+
 		if (tgl.kb_shift()) {
 			if (tgl.kb_right()) bg_x++;
 			if (tgl.kb_left()) bg_x--;
 			if (tgl.kb_down()) bg_y++;
 			if (tgl.kb_up()) bg_y--;
-		}
-		else {
+		} else {		
 			if (tgl.kb_right()) player_x++;
 			if (tgl.kb_left()) player_x--;
 			if (tgl.kb_down()) player_y++;

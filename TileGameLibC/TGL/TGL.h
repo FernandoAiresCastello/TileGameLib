@@ -12,32 +12,20 @@ struct TGL
 {
 	/*** SYSTEM ***/
 	
-	// Initialize the library
 	void init();
-	// Terminate program and close window
 	int exit();
-	// Stop program execution but keep window open
 	int halt();
-	// Execute the system procedure
 	bool sysproc();
-	// Set window title
 	void title(string title);
 
 	/*** GRAPHICS ***/
 
-	// Create the application window
 	void screen(int width, int height, int hstr, int vstr, rgb back_color);
-	// Set window background color
 	void bgcolor(rgb color);
-	// Enable drawing exclusively inside the bounds of the specified rectangular area
 	void clip(int x1, int y1, int x2, int y2);
-	// Enable drawing anywhere on the window
 	void unclip();
-	// Clear screen to background color
 	void cls();
-	// Draw a tile
 	void drawtile(tile& tile, int x, int y);
-	// Draw a tile map
 	void drawtilemap(tilemap& tilemap, int x, int y);
 	
 	/*** KEYBOARD ***/
@@ -64,9 +52,19 @@ struct TGL
 	bool kb_char(char ch);
 	bool kb_code(int code);
 
+	/*** SOUND ***/
+
+	void play(string notes);
+	void play_loop(string notes);
+	void sound(float freq, int length);
+	void vol(int vol);
+	void quiet();
+
 private:
+
 	TGL_Internal::TRGBWindow* wnd;
 	TGL_Internal::TGamepad gpad;
+	TGL_Internal::TSound snd;
 	
 	string wnd_title;
 	SDL_Keycode kb_last;

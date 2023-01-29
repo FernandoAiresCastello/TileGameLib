@@ -52,6 +52,7 @@
     <ClInclude Include="Internal\TWindowCreationFlags.h" />
     <ClInclude Include="TGL.h" />
     <ClInclude Include="TGL_global.h" />
+    <ClInclude Include="TGL_object.h" />
     <ClInclude Include="TGL_tile.h" />
     <ClInclude Include="TGL_tilemap.h" />
     <ClInclude Include="TGL_tile_f.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="Internal\TWindowBase.cpp" />
     <ClCompile Include="Internal\TWindowCreationFlags.cpp" />
     <ClCompile Include="TGL.cpp" />
+    <ClCompile Include="TGL_object.cpp" />
     <ClCompile Include="TGL_tile.cpp" />
     <ClCompile Include="TGL_tilemap.cpp" />
     <ClCompile Include="TGL_tile_f.cpp" />
