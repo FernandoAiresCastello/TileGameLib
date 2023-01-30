@@ -12,6 +12,12 @@ struct tilemap
 	void fill(tile* tile_ptr);
 	void del(int col, int row);
 	void clear();
+	void pos(int x, int y);
+	void move(int dx, int dy);
+	void setx(int x);
+	void sety(int y);
+	int getx();
+	int gety();
 
 private:
 	friend struct TGL;
@@ -22,4 +28,6 @@ private:
 	vector<tile*> tiles;
 	int cols;
 	int rows;
+	int x;
+	int y;
 };

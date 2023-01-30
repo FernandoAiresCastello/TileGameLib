@@ -4,6 +4,8 @@ tilemap::tilemap()
 {
 	cols = 0;
 	rows = 0;
+	x = 0;
+	y = 0;
 }
 void tilemap::size(int cols, int rows)
 {
@@ -51,4 +53,30 @@ void tilemap::clear()
 			del(col, row);
 		}
 	}
+}
+void tilemap::pos(int x, int y)
+{
+	setx(x);
+	sety(y);
+}
+void tilemap::move(int dx, int dy)
+{
+	setx(x + dx);
+	sety(y + dy);
+}
+void tilemap::setx(int x)
+{
+	this->x = x;
+}
+void tilemap::sety(int y)
+{
+	this->y = y;
+}
+int tilemap::getx()
+{
+	return x;
+}
+int tilemap::gety()
+{
+	return y;
 }

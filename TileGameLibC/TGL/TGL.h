@@ -27,7 +27,7 @@ struct TGL
 	void unclip();
 	void cls();
 	void drawtile(tile& tile, int x, int y);
-	void drawtilemap(tilemap& tilemap, int x, int y);
+	void drawtilemap(tilemap& tilemap);
 	void drawsprite(sprite& sprite);
 	
 	/*** KEYBOARD ***/
@@ -78,5 +78,5 @@ private:
 
 	bool process_default_events(SDL_Event* e);
 	void drawtile_internal(tile& tile, int x, int y, bool ignore_c0);
-	void drawtilemap_internal(tilemap& tilemap, int x, int y, bool ignore_c0);
+	void drawtilemap_internal(tilemap& tilemap, bool ignore_c0);
 };

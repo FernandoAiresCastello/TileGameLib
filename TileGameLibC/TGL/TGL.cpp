@@ -98,16 +98,16 @@ void TGL::drawtile_internal(tile& tile, int x, int y, bool ignore_c0)
 	tile_f& frame = tile.frames[wnd->GetFrame() % tile.frames.size()];
 	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, ignore_c0, x, y);
 }
-void TGL::drawtilemap(tilemap& tilemap, int x, int y)
+void TGL::drawtilemap(tilemap& tilemap)
 {
-	drawtilemap_internal(tilemap, x, y, false);
+	drawtilemap_internal(tilemap, false);
 }
-void TGL::drawtilemap_internal(tilemap& tilemap, int x, int y, bool ignore_c0)
+void TGL::drawtilemap_internal(tilemap& tilemap, bool ignore_c0)
 {
-	const int initial_x = x;
-	const int initial_y = y;
-	int current_x = x;
-	int current_y = y;
+	const int initial_x = tilemap.x;
+	const int initial_y = tilemap.y;
+	int current_x = tilemap.x;
+	int current_y = tilemap.y;
 
 	for (int y = 0; y < tilemap.rows; y++) {
 		for (int x = 0; x < tilemap.cols; x++) {
@@ -125,7 +125,7 @@ void TGL::drawsprite(sprite& sprite)
 {
 	if (!sprite.is_visible) return;
 
-	drawtilemap_internal(sprite.tiles, sprite.x, sprite.y, true);
+	drawtilemap_internal(sprite.tiles, true);
 }
 bool TGL::kb_right()
 {

@@ -6,9 +6,6 @@
 
 struct sprite
 {
-	int x;
-	int y;
-
 	sprite();
 
 	void size(int cols, int rows);
@@ -18,6 +15,11 @@ struct sprite
 	void hide();
 	bool visible();
 	void pos(int x, int y);
+	void move(int dx, int dy);
+	void setx(int x);
+	void sety(int y);
+	int getx();
+	int gety();
 	void setdata(string key, string value);
 	void setdata(string key, int value);
 	string getdats(string key);

@@ -2,8 +2,6 @@
 
 sprite::sprite()
 {
-	x = 0;
-	y = 0;
 	is_visible = true;
 }
 void sprite::size(int cols, int rows)
@@ -33,8 +31,27 @@ bool sprite::visible()
 }
 void sprite::pos(int x, int y)
 {
-	this->x = x;
-	this->y = y;
+	tiles.pos(x, y);
+}
+void sprite::move(int dx, int dy)
+{
+	tiles.move(dx, dy);
+}
+void sprite::setx(int x)
+{
+	tiles.setx(x);
+}
+void sprite::sety(int y)
+{
+	tiles.sety(y);
+}
+int sprite::getx()
+{
+	return tiles.getx();
+}
+int sprite::gety()
+{
+	return tiles.gety();
 }
 void sprite::setdata(string key, string value)
 {

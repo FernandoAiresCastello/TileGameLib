@@ -13,9 +13,6 @@ sprite s_player_missile;
 // Functions
 void init_tiles();
 
-int tm_stars_x = 0;
-int tm_stars_y = -500;
-
 // Main
 void run_invaders()
 {
@@ -26,7 +23,9 @@ void run_invaders()
 	tgl.bgcolor(0x000000);
 
 	init_tiles();
+
 	tm_stars.size(25, 50);
+	tm_stars.pos(0, -500);
 	for (int i = 0; i < 50; i++) {
 		int x = tgl.rnd(0, 24);
 		int y = tgl.rnd(0, 49);
@@ -44,32 +43,32 @@ void run_invaders()
 	while (tgl.sysproc()) {
 
 		tgl.cls();
-		tgl.drawtilemap(tm_stars, tm_stars_x, tm_stars_y);
+		tgl.drawtilemap(tm_stars);
 		tgl.drawsprite(s_player_missile);
 		tgl.drawsprite(s_player);
 
 		if (tgl.kb_esc()) tgl.exit();
-		if (tgl.kb_right()) s_player.x++;
-		if (tgl.kb_left()) s_player.x--;
-		if (tgl.kb_down()) s_player.y++;
-		if (tgl.kb_up()) s_player.y--;
+		if (tgl.kb_right()) s_player.move(1, 0);
+		if (tgl.kb_left()) s_player.move(-1, 0);
+		if (tgl.kb_down()) s_player.move(0, 1);
+		if (tgl.kb_up()) s_player.move(0, -1);
 
 		if (tgl.kb_space() && !shooting) {
 			shooting = true;
-			s_player_missile.pos(s_player.x, s_player.y);
+			s_player_missile.pos(s_player.getx(), s_player.gety());
 			s_player_missile.show();
 		}
 		if (shooting) {
-			s_player_missile.y--;
-			if (s_player_missile.y < -8) {
+			s_player_missile.move(0, -1);
+			if (s_player_missile.gety() < -8) {
 				shooting = false;
 				s_player_missile.hide();
 			}
 		}
 
-		tm_stars_y++;
-		if (tm_stars_y > 190)
-			tm_stars_y = -500;
+		tm_stars.move(0, 1);
+		if (tm_stars.gety() > 190)
+			tm_stars.sety(-500);
 	}
 }
 void init_tiles()
