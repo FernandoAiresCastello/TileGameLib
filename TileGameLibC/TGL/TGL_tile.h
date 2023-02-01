@@ -5,6 +5,9 @@
 
 struct tile
 {
+	static const int width = 8;
+	static const int height = 8;
+
 	tile();
 
 	void add(string pixels, rgb c0);
@@ -19,8 +22,6 @@ private:
 	friend struct tile_f;
 	friend struct tilemap;
 
-	static const int width = 8;
-	static const int height = 8;
 	static const int size = width * height;
 
 	static const char pixel_c0 = '0';

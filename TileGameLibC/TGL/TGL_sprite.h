@@ -3,6 +3,7 @@
 #include "TGL_tile.h"
 #include "TGL_tilemap.h"
 #include "TGL_data.h"
+#include "TGL_spritelist.h"
 
 struct sprite
 {
@@ -29,14 +30,19 @@ struct sprite
 	bool hasdata(string key, bool value);
 	string getdats(string key);
 	int getdatn(string key);
-	bool collides(sprite& other);
+	bool collides(sprite* other);
+	vector<sprite*>& get_collisions(spritelist* list);
+	void destroy();
+	bool destroyed();
 
 private:
 	friend class TGL;
 
 	bool is_visible;
+	bool is_destroyed;
 	tilemap tiles;
 	dataset data;
+	vector<sprite*> collisions;
 
 	sprite(const sprite&) = delete;
 	sprite(sprite&&) = delete;

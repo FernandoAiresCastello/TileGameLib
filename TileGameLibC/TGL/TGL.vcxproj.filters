@@ -156,6 +156,9 @@
     <ClInclude Include="TGL_sprite.h">
       <Filter>TGL %28Public API%29</Filter>
     </ClInclude>
+    <ClInclude Include="TGL_spritelist.h">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp">
@@ -264,6 +267,9 @@
       <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
     <ClCompile Include="TGL_sprite.cpp">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClCompile>
+    <ClCompile Include="TGL_spritelist.cpp">
       <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
   </ItemGroup>

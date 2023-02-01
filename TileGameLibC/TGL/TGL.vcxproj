@@ -54,6 +54,7 @@
     <ClInclude Include="TGL_global.h" />
     <ClInclude Include="TGL_data.h" />
     <ClInclude Include="TGL_sprite.h" />
+    <ClInclude Include="TGL_spritelist.h" />
     <ClInclude Include="TGL_tile.h" />
     <ClInclude Include="TGL_tilemap.h" />
     <ClInclude Include="TGL_tile_f.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="TGL.cpp" />
     <ClCompile Include="TGL_data.cpp" />
     <ClCompile Include="TGL_sprite.cpp" />
+    <ClCompile Include="TGL_spritelist.cpp" />
     <ClCompile Include="TGL_tile.cpp" />
     <ClCompile Include="TGL_tilemap.cpp" />
     <ClCompile Include="TGL_tile_f.cpp" />

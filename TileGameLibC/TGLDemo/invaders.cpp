@@ -12,7 +12,7 @@ tilemap tm_stars;
 // Sprites
 sprite s_player;
 sprite s_player_missile;
-sprite s_ufo;
+spritelist sl_enemies;
 // Vars
 bool player_shooting = false;
 // Functions
@@ -56,13 +56,14 @@ void handle_player_missile()
 		player_shooting = false;
 		s_player_missile.hide();
 	}
-	if (s_ufo.visible()) {
-		if (s_player_missile.collides(s_ufo)) {
+	
+	auto& enemy_collisions = s_player_missile.get_collisions(&sl_enemies);
+
+	for (auto* enemy : enemy_collisions) {
+		enemy->destroy();
+		if (player_shooting) {
 			player_shooting = false;
 			s_player_missile.hide();
-			int x = tgl.rnd(10, 200);
-			int y = tgl.rnd(10, 100);
-			s_ufo.pos(x, y);
 		}
 	}
 }
@@ -84,20 +85,25 @@ void handle_input()
 void render_frame()
 {
 	tgl.cls();
-	tgl.drawtilemap(tm_stars);
-	tgl.drawsprite(s_ufo);
-	tgl.drawsprite(s_player_missile);
-	tgl.drawsprite(s_player);
+	tgl.drawtilemap(&tm_stars);
+	tgl.drawspritelist(&sl_enemies);
+	tgl.drawsprite(&s_player_missile);
+	tgl.drawsprite(&s_player);
 }
 void init_enemies()
 {
-	s_ufo.settile(&t_ufo);
-	s_ufo.pos(150, 20);
+	for (int i = 0; i < 30; i++) {
+		sprite* s_ufo = sl_enemies.newsprite();
+		s_ufo->settile(&t_ufo);
+		int x = tgl.rnd(1, 26) * tile::width;
+		int y = tgl.rnd(1, 15) * tile::height;
+		s_ufo->pos(x, y);
+	}
 }
 void init_player()
 {
 	s_player.settile(&t_player);
-	s_player.pos(100, 100);
+	s_player.pos(120, 160);
 
 	s_player_missile.settile(&t_missile);
 	s_player_missile.pos(0, 0);

@@ -8,6 +8,7 @@
 #include "TGL_tile_f.h"
 #include "TGL_tilemap.h"
 #include "TGL_sprite.h"
+#include "TGL_spritelist.h"
 
 struct TGL
 {
@@ -26,9 +27,10 @@ struct TGL
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
 	void cls();
-	void drawtile(tile& tile, int x, int y);
-	void drawtilemap(tilemap& tilemap);
-	void drawsprite(sprite& sprite);
+	void drawtile(tile* tile, int x, int y);
+	void drawtilemap(tilemap* tilemap);
+	void drawsprite(sprite* sprite);
+	void drawspritelist(spritelist* sprlist);
 	
 	/*** KEYBOARD ***/
 
@@ -77,6 +79,6 @@ private:
 	bool has_gpad;
 
 	bool process_default_events(SDL_Event* e);
-	void drawtile_internal(tile& tile, int x, int y, bool ignore_c0);
-	void drawtilemap_internal(tilemap& tilemap, bool ignore_c0);
+	void drawtile_internal(tile* tile, int x, int y, bool ignore_c0);
+	void drawtilemap_internal(tilemap* tilemap, bool ignore_c0);
 };

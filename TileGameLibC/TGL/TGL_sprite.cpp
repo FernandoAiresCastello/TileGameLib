@@ -3,6 +3,7 @@
 sprite::sprite()
 {
 	is_visible = true;
+	is_destroyed = false;
 }
 void sprite::size(int cols, int rows)
 {
@@ -89,7 +90,27 @@ int sprite::getdatn(string key)
 {
 	return data.getn(key);
 }
-bool sprite::collides(sprite& other)
+bool sprite::collides(sprite* other)
 {
-	return tiles.collides(other.tiles);
+	return tiles.collides(other->tiles);
+}
+vector<sprite*>& sprite::get_collisions(spritelist* list)
+{
+	collisions.clear();
+
+	for (auto* sprite : list->sprites) {
+		if (!sprite->is_destroyed && this->collides(sprite)) {
+			collisions.push_back(sprite);
+		}
+	}
+	return collisions;
+}
+void sprite::destroy()
+{
+	is_destroyed = true;
+	is_visible = false;
+}
+bool sprite::destroyed()
+{
+	return is_destroyed;
 }
