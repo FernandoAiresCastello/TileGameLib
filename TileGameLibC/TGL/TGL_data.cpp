@@ -19,3 +19,15 @@ int dataset::getn(string prop)
 {
 	return data.GetNumber(prop);
 }
+bool dataset::has(string prop)
+{
+	return data.Has(prop);
+}
+bool dataset::has(string prop, string value)
+{
+	return data.Has(prop, value);
+}
+bool dataset::has(string prop, int value)
+{
+	return data.Has(prop, value);
+}

@@ -80,3 +80,11 @@ int tilemap::gety()
 {
 	return y;
 }
+bool tilemap::collides(tilemap& other)
+{
+	return
+		this->x > other.x - tile::width &&
+		this->y > other.y - tile::height &&
+		this->x < other.x + (other.cols * tile::width) &&
+		this->y < other.y + (other.rows * tile::height);
+}

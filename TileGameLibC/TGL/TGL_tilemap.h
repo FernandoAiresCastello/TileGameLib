@@ -18,6 +18,7 @@ struct tilemap
 	void sety(int y);
 	int getx();
 	int gety();
+	bool collides(tilemap& other);
 
 private:
 	friend struct TGL;

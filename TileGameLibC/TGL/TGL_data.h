@@ -9,6 +9,9 @@ struct dataset
 	void set(string prop, int value);
 	string gets(string prop);
 	int getn(string prop);
+	bool has(string prop);
+	bool has(string prop, string value);
+	bool has(string prop, int value);
 
 private:
 	friend struct TGL;
