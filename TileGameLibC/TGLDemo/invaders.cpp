@@ -52,7 +52,7 @@ void handle_player_missile()
 	if (!player_shooting) return;
 
 	s_player_missile.move(0, -1);
-	if (s_player_missile.gety() < -8) {
+	if (s_player_missile.get_y() < -8) {
 		player_shooting = false;
 		s_player_missile.hide();
 	}
@@ -78,7 +78,7 @@ void handle_input()
 
 	if (tgl.kb_space() && !player_shooting) {
 		player_shooting = true;
-		s_player_missile.pos(s_player.getx(), s_player.gety());
+		s_player_missile.pos(s_player.get_x(), s_player.get_y());
 		s_player_missile.show();
 	}
 }
@@ -93,8 +93,8 @@ void render_frame()
 void init_enemies()
 {
 	for (int i = 0; i < 30; i++) {
-		sprite* s_ufo = sl_enemies.newsprite();
-		s_ufo->settile(&t_ufo);
+		sprite* s_ufo = sl_enemies.add_new();
+		s_ufo->set_tile(&t_ufo);
 		int x = tgl.rnd(1, 26) * tile::width;
 		int y = tgl.rnd(1, 15) * tile::height;
 		s_ufo->pos(x, y);
@@ -102,18 +102,18 @@ void init_enemies()
 }
 void init_player()
 {
-	s_player.settile(&t_player);
+	s_player.set_tile(&t_player);
 	s_player.pos(120, 160);
 
-	s_player_missile.settile(&t_missile);
+	s_player_missile.set_tile(&t_missile);
 	s_player_missile.pos(0, 0);
 	s_player_missile.hide();
 }
 void scroll_background()
 {
 	tm_stars.move(0, 1);
-	if (tm_stars.gety() > 190)
-		tm_stars.sety(-500);
+	if (tm_stars.get_y() > 190)
+		tm_stars.set_y(-500);
 }
 void init_background()
 {

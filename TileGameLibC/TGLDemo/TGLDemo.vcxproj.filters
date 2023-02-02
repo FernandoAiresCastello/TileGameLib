@@ -2,19 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="invaders.cpp">
-      <Filter>Programs</Filter>
-    </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Programs</Filter>
-    </ClCompile>
+    <ClCompile Include="invaders.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
       <UniqueIdentifier>{b7bed91b-d3c1-41fe-8267-23b19dd57093}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Programs">
-      <UniqueIdentifier>{bb1198a5-dbeb-4a29-ab0e-056653367920}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

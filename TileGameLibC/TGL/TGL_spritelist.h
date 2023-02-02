@@ -6,9 +6,9 @@ struct spritelist
 	spritelist();
 	~spritelist();
 
-	struct sprite* newsprite();
-	void deleteall();
-	vector<struct sprite*>& getall();
+	struct sprite* add_new();
+	void delete_all();
+	vector<struct sprite*>& get_all();
 
 private:
 	friend class TGL;

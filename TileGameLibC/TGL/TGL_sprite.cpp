@@ -9,14 +9,14 @@ void sprite::size(int cols, int rows)
 {
 	tiles.size(cols, rows);
 }
-void sprite::settile(tile* tile_ptr, int col, int row)
+void sprite::set_tile(tile* tile_ptr, int col, int row)
 {
 	tiles.set(tile_ptr, col, row);
 }
-void sprite::settile(tile* tile_ptr)
+void sprite::set_tile(tile* tile_ptr)
 {
 	size(1, 1);
-	settile(tile_ptr, 0, 0);
+	set_tile(tile_ptr, 0, 0);
 }
 void sprite::show()
 {
@@ -38,61 +38,53 @@ void sprite::move(int dx, int dy)
 {
 	tiles.move(dx, dy);
 }
-void sprite::setx(int x)
+void sprite::set_x(int x)
 {
-	tiles.setx(x);
+	tiles.set_x(x);
 }
-void sprite::sety(int y)
+void sprite::set_y(int y)
 {
-	tiles.sety(y);
+	tiles.set_y(y);
 }
-int sprite::getx()
+int sprite::get_x()
 {
-	return tiles.getx();
+	return tiles.get_x();
 }
-int sprite::gety()
+int sprite::get_y()
 {
-	return tiles.gety();
+	return tiles.get_y();
 }
-void sprite::setdata(string key, string value)
-{
-	data.set(key, value);
-}
-void sprite::setdata(string key, int value)
+void sprite::set_data(string key, string value)
 {
 	data.set(key, value);
 }
-void sprite::setdata(string key, bool value)
+void sprite::set_data(string key, int value)
 {
-	data.set(key, value ? 0 : 1);
+	data.set(key, value);
 }
-bool sprite::hasdata(string key)
+bool sprite::has_data(string key)
 {
 	return data.has(key);
 }
-bool sprite::hasdata(string key, string value)
+bool sprite::has_data(string key, string value)
 {
 	return data.has(key, value);
 }
-bool sprite::hasdata(string key, int value)
+bool sprite::has_data(string key, int value)
 {
 	return data.has(key, value);
 }
-bool sprite::hasdata(string key, bool value)
+string sprite::get_data_s(string key)
 {
-	return data.has(key, value ? 1 : 0);
+	return data.get_s(key);
 }
-string sprite::getdats(string key)
+int sprite::get_data_n(string key)
 {
-	return data.gets(key);
-}
-int sprite::getdatn(string key)
-{
-	return data.getn(key);
+	return data.get_n(key);
 }
 bool sprite::collides(sprite* other)
 {
-	return tiles.collides(other->tiles);
+	return tiles.collides(&other->tiles);
 }
 vector<sprite*>& sprite::get_collisions(spritelist* list)
 {

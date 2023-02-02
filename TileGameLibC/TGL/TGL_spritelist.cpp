@@ -6,15 +6,15 @@ spritelist::spritelist()
 }
 spritelist::~spritelist()
 {
-	deleteall();
+	delete_all();
 }
-sprite* spritelist::newsprite()
+sprite* spritelist::add_new()
 {
 	sprite* newsprite = new sprite();
 	sprites.push_back(newsprite);
 	return newsprite;
 }
-void spritelist::deleteall()
+void spritelist::delete_all()
 {
 	for (int i = 0; i < sprites.size(); i++) {
 		delete sprites[i];
@@ -22,7 +22,7 @@ void spritelist::deleteall()
 	}
 	sprites.clear();
 }
-vector<struct sprite*>& spritelist::getall()
+vector<struct sprite*>& spritelist::get_all()
 {
 	return sprites;
 }

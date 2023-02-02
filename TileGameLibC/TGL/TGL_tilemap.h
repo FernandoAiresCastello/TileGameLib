@@ -7,18 +7,18 @@ struct tilemap
 	tilemap();
 
 	void size(int cols, int rows);
-	void set(tile* tile_ptr, int col, int row);
+	void set(tile* tile, int col, int row);
 	tile* get(int col, int row);
-	void fill(tile* tile_ptr);
-	void del(int col, int row);
-	void clear();
+	void fill(tile* tile);
+	void remove(int col, int row);
+	void remove_all();
 	void pos(int x, int y);
 	void move(int dx, int dy);
-	void setx(int x);
-	void sety(int y);
-	int getx();
-	int gety();
-	bool collides(tilemap& other);
+	void set_x(int x);
+	void set_y(int y);
+	int get_x();
+	int get_y();
+	bool collides(tilemap* other);
 
 private:
 	friend struct TGL;

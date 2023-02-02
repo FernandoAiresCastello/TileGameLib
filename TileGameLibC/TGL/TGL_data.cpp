@@ -11,11 +11,11 @@ void dataset::set(string prop, int value)
 {
 	data.Set(prop, value);
 }
-string dataset::gets(string prop)
+string dataset::get_s(string prop)
 {
 	return data.GetString(prop);
 }
-int dataset::getn(string prop)
+int dataset::get_n(string prop)
 {
 	return data.GetNumber(prop);
 }

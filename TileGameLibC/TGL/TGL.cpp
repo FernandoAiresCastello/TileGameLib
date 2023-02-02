@@ -286,6 +286,3 @@ int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
 }
-void nop() 
-{
-}
