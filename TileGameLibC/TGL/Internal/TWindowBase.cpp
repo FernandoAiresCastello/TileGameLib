@@ -130,7 +130,6 @@ namespace TGL_Internal
 			return;
 
 		SDL_SetWindowFullscreen(Window, full ? fullscreenFlag : 0);
-		SDL_ShowCursor(isFullscreen);
 		Update();
 	}
 
@@ -139,7 +138,6 @@ namespace TGL_Internal
 		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
 		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
 		SDL_SetWindowFullscreen(Window, isFullscreen ? 0 : fullscreenFlag);
-		SDL_ShowCursor(isFullscreen);
 		Update();
 	}
 

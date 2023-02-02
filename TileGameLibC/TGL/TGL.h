@@ -27,10 +27,10 @@ struct TGL
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
 	void cls();
-	void drawtile(tile* tile, int x, int y);
-	void drawtilemap(tilemap* tilemap);
-	void drawsprite(sprite* sprite);
-	void drawspritelist(spritelist* sprlist);
+	void draw_tile(tile* tile, int x, int y);
+	void draw_tilemap(tilemap* tilemap);
+	void draw_sprite(sprite* sprite);
+	void draw_spritelist(spritelist* sprlist);
 	
 	/*** KEYBOARD ***/
 
@@ -55,6 +55,17 @@ struct TGL
 	bool kb_esc();
 	bool kb_char(char ch);
 	bool kb_code(int code);
+
+	/*** MOUSE ***/
+
+	void mouse_hide();
+	void mouse_show();
+	int mouse_x();
+	int mouse_y();
+	int mouse_x_clip();
+	int mouse_y_clip();
+	bool mouse_left();
+	bool mouse_right();
 
 	/*** SOUND ***/
 

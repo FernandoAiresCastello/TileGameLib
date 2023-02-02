@@ -33,6 +33,7 @@ void run_invaders()
 	tgl.screen(256, 192, 4, 4, 0x000040);
 	tgl.clip(10, 10, 246, 182);
 	tgl.bgcolor(0x000000);
+	tgl.mouse_hide();
 
 	init_tiles();
 	init_background();
@@ -70,13 +71,17 @@ void handle_player_missile()
 void handle_input()
 {
 	if (tgl.kb_esc()) tgl.exit();
-
+	/*
 	if (tgl.kb_right()) s_player.move(1, 0);
 	if (tgl.kb_left()) s_player.move(-1, 0);
 	if (tgl.kb_down()) s_player.move(0, 1);
 	if (tgl.kb_up()) s_player.move(0, -1);
+	*/
+	int mx = tgl.mouse_x_clip();
+	int my = tgl.mouse_y_clip();
+	s_player.pos(mx, my);
 
-	if (tgl.kb_space() && !player_shooting) {
+	if ((tgl.kb_space() || tgl.mouse_left()) && !player_shooting) {
 		player_shooting = true;
 		s_player_missile.pos(s_player.get_x(), s_player.get_y());
 		s_player_missile.show();
@@ -85,10 +90,10 @@ void handle_input()
 void render_frame()
 {
 	tgl.cls();
-	tgl.drawtilemap(&tm_stars);
-	tgl.drawspritelist(&sl_enemies);
-	tgl.drawsprite(&s_player_missile);
-	tgl.drawsprite(&s_player);
+	tgl.draw_tilemap(&tm_stars);
+	tgl.draw_spritelist(&sl_enemies);
+	tgl.draw_sprite(&s_player_missile);
+	tgl.draw_sprite(&s_player);
 }
 void init_enemies()
 {

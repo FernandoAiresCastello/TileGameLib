@@ -85,7 +85,7 @@ void TGL::cls()
 {
 	wnd->ClearBackground();
 }
-void TGL::drawtile(tile* tile, int x, int y)
+void TGL::draw_tile(tile* tile, int x, int y)
 {
 	drawtile_internal(tile, x, y, false);
 }
@@ -98,7 +98,7 @@ void TGL::drawtile_internal(tile* tile, int x, int y, bool ignore_c0)
 	tile_f& frame = tile->frames[wnd->GetFrame() % tile->frames.size()];
 	wnd->DrawPixelBlock8x8(frame.pixels, frame.c0, frame.c1, frame.c2, frame.c3, ignore_c0, x, y);
 }
-void TGL::drawtilemap(tilemap* tilemap)
+void TGL::draw_tilemap(tilemap* tilemap)
 {
 	drawtilemap_internal(tilemap, false);
 }
@@ -121,13 +121,13 @@ void TGL::drawtilemap_internal(tilemap* tilemap, bool ignore_c0)
 		current_y += tile::height;
 	}
 }
-void TGL::drawsprite(sprite* sprite)
+void TGL::draw_sprite(sprite* sprite)
 {
 	if (!sprite->is_visible) return;
 
 	drawtilemap_internal(&sprite->tiles, true);
 }
-void TGL::drawspritelist(spritelist* sprlist)
+void TGL::draw_spritelist(spritelist* sprlist)
 {
 	for (auto* sprite : sprlist->sprites) {
 		if (!sprite->is_visible) continue;
@@ -260,6 +260,50 @@ bool TGL::kb_char(char ch)
 bool TGL::kb_code(int code)
 {
 	return TKey::IsPressed((SDL_Scancode)code);
+}
+void TGL::mouse_hide()
+{
+	SDL_ShowCursor(false);
+}
+void TGL::mouse_show()
+{
+	SDL_ShowCursor(true);
+}
+int TGL::mouse_x()
+{
+	int x = 0;
+	SDL_GetMouseState(&x, nullptr);
+	return x / wnd->PixelWidth;
+}
+int TGL::mouse_y()
+{
+	int y = 0;
+	SDL_GetMouseState(nullptr, &y);
+	return y / wnd->PixelHeight;
+}
+int TGL::mouse_x_clip()
+{
+	if (wnd->HasClip()) {
+		return mouse_x() - wnd->GetClip().X1;
+	} else {
+		return mouse_x();
+	}
+}
+int TGL::mouse_y_clip()
+{
+	if (wnd->HasClip()) {
+		return mouse_y() - wnd->GetClip().Y1;
+	} else {
+		return mouse_y();
+	}
+}
+bool TGL::mouse_left()
+{
+	return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_LMASK;
+}
+bool TGL::mouse_right()
+{
+	return SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_RMASK;
 }
 void TGL::play(string notes)
 {
