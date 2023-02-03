@@ -51,6 +51,7 @@
     <ClInclude Include="Internal\TWindowBase.h" />
     <ClInclude Include="Internal\TWindowCreationFlags.h" />
     <ClInclude Include="TGL.h" />
+    <ClInclude Include="TGL_font.h" />
     <ClInclude Include="TGL_global.h" />
     <ClInclude Include="TGL_data.h" />
     <ClInclude Include="TGL_sprite.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="Internal\TWindowCreationFlags.cpp" />
     <ClCompile Include="TGL.cpp" />
     <ClCompile Include="TGL_data.cpp" />
+    <ClCompile Include="TGL_font.cpp" />
     <ClCompile Include="TGL_sprite.cpp" />
     <ClCompile Include="TGL_spritelist.cpp" />
     <ClCompile Include="TGL_tile.cpp" />

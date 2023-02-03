@@ -7,6 +7,7 @@ struct tile
 {
 	static const int width = 8;
 	static const int height = 8;
+	static const int size = width * height;
 
 	tile();
 
@@ -21,8 +22,6 @@ private:
 	friend struct TGL;
 	friend struct tile_f;
 	friend struct tilemap;
-
-	static const int size = width * height;
 
 	static const char pixel_c0 = '0';
 	static const char pixel_c1 = '1';

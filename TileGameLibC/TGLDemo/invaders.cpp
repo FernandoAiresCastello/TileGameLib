@@ -31,7 +31,6 @@ void run_invaders()
 	tgl.init();
 	tgl.title("Invaders");
 	tgl.screen(256, 192, 4, 4, 0x000040);
-	tgl.clip(10, 10, 246, 182);
 	tgl.bgcolor(0x000000);
 	tgl.mouse_hide();
 
@@ -89,6 +88,10 @@ void handle_input()
 }
 void render_frame()
 {
+	tgl.unclip();
+	tgl.print("Hello World!", 0, 0);
+
+	tgl.clip(10, 10, 246, 182);
 	tgl.cls();
 	tgl.draw_tilemap(&tm_stars);
 	tgl.draw_spritelist(&sl_enemies);

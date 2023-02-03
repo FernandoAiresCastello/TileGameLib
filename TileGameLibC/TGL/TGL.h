@@ -9,6 +9,7 @@
 #include "TGL_tilemap.h"
 #include "TGL_sprite.h"
 #include "TGL_spritelist.h"
+#include "TGL_font.h"
 
 struct TGL
 {
@@ -31,6 +32,7 @@ struct TGL
 	void draw_tilemap(tilemap* tilemap);
 	void draw_sprite(sprite* sprite);
 	void draw_spritelist(spritelist* sprlist);
+	void print(string str, int x, int y);
 	
 	/*** KEYBOARD ***/
 
@@ -79,6 +81,11 @@ struct TGL
 
 	int rnd(int min, int max);
 
+	/*** FILES ***/
+
+	vector<string> cload_ls(string path);
+	void csave_ls(string path, vector<string>& lines);
+
 private:
 
 	TGL_Internal::TRGBWindow* wnd;
@@ -88,6 +95,7 @@ private:
 	string wnd_title;
 	SDL_Keycode kb_last;
 	bool has_gpad;
+	font* default_font;
 
 	bool process_default_events(SDL_Event* e);
 	void drawtile_internal(tile* tile, int x, int y, bool ignore_c0);

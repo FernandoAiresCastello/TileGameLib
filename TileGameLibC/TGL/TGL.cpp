@@ -16,11 +16,13 @@ void TGL::init()
 	}
 
 	wnd = nullptr;
+	default_font = new font();
 	kb_last = 0;
 }
 int TGL::exit()
 {
 	delete wnd;
+	delete default_font;
 
 	SDL_Quit();
 	::exit(0);
@@ -132,6 +134,15 @@ void TGL::draw_spritelist(spritelist* sprlist)
 	for (auto* sprite : sprlist->sprites) {
 		if (!sprite->is_visible) continue;
 		drawtilemap_internal(&sprite->tiles, true);
+	}
+}
+void TGL::print(string str, int x, int y)
+{
+	for (int i = 0; i < str.length(); i++) {
+		const char& ch = str[i];
+		tile* char_tile = default_font->chars[ch];
+		drawtile_internal(char_tile, x, y, true);
+		x += tile::width;
 	}
 }
 bool TGL::kb_right()
@@ -329,4 +340,12 @@ void TGL::quiet()
 int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
+}
+vector<string> TGL::cload_ls(string path)
+{
+	return File::ReadLines(path, "\r\n");
+}
+void TGL::csave_ls(string path, vector<string>& lines)
+{
+	File::WriteLines(path, lines);
 }
