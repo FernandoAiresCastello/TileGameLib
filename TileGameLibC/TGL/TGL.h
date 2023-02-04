@@ -81,10 +81,14 @@ struct TGL
 
 	int rnd(int min, int max);
 
-	/*** FILES ***/
+	/*** FILESYSTEM ***/
 
+	string cload(string path);
+	void csave(string path, string text);
 	vector<string> cload_ls(string path);
 	void csave_ls(string path, vector<string>& lines);
+	vector<byte> bload(string path);
+	void bsave(string path, vector<byte>& bytes);
 
 private:
 

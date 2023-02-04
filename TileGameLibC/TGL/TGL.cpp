@@ -341,6 +341,14 @@ int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
 }
+string TGL::cload(string path)
+{
+	return File::ReadText(path);
+}
+void TGL::csave(string path, string text)
+{
+	File::WriteText(path, text);
+}
 vector<string> TGL::cload_ls(string path)
 {
 	return File::ReadLines(path, "\r\n");
@@ -348,4 +356,12 @@ vector<string> TGL::cload_ls(string path)
 void TGL::csave_ls(string path, vector<string>& lines)
 {
 	File::WriteLines(path, lines);
+}
+vector<byte> TGL::bload(string path)
+{
+	return File::ReadBytes(path);
+}
+void TGL::bsave(string path, vector<byte>& bytes)
+{
+	File::WriteBytes(path, bytes);
 }
