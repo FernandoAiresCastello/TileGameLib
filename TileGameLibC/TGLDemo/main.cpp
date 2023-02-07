@@ -5,7 +5,7 @@ void run_invaders();
 
 int main(int argc, char* args[])
 {
-	run_invaders();
+	run_test();
 
 	return 0;
 }
