@@ -132,34 +132,13 @@
     <ClInclude Include="Internal\TRegion.h">
       <Filter>Internal %28Private API%29\Graphics\Core</Filter>
     </ClInclude>
-    <ClInclude Include="TGL.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_tile.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_tile_f.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
     <ClInclude Include="Internal\TTiledImage.h">
       <Filter>Internal %28Private API%29\Graphics\Image</Filter>
     </ClInclude>
+    <ClInclude Include="TGL.h">
+      <Filter>TGL %28Public API%29</Filter>
+    </ClInclude>
     <ClInclude Include="TGL_global.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_tilemap.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_data.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_sprite.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_spritelist.h">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClInclude>
-    <ClInclude Include="TGL_font.h">
       <Filter>TGL %28Public API%29</Filter>
     </ClInclude>
   </ItemGroup>
@@ -251,31 +230,10 @@
     <ClCompile Include="Internal\TRegion.cpp">
       <Filter>Internal %28Private API%29\Graphics\Core</Filter>
     </ClCompile>
-    <ClCompile Include="TGL.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_tile.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_tile_f.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
     <ClCompile Include="Internal\TTiledImage.cpp">
       <Filter>Internal %28Private API%29\Graphics\Image</Filter>
     </ClCompile>
-    <ClCompile Include="TGL_tilemap.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_data.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_sprite.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_spritelist.cpp">
-      <Filter>TGL %28Public API%29</Filter>
-    </ClCompile>
-    <ClCompile Include="TGL_font.cpp">
+    <ClCompile Include="TGL.cpp">
       <Filter>TGL %28Public API%29</Filter>
     </ClCompile>
   </ItemGroup>

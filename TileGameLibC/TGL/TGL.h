@@ -1,107 +1,62 @@
-//=============================================================================
-//		TGL	(TileGameLib)
-//		2018-2023 Developed by Fernando Aires Castello
-//=============================================================================
 #pragma once
+#include <SDL.h>
 #include "TGL_global.h"
-#include "TGL_tile.h"
-#include "TGL_tile_f.h"
-#include "TGL_tilemap.h"
-#include "TGL_sprite.h"
-#include "TGL_spritelist.h"
-#include "TGL_font.h"
 
 struct TGL
 {
-	/*** SYSTEM ***/
-	
 	void init();
 	int exit();
 	int halt();
 	bool sysproc();
-	void title(string title);
 
-	/*** GRAPHICS ***/
-
-	void screen(int width, int height, int hstr, int vstr, rgb back_color);
-	void bgcolor(rgb color);
+	void window();
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
-	void cls();
-	void draw_tile(tile* tile, int x, int y);
-	void draw_tilemap(tilemap* tilemap);
-	void draw_sprite(sprite* sprite);
-	void draw_spritelist(spritelist* sprlist);
-	void print(string str, int x, int y);
-	
-	/*** KEYBOARD ***/
-
+	void clear();
+	void bgcolor(rgb color);
+	void pattern(string id, string pixels);
+	void tile(string tile_id, string pat1_id);
+	void tile(string tile_id, string pat1_id, string pat2_id);
+	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id);
+	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id, string pat4_id);
+	void pos_free(int x, int y);
+	void pos_tiled(int x, int y);
+	void scroll(int dx, int dy);
+	void color(rgb c1, rgb c2, rgb c3);
+	void color(rgb c0, rgb c1, rgb c2, rgb c3);
+	void draw(string tile_id);
 	bool kb_right();
 	bool kb_left();
 	bool kb_down();
 	bool kb_up();
-	bool kb_space();
-	bool kb_enter();
-	bool kb_bs();
-	bool kb_tab();
-	bool kb_shift();
 	bool kb_ctrl();
-	bool kb_alt();
-	bool kb_caps();
-	bool kb_ins();
-	bool kb_del();
-	bool kb_home();
-	bool kb_end();
-	bool kb_pgup();
-	bool kb_pgdn();
-	bool kb_esc();
-	bool kb_char(char ch);
-	bool kb_code(int code);
-
-	/*** MOUSE ***/
-
-	void mouse_hide();
-	void mouse_show();
-	int mouse_x();
-	int mouse_y();
-	int mouse_x_clip();
-	int mouse_y_clip();
-	bool mouse_left();
-	bool mouse_right();
-
-	/*** SOUND ***/
-
-	void play(string notes);
-	void play_loop(string notes);
-	void sound(float freq, int length);
-	void vol(int vol);
-	void quiet();
-
-	/*** UTIL ***/
-
-	int rnd(int min, int max);
-
-	/*** FILESYSTEM ***/
-
-	string cload(string path);
-	void csave(string path, string text);
-	vector<string> cload_ls(string path);
-	void csave_ls(string path, vector<string>& lines);
-	vector<byte> bload(string path);
-	void bsave(string path, vector<byte>& bytes);
 
 private:
 
-	TGL_Internal::TRGBWindow* wnd;
-	TGL_Internal::TGamepad gpad;
-	TGL_Internal::TSound snd;
+	TGL_Internal::TRGBWindow* wnd = nullptr;
 	
-	string wnd_title;
-	SDL_Keycode kb_last;
-	bool has_gpad;
-	font* default_font;
+	struct {
+		int x = 0;
+		int y = 0;
+		int scroll_x = 0;
+		int scroll_y = 0;
+	} cursor;
+
+	struct {
+		rgb c0 = 0x000000;
+		rgb c1 = 0xffffff;
+		rgb c2 = 0x808080;
+		rgb c3 = 0x202020;
+		bool ignore_c0 = false;
+	} palette;
+
+	struct tileseq {
+		vector<string> pattern_ids;
+	};
+
+	map<string, string> tile_patterns;
+	map<string, tileseq> tiles;
 
 	bool process_default_events(SDL_Event* e);
-	void drawtile_internal(tile* tile, int x, int y, bool ignore_c0);
-	void drawtilemap_internal(tilemap* tilemap, bool ignore_c0);
+	void reset_cursor();
 };
