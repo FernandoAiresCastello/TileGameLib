@@ -148,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClCompile Include="test_basic.cpp" />
+    <ClCompile Include="test_font.cpp" />
+    <ClCompile Include="test_views.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TGLDemo.rc" />

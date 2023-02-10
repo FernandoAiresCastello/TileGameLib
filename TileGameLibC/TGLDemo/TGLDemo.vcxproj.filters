@@ -2,10 +2,22 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_views.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_basic.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_font.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
       <UniqueIdentifier>{b7bed91b-d3c1-41fe-8267-23b19dd57093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{800f2c9f-a71e-49c9-8482-3046af44c552}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

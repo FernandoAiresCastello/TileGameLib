@@ -1,6 +1,11 @@
 #include "TGL.h"
 using namespace TGL_Internal;
 
+#define DEFAULT_WND_W			160
+#define DEFAULT_WND_H			144
+#define DEFAULT_WND_SIZE_FACTOR	5
+#define DEFAULT_WND_BGCOLOR		0xffffff
+
 #define TILE_W	8
 #define TILE_H	8
 
@@ -64,12 +69,11 @@ bool TGL::process_default_events(SDL_Event* e)
 }
 void TGL::create_window()
 {
-	int width = 160;
-	int height = 144;
-	int size_factor = 5;
-	rgb back_color = 0xffffff;
+	wnd = new TRGBWindow(
+		DEFAULT_WND_W / TILE_W, DEFAULT_WND_H / TILE_H, 
+		DEFAULT_WND_SIZE_FACTOR, DEFAULT_WND_SIZE_FACTOR, 
+		DEFAULT_WND_BGCOLOR);
 
-	wnd = new TRGBWindow(width / TILE_W, height / TILE_H, size_factor, size_factor, back_color);
 	wnd->Show();
 }
 void TGL::clip(int x1, int y1, int x2, int y2)
@@ -131,12 +135,16 @@ bool TGL::assert_view_exists(string& id)
 	}
 	return true;
 }
-void TGL::mkview(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
+void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
 {
 	viewport vw;
 	vw.x1 = x1; vw.y1 = y1; vw.x2 = x2; vw.y2 = y2;
 	vw.back_color = back_color; vw.clear_bg = clear_bg;
 	views[view_id] = vw;
+}
+void TGL::view_new(string view_id, rgb back_color)
+{
+	view_new(view_id, 0, 0, DEFAULT_WND_W, DEFAULT_WND_H, back_color, true);
 }
 void TGL::view(string view_id)
 {
@@ -217,6 +225,36 @@ void TGL::draw(string& tile_id)
 
 	wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, x, y);
 }
+void TGL::font(char ch, string pattern)
+{
+	font_patterns[ch] = pattern;
+}
+void TGL::print_free(string str, int x, int y)
+{
+	pos_free(x, y);
+	print(str);
+}
+void TGL::print_tiled(string str, int col, int row)
+{
+	pos_tiled(col, row);
+	print(str);
+}
+void TGL::print(string& str)
+{
+	int char_x = cursor.x - cur_view->scroll_x;
+	int char_y = cursor.y - cur_view->scroll_y;
+
+	if (wnd->HasClip()) {
+		char_x += wnd->GetClip().X1;
+		char_y += wnd->GetClip().Y1;
+	}
+
+	for (auto& ch : str) {
+		string& pixels = font_patterns[ch];
+		wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, char_x, char_y);
+		char_x += TILE_W;
+	}
+}
 bool TGL::kb_right()
 {
 	return TKey::IsPressed(SDL_SCANCODE_RIGHT);
@@ -236,6 +274,10 @@ bool TGL::kb_up()
 bool TGL::kb_ctrl()
 {
 	return TKey::Ctrl();
+}
+bool TGL::kb_esc()
+{
+	return TKey::IsPressed(SDL_SCANCODE_ESCAPE);
 }
 bool TGL::kb_char(char ch)
 {
