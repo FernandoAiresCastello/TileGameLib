@@ -14,10 +14,8 @@ struct TGL tgl;
 void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	
 	Util::Randomize();
-
-	create_window();
+	create_window(DEFAULT_WND_SIZE_FACTOR);
 }
 int TGL::exit()
 {
@@ -38,6 +36,13 @@ bool TGL::system()
 	wnd->Update();
 	SDL_Event e;
 	return process_default_events(&e);
+}
+void TGL::window_size(int size)
+{
+	if (size < 1) size = 1;
+	else if (size > DEFAULT_WND_SIZE_FACTOR) size = DEFAULT_WND_SIZE_FACTOR;
+	
+	create_window(size);
 }
 void TGL::title(string str)
 {
@@ -67,12 +72,13 @@ bool TGL::process_default_events(SDL_Event* e)
 	}
 	return true;
 }
-void TGL::create_window()
+void TGL::create_window(int size_factor)
 {
+	if (wnd) delete wnd;
+
 	wnd = new TRGBWindow(
 		DEFAULT_WND_W / TILE_W, DEFAULT_WND_H / TILE_H, 
-		DEFAULT_WND_SIZE_FACTOR, DEFAULT_WND_SIZE_FACTOR, 
-		DEFAULT_WND_BGCOLOR);
+		size_factor, size_factor,  DEFAULT_WND_BGCOLOR);
 
 	wnd->Show();
 }

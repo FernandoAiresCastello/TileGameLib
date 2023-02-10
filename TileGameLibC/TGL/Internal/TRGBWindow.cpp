@@ -88,7 +88,7 @@ namespace TGL_Internal
 				else if (pixel == '3') color = c3;
 				else color = c0;
 
-				if (!ignoreC0 || (ignoreC0 && color != c0))
+				if (!ignoreC0 || (ignoreC0 && pixel != '0'))
 					SetPixel(px, py, color);
 			}
 

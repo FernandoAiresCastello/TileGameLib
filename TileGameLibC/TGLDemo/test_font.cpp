@@ -35,8 +35,6 @@ void test_font()
 
 	while (tgl.system()) {
 
-		if (tgl.kb_esc()) tgl.exit();
-
 		tgl.view("view_bg");
 
 		tgl.color(0xffffff, 0x000000, 0);
@@ -45,5 +43,11 @@ void test_font()
 		tgl.print_tiled("cba", 1, 1);
 		tgl.color(0xff0000, 0x00ffff, 0x000080, 0);
 		tgl.print_free("bxb", 50, 50);
+
+		if (tgl.kb_esc()) tgl.exit();
+		if (tgl.kb_right()) tgl.scroll(1, 0);
+		if (tgl.kb_left()) tgl.scroll(-1, 0);
+		if (tgl.kb_down()) tgl.scroll(0, 1);
+		if (tgl.kb_up()) tgl.scroll(0, -1);
 	}
 }

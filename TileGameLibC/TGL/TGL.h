@@ -8,6 +8,7 @@ struct TGL
 	int exit();
 	int halt();
 	bool system();
+	void window_size(int size);
 	void title(string str);
 	void error(string msg);
 	void abort(string msg);
@@ -75,7 +76,7 @@ private:
 	viewport* cur_view = nullptr;
 
 	bool process_default_events(SDL_Event* e);
-	void create_window();
+	void create_window(int size_factor);
 	bool assert_tile_exists(string& id);
 	bool assert_tilepattern_exists(string& id);
 	bool assert_view_exists(string& id);
