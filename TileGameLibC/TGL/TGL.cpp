@@ -9,8 +9,10 @@ struct TGL tgl;
 void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-
+	
 	Util::Randomize();
+
+	create_window();
 }
 int TGL::exit()
 {
@@ -32,6 +34,19 @@ bool TGL::sysproc()
 	SDL_Event e;
 	return process_default_events(&e);
 }
+void TGL::title(string str)
+{
+	wnd->SetTitle(str);
+}
+void TGL::error(string msg)
+{
+	MsgBox::Error(msg);
+}
+void TGL::abort(string msg)
+{
+	error(msg);
+	exit();
+}
 bool TGL::process_default_events(SDL_Event* e)
 {
 	SDL_PollEvent(e);
@@ -47,7 +62,7 @@ bool TGL::process_default_events(SDL_Event* e)
 	}
 	return true;
 }
-void TGL::window()
+void TGL::create_window()
 {
 	int width = 160;
 	int height = 144;
@@ -60,12 +75,16 @@ void TGL::window()
 void TGL::clip(int x1, int y1, int x2, int y2)
 {
 	wnd->SetClip(x1, y1, x2, y2);
-	reset_cursor();
+
+	cursor.x = 0;
+	cursor.y = 0;
 }
 void TGL::unclip()
 {
 	wnd->RemoveClip();
-	reset_cursor();
+
+	cursor.x = 0;
+	cursor.y = 0;
 }
 void TGL::clear()
 {
@@ -81,28 +100,79 @@ void TGL::pattern(string id, string pixels)
 }
 void TGL::tile(string tile_id, string pat1_id)
 {
-	tiles[tile_id].pattern_ids.push_back(pat1_id);
+	tiles[tile_id].pattern_ids.clear();
+	add_pattern_to_tile(tile_id, pat1_id);
 }
 void TGL::tile(string tile_id, string pat1_id, string pat2_id)
 {
 	tiles[tile_id].pattern_ids.clear();
-	tiles[tile_id].pattern_ids.push_back(pat1_id);
-	tiles[tile_id].pattern_ids.push_back(pat2_id);
+	add_pattern_to_tile(tile_id, pat1_id);
+	add_pattern_to_tile(tile_id, pat2_id);
 }
 void TGL::tile(string tile_id, string pat1_id, string pat2_id, string pat3_id)
 {
 	tiles[tile_id].pattern_ids.clear();
-	tiles[tile_id].pattern_ids.push_back(pat1_id);
-	tiles[tile_id].pattern_ids.push_back(pat2_id);
-	tiles[tile_id].pattern_ids.push_back(pat3_id);
+	add_pattern_to_tile(tile_id, pat1_id);
+	add_pattern_to_tile(tile_id, pat2_id);
+	add_pattern_to_tile(tile_id, pat3_id);
 }
 void TGL::tile(string tile_id, string pat1_id, string pat2_id, string pat3_id, string pat4_id)
 {
 	tiles[tile_id].pattern_ids.clear();
-	tiles[tile_id].pattern_ids.push_back(pat1_id);
-	tiles[tile_id].pattern_ids.push_back(pat2_id);
-	tiles[tile_id].pattern_ids.push_back(pat3_id);
-	tiles[tile_id].pattern_ids.push_back(pat4_id);
+	add_pattern_to_tile(tile_id, pat1_id);
+	add_pattern_to_tile(tile_id, pat2_id);
+	add_pattern_to_tile(tile_id, pat3_id);
+	add_pattern_to_tile(tile_id, pat4_id);
+}
+void TGL::add_pattern_to_tile(string tile_id, string pattern_id)
+{
+	if (assert_tilepattern_exists(pattern_id))
+		tiles[tile_id].pattern_ids.push_back(pattern_id);
+}
+bool TGL::assert_tile_exists(string& id)
+{
+	if (tiles.find(id) == tiles.end()) {
+		abort("Tile not found with id: \"" + id + "\"");
+		return false;
+	}
+	return true;
+}
+bool TGL::assert_tilepattern_exists(string& id)
+{
+	if (tile_patterns.find(id) == tile_patterns.end()) {
+		abort("Tile pattern not found with id: \"" + id + "\"");
+		return false;
+	}
+	return true;
+}
+bool TGL::assert_view_exists(string& id)
+{
+	if (views.find(id) == views.end()) {
+		abort("View not found with id: \"" + id + "\"");
+		return false;
+	}
+	return true;
+}
+void TGL::mkview(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
+{
+	viewport vw;
+	vw.x1 = x1; vw.y1 = y1; vw.x2 = x2; vw.y2 = y2;
+	vw.back_color = back_color; vw.clear_bg = clear_bg;
+	views[view_id] = vw;
+}
+void TGL::view(string view_id)
+{
+	if (!assert_view_exists(view_id)) return;
+	
+	cur_view = &views[view_id];
+
+	if (cur_view->visible) {
+		tgl.clip(cur_view->x1, cur_view->y1, cur_view->x2 - 1, cur_view->y2 - 1);
+		tgl.bgcolor(cur_view->back_color);
+		if (cur_view->clear_bg) {
+			tgl.clear();
+		}
+	}
 }
 void TGL::pos_free(int x, int y)
 {
@@ -116,15 +186,33 @@ void TGL::pos_tiled(int x, int y)
 }
 void TGL::scroll(int dx, int dy)
 {
-	cursor.scroll_x = dx;
-	cursor.scroll_y = dy;
+	cur_view->scroll_x += dx;
+	cur_view->scroll_y += dy;
 }
-void TGL::reset_cursor()
+int TGL::scroll_getx()
 {
-	cursor.x = 0;
-	cursor.y = 0;
-	cursor.scroll_x = 0;
-	cursor.scroll_y = 0;
+	return cur_view->scroll_x;
+}
+int TGL::scroll_gety()
+{
+	return cur_view->scroll_y;
+}
+void TGL::view_enable(string view_id)
+{
+	if (assert_view_exists(view_id))
+		views[view_id].visible = true;
+}
+void TGL::view_disable(string view_id)
+{
+	if (assert_view_exists(view_id))
+		views[view_id].visible = false;
+}
+void TGL::view_toggle(string view_id)
+{
+	if (assert_view_exists(view_id)) {
+		viewport& vw = views[view_id];
+		vw.visible = !vw.visible;
+	}
 }
 void TGL::color(rgb c1, rgb c2, rgb c3)
 {
@@ -142,16 +230,26 @@ void TGL::color(rgb c0, rgb c1, rgb c2, rgb c3)
 	palette.c2 = c2;
 	palette.c3 = c3;
 }
-void TGL::draw(string tile_id)
+void TGL::draw_free(string tile_id, int x, int y)
 {
-	if (tiles.find(tile_id) == tiles.end()) return;
+	pos_free(x, y);
+	draw(tile_id);
+}
+void TGL::draw_tiled(string tile_id, int col, int row)
+{
+	pos_tiled(col, row);
+	draw(tile_id);
+}
+void TGL::draw(string& tile_id)
+{
+	if (!cur_view || !cur_view->visible || !assert_tile_exists(tile_id)) return;
 
 	tileseq& tile = tiles[tile_id];
 	string& pattern_id = tile.pattern_ids[wnd->GetFrame() % tile.pattern_ids.size()];
 	string& pixels = tile_patterns[pattern_id];
 
-	int x = cursor.x - cursor.scroll_x;
-	int y = cursor.y - cursor.scroll_y;
+	int x = cursor.x - cur_view->scroll_x;
+	int y = cursor.y - cur_view->scroll_y;
 
 	if (wnd->HasClip()) {
 		x += wnd->GetClip().X1;
@@ -179,4 +277,16 @@ bool TGL::kb_up()
 bool TGL::kb_ctrl()
 {
 	return TKey::Ctrl();
+}
+bool TGL::kb_char(char ch)
+{
+	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
+
+	switch (toupper(ch)) {
+		case '0': key = SDL_SCANCODE_0; break;
+		case '1': key = SDL_SCANCODE_1; break;
+		case '2': key = SDL_SCANCODE_2; break;
+	}
+
+	return key != SDL_SCANCODE_UNKNOWN && TKey::IsPressed(key);
 }

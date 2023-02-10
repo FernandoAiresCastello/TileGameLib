@@ -3,7 +3,6 @@
 int main(int argc, char* args[])
 {
 	tgl.init();
-	tgl.window();
 
 	tgl.pattern("tp_square_1f",
 		"11111111"
@@ -28,50 +27,49 @@ int main(int argc, char* args[])
 
 	int x = 0;
 	int y = 0;
-	int scroll_x = 0;
-	int scroll_y = 0;
+
+	tgl.mkview("view_bg", 0, 0, 160, 144, 0x800000, true);
+	tgl.mkview("view_1", 1, 10, 159, 30, 0x404040, true);
+	tgl.mkview("view_2", 1, 40, 159, 134, 0x404040, true);
+	tgl.mkview("view_3", 50, 20, 100, 100, 0x808080, true);
 
 	while (tgl.sysproc()) {
 
-		tgl.clip(10, 10, 150, 30);
-		tgl.bgcolor(0x404040);
-		tgl.clear();
-		tgl.pos_free(0, 0);
-		tgl.color(0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw("t_square");
+		tgl.view("view_bg");
 
-		tgl.clip(10, 40, 150, 134);
-		tgl.bgcolor(0x404040);
-		tgl.clear();
-		tgl.pos_tiled(1, 1);
+		tgl.view("view_1");
+		tgl.color(0xff0000, 0x00ff00, 0x0000ff);
+		tgl.draw_free("t_square", 0, 0);
+
+		tgl.view("view_2");
 		tgl.color(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw("t_square");
+		tgl.draw_tiled("t_square", 1, 1);
 
-		tgl.clip(50, 20, 100, 100);
-		tgl.bgcolor(0x808080);
-		tgl.clear();
-		tgl.pos_free(x, y);
-		tgl.scroll(scroll_x, scroll_y);
-		tgl.color(0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw("t_square");
+		tgl.view("view_3");
+		tgl.color(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
+		tgl.draw_tiled("t_square", 1, 1);
+		tgl.draw_tiled("t_square", 2, 2);
+		tgl.draw_tiled("t_square", 4, 4);
 
-		tgl.pos_tiled(1, 1);
-		tgl.draw("t_square");
-		tgl.pos_tiled(2, 2);
-		tgl.draw("t_square");
-		tgl.pos_tiled(4, 4);
-		tgl.draw("t_square");
+		tgl.color(0xffff00, 0xff00ff, 0x00ffff);
+		tgl.draw_free("t_square", x, y);
 
 		if (tgl.kb_ctrl()) {
-			if (tgl.kb_right()) scroll_x++;
-			if (tgl.kb_left()) scroll_x--;
-			if (tgl.kb_down()) scroll_y++;
-			if (tgl.kb_up()) scroll_y--;
+			if (tgl.kb_right()) tgl.scroll(1, 0);
+			if (tgl.kb_left()) tgl.scroll(-1, 0);
+			if (tgl.kb_down()) tgl.scroll(0, 1);
+			if (tgl.kb_up()) tgl.scroll(0, -1);
 		} else {
 			if (tgl.kb_right()) x++;
 			if (tgl.kb_left()) x--;
 			if (tgl.kb_down()) y++;
 			if (tgl.kb_up()) y--;
+		}
+
+		if (tgl.kb_char('1')) {
+			tgl.view_enable("view_3");
+		} else if (tgl.kb_char('2')) {
+			tgl.view_disable("view_3");
 		}
 	}
 

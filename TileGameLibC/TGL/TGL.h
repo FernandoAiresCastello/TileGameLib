@@ -8,28 +8,33 @@ struct TGL
 	int exit();
 	int halt();
 	bool sysproc();
-
-	void window();
-	void clip(int x1, int y1, int x2, int y2);
-	void unclip();
+	void title(string str);
+	void error(string msg);
+	void abort(string msg);
 	void clear();
-	void bgcolor(rgb color);
 	void pattern(string id, string pixels);
 	void tile(string tile_id, string pat1_id);
 	void tile(string tile_id, string pat1_id, string pat2_id);
 	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id);
 	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id, string pat4_id);
-	void pos_free(int x, int y);
-	void pos_tiled(int x, int y);
+	void mkview(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
+	void view(string view_id);
 	void scroll(int dx, int dy);
+	int scroll_getx();
+	int scroll_gety();
+	void view_enable(string view_id);
+	void view_disable(string view_id);
+	void view_toggle(string view_id);
 	void color(rgb c1, rgb c2, rgb c3);
 	void color(rgb c0, rgb c1, rgb c2, rgb c3);
-	void draw(string tile_id);
+	void draw_free(string tile_id, int x, int y);
+	void draw_tiled(string tile_id, int col, int row);
 	bool kb_right();
 	bool kb_left();
 	bool kb_down();
 	bool kb_up();
 	bool kb_ctrl();
+	bool kb_char(char ch);
 
 private:
 
@@ -38,8 +43,6 @@ private:
 	struct {
 		int x = 0;
 		int y = 0;
-		int scroll_x = 0;
-		int scroll_y = 0;
 	} cursor;
 
 	struct {
@@ -54,9 +57,33 @@ private:
 		vector<string> pattern_ids;
 	};
 
-	map<string, string> tile_patterns;
-	map<string, tileseq> tiles;
+	struct viewport {
+		int x1 = 0;
+		int y1 = 0;
+		int x2 = 0;
+		int y2 = 0;
+		int scroll_x = 0;
+		int scroll_y = 0;
+		rgb back_color = 0x000000;
+		bool clear_bg = true;
+		bool visible = true;
+	};
+
+	unordered_map<string, string> tile_patterns;
+	unordered_map<string, tileseq> tiles;
+	unordered_map<string, viewport> views;
+	viewport* cur_view = nullptr;
 
 	bool process_default_events(SDL_Event* e);
-	void reset_cursor();
+	void create_window();
+	void add_pattern_to_tile(string tile_id, string pattern_id);
+	bool assert_tile_exists(string& id);
+	bool assert_tilepattern_exists(string& id);
+	bool assert_view_exists(string& id);
+	void clip(int x1, int y1, int x2, int y2);
+	void unclip();
+	void bgcolor(rgb color);
+	void pos_free(int x, int y);
+	void pos_tiled(int x, int y);
+	void draw(string& tile_id);
 };
