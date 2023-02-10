@@ -7,24 +7,19 @@ struct TGL
 	void init();
 	int exit();
 	int halt();
-	bool sysproc();
+	bool system();
 	void title(string str);
 	void error(string msg);
 	void abort(string msg);
 	void clear();
-	void pattern(string id, string pixels);
-	void tile(string tile_id, string pat1_id);
-	void tile(string tile_id, string pat1_id, string pat2_id);
-	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id);
-	void tile(string tile_id, string pat1_id, string pat2_id, string pat3_id, string pat4_id);
+	void tile_pat(string pattern_id, string pixels);
+	void tile_new(string tile_id);
+	void tile_add(string tile_id, string pattern_id);
 	void mkview(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
 	void view(string view_id);
 	void scroll(int dx, int dy);
 	int scroll_getx();
 	int scroll_gety();
-	void view_enable(string view_id);
-	void view_disable(string view_id);
-	void view_toggle(string view_id);
 	void color(rgb c1, rgb c2, rgb c3);
 	void color(rgb c0, rgb c1, rgb c2, rgb c3);
 	void draw_free(string tile_id, int x, int y);
@@ -66,7 +61,6 @@ private:
 		int scroll_y = 0;
 		rgb back_color = 0x000000;
 		bool clear_bg = true;
-		bool visible = true;
 	};
 
 	unordered_map<string, string> tile_patterns;
@@ -76,7 +70,6 @@ private:
 
 	bool process_default_events(SDL_Event* e);
 	void create_window();
-	void add_pattern_to_tile(string tile_id, string pattern_id);
 	bool assert_tile_exists(string& id);
 	bool assert_tilepattern_exists(string& id);
 	bool assert_view_exists(string& id);

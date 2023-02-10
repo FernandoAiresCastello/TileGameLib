@@ -4,7 +4,7 @@ int main(int argc, char* args[])
 {
 	tgl.init();
 
-	tgl.pattern("tp_square_1f",
+	tgl.tile_pat("tp_square_1f",
 		"11111111"
 		"10000001"
 		"10222201"
@@ -13,7 +13,7 @@ int main(int argc, char* args[])
 		"10222201"
 		"10000001"
 		"11111111");
-	tgl.pattern("tp_square_2f",
+	tgl.tile_pat("tp_square_2f",
 		"33333333"
 		"30000003"
 		"30111103"
@@ -23,7 +23,9 @@ int main(int argc, char* args[])
 		"30000003"
 		"33333333");
 
-	tgl.tile("t_square", "tp_square_1f", "tp_square_2f");
+	tgl.tile_new("t_square");
+	tgl.tile_add("t_square", "tp_square_1f");
+	tgl.tile_add("t_square", "tp_square_2f");
 
 	int x = 0;
 	int y = 0;
@@ -33,7 +35,7 @@ int main(int argc, char* args[])
 	tgl.mkview("view_2", 1, 40, 159, 134, 0x404040, true);
 	tgl.mkview("view_3", 50, 20, 100, 100, 0x808080, true);
 
-	while (tgl.sysproc()) {
+	while (tgl.system()) {
 
 		tgl.view("view_bg");
 
@@ -64,12 +66,6 @@ int main(int argc, char* args[])
 			if (tgl.kb_left()) x--;
 			if (tgl.kb_down()) y++;
 			if (tgl.kb_up()) y--;
-		}
-
-		if (tgl.kb_char('1')) {
-			tgl.view_enable("view_3");
-		} else if (tgl.kb_char('2')) {
-			tgl.view_disable("view_3");
 		}
 	}
 

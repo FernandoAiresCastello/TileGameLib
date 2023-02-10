@@ -24,11 +24,11 @@ int TGL::exit()
 }
 int TGL::halt()
 {
-	while (sysproc());
+	while (system());
 
 	return exit();
 }
-bool TGL::sysproc()
+bool TGL::system()
 {
 	wnd->Update();
 	SDL_Event e;
@@ -94,39 +94,17 @@ void TGL::bgcolor(rgb color)
 {
 	wnd->SetBackColor(color);
 }
-void TGL::pattern(string id, string pixels)
+void TGL::tile_pat(string pattern_id, string pixels)
 {
-	tile_patterns[id] = pixels;
+	tile_patterns[pattern_id] = pixels;
 }
-void TGL::tile(string tile_id, string pat1_id)
+void TGL::tile_new(string tile_id)
 {
-	tiles[tile_id].pattern_ids.clear();
-	add_pattern_to_tile(tile_id, pat1_id);
+	tiles[tile_id] = tileseq();
 }
-void TGL::tile(string tile_id, string pat1_id, string pat2_id)
+void TGL::tile_add(string tile_id, string pattern_id)
 {
-	tiles[tile_id].pattern_ids.clear();
-	add_pattern_to_tile(tile_id, pat1_id);
-	add_pattern_to_tile(tile_id, pat2_id);
-}
-void TGL::tile(string tile_id, string pat1_id, string pat2_id, string pat3_id)
-{
-	tiles[tile_id].pattern_ids.clear();
-	add_pattern_to_tile(tile_id, pat1_id);
-	add_pattern_to_tile(tile_id, pat2_id);
-	add_pattern_to_tile(tile_id, pat3_id);
-}
-void TGL::tile(string tile_id, string pat1_id, string pat2_id, string pat3_id, string pat4_id)
-{
-	tiles[tile_id].pattern_ids.clear();
-	add_pattern_to_tile(tile_id, pat1_id);
-	add_pattern_to_tile(tile_id, pat2_id);
-	add_pattern_to_tile(tile_id, pat3_id);
-	add_pattern_to_tile(tile_id, pat4_id);
-}
-void TGL::add_pattern_to_tile(string tile_id, string pattern_id)
-{
-	if (assert_tilepattern_exists(pattern_id))
+	if (assert_tile_exists(tile_id) && assert_tilepattern_exists(pattern_id))
 		tiles[tile_id].pattern_ids.push_back(pattern_id);
 }
 bool TGL::assert_tile_exists(string& id)
@@ -166,12 +144,10 @@ void TGL::view(string view_id)
 	
 	cur_view = &views[view_id];
 
-	if (cur_view->visible) {
-		tgl.clip(cur_view->x1, cur_view->y1, cur_view->x2 - 1, cur_view->y2 - 1);
-		tgl.bgcolor(cur_view->back_color);
-		if (cur_view->clear_bg) {
-			tgl.clear();
-		}
+	tgl.clip(cur_view->x1, cur_view->y1, cur_view->x2 - 1, cur_view->y2 - 1);
+	tgl.bgcolor(cur_view->back_color);
+	if (cur_view->clear_bg) {
+		tgl.clear();
 	}
 }
 void TGL::pos_free(int x, int y)
@@ -196,23 +172,6 @@ int TGL::scroll_getx()
 int TGL::scroll_gety()
 {
 	return cur_view->scroll_y;
-}
-void TGL::view_enable(string view_id)
-{
-	if (assert_view_exists(view_id))
-		views[view_id].visible = true;
-}
-void TGL::view_disable(string view_id)
-{
-	if (assert_view_exists(view_id))
-		views[view_id].visible = false;
-}
-void TGL::view_toggle(string view_id)
-{
-	if (assert_view_exists(view_id)) {
-		viewport& vw = views[view_id];
-		vw.visible = !vw.visible;
-	}
 }
 void TGL::color(rgb c1, rgb c2, rgb c3)
 {
@@ -242,7 +201,7 @@ void TGL::draw_tiled(string tile_id, int col, int row)
 }
 void TGL::draw(string& tile_id)
 {
-	if (!cur_view || !cur_view->visible || !assert_tile_exists(tile_id)) return;
+	if (!cur_view || !assert_tile_exists(tile_id)) return;
 
 	tileseq& tile = tiles[tile_id];
 	string& pattern_id = tile.pattern_ids[wnd->GetFrame() % tile.pattern_ids.size()];
