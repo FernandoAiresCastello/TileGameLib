@@ -3,6 +3,7 @@
 void test_font()
 {
 	tgl.init();
+	tgl.window(0x00ff00);
 
 	tgl.font('a', "00112000"
 				  "01201200"
@@ -31,7 +32,7 @@ void test_font()
 				  "00111200"
 				  "00000000");
 
-	tgl.view_new("view_bg", 0xc0c0c0);
+	tgl.view_new("view_bg", 10, 10, 150, 134, 0xc0c0c0, true);
 
 	while (tgl.system()) {
 

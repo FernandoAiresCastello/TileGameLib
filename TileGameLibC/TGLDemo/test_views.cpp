@@ -3,6 +3,7 @@
 void test_views()
 {
 	tgl.init();
+	tgl.window(0x000000);
 
 	tgl.tile_pat("tp_square_1f", "11111111"
 								 "10000001"
@@ -29,7 +30,7 @@ void test_views()
 	int x = 0;
 	int y = 0;
 
-	tgl.view_new("view_bg", 0, 0, 160, 144, 0x800000, true);
+	tgl.view_new("view_bg", 0x800000);
 	tgl.view_new("view_1", 1, 10, 159, 30, 0x404040, true);
 	tgl.view_new("view_2", 1, 40, 159, 134, 0x404040, true);
 	tgl.view_new("view_3", 50, 20, 100, 100, 0x808080, true);

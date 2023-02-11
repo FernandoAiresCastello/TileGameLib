@@ -6,9 +6,11 @@ struct TGL
 {
 	void init();
 	int exit();
-	int halt();
 	bool system();
-	void window_size(int size);
+	int halt();
+	void pause(int ms);
+	void window(rgb back_color);
+	void window(rgb back_color, int size_factor);
 	void title(string str);
 	void error(string msg);
 	void abort(string msg);
@@ -76,13 +78,14 @@ private:
 	viewport* cur_view = nullptr;
 
 	bool process_default_events(SDL_Event* e);
-	void create_window(int size_factor);
+	void create_window(rgb back_color, int size_factor);
 	bool assert_tile_exists(string& id);
 	bool assert_tilepattern_exists(string& id);
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
-	void bgcolor(rgb color);
+	void set_view_bgcolor(rgb color);
+	void clear_view();
 	void pos_free(int x, int y);
 	void pos_tiled(int x, int y);
 	void draw(string& tile_id);

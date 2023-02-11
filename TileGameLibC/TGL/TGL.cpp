@@ -3,8 +3,9 @@ using namespace TGL_Internal;
 
 #define DEFAULT_WND_W			160
 #define DEFAULT_WND_H			144
+#define WND_SIZE_FACTOR_MIN		1
+#define WND_SIZE_FACTOR_MAX		5
 #define DEFAULT_WND_SIZE_FACTOR	5
-#define DEFAULT_WND_BGCOLOR		0xffffff
 
 #define TILE_W	8
 #define TILE_H	8
@@ -15,7 +16,6 @@ void TGL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Util::Randomize();
-	create_window(DEFAULT_WND_SIZE_FACTOR);
 }
 int TGL::exit()
 {
@@ -25,24 +25,36 @@ int TGL::exit()
 	::exit(0);
 	return 0;
 }
-int TGL::halt()
-{
-	while (system());
-
-	return exit();
-}
 bool TGL::system()
 {
 	wnd->Update();
+
 	SDL_Event e;
 	return process_default_events(&e);
 }
-void TGL::window_size(int size)
+int TGL::halt()
 {
-	if (size < 1) size = 1;
-	else if (size > DEFAULT_WND_SIZE_FACTOR) size = DEFAULT_WND_SIZE_FACTOR;
-	
-	create_window(size);
+	while (true) {
+		pause(1);
+	}
+	return exit();
+}
+void TGL::pause(int ms)
+{
+	while (system() && ms) {
+		SDL_Delay(1);
+		ms--;
+	}
+}
+void TGL::window(rgb back_color)
+{
+	window(back_color, DEFAULT_WND_SIZE_FACTOR);
+}
+void TGL::window(rgb back_color, int size_factor)
+{
+	if (size_factor < WND_SIZE_FACTOR_MIN) size_factor = WND_SIZE_FACTOR_MIN;
+	else if (size_factor > WND_SIZE_FACTOR_MAX) size_factor = WND_SIZE_FACTOR_MAX;
+	create_window(back_color, size_factor);
 }
 void TGL::title(string str)
 {
@@ -72,13 +84,13 @@ bool TGL::process_default_events(SDL_Event* e)
 	}
 	return true;
 }
-void TGL::create_window(int size_factor)
+void TGL::create_window(rgb back_color, int size_factor)
 {
 	if (wnd) delete wnd;
 
 	wnd = new TRGBWindow(
 		DEFAULT_WND_W / TILE_W, DEFAULT_WND_H / TILE_H, 
-		size_factor, size_factor,  DEFAULT_WND_BGCOLOR);
+		size_factor, size_factor, back_color);
 
 	wnd->Show();
 }
@@ -96,13 +108,20 @@ void TGL::unclip()
 	cursor.x = 0;
 	cursor.y = 0;
 }
+void TGL::set_view_bgcolor(rgb color)
+{
+	cur_view->back_color = color;
+}
+void TGL::clear_view()
+{
+	rgb prev_back_color = cur_view->back_color;
+	wnd->SetBackColor(cur_view->back_color);
+	wnd->ClearBackground();
+	wnd->SetBackColor(prev_back_color);
+}
 void TGL::clear()
 {
 	wnd->ClearBackground();
-}
-void TGL::bgcolor(rgb color)
-{
-	wnd->SetBackColor(color);
 }
 void TGL::tile_pat(string pattern_id, string pixels)
 {
@@ -157,11 +176,10 @@ void TGL::view(string view_id)
 	if (!assert_view_exists(view_id)) return;
 	
 	cur_view = &views[view_id];
+	clip(cur_view->x1, cur_view->y1, cur_view->x2 - 1, cur_view->y2 - 1);
 
-	tgl.clip(cur_view->x1, cur_view->y1, cur_view->x2 - 1, cur_view->y2 - 1);
-	tgl.bgcolor(cur_view->back_color);
 	if (cur_view->clear_bg) {
-		tgl.clear();
+		clear_view();
 	}
 }
 void TGL::pos_free(int x, int y)
