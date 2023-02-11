@@ -6,8 +6,8 @@ void test_font();
 
 int main(int argc, char* args[])
 {
-	//test_basic();
-	test_font();
+	test_basic();
+	//test_font();
 	//test_views();
 
 	return 0;

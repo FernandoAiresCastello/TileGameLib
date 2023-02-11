@@ -6,7 +6,7 @@ struct TGL
 {
 	void init();
 	int exit();
-	bool system();
+	void system();
 	int halt();
 	void pause(int ms);
 	void window(rgb back_color);
@@ -15,6 +15,7 @@ struct TGL
 	void error(string msg);
 	void abort(string msg);
 	void clear();
+	void update();
 	void tile_pat(string pattern_id, string pixels);
 	void tile_new(string tile_id);
 	void tile_add(string tile_id, string pattern_id);
@@ -22,8 +23,8 @@ struct TGL
 	void view_new(string view_id, rgb back_color);
 	void view(string view_id);
 	void scroll(int dx, int dy);
-	int scroll_getx();
-	int scroll_gety();
+	int scroll_x();
+	int scroll_y();
 	void color(rgb c1, rgb c2, rgb c3);
 	void color(rgb c0, rgb c1, rgb c2, rgb c3);
 	void draw_free(string tile_id, int x, int y);
@@ -77,14 +78,13 @@ private:
 	unordered_map<string, viewport> views;
 	viewport* cur_view = nullptr;
 
-	bool process_default_events(SDL_Event* e);
+	void process_default_events(SDL_Event* e);
 	void create_window(rgb back_color, int size_factor);
 	bool assert_tile_exists(string& id);
 	bool assert_tilepattern_exists(string& id);
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
-	void set_view_bgcolor(rgb color);
 	void clear_view();
 	void pos_free(int x, int y);
 	void pos_tiled(int x, int y);

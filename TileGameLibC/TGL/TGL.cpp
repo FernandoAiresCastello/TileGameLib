@@ -25,10 +25,8 @@ int TGL::exit()
 	::exit(0);
 	return 0;
 }
-bool TGL::system()
+void TGL::system()
 {
-	wnd->Update();
-
 	SDL_Event e;
 	return process_default_events(&e);
 }
@@ -41,7 +39,8 @@ int TGL::halt()
 }
 void TGL::pause(int ms)
 {
-	while (system() && ms) {
+	while (ms > 0) {
+		system();
 		SDL_Delay(1);
 		ms--;
 	}
@@ -69,20 +68,18 @@ void TGL::abort(string msg)
 	error(msg);
 	exit();
 }
-bool TGL::process_default_events(SDL_Event* e)
+void TGL::process_default_events(SDL_Event* e)
 {
 	SDL_PollEvent(e);
 
 	if (e->type == SDL_QUIT) {
 		exit();
-		return false;
 	} else if (e->type == SDL_KEYDOWN) {
 		auto key = e->key.keysym.sym;
 		if (TKey::Alt() && key == SDLK_RETURN && wnd) {
 			wnd->ToggleFullscreen();
 		}
 	}
-	return true;
 }
 void TGL::create_window(rgb back_color, int size_factor)
 {
@@ -108,10 +105,6 @@ void TGL::unclip()
 	cursor.x = 0;
 	cursor.y = 0;
 }
-void TGL::set_view_bgcolor(rgb color)
-{
-	cur_view->back_color = color;
-}
 void TGL::clear_view()
 {
 	rgb prev_back_color = cur_view->back_color;
@@ -122,6 +115,10 @@ void TGL::clear_view()
 void TGL::clear()
 {
 	wnd->ClearBackground();
+}
+void TGL::update()
+{
+	wnd->Update();
 }
 void TGL::tile_pat(string pattern_id, string pixels)
 {
@@ -197,11 +194,11 @@ void TGL::scroll(int dx, int dy)
 	cur_view->scroll_x += dx;
 	cur_view->scroll_y += dy;
 }
-int TGL::scroll_getx()
+int TGL::scroll_x()
 {
 	return cur_view->scroll_x;
 }
-int TGL::scroll_gety()
+int TGL::scroll_y()
 {
 	return cur_view->scroll_y;
 }

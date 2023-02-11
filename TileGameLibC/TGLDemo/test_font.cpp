@@ -34,16 +34,18 @@ void test_font()
 
 	tgl.view_new("view_bg", 10, 10, 150, 134, 0xc0c0c0, true);
 
-	while (tgl.system()) {
+	while (true) {
+
+		tgl.system();
 
 		tgl.view("view_bg");
-
 		tgl.color(0xffffff, 0x000000, 0);
 		tgl.print_free("abc", 0, 0);
 		tgl.color(0xffff00, 0x404040, 0);
 		tgl.print_tiled("cba", 1, 1);
 		tgl.color(0xff0000, 0x00ffff, 0x000080, 0);
 		tgl.print_free("bxb", 50, 50);
+		tgl.update();
 
 		if (tgl.kb_esc()) tgl.exit();
 		if (tgl.kb_right()) tgl.scroll(1, 0);

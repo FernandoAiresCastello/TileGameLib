@@ -3,10 +3,12 @@
 void test_basic()
 {
 	tgl.init();
-	tgl.window(0x000000);
+	tgl.window(0xff0080);
 
-	while (tgl.system()) {
+	while (true) {
 		
+		tgl.system();
+
 		if (tgl.kb_esc()) tgl.exit();
 	}
 }

@@ -35,7 +35,9 @@ void test_views()
 	tgl.view_new("view_2", 1, 40, 159, 134, 0x404040, true);
 	tgl.view_new("view_3", 50, 20, 100, 100, 0x808080, true);
 
-	while (tgl.system()) {
+	while (true) {
+
+		tgl.system();
 
 		tgl.view("view_bg");
 
@@ -55,6 +57,8 @@ void test_views()
 
 		tgl.color(0xffff00, 0xff00ff, 0x00ffff);
 		tgl.draw_free("t_square", x, y);
+
+		tgl.update();
 
 		if (tgl.kb_esc()) tgl.exit();
 
