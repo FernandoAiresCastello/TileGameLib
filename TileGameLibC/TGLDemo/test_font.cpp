@@ -45,7 +45,6 @@ void test_font()
 		tgl.print_tiled("cba", 1, 1);
 		tgl.color(0xff0000, 0x00ffff, 0x000080, 0);
 		tgl.print_free("bxb", 50, 50);
-		tgl.update();
 
 		if (tgl.kb_esc()) tgl.exit();
 		if (tgl.kb_right()) tgl.scroll(1, 0);

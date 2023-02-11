@@ -11,6 +11,9 @@
     <ClCompile Include="test_font.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="test_invaders.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">

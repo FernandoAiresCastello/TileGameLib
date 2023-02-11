@@ -3,12 +3,12 @@ using namespace TGL_Internal;
 
 #define DEFAULT_WND_W			160
 #define DEFAULT_WND_H			144
+#define DEFAULT_WND_BGCOLOR		0xffffff
 #define WND_SIZE_FACTOR_MIN		1
 #define WND_SIZE_FACTOR_MAX		5
 #define DEFAULT_WND_SIZE_FACTOR	5
 
-#define TILE_W	8
-#define TILE_H	8
+#define TILE_SIZE	8
 
 struct TGL tgl;
 
@@ -27,8 +27,11 @@ int TGL::exit()
 }
 void TGL::system()
 {
+	update();
+	advance_timers();
+
 	SDL_Event e;
-	return process_default_events(&e);
+	process_default_events(&e);
 }
 int TGL::halt()
 {
@@ -45,6 +48,10 @@ void TGL::pause(int ms)
 		ms--;
 	}
 }
+void TGL::window()
+{
+	window(DEFAULT_WND_BGCOLOR, DEFAULT_WND_SIZE_FACTOR);
+}
 void TGL::window(rgb back_color)
 {
 	window(back_color, DEFAULT_WND_SIZE_FACTOR);
@@ -58,6 +65,34 @@ void TGL::window(rgb back_color, int size_factor)
 void TGL::title(string str)
 {
 	wnd->SetTitle(str);
+}
+int TGL::width()
+{
+	return wnd->HorizontalResolution;
+}
+int TGL::height()
+{
+	return wnd->VerticalResolution;
+}
+int TGL::tilesize()
+{
+	return TILE_SIZE;
+}
+int TGL::cols()
+{
+	return width() / TILE_SIZE;
+}
+int TGL::rows()
+{
+	return height() / TILE_SIZE;
+}
+void TGL::mouse_on()
+{
+	SDL_ShowCursor(true);
+}
+void TGL::mouse_off()
+{
+	SDL_ShowCursor(false);
 }
 void TGL::error(string msg)
 {
@@ -86,7 +121,7 @@ void TGL::create_window(rgb back_color, int size_factor)
 	if (wnd) delete wnd;
 
 	wnd = new TRGBWindow(
-		DEFAULT_WND_W / TILE_W, DEFAULT_WND_H / TILE_H, 
+		DEFAULT_WND_W / TILE_SIZE, DEFAULT_WND_H / TILE_SIZE,
 		size_factor, size_factor, back_color);
 
 	wnd->Show();
@@ -124,13 +159,9 @@ void TGL::tile_pat(string pattern_id, string pixels)
 {
 	tile_patterns[pattern_id] = pixels;
 }
-void TGL::tile_new(string tile_id)
-{
-	tiles[tile_id] = tileseq();
-}
 void TGL::tile_add(string tile_id, string pattern_id)
 {
-	if (assert_tile_exists(tile_id) && assert_tilepattern_exists(pattern_id))
+	if (assert_tilepattern_exists(pattern_id))
 		tiles[tile_id].pattern_ids.push_back(pattern_id);
 }
 bool TGL::assert_tile_exists(string& id)
@@ -159,14 +190,10 @@ bool TGL::assert_view_exists(string& id)
 }
 void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
 {
-	viewport vw;
+	t_viewport vw;
 	vw.x1 = x1; vw.y1 = y1; vw.x2 = x2; vw.y2 = y2;
 	vw.back_color = back_color; vw.clear_bg = clear_bg;
 	views[view_id] = vw;
-}
-void TGL::view_new(string view_id, rgb back_color)
-{
-	view_new(view_id, 0, 0, DEFAULT_WND_W, DEFAULT_WND_H, back_color, true);
 }
 void TGL::view(string view_id)
 {
@@ -186,13 +213,18 @@ void TGL::pos_free(int x, int y)
 }
 void TGL::pos_tiled(int x, int y)
 {
-	cursor.x = x * TILE_W;
-	cursor.y = y * TILE_H;
+	cursor.x = x * TILE_SIZE;
+	cursor.y = y * TILE_SIZE;
 }
 void TGL::scroll(int dx, int dy)
 {
 	cur_view->scroll_x += dx;
 	cur_view->scroll_y += dy;
+}
+void TGL::scroll_to(int x, int y)
+{
+	cur_view->scroll_x = x;
+	cur_view->scroll_y = y;
 }
 int TGL::scroll_x()
 {
@@ -232,7 +264,7 @@ void TGL::draw(string& tile_id)
 {
 	if (!cur_view || !assert_tile_exists(tile_id)) return;
 
-	tileseq& tile = tiles[tile_id];
+	t_tileseq& tile = tiles[tile_id];
 	string& pattern_id = tile.pattern_ids[wnd->GetFrame() % tile.pattern_ids.size()];
 	string& pixels = tile_patterns[pattern_id];
 
@@ -273,7 +305,40 @@ void TGL::print(string& str)
 	for (auto& ch : str) {
 		string& pixels = font_patterns[ch];
 		wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, char_x, char_y);
-		char_x += TILE_W;
+		char_x += TILE_SIZE;
+	}
+}
+int TGL::rnd(int min, int max)
+{
+	return Util::Random(min, max);
+}
+void TGL::timer_new(string timer_id, int cycles, bool loop)
+{
+	t_timer tmr;
+	tmr.cycles_max = cycles;
+	tmr.cycles_elapsed = 0;
+	tmr.loop = loop;
+	timers[timer_id] = tmr;
+}
+bool TGL::timer(string timer_id)
+{
+	if (timers.find(timer_id) == timers.end()) return false;
+
+	t_timer& tmr = timers[timer_id];
+	return tmr.cycles_elapsed >= tmr.cycles_max;
+}
+void TGL::advance_timers()
+{
+	for (auto& tmr_entry : timers) {
+		t_timer& tmr = tmr_entry.second;
+		tmr.cycles_elapsed++;
+		if (tmr.cycles_elapsed > tmr.cycles_max) {
+			if (tmr.loop) {
+				tmr.cycles_elapsed = 0;
+			} else {
+				tmr.cycles_elapsed = tmr.cycles_max;
+			}
+		}
 	}
 }
 bool TGL::kb_right()
@@ -299,6 +364,10 @@ bool TGL::kb_ctrl()
 bool TGL::kb_esc()
 {
 	return TKey::IsPressed(SDL_SCANCODE_ESCAPE);
+}
+bool TGL::kb_space()
+{
+	return TKey::IsPressed(SDL_SCANCODE_SPACE);
 }
 bool TGL::kb_char(char ch)
 {
