@@ -44,6 +44,7 @@ struct TGL
 	void timer_new(string timer_id, int cycles, bool loop);
 	bool timer(string timer_id);
 	bool collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y);
+	string fmt(const char* str, ...);
 	bool kb_char(char ch);
 	bool kb_right();
 	bool kb_left();

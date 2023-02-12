@@ -7,8 +7,8 @@ using namespace TGL_Internal;
 #define WND_SIZE_FACTOR_MIN		1
 #define WND_SIZE_FACTOR_MAX		5
 #define DEFAULT_WND_SIZE_FACTOR	5
-
-#define TILE_SIZE	8
+#define TILE_SIZE				8
+#define STRING_FMT_MAXBUFLEN	1024
 
 struct TGL tgl;
 
@@ -357,6 +357,17 @@ bool TGL::collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y)
 {
 	return	(obj1_x >= obj2_x - TILE_SIZE) && (obj1_x <= obj2_x + TILE_SIZE) &&
 			(obj1_y >= obj2_y - TILE_SIZE) && (obj1_y <= obj2_y + TILE_SIZE);
+}
+string TGL::fmt(const char* str, ...)
+{
+	char output[STRING_FMT_MAXBUFLEN] = { 0 };
+	
+	va_list arg;
+	va_start(arg, str);
+	vsprintf(output, str, arg);
+	va_end(arg);
+
+	return output;
 }
 bool TGL::kb_char(char ch)
 {
