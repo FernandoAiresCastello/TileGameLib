@@ -94,6 +94,18 @@ void TGL::mouse_off()
 {
 	SDL_ShowCursor(false);
 }
+int TGL::mouse_x()
+{
+	int x = 0;
+	SDL_GetMouseState(&x, NULL);
+	return x;
+}
+int TGL::mouse_y()
+{
+	int y = 0;
+	SDL_GetMouseState(NULL, &y);
+	return y;
+}
 void TGL::error(string msg)
 {
 	MsgBox::Error(msg);
@@ -341,6 +353,23 @@ void TGL::advance_timers()
 		}
 	}
 }
+bool TGL::collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y)
+{
+	return	(obj1_x >= obj2_x - TILE_SIZE) && (obj1_x <= obj2_x + TILE_SIZE) &&
+			(obj1_y >= obj2_y - TILE_SIZE) && (obj1_y <= obj2_y + TILE_SIZE);
+}
+bool TGL::kb_char(char ch)
+{
+	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
+
+	switch (toupper(ch)) {
+		case '0': key = SDL_SCANCODE_0; break;
+		case '1': key = SDL_SCANCODE_1; break;
+		case '2': key = SDL_SCANCODE_2; break;
+	}
+
+	return key != SDL_SCANCODE_UNKNOWN && TKey::IsPressed(key);
+}
 bool TGL::kb_right()
 {
 	return TKey::IsPressed(SDL_SCANCODE_RIGHT);
@@ -368,16 +397,4 @@ bool TGL::kb_esc()
 bool TGL::kb_space()
 {
 	return TKey::IsPressed(SDL_SCANCODE_SPACE);
-}
-bool TGL::kb_char(char ch)
-{
-	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
-
-	switch (toupper(ch)) {
-		case '0': key = SDL_SCANCODE_0; break;
-		case '1': key = SDL_SCANCODE_1; break;
-		case '2': key = SDL_SCANCODE_2; break;
-	}
-
-	return key != SDL_SCANCODE_UNKNOWN && TKey::IsPressed(key);
 }

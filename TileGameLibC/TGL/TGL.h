@@ -20,6 +20,8 @@ struct TGL
 	int rows();
 	void mouse_on();
 	void mouse_off();
+	int mouse_x();
+	int mouse_y();
 	void error(string msg);
 	void abort(string msg);
 	void clear();
@@ -41,6 +43,8 @@ struct TGL
 	int rnd(int min, int max);
 	void timer_new(string timer_id, int cycles, bool loop);
 	bool timer(string timer_id);
+	bool collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y);
+	bool kb_char(char ch);
 	bool kb_right();
 	bool kb_left();
 	bool kb_down();
@@ -48,7 +52,6 @@ struct TGL
 	bool kb_ctrl();
 	bool kb_esc();
 	bool kb_space();
-	bool kb_char(char ch);
 
 private:
 

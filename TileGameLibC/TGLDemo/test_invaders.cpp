@@ -30,7 +30,7 @@ void test_invaders()
 	init_tiles();
 	init_aliens();
 
-	tgl.timer_new("tm_alien_move", 10, true);
+	tgl.timer_new("tm_alien_move", 3, true);
 
 	tgl.view_new("vw_main", 0, 0, 160, 120, 0x000000, true);
 	tgl.view_new("vw_sub", 0, 120, 160, 144, 0x202020, true);
@@ -46,6 +46,11 @@ void test_invaders()
 			if (alien.alive && alien.y >= -tgl.tilesize()) {
 				tgl.color(0x00ff00, 0x00c000, 0x007000);
 				tgl.draw_free("t_alien", alien.x, alien.y);
+
+				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
+					alien.alive = false;
+					player.missile.active = false;
+				}
 			}
 			if (tgl.timer("tm_alien_move")) {
 				alien.y++;
