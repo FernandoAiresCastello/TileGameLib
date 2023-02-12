@@ -113,4 +113,6 @@ private:
 	void draw(string& tile_id);
 	void print(string& str);
 	void advance_timers();
+	void font(char ch1, char ch2, string pattern);
+	void init_default_font();
 };

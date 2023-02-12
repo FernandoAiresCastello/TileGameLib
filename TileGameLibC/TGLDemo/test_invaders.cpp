@@ -24,11 +24,13 @@ void init_aliens();
 void aliens_cycle();
 void player_cycle();
 void handle_input();
+void draw_score();
 
 void test_invaders()
 {
 	tgl.init();
 	tgl.window();
+	tgl.title("TGL Invaders");
 	tgl.mouse_off();
 
 	init_tiles();
@@ -37,16 +39,25 @@ void test_invaders()
 	tgl.timer_new("tm_alien_move", 30, true);
 
 	tgl.view_new("vw_main", 0, 0, 160, 120, 0x000000, true);
-	tgl.view_new("vw_sub", 0, 120, 160, 144, 0x202020, true);
+	tgl.view_new("vw_sub", 0, 120, 160, 144, 0x0000ff, true);
 
 	while (true) {
 		tgl.system();
+		
 		tgl.view("vw_main");
 		aliens_cycle();
 		player_cycle();
+		
 		tgl.view("vw_sub");
+		draw_score();
+
 		handle_input();
 	}
+}
+void draw_score()
+{
+	tgl.color(0xffffff, 0x8070ff, 0);
+	tgl.print_free(tgl.fmt("%05i", player.score), 4, 4);
 }
 void handle_input()
 {
@@ -54,6 +65,11 @@ void handle_input()
 
 	if (tgl.kb_right()) player.x++;
 	if (tgl.kb_left()) player.x--;
+
+	if (player.x < -tgl.tilesize()) 
+		player.x = tgl.width();
+	else if (player.x >= tgl.width()) 
+		player.x = -tgl.tilesize();
 
 	if (tgl.kb_space() && !player.missile.active) {
 		player.missile.active = true;
@@ -71,7 +87,7 @@ void player_cycle()
 	tgl.draw_free("t_spaceship", player.x, player.y);
 
 	if (player.missile.active) {
-		player.missile.y--;
+		player.missile.y -= 2;
 		if (player.missile.y < -tgl.tilesize()) {
 			player.missile.active = false;
 		}
@@ -89,7 +105,6 @@ void aliens_cycle()
 					alien.alive = false;
 					player.missile.active = false;
 					player.score++;
-					tgl.title(tgl.fmt("SCORE: %i of %i", player.score, aliens.size()));
 				}
 			}
 		} else if (alien.blast_counter > 0) {
