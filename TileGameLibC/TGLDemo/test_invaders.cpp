@@ -38,24 +38,23 @@ void test_invaders()
 
 	tgl.timer_new("tm_alien_move", 30, true);
 
-	tgl.view_new("vw_main", 0, 0, 160, 120, 0x000000, true);
-	tgl.view_new("vw_sub", 0, 120, 160, 144, 0x0000ff, true);
+	tgl.view_new("vw_main", 0, 0, tgl.width(), 120, 0x000000, true);
+	tgl.view_new("vw_sub", 0, 120, tgl.width(), 144, 0x0000ff, true);
 
 	while (true) {
+
 		tgl.system();
-		
+
 		tgl.view("vw_main");
 		aliens_cycle();
 		player_cycle();
-		
-		tgl.view("vw_sub");
 		draw_score();
-
 		handle_input();
 	}
 }
 void draw_score()
 {
+	tgl.view("vw_sub");
 	tgl.color(0xffffff, 0x8070ff, 0);
 	tgl.print_free(tgl.fmt("%05i", player.score), 4, 4);
 }
@@ -100,7 +99,6 @@ void aliens_cycle()
 			if (alien.y >= -tgl.tilesize()) {
 				tgl.color(0x00ff00, 0x00c000, 0x007000);
 				tgl.draw_free("t_alien", alien.x, alien.y);
-
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
 					alien.alive = false;
 					player.missile.active = false;
