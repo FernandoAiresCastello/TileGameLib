@@ -34,7 +34,7 @@ void test_views()
 	tgl.view_new("view_2", 1, 40, 159, 134, 0x404040, true);
 	tgl.view_new("view_3", 50, 20, 100, 100, 0x808080, true);
 
-	while (true) {
+	while (tgl.running()) {
 
 		tgl.system();
 

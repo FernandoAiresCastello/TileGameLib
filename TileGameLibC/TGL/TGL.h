@@ -42,6 +42,7 @@ struct TGL
 	void scroll_to(int x, int y);
 	int scroll_x();
 	int scroll_y();
+	void color(rgb c1);
 	void color(rgb c1, rgb c2, rgb c3);
 	void color(rgb c0, rgb c1, rgb c2, rgb c3);
 	void draw_free(string tile_id, int x, int y);
