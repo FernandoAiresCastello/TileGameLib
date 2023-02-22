@@ -1,4 +1,4 @@
-# TGL (TileGameLib)
+# TileGameLib (TGL)
 
 This is a C++ implementation of TileGameLib built as a static library (TGL.lib) on top of SDL2.
 
