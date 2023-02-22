@@ -1,5 +1,5 @@
 # Tile Game Toolkit
-This repo is a collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#.
+This repo is a collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#. The goal is to be able to develop games that look and feel like Nintendo GameBoy Color games, at least graphically.
 
 **Main project:**
 
