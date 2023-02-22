@@ -56,6 +56,11 @@ struct TGL
 	bool timer(string timer_id);
 	bool collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y);
 	string fmt(const char* str, ...);
+	void volume(int vol);
+	void play(string notes);
+	void play_loop(string notes);
+	void play_stop();
+	void sound(float freq, int len);
 	bool kb_char(char ch);
 	bool kb_right();
 	bool kb_left();

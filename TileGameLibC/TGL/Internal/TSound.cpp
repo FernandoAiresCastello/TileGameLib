@@ -258,6 +258,8 @@ namespace TGL_Internal
 
 	void TSound::SetVolume(int volume)
 	{
+		volume *= 10;
+
 		if (volume > MaxVolume)
 			Volume = MaxVolume;
 		else if (volume < MinVolume)

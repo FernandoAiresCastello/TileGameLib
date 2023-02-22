@@ -17,6 +17,7 @@ using namespace TGL_Internal;
 #define STRING_FMT_MAXBUFLEN	1024
 
 TRGBWindow* wnd = nullptr;
+TSound* snd = nullptr;
 
 TGL::TGL()
 {
@@ -30,6 +31,8 @@ void TGL::init()
 {
 	is_running = false;
 	wnd_title = "";
+	snd = new TSound();
+	volume(150);
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Util::Randomize();
@@ -43,6 +46,8 @@ int TGL::exit()
 	
 	delete wnd;
 	wnd = nullptr;
+	delete snd;
+	snd = nullptr;
 
 	SDL_Quit();
 	::exit(0);
@@ -403,6 +408,27 @@ string TGL::fmt(const char* str, ...)
 	va_end(arg);
 
 	return output;
+}
+void TGL::volume(int vol)
+{
+	snd->SetVolume(vol);
+}
+void TGL::play(string notes)
+{
+	snd->PlaySubSound(notes);
+}
+void TGL::play_loop(string notes)
+{
+	snd->PlayMainSound(notes);
+}
+void TGL::play_stop()
+{
+	snd->StopMainSound();
+	snd->StopSubSound();
+}
+void TGL::sound(float freq, int len)
+{
+	snd->Beep(freq, len);
 }
 bool TGL::kb_char(char ch)
 {

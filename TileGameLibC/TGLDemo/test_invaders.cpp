@@ -24,7 +24,9 @@ vector<t_alien> aliens;
 void init_tiles();
 void init_aliens();
 void aliens_cycle();
+void alien_destroy(t_alien& alien);
 void player_cycle();
+void player_shoot();
 void handle_input();
 void draw_score();
 
@@ -37,16 +39,16 @@ void test_invaders()
 	init_tiles();
 	init_aliens();
 
-	tgl.timer_new("tm_alien_move", 30, true);
+	tgl.timer_new("alien_move", 30, true);
 
-	tgl.view_new("vw_main", 0, 0, tgl.width(), 120, 0x000000, true);
-	tgl.view_new("vw_sub", 0, 120, tgl.width(), 144, 0x0000ff, true);
+	tgl.view_new("main", 0, 0, tgl.width(), 120, 0x000000, true);
+	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
 
 	while (tgl.running()) {
 
 		tgl.system();
 
-		tgl.view("vw_main");
+		tgl.view("main");
 		aliens_cycle();
 		player_cycle();
 		draw_score();
@@ -55,9 +57,12 @@ void test_invaders()
 }
 void draw_score()
 {
-	tgl.view("vw_sub");
-	tgl.color(0xffffff, 0x8070ff, 0);
-	tgl.print_free(tgl.fmt("Score: %05i", player.score), 32, 4);
+	tgl.view("sub");
+	string score = tgl.fmt("Score: %05i", player.score);
+	tgl.color(0x000020, 0, 0);
+	tgl.print_free(score, 33, 5);
+	tgl.color(0xffffff, 0, 0);
+	tgl.print_free(score, 32, 4);
 }
 void handle_input()
 {
@@ -71,20 +76,26 @@ void handle_input()
 	else if (player.x >= tgl.width()) 
 		player.x = -tgl.tilesize();
 
-	if (tgl.kb_space() && !player.missile.active) {
-		player.missile.active = true;
-		player.missile.x = player.x;
-		player.missile.y = player.y;
-	}
+	if (tgl.kb_space()) player_shoot();
+}
+void player_shoot()
+{
+	if (player.missile.active) return;
+
+	tgl.play("l30cd");
+
+	player.missile.active = true;
+	player.missile.x = player.x;
+	player.missile.y = player.y;
 }
 void player_cycle()
 {
 	if (player.missile.active) {
 		tgl.color(0x00ffff, 0x0080ff, 0x0000a0);
-		tgl.draw_free("t_missile", player.missile.x, player.missile.y);
+		tgl.draw_free("missile", player.missile.x, player.missile.y);
 	}
 	tgl.color(0xffffff, 0x80a0ff, 0xff8000);
-	tgl.draw_free("t_spaceship", player.x, player.y);
+	tgl.draw_free("spaceship", player.x, player.y);
 
 	if (player.missile.active) {
 		player.missile.y -= 2;
@@ -99,22 +110,28 @@ void aliens_cycle()
 		if (alien.alive) {
 			if (alien.y >= -tgl.tilesize()) {
 				tgl.color(0x00ff00, 0x00c000, 0x007000);
-				tgl.draw_free("t_alien", alien.x, alien.y);
+				tgl.draw_free("alien", alien.x, alien.y);
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
-					alien.alive = false;
-					player.missile.active = false;
-					player.score++;
+					alien_destroy(alien);
 				}
 			}
 		} else if (alien.blast_counter > 0) {
 			alien.blast_counter--;
 			tgl.color(0xff0000, 0xff8000, 0xffff00);
-			tgl.draw_free("t_blast", alien.x, alien.y);
+			tgl.draw_free("blast", alien.x, alien.y);
 		}
-		if (tgl.timer("tm_alien_move")) {
+		if (tgl.timer("alien_move")) {
 			alien.y += 4;
 		}
 	}
+}
+void alien_destroy(t_alien& alien)
+{
+	tgl.play("l30ba");
+
+	alien.alive = false;
+	player.missile.active = false;
+	player.score++;
 }
 void init_aliens()
 {
@@ -132,22 +149,22 @@ void init_tiles()
 	// SPACESHIP
 	tgl.tile_pat("tp_spaceship_1f", "0001100000011000002112000121121011211211100110010033330000033000");
 	tgl.tile_pat("tp_spaceship_2f", "0001100000011000002112000121121011211211100110010003300000000000");
-	tgl.tile_add("t_spaceship", "tp_spaceship_1f");
-	tgl.tile_add("t_spaceship", "tp_spaceship_2f");
+	tgl.tile_add("spaceship", "tp_spaceship_1f");
+	tgl.tile_add("spaceship", "tp_spaceship_2f");
 	
 	// MISSILE
 	tgl.tile_pat("tp_missile_1f", "0001100000011000000110000001100000022000000220000003300000033000");
-	tgl.tile_add("t_missile", "tp_missile_1f");
+	tgl.tile_add("missile", "tp_missile_1f");
 
 	// ALIEN
 	tgl.tile_pat("tp_alien_1f", "0011100022222220131313102222222000111000010001000000000000000000");
 	tgl.tile_pat("tp_alien_2f", "0011100022222220313131302222222000111000001010000000000000000000");
-	tgl.tile_add("t_alien", "tp_alien_1f");
-	tgl.tile_add("t_alien", "tp_alien_2f");
+	tgl.tile_add("alien", "tp_alien_1f");
+	tgl.tile_add("alien", "tp_alien_2f");
 
 	// BLAST
 	tgl.tile_pat("tp_blast_1f", "0300003033300333032222300021120000211200032222303330033303000030");
 	tgl.tile_pat("tp_blast_2f", "0200002022200222021001200000000000000000021001202220022202000020");
-	tgl.tile_add("t_blast", "tp_blast_1f");
-	tgl.tile_add("t_blast", "tp_blast_2f");
+	tgl.tile_add("blast", "tp_blast_1f");
+	tgl.tile_add("blast", "tp_blast_2f");
 }
