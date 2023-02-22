@@ -1,31 +1,17 @@
 #include <TGL.h>
 
-void print(TGL& tgl, string str, int x, int y)
-{
-	x *= tgl.tilesize();
-	y *= tgl.tilesize();
-
-	tgl.color(0x000000);
-	tgl.print_free(str, x + 1, y + 1);
-	tgl.color(0xffffff);
-	tgl.print_free(str, x, y);
-}
-
-void header(TGL& tgl, string str, int x, int y)
-{
-	x *= tgl.tilesize();
-	y *= tgl.tilesize();
-
-	tgl.color(0x000000);
-	tgl.print_free(str, x + 1, y + 1);
-	tgl.color(0xffff00);
-	tgl.print_free(str, x, y);
-}
+void title(TGL& tgl, string str);
+void print(TGL& tgl, string str, int x, int y);
+void header(TGL& tgl, string str, int x, int y);
 
 void test_font()
 {
 	TGL tgl;
 	tgl.window(0x201080);
+	
+	tgl.font_shadow(true, 0x000020);
+	title(tgl, "Font Demo");
+	tgl.font_shadow(true, 0x004000);
 
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
 
@@ -59,4 +45,25 @@ void test_font()
 		if (tgl.kb_down()) tgl.scroll(0, 1);
 		if (tgl.kb_up()) tgl.scroll(0, -1);
 	}
+}
+void print(TGL& tgl, string str, int x, int y)
+{
+	x *= tgl.tilesize();
+	y *= tgl.tilesize();
+
+	tgl.color(0xffffff);
+	tgl.print_free(str, x, y);
+}
+void header(TGL& tgl, string str, int x, int y)
+{
+	x *= tgl.tilesize();
+	y *= tgl.tilesize();
+
+	tgl.color(0xffff00);
+	tgl.print_free(str, x, y);
+}
+void title(TGL& tgl, string str)
+{
+	tgl.color(0x00ffff);
+	tgl.print_free(str, 0, 0);
 }

@@ -36,7 +36,10 @@ void TGL::init()
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Util::Randomize();
+
 	init_default_font();
+	text_shadow.enabled = false;
+	text_shadow.color = 0x000000;
 }
 int TGL::exit()
 {
@@ -333,6 +336,11 @@ void TGL::font(char ch, string pattern)
 {
 	font_patterns[ch] = pattern;
 }
+void TGL::font_shadow(bool shadow, rgb shadow_color)
+{
+	text_shadow.enabled = shadow;
+	text_shadow.color = shadow_color;
+}
 void TGL::font_reset()
 {
 	font_new();
@@ -354,8 +362,8 @@ void TGL::print_tiled(string str, int col, int row)
 }
 void TGL::print(string& str)
 {
-	int char_x = cursor.x - cur_view->scroll_x;
-	int char_y = cursor.y - cur_view->scroll_y;
+	int char_x = cur_view ? cursor.x - cur_view->scroll_x : cursor.x;
+	int char_y = cur_view ? cursor.y - cur_view->scroll_y : cursor.y;
 
 	if (wnd->HasClip()) {
 		char_x += wnd->GetClip().X1;
@@ -364,6 +372,9 @@ void TGL::print(string& str)
 
 	for (auto& ch : str) {
 		string& pixels = font_patterns[ch];
+		if (text_shadow.enabled) {
+			wnd->DrawPixelBlock8x8(pixels, palette.c0, text_shadow.color, palette.c0, palette.c0, palette.ignore_c0, char_x + 1, char_y + 1);
+		}
 		wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, char_x, char_y);
 		char_x += TILE_SIZE;
 	}

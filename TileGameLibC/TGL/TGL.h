@@ -48,6 +48,7 @@ struct TGL
 	void draw_free(string tile_id, int x, int y);
 	void draw_tiled(string tile_id, int col, int row);
 	void font(char ch, string pattern);
+	void font_shadow(bool shadow, rgb shadow_color = 0);
 	void font_reset();
 	void font_new();
 	void print_free(string str, int x, int y);
@@ -85,6 +86,11 @@ private:
 		rgb c3 = 0x808080;
 		bool ignore_c0 = false;
 	} palette;
+
+	struct {
+		bool enabled;
+		rgb color;
+	} text_shadow;
 
 	struct t_tileseq {
 		vector<string> pattern_ids;
