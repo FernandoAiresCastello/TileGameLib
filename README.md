@@ -1,7 +1,7 @@
 # Tile Game Toolkit
-A collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#.
+This repo is a collection of software libraries and tools for quick and easy development of tile-based, pseudo-8-bit games in C++ or C#.
 
-Disclaimers: This toolkit is under continuous development, therefore breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk. Only Microsoft Windows (7 and above) is currently supported.
+Disclaimers: This toolkit is under continuous development, therefore breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk. Only Microsoft Windows (7 and above) is currently supported. The projects are built using Visual Studio Community 2019.
 
 **Main project:**
 
