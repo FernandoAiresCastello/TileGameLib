@@ -2,7 +2,7 @@
 
 void test_basic()
 {
-	tgl.init();
+	TGL tgl;
 	tgl.window(0xff0080);
 
 	while (true) {

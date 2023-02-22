@@ -2,7 +2,7 @@
 
 void test_font()
 {
-	tgl.init();
+	TGL tgl;
 	tgl.window(0x201080);
 
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);

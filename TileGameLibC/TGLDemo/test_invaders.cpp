@@ -1,5 +1,7 @@
 #include <TGL.h>
 
+static TGL tgl;
+
 struct {
 	int x = 75;
 	int y = 110;
@@ -28,9 +30,8 @@ void draw_score();
 
 void test_invaders()
 {
-	tgl.init();
-	tgl.window();
 	tgl.title("TGL Invaders");
+	tgl.window();
 	tgl.mouse_off();
 
 	init_tiles();
@@ -41,7 +42,7 @@ void test_invaders()
 	tgl.view_new("vw_main", 0, 0, tgl.width(), 120, 0x000000, true);
 	tgl.view_new("vw_sub", 0, 120, tgl.width(), 144, 0x0000ff, true);
 
-	while (true) {
+	while (tgl.running()) {
 
 		tgl.system();
 
@@ -56,7 +57,7 @@ void draw_score()
 {
 	tgl.view("vw_sub");
 	tgl.color(0xffffff, 0x8070ff, 0);
-	tgl.print_free(tgl.fmt("%05i", player.score), 4, 4);
+	tgl.print_free(tgl.fmt("Score: %05i", player.score), 32, 4);
 }
 void handle_input()
 {
@@ -129,84 +130,24 @@ void init_aliens()
 void init_tiles()
 {
 	// SPACESHIP
-	tgl.tile_pat("tp_spaceship_1f",
-		"00011000"
-		"00011000"
-		"00211200"
-		"01211210"
-		"11211211"
-		"10011001"
-		"00333300"
-		"00033000");
-	tgl.tile_pat("tp_spaceship_2f",
-		"00011000"
-		"00011000"
-		"00211200"
-		"01211210"
-		"11211211"
-		"10011001"
-		"00033000"
-		"00000000");
-
+	tgl.tile_pat("tp_spaceship_1f", "0001100000011000002112000121121011211211100110010033330000033000");
+	tgl.tile_pat("tp_spaceship_2f", "0001100000011000002112000121121011211211100110010003300000000000");
 	tgl.tile_add("t_spaceship", "tp_spaceship_1f");
 	tgl.tile_add("t_spaceship", "tp_spaceship_2f");
-
+	
 	// MISSILE
-	tgl.tile_pat("tp_missile_1f",
-		"00011000"
-		"00011000"
-		"00011000"
-		"00011000"
-		"00022000"
-		"00022000"
-		"00033000"
-		"00033000");
-
+	tgl.tile_pat("tp_missile_1f", "0001100000011000000110000001100000022000000220000003300000033000");
 	tgl.tile_add("t_missile", "tp_missile_1f");
 
 	// ALIEN
-	tgl.tile_pat("tp_alien_1f",
-		"00111000"
-		"22222220"
-		"13131310"
-		"22222220"
-		"00111000"
-		"01000100"
-		"00000000"
-		"00000000");
-	tgl.tile_pat("tp_alien_2f",
-		"00111000"
-		"22222220"
-		"31313130"
-		"22222220"
-		"00111000"
-		"00101000"
-		"00000000"
-		"00000000");
-
+	tgl.tile_pat("tp_alien_1f", "0011100022222220131313102222222000111000010001000000000000000000");
+	tgl.tile_pat("tp_alien_2f", "0011100022222220313131302222222000111000001010000000000000000000");
 	tgl.tile_add("t_alien", "tp_alien_1f");
 	tgl.tile_add("t_alien", "tp_alien_2f");
 
 	// BLAST
-	tgl.tile_pat("tp_blast_1f",
-		"03000030"
-		"33300333"
-		"03222230"
-		"00211200"
-		"00211200"
-		"03222230"
-		"33300333"
-		"03000030");
-	tgl.tile_pat("tp_blast_2f",
-		"02000020"
-		"22200222"
-		"02100120"
-		"00000000"
-		"00000000"
-		"02100120"
-		"22200222"
-		"02000020");
-
+	tgl.tile_pat("tp_blast_1f", "0300003033300333032222300021120000211200032222303330033303000030");
+	tgl.tile_pat("tp_blast_2f", "0200002022200222021001200000000000000000021001202220022202000020");
 	tgl.tile_add("t_blast", "tp_blast_1f");
 	tgl.tile_add("t_blast", "tp_blast_2f");
 }

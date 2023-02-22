@@ -2,7 +2,7 @@
 
 void test_views()
 {
-	tgl.init();
+	TGL tgl;
 	tgl.window(0x000000);
 
 	tgl.tile_pat("tp_square_1f", "11111111"

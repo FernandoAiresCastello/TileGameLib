@@ -1,17 +1,26 @@
 #pragma once
+
 #include <SDL.h>
-#include "TGL_global.h"
+#include <string>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <cstdarg>
+using namespace std;
+
+typedef int rgb;
 
 struct TGL
 {
-	void init();
+	TGL();
+	~TGL();
+
 	int exit();
 	void system();
 	int halt();
 	void pause(int ms);
-	void window();
-	void window(rgb back_color);
-	void window(rgb back_color, int size_factor);
+	void window(rgb back_color = 0xffffff, int size_factor = 5);
+	bool running();
 	void title(string str);
 	int width();
 	int height();
@@ -38,6 +47,8 @@ struct TGL
 	void draw_free(string tile_id, int x, int y);
 	void draw_tiled(string tile_id, int col, int row);
 	void font(char ch, string pattern);
+	void font_reset();
+	void font_new();
 	void print_free(string str, int x, int y);
 	void print_tiled(string str, int col, int row);
 	int rnd(int min, int max);
@@ -55,8 +66,6 @@ struct TGL
 	bool kb_space();
 
 private:
-
-	TGL_Internal::TRGBWindow* wnd = nullptr;
 	
 	struct {
 		int x = 0;
@@ -92,6 +101,8 @@ private:
 		bool loop = false;
 	};
 
+	bool is_running;
+	string wnd_title;
 	unordered_map<string, string> tile_patterns;
 	unordered_map<string, t_tileseq> tiles;
 	unordered_map<char, string> font_patterns;
@@ -99,6 +110,7 @@ private:
 	t_viewport* cur_view = nullptr;
 	unordered_map<string, t_timer> timers;
 
+	void init();
 	void process_default_events(SDL_Event* e);
 	void create_window(rgb back_color, int size_factor);
 	bool assert_tile_exists(string& id);
@@ -113,6 +125,5 @@ private:
 	void draw(string& tile_id);
 	void print(string& str);
 	void advance_timers();
-	void font(char ch1, char ch2, string pattern);
 	void init_default_font();
 };

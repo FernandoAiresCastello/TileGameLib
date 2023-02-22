@@ -51,7 +51,6 @@
     <ClInclude Include="Internal\TWindowBase.h" />
     <ClInclude Include="Internal\TWindowCreationFlags.h" />
     <ClInclude Include="TGL.h" />
-    <ClInclude Include="TGL_global.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp" />
