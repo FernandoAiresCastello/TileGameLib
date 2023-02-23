@@ -3,6 +3,10 @@ This repo is a collection of software libraries and tools for quick and easy dev
 
 The goal of this toolkit is to facilitate the development of standalone applications that somewhat resemble the look and feel of *Nintendo GameBoy Color* games, at least graphically, at least on Microsoft Windows.
 
+**Docs:**
+
+- [TileGameLib (TGL) Documentation](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
+
 **Main project:**
 
 - [TileGameLib (TGL)](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLibC) is a C++ static library (TGL.lib) built on top of SDL2. TGL currently provides a simplified and integrated API for creating & drawing tiles, text printing, keyboard & mouse input, square-wave sounds, timers, collision detection, filesystem access and other conveniences. This is the "main" project and it's under active development as of 2023.
