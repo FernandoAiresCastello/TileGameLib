@@ -14,6 +14,7 @@ debug
 *.dia
 *.dia~
 *.props
+*.lnk
 Debug
 Docs/Generated
 **/bookmarks.dat
