@@ -5,7 +5,7 @@ The goal of this toolkit is to facilitate the development of standalone applicat
 
 **Documentation:**
 
-- [TileGameLib (TGL) Wiki Documentation](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
+- [TileGameLib (TGL) Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
 
 **Main project:**
 
