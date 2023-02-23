@@ -3,7 +3,7 @@ This repo is a collection of software libraries and tools for quick and easy dev
 
 The goal of this toolkit is to facilitate the development of standalone applications that somewhat resemble the look and feel of *Nintendo GameBoy Color* games, at least graphically, at least on Microsoft Windows.
 
-**Docs:**
+**Docs (WIP):**
 
 - [TileGameLib (TGL) Documentation](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
 
