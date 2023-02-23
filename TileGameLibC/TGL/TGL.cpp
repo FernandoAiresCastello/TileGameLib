@@ -156,6 +156,8 @@ void TGL::process_default_events(SDL_Event* e)
 		auto key = e->key.keysym.sym;
 		if (TKey::Alt() && key == SDLK_RETURN && wnd) {
 			wnd->ToggleFullscreen();
+		} else if (key == SDLK_PRINTSCREEN) {
+			screenshot("./TGL.bmp");
 		}
 	}
 }
@@ -167,6 +169,7 @@ void TGL::create_window(rgb back_color, int size_factor)
 		DEFAULT_WND_W / TILE_SIZE, DEFAULT_WND_H / TILE_SIZE,
 		size_factor, size_factor, back_color);
 
+	wnd_back_color = back_color;
 	wnd->SetTitle(wnd_title);
 	wnd->Show();
 
@@ -185,6 +188,18 @@ void TGL::unclip()
 
 	cursor.x = 0;
 	cursor.y = 0;
+}
+void TGL::clear_entire_window()
+{
+	if (cur_view) {
+		rgb prev_back_color = cur_view->back_color;
+		wnd->SetBackColor(wnd_back_color);
+		wnd->ClearBackground();
+		wnd->SetBackColor(prev_back_color);
+	} else {
+		wnd->SetBackColor(wnd_back_color);
+		wnd->ClearBackground();
+	}
 }
 void TGL::clear_view()
 {
@@ -240,6 +255,12 @@ void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_colo
 	vw.x1 = x1; vw.y1 = y1; vw.x2 = x2; vw.y2 = y2;
 	vw.back_color = back_color; vw.clear_bg = clear_bg;
 	views[view_id] = vw;
+}
+void TGL::view_default()
+{
+	cur_view = nullptr;
+	unclip();
+	clear_entire_window();
 }
 void TGL::view(string view_id)
 {
@@ -448,6 +469,10 @@ void TGL::play_stop()
 void TGL::sound(float freq, int len)
 {
 	snd->Beep(freq, len);
+}
+void TGL::screenshot(string path)
+{
+	wnd->SaveScreenshot(path);
 }
 bool TGL::kb_char(char ch)
 {

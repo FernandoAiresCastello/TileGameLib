@@ -9,17 +9,19 @@ void test_font()
 	TGL tgl;
 	tgl.window(0x201080);
 	
-	tgl.font_shadow(true, 0x000020);
-	title(tgl, "Font Demo");
-	tgl.font_shadow(true, 0x004000);
-
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
 
 	while (tgl.running()) {
 
 		tgl.system();
+
+		tgl.view_default();
+		tgl.font_shadow(true, 0x000020);
+		title(tgl, "Font Demo");
+
 		tgl.view("background");
-		
+		tgl.font_shadow(true, 0x004000);
+
 		header(tgl, "Digits", 0, 0);
 		print(tgl, "0123456789", 0, 1);
 		
@@ -65,5 +67,5 @@ void header(TGL& tgl, string str, int x, int y)
 void title(TGL& tgl, string str)
 {
 	tgl.color(0x00ffff);
-	tgl.print_free(str, 0, 0);
+	tgl.print_free(str, 43, 1);
 }

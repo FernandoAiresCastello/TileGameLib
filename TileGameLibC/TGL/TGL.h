@@ -37,6 +37,7 @@ struct TGL
 	void tile_pat(string pattern_id, string pixels);
 	void tile_add(string tile_id, string pattern_id);
 	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
+	void view_default();
 	void view(string view_id);
 	void scroll(int dx, int dy);
 	void scroll_to(int x, int y);
@@ -63,6 +64,7 @@ struct TGL
 	void play_loop(string notes);
 	void play_stop();
 	void sound(float freq, int len);
+	void screenshot(string path);
 	bool kb_char(char ch);
 	bool kb_right();
 	bool kb_left();
@@ -115,6 +117,7 @@ private:
 
 	bool is_running;
 	string wnd_title;
+	rgb wnd_back_color;
 	unordered_map<string, string> tile_patterns;
 	unordered_map<string, t_tileseq> tiles;
 	unordered_map<char, string> font_patterns;
@@ -131,6 +134,7 @@ private:
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
 	void update();
+	void clear_entire_window();
 	void clear_view();
 	void pos_free(int x, int y);
 	void pos_tiled(int x, int y);
