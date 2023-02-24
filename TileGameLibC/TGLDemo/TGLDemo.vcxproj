@@ -90,12 +90,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\CppUtils\CppUtils;C:\Fernando\Proj\TileGameToolkit\TileGameLibC\TGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\CppUtils\CppUtils;C:\Fernando\Proj\TileGameLib\TileGameLibC\TGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\CppUtils\Debug;C:\Fernando\Proj\TileGameToolkit\TileGameLibC\Builds;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\CppUtils\Debug;C:\Fernando\Proj\TileGameLib\TileGameLibC\Builds;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;CppUtils.lib;TGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -155,9 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TGLDemo.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Images\handheld.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -133,6 +133,7 @@
     <TargetExt>.lib</TargetExt>
     <IncludePath>C:\Fernando\Lib\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Fernando\Lib\SDL2-2.0.8\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
