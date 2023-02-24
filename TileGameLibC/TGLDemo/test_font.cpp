@@ -7,6 +7,7 @@ void header(TGL& tgl, string str, int x, int y);
 void test_font()
 {
 	TGL tgl;
+	tgl.title("TGL Font Demo");
 	tgl.window(0x201080);
 	
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
@@ -41,7 +42,7 @@ void test_font()
 		print(tgl, "(Parens)[Bracket]", 0, 13);
 		print(tgl, "{Braces}<Lt_&_Gt>", 0, 14);
 
-		if (tgl.kb_esc()) tgl.exit();
+		if (tgl.kb_printscr()) tgl.exit();
 		if (tgl.kb_right()) tgl.scroll(1, 0);
 		if (tgl.kb_left()) tgl.scroll(-1, 0);
 		if (tgl.kb_down()) tgl.scroll(0, 1);

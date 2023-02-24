@@ -506,6 +506,18 @@ bool TGL::kb_ctrl()
 {
 	return TKey::Ctrl();
 }
+bool TGL::kb_shift()
+{
+	return TKey::Shift();
+}
+bool TGL::kb_alt()
+{
+	return TKey::Alt();
+}
+bool TGL::kb_capslock()
+{
+	return TKey::CapsLock();
+}
 bool TGL::kb_esc()
 {
 	return TKey::IsPressed(SDL_SCANCODE_ESCAPE);
@@ -513,6 +525,98 @@ bool TGL::kb_esc()
 bool TGL::kb_space()
 {
 	return TKey::IsPressed(SDL_SCANCODE_SPACE);
+}
+bool TGL::kb_backspace()
+{
+	return TKey::IsPressed(SDL_SCANCODE_BACKSPACE);
+}
+bool TGL::kb_enter()
+{
+	return TKey::IsPressed(SDL_SCANCODE_RETURN);
+}
+bool TGL::kb_tab()
+{
+	return TKey::IsPressed(SDL_SCANCODE_TAB);
+}
+bool TGL::kb_insert()
+{
+	return TKey::IsPressed(SDL_SCANCODE_INSERT);
+}
+bool TGL::kb_delete()
+{
+	return TKey::IsPressed(SDL_SCANCODE_DELETE);
+}
+bool TGL::kb_home()
+{
+	return TKey::IsPressed(SDL_SCANCODE_HOME);
+}
+bool TGL::kb_end()
+{
+	return TKey::IsPressed(SDL_SCANCODE_END);
+}
+bool TGL::kb_pageup()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PAGEUP);
+}
+bool TGL::kb_pagedown()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PAGEDOWN);
+}
+bool TGL::kb_pausebrk()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PAUSE);
+}
+bool TGL::kb_printscr()
+{
+	return TKey::IsPressed(SDL_SCANCODE_PRINTSCREEN);
+}
+bool TGL::kb_f1()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F1);
+}
+bool TGL::kb_f2()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F2);
+}
+bool TGL::kb_f3()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F3);
+}
+bool TGL::kb_f4()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F4);
+}
+bool TGL::kb_f5()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F5);
+}
+bool TGL::kb_f6()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F6);
+}
+bool TGL::kb_f7()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F7);
+}
+bool TGL::kb_f8()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F8);
+}
+bool TGL::kb_f9()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F9);
+}
+bool TGL::kb_f10()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F10);
+}
+bool TGL::kb_f11()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F11);
+}
+bool TGL::kb_f12()
+{
+	return TKey::IsPressed(SDL_SCANCODE_F12);
 }
 void TGL::init_default_font()
 {
