@@ -41,8 +41,8 @@ void test_invaders()
 
 	tgl.timer_new("alien_move", 30, true);
 
-	tgl.view_new("main", 0, 0, tgl.width(), 120, 0x000000, true);
-	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
+	tgl.view_new("main", 0, 0, tgl.width, 120, 0x000000, true);
+	tgl.view_new("sub", 0, 120, tgl.width, 144, 0x0000a0, true);
 
 	while (tgl.running()) {
 
@@ -71,10 +71,10 @@ void handle_input()
 	if (tgl.kb_right()) player.x++;
 	if (tgl.kb_left()) player.x--;
 
-	if (player.x < -tgl.tilesize()) 
-		player.x = tgl.width();
-	else if (player.x >= tgl.width()) 
-		player.x = -tgl.tilesize();
+	if (player.x < -tgl.tilesize) 
+		player.x = tgl.width;
+	else if (player.x >= tgl.width) 
+		player.x = -tgl.tilesize;
 
 	if (tgl.kb_space()) player_shoot();
 }
@@ -99,7 +99,7 @@ void player_cycle()
 
 	if (player.missile.active) {
 		player.missile.y -= 2;
-		if (player.missile.y < -tgl.tilesize()) {
+		if (player.missile.y < -tgl.tilesize) {
 			player.missile.active = false;
 		}
 	}
@@ -108,7 +108,7 @@ void aliens_cycle()
 {
 	for (auto& alien : aliens) {
 		if (alien.alive) {
-			if (alien.y >= -tgl.tilesize()) {
+			if (alien.y >= -tgl.tilesize) {
 				tgl.color(0x00ff00, 0x00c000, 0x007000);
 				tgl.draw_free("alien", alien.x, alien.y);
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
@@ -139,8 +139,8 @@ void init_aliens()
 
 	for (int i = 0; i < number_of_aliens; i++) {
 		t_alien alien;
-		alien.x = tgl.rnd(0, tgl.cols() - 1) * tgl.tilesize();
-		alien.y = tgl.rnd(-200, 0) * tgl.tilesize();
+		alien.x = tgl.rnd(0, tgl.cols - 1) * tgl.tilesize;
+		alien.y = tgl.rnd(-200, 0) * tgl.tilesize;
 		aliens.push_back(alien);
 	}
 }

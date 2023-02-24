@@ -42,7 +42,7 @@ void test_font()
 		print(tgl, "(Parens)[Bracket]", 0, 13);
 		print(tgl, "{Braces}<Lt_&_Gt>", 0, 14);
 
-		if (tgl.kb_printscr()) tgl.exit();
+		if (tgl.kb_esc()) tgl.exit();
 		if (tgl.kb_right()) tgl.scroll(1, 0);
 		if (tgl.kb_left()) tgl.scroll(-1, 0);
 		if (tgl.kb_down()) tgl.scroll(0, 1);
@@ -51,16 +51,16 @@ void test_font()
 }
 void print(TGL& tgl, string str, int x, int y)
 {
-	x *= tgl.tilesize();
-	y *= tgl.tilesize();
+	x *= tgl.tilesize;
+	y *= tgl.tilesize;
 
 	tgl.color(0xffffff);
 	tgl.print_free(str, x, y);
 }
 void header(TGL& tgl, string str, int x, int y)
 {
-	x *= tgl.tilesize();
-	y *= tgl.tilesize();
+	x *= tgl.tilesize;
+	y *= tgl.tilesize;
 
 	tgl.color(0xffff00);
 	tgl.print_free(str, x, y);

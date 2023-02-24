@@ -17,6 +17,7 @@ using namespace std;
 //=============================================================================
 //		TYPES
 //=============================================================================
+
 typedef int rgb;
 
 struct TGL
@@ -60,11 +61,6 @@ struct TGL
 	void draw_free(string tile_id, int x, int y);
 	void draw_tiled(string tile_id, int col, int row);
 	void screenshot(string path);
-	int tilesize();
-	int width();
-	int height();
-	int cols();
-	int rows();
 
 	//=========================================================================
 	//		TEXT
@@ -153,74 +149,11 @@ struct TGL
 	bool kb_f12();
 
 	//=========================================================================
-	//		PRIVATE SECTION
+	//		DIMENSIONS
 	//=========================================================================
-	private:
-	
-	struct {
-		int x = 0;
-		int y = 0;
-	} cursor;
-
-	struct {
-		rgb c0 = 0x000000;
-		rgb c1 = 0xffffff;
-		rgb c2 = 0xc0c0c0;
-		rgb c3 = 0x808080;
-		bool ignore_c0 = false;
-	} palette;
-
-	struct {
-		bool enabled;
-		rgb color;
-	} text_shadow;
-
-	struct t_tileseq {
-		vector<string> pattern_ids;
-	};
-
-	struct t_viewport {
-		int x1 = 0;
-		int y1 = 0;
-		int x2 = 0;
-		int y2 = 0;
-		int scroll_x = 0;
-		int scroll_y = 0;
-		rgb back_color = 0x000000;
-		bool clear_bg = true;
-	};
-
-	struct t_timer {
-		int cycles_max = 0;
-		int cycles_elapsed = 0;
-		bool loop = false;
-	};
-
-	bool is_running;
-	string wnd_title;
-	rgb wnd_back_color;
-	unordered_map<string, string> tile_patterns;
-	unordered_map<string, t_tileseq> tiles;
-	unordered_map<char, string> font_patterns;
-	unordered_map<string, t_viewport> views;
-	t_viewport* cur_view = nullptr;
-	unordered_map<string, t_timer> timers;
-
-	void init();
-	void process_default_events(SDL_Event* e);
-	void create_window(rgb back_color, int size_factor);
-	bool assert_tile_exists(string& id);
-	bool assert_tilepattern_exists(string& id);
-	bool assert_view_exists(string& id);
-	void clip(int x1, int y1, int x2, int y2);
-	void unclip();
-	void update();
-	void clear_entire_window();
-	void clear_view();
-	void pos_free(int x, int y);
-	void pos_tiled(int x, int y);
-	void draw(string& tile_id);
-	void print(string& str);
-	void advance_timers();
-	void init_default_font();
+	const int tilesize;
+	const int width;
+	const int height;
+	const int cols;
+	const int rows;
 };

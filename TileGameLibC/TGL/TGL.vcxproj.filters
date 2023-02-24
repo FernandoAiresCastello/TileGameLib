@@ -1,237 +1,240 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="TGL %28Public API%29">
+    <Filter Include="TGLAPI">
       <UniqueIdentifier>{e401bd0c-b3a0-4dcb-8b66-699c6236c37b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29">
+    <Filter Include="Internal">
       <UniqueIdentifier>{fdde56ec-7d32-4377-8ec4-a23e80cffc9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Audio">
+    <Filter Include="Internal\Audio">
       <UniqueIdentifier>{92855c51-41e1-4a4a-b2a0-54403df843dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Experimental">
+    <Filter Include="Internal\Experimental">
       <UniqueIdentifier>{f3698f09-e111-4f48-95ea-2f8a8ff7ea64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Experimental\TileGameBoy">
+    <Filter Include="Internal\Experimental\TileGameBoy">
       <UniqueIdentifier>{0ad1fad0-94b2-4073-a098-6d597ffb8b74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics">
+    <Filter Include="Internal\Graphics">
       <UniqueIdentifier>{00280793-b9ac-4e32-8b57-fd8e8409d2db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics\Core">
+    <Filter Include="Internal\Graphics\Core">
       <UniqueIdentifier>{eba7172b-86d5-4d6e-a723-7bf586b74868}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics\Image">
+    <Filter Include="Internal\Graphics\Image">
       <UniqueIdentifier>{6fcb3979-6ca8-4a56-8e9c-eacb13c8584b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics\Tile">
+    <Filter Include="Internal\Graphics\Tile">
       <UniqueIdentifier>{92a59320-835b-43f2-9343-b20911380fb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics\Window">
+    <Filter Include="Internal\Graphics\Window">
       <UniqueIdentifier>{b7f2517c-4e3b-4229-8d09-173fdd9c9389}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Graphics\Sprite">
+    <Filter Include="Internal\Graphics\Sprite">
       <UniqueIdentifier>{e1573d19-780f-4577-8dea-93a3da40cd89}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Input">
+    <Filter Include="Internal\Input">
       <UniqueIdentifier>{8d733df8-b9a0-483e-b24e-61b40dc93af3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Internal %28Private API%29\Global">
+    <Filter Include="Internal\Global">
       <UniqueIdentifier>{90bcb99c-2274-41d1-9092-5d9755beed73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Experimental\TileGameBoy\TGBSprite.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBTile.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBTileDef.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBTileLayer.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBTileset.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBWindow.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TGBWindowLayers.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Experimental\TileGameBoy\TTileGameBoy.h">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TSound.h">
-      <Filter>Internal %28Private API%29\Audio</Filter>
+      <Filter>Internal\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TGlobal.h">
-      <Filter>Internal %28Private API%29\Global</Filter>
+      <Filter>Internal\Global</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TSprite.h">
-      <Filter>Internal %28Private API%29\Graphics\Sprite</Filter>
+      <Filter>Internal\Graphics\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TSpriteList.h">
-      <Filter>Internal %28Private API%29\Graphics\Sprite</Filter>
+      <Filter>Internal\Graphics\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TImage.h">
-      <Filter>Internal %28Private API%29\Graphics\Image</Filter>
+      <Filter>Internal\Graphics\Image</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TBufferedWindow.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TImageWindow.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TPanelWindow.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TRGBWindow.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TWindowBase.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TWindowCreationFlags.h">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TChar.h">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TCharset.h">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TColor.h">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TPalette.h">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TGamepad.h">
-      <Filter>Internal %28Private API%29\Input</Filter>
+      <Filter>Internal\Input</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TKey.h">
-      <Filter>Internal %28Private API%29\Input</Filter>
+      <Filter>Internal\Input</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TTile.h">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TTileBuffer.h">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TTileBufferLayer.h">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TTileSeq.h">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TRegion.h">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TTiledImage.h">
-      <Filter>Internal %28Private API%29\Graphics\Image</Filter>
+      <Filter>Internal\Graphics\Image</Filter>
     </ClInclude>
     <ClInclude Include="TGL.h">
-      <Filter>TGL %28Public API%29</Filter>
+      <Filter>TGLAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="TGL_Private.h">
+      <Filter>TGLAPI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBTile.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBTileDef.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBTileLayer.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBTileset.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBWindow.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TGBWindowLayers.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Experimental\TileGameBoy\TTileGameBoy.cpp">
-      <Filter>Internal %28Private API%29\Experimental\TileGameBoy</Filter>
+      <Filter>Internal\Experimental\TileGameBoy</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TSound.cpp">
-      <Filter>Internal %28Private API%29\Audio</Filter>
+      <Filter>Internal\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TSprite.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Sprite</Filter>
+      <Filter>Internal\Graphics\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TSpriteList.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Sprite</Filter>
+      <Filter>Internal\Graphics\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TImage.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Image</Filter>
+      <Filter>Internal\Graphics\Image</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TBufferedWindow.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TImageWindow.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TPanelWindow.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TRGBWindow.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TWindowBase.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TWindowCreationFlags.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Window</Filter>
+      <Filter>Internal\Graphics\Window</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TChar.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TCharset.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TColor.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TPalette.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TGamepad.cpp">
-      <Filter>Internal %28Private API%29\Input</Filter>
+      <Filter>Internal\Input</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TKey.cpp">
-      <Filter>Internal %28Private API%29\Input</Filter>
+      <Filter>Internal\Input</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TTile.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TTileBuffer.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TTileBufferLayer.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TTileSeq.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Tile</Filter>
+      <Filter>Internal\Graphics\Tile</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TRegion.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Core</Filter>
+      <Filter>Internal\Graphics\Core</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TTiledImage.cpp">
-      <Filter>Internal %28Private API%29\Graphics\Image</Filter>
+      <Filter>Internal\Graphics\Image</Filter>
     </ClCompile>
     <ClCompile Include="TGL.cpp">
-      <Filter>TGL %28Public API%29</Filter>
+      <Filter>TGLAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
