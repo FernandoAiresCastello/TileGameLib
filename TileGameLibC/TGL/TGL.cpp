@@ -82,13 +82,13 @@ void TGL::title(string str)
 		tgl->title = str;
 	}
 }
-void TGL::mouse_on()
+void TGL::fullscreen(bool full)
 {
-	SDL_ShowCursor(true);
+	tgl->wnd->SetFullscreen(full);
 }
-void TGL::mouse_off()
+void TGL::mouse(bool enabled)
 {
-	SDL_ShowCursor(false);
+	SDL_ShowCursor(enabled);
 }
 int TGL::mouse_x()
 {

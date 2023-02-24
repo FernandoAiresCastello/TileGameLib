@@ -34,7 +34,7 @@ void test_invaders()
 {
 	tgl.title("TGL Invaders");
 	tgl.window();
-	tgl.mouse_off();
+	tgl.mouse(false);
 
 	init_tiles();
 	init_aliens();

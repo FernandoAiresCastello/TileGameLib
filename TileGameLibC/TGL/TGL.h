@@ -26,6 +26,15 @@ struct TGL
 	~TGL();
 
 	//=========================================================================
+	//		CONSTANTS
+	//=========================================================================
+	const int tilesize;
+	const int width;
+	const int height;
+	const int cols;
+	const int rows;
+
+	//=========================================================================
 	//		SYSTEM
 	//=========================================================================
 	void system();
@@ -41,13 +50,13 @@ struct TGL
 	//=========================================================================
 	void window(rgb back_color = 0xffffff, int size_factor = 5);
 	void title(string str);
+	void fullscreen(bool full);
+	void screenshot(string path);
 
 	//=========================================================================
-	//		GRAPHICS
+	//		[GRAPHICS]  VIEW
 	//=========================================================================
 	void clear();
-	void tile_pat(string pattern_id, string pixels);
-	void tile_add(string tile_id, string pattern_id);
 	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
 	void view_default();
 	void view(string view_id);
@@ -55,15 +64,28 @@ struct TGL
 	void scroll_to(int x, int y);
 	int scroll_x();
 	int scroll_y();
+
+	//=========================================================================
+	//		[GRAPHICS]  TILE SET
+	//=========================================================================
+	void tile_pat(string pattern_id, string pixels);
+	void tile_add(string tile_id, string pattern_id);
+
+	//=========================================================================
+	//		[GRAPHICS]  COLOR PALETTE
+	//=========================================================================
 	void color(rgb c1);
 	void color(rgb c1, rgb c2, rgb c3);
 	void color(rgb c0, rgb c1, rgb c2, rgb c3);
-	void draw_free(string tile_id, int x, int y);
-	void draw_tiled(string tile_id, int col, int row);
-	void screenshot(string path);
 
 	//=========================================================================
-	//		TEXT
+	//		[GRAPHICS]  TILE RENDERING
+	//=========================================================================
+	void draw_free(string tile_id, int x, int y);
+	void draw_tiled(string tile_id, int col, int row);
+
+	//=========================================================================
+	//		[GRAPHICS]  TEXT RENDERING
 	//=========================================================================
 	void font(char ch, string pattern);
 	void font_shadow(bool shadow, rgb shadow_color = 0);
@@ -88,7 +110,7 @@ struct TGL
 	bool timer(string timer_id);
 
 	//=========================================================================
-	//		STRINGS
+	//		STRING MANIPULATION
 	//=========================================================================
 	string fmt(const char* str, ...);
 
@@ -103,15 +125,14 @@ struct TGL
 	bool collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y);
 
 	//=========================================================================
-	//		MOUSE INPUT
+	//		[INPUT]  MOUSE
 	//=========================================================================
-	void mouse_on();
-	void mouse_off();
+	void mouse(bool enabled);
 	int mouse_x();
 	int mouse_y();
 
 	//=========================================================================
-	//		KEYBOARD INPUT
+	//		[INPUT]  KEYBOARD
 	//=========================================================================
 	bool kb_char(char ch);
 	bool kb_right();
@@ -147,13 +168,4 @@ struct TGL
 	bool kb_f10();
 	bool kb_f11();
 	bool kb_f12();
-
-	//=========================================================================
-	//		DIMENSIONS
-	//=========================================================================
-	const int tilesize;
-	const int width;
-	const int height;
-	const int cols;
-	const int rows;
 };

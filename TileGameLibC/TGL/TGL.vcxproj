@@ -86,6 +86,9 @@
     <ClCompile Include="Internal\TWindowCreationFlags.cpp" />
     <ClCompile Include="TGL.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C846D7D6-B6B4-43C7-A395-373E7196D3DF}</ProjectGuid>

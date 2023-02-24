@@ -237,4 +237,9 @@
       <Filter>TGLAPI</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="TODO.txt">
+      <Filter>TGLAPI</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
