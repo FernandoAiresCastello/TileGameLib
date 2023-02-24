@@ -6,12 +6,12 @@
     src: url('intellec.ttf') format('truetype');
 }
 @font-face {
-	font-family: 'PressStart2P';
+	font-family: 'Nintendo';
 	src: url('press_start_2p.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Roboto';
-	src: url('roboto.ttf') format('truetype');
+	src: url('Roboto-Regular.ttf') format('truetype');
 }
 /*=========================================================
 	BODY
@@ -23,7 +23,7 @@ body {
     color: #000;
     font-family: 'Roboto', 'Consolas', monospace;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 20px;
 }
 /*=========================================================
 	PAGE HEADERS
@@ -108,6 +108,13 @@ a, a:visited {
 a:hover {
 	color: #8040ff;
 }
+/*=========================================================
+	TABULATIONS
+=========================================================*/
+.tab-1 {
+	margin-left: 40px;
+}
+
 /*=========================================================
 	LISTS
 =========================================================*/
