@@ -7,6 +7,10 @@ The goal of this toolkit is to facilitate the development of standalone game app
 
 I (Fernando) am currently the sole developer in this project. Please feel free to check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the library somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤️
 
+**Contact:**
+
+- [fernandoairescastello@gmail.com](mailto:fernandoairescastello@gmail.com?subject=TileGameLib)
+
 **Docs:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
