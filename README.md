@@ -5,10 +5,13 @@ This repository contains a collection of software libraries and tools for quick 
 
 The goal of this toolkit is to facilitate the development of standalone game applications (.exe) that somewhat resemble the look and feel of *Nintendo GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
+I (Fernando) am currently the sole developer in this project. Please feel free to check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the library somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤️
+
 **Docs:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
 - [TileGameLib (TGL) - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLibC/TGL/TGL.h)
+- [Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Main project:**
 
