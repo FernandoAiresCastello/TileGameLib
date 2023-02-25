@@ -4,7 +4,7 @@
 
 - Improve rendering performance
 - Implement stable frame rate
-- Implement loading of tiles and tilesets from external files
+- Implement loading and converting tiles and tilesets from external file to the TGL internal format
 
 **SOUND:**
 
@@ -22,3 +22,8 @@ that the GameBoy Color is capable of.
 - Implement datafiles, probably using ZIP methods, to allow grouping all game 
 data files into a single file for release. An example of this is what the 
 Allegro library does: [https://liballeg.org/stabledocs/en/datafile.html](https://liballeg.org/stabledocs/en/datafile.html)
+
+**PROJECT STRUCTURE:**
+
+- Replace all absolute paths with macros. For example the SDL2 path should not point to the specific directory in my computer as it currently does
+- Remove from build all experimental and old unused internal APIs to prevent bloating of the final product
