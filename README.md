@@ -9,8 +9,7 @@ I (Fernando) am currently the sole developer in this project. Please check out t
 
 **Contact:**
 
-- [fernandoairescastello@gmail.com](mailto:fernandoairescastello@gmail.com?subject=TileGameLib)\
-    *Please make sure to include "TileGameLib" in your message subject.*
+- If you'd like to join the project or if you have any questions or suggestions, please create a post in the official TGL subreddit here: [https://www.reddit.com/r/TileGameLib](https://www.reddit.com/r/TileGameLib)
 
 **Demos:**
 
