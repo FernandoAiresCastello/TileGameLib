@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="tgl_index.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>TileGameLib (TGL) Docs</title>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<a name="top"></a>
+<table class="page-header">
+	<tr>
+		<td class="page-header icon">
+			<a href="tgl_index.html" class="home-link">
+				<img class="gameboy-icon" src="wiki-banner-1.fw.png">
+			</a>
+		</td>
+		<td class="page-header left">
+		</td>
+	</tr>
+</table>
+
+<!-- CONTENT -->
+
+<p class="section-header">TECHNICAL OVERVIEW</p>
+
+<p>
+	This is a technical overview of what the library is and how it works.
+</p>
+
+<b>What is it exactly?</b>
+<p class="tab-1">
+	It's basically a barebones game engine for Windows built as a static library that exposes a very simplified API to quickly and easily create 
+	tile-based pseudo-8-bit games or prototypes that have a strong GameBoy Color aesthetic.
+</p>
+
+<b>Simplified API</b>
+<p class="tab-1">
+	I have purposely designed the public API to be minimal, so that it can be quick and easy to use. It consists of a single C++ class and a couple 
+	of typedefs. All new functions in the public API should be implemented as members of that class, so that the user only has a single entry point 
+	to all features of the library. Last time I checked, it had only about 80 functions. Note that certain functions are just meant to avoid passing 
+	a single parameter, for example the "kb_" functions to check for keyboard input are implemented individually for every supported scancode that 
+	would otherwise be an enum-type argument to a single function. Note that this applies to the public API only. The internal, private API is much 
+	more complex (and sometimes messy, and bloated).
+</p>
+
+<b>Graphics</b>
+<p class="tab-1">
+	TGL uses a standard system window for output, with the resolution fixed at 160x144, which is the same resolution as the original GameBoy Color. 
+	All tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. Currently 
+	it does not support loading images from external files. Tiles are created directly in code using "pixel patterns": those are merely strings of 
+	length 64 (i.e. 8x8) containing the characters '0', '1', '2' or '3' indicating the color index of a pixel.
+</p>
+<p class="tab-1">
+	Individual pixels can only be manipulated on a tile-by-tile basis, meaning 8x8 "pixel patterns" must be created in the internal tileset before 
+	drawing anything on the screen, again similar to the GBC concept of "tile memory". Tiles are limited to 4 colors, or 3 colors if one of them is	
+	invisible (yes, just like transparent sprites on the GBC). Colors are encoded in the typical RGB format. Also there is no "layer" concept, as it 
+	can be simulated by the order in which views are drawn.
+</p>
+<p class="tab-1">
+	Sprites can be simulated by using tiles that have "transparent" backgrounds. This is achieved by specifying 3 colors instead of 4 when drawing any 
+	regular tile, in which case only the indices 1, 2 and 3 are specified, the index 0 is the transparency key. Transparency here has nothing to do 
+	with alpha transparency or blending (TGL does not support color blending). It simply means that pixels assigned with the index 0 will not be drawn.
+</p>
+<p class="tab-1">
+	There is no "color palette" as in the GBC. Rather, 4 colors, or 3 if it's a "sprite" tile, since the index 0 is considered transparent for sprites, 
+	are assigned to each individual tile as they are drawn. Remember that each tile contains pixel patterns consisting of indexes 0, 1, 2 or 3, and the 
+	API provides functions to specify what are the current 4 (or 3) colors to be used for each index in the next tiles that will be drawn.
+</p>
+<p class="tab-1">
+	There is also no "layer" concept, as it can be simulated by the order in which views are drawn. There is a "viewport" system that can be used to 
+	simulate the so-called "windows" in the GBC, meaning all drawing is limited to the area of the currently active view. There can be multiple 
+	overlapping views and each view can be "scrolled" independently, meaning pixels will only be visible if they are drawn within the current viewport 
+	area starting from the current x and y scroll offset. This is used to simulate the scrolling backgrounds on the GBC.
+</p>
+<p class="tab-1">
+	The graphics system mostly follows the immediate mode pattern, wherein every single tile must be drawn directly by function calls, as opposed to 
+	retained mode where the API would manage all drawing internally. This is opposed to the original GBC which has a "tile buffer" in memory.
+</p>
+
+<b>Text</b>
+<p class="tab-1">
+	Text drawing is simply implemented as a string of tiles. The default font can be redefined by the user, and each character is stored as a pixel 
+	pattern, just like the tileset. You can think of the font as just a special separate internal tileset.
+</p>
+
+<b>Sound</b>
+<p class="tab-1">
+	The sound system currently works with very rudimentary (and probably buggy) square-wave sound synthesis only, since I have limited knowledge of 
+	audio programming. This is where help is needed the most at the moment.
+</p>
+
+<b>User Input</b>
+<p class="tab-1">
+	Currently, keyboard and mouse input are implemented. Gamepad/controller input is in the TODO list and I intend to work on this very soon.
+</p>
+
+<b>Collision Detection</b>
+<p class="tab-1">
+	I have implemented very basic collision detection that works on an tile-by-tile basis, meaning it simply calculates if two 8x8 tiles overlap based 
+	on their x and y coordinates. This is provided mostly for convenience only, so currently there are no plans to expand the collision detection system.
+</p>
+
+<a href="tgl_index.html" class="back-home">Back to Home</a>
+
+</body>
+</html>
