@@ -19,6 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\CppUtils\CppFile.h" />
+    <ClInclude Include="..\CppUtils\CppGlobal.h" />
+    <ClInclude Include="..\CppUtils\CppMsgBox.h" />
+    <ClInclude Include="..\CppUtils\CppProperties.h" />
+    <ClInclude Include="..\CppUtils\CppString.h" />
+    <ClInclude Include="..\CppUtils\CppUtil.h" />
+    <ClInclude Include="..\CppUtils\CppUtils.h" />
     <ClInclude Include="Experimental\TileGameBoy\TGBSprite.h" />
     <ClInclude Include="Experimental\TileGameBoy\TGBTile.h" />
     <ClInclude Include="Experimental\TileGameBoy\TGBTileDef.h" />
@@ -54,6 +61,11 @@
     <ClInclude Include="TGL_Private.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\CppUtils\CppFile.cpp" />
+    <ClCompile Include="..\CppUtils\CppMsgBox.cpp" />
+    <ClCompile Include="..\CppUtils\CppProperties.cpp" />
+    <ClCompile Include="..\CppUtils\CppString.cpp" />
+    <ClCompile Include="..\CppUtils\CppUtil.cpp" />
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp" />
     <ClCompile Include="Experimental\TileGameBoy\TGBTile.cpp" />
     <ClCompile Include="Experimental\TileGameBoy\TGBTileDef.cpp" />
@@ -87,7 +99,10 @@
     <ClCompile Include="TGL.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TODO.txt" />
+    <Text Include="TODO.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -144,7 +159,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\CppUtils\CppUtils</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Fernando\Proj\TileGameLib\TileGameLibC\CppUtils;C:\Lib\SDL2-2.0.8\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
