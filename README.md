@@ -14,8 +14,8 @@ I (Fernando) am currently the sole developer in this project. Please check out t
 
 **Demos:**
 
-- Download the *TGLDemo.exe* [here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/Builds) to see code samples and examples of what the library is currently capable of
-- The source code for *TGLDemo.exe* can be found [here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/TGLDemo).
+- [Download the TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/Builds) to see examples of what the library is currently capable of
+- [Find the source code for TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/TGLDemo) to see the code samples.
 
 **Docs:**
 
