@@ -18,6 +18,7 @@
 =========================================================*/
 body {
     margin: 0 100px;
+	margin-bottom: 50px;
     padding: 0 20px 0 20px;
     background: #f0f0f0;
     color: #000;
@@ -107,6 +108,10 @@ a, a:visited {
 }
 a:hover {
 	color: #8040ff;
+}
+a.back-home {
+	display: block;
+	margin-top: 40px;
 }
 /*=========================================================
 	TABULATIONS
