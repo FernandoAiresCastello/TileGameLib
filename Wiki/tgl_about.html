@@ -51,45 +51,49 @@
 
 <b>Graphics</b>
 <p class="horizontal-padding">
-	Windowing: TGL uses the standard windowing system for output, with the resolution fixed at 160x144, which is the same resolution as the original 
+	<b>Window:</b> TGL uses the standard windowing system for output, with the resolution fixed at 160x144, which is the same resolution as the original 
 	GameBoy Color. The window itself cannot be resized manually, only programmatically via a "scale factor", which basically just scales the entire 
-	image to fill a window with different sizes (i.e. it stretches or shrinks all pixels).
+	image to fill a window with different sizes (i.e. it stretches or shrinks all pixels). The window does not update automatically. Everything is drawn 
+	on an off-screen pixel buffer. The window can be updated by calling the almighty "system" function, which should be called at the end of each and 
+	every frame to allow for the default window event processing, and that includes refreshing the window contents.
+
 <p class="horizontal-padding">	
-	Tiles: All tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. 
-	Currently it does not support loading images from external files. Tiles are created directly in code using "pixel patterns": those are merely 
+	<b>Tiles:</b> All tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. 
+	Currently it does not support loading images from external files. Tiles are limited to 4 colors, or 3 colors if one of them is	
+	invisible (yes, just like transparent sprites on the GBC). They are created directly in code using "pixel patterns": those are merely 
 	strings of length 64 (i.e. 8x8) containing the characters '0', '1', '2' or '3' indicating the color index of a pixel. The "pixel patterns" are 
 	stored internally in a so-called "tile pattern set", and the tiles themselves are sequences of tile patterns, which allows for every tile to 
 	be animated automatically (or not, if it has a single frame). All tiles are stored in the internal tileset.
 </p>
 <p class="horizontal-padding">
-	Individual pixels can only be manipulated on a tile-by-tile basis, meaning 8x8 "pixel patterns" must be created in the internal tileset before 
-	drawing anything on the screen, again similar to the GBC concept of "tile memory". Tiles are limited to 4 colors, or 3 colors if one of them is	
-	invisible (yes, just like transparent sprites on the GBC). Colors are encoded in the typical RGB format. Also there is no "layer" concept, as it 
-	can be simulated by the order in which views are drawn.
+	<b>Pixels:</b> Individual pixels can only be manipulated on a tile-by-tile basis, meaning 8x8 "pixel patterns" must be manipulated in the internal 
+	tileset before drawing anything on the screen, again similar to the GBC concept of "tile memory". As such, direct access to the internal pixel buffer 
+	is not provided.
 </p>
 <p class="horizontal-padding">
-	Sprites can be simulated by using tiles that have "transparent" backgrounds. This is achieved by specifying 3 colors instead of 4 when drawing any 
-	regular tile, in which case only the indices 1, 2 and 3 are specified, the index 0 is the transparency key. Transparency here has nothing to do 
-	with alpha transparency or blending (TGL does not support color blending). It simply means that pixels assigned with the index 0 will not be drawn.
+	<b>Sprites:</b> Those can be simulated by using tiles that have "transparent" backgrounds. This is achieved by specifying 3 colors instead of 4 when 
+	drawing any regular tile, in which case only the indices 1, 2 and 3 are specified, the index 0 is the transparency key. Transparency here has nothing 
+	to do with alpha transparency or blending (TGL does not support color blending). It simply means that pixels assigned with the index 0 will not be 
+	drawn.
 </p>
 <p class="horizontal-padding">
-	There is no "color palette" as in the GBC. Rather, 4 colors, or 3 if it's a "sprite" tile, since the index 0 is considered transparent for sprites, 
-	are assigned to each individual tile as they are drawn. Remember that each tile contains pixel patterns consisting of indexes 0, 1, 2 or 3, and the 
-	API provides functions to specify what are the current 4 (or 3) colors to be used for each index in the next tiles that will be drawn.
+	<b>Colors:</b> There is no "color palette" as in the GBC. Colors are encoded in the typical RGB format. Individual tiles contain 4 color indexes, 
+	or 3 if it's a "sprite" tile (since the index 0 is considered transparent for sprites) which are assigned to each individual tile as they are drawn. 
+	Remember that each tile contains pixel patterns consisting of indexes 0, 1, 2 or 3, and the API provides functions to specify what are the current 
+	4 (or 3) colors to be used for each index in the next tiles that will be drawn.
 </p>
 <p class="horizontal-padding">
-	There is also no "layer" concept, as it can be simulated by the order in which views are drawn. There is a "viewport" system that can be used to 
-	simulate the so-called "windows" in the GBC, meaning all drawing is limited to the area of the currently active view. There can be multiple 
-	overlapping views and each view can be "scrolled" independently, meaning pixels will only be visible if they are drawn within the current viewport 
-	area starting from the current x and y scroll offset. This is used to simulate the scrolling backgrounds on the GBC.
+	<b>Layering:</b> The API has no concept of "layers", but this can be easily achieved by the order in which individual tiles and views are drawn.
 </p>
 <p class="horizontal-padding">
-	The graphics system mostly follows the immediate mode pattern, wherein every single tile must be drawn directly by function calls, as opposed to 
+	<b>Views:</b> There is a "viewport" system that can be used to simulate the so-called "windows" in the GBC, meaning all drawing is limited to the 
+	area of the currently active view. There can be multiple overlapping views and each view can be "scrolled" independently, meaning pixels will only 
+	be visible if they are drawn within the current viewport area starting from the current x and y scroll offset. This is used to simulate the scrolling 
+	backgrounds on the GBC.
+</p>
+<p class="horizontal-padding">
+	<b>Rendering Mode:</b> The graphics system mostly follows the immediate mode pattern, wherein every single tile must be drawn directly by function calls, as opposed to 
 	retained mode where the API would manage all drawing internally. This is opposed to the original GBC which has a "tile buffer" in memory.
-</p>
-<p class="horizontal-padding">
-	The window does not update automatically, meaning everything is drawn on an off-screen pixel buffer. The window can be updated by calling the 
-	almighty "system" function, which should be called at the end of each and every frame to allow for the default window event processing.
 </p>
 <p class="horizontal-padding">
 	Help is needed most with performance issues, especially during rendering, since TGL draws the entire screen pixel by pixel and it's currently 

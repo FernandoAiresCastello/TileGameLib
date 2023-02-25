@@ -14,10 +14,6 @@
 #include <cstdarg>
 using namespace std;
 
-//=============================================================================
-//		TYPES
-//=============================================================================
-
 typedef int rgb;
 
 struct TGL
@@ -46,7 +42,7 @@ struct TGL
 	void abort(string msg);
 
 	//=========================================================================
-	//		WINDOW
+	//		[GRAPHICS]  WINDOW
 	//=========================================================================
 	void window(rgb back_color = 0xffffff, int size_factor = 5);
 	void title(string str);
@@ -54,7 +50,7 @@ struct TGL
 	void screenshot(string path);
 
 	//=========================================================================
-	//		[GRAPHICS]  VIEW
+	//		[GRAPHICS]  VIEWS
 	//=========================================================================
 	void clear();
 	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);

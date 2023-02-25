@@ -283,10 +283,8 @@
     <None Include="..\..\README.md">
       <Filter>Docs</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="TODO.md">
+    <None Include="..\..\TODO.md">
       <Filter>Docs</Filter>
-    </Text>
+    </None>
   </ItemGroup>
 </Project>

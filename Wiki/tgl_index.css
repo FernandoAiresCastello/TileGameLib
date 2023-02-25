@@ -119,7 +119,6 @@ a.back-home {
 .tab-1 {
 	margin-left: 40px;
 }
-
 .horizontal-padding {
 	margin-left: 40px;
 	margin-right: 40px;
@@ -131,4 +130,13 @@ a.back-home {
 li {
 	list-style: square;
 	margin-bottom: 5px;
+}
+/*=========================================================
+	WIDTHS
+=========================================================*/
+.full-width {
+	width: 100%;
+}
+.half-width {
+	width: 50%;
 }

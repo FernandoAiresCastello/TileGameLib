@@ -99,10 +99,8 @@
     <ClCompile Include="TGL.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TODO.md" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\README.md" />
+    <None Include="..\..\TODO.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

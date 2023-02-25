@@ -293,12 +293,62 @@ bool TGL::kb_char(char ch)
 	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
 
 	switch (toupper(ch)) {
-		case '0': key = SDL_SCANCODE_0; break;
-		case '1': key = SDL_SCANCODE_1; break;
-		case '2': key = SDL_SCANCODE_2; break;
+
+		case '0': return TKey::IsPressed(SDL_SCANCODE_0) || TKey::IsPressed(SDL_SCANCODE_KP_0);
+		case '1': return TKey::IsPressed(SDL_SCANCODE_1) || TKey::IsPressed(SDL_SCANCODE_KP_1);
+		case '2': return TKey::IsPressed(SDL_SCANCODE_2) || TKey::IsPressed(SDL_SCANCODE_KP_2);
+		case '3': return TKey::IsPressed(SDL_SCANCODE_3) || TKey::IsPressed(SDL_SCANCODE_KP_3);
+		case '4': return TKey::IsPressed(SDL_SCANCODE_4) || TKey::IsPressed(SDL_SCANCODE_KP_4);
+		case '5': return TKey::IsPressed(SDL_SCANCODE_5) || TKey::IsPressed(SDL_SCANCODE_KP_5);
+		case '6': return TKey::IsPressed(SDL_SCANCODE_6) || TKey::IsPressed(SDL_SCANCODE_KP_6);
+		case '7': return TKey::IsPressed(SDL_SCANCODE_7) || TKey::IsPressed(SDL_SCANCODE_KP_7);
+		case '8': return TKey::IsPressed(SDL_SCANCODE_8) || TKey::IsPressed(SDL_SCANCODE_KP_8);
+		case '9': return TKey::IsPressed(SDL_SCANCODE_9) || TKey::IsPressed(SDL_SCANCODE_KP_9);
+
+		case 'A': case 'a': return TKey::IsPressed(SDL_SCANCODE_A);
+		case 'B': case 'b': return TKey::IsPressed(SDL_SCANCODE_B);
+		case 'C': case 'c': return TKey::IsPressed(SDL_SCANCODE_C);
+		case 'D': case 'd': return TKey::IsPressed(SDL_SCANCODE_D);
+		case 'E': case 'e': return TKey::IsPressed(SDL_SCANCODE_E);
+		case 'F': case 'f': return TKey::IsPressed(SDL_SCANCODE_F);
+		case 'G': case 'g': return TKey::IsPressed(SDL_SCANCODE_G);
+		case 'H': case 'h': return TKey::IsPressed(SDL_SCANCODE_H);
+		case 'I': case 'i': return TKey::IsPressed(SDL_SCANCODE_I);
+		case 'J': case 'j': return TKey::IsPressed(SDL_SCANCODE_J);
+		case 'K': case 'k': return TKey::IsPressed(SDL_SCANCODE_K);
+		case 'L': case 'l': return TKey::IsPressed(SDL_SCANCODE_L);
+		case 'M': case 'm': return TKey::IsPressed(SDL_SCANCODE_M);
+		case 'N': case 'n': return TKey::IsPressed(SDL_SCANCODE_N);
+		case 'O': case 'o': return TKey::IsPressed(SDL_SCANCODE_O);
+		case 'P': case 'p': return TKey::IsPressed(SDL_SCANCODE_P);
+		case 'Q': case 'q': return TKey::IsPressed(SDL_SCANCODE_Q);
+		case 'R': case 'r': return TKey::IsPressed(SDL_SCANCODE_R);
+		case 'S': case 's': return TKey::IsPressed(SDL_SCANCODE_S);
+		case 'T': case 't': return TKey::IsPressed(SDL_SCANCODE_T);
+		case 'U': case 'u': return TKey::IsPressed(SDL_SCANCODE_U);
+		case 'V': case 'v': return TKey::IsPressed(SDL_SCANCODE_V);
+		case 'W': case 'w': return TKey::IsPressed(SDL_SCANCODE_W);
+		case 'X': case 'x': return TKey::IsPressed(SDL_SCANCODE_X);
+		case 'Y': case 'y': return TKey::IsPressed(SDL_SCANCODE_Y);
+		case 'Z': case 'z': return TKey::IsPressed(SDL_SCANCODE_Z);
+
+		case '\'': return TKey::IsPressed(SDL_SCANCODE_APOSTROPHE);
+		case '\\': return TKey::IsPressed(SDL_SCANCODE_BACKSLASH);
+		case '/': return TKey::IsPressed(SDL_SCANCODE_SLASH) || TKey::IsPressed(SDL_SCANCODE_KP_DIVIDE);
+		case '-': return TKey::IsPressed(SDL_SCANCODE_MINUS) || TKey::IsPressed(SDL_SCANCODE_KP_MINUS);
+		case '+': return TKey::IsPressed(SDL_SCANCODE_KP_PLUS);
+		case '=': return TKey::IsPressed(SDL_SCANCODE_EQUALS);
+		case '*': return TKey::IsPressed(SDL_SCANCODE_KP_MULTIPLY);
+		case ',': return TKey::IsPressed(SDL_SCANCODE_COMMA) || TKey::IsPressed(SDL_SCANCODE_KP_COMMA);
+		case '.': return TKey::IsPressed(SDL_SCANCODE_PERIOD) || TKey::IsPressed(SDL_SCANCODE_KP_PERIOD);
+		case '<': return TKey::IsPressed(SDL_SCANCODE_COMMA);
+		case '>': return TKey::IsPressed(SDL_SCANCODE_PERIOD);
+		case ';': return TKey::IsPressed(SDL_SCANCODE_SEMICOLON);
+		case '[': return TKey::IsPressed(SDL_SCANCODE_LEFTBRACKET);
+		case ']': return TKey::IsPressed(SDL_SCANCODE_RIGHTBRACKET);
 	}
 
-	return key != SDL_SCANCODE_UNKNOWN && TKey::IsPressed(key);
+	return false;
 }
 bool TGL::kb_right()
 {
@@ -346,7 +396,7 @@ bool TGL::kb_backspace()
 }
 bool TGL::kb_enter()
 {
-	return TKey::IsPressed(SDL_SCANCODE_RETURN);
+	return TKey::IsPressed(SDL_SCANCODE_RETURN) || TKey::IsPressed(SDL_SCANCODE_KP_ENTER);
 }
 bool TGL::kb_tab()
 {
