@@ -11,6 +11,8 @@ I (Fernando) am currently the sole developer in this project. Please feel free t
 
 - [fernandoairescastello@gmail.com](mailto:fernandoairescastello@gmail.com?subject=TileGameLib)
 
+    *Please make sure to include "TileGameLib" in your message subject.*
+
 **Docs:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
