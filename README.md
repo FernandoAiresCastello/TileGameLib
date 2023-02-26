@@ -1,7 +1,7 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-1.png?raw=true)
 
 # TileGameLib (TGL)
-TileGameLib (TGL) is a C/C++ static library for quick and easy development of tile-based, pseudo-8-bit games that have a strong Nintendo GameBoy Color aesthetic. This repository also includes some other tools for C# .NET which are independent from the TGL library itself.
+TileGameLib (TGL) is a C/C++ static library for quick and easy development of tile-based, pseudo-8-bit games that have a strong Nintendo GameBoy Color aesthetic. This repository also includes some other tools for C# .NET which are independent from the TGL library itself. This project was started in 2019.
 
 The goal of this toolkit is to facilitate the development of standalone game applications (.exe) that somewhat resemble the look and feel of *Nintendo GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
