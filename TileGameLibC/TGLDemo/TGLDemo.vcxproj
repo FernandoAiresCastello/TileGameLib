@@ -144,14 +144,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="test_invaders.cpp" />
+    <ClCompile Include="demo_helloworld.cpp" />
+    <ClCompile Include="demo_invaders.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClCompile Include="test_basic.cpp" />
-    <ClCompile Include="test_font.cpp" />
-    <ClCompile Include="test_views.cpp" />
+    <ClCompile Include="demo_basic.cpp" />
+    <ClCompile Include="demo_font.cpp" />
+    <ClCompile Include="demo_views.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TGLDemo.rc" />

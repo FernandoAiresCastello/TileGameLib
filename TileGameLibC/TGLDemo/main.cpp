@@ -1,16 +1,18 @@
 #include <TGL.h>
 
-void test_basic();
-void test_views();
-void test_font();
-void test_invaders();
+void demo_helloworld();
+void demo_basic();
+void demo_views();
+void demo_font();
+void demo_invaders();
 
 int main(int argc, char* args[])
 {
-	//test_basic();
-	//test_font();
-	//test_views();
-	test_invaders();
+	demo_helloworld();
+	//demo_basic();
+	//demo_font();
+	//demo_views();
+	//demo_invaders();
 
 	return 0;
 }
