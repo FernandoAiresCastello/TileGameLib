@@ -178,7 +178,11 @@
       <ImportLibrary>$(SolutionDir)..\Builds\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)Builds\TGL.lib"</Command>
+      <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)Builds\TGL.lib"
+copy "$(ProjectDir)TGL.h" "$(SolutionDir)Builds\TGL.h"
+copy "$(OutDir)TGL.lib" "$(SolutionDir)..\Releases\TGL\TGL.lib"
+copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\Releases\TGL\TGL.h"
+</Command>
     </PostBuildEvent>
     <Lib>
       <OutputFile>$(OutDir)TGL.lib</OutputFile>

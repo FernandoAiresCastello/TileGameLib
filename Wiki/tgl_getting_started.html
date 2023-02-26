@@ -16,7 +16,7 @@
 	<tr>
 		<td class="page-header icon">
 			<a href="tgl_index.html" class="home-link">
-				<img class="gameboy-icon" src="wiki-banner-1.fw.png">
+				<img class="gameboy-icon" src="images/wiki-banner-1.fw.png">
 			</a>
 		</td>
 		<td class="page-header left">
@@ -26,11 +26,90 @@
 
 <!-- CONTENT -->
 
-<p class="section-header">GETTING STARTED</hp>
+<p class="section-header">GETTING STARTED</p>
 
 <p>
-	This page is under construction...
+	This page will guide you through the steps necessary to install TileGameLib in your local environment and show you how to start making games with it.
 </p>
+<p>
+	Note: This guide is for using the pre-built TGL library in your own projects. To build TGL in your own development environment you'll need to follow a different setup process which is not described in this page.
+</p>
+
+<p class="sub-section-header">PREREQUISITES</p>
+<ol>
+	<li>
+		<b>Visual Studio Community: </b>If you don't have Visual Studio installed, you can click <a href="https://visualstudio.microsoft.com/vs/community/" target="_blank">here</a> to download and install it for free. TGL has been tested on the Community Edition of VS 2019 and 2022, so it should at least work in either of those.
+	</li>
+	<li>
+		<b>SDL 2: </b>If you don't have the SDL 2 library installed, first you'll need to download and install it. TGL has been developed and tested only with SDL version 2.0.8. You can click <a href="https://github.com/libsdl-org/SDL/releases/download/release-2.0.8/SDL2-devel-2.0.8-VC.zip" target="_blank">here</a> to download it from the official SDL repository on GitHub. If this link is dead for some reason just remember you need to download specifically the "SDL2-devel-2.0.8-VC.zip" file, so you can search for this on Google and you should find it somewhere else. Extract the downloaded ZIP file into your preferred location (recommended in the root C:/). Upon extracting it you should see a folder named "SDL2-2.0.8". SDL is now installed on your system.
+	</li>
+	<li>
+		<b>TileGameLib: </b>Download the latest build of TGL.lib from the GitHub repository <a href="https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/Builds" target="_blank">here</a>.
+	</li>
+</ol>
+
+<p class="sub-section-header">SETUP</p>
+
+<ol>
+	<li>
+		Create a new empty C++ project in Visual Studio.
+		<p class="screenshot"><img src="images/setup-1.png"></p>
+	<li>
+		Enter a name for your project, for example "HelloWorld", and the path where it will be created, then click on the "Create" button.
+		<p class="screenshot"><img src="images/setup-2.png"></p>
+	</li>
+	<li>
+
+	</li>
+</ol>
+
+<p class="sub-section-header">HELLO WORLD!</p>
+
+<p>But first of all, let me show you a simple program that prints "Hello World!" on a window using TGL, to demonstrate how easy it is:</p>
+
+<p class="code">
+#include &lt;TGL.h&gt;
+
+int main(int argc, char* argv[])
+{
+	TGL tgl;
+	
+	tgl.window(0x0000ff);
+	tgl.color_single(0xffff00);
+	tgl.print_free("Hello World!", 35, 65);
+
+	return tgl.halt();
+}
+</p>
+
+<p>
+	Now let's explain what happens in each line:
+</p>
+<ol>
+	<li>
+		The TGL.h header file is included at the top. 
+	</li>
+	<li>
+		Inside the main function, the first line creates the TGL singleton. This initializes the internal state of the library. 
+	</li>
+	<li>
+		Next, the window() function opens the application window and sets its background color to blue.
+	</li>
+	<li>
+		Next, the color_single() function enables the "single" color mode and sets the color of the index 1 for all subsequent tiles to yellow.
+	</li>
+	<li>
+		Next, the print_free() function draws the string "Hello World!" on the screen at the x and y coordinates of 35 and 65 respectively.
+	</li>
+	<li>
+		Lastly, the halt() function stops execution of the program, but keeps the window open and refreshing automatically so that you can see the output. Closing the window will terminate the application.
+	</li>
+</ol>
+
+Upon execution, you should see a window like this appear at the center of your screen:
+<p class="screenshot"><img src="images/helloworld.png" width="400"></p>
+
+<a href="tgl_index.html" class="back-home">Back to Home</a>
 
 </body>
 </html>

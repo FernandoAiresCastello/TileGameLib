@@ -3,19 +3,19 @@
 =========================================================*/
 @font-face {
     font-family: 'Intellec';
-    src: url('intellec.ttf') format('truetype');
+    src: url('fonts/intellec.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Nintendo';
-	src: url('press_start_2p.ttf') format('truetype');
+	src: url('fonts/press_start_2p.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Roboto';
-	src: url('Roboto-Regular.ttf') format('truetype');
+	src: url('fonts/Roboto-Regular.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Roboto Mono';
-	src: url('RobotoMono-Regular.ttf') format('truetype');
+	src: url('fonts/RobotoMono-Regular.ttf') format('truetype');
 }
 /*=========================================================
 	BODY
@@ -85,6 +85,19 @@ body {
 	text-shadow: 4px 4px 0px #342dc5;
 	box-shadow: 4px 4px 0px #aaa;
 }
+.sub-section-header {
+	font-family: 'Intellec', 'Consolas', monospace;
+	padding: 10px 30px;
+	padding-top: 12px;
+	margin: 0;
+	margin-top: 40px;
+	background: #cd5989;
+	color: #fff;
+	font-size: 24px;
+	font-weight: normal;
+	text-shadow: 4px 4px 0px #000;
+	box-shadow: 4px 4px 0px #aaa;
+}
 /*=========================================================
 	NOTES
 =========================================================*/
@@ -143,6 +156,10 @@ li {
 	list-style: square;
 	margin-bottom: 5px;
 }
+ol li {
+	list-style-type: decimal;
+}
+
 /*=========================================================
 	API REFERENCE
 =========================================================*/
@@ -183,4 +200,22 @@ li {
 }
 .apiref-default-arg {
 	color: #999;
+}
+/*=========================================================
+	SOURCE CODE BLOCKS
+=========================================================*/
+.code {
+	margin: 0;
+	margin-bottom: 20px;
+	padding: 25px;
+	padding-top: 0;
+	border: 1px solid #d0d0d0;
+	background: #e0e0e0;
+	white-space: pre;
+	font-family: 'Roboto Mono';
+	font-size: 16px;
+}
+.screenshot {
+	display: block;
+	margin-top: 20px;
 }
