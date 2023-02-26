@@ -58,8 +58,11 @@ int TGL::halt()
 }
 void TGL::pause(int ms)
 {
+	SDL_Event e;
+
 	while (ms > 0) {
-		system();
+		tgl->update();
+		tgl->process_default_events(&e);
 		SDL_Delay(1);
 		ms--;
 	}

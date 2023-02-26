@@ -13,6 +13,10 @@
 	font-family: 'Roboto';
 	src: url('Roboto-Regular.ttf') format('truetype');
 }
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('RobotoMono-Regular.ttf') format('truetype');
+}
 /*=========================================================
 	BODY
 =========================================================*/
@@ -123,14 +127,6 @@ a.back-home {
 	margin-left: 40px;
 	margin-right: 40px;
 }
-
-/*=========================================================
-	LISTS
-=========================================================*/
-li {
-	list-style: square;
-	margin-bottom: 5px;
-}
 /*=========================================================
 	WIDTHS
 =========================================================*/
@@ -139,4 +135,48 @@ li {
 }
 .half-width {
 	width: 50%;
+}
+/*=========================================================
+	LISTS
+=========================================================*/
+li {
+	list-style: square;
+	margin-bottom: 5px;
+}
+/*=========================================================
+	API REFERENCE
+=========================================================*/
+.apiref-section-header {
+	font-family: 'Intellec', 'Consolas', monospace;
+	padding: 10px 30px;
+	padding-top: 12px;
+	margin: 0;
+	margin-top: 40px;
+	background: #222;
+	color: #fff;
+	font-size: 24px;
+	font-weight: normal;
+	text-shadow: 4px 4px 0px #000;
+	box-shadow: 4px 4px 0px #aaa;
+}
+.apiref-entry-title {
+	margin: 0;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	padding-left: 0;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #000;
+	background: none;
+	color: #f06;
+	font-family: 'Roboto Mono';
+	font-weight: bold;
+}
+.apiref-entry {
+	margin: 0;
+}
+.apiref-type {
+	color: #342dc5;
+}
+.apiref-default-arg {
+	color: #999;
 }

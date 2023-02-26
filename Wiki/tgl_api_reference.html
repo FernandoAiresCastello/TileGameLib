@@ -29,8 +29,173 @@
 <p class="section-header">API REFERENCE</p>
 
 <p>
-	This page is under construction...
+	This is a list of all functions, types and constants in the public API.
 </p>
+<p>
+	Note that all constants and functions listed here are members of the TGL class, and all types are declared at the global scope in the TGL.h header, which means this is the only header you need to include in your program to use the features of the entire API.
+</p>
+
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">TYPES</p>
+<!---------------------------------------------------------------------------->
+<a name="rgb"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">typedef int rgb</span>
+</p>
+<p class="apiref-entry">
+	Used for representing a color in 32-bit RGB format (i.e. from 0x000000 to 0xffffff).
+</p>
+<!---------------------------------------------------------------------------->
+<a name="tgl"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">struct TGL</span>
+</p>
+<p class="apiref-entry">
+	This is the entry point for all features of the TGL public API. All constants and functions described below are public members of this class, so in this reference the scoping "TGL::" part is omitted from all function signatures for brevity.
+</p>
+
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">CONSTANTS</p>
+<!---------------------------------------------------------------------------->
+<a name="tilesize"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> tilesize
+</p>
+<p class="apiref-entry">
+	Defined as 8, which is both the width and height of tiles.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="width"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> width
+</p>
+<p class="apiref-entry">
+	Defined as 160, which is the horizontal resolution of the frame image, regardless of the actual size factor of the window.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="height"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> height
+</p>
+<p class="apiref-entry">
+	Defined as 144, which is the vertical resolution of the frame image, regardless of the actual size factor of the window.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="cols"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> cols
+</p>
+<p class="apiref-entry">
+	Defined as 20, which is the result of the formula: cols = width / tilesize.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="rows"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> rows
+</p>
+<p class="apiref-entry">
+	Defined as 18, which is the result of the formula: rows = height / tilesize.
+</p>
+
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">SYSTEM</p>
+<!---------------------------------------------------------------------------->
+<a name="system"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> system()
+</p>
+<p class="apiref-entry">
+	This function should be called at the end of every frame in your application. It refreshes the window with everything that has been drawn in that frame, updates internal state such as advancing timers and automatic animation of tiles, and also processes default window events such as the "close" button to exit the application and the ALT+ENTER key combination to toggle fullscreen mode.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="exit"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> exit()
+</p>
+<p class="apiref-entry">
+	Forces the window to close and terminates execution of the application immediately. It's the same as closing the window using the X button on the top-right corner. Returns 0 so that it can be called with a return statement at the end of the main function if needed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="halt"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> halt()
+</p>
+<p class="apiref-entry">
+	Stops program execution. The only way out of the halted state is by closing the window to terminate the program. Note that even while halted the window still gets refreshed and the processing of default events still occurs in each and every frame. Returns 0 so that it can be called with a return statement at the end of the main function if needed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="pause"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> pause(<span class="apiref-type">int</span> frames)
+</p>
+<p class="apiref-entry">
+	Pauses program execution for the specified number of frames. Note that while the system is "paused", the window still gets refreshed and the processing of default events still occurs in each and every frame.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="running"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> running()
+</p>
+<p class="apiref-entry">
+	Returns true as long as the application is running, i.e. if the window hasn't been closed either by the user or by forcing an exit.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="error"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> error(<span class="apiref-type">string</span> msg)
+</p>
+<p class="apiref-entry">
+	Reports an error to the user, by showing a standard modal message box with the specified message. Continues execution normally once the message is dismissed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name="abort"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> abort(<span class="apiref-type">string</span> msg)
+</p>
+<p class="apiref-entry">
+	Almost the same as the error() function, but terminates the application as soon as the message is dismissed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">GRAPHICS > WINDOW</p>
+<!---------------------------------------------------------------------------->
+<a name="window"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 5</span>)
+</p>
+<p class="apiref-entry">
+	Creates the application window with the specified background color and size factor. Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Once the window is closed, the application terminates automatically.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> title(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Sets the window title to the specified string. This can be called even before the window is created since it's stored separately and it gets assigned to the window as soon as it opens.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> fullscreen(<span class="apiref-type">bool</span> full)
+</p>
+<p class="apiref-entry">
+	Passing true as argument will make the application enter fullscreen mode. Passing false will return to windowed mode.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> screenshot(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Takes a screenshot of the entire current frame image and saves it as a bitmap file (.bmp) in the specified path.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">GRAPHICS > VIEWS</p>
+<!---------------------------------------------------------------------------->
+
+
+<!---------------------------------------------------------------------------->
+<a href="tgl_index.html" class="back-home">Back to Home</a>
 
 </body>
 </html>
