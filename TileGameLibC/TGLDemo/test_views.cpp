@@ -41,20 +41,20 @@ void test_views()
 		tgl.view("view_bg");
 
 		tgl.view("view_1");
-		tgl.color(0xff0000, 0x00ff00, 0x0000ff);
+		tgl.color_sprite(0xff0000, 0x00ff00, 0x0000ff);
 		tgl.draw_free("t_square", 0, 0);
 
 		tgl.view("view_2");
-		tgl.color(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
+		tgl.color_normal(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
 		tgl.draw_tiled("t_square", 1, 1);
 
 		tgl.view("view_3");
-		tgl.color(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
+		tgl.color_normal(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
 		tgl.draw_tiled("t_square", 1, 1);
 		tgl.draw_tiled("t_square", 2, 2);
 		tgl.draw_tiled("t_square", 4, 4);
 
-		tgl.color(0xffff00, 0xff00ff, 0x00ffff);
+		tgl.color_sprite(0xffff00, 0xff00ff, 0x00ffff);
 		tgl.draw_free("t_square", x, y);
 
 		if (tgl.kb_esc()) tgl.exit();

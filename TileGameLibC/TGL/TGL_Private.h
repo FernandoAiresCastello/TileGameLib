@@ -20,6 +20,7 @@ private:
 		rgb c2 = 0xc0c0c0;
 		rgb c3 = 0x808080;
 		bool ignore_c0 = false;
+		bool single_color_mode = false;
 	} palette;
 
 	struct {

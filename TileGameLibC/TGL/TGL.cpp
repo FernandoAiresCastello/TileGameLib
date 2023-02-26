@@ -169,24 +169,25 @@ int TGL::scroll_y()
 {
 	return tgl->cur_view->scroll_y;
 }
-void TGL::color(rgb c1)
+void TGL::color_single(rgb c1)
 {
+	tgl->palette.single_color_mode = true;
 	tgl->palette.ignore_c0 = true;
 	tgl->palette.c0 = 0;
 	tgl->palette.c1 = c1;
-	tgl->palette.c2 = 0;
-	tgl->palette.c3 = 0;
 }
-void TGL::color(rgb c1, rgb c2, rgb c3)
+void TGL::color_sprite(rgb c1, rgb c2, rgb c3)
 {
+	tgl->palette.single_color_mode = false;
 	tgl->palette.ignore_c0 = true;
 	tgl->palette.c0 = 0;
 	tgl->palette.c1 = c1;
 	tgl->palette.c2 = c2;
 	tgl->palette.c3 = c3;
 }
-void TGL::color(rgb c0, rgb c1, rgb c2, rgb c3)
+void TGL::color_normal(rgb c0, rgb c1, rgb c2, rgb c3)
 {
+	tgl->palette.single_color_mode = false;
 	tgl->palette.ignore_c0 = false;
 	tgl->palette.c0 = c0;
 	tgl->palette.c1 = c1;

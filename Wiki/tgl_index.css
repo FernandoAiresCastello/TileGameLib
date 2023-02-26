@@ -118,7 +118,7 @@ a.back-home {
 	margin-top: 60px;
 }
 /*=========================================================
-	TABULATIONS
+	TABULATIONS & MARGINS
 =========================================================*/
 .tab-1 {
 	margin-left: 40px;
@@ -152,7 +152,7 @@ li {
 	padding-top: 12px;
 	margin: 0;
 	margin-top: 40px;
-	background: #222;
+	background: #cd5989;
 	color: #fff;
 	font-size: 24px;
 	font-weight: normal;
@@ -161,11 +161,11 @@ li {
 }
 .apiref-entry-title {
 	margin: 0;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 5px;
 	padding-left: 0;
 	padding-bottom: 5px;
-	border-bottom: 2px solid #000;
+	border-bottom: 2px solid #ccc;
 	background: none;
 	color: #f06;
 	font-family: 'Roboto Mono';
@@ -173,6 +173,10 @@ li {
 }
 .apiref-entry {
 	margin: 0;
+}
+.apiref-section-header, .apiref-entry-title, .apiref-entry {
+	margin-left: 100px;
+	margin-right: 40px;
 }
 .apiref-type {
 	color: #342dc5;

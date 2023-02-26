@@ -68,11 +68,11 @@ struct TGL
 	void tile_add(string tile_id, string pattern_id);
 
 	//=========================================================================
-	//		[GRAPHICS]  COLOR PALETTE
+	//		[GRAPHICS]  COLOR MODES
 	//=========================================================================
-	void color(rgb c1);
-	void color(rgb c1, rgb c2, rgb c3);
-	void color(rgb c0, rgb c1, rgb c2, rgb c3);
+	void color_single(rgb c1);
+	void color_sprite(rgb c1, rgb c2, rgb c3);
+	void color_normal(rgb c0, rgb c1, rgb c2, rgb c3);
 
 	//=========================================================================
 	//		[GRAPHICS]  TILE RENDERING

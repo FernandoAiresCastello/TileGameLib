@@ -51,9 +51,8 @@
 	<span class="apiref-type">struct TGL</span>
 </p>
 <p class="apiref-entry">
-	This is the entry point for all features of the TGL public API. All constants and functions described below are public members of this class, so in this reference the scoping "TGL::" part is omitted from all function signatures for brevity.
+	This is the entry point for all features of the TGL public API. All constants and functions described below are public members of this class, so in this reference the scoping "TGL::" part is omitted from all declarations for brevity.
 </p>
-
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">CONSTANTS</p>
 <!---------------------------------------------------------------------------->
@@ -192,7 +191,7 @@
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > VIEWS</p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> clear()
 </p>
@@ -200,7 +199,7 @@
 	Clears the contents of the current view, by filling the entire view region with that view's background color.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2)
 </p>
@@ -208,7 +207,7 @@
 	Creates a new rectangular view with the specified view_id, with the top-left corner at the x1 and y1 coordinates and the bottom-right corner at the x2 and y2 coordinates.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> view_default()
 </p>
@@ -216,7 +215,7 @@
 	Selects the default view as the current view for drawing, which means the region of the entire frame image.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> view(<span class="apiref-type">string</span> view_id)
 </p>
@@ -224,7 +223,7 @@
 	Selects the specified view as the current view for drawing.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> scroll(<span class="apiref-type">int</span> dx, <span class="apiref-type">int</span> dy)
 </p>
@@ -232,7 +231,7 @@
 	Scrolls the current view by the specified distance, where dx is the horizontal distance and dy is the vertical distance.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> scroll_to(<span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
 </p>
@@ -240,7 +239,7 @@
 	Scrolls the the current view to the absolute specified coordinates.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">int</span> scroll_x()
 </p>
@@ -248,7 +247,7 @@
 	Returns the horizontal scroll position for the current view.
 </p>
 <!---------------------------------------------------------------------------->
-<a name="system"></a>
+<a name=""></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">int</span> scroll_y()
 </p>
@@ -258,57 +257,525 @@
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > TILE SET</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_pat(string pattern_id, string pixels)
+</p>
+<p class="apiref-entry">
+	Creates a new pixel pattern or redefine an existing pattern with the specified pattern_id, and assign a string of length 64 (8x8) containing the color indices for each pixel. Only the characters '0', '1', '2' or '3' are valid to represent the respective color indices.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_add(string tile_id, string pattern_id)
+</p>
+<p class="apiref-entry">
+	Creates a new tile sequence with a single animation frame as indicated by the pattern_id, or modify an existing tile by adding a new animation frame as indicated by the pattern_id. The pattern_id should correspond to an existing tile pattern that was previously created by the tile_pat() function.
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > COLOR PALETTE</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_single(rgb c1)
+</p>
+<p class="apiref-entry">
+	Enables the "single" color mode, which only sets the RGB value for the color index 1 of all subsequent tiles that are drawn. Useful for drawing text using the default font, since all default character tiles only contain the indices 0 and 1, with 0 being the transparency key, i.e. pixels with the index 0 will not be drawn in this mode.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_sprite(rgb c1, rgb c2, rgb c3)
+</p>
+<p class="apiref-entry">
+	Enables the "sprite" color mode, which sets the RGB values for the color indices 1, 2 and 3 of all subsequent tiles that are drawn, while pixels with the index 0 (i.e. the transparency key) will not be drawn.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_normal(rgb c0, rgb c1, rgb c2, rgb c3)
+</p>
+<p class="apiref-entry">
+	Enables the "normal" color mode, which sets the RGB values for the color indices 0, 1, 2 and 3 of all subsequent tiles that are drawn. Using this function disables the transparency key, i.e. in this mode all pixels will be drawn, including the ones with index 0.
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > TILE DRAWING</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> draw_free(string tile_id, int x, int y)
+</p>
+<p class="apiref-entry">
+	Draws into the current view the 8x8 pixel pattern of the current animation frame of the tile sequence indicated by tile_id, with the top-left corner of the tile at the specified absolute coordinates x and y, using the colors indicated by the latest call to one of the "color_" functions. Note that only pixels located within the current scroll position will be rendered.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> draw_tiled(string tile_id, int col, int row)</p>
+<p class="apiref-entry">
+	Almost the same as the draw_free() function, except that instead of specifying the x and y coordinates, this function expects the numbers of a column and row within a virtual, invisible and infinitely large grid which divides the entire graphical system into 8x8 cells, and the tile is drawn neatly within that cell. This is basically a simple shortcut to draw tiles without them overlapping with one another, simulating the background tilemaps that were used on the GBC. As with the draw_free() function, only pixels located within the current scroll position will be rendered.</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > TEXT DRAWING </p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">SOUND</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">TIMERS</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">STRING MANIPULATION</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">MATH</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">COLLISION DETECTION</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > MOUSE</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > KEYBOARD</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > GAMEPAD</p>
 <!---------------------------------------------------------------------------->
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">DATA</p>
 <!---------------------------------------------------------------------------->
-
-
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
+</p>
+<p class="apiref-entry">
+	Under construction...
+</p>
 <!---------------------------------------------------------------------------->
+
 <a href="tgl_index.html" class="back-home">Back to Home</a>
 
 </body>

@@ -59,9 +59,9 @@ void draw_score()
 {
 	tgl.view("sub");
 	string score = tgl.fmt("Score: %05i", player.score);
-	tgl.color(0x000020, 0, 0);
+	tgl.color_single(0x000020);
 	tgl.print_free(score, 33, 5);
-	tgl.color(0xffffff, 0, 0);
+	tgl.color_single(0xffffff);
 	tgl.print_free(score, 32, 4);
 }
 void handle_input()
@@ -91,10 +91,10 @@ void player_shoot()
 void player_cycle()
 {
 	if (player.missile.active) {
-		tgl.color(0x00ffff, 0x0080ff, 0x0000a0);
+		tgl.color_sprite(0x00ffff, 0x0080ff, 0x0000a0);
 		tgl.draw_free("missile", player.missile.x, player.missile.y);
 	}
-	tgl.color(0xffffff, 0x80a0ff, 0xff8000);
+	tgl.color_sprite(0xffffff, 0x80a0ff, 0xff8000);
 	tgl.draw_free("spaceship", player.x, player.y);
 
 	if (player.missile.active) {
@@ -109,7 +109,7 @@ void aliens_cycle()
 	for (auto& alien : aliens) {
 		if (alien.alive) {
 			if (alien.y >= -tgl.tilesize) {
-				tgl.color(0x00ff00, 0x00c000, 0x007000);
+				tgl.color_sprite(0x00ff00, 0x00c000, 0x007000);
 				tgl.draw_free("alien", alien.x, alien.y);
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
 					alien_destroy(alien);
@@ -117,7 +117,7 @@ void aliens_cycle()
 			}
 		} else if (alien.blast_counter > 0) {
 			alien.blast_counter--;
-			tgl.color(0xff0000, 0xff8000, 0xffff00);
+			tgl.color_sprite(0xff0000, 0xff8000, 0xffff00);
 			tgl.draw_free("blast", alien.x, alien.y);
 		}
 		if (tgl.timer("alien_move")) {
