@@ -193,7 +193,7 @@ ol li {
 }
 .apiref-section-header, .apiref-entry-title, .apiref-entry {
 	margin-left: 100px;
-	margin-right: 40px;
+	margin-right: 100px;
 }
 .apiref-type {
 	color: #342dc5;
