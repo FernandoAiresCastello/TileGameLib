@@ -44,8 +44,8 @@ private:
 	};
 
 	struct t_timer {
-		int cycles_max = 0;
-		int cycles_elapsed = 0;
+		int frames_max = 0;
+		int frames_elapsed = 0;
 		bool loop = false;
 	};
 

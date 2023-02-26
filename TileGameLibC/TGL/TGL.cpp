@@ -236,11 +236,11 @@ int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
 }
-void TGL::timer_new(string timer_id, int cycles, bool loop)
+void TGL::timer_new(string timer_id, int frames, bool loop)
 {
 	TGL_Private::t_timer tmr;
-	tmr.cycles_max = cycles;
-	tmr.cycles_elapsed = 0;
+	tmr.frames_max = frames;
+	tmr.frames_elapsed = 0;
 	tmr.loop = loop;
 	tgl->timers[timer_id] = tmr;
 }
@@ -249,12 +249,12 @@ bool TGL::timer(string timer_id)
 	if (tgl->timers.find(timer_id) == tgl->timers.end()) return false;
 
 	TGL_Private::t_timer& tmr = tgl->timers[timer_id];
-	return tmr.cycles_elapsed >= tmr.cycles_max;
+	return tmr.frames_elapsed >= tmr.frames_max;
 }
-bool TGL::collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y)
+bool TGL::collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 {
-	return	(obj1_x >= obj2_x - TILE_SIZE) && (obj1_x <= obj2_x + TILE_SIZE) &&
-			(obj1_y >= obj2_y - TILE_SIZE) && (obj1_y <= obj2_y + TILE_SIZE);
+	return	(tile1_x >= tile2_x - TILE_SIZE) && (tile1_x <= tile2_x + TILE_SIZE) &&
+			(tile1_y >= tile2_y - TILE_SIZE) && (tile1_y <= tile2_y + TILE_SIZE);
 }
 string TGL::fmt(const char* str, ...)
 {
@@ -656,12 +656,12 @@ void TGL_Private::advance_timers()
 {
 	for (auto& tmr_entry : timers) {
 		t_timer& tmr = tmr_entry.second;
-		tmr.cycles_elapsed++;
-		if (tmr.cycles_elapsed > tmr.cycles_max) {
+		tmr.frames_elapsed++;
+		if (tmr.frames_elapsed > tmr.frames_max) {
 			if (tmr.loop) {
-				tmr.cycles_elapsed = 0;
+				tmr.frames_elapsed = 0;
 			} else {
-				tmr.cycles_elapsed = tmr.cycles_max;
+				tmr.frames_elapsed = tmr.frames_max;
 			}
 		}
 	}

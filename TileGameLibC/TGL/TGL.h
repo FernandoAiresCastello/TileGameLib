@@ -102,7 +102,7 @@ struct TGL
 	//=========================================================================
 	//		TIMERS
 	//=========================================================================
-	void timer_new(string timer_id, int cycles, bool loop);
+	void timer_new(string timer_id, int frames, bool loop);
 	bool timer(string timer_id);
 
 	//=========================================================================
@@ -118,7 +118,7 @@ struct TGL
 	//=========================================================================
 	//		COLLISION DETECTION
 	//=========================================================================
-	bool collision(int obj1_x, int obj1_y, int obj2_x, int obj2_y);
+	bool collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y);
 
 	//=========================================================================
 	//		[INPUT]  MOUSE

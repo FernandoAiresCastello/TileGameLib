@@ -319,173 +319,181 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> font(char ch, string pattern)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Sets the tile pattern for the specified character in the internal font tileset used for drawing text. Note that the font tileset is separate and independent from the regular tileset, but the tiles themselves are drawn in the exact same manner, i.e. all features and limitations of regular tiles also apply to font characters.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> font_shadow(bool shadow, rgb shadow_color = 0)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Enables or disables the font shadow, and optionally sets the RGB color of the font shadow if it's enabled. Enabling font shadow simply makes the "print_" functions draw the text with a "shadow" of the specified color underneath it to make reading easier.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> font_reset()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Resets all font characters to their default tile patterns.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> font_new()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Deletes all font characters. Useful for implementing entirely new custom fonts from the ground up.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> print_free(string str, int x, int y)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Draws the specified string with the top-left corner at the specified x and y coordinates.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> print_tiled(string str, int col, int row)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Like the print_free() function, this function also draws the specified string, but the first character is drawn within the cell at the specified column and row numbers in the same grid used by the draw_tiled() function, with subsequent tiles drawn within the cells at the adjacent columns to the right.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">SOUND</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> volume(int vol)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Set the volume of all notes played with the "play_" functions.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> play(string notes)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Plays asynchronously, only once, the sound notes in the specified string using a simplified version of MML (Music Macro Language), where the characters C, D, E, F, G, A and B stand for different sound frequencies, like a piano. The character O followed by a number specifies the octave for all subsequent notes. The character L followed by a number specifies the length of all subsequent notes. The P character causes a short pause in the sound stream. All sounds are currently generated from square waves and there is only a single audio channel. Only a single music string can be playing at any one moment. If any "play_" function is called while the system is playing any other sound, the current sound simply stops and the new music is played.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> play_loop(string notes)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Almost the same as the play() function, except that after playing the specified notes once, it repeats the exact same notes on a loop indefinitely, until the play_stop() function is called or another sound gets played and replaces the looped music.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> play_stop()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Interrupts all sounds that are currently playing.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> sound(float freq, int len)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Plays a single note, basically generating a beeping sound, with the specified frequency and for the indicated length of time.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">TIMERS</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> timer_new(string timer_id, int frames, bool loop)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Creates a new timer with the specified timer_id which will count from 0 to the specified number of frames, and then simply stop if the loop argument is false. If the loop argument is true, the timer will then restart from 0 and repeat indefinitely until it's manually stopped. The system() function is responsible for advancing all existing timers.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> timer(string timer_id)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns true if the specified timer has expired, i.e. if the required number of frames have elapsed since it started. Returns false if the timer is still going.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">STRING MANIPULATION</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">string</span> fmt(const char* str, ...)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	This is basically the TGL version of the standard C function sprintf(), except that the output is returned as a string instance, and the internal buffer for the output is limited to a maximum of 1024 characters.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">MATH</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">int</span> rnd(int min, int max)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns a pseudo-random integer number betweem min and max, inclusive. For example, respectively passing 1 and 2 as arguments, will always yield either 1 or 2.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">COLLISION DETECTION</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Performs a very basic collision check between any two tiles based on their x and y coordinates only. Note that the system does not internally keep track of the positions of any tile, which means it will simply check for two overlapping bounding boxes with a size of 8x8 pixels based on the coordinates specified. Returns true if a collision is detected or false otherwise.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > MOUSE</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> mouse(bool enabled)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Enables or disables the mouse pointer when it's over the application window. Note that even if the pointer is invisible, the mouse_x() and mouse_y() functions will still return the expected values.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">int</span> mouse_x()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns the absolute x coordinate of the mouse pointer within the window.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">int</span> mouse_y()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns the absolute y coordinate of the mouse pointer within the window.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > KEYBOARD</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> kb_char(char ch)
+</p>
+<p class="apiref-entry">
+	Returns true if a key that would produce the specified character is currently pressed, or false otherwise.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -493,7 +501,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -501,7 +509,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -509,7 +517,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -517,7 +525,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -525,7 +533,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -533,7 +541,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -541,7 +549,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -549,7 +557,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -557,7 +565,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -565,7 +573,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -573,7 +581,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -581,7 +589,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -589,7 +597,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -597,7 +605,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -605,7 +613,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -613,7 +621,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -621,7 +629,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -629,7 +637,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -637,7 +645,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -645,7 +653,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -653,7 +661,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -661,7 +669,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -669,7 +677,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -677,7 +685,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -685,7 +693,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -693,7 +701,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -701,7 +709,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -709,7 +717,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -717,7 +725,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -725,7 +733,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -733,7 +741,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -741,15 +749,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
-</p>
-<p class="apiref-entry">
-	Under construction...
-</p>
-<!---------------------------------------------------------------------------->
-<a name=""></a>
-<p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">void</span> kb_()
 </p>
 <p class="apiref-entry">
 	Under construction...
