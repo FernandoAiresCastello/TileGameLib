@@ -1,6 +1,8 @@
 MIT License
 
-Copyright (c) 2023 Fernando Aires Castello
+TileGameLib (TGL)
+
+Copyright (c) 2019-2023 Fernando Aires Castello
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
