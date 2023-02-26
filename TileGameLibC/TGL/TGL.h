@@ -42,7 +42,7 @@ struct TGL
 	void abort(string msg);
 
 	//=========================================================================
-	//		[GRAPHICS]  WINDOW
+	//		GRAPHICS > WINDOW
 	//=========================================================================
 	void window(rgb back_color = 0xffffff, int size_factor = 5);
 	void title(string str);
@@ -50,7 +50,7 @@ struct TGL
 	void screenshot(string path);
 
 	//=========================================================================
-	//		[GRAPHICS]  VIEWS
+	//		GRAPHICS > VIEWS
 	//=========================================================================
 	void clear();
 	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
@@ -62,26 +62,26 @@ struct TGL
 	int scroll_y();
 
 	//=========================================================================
-	//		[GRAPHICS]  TILE SET
+	//		GRAPHICS > TILE SET
 	//=========================================================================
 	void tile_pat(string pattern_id, string pixels);
 	void tile_add(string tile_id, string pattern_id);
 
 	//=========================================================================
-	//		[GRAPHICS]  COLOR MODES
+	//		GRAPHICS > COLOR MODES
 	//=========================================================================
 	void color_single(rgb c1);
 	void color_sprite(rgb c1, rgb c2, rgb c3);
 	void color_normal(rgb c0, rgb c1, rgb c2, rgb c3);
 
 	//=========================================================================
-	//		[GRAPHICS]  TILE RENDERING
+	//		GRAPHICS > TILE RENDERING
 	//=========================================================================
 	void draw_free(string tile_id, int x, int y);
 	void draw_tiled(string tile_id, int col, int row);
 
 	//=========================================================================
-	//		[GRAPHICS]  TEXT RENDERING
+	//		GRAPHICS > TEXT RENDERING
 	//=========================================================================
 	void font(char ch, string pattern);
 	void font_shadow(bool shadow, rgb shadow_color = 0);
@@ -121,14 +121,14 @@ struct TGL
 	bool collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y);
 
 	//=========================================================================
-	//		[INPUT]  MOUSE
+	//		INPUT > MOUSE
 	//=========================================================================
 	void mouse(bool enabled);
 	int mouse_x();
 	int mouse_y();
 
 	//=========================================================================
-	//		[INPUT]  KEYBOARD
+	//		INPUT > KEYBOARD
 	//=========================================================================
 	bool kb_char(char ch);
 	bool kb_right();

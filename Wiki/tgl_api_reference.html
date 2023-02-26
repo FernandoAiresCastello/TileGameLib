@@ -162,7 +162,7 @@
 	<span class="apiref-type">void</span> window(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 5</span>)
 </p>
 <p class="apiref-entry">
-	Creates the application window with the specified background color and size factor. Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Once the window is closed, the application terminates automatically.
+	Creates the application window with the specified background color and size factor (ranging from 1 to 5). Both arguments are optional, and the default background color is white, while the default size factor is 5 (which is also the maximum value supported). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
@@ -201,7 +201,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2)
+	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2, rgb back_color, bool clear_bg)
 </p>
 <p class="apiref-entry">
 	Creates a new rectangular view with the specified view_id, with the top-left corner at the x1 and y1 coordinates and the bottom-right corner at the x2 and y2 coordinates.
@@ -372,7 +372,7 @@
 	<span class="apiref-type">void</span> volume(int vol)
 </p>
 <p class="apiref-entry">
-	Set the volume of all notes played with the "play_" functions.
+	Sets the volume for all sound functions.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
@@ -488,278 +488,278 @@
 	<span class="apiref-type">bool</span> kb_char(char ch)
 </p>
 <p class="apiref-entry">
-	Returns true if a key that would produce the specified character is currently pressed, or false otherwise.
+	Returns whether a key that would produce the specified character is currently pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_right()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the RIGHT arrow key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_left()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the LEFT arrow key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_down()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the DOWN arrow key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_up()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the UP arrow key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_ctrl()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the CONTROL key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_shift()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the SHIFT key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_alt()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the key ALT is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_capslock()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the CAPS LOCK key is on.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_esc()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the ESCAPE key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_space()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the SPACE key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_backspace()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the BACKSPACE key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_enter()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the ENTER/RETURN key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_tab()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the TAB key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_insert()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the INSERT key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_delete()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the DELETE key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_home()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the HOME key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_end()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the END key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_pageup()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the PAGE UP key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_pagedown()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the PAGE DOWN key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_pausebrk()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the PAUSE/BREAK key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_printscr()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the PRINT SCREEN key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f1()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F1 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f2()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F2 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f3()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F3 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f4()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F4 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f5()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F5 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f6()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F6 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f7()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F7 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f8()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F8 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f9()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F9 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f10()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F10 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f11()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F11 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> kb_()
+	<span class="apiref-type">bool</span> kb_f12()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the F12 key is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">INPUT > GAMEPAD</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> function()
 </p>
 <p class="apiref-entry">
 	Under construction...
@@ -769,7 +769,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> function()
 </p>
 <p class="apiref-entry">
 	Under construction...
