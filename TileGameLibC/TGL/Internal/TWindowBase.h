@@ -15,11 +15,13 @@ namespace TGL_Internal
 		virtual ~TWindowBase();
 
 		void* GetHandle();
+		SDL_Window* GetSDLWindow();
 		virtual void Update();
 		void Hide();
 		void Show();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
+		bool IsFullscreen();
 		void SetTitle(std::string title);
 		void SetBordered(bool bordered);
 		void SetIcon(std::string iconfile);

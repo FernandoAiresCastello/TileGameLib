@@ -68,7 +68,10 @@ struct TGL
 	void window(rgb back_color = 0xffffff, int size_factor = 5);
 	void title(string str);
 	void fullscreen(bool full);
+	bool fullscreen();
 	void screenshot(string path);
+	int window_width();
+	int window_height();
 
 	//=========================================================================
 	//		GRAPHICS > VIEWS

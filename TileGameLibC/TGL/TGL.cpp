@@ -89,6 +89,10 @@ void TGL::fullscreen(bool full)
 {
 	tgl->wnd->SetFullscreen(full);
 }
+bool TGL::fullscreen()
+{
+	return tgl->wnd->IsFullscreen();
+}
 void TGL::mouse(bool enabled)
 {
 	SDL_ShowCursor(enabled);
@@ -97,13 +101,13 @@ int TGL::mouse_x()
 {
 	int x = 0;
 	SDL_GetMouseState(&x, NULL);
-	return x;
+	return x / tgl->wnd->PixelWidth;
 }
 int TGL::mouse_y()
 {
 	int y = 0;
 	SDL_GetMouseState(NULL, &y);
-	return y;
+	return y / tgl->wnd->PixelHeight;
 }
 void TGL::error(string msg)
 {
@@ -291,6 +295,20 @@ void TGL::sound(float freq, int len)
 void TGL::screenshot(string path)
 {
 	tgl->wnd->SaveScreenshot(path);
+}
+int TGL::window_width()
+{
+	int w = 0;
+	int h = 0;
+	SDL_GetWindowSize(tgl->wnd->GetSDLWindow(), &w, &h);
+	return w;
+}
+int TGL::window_height()
+{
+	int w = 0;
+	int h = 0;
+	SDL_GetWindowSize(tgl->wnd->GetSDLWindow(), &w, &h);
+	return h;
 }
 bool TGL::kb_char(char ch)
 {
@@ -550,8 +568,8 @@ void TGL_Private::create_window(rgb back_color, int size_factor)
 void TGL_Private::update()
 {
 	wnd->Update();
-	frame_counter++;
 	debug_frame();
+	frame_counter++;
 }
 void TGL_Private::clip(int x1, int y1, int x2, int y2)
 {
@@ -851,8 +869,4 @@ void TGL_Private::init_default_font()
 }
 void TGL_Private::debug_frame()
 {
-	wnd->SetTitle(String::Format(
-		"LX: %i | LY: %i", 
-		gamepad.AxisLX(),
-		gamepad.AxisLY()));
 }

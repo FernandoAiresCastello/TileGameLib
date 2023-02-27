@@ -56,6 +56,11 @@ namespace TGL_Internal
 		return wmInfo.info.win.window;
 	}
 
+	SDL_Window* TWindowBase::GetSDLWindow()
+	{
+		return Window;
+	}
+
 	void TWindowBase::Update()
 	{
 		static int pitch;
@@ -139,6 +144,12 @@ namespace TGL_Internal
 		Uint32 isFullscreen = SDL_GetWindowFlags(Window) & fullscreenFlag;
 		SDL_SetWindowFullscreen(Window, isFullscreen ? 0 : fullscreenFlag);
 		Update();
+	}
+
+	bool TWindowBase::IsFullscreen()
+	{
+		return SDL_GetWindowFlags(Window) & 
+			SDL_WINDOW_FULLSCREEN_DESKTOP == SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 
 	void TWindowBase::SetTitle(std::string title)
