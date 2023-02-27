@@ -66,17 +66,19 @@ void draw_score()
 }
 void handle_input()
 {
-	if (tgl.kb_esc()) tgl.exit();
+	if (tgl.kb_char('R')) tgl.gpad_redetect();
 
-	if (tgl.kb_right()) player.x++;
-	if (tgl.kb_left()) player.x--;
+	if (tgl.kb_esc() || tgl.gpad_start()) tgl.exit();
+
+	if (tgl.kb_right() || tgl.gpad_right() || tgl.gpad_r()) player.x++;
+	if (tgl.kb_left() || tgl.gpad_left() || tgl.gpad_l()) player.x--;
 
 	if (player.x < -tgl.tilesize) 
 		player.x = tgl.width;
 	else if (player.x >= tgl.width) 
 		player.x = -tgl.tilesize;
 
-	if (tgl.kb_space()) player_shoot();
+	if (tgl.kb_space() || tgl.gpad_a()) player_shoot();
 }
 void player_shoot()
 {

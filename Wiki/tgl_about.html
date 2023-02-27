@@ -108,7 +108,7 @@
 
 <b>User Input</b>
 <p class="horizontal-padding">
-	Currently, keyboard and mouse input are implemented. Gamepad/controller input is in the TODO list and I intend to work on this very soon.
+	TGL can handle keyboard, mouse and gamepad/controller input, with some limitations. Not all keyboard scancodes are mapped so certain keystrokes cannot be detected by the system. Mouse pointer coordinates are always absolute starting from the top-left corner of the window, i.e. x0 y0 being the top-left corner, all the way to x159 y143 at the bottom-right corner. As for the gamepad/controller, multiple controllers are supported. The only controller buttons currently detected by the system are the following: the 4 d-pad directional buttons (right, left, up, down), A, B, X, Y, left and right shoulder buttons (trigger L is considered the same as shoulder L, and trigger R is considered the same as shoulder R), start and select (the "select" button in TGL means the "back" button on the standard Xbox controller). Apart from these controller buttons, the system also detects the position of the left stick and interprets it as the same as if the directional pad buttons are being pressed. The right stick and both stick buttons are currently not detectable.
 </p>
 
 <b>Collision Detection</b>

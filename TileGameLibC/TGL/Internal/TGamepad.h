@@ -16,6 +16,9 @@ namespace TGL_Internal
 		int CountAvailable();
 		int CountOpen();
 		bool Open(int gamepadNumber = 0);
+		int OpenAllAvailable();
+		void CloseAll();
+
 		int GetAxis(int gamepadNumber, SDL_GameControllerAxis axis);
 		int GetButton(int gamepadNumber, SDL_GameControllerButton button);
 		

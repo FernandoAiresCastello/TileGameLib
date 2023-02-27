@@ -759,17 +759,137 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> function()
+	<span class="apiref-type">int</span> gpad_count()
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns the total number of available controllers connected to the system.
 </p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-section-header">DATA</p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> function()
+	<span class="apiref-type">bool</span> gpad_connected(<span class="apiref-type">int</span> number)
+</p>
+<p class="apiref-entry">
+	Returns whether the specified controller is connected and available. Controllers are numbered starting from 0.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> gpad_redetect()
+</p>
+<p class="apiref-entry">
+	Redetects and try to reopen all available controllers connected to the system. Note that all available controllers are automatically detected as soon as the TGL singleton is created. This function is useful to detect any new controllers that have been attached after the application started, or to redetect controllers that were initially attached but for some reason got disconnected after the application started.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> gpad(<span class="apiref-type">int</span> number)
+</p>
+<p class="apiref-entry">
+	Selects the controller with the specified number, starting from 0. All other "gpad_" functions will subsequently refer to the controller that has been selected. If this function is never called at runtime, then the controller number 0 is considered to be the one selected for all other "gpad_" functions. Returns true if the controller selected is connected, returns false otherwise.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_right()
+</p>
+<p class="apiref-entry">
+	Returns whether the RIGHT button on the directional pad is pressed, or whether the left stick is held to the RIGHT.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_left()
+</p>
+<p class="apiref-entry">
+	Returns whether the LEFT button on the directional pad is pressed, or whether the left stick is held to the LEFT.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_down()
+</p>
+<p class="apiref-entry">
+	Returns whether the DOWN button on the directional pad is pressed, or whether the left stick is held DOWNWARDS.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_up()
+</p>
+<p class="apiref-entry">
+	Returns whether the UP button on the directional pad is pressed, or whether the left stick is held all the way UPWARDS.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_a()
+</p>
+<p class="apiref-entry">
+	Returns whether the A button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_b()
+</p>
+<p class="apiref-entry">
+	Returns whether the B button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_x()
+</p>
+<p class="apiref-entry">
+	Returns whether the X button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_y()
+</p>
+<p class="apiref-entry">
+	Returns whether the Y button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_r()
+</p>
+<p class="apiref-entry">
+	Returns whether the R button or R trigger is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_l()
+</p>
+<p class="apiref-entry">
+	Returns whether the L button or L trigger is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_start()
+</p>
+<p class="apiref-entry">
+	Returns whether the START button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_select()
+</p>
+<p class="apiref-entry">
+	Returns whether the SELECT button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header">FILESYSTEM</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> function()
 </p>
 <p class="apiref-entry">
 	Under construction...

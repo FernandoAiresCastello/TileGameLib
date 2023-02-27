@@ -185,4 +185,24 @@ struct TGL
 	bool kb_f10();
 	bool kb_f11();
 	bool kb_f12();
+
+	//=========================================================================
+	//		INPUT > GAMEPAD
+	//=========================================================================
+	void gpad_redetect();
+	int gpad_count();
+	bool gpad_connected(int number);
+	bool gpad(int number);
+	bool gpad_right();
+	bool gpad_left();
+	bool gpad_down();
+	bool gpad_up();
+	bool gpad_a();
+	bool gpad_b();
+	bool gpad_x();
+	bool gpad_y();
+	bool gpad_l();
+	bool gpad_r();
+	bool gpad_start();
+	bool gpad_select();
 };

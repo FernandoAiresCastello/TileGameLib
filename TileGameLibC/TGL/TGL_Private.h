@@ -54,6 +54,7 @@ private:
 	TSound* snd = nullptr;
 	bool is_running;
 	string title;
+	int frame_counter;
 	rgb wnd_back_color;
 	unordered_map<string, string> tile_patterns;
 	unordered_map<string, t_tileseq> tiles;
@@ -61,6 +62,7 @@ private:
 	unordered_map<string, t_viewport> views;
 	t_viewport* cur_view = nullptr;
 	unordered_map<string, t_timer> timers;
+	TGamepad gamepad;
 
 	void process_default_events(SDL_Event* e);
 	void create_window(rgb back_color, int size_factor);
@@ -77,6 +79,8 @@ private:
 	void draw(string& tile_id);
 	void print(string& str);
 	void advance_timers();
+	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();
+	void debug_frame();
 };

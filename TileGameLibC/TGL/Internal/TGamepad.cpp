@@ -13,11 +13,7 @@ namespace TGL_Internal
 
 	TGamepad::~TGamepad()
 	{
-		for (auto& gpad : Gamepads) {
-			SDL_GameControllerClose(gpad);
-			gpad = nullptr;
-		}
-		Gamepads.clear();
+		CloseAll();
 	}
 
 	int TGamepad::CountAvailable()
@@ -43,6 +39,27 @@ namespace TGL_Internal
 			return false;
 		}
 		return true;
+	}
+
+	int TGamepad::OpenAllAvailable()
+	{
+		CloseAll();
+
+		for (int i = 0; i < CountAvailable(); i++) {
+			Open(i);
+		}
+		return CountOpen();
+	}
+
+	void TGamepad::CloseAll()
+	{
+		for (auto& gpad : Gamepads) {
+			if (SDL_GameControllerGetAttached(gpad)) {
+				SDL_GameControllerClose(gpad);
+			}
+			gpad = nullptr;
+		}
+		Gamepads.clear();
 	}
 
 	int TGamepad::GetAxis(int gamepadNumber, SDL_GameControllerAxis axis)

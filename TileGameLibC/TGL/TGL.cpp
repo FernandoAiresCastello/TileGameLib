@@ -493,18 +493,20 @@ bool TGL::kb_f12()
 
 TGL_Private::TGL_Private(TGL* tgl_public)
 {
-	is_running = false;
 	SDL_Init(SDL_INIT_EVERYTHING);
-	title = "";
+	Util::Randomize();
 
+	is_running = false;
+	title = "";
+	
 	snd = new TSound();
 	snd->SetVolume(150);
-
+	
 	text_shadow.enabled = false;
 	text_shadow.color = 0x000000;
-
-	Util::Randomize();
+	
 	init_default_font();
+	gamepad.OpenAllAvailable();
 
 	this->tgl_public = tgl_public;
 }
@@ -542,11 +544,14 @@ void TGL_Private::create_window(rgb back_color, int size_factor)
 	wnd->SetTitle(title);
 	wnd->Show();
 
+	frame_counter = 0;
 	is_running = true;
 }
 void TGL_Private::update()
 {
 	wnd->Update();
+	frame_counter++;
+	debug_frame();
 }
 void TGL_Private::clip(int x1, int y1, int x2, int y2)
 {
@@ -666,9 +671,85 @@ void TGL_Private::advance_timers()
 		}
 	}
 }
+bool TGL_Private::is_valid_gpad_selected()
+{
+	return gamepad.Number >= 0 && gamepad.Number < gamepad.CountOpen();
+}
 void TGL_Private::font(char ch, string pattern)
 {
 	font_patterns[ch] = pattern;
+}
+void TGL::gpad_redetect()
+{
+	tgl->gamepad.OpenAllAvailable();
+}
+int TGL::gpad_count()
+{
+	return tgl->gamepad.CountOpen();
+}
+bool TGL::gpad_connected(int number)
+{
+	return number >= 0 && number < tgl->gamepad.CountOpen();
+}
+bool TGL::gpad(int number)
+{
+	if (number >= 0 && number < tgl->gamepad.CountOpen()) {
+		tgl->gamepad.Number = number;
+		return true;
+	}
+	return false;
+}
+bool TGL::gpad_right()
+{
+	return tgl->is_valid_gpad_selected() ? 
+		tgl->gamepad.Right() || tgl->gamepad.AxisLX() == SDL_JOYSTICK_AXIS_MAX : false;
+}
+bool TGL::gpad_left()
+{
+	return tgl->is_valid_gpad_selected() ? 
+		tgl->gamepad.Left() || tgl->gamepad.AxisLX() == SDL_JOYSTICK_AXIS_MIN : false;
+}
+bool TGL::gpad_down()
+{
+	return tgl->is_valid_gpad_selected() ? 
+		tgl->gamepad.Down() || tgl->gamepad.AxisLY() == SDL_JOYSTICK_AXIS_MAX : false;
+}
+bool TGL::gpad_up()
+{
+	return tgl->is_valid_gpad_selected() ? 
+		tgl->gamepad.Up() || tgl->gamepad.AxisLY() == SDL_JOYSTICK_AXIS_MIN : false;
+}
+bool TGL::gpad_a()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.A() : false;
+}
+bool TGL::gpad_b()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.B() : false;
+}
+bool TGL::gpad_x()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.X() : false;
+}
+bool TGL::gpad_y()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.Y() : false;
+}
+bool TGL::gpad_l()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.L() || tgl->gamepad.AxisLT() : false;
+}
+bool TGL::gpad_r()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.R() || tgl->gamepad.AxisRT() : false;
+}
+bool TGL::gpad_start()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.Start() : false;
+}
+bool TGL::gpad_select()
+{
+	return tgl->is_valid_gpad_selected() ? tgl->gamepad.Select() : false;
 }
 void TGL_Private::init_default_font()
 {
@@ -767,4 +848,11 @@ void TGL_Private::init_default_font()
 	font(124, "0001100000011000000110000001100000011000000110000001100000011000"); // 124 |
 	font(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 	font(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
+}
+void TGL_Private::debug_frame()
+{
+	wnd->SetTitle(String::Format(
+		"LX: %i | LY: %i", 
+		gamepad.AxisLX(),
+		gamepad.AxisLY()));
 }
