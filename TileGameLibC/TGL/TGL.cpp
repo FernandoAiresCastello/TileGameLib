@@ -5,6 +5,7 @@ using namespace CppUtils;
 #include "Internal/TGamepad.h"
 #include "Internal/TKey.h"
 #include "Internal/TSound.h"
+#include "Internal/TSoundFiles.h"
 using namespace TGL_Internal;
 
 #include "TGL.h"
@@ -315,26 +316,38 @@ string TGL::fmt(const char* str, ...)
 
 	return output;
 }
-void TGL::volume(int vol)
+void TGL::play_volume(int vol)
 {
-	tgl->snd->SetVolume(vol);
+	tgl->snd_notes->SetVolume(vol);
 }
-void TGL::play(string notes)
+void TGL::play_notes(string notes)
 {
-	tgl->snd->PlaySubSound(notes);
+	tgl->snd_notes->PlaySubSound(notes);
 }
-void TGL::play_loop(string notes)
+void TGL::play_notes_loop(string notes)
 {
-	tgl->snd->PlayMainSound(notes);
+	tgl->snd_notes->PlayMainSound(notes);
 }
-void TGL::play_stop()
+void TGL::play_notes_stop()
 {
-	tgl->snd->StopMainSound();
-	tgl->snd->StopSubSound();
+	tgl->snd_notes->StopMainSound();
+	tgl->snd_notes->StopSubSound();
 }
-void TGL::sound(float freq, int len)
+void TGL::beep(float freq, int len)
 {
-	tgl->snd->Beep(freq, len);
+	tgl->snd_notes->Beep(freq, len);
+}
+void TGL::sound_file(string sound_id, string file)
+{
+	tgl->snd_files->Load(sound_id, file);
+}
+void TGL::sound(string sound_id)
+{
+	tgl->snd_files->Play(sound_id, true);
+}
+void TGL::sound_await(string sound_id)
+{
+	tgl->snd_files->Play(sound_id, false);
 }
 void TGL::screenshot(string path)
 {
@@ -561,8 +574,9 @@ TGL_Private::TGL_Private(TGL* tgl_public)
 	is_running = false;
 	title = "";
 	
-	snd = new TSound();
-	snd->SetVolume(150);
+	snd_notes = new TSound();
+	snd_notes->SetVolume(150);
+	snd_files = new TSoundFiles();
 	
 	text_shadow.enabled = false;
 	text_shadow.color = 0x000000;
@@ -576,8 +590,10 @@ TGL_Private::~TGL_Private()
 {
 	delete wnd;
 	wnd = nullptr;
-	delete snd;
-	snd = nullptr;
+	delete snd_notes;
+	snd_notes = nullptr;
+	delete snd_files;
+	snd_files = nullptr;
 }
 void TGL_Private::process_default_events(SDL_Event* e)
 {

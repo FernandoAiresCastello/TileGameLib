@@ -168,6 +168,9 @@
     <ClInclude Include="..\CppUtils\CppUtils.h">
       <Filter>CppUtils</Filter>
     </ClInclude>
+    <ClInclude Include="Internal\TSoundFiles.h">
+      <Filter>Internal\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Experimental\TileGameBoy\TGBSprite.cpp">
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppUtil.cpp">
       <Filter>CppUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\TSoundFiles.cpp">
+      <Filter>Internal\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

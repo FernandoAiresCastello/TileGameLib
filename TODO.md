@@ -10,7 +10,6 @@ The items in this list are not in any particular order.
 
 **SOUND:**
 
-- Implement loading and playback of audio from external files
 - Improve square-wave sound synthesis
 - Change sound synthesis to be able to generate the same kinds of sounds 
 that the GameBoy Color is capable of

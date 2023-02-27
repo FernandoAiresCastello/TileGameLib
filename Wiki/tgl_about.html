@@ -103,7 +103,7 @@
 
 <b>Sound</b>
 <p class="horizontal-padding">
-	The sound system currently works with very rudimentary (and probably buggy) single-channel square-wave sound synthesis only, since I have limited knowledge of audio programming. TGL implements a simplified version of MML (Music Macro Language), and only plays one note sequence at a time, meaning whenever a call to play a sound is made, any currently playing sound simply stops to allow for the new one to play. All sound generation is asynchronous, meaning the program execution does not pause to wait for any sounds to finish playing. The ultimate goal is to replace this sound system with one that is able to generate the same sounds as the GBC. This is where help is most needed and appreciated.
+	TGL has 2 independent sound systems. One is for playing musical notes using a simplified version of MML (Music Macro Language). The other is for loading and playing sound files in the WAV format. It is possible to play musical notes at the same time that a sound file is playing in the background. Playing notes is currently implemented with very rudimentary (and probably buggy) single-channel square-wave sound synthesis only, since I have limited knowledge of audio programming. The system only plays one note sequence at a time, meaning whenever a call to play a sound is made, any currently playing sound simply stops to allow for the new one to play. All sound generation is asynchronous, meaning the program execution does not pause to wait for any sounds to finish playing. The ultimate goal is to replace this sound system with one that is able to generate the same sounds as the GBC.
 </p>
 
 <b>User Input</b>

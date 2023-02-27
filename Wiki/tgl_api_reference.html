@@ -401,15 +401,15 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> volume(<span class="apiref-type">int</span> vol)
+	<span class="apiref-type">void</span> play_volume(<span class="apiref-type">int</span> vol)
 </p>
 <p class="apiref-entry">
-	Sets the volume for all sound functions.
+	Sets the volume of the notes for the "play_" functions. This will not affect the volume of any sound files that have been loaded.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> play(<span class="apiref-type">string</span> notes)
+	<span class="apiref-type">void</span> play_notes(<span class="apiref-type">string</span> notes)
 </p>
 <p class="apiref-entry">
 	Plays asynchronously, only once, the sound notes using a simplified version of MML (Music Macro Language), where the characters C, D, E, F, G, A and B stand for different sound frequencies, like a piano. The character O followed by a number specifies the octave for all subsequent notes. The character L followed by a number specifies the length of all subsequent notes. The P character causes a short pause in the sound stream. All sounds are currently generated from square waves and there is only a single audio channel. Only a single sound stream can be playing at any one moment. If any "play_" function is called while the system is playing any other sound, the current sound simply stops and the new music is played.
@@ -417,7 +417,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> play_loop(<span class="apiref-type">string</span> notes)
+	<span class="apiref-type">void</span> play_notes_loop(<span class="apiref-type">string</span> notes)
 </p>
 <p class="apiref-entry">
 	Almost the same as the play() function, except that after playing the specified notes once, it repeats the exact same notes on a loop indefinitely, until the play_stop() function is called or another sound gets played and replaces the looped music.
@@ -425,18 +425,42 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> play_stop()
+	<span class="apiref-type">void</span> play_notes_stop()
 </p>
 <p class="apiref-entry">
-	Interrupts all sounds that are currently playing.
+	Interrupts all notes that are currently playing. This will not stop any sound files.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> sound(float freq, <span class="apiref-type">int</span> len)
+	<span class="apiref-type">void</span> beep(<span class="apiref-type">float </span> freq, <span class="apiref-type">int</span> len)
 </p>
 <p class="apiref-entry">
 	Plays a single note, basically generating a beeping sound, with the specified frequency and for the indicated length of time.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_file(<span class="apiref-type">string</span> sound_id, <span class="apiref-type">string</span> file)
+</p>
+<p class="apiref-entry">
+	Loads a sound file and stores it internally. The loaded sound can be subsequently referred to by the sound_id.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound(<span class="apiref-type">string</span> sound_id)
+</p>
+<p class="apiref-entry">
+	Plays a sound file that was previously loaded with the specified sound_id. The sound plays asynchronously.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_await(<span class="apiref-type">string</span> sound_id)
+</p>
+<p class="apiref-entry">
+	Almost the same as play_file(), but will play synchronously, i.e. program execution will stop while the sound is playing, and will resume once the sound has stopped.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">TIMERS</p>

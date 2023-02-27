@@ -48,6 +48,7 @@
     <ClInclude Include="Internal\TRegion.h" />
     <ClInclude Include="Internal\TRGBWindow.h" />
     <ClInclude Include="Internal\TSound.h" />
+    <ClInclude Include="Internal\TSoundFiles.h" />
     <ClInclude Include="Internal\TSprite.h" />
     <ClInclude Include="Internal\TSpriteList.h" />
     <ClInclude Include="Internal\TTile.h" />
@@ -87,6 +88,7 @@
     <ClCompile Include="Internal\TRegion.cpp" />
     <ClCompile Include="Internal\TRGBWindow.cpp" />
     <ClCompile Include="Internal\TSound.cpp" />
+    <ClCompile Include="Internal\TSoundFiles.cpp" />
     <ClCompile Include="Internal\TSprite.cpp" />
     <ClCompile Include="Internal\TSpriteList.cpp" />
     <ClCompile Include="Internal\TTile.cpp" />
@@ -186,6 +188,7 @@ copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\Releases\TGL\TGL.h"
     </PostBuildEvent>
     <Lib>
       <OutputFile>$(OutDir)TGL.lib</OutputFile>
+      <AdditionalDependencies>Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

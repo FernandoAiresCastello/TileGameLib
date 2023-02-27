@@ -118,11 +118,14 @@ struct TGL
 	//=========================================================================
 	//		SOUND
 	//=========================================================================
-	void volume(int vol);
-	void play(string notes);
-	void play_loop(string notes);
-	void play_stop();
-	void sound(float freq, int len);
+	void play_volume(int vol);
+	void play_notes(string notes);
+	void play_notes_loop(string notes);
+	void play_notes_stop();
+	void beep(float freq, int len);
+	void sound_file(string sound_id, string file);
+	void sound(string sound_id);
+	void sound_await(string sound_id);
 
 	//=========================================================================
 	//		TIMERS

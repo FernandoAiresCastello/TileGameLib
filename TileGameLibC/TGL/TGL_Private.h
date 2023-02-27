@@ -1,5 +1,7 @@
 #pragma once
 #include "TGL.h"
+#include "Internal/TSoundFiles.h"
+using namespace TGL_Internal;
 
 struct TGL_Private
 {
@@ -51,7 +53,8 @@ private:
 
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
-	TSound* snd = nullptr;
+	TSound* snd_notes = nullptr;
+	TSoundFiles* snd_files = nullptr;
 	bool is_running;
 	string title;
 	int frame_counter;
