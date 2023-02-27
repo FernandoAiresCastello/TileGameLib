@@ -7,6 +7,10 @@ The goal of this toolkit is to facilitate the development of standalone game app
 
 I (Fernando) am currently the sole developer in this project. Please check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the library somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤️
 
+**Download:**
+
+- [Click here to find the latest TileGameLib (TGL) build files](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+
 **Contact:**
 
 - If you'd like to join the project or if you have any questions or suggestions, please create a post in the official TGL subreddit here: [https://www.reddit.com/r/TileGameLib](https://www.reddit.com/r/TileGameLib)
@@ -14,7 +18,7 @@ I (Fernando) am currently the sole developer in this project. Please check out t
 **Demos:**
 
 - [Download the TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/Builds) to see examples of what the library is currently capable of (work in progress)
-- [Find the source code for TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/TGLDemo) to see the code samples.
+- [Find the source code for TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/TGLDemo) to see how the demos were made.
 
 **Docs:**
 
