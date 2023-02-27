@@ -201,6 +201,22 @@ ol li {
 .apiref-default-arg {
 	color: #999;
 }
+.apiref-index {
+	text-align: center;
+	width: 100%;
+	margin-top: 30px;
+}
+.apiref-index-tbl {
+	width: 50%;
+	margin: 0 auto;
+	text-align: left;
+}
+.apiref-index-tbl td {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	
+}
 /*=========================================================
 	SOURCE CODE BLOCKS
 =========================================================*/
