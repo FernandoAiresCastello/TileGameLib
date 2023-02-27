@@ -41,8 +41,7 @@ namespace CppUtils
 		}
 	}
 
-	std::vector<std::string> File::List(std::string directory, std::string pattern,
-		bool showFolders, bool showHidden)
+	std::vector<std::string> File::List(std::string directory, std::string pattern, bool showFolders, bool showHidden)
 	{
 		if (pattern.empty())
 			pattern = "*";
@@ -56,20 +55,42 @@ namespace CppUtils
 			do {
 				if ((data.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) && !showHidden)
 					continue;
-				if ((data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && showFolders) {
-					std::string dir = data.cFileName;
-					if (dir != ".")
-						files.push_back(dir + "/");
+				
+				std::string file = data.cFileName;
+				if (file == "." || file == "..")
+					continue;
+
+				if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+
+					if (showFolders) {
+						files.push_back(file + "/");
+					}
 				}
-				else
-					files.push_back(data.cFileName);
-			} while (FindNextFile(hFind, &data));
+				else {
+					files.push_back(file);
+				}
+			} 
+			while (FindNextFile(hFind, &data));
+
 			FindClose(hFind);
 		}
 
 		std::sort(files.begin(), files.end());
 
 		return files;
+	}
+
+	std::vector<std::string> File::ListFolders(std::string directory, bool showHidden)
+	{
+		std::vector<std::string> folders;
+
+		for (auto& entry : List(directory, "*", true, showHidden)) {
+			if (IsDirectory(entry)) {
+				folders.push_back(entry);
+			}
+		}
+
+		return folders;
 	}
 
 	bool File::IsDirectory(std::string file)
@@ -89,7 +110,7 @@ namespace CppUtils
 
 	bool File::IsRoot(std::string directory)
 	{
-		std::vector<std::string> files = File::List(directory, "*", true);
+		std::vector<std::string> files = File::List(directory, "*", true, true);
 		for (unsigned i = 0; i < files.size(); i++) {
 			if (files[i] == "../")
 				return false;

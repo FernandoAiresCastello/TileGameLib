@@ -260,6 +260,50 @@ bool TGL::collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 	return	(tile1_x >= tile2_x - TILE_SIZE) && (tile1_x <= tile2_x + TILE_SIZE) &&
 			(tile1_y >= tile2_y - TILE_SIZE) && (tile1_y <= tile2_y + TILE_SIZE);
 }
+bool TGL::file_exists(string path)
+{
+	return File::Exists(path);
+}
+bool TGL::folder_exists(string folder_path)
+{
+	return File::ExistsFolder(folder_path);
+}
+string TGL::file_cload(string path)
+{
+	return File::ReadText(path);
+}
+vector<string> TGL::file_lines(string path)
+{
+	return File::ReadLines(path, "\r\n");
+}
+vector<byte> TGL::file_bload(string path)
+{
+	return File::ReadBytes(path);
+}
+void TGL::file_csave(string path, string text)
+{
+	return File::WriteText(path, text);
+}
+void TGL::file_bsave(string path, vector<byte>& bytes)
+{
+	return File::WriteBytes(path, bytes);
+}
+vector<string> TGL::file_list(string folder_path)
+{
+	return File::List(folder_path, "*", false, false);
+}
+vector<string> TGL::folder_list(string folder_path)
+{
+	return File::ListFolders(folder_path, false);
+}
+void TGL::file_copy(string src_path, string dest_path)
+{
+	File::Duplicate(src_path, dest_path);
+}
+void TGL::file_delete(string path)
+{
+	File::Delete(path);
+}
 string TGL::fmt(const char* str, ...)
 {
 	char output[STRING_FMT_MAXBUFLEN] = { 0 };

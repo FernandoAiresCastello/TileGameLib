@@ -38,6 +38,14 @@
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">TYPES</p>
 <!---------------------------------------------------------------------------->
+<a name="byte"></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">typedef <span class="apiref-type">unsigned char</span> byte</span>
+</p>
+<p class="apiref-entry">
+	Represents a byte value (i.e. an integer number from 0 to 255).
+</p>
+<!---------------------------------------------------------------------------->
 <a name="rgb"></a>
 <p class="apiref-entry-title">
 	<span class="apiref-type">typedef <span class="apiref-type">int</span> rgb</span>
@@ -913,10 +921,90 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> function()
+	<span class="apiref-type">bool</span> file_exists(<span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
-	Under construction...
+	Returns whether the specified file exists.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> folder_exists(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns whether the specified folder exists.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> file_cload(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as text.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> file_lines(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as a list of text lines.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;byte&gt;</span> file_bload(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as a list of bytes.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_csave(<span class="apiref-type">string</span> path, <span class="apiref-type">string</span> text)
+</p>
+<p class="apiref-entry">
+	Writes all text into the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_bsave(<span class="apiref-type">string</span> path, <span class="apiref-type">vector&lt;byte&gt;&</span> bytes)
+</p>
+<p class="apiref-entry">
+	Writes all bytes into the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> file_list(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns a list of all files in the specified folder. Hidden files are not included.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> folder_list(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns a list of all subfolders in the specified folder. Hidden folders are not included.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_copy(<span class="apiref-type">string</span> src_path, <span class="apiref-type">string</span> dest_path)
+</p>
+<p class="apiref-entry">
+	Copies the file at src_path to a file at dest_path.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_delete(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Deletes the specified file.
 </p>
 <!---------------------------------------------------------------------------->
 

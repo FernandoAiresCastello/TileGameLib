@@ -36,6 +36,7 @@
 using namespace std;
 
 typedef int rgb;
+typedef unsigned char byte;
 
 struct TGL
 {
@@ -143,6 +144,21 @@ struct TGL
 	//		COLLISION DETECTION
 	//=========================================================================
 	bool collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y);
+
+	//=========================================================================
+	//		FILESYSTEM
+	//=========================================================================
+	bool file_exists(string path);
+	bool folder_exists(string folder_path);
+	string file_cload(string path);
+	vector<string> file_lines(string path);
+	vector<byte> file_bload(string path);
+	void file_csave(string path, string text);
+	void file_bsave(string path, vector<byte>& bytes);
+	vector<string> file_list(string folder_path);
+	vector<string> folder_list(string folder_path);
+	void file_copy(string src_path, string dest_path);
+	void file_delete(string path);
 
 	//=========================================================================
 	//		INPUT > MOUSE
