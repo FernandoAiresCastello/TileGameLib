@@ -15,11 +15,6 @@ I (Fernando) am currently the sole developer in this project. Please check out t
 
 - If you'd like to join the project or if you have any questions or suggestions, please create a post in the official TGL subreddit here: [https://www.reddit.com/r/TileGameLib](https://www.reddit.com/r/TileGameLib)
 
-**Demos:**
-
-- [Download the TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/Builds) to see examples of what the library is currently capable of (work in progress)
-- [Find the source code for TGLDemo.exe here](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLibC/TGLDemo) to see how the demos were made.
-
 **Docs:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
