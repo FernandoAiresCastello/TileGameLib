@@ -35,10 +35,6 @@ void demo_invaders()
 	tgl.title("TGL Invaders");
 	tgl.window();
 
-	auto files = tgl.file_list("C:\\Fernando\\Proj\\TileGameLib");
-	auto folders = tgl.folder_list("C:\\Fernando\\Proj\\TileGameLib");
-	auto text = tgl.file_lines("C:\\Fernando\\Proj\\TileGameLib\\.gitattributes");
-
 	init_tiles();
 	init_aliens();
 
