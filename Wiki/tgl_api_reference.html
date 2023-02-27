@@ -183,10 +183,34 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> fullscreen()
+</p>
+<p class="apiref-entry">
+	Returns true if the window is in fullscreen mode, or false if it's in windowed mode.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
 	<span class="apiref-type">void</span> screenshot(<span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
 	Takes a screenshot of the entire current frame image and saves it as a bitmap file (.bmp) in the specified path.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> window_width()
+</p>
+<p class="apiref-entry">
+	Returns the real width of the window. Unlike the "width" constant which represents the fixed frame image width, this is the width of the actual OS window itself, which may change depending on whether the window is in fullscreen or windowed mode.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> window_width()
+</p>
+<p class="apiref-entry">
+	Returns the real height of the window. Unlike the "height" constant which represents the fixed frame image height, this is the height of the actual OS window itself, which may change depending on whether the window is in fullscreen or windowed mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">GRAPHICS > VIEWS</p>
