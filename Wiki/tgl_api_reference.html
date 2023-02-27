@@ -783,7 +783,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> gpad(<span class="apiref-type">int</span> number)
+	<span class="apiref-type">bool</span> gpad(<span class="apiref-type">int</span> number)
 </p>
 <p class="apiref-entry">
 	Selects the controller with the specified number, starting from 0. All other "gpad_" functions will subsequently refer to the controller that has been selected. If this function is never called at runtime, then the controller number 0 is considered to be the one selected for all other "gpad_" functions. Returns true if the controller selected is connected, returns false otherwise.
@@ -818,7 +818,7 @@
 	<span class="apiref-type">bool</span> gpad_up()
 </p>
 <p class="apiref-entry">
-	Returns whether the UP button on the directional pad is pressed, or whether the left stick is held all the way UPWARDS.
+	Returns whether the UP button on the directional pad is pressed, or whether the left stick is held UPWARDS.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
@@ -882,7 +882,7 @@
 	<span class="apiref-type">bool</span> gpad_select()
 </p>
 <p class="apiref-entry">
-	Returns whether the SELECT button is pressed.
+	Returns whether the SELECT button is pressed. This would be the so-called "back" button to the left of the "start" button on a standard Xbox controller.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header">FILESYSTEM</p>
