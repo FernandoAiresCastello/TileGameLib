@@ -40,11 +40,11 @@
     <Filter Include="Internal\Global">
       <UniqueIdentifier>{90bcb99c-2274-41d1-9092-5d9755beed73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CppUtils">
-      <UniqueIdentifier>{f0052c7b-fd7f-4fef-ab44-43a784f7cde9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Docs">
       <UniqueIdentifier>{23a6c7db-82c4-477e-a821-9e23c1971985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Internal\CppUtils">
+      <UniqueIdentifier>{f0052c7b-fd7f-4fef-ab44-43a784f7cde9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,25 +148,25 @@
       <Filter>TGLAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppFile.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppGlobal.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppMsgBox.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppProperties.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppString.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppUtil.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppUtils.h">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClInclude>
     <ClInclude Include="Internal\TSoundFiles.h">
       <Filter>Internal\Audio</Filter>
@@ -267,19 +267,19 @@
       <Filter>TGLAPI</Filter>
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppFile.cpp">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppMsgBox.cpp">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppProperties.cpp">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppString.cpp">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\CppUtils\CppUtil.cpp">
-      <Filter>CppUtils</Filter>
+      <Filter>Internal\CppUtils</Filter>
     </ClCompile>
     <ClCompile Include="Internal\TSoundFiles.cpp">
       <Filter>Internal\Audio</Filter>

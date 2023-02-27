@@ -118,7 +118,7 @@ struct TGL
 	//=========================================================================
 	//		SOUND
 	//=========================================================================
-	void volume(int vol);
+	void play_volume(int vol);
 	void play_notes(string notes);
 	void play_notes_loop(string notes);
 	void play_notes_stop();

@@ -40,6 +40,8 @@ void demo_invaders()
 	init_aliens();
 	init_sounds();
 
+	tgl.sound("bgmusic");
+
 	tgl.timer_new("alien_move", 30, true);
 
 	tgl.view_new("main", 0, 0, tgl.width, 120, 0x000000, true);
@@ -86,7 +88,7 @@ void player_shoot()
 	if (player.missile.active) return;
 
 	//tgl.play_notes("l30cd");
-	tgl.sound("door1");
+	tgl.sound("player_missile");
 
 	player.missile.active = true;
 	player.missile.x = player.x;
@@ -132,7 +134,7 @@ void aliens_cycle()
 void alien_destroy(t_alien& alien)
 {
 	//tgl.play_notes("l30ba");
-	tgl.sound("door2");
+	tgl.sound("enemy_dead");
 
 	alien.alive = false;
 	player.missile.active = false;
@@ -151,8 +153,12 @@ void init_aliens()
 }
 void init_sounds()
 {
-	tgl.sound_file("door1", "C:/Fernando/Temp/Door1.wav");
-	tgl.sound_file("door2", "C:/Fernando/Temp/Door2.wav");
+	// MUSIC
+	tgl.sound_file("bgmusic", "Sound/bgmusic.wav");
+
+	// SFX
+	tgl.sound_file("player_missile", "Sound/player_missile.wav");
+	tgl.sound_file("enemy_dead", "Sound/enemy_dead.wav");
 }
 void init_tiles()
 {

@@ -13,13 +13,13 @@ namespace TGL_Internal
 
 		void Load(std::string id, std::string file);
 		void Play(std::string id, bool async);
+		bool Has(std::string id);
 		
 	private:
 		std::unordered_map<std::string, std::string> Files; // id -> file_path
 		unsigned int AvailableFileNumber = 0;
 
 		void CloseAll();
-		bool Exists(std::string id);
 		void ShowError(unsigned long error);
 	};
 };

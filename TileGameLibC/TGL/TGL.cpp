@@ -339,15 +339,27 @@ void TGL::beep(float freq, int len)
 }
 void TGL::sound_file(string sound_id, string file)
 {
-	tgl->snd_files->Load(sound_id, file);
+	if (File::Exists(file)) {
+		tgl->snd_files->Load(sound_id, file);
+	} else {
+		error("Sound file not found: " + file);
+	}
 }
 void TGL::sound(string sound_id)
 {
-	tgl->snd_files->Play(sound_id, true);
+	if (tgl->snd_files->Has(sound_id)) {
+		tgl->snd_files->Play(sound_id, true);
+	} else {
+		error("Sound not found with ID: " + sound_id);
+	}
 }
 void TGL::sound_await(string sound_id)
 {
-	tgl->snd_files->Play(sound_id, false);
+	if (tgl->snd_files->Has(sound_id)) {
+		tgl->snd_files->Play(sound_id, false);
+	} else {
+		error("Sound not found with ID: " + sound_id);
+	}
 }
 void TGL::screenshot(string path)
 {
