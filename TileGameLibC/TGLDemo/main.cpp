@@ -8,11 +8,11 @@ void demo_invaders();
 
 int main(int argc, char* args[])
 {
-	demo_helloworld();
+	//demo_helloworld();
 	//demo_basic();
 	//demo_font();
 	//demo_views();
-	//demo_invaders();
+	demo_invaders();
 
 	return 0;
 }

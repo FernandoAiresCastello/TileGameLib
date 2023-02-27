@@ -40,7 +40,7 @@
 <!---------------------------------------------------------------------------->
 <a name="rgb"></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">typedef int rgb</span>
+	<span class="apiref-type">typedef <span class="apiref-type">int</span> rgb</span>
 </p>
 <p class="apiref-entry">
 	Used for representing a color in 32-bit RGB format (i.e. from 0x000000 to 0xffffff).
@@ -193,18 +193,10 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> clear()
+	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2, <span class="apiref-type">rgb</span> back_color, <span class="apiref-type">bool</span> clear_bg)
 </p>
 <p class="apiref-entry">
-	Clears the contents of the current view, by filling the entire view region with that view's background color.
-</p>
-<!---------------------------------------------------------------------------->
-<a name=""></a>
-<p class="apiref-entry-title">
-	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2, rgb back_color, bool clear_bg)
-</p>
-<p class="apiref-entry">
-	Creates a new rectangular view with the specified view_id, with the top-left corner at the x1 and y1 coordinates and the bottom-right corner at the x2 and y2 coordinates.
+	Creates a new rectangular view with the specified view_id, with the top-left corner at the x1 and y1 coordinates and the bottom-right corner at the x2 and y2 coordinates. The background color of the view is specified in the back_color argument. If the clear_bg argument is true, the region within this view will be cleared to its background color everytime the view is drawn. If clear_bg is false, when the view is drawn the system does not clear the background pixels, which means subsequent tiles drawn on this view will be rendered over whatever was drawn before within that same region.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
@@ -221,6 +213,14 @@
 </p>
 <p class="apiref-entry">
 	Selects the specified view as the current view for drawing.
+</p>
+<!---------------------------------------------------------------------------->
+<a name=""></a>
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> clear()
+</p>
+<p class="apiref-entry">
+	Clears the contents of the current view, by filling the entire view region with that view's background color.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
@@ -259,15 +259,15 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_pat(string pattern_id, string pixels)
+	<span class="apiref-type">void</span> tile_pat(<span class="apiref-type">string</span> pattern_id, <span class="apiref-type">string</span> pixels)
 </p>
 <p class="apiref-entry">
-	Creates a new pixel pattern or redefine an existing pattern with the specified pattern_id, and assign a string of length 64 (8x8) containing the color indices for each pixel. Only the characters '0', '1', '2' or '3' are valid to represent the respective color indices.
+	Creates a new pixel pattern or redefine an existing pattern with the specified pattern_id, and assign a text of length 64 (8x8) containing the color indices for each pixel. Only the characters '0', '1', '2' or '3' are valid to represent the respective color indices.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_add(string tile_id, string pattern_id)
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> pattern_id)
 </p>
 <p class="apiref-entry">
 	Creates a new tile sequence with a single animation frame as indicated by the pattern_id, or modify an existing tile by adding a new animation frame as indicated by the pattern_id. The pattern_id should correspond to an existing tile pattern that was previously created by the tile_pat() function.
@@ -277,7 +277,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_single(rgb c1)
+	<span class="apiref-type">void</span> color_single(<span class="apiref-type">rgb</span> c1)
 </p>
 <p class="apiref-entry">
 	Enables the "single" color mode, which only sets the RGB value for the color index 1 of all subsequent tiles that are drawn. Useful for drawing text using the default font, since all default character tiles only contain the indices 0 and 1, with 0 being the transparency key, i.e. pixels with the index 0 will not be drawn in this mode.
@@ -285,7 +285,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_sprite(rgb c1, rgb c2, rgb c3)
+	<span class="apiref-type">void</span> color_sprite(<span class="apiref-type">rgb</span> c1, <span class="apiref-type">rgb</span> c2, <span class="apiref-type">rgb</span> c3)
 </p>
 <p class="apiref-entry">
 	Enables the "sprite" color mode, which sets the RGB values for the color indices 1, 2 and 3 of all subsequent tiles that are drawn, while pixels with the index 0 (i.e. the transparency key) will not be drawn.
@@ -293,7 +293,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_normal(rgb c0, rgb c1, rgb c2, rgb c3)
+	<span class="apiref-type">void</span> color_normal(<span class="apiref-type">rgb</span> c0, <span class="apiref-type">rgb</span> c1, <span class="apiref-type">rgb</span> c2, <span class="apiref-type">rgb</span> c3)
 </p>
 <p class="apiref-entry">
 	Enables the "normal" color mode, which sets the RGB values for the color indices 0, 1, 2 and 3 of all subsequent tiles that are drawn. Using this function disables the transparency key, i.e. in this mode all pixels will be drawn, including the ones with index 0.
@@ -303,7 +303,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> draw_free(string tile_id, int x, int y)
+	<span class="apiref-type">void</span> draw_free(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
 </p>
 <p class="apiref-entry">
 	Draws into the current view the 8x8 pixel pattern of the current animation frame of the tile sequence indicated by tile_id, with the top-left corner of the tile at the specified absolute coordinates x and y, using the colors indicated by the latest call to one of the "color_" functions. Note that only pixels located within the current scroll position will be rendered.
@@ -311,7 +311,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> draw_tiled(string tile_id, int col, int row)</p>
+	<span class="apiref-type">void</span> draw_tiled(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)</p>
 <p class="apiref-entry">
 	Almost the same as the draw_free() function, except that instead of specifying the x and y coordinates, this function expects the numbers of a column and row within a virtual, invisible and infinitely large grid which divides the entire graphical system into 8x8 cells, and the tile is drawn neatly within that cell. This is basically a simple shortcut to draw tiles without them overlapping with one another, simulating the background tilemaps that were used on the GBC. As with the draw_free() function, only pixels located within the current scroll position will be rendered.</p>
 <!---------------------------------------------------------------------------->
@@ -319,7 +319,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> font(char ch, string pattern)
+	<span class="apiref-type">void</span> font(<span class="apiref-type">char</span> ch, <span class="apiref-type">string</span> pattern)
 </p>
 <p class="apiref-entry">
 	Sets the tile pattern for the specified character in the internal font tileset used for drawing text. Note that the font tileset is separate and independent from the regular tileset, but the tiles themselves are drawn in the exact same manner, i.e. all features and limitations of regular tiles also apply to font characters.
@@ -327,7 +327,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> font_shadow(bool shadow, rgb shadow_color = 0)
+	<span class="apiref-type">void</span> font_shadow(<span class="apiref-type">bool</span> shadow, <span class="apiref-type">rgb</span> shadow_color <span class="apiref-default-arg">= 0x000000</span>)
 </p>
 <p class="apiref-entry">
 	Enables or disables the font shadow, and optionally sets the RGB color of the font shadow if it's enabled. Enabling font shadow simply makes the "print_" functions draw the text with a "shadow" of the specified color underneath it to make reading easier.
@@ -351,15 +351,15 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> print_free(string str, int x, int y)
+	<span class="apiref-type">void</span> print_free(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
 </p>
 <p class="apiref-entry">
-	Draws the specified string with the top-left corner at the specified x and y coordinates.
+	Draws the specified text with the top-left corner at the specified x and y coordinates.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> print_tiled(string str, int col, int row)
+	<span class="apiref-type">void</span> print_tiled(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)
 </p>
 <p class="apiref-entry">
 	Like the print_free() function, this function also draws the specified string, but the first character is drawn within the cell at the specified column and row numbers in the same grid used by the draw_tiled() function, with subsequent tiles drawn within the cells at the adjacent columns to the right.
@@ -369,7 +369,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> volume(int vol)
+	<span class="apiref-type">void</span> volume(<span class="apiref-type">int</span> vol)
 </p>
 <p class="apiref-entry">
 	Sets the volume for all sound functions.
@@ -377,15 +377,15 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> play(string notes)
+	<span class="apiref-type">void</span> play(<span class="apiref-type">string</span> notes)
 </p>
 <p class="apiref-entry">
-	Plays asynchronously, only once, the sound notes in the specified string using a simplified version of MML (Music Macro Language), where the characters C, D, E, F, G, A and B stand for different sound frequencies, like a piano. The character O followed by a number specifies the octave for all subsequent notes. The character L followed by a number specifies the length of all subsequent notes. The P character causes a short pause in the sound stream. All sounds are currently generated from square waves and there is only a single audio channel. Only a single music string can be playing at any one moment. If any "play_" function is called while the system is playing any other sound, the current sound simply stops and the new music is played.
+	Plays asynchronously, only once, the sound notes using a simplified version of MML (Music Macro Language), where the characters C, D, E, F, G, A and B stand for different sound frequencies, like a piano. The character O followed by a number specifies the octave for all subsequent notes. The character L followed by a number specifies the length of all subsequent notes. The P character causes a short pause in the sound stream. All sounds are currently generated from square waves and there is only a single audio channel. Only a single sound stream can be playing at any one moment. If any "play_" function is called while the system is playing any other sound, the current sound simply stops and the new music is played.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> play_loop(string notes)
+	<span class="apiref-type">void</span> play_loop(<span class="apiref-type">string</span> notes)
 </p>
 <p class="apiref-entry">
 	Almost the same as the play() function, except that after playing the specified notes once, it repeats the exact same notes on a loop indefinitely, until the play_stop() function is called or another sound gets played and replaces the looped music.
@@ -401,7 +401,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> sound(float freq, int len)
+	<span class="apiref-type">void</span> sound(float freq, <span class="apiref-type">int</span> len)
 </p>
 <p class="apiref-entry">
 	Plays a single note, basically generating a beeping sound, with the specified frequency and for the indicated length of time.
@@ -411,7 +411,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> timer_new(string timer_id, int frames, bool loop)
+	<span class="apiref-type">void</span> timer_new(<span class="apiref-type">string</span> timer_id, <span class="apiref-type">int</span> frames, <span class="apiref-type">bool</span> loop)
 </p>
 <p class="apiref-entry">
 	Creates a new timer with the specified timer_id which will count from 0 to the specified number of frames, and then simply stop if the loop argument is false. If the loop argument is true, the timer will then restart from 0 and repeat indefinitely until it's manually stopped. The system() function is responsible for advancing all existing timers.
@@ -419,7 +419,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> timer(string timer_id)
+	<span class="apiref-type">bool</span> timer(<span class="apiref-type">string</span> timer_id)
 </p>
 <p class="apiref-entry">
 	Returns true if the specified timer has expired, i.e. if the required number of frames have elapsed since it started. Returns false if the timer is still going.
@@ -429,7 +429,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">string</span> fmt(const char* str, ...)
+	<span class="apiref-type">string</span> fmt(<span class="apiref-type">const char*</span> str, ...)
 </p>
 <p class="apiref-entry">
 	This is basically the TGL version of the standard C function sprintf(), except that the output is returned as a string instance, and the internal buffer for the output is limited to a maximum of 1024 characters.
@@ -439,7 +439,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">int</span> rnd(int min, int max)
+	<span class="apiref-type">int</span> rnd(<span class="apiref-type">int</span> min, <span class="apiref-type">int</span> max)
 </p>
 <p class="apiref-entry">
 	Returns a pseudo-random integer number betweem min and max, inclusive. For example, respectively passing 1 and 2 as arguments, will always yield either 1 or 2.
@@ -449,7 +449,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
+	<span class="apiref-type">bool</span> collision(<span class="apiref-type">int</span> tile1_x, <span class="apiref-type">int</span> tile1_y, <span class="apiref-type">int</span> tile2_x, <span class="apiref-type">int</span> tile2_y)
 </p>
 <p class="apiref-entry">
 	Performs a very basic collision check between any two tiles based on their x and y coordinates only. Note that the system does not internally keep track of the positions of any tile, which means it will simply check for two overlapping bounding boxes with a size of 8x8 pixels based on the coordinates specified. Returns true if a collision is detected or false otherwise.
@@ -459,7 +459,7 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> mouse(bool enabled)
+	<span class="apiref-type">void</span> mouse(<span class="apiref-type">bool</span> enabled)
 </p>
 <p class="apiref-entry">
 	Enables or disables the mouse pointer when it's over the application window. Note that even if the pointer is invisible, the mouse_x() and mouse_y() functions will still return the expected values.
@@ -485,10 +485,10 @@
 <!---------------------------------------------------------------------------->
 <a name=""></a>
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> kb_char(char ch)
+	<span class="apiref-type">bool</span> kb_char(<span class="apiref-type">char</span> ch)
 </p>
 <p class="apiref-entry">
-	Returns whether a key that would produce the specified character is currently pressed.
+	Returns whether a key that would produce the specified character is currently pressed. For example, passing either 'X' or 'x' as an argument will return true if the X key is pressed, regardless of the state of the CAPSLOCK key.
 </p>
 <!---------------------------------------------------------------------------->
 <a name=""></a>

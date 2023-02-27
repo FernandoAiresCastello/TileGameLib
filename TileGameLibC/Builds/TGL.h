@@ -105,7 +105,7 @@ struct TGL
 	//		GRAPHICS > TEXT RENDERING
 	//=========================================================================
 	void font(char ch, string pattern);
-	void font_shadow(bool shadow, rgb shadow_color = 0);
+	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
 	void font_reset();
 	void font_new();
 	void print_free(string str, int x, int y);
