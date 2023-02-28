@@ -9,14 +9,14 @@ I am currently the sole developer in this project. Please check out the document
 
 **Downloads:**
 
-- [TileGameLib (TGL) - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [TileGameLib (TGL) - Latest Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
+- [TileGameLib - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+- [TileGameLib - Latest Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
-- [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
-- [TileGameLib (TGL) - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLib/TGL/TGL.h)
-- [TileGameLib (TGL) - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
+- [TileGameLib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
+- [TileGameLib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLib/TGL/TGL.h)
+- [TileGameLib - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Subreddit:**
 
@@ -27,6 +27,8 @@ I am currently the sole developer in this project. Please check out the document
 - [TileGameLib (TGL)](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLib) is the C/C++ library. Under active development as of 2023.
 
 **Other projects included:**
+
+- [TGL Tile Paint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the same format used by TileGameLib.
 
 - [TileGameLibCS (TileGameLib.dll / Tile Game Maker)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE. Currently, this project is not being actively developed.
 
