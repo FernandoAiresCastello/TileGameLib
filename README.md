@@ -9,14 +9,14 @@ I am currently the sole developer in this project. Please check out the document
 
 **Downloads:**
 
-- [Latest TileGameLib (TGL) Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [Lastest TileGameLib (TGL) Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
+- [TileGameLib (TGL) - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+- [TileGameLib (TGL) - Latest Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
 - [TileGameLib (TGL) - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLibC/TGL/TGL.h)
-- [Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
+- [TileGameLib (TGL) - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Contact:**
 
