@@ -98,8 +98,7 @@ int main(int argc, char* argv[])
 {
 	TGL tgl;
 	
-	tgl.window(0x0000ff);
-	tgl.color_single(0xffff00);
+	tgl.window();
 	tgl.print_free("Hello World!", 35, 65);
 
 	return tgl.halt();
@@ -117,13 +116,10 @@ int main(int argc, char* argv[])
 		Inside the main function, the first line creates the TGL singleton. This initializes the internal state of the library. 
 	</li>
 	<li>
-		Next, the window() function opens the application window and sets its background color to blue.
+		Next, the window() function opens the application window. Note that the two optional arguments are not provided, which means the background color will be white and the size factor will be 5 (i.e. the defaults).
 	</li>
 	<li>
-		Next, the color_single() function enables the "single" color mode and sets the color of the index 1 for all subsequent tiles to yellow.
-	</li>
-	<li>
-		Next, the print_free() function draws the string "Hello World!" on the screen at the x and y coordinates of 35 and 65 respectively.
+		Next, the print_free() function draws the string "Hello World!" on the screen at the absolute x and y coordinates of 35 and 65 respectively. Note that since the color mode has not been defined using any of the "color_" functions, the text appears as black (i.e. the default).
 	</li>
 	<li>
 		Lastly, the halt() function stops execution of the program, but keeps the window open and refreshing automatically so that you can see the output. Closing the window will terminate the application.

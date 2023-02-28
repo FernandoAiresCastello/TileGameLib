@@ -168,9 +168,9 @@ struct TGL
 	//=========================================================================
 	void input_color(rgb foreground, rgb background);
 	void input_cursor(char ch);
-	string input_free(int x, int y, int length);
-	string input_tiled(int x, int y, int length);
-	bool input_cancelled();
+	string input_free(int length, int x, int y);
+	string input_tiled(int length, int col, int row);
+	bool input_confirmed();
 
 	//=========================================================================
 	//		INPUT > MOUSE

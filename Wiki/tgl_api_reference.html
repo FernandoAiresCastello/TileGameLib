@@ -53,18 +53,21 @@
 			<td><a href="#textdraw">Graphics > Text Drawing</a></td>
 		</tr>
 		<tr>
+			<td><a href="#textinput">Input > Text</a></td>
 			<td><a href="#mouse">Input > Mouse</a></td>
 			<td><a href="#keyboard">Input > Keyboard</a></td>
-			<td><a href="#gamepad">Input > Controller</a></td>
 		</tr>
 		<tr>
+			<td><a href="#gamepad">Input > Controller</a></td>
 			<td><a href="#sound">Sound</a></td>
 			<td><a href="#timers">Timers</a></td>
-			<td><a href="#strings">Strings</a></td>
 		</tr>
 		<tr>
+			<td><a href="#strings">Strings</a></td>
 			<td><a href="#math">Math</a></td>
 			<td><a href="#collision">Collision</a></td>
+		</tr>
+		<tr>
 			<td><a href="#filesystem">Filesystem</a></td>
 		</tr>
 	</table>
@@ -389,6 +392,44 @@
 	Like the print_free() function, this function also draws the specified string, but the first character is drawn within the cell at the specified column and row numbers in the same grid used by the draw_tiled() function, with subsequent tiles drawn within the cells at the adjacent columns to the right.
 </p>
 <!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="textinput">INPUT > TEXT</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> input_color(<span class="apiref-type">rgb</span> foreground, <span class="apiref-type">rgb</span> background)
+</p>
+<p class="apiref-entry">
+	Sets the foreground and background color of the text input field.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> input_cursor(<span class="apiref-type">char</span> ch)
+</p>
+<p class="apiref-entry">
+	Sets the cursor character of the text input field.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> input_free(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
+</p>
+<p class="apiref-entry">
+	Shows a text input field at the specified coordinates and waits for the user to type something, then returns the typed text. The input is confirmed when the user presses the ENTER key, and it is cancelled if the user presses the ESCAPE key.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> input_tiled(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)
+</p>
+<p class="apiref-entry">
+	Almost the same as input_free() except that the coordinates are not the absolute x and y but a column and row into the virtual tile grid.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> input_confirmed()
+</p>
+<p class="apiref-entry">
+	Returns true if the user confirmed the last input field that was shown, i.e. the ENTER key was pressed, or false if it was cancelled, i.e. the ESCAPE key was pressed.
+</p>
+
+<!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="mouse">INPUT > MOUSE</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -402,14 +443,14 @@
 	<span class="apiref-type">int</span> mouse_x()
 </p>
 <p class="apiref-entry">
-	Returns the absolute x coordinate of the mouse pointer within the window.
+	Returns the absolute x coordinate of the mouse pointer within the window. Note that currently, in fullscreen mode, the mouse coordinates expand to the entire screen rather than the frame image.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
 	<span class="apiref-type">int</span> mouse_y()
 </p>
 <p class="apiref-entry">
-	Returns the absolute y coordinate of the mouse pointer within the window.
+	Returns the absolute y coordinate of the mouse pointer within the window. Note that currently, in fullscreen mode, the mouse coordinates expand to the entire screen rather than the frame image.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="keyboard">INPUT > KEYBOARD</p>

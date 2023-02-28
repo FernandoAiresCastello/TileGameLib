@@ -93,6 +93,6 @@ private:
 	void font(char ch, string pattern);
 	void init_default_font();
 	void debug_frame();
-	string line_input(int x, int y, int length, bool tiled);
+	string line_input(int length, int x, int y, bool tiled);
 	char keycode_to_char(SDL_Keycode key);
 };

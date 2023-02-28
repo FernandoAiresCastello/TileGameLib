@@ -388,17 +388,17 @@ void TGL::input_cursor(char ch)
 {
 	tgl->text_input.cursor = ch;
 }
-string TGL::input_free(int x, int y, int length)
+string TGL::input_free(int length, int x, int y)
 {
-	return tgl->line_input(x, y, length, false);
+	return tgl->line_input(length, x, y, false);
 }
-string TGL::input_tiled(int x, int y, int length)
+string TGL::input_tiled(int length, int col, int row)
 {
-	return tgl->line_input(x, y, length, true);
+	return tgl->line_input(length, col, row, true);
 }
-bool TGL::input_cancelled()
+bool TGL::input_confirmed()
 {
-	return tgl->text_input.cancelled;
+	return !tgl->text_input.cancelled;
 }
 bool TGL::kb_char(char ch)
 {
@@ -957,10 +957,7 @@ void TGL_Private::init_default_font()
 	font(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 	font(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 }
-void TGL_Private::debug_frame()
-{
-}
-string TGL_Private::line_input(int x, int y, int length, bool tiled)
+string TGL_Private::line_input(int length, int x, int y, bool tiled)
 {
 	bool finished = false;
 	bool prev_text_shadow = text_shadow.enabled;
@@ -1082,4 +1079,7 @@ char TGL_Private::keycode_to_char(SDL_Keycode key)
 	if (key == SDLK_BACKSLASH) return shift ? '|' : '\\';
 
 	return 0;
+}
+void TGL_Private::debug_frame()
+{
 }
