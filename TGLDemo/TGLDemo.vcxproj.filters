@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="demo_basic.cpp" />
+    <ClCompile Include="demo_font.cpp" />
+    <ClCompile Include="demo_invaders.cpp" />
+    <ClCompile Include="demo_views.cpp" />
+    <ClCompile Include="demo_helloworld.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="demo_lineinput.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{b7bed91b-d3c1-41fe-8267-23b19dd57093}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TGLDemo.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
