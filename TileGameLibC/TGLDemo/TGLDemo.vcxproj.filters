@@ -7,6 +7,7 @@
     <ClCompile Include="demo_views.cpp" />
     <ClCompile Include="demo_helloworld.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="demo_lineinput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">

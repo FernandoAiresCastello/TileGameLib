@@ -164,6 +164,15 @@ struct TGL
 	void file_delete(string path);
 
 	//=========================================================================
+	//		INPUT > TEXT
+	//=========================================================================
+	void input_color(rgb foreground, rgb background);
+	void input_cursor(char ch);
+	string input_free(int x, int y, int length);
+	string input_tiled(int x, int y, int length);
+	bool input_cancelled();
+
+	//=========================================================================
 	//		INPUT > MOUSE
 	//=========================================================================
 	void mouse(bool enabled);

@@ -18,17 +18,24 @@ private:
 
 	struct {
 		rgb c0 = 0x000000;
-		rgb c1 = 0xffffff;
-		rgb c2 = 0xc0c0c0;
-		rgb c3 = 0x808080;
-		bool ignore_c0 = false;
+		rgb c1 = 0x000000;
+		rgb c2 = 0x000000;
+		rgb c3 = 0x000000;
+		bool ignore_c0 = true;
 		bool single_color_mode = false;
 	} palette;
 
 	struct {
-		bool enabled;
-		rgb color;
+		bool enabled = false;
+		rgb color = 0x000000;
 	} text_shadow;
+
+	struct {
+		rgb fgc = 0xffffff;
+		rgb bgc = 0x000000;
+		bool cancelled = false;
+		char cursor = '_';
+	} text_input;
 
 	struct t_tileseq {
 		vector<string> pattern_ids;
@@ -80,10 +87,12 @@ private:
 	void pos_free(int x, int y);
 	void pos_tiled(int x, int y);
 	void draw(string& tile_id);
-	void print(string& str);
+	void print(string str);
 	void advance_timers();
 	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();
 	void debug_frame();
+	string line_input(int x, int y, int length, bool tiled);
+	char keycode_to_char(SDL_Keycode key);
 };

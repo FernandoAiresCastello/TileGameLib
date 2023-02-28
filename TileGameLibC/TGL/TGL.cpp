@@ -20,7 +20,7 @@ using namespace TGL_Internal;
 
 TGL_Private* tgl = nullptr;
 
-TGL::TGL() : width(WND_RES_W), height(WND_RES_W), tilesize(TILE_SIZE),
+TGL::TGL() : width(WND_RES_W), height(WND_RES_H), tilesize(TILE_SIZE),
 			 cols(width / tilesize), rows(height / tilesize) 
 {
 	tgl = new TGL_Private(this);
@@ -379,6 +379,27 @@ int TGL::window_height()
 	SDL_GetWindowSize(tgl->wnd->GetSDLWindow(), &w, &h);
 	return h;
 }
+void TGL::input_color(rgb foreground, rgb background)
+{
+	tgl->text_input.fgc = foreground;
+	tgl->text_input.bgc = background;
+}
+void TGL::input_cursor(char ch)
+{
+	tgl->text_input.cursor = ch;
+}
+string TGL::input_free(int x, int y, int length)
+{
+	return tgl->line_input(x, y, length, false);
+}
+string TGL::input_tiled(int x, int y, int length)
+{
+	return tgl->line_input(x, y, length, true);
+}
+bool TGL::input_cancelled()
+{
+	return tgl->text_input.cancelled;
+}
 bool TGL::kb_char(char ch)
 {
 	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
@@ -590,9 +611,6 @@ TGL_Private::TGL_Private(TGL* tgl_public)
 	snd_notes->SetVolume(150);
 	snd_files = new TSoundFiles();
 	
-	text_shadow.enabled = false;
-	text_shadow.color = 0x000000;
-	
 	init_default_font();
 	gamepad.OpenAllAvailable();
 
@@ -728,7 +746,7 @@ void TGL_Private::draw(string& tile_id)
 
 	wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, x, y);
 }
-void TGL_Private::print(string& str)
+void TGL_Private::print(string str)
 {
 	int char_x = cur_view ? cursor.x - cur_view->scroll_x : cursor.x;
 	int char_y = cur_view ? cursor.y - cur_view->scroll_y : cursor.y;
@@ -941,4 +959,127 @@ void TGL_Private::init_default_font()
 }
 void TGL_Private::debug_frame()
 {
+}
+string TGL_Private::line_input(int x, int y, int length, bool tiled)
+{
+	bool finished = false;
+	bool prev_text_shadow = text_shadow.enabled;
+	bool prev_ignore_c0 = palette.ignore_c0;
+	bool prev_single_color = palette.single_color_mode;
+	rgb prev_c0 = palette.c0;
+	rgb prev_c1 = palette.c1;
+	
+	text_shadow.enabled = false;
+	palette.ignore_c0 = false;
+	palette.single_color_mode = false;
+	palette.c0 = text_input.bgc;
+	palette.c1 = text_input.fgc;
+	
+	text_input.cancelled = false;
+	string blanks = String::Repeat(' ', length + 1);
+	string text = "";
+
+	while (is_running && !finished) {
+		
+		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(blanks);
+		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(text + text_input.cursor);
+		update();
+
+		SDL_Event e = { 0 };
+		process_default_events(&e);
+
+		if (e.type == SDL_KEYDOWN) {
+			SDL_Keycode key = e.key.keysym.sym;
+			
+			// ENTER = Confirm
+			if (key == SDLK_RETURN && !TKey::Alt()) {
+				finished = true;
+			}
+			// ESC = Cancel
+			else if (key == SDLK_ESCAPE) {
+				text_input.cancelled = true;
+				finished = true;
+			}
+			// BACKSPACE = Erase last char
+			else if (key == SDLK_BACKSPACE) {
+				if (!text.empty()) {
+					text.pop_back();
+				}
+			}
+			// HOME = Clear
+			else if (key == SDLK_HOME) {
+				text = "";
+			}
+			// Any other typable character
+			else if (text.length() < length) {
+				char ch = keycode_to_char(key);
+				if (ch) text += ch;
+			}
+		}
+	}
+
+	text_shadow.enabled = prev_text_shadow;
+	palette.ignore_c0 = prev_ignore_c0;
+	palette.single_color_mode = prev_single_color;
+	palette.c0 = prev_c0;
+	palette.c1 = prev_c1;
+
+	return text;
+}
+char TGL_Private::keycode_to_char(SDL_Keycode key)
+{
+	bool shift = TKey::Shift();
+
+	if (key == SDLK_SPACE) return ' ';
+
+	else if (key >= SDLK_a && key <= SDLK_z) {
+		if (TKey::CapsLock() || shift) {
+			return toupper(key);
+		} else {
+			return tolower(key);
+		}
+	}
+	else if (key >= SDLK_0 && key <= SDLK_9) {
+		if (TKey::Shift()) {
+			if (key == SDLK_0) return ')';
+			if (key == SDLK_1) return '!';
+			if (key == SDLK_2) return '@';
+			if (key == SDLK_3) return '#';
+			if (key == SDLK_4) return '$';
+			if (key == SDLK_5) return '%';
+			if (key == SDLK_6) return '~';
+			if (key == SDLK_7) return '&';
+			if (key == SDLK_8) return '*';
+			if (key == SDLK_9) return '(';
+		} else {
+			return key;
+		}
+	}
+	else {
+		if (key == SDLK_KP_0) return '0';
+		if (key == SDLK_KP_1) return '1';
+		if (key == SDLK_KP_2) return '2';
+		if (key == SDLK_KP_3) return '3';
+		if (key == SDLK_KP_4) return '4';
+		if (key == SDLK_KP_5) return '5';
+		if (key == SDLK_KP_6) return '6';
+		if (key == SDLK_KP_7) return '7';
+		if (key == SDLK_KP_8) return '8';
+		if (key == SDLK_KP_9) return '9';
+	}
+
+	if (key == SDLK_QUOTE) return shift ? '\"' : '\'';
+	if (key == SDLK_MINUS || key == SDLK_KP_MINUS) return shift ? '_' : '-';
+	if (key == SDLK_EQUALS) return shift ? '+' : '=';
+	if (key == SDLK_PLUS || key == SDLK_KP_PLUS) return '+';
+	if (key == SDLK_ASTERISK || key == SDLK_KP_MULTIPLY) return '*';
+	if (key == SDLK_SLASH || key == SDLK_KP_DIVIDE) return shift ? '?' : '/';
+	if (key == SDLK_PERIOD || key == SDLK_KP_PERIOD) return shift ? '>' : '.';
+	if (key == SDLK_COMMA || key == SDLK_KP_COMMA) return shift ? '<' : ',';
+	if (key == SDLK_SEMICOLON) return shift ? ':' : ';';
+	if (key == SDLK_LEFTBRACKET) return shift ? '{' : '[';
+	if (key == SDLK_RIGHTBRACKET) return shift ? '}' : ']';
+	if (key == SDLK_BACKSLASH) return shift ? '|' : '\\';
+
+	return 0;
 }
