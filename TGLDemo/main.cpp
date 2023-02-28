@@ -14,9 +14,9 @@ int main(int argc, char* args[])
 	//demo_basic();
 	//demo_font();
 	//demo_views();
-	//demo_invaders();
+	demo_invaders();
 	//demo_lineinput();
-	demo_imageload();
+	//demo_imageload();
 
 	return 0;
 }

@@ -40,7 +40,7 @@ void demo_invaders()
 	init_aliens();
 	init_sounds();
 
-	tgl.sound("bgmusic");
+	//tgl.sound("bgmusic");
 
 	tgl.timer_new("alien_move", 30, true);
 
@@ -70,7 +70,6 @@ void draw_score()
 void handle_input()
 {
 	if (tgl.kb_char('R')) tgl.gpad_redetect();
-
 	if (tgl.kb_esc() || tgl.gpad_start()) tgl.exit();
 
 	if (tgl.kb_right() || tgl.gpad_right() || tgl.gpad_r()) player.x++;
@@ -87,7 +86,6 @@ void player_shoot()
 {
 	if (player.missile.active) return;
 
-	//tgl.play_notes("l30cd");
 	tgl.sound("player_missile");
 
 	player.missile.active = true;
@@ -133,7 +131,6 @@ void aliens_cycle()
 }
 void alien_destroy(t_alien& alien)
 {
-	//tgl.play_notes("l30ba");
 	tgl.sound("enemy_dead");
 
 	alien.alive = false;
@@ -163,24 +160,24 @@ void init_sounds()
 void init_tiles()
 {
 	// SPACESHIP
-	tgl.tile_pat("tp_spaceship_1f", "0001100000011000002112000121121011211211100110010033330000033000");
-	tgl.tile_pat("tp_spaceship_2f", "0001100000011000002112000121121011211211100110010003300000000000");
-	tgl.tile_add("spaceship", "tp_spaceship_1f");
-	tgl.tile_add("spaceship", "tp_spaceship_2f");
+	tgl.tile_file("spaceship_1", "Tiles/spaceship_1.bmp");
+	tgl.tile_file("spaceship_2", "Tiles/spaceship_2.bmp");
+	tgl.tile_add("spaceship", "spaceship_1");
+	tgl.tile_add("spaceship", "spaceship_2");
 	
 	// MISSILE
-	tgl.tile_pat("tp_missile_1f", "0001100000011000000110000001100000022000000220000003300000033000");
-	tgl.tile_add("missile", "tp_missile_1f");
+	tgl.tile_file("missile_1", "Tiles/player_missile.bmp");
+	tgl.tile_add("missile", "missile_1");
 
 	// ALIEN
-	tgl.tile_pat("tp_alien_1f", "0011100022222220131313102222222000111000010001000000000000000000");
-	tgl.tile_pat("tp_alien_2f", "0011100022222220313131302222222000111000001010000000000000000000");
-	tgl.tile_add("alien", "tp_alien_1f");
-	tgl.tile_add("alien", "tp_alien_2f");
+	tgl.tile_file("alien_1", "Tiles/alien_1.bmp");
+	tgl.tile_file("alien_2", "Tiles/alien_2.bmp");
+	tgl.tile_add("alien", "alien_1");
+	tgl.tile_add("alien", "alien_2");
 
 	// BLAST
-	tgl.tile_pat("tp_blast_1f", "0300003033300333032222300021120000211200032222303330033303000030");
-	tgl.tile_pat("tp_blast_2f", "0200002022200222021001200000000000000000021001202220022202000020");
-	tgl.tile_add("blast", "tp_blast_1f");
-	tgl.tile_add("blast", "tp_blast_2f");
+	tgl.tile_file("blast_1", "Tiles/blast_1.bmp");
+	tgl.tile_file("blast_2", "Tiles/blast_2.bmp");
+	tgl.tile_add("blast", "blast_1");
+	tgl.tile_add("blast", "blast_2");
 }
