@@ -15,7 +15,7 @@ I am currently the sole developer in this project. Please check out the document
 **Documentation:**
 
 - [TileGameLib (TGL) - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
-- [TileGameLib (TGL) - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLibC/TGL/TGL.h)
+- [TileGameLib (TGL) - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLib/TGL/TGL.h)
 - [TileGameLib (TGL) - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Subreddit:**
