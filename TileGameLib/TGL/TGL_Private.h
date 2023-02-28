@@ -95,4 +95,6 @@ private:
 	void debug_frame();
 	string line_input(int length, int x, int y, bool tiled);
 	char keycode_to_char(SDL_Keycode key);
+	bool is_shade_of_gray(TColor& color);
+	int get_gray_level(TColor& color);
 };

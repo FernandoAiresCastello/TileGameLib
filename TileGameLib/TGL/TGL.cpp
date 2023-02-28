@@ -6,6 +6,7 @@ using namespace CppUtils;
 #include "Internal/TKey.h"
 #include "Internal/TSound.h"
 #include "Internal/TSoundFiles.h"
+#include "Internal/TImage.h"
 using namespace TGL_Internal;
 
 #include "TGL.h"
@@ -125,6 +126,36 @@ void TGL::clear()
 }
 void TGL::tile_pat(string pattern_id, string pixels)
 {
+	tgl->tile_patterns[pattern_id] = pixels;
+}
+void TGL::tile_file(string pattern_id, string path)
+{
+	TImage img;
+	img.Load(path);
+	if (img.GetWidth() != tilesize || img.GetHeight() != tilesize) {
+		abort("Invalid tile pattern file: " + path);
+		return;
+	}
+
+	string pixels = "";
+
+	for (int i = 0; i < img.GetSize(); i++) {
+		TColor color = img.GetPixel(i);
+		int gray_level = tgl->get_gray_level(color);
+
+		if (gray_level == 255) pixels += '0';
+		else if (gray_level == 0) pixels += '1';
+		else if (gray_level == 127) pixels += '2';
+		else if (gray_level == 195) pixels += '3';
+		else {
+			abort(String::Format(
+				"Invalid color in tile pattern file\r\n\r\n"
+				"RGB: %i, %i, %i\r\nFile: %s",
+				color.R, color.G, color.B, path.c_str()));
+			return;
+		}
+	}
+
 	tgl->tile_patterns[pattern_id] = pixels;
 }
 void TGL::tile_add(string tile_id, string pattern_id)
@@ -730,15 +761,19 @@ void TGL_Private::pos_tiled(int x, int y)
 }
 void TGL_Private::draw(string& tile_id)
 {
-	if (!cur_view || !assert_tile_exists(tile_id)) return;
+	if (!assert_tile_exists(tile_id)) return;
 
 	t_tileseq& tile = tiles[tile_id];
 	string& pattern_id = tile.pattern_ids[wnd->GetFrame() % tile.pattern_ids.size()];
 	string& pixels = tile_patterns[pattern_id];
 
-	int x = cursor.x - cur_view->scroll_x;
-	int y = cursor.y - cur_view->scroll_y;
+	int x = cursor.x;
+	int y = cursor.y;
 
+	if (cur_view) {
+		x -= cur_view->scroll_x;
+		y -= cur_view->scroll_y;
+	}
 	if (wnd->HasClip()) {
 		x += wnd->GetClip().X1;
 		y += wnd->GetClip().Y1;
@@ -1079,6 +1114,17 @@ char TGL_Private::keycode_to_char(SDL_Keycode key)
 	if (key == SDLK_BACKSLASH) return shift ? '|' : '\\';
 
 	return 0;
+}
+bool TGL_Private::is_shade_of_gray(TColor& color)
+{
+	return color.R == color.G && color.G == color.B;
+}
+int TGL_Private::get_gray_level(TColor& color)
+{
+	if (is_shade_of_gray(color))
+		return color.R;
+	else
+		return -1;
 }
 void TGL_Private::debug_frame()
 {

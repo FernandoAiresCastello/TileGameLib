@@ -305,6 +305,19 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_file(<span class="apiref-type">string</span> pattern_id, <span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Imports a pixel pattern from a bitmap image file and assigns the specified pattern_id. Only bitmap images of size 8x8 and grayscale are supported. The colors in the bitmap image must be exactly one of the following RGB values, which will be converted to the corresponding color index in the tile pattern:
+</p>
+<ul class="apiref-list">
+	<li>Color index 0 = RGB 255,255,255</li>
+	<li>Color index 1 = RGB   0,  0,  0</li>
+	<li>Color index 2 = RGB 127,127,127</li>
+	<li>Color index 3 = RGB 195,195,195</li>
+</ul>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
 	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> pattern_id)
 </p>
 <p class="apiref-entry">

@@ -90,12 +90,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\TileGameLib\Releases\TGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.0.8\include;C:\Fernando\Proj\TileGameLib\TileGameLib\TGL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\TileGameLib\Releases\TGL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Lib\SDL2-2.0.8\lib\x86;C:\Fernando\Proj\TileGameLib\TileGameLib\Builds;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;TGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="demo_helloworld.cpp" />
+    <ClCompile Include="demo_imageload.cpp" />
     <ClCompile Include="demo_invaders.cpp" />
     <ClCompile Include="demo_lineinput.cpp" />
     <ClCompile Include="main.cpp" />

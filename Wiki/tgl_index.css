@@ -191,7 +191,7 @@ ol li {
 .apiref-entry {
 	margin: 0;
 }
-.apiref-section-header, .apiref-entry-title, .apiref-entry {
+.apiref-section-header, .apiref-entry-title, .apiref-entry, ul.apiref-list {
 	margin-left: 100px;
 	margin-right: 100px;
 }
