@@ -17,7 +17,6 @@ namespace TGL_Internal
 		
 	private:
 		std::unordered_map<std::string, std::string> Files; // id -> file_path
-		unsigned int AvailableFileNumber = 0;
 
 		void CloseAll();
 		void ShowError(unsigned long error);
