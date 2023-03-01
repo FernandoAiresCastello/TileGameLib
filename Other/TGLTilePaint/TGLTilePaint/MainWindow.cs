@@ -11,7 +11,7 @@ namespace TGLTilePaint
     public partial class MainWindow : Form
     {
         private TileEditPanel PnlTileEdit;
-        private string Title = "TGLTilePaint";
+        private string Title = "TGL Tile Paint";
         private string CurrentFile = "";
 
         public MainWindow()
@@ -516,6 +516,15 @@ namespace TGLTilePaint
             CurrentFile = "";
             Text = Title;
             ShowTempStatus("New tile created");
+        }
+
+        private void BtnAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("TGL Tile Paint\r\n\r\n" +
+                "(c) 2023 Developed by Fernando Aires Castello\r\n\r\n" +
+                "This tool is part of the TileGameLib (TGL) project:\r\n" +
+                "https://github.com/FernandoAiresCastello/TileGameLib",
+                "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

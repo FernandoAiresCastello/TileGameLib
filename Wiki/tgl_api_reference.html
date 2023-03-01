@@ -308,14 +308,17 @@
 	<span class="apiref-type">void</span> tile_file(<span class="apiref-type">string</span> pattern_id, <span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
-	Imports a pixel pattern from a bitmap image file and assigns the specified pattern_id. Only bitmap images of size 8x8 and grayscale are supported. The colors in the bitmap image must be exactly one of the following RGB values, which will be converted to the corresponding color index in the tile pattern:
+	Imports a TGL bitmap image from a file and assigns the specified pattern_id. A TGL bitmap image is just like a regular bitmap, but it must limited to size 8x8 and each pixel must be exactly one of the following RGB values, which will be converted to the corresponding color index in the tile pattern:
 </p>
 <ul class="apiref-list">
-	<li>Color index 0 = RGB 255,255,255</li>
-	<li>Color index 1 = RGB   0,  0,  0</li>
-	<li>Color index 2 = RGB 127,127,127</li>
-	<li>Color index 3 = RGB 195,195,195</li>
+	<li>Color index 0 = RGB 255,255,255 (0xffffff)</li>
+	<li>Color index 1 = RGB   0,  0,  0 (0x000000)</li>
+	<li>Color index 2 = RGB 127,127,127 (0x7f7f7f)</li>
+	<li>Color index 3 = RGB 195,195,195 (0xc3c3c3)</li>
 </ul>
+<p class="apiref-entry">
+	To create TGL bitmaps you can use any paint tool (such as MS Paint or Photoshop) as long as you save the image as a standard "24-bit color bitmap" of size 8x8 using only the colors mentioned above. Or alternatively you can use the tool "TGL Tile Paint" to draw, save and load TGL bitmap files easily.
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
 	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> pattern_id)

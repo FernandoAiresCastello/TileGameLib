@@ -72,6 +72,8 @@ namespace TGLTilePaint
             this.MenuBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -523,12 +525,28 @@ namespace TGLTilePaint
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.optionsToolStripMenuItem,
-            this.clipboardToolStripMenuItem});
+            this.clipboardToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(771, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnAbout});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // BtnAbout
+            // 
+            this.BtnAbout.Name = "BtnAbout";
+            this.BtnAbout.Size = new System.Drawing.Size(180, 22);
+            this.BtnAbout.Text = "About";
+            this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
             // MainWindow
             // 
@@ -600,6 +618,8 @@ namespace TGLTilePaint
         private System.Windows.Forms.ToolStripMenuItem BtnToggleMode;
         private System.Windows.Forms.ToolStripMenuItem BtnNew;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveAs;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BtnAbout;
     }
 }
 
