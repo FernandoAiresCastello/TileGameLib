@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -300,29 +301,7 @@ namespace TGLTilePaint
             Refresh();
         }
 
-        public Bitmap GetBitmapImageTGL()
-        {
-            Bitmap bitmap = new Bitmap(TileSize, TileSize);
-
-            for (int y = 0; y < TileSize; y++)
-            {
-                for (int x = 0; x < TileSize; x++)
-                {
-                    Color color = Color.FromArgb(0, 0, 0, 0);
-
-                    int colorIndex = Tile.GetPixel(x, y);
-                    if (colorIndex == 0) color = TGLColor0;
-                    else if (colorIndex == 1) color = TGLColor1;
-                    else if (colorIndex == 2) color = TGLColor2;
-                    else if (colorIndex == 3) color = TGLColor3;
-
-                    bitmap.SetPixel(x, y, color);
-                }
-            }
-            return bitmap;
-        }
-
-        public Bitmap GetBitmapImageRGB()
+        public Bitmap GetBitmapRGB()
         {
             Bitmap bitmap = new Bitmap(TileSize, TileSize);
 
@@ -337,6 +316,80 @@ namespace TGLTilePaint
                     else if (colorIndex == 1) color = Color1;
                     else if (colorIndex == 2) color = Color2;
                     else if (colorIndex == 3) color = Color3;
+
+                    bitmap.SetPixel(x, y, color);
+                }
+            }
+            return bitmap;
+        }
+
+        public List<Bitmap> GetBitmapsTGL()
+        {
+            List<Bitmap> bitmaps = new List<Bitmap>();
+
+            if (Is8x8())
+                bitmaps.Add(GetBitmapImageTGL8x8());
+            else if (Is16x16())
+                bitmaps.AddRange(GetBitmapImageTGL16x16());
+
+            return bitmaps;
+        }
+
+        private Bitmap GetBitmapImageTGL8x8()
+        {
+            return Get8x8BitmapFrom16x16(0, 0);
+        }
+
+        private Bitmap[] GetBitmapImageTGL16x16()
+        {
+            Bitmap[] bitmaps = new Bitmap[5];
+
+            bitmaps[0] = Get16x16Bitmap();
+            bitmaps[1] = Get8x8BitmapFrom16x16(0, 0);
+            bitmaps[2] = Get8x8BitmapFrom16x16(8, 0);
+            bitmaps[3] = Get8x8BitmapFrom16x16(0, 8);
+            bitmaps[4] = Get8x8BitmapFrom16x16(8, 8);
+
+            return bitmaps;
+        }
+
+        private Bitmap Get8x8BitmapFrom16x16(int ix, int iy)
+        {
+            Bitmap bitmap = new Bitmap(8, 8);
+
+            for (int y = 0; y < 8; y++)
+            {
+                for (int x = 0; x < 8; x++)
+                {
+                    Color color = Color.FromArgb(0, 0, 0, 0);
+
+                    int colorIndex = Tile.GetPixel(ix + x, iy + y);
+                    if (colorIndex == 0) color = TGLColor0;
+                    else if (colorIndex == 1) color = TGLColor1;
+                    else if (colorIndex == 2) color = TGLColor2;
+                    else if (colorIndex == 3) color = TGLColor3;
+
+                    bitmap.SetPixel(x, y, color);
+                }
+            }
+            return bitmap;
+        }
+
+        private Bitmap Get16x16Bitmap()
+        {
+            Bitmap bitmap = new Bitmap(TileSize, TileSize);
+
+            for (int y = 0; y < TileSize; y++)
+            {
+                for (int x = 0; x < TileSize; x++)
+                {
+                    Color color = Color.FromArgb(0, 0, 0, 0);
+
+                    int colorIndex = Tile.GetPixel(x, y);
+                    if (colorIndex == 0) color = TGLColor0;
+                    else if (colorIndex == 1) color = TGLColor1;
+                    else if (colorIndex == 2) color = TGLColor2;
+                    else if (colorIndex == 3) color = TGLColor3;
 
                     bitmap.SetPixel(x, y, color);
                 }

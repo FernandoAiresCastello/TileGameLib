@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
 
 namespace TGLTilePaint
 {
@@ -48,6 +49,17 @@ namespace TGLTilePaint
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             LoadBitmap(files[0]);
+
+            if (PnlTileEdit.Is8x8())
+            {
+                BtnCopy8x8.Text = "Copy 8x8";
+                MenuBtnCopy.Text = BtnCopy8x8.Text;
+            }
+            else
+            {
+                BtnCopy8x8.Text = "Copy 4x 8x8";
+                MenuBtnCopy.Text = BtnCopy8x8.Text;
+            }
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -369,26 +381,23 @@ namespace TGLTilePaint
 
         private void BtnSaveBmp_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = PnlTileEdit.GetBitmapImageTGL();
-            ShowSaveImageDialog(bitmap, "Save TGL bitmap file", false);
-            bitmap.Dispose();
+            List<Bitmap> bitmaps = PnlTileEdit.GetBitmapsTGL();
+            ShowSaveImageDialog(bitmaps, "Save TGL bitmap file", false);
+
+            foreach (Bitmap bitmap in bitmaps)
+                bitmap.Dispose();
         }
 
         private void BtnSaveAs_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = PnlTileEdit.GetBitmapImageTGL();
-            ShowSaveImageDialog(bitmap, "Save TGL bitmap file", true);
-            bitmap.Dispose();
+            List<Bitmap> bitmaps = PnlTileEdit.GetBitmapsTGL();
+            ShowSaveImageDialog(bitmaps, "Save TGL bitmap file", true);
+
+            foreach (Bitmap bitmap in bitmaps)
+                bitmap.Dispose();
         }
 
-        private void BtnExportBmp_Click(object sender, EventArgs e)
-        {
-            Bitmap bitmap = PnlTileEdit.GetBitmapImageRGB();
-            ShowSaveImageDialog(bitmap, "Export RGB bitmap file", false);
-            bitmap.Dispose();
-        }
-
-        private bool ShowSaveImageDialog(Bitmap image, string title, bool saveAs)
+        private bool ShowSaveImageDialog(List<Bitmap> bitmaps, string title, bool saveAs)
         {
             if (CurrentFile == "" || saveAs)
             {
@@ -402,19 +411,40 @@ namespace TGLTilePaint
                     if (!file.ToLower().EndsWith(".bmp"))
                         file += ".bmp";
 
-                    image.Save(file, System.Drawing.Imaging.ImageFormat.Bmp);
+                    SaveBitmaps(bitmaps, file);
                     OnFileSaved(file);
                     return true;
                 }
             }
             else
             {
-                image.Save(CurrentFile, System.Drawing.Imaging.ImageFormat.Bmp);
+                SaveBitmaps(bitmaps, CurrentFile);
                 OnFileSaved(CurrentFile);
                 return true;
             }
 
             return false;
+        }
+
+        private void SaveBitmaps(List<Bitmap> bitmaps, string filenameBase)
+        {
+            int number = 0;
+            bool multiple = bitmaps.Count > 1;
+
+            foreach (Bitmap bitmap in bitmaps)
+            {
+                string file = Path.Combine(
+                    Path.GetDirectoryName(filenameBase), 
+                    Path.GetFileNameWithoutExtension(filenameBase));
+
+                if (multiple)
+                {
+                    file += "_" + number;
+                    number++;
+                }
+
+                bitmap.Save(file + ".bmp", System.Drawing.Imaging.ImageFormat.Bmp);
+            }
         }
 
         private void BtnPermutate_Click(object sender, EventArgs e)

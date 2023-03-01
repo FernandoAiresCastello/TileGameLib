@@ -31,9 +31,14 @@ namespace TGLTilePaint
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TileEditPanelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BtnResetPal = new System.Windows.Forms.Button();
+            this.BtnPermutate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.BtnPaste = new System.Windows.Forms.Button();
             this.BtnCopy8x8 = new System.Windows.Forms.Button();
             this.TxtColor3 = new System.Windows.Forms.TextBox();
@@ -48,32 +53,25 @@ namespace TGLTilePaint
             this.Btn2 = new System.Windows.Forms.Button();
             this.Btn1 = new System.Windows.Forms.Button();
             this.Btn0 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnLoadBmp = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSaveBmp = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnExit = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnTileSize8x8 = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnTileSize16x16 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BtnToggleMode = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnTogglePixelCodes = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnToggleMainGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnToggleSubGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnToggleMainGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.clipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.BtnSaveBmp = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnLoadBmp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnExportBmp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.BtnPermutate = new System.Windows.Forms.Button();
-            this.BtnResetPal = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.BtnToggleMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,6 +88,12 @@ namespace TGLTilePaint
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(67, 17);
+            this.StatusLabel.Text = "StatusLabel";
             // 
             // tableLayoutPanel1
             // 
@@ -140,6 +144,48 @@ namespace TGLTilePaint
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(291, 436);
             this.panel1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(98, 297);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Color palette";
+            // 
+            // BtnResetPal
+            // 
+            this.BtnResetPal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnResetPal.Location = new System.Drawing.Point(149, 321);
+            this.BtnResetPal.Name = "BtnResetPal";
+            this.BtnResetPal.Size = new System.Drawing.Size(126, 30);
+            this.BtnResetPal.TabIndex = 17;
+            this.BtnResetPal.Text = "Reset";
+            this.BtnResetPal.UseVisualStyleBackColor = true;
+            this.BtnResetPal.Click += new System.EventHandler(this.BtnResetPal_Click);
+            // 
+            // BtnPermutate
+            // 
+            this.BtnPermutate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPermutate.Location = new System.Drawing.Point(17, 321);
+            this.BtnPermutate.Name = "BtnPermutate";
+            this.BtnPermutate.Size = new System.Drawing.Size(126, 30);
+            this.BtnPermutate.TabIndex = 16;
+            this.BtnPermutate.Text = "Permutate";
+            this.BtnPermutate.UseVisualStyleBackColor = true;
+            this.BtnPermutate.Click += new System.EventHandler(this.BtnPermutate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(96, 367);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 17);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "String pattern";
             // 
             // BtnPaste
             // 
@@ -315,16 +361,6 @@ namespace TGLTilePaint
             this.Btn0.UseVisualStyleBackColor = true;
             this.Btn0.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 367);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 17);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "String pattern";
-            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -332,13 +368,49 @@ namespace TGLTilePaint
             this.BtnLoadBmp,
             this.BtnSaveBmp,
             this.BtnSaveAs,
-            this.toolStripSeparator3,
-            this.BtnExportBmp,
             this.toolStripSeparator2,
             this.BtnExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // BtnNew
+            // 
+            this.BtnNew.Name = "BtnNew";
+            this.BtnNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.BtnNew.Size = new System.Drawing.Size(184, 22);
+            this.BtnNew.Text = "New";
+            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
+            // 
+            // BtnLoadBmp
+            // 
+            this.BtnLoadBmp.Name = "BtnLoadBmp";
+            this.BtnLoadBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.BtnLoadBmp.Size = new System.Drawing.Size(184, 22);
+            this.BtnLoadBmp.Text = "Open";
+            this.BtnLoadBmp.Click += new System.EventHandler(this.BtnLoadBmp_Click);
+            // 
+            // BtnSaveBmp
+            // 
+            this.BtnSaveBmp.Name = "BtnSaveBmp";
+            this.BtnSaveBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.BtnSaveBmp.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveBmp.Text = "Save";
+            this.BtnSaveBmp.Click += new System.EventHandler(this.BtnSaveBmp_Click);
+            // 
+            // BtnSaveAs
+            // 
+            this.BtnSaveAs.Name = "BtnSaveAs";
+            this.BtnSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.BtnSaveAs.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveAs.Text = "Save as";
+            this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
             // 
             // BtnExit
             // 
@@ -380,6 +452,14 @@ namespace TGLTilePaint
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
             // 
+            // BtnToggleMode
+            // 
+            this.BtnToggleMode.Name = "BtnToggleMode";
+            this.BtnToggleMode.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.BtnToggleMode.Size = new System.Drawing.Size(191, 22);
+            this.BtnToggleMode.Text = "Toggle mode";
+            this.BtnToggleMode.Click += new System.EventHandler(this.BtnToggleMode_Click);
+            // 
             // BtnTogglePixelCodes
             // 
             this.BtnTogglePixelCodes.Checked = true;
@@ -391,17 +471,6 @@ namespace TGLTilePaint
             this.BtnTogglePixelCodes.Text = "Toggle pixel codes";
             this.BtnTogglePixelCodes.Click += new System.EventHandler(this.BtnTogglePixelCodes_Click);
             // 
-            // BtnToggleMainGrid
-            // 
-            this.BtnToggleMainGrid.Checked = true;
-            this.BtnToggleMainGrid.CheckOnClick = true;
-            this.BtnToggleMainGrid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.BtnToggleMainGrid.Name = "BtnToggleMainGrid";
-            this.BtnToggleMainGrid.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.BtnToggleMainGrid.Size = new System.Drawing.Size(191, 22);
-            this.BtnToggleMainGrid.Text = "Toggle main grid";
-            this.BtnToggleMainGrid.Click += new System.EventHandler(this.BtnToggleMainGrid_Click);
-            // 
             // BtnToggleSubGrid
             // 
             this.BtnToggleSubGrid.Checked = true;
@@ -412,6 +481,17 @@ namespace TGLTilePaint
             this.BtnToggleSubGrid.Size = new System.Drawing.Size(191, 22);
             this.BtnToggleSubGrid.Text = "Toggle sub grid";
             this.BtnToggleSubGrid.Click += new System.EventHandler(this.BtnToggleSubGrid_Click);
+            // 
+            // BtnToggleMainGrid
+            // 
+            this.BtnToggleMainGrid.Checked = true;
+            this.BtnToggleMainGrid.CheckOnClick = true;
+            this.BtnToggleMainGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BtnToggleMainGrid.Name = "BtnToggleMainGrid";
+            this.BtnToggleMainGrid.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.BtnToggleMainGrid.Size = new System.Drawing.Size(191, 22);
+            this.BtnToggleMainGrid.Text = "Toggle main grid";
+            this.BtnToggleMainGrid.Click += new System.EventHandler(this.BtnToggleMainGrid_Click);
             // 
             // clipboardToolStripMenuItem
             // 
@@ -426,7 +506,7 @@ namespace TGLTilePaint
             // 
             this.MenuBtnCopy.Name = "MenuBtnCopy";
             this.MenuBtnCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.MenuBtnCopy.Size = new System.Drawing.Size(180, 22);
+            this.MenuBtnCopy.Size = new System.Drawing.Size(164, 22);
             this.MenuBtnCopy.Text = "Copy 8x8";
             this.MenuBtnCopy.Click += new System.EventHandler(this.MenuBtnCopy_Click);
             // 
@@ -434,7 +514,7 @@ namespace TGLTilePaint
             // 
             this.MenuBtnPaste.Name = "MenuBtnPaste";
             this.MenuBtnPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.MenuBtnPaste.Size = new System.Drawing.Size(180, 22);
+            this.MenuBtnPaste.Size = new System.Drawing.Size(164, 22);
             this.MenuBtnPaste.Text = "Parse 8x8";
             this.MenuBtnPaste.Click += new System.EventHandler(this.MenuBtnPaste_Click);
             // 
@@ -449,102 +529,6 @@ namespace TGLTilePaint
             this.menuStrip1.Size = new System.Drawing.Size(771, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // BtnSaveBmp
-            // 
-            this.BtnSaveBmp.Name = "BtnSaveBmp";
-            this.BtnSaveBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.BtnSaveBmp.Size = new System.Drawing.Size(184, 22);
-            this.BtnSaveBmp.Text = "Save";
-            this.BtnSaveBmp.Click += new System.EventHandler(this.BtnSaveBmp_Click);
-            // 
-            // BtnLoadBmp
-            // 
-            this.BtnLoadBmp.Name = "BtnLoadBmp";
-            this.BtnLoadBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.BtnLoadBmp.Size = new System.Drawing.Size(184, 22);
-            this.BtnLoadBmp.Text = "Open";
-            this.BtnLoadBmp.Click += new System.EventHandler(this.BtnLoadBmp_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
-            // 
-            // BtnExportBmp
-            // 
-            this.BtnExportBmp.Name = "BtnExportBmp";
-            this.BtnExportBmp.Size = new System.Drawing.Size(184, 22);
-            this.BtnExportBmp.Text = "Export RGB bitmap";
-            this.BtnExportBmp.Click += new System.EventHandler(this.BtnExportBmp_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
-            // 
-            // BtnPermutate
-            // 
-            this.BtnPermutate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPermutate.Location = new System.Drawing.Point(17, 321);
-            this.BtnPermutate.Name = "BtnPermutate";
-            this.BtnPermutate.Size = new System.Drawing.Size(126, 30);
-            this.BtnPermutate.TabIndex = 16;
-            this.BtnPermutate.Text = "Permutate";
-            this.BtnPermutate.UseVisualStyleBackColor = true;
-            this.BtnPermutate.Click += new System.EventHandler(this.BtnPermutate_Click);
-            // 
-            // BtnResetPal
-            // 
-            this.BtnResetPal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResetPal.Location = new System.Drawing.Point(149, 321);
-            this.BtnResetPal.Name = "BtnResetPal";
-            this.BtnResetPal.Size = new System.Drawing.Size(126, 30);
-            this.BtnResetPal.TabIndex = 17;
-            this.BtnResetPal.Text = "Reset";
-            this.BtnResetPal.UseVisualStyleBackColor = true;
-            this.BtnResetPal.Click += new System.EventHandler(this.BtnResetPal_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(98, 297);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Color palette";
-            // 
-            // StatusLabel
-            // 
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(67, 17);
-            this.StatusLabel.Text = "StatusLabel";
-            // 
-            // BtnToggleMode
-            // 
-            this.BtnToggleMode.Name = "BtnToggleMode";
-            this.BtnToggleMode.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.BtnToggleMode.Size = new System.Drawing.Size(191, 22);
-            this.BtnToggleMode.Text = "Toggle mode";
-            this.BtnToggleMode.Click += new System.EventHandler(this.BtnToggleMode_Click);
-            // 
-            // BtnNew
-            // 
-            this.BtnNew.Name = "BtnNew";
-            this.BtnNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.BtnNew.Size = new System.Drawing.Size(184, 22);
-            this.BtnNew.Text = "New";
-            this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // BtnSaveAs
-            // 
-            this.BtnSaveAs.Name = "BtnSaveAs";
-            this.BtnSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.BtnSaveAs.Size = new System.Drawing.Size(184, 22);
-            this.BtnSaveAs.Text = "Save as";
-            this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
             // 
             // MainWindow
             // 
@@ -609,8 +593,6 @@ namespace TGLTilePaint
         private System.Windows.Forms.ToolStripMenuItem BtnLoadBmp;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveBmp;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem BtnExportBmp;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnResetPal;
         private System.Windows.Forms.Button BtnPermutate;
