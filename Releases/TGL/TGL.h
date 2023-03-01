@@ -237,4 +237,10 @@ struct TGL
 	bool gpad_r();
 	bool gpad_start();
 	bool gpad_select();
+
+	//=========================================================================
+	//		DEBUGGING
+	//=========================================================================
+	void print_debug(string str, int x, int y, rgb forecolor = 0xffffff, rgb backcolor = 0x000000);
+	void show_fps(bool show);
 };

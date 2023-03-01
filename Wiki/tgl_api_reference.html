@@ -69,6 +69,7 @@
 		</tr>
 		<tr>
 			<td><a href="#filesystem">Filesystem</a></td>
+			<td><a href="#debug">Debugging</a></td>
 		</tr>
 	</table>
 </div>
@@ -1003,7 +1004,23 @@
 	Deletes the specified file.
 </p>
 <!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="debug">DEBUGGING</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> print_debug(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">rgb</span> forecolor, <span class="apiref-type">rgb</span> backcolor)
+</p>
+<p class="apiref-entry">
+	Draws the specified string at the absolute x and y coordinates of the frame image using the specified foreground and background colors. This function ignores the current view and draws directly to the window, for debugging purposes.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> show_fps(<span class="apiref-type">bool</span> show)
+</p>
+<p class="apiref-entry">
+	Shows the current number of FPS (frames per second) on the screen.
+</p>
 
+<!---------------------------------------------------------------------------->
 <a href="tgl_index.html" class="back-home">Back to Home</a>
 
 </body>

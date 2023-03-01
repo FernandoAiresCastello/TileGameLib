@@ -69,7 +69,7 @@ namespace TGL_Internal
 		return RgbWndTileAnimation.CachedFrame;
 	}
 
-	void TRGBWindow::DrawPixelBlock8x8(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y)
+	void TRGBWindow::DrawPixelBlock8x8(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y, bool ignoreClip)
 	{
 		RGB color;
 		int px = x;
@@ -78,7 +78,7 @@ namespace TGL_Internal
 
 		for (auto& pixel : pixels)
 		{
-			if (HasClip())
+			if (HasClip() && !ignoreClip)
 				hidePixel = IsOutsideClip(px, py);
 
 			if (!hidePixel)

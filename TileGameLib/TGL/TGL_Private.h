@@ -58,6 +58,13 @@ private:
 		bool loop = false;
 	};
 
+	struct {
+		Uint32 fps_starttime = 0;
+		Uint32 fps_lasttime = 0;
+		Uint32 fps_current = 0;
+		Uint32 fps_frames = 0;
+	} perfmon;
+
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
@@ -65,6 +72,7 @@ private:
 	bool is_running;
 	string title;
 	int frame_counter;
+	bool fps_enabled = false;
 	rgb wnd_back_color;
 	unordered_map<string, string> tile_patterns;
 	unordered_map<string, t_tileseq> tiles;
@@ -81,7 +89,9 @@ private:
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
-	void update();
+	void draw_frame();
+	void on_draw_frame_begin();
+	void on_draw_frame_end();
 	void clear_entire_window();
 	void clear_view();
 	void pos_free(int x, int y);
@@ -92,7 +102,6 @@ private:
 	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();
-	void debug_frame();
 	string line_input(int length, int x, int y, bool tiled);
 	char keycode_to_char(SDL_Keycode key);
 	bool is_shade_of_gray(TColor& color);

@@ -35,6 +35,7 @@ void demo_invaders()
 {
 	tgl.title("TGL Invaders");
 	tgl.window();
+	tgl.show_fps(true);
 
 	init_tiles();
 	init_aliens();

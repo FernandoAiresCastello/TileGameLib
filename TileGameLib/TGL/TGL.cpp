@@ -45,7 +45,7 @@ int TGL::exit()
 }
 void TGL::system()
 {
-	tgl->update();
+	tgl->draw_frame();
 	tgl->advance_timers();
 
 	SDL_Event e;
@@ -61,9 +61,8 @@ int TGL::halt()
 void TGL::pause(int ms)
 {
 	SDL_Event e;
-
 	while (ms > 0) {
-		tgl->update();
+		tgl->draw_frame();
 		tgl->process_default_events(&e);
 		SDL_Delay(1);
 		ms--;
@@ -625,6 +624,18 @@ bool TGL::kb_f12()
 {
 	return TKey::IsPressed(SDL_SCANCODE_F12);
 }
+void TGL::print_debug(string str, int x, int y, rgb forecolor, rgb backcolor)
+{
+	for (auto& ch : str) {
+		string& pixels = tgl->font_patterns[ch];
+		tgl->wnd->DrawPixelBlock8x8(pixels, backcolor, forecolor, backcolor, backcolor, true, x, y, true);
+		x += TILE_SIZE;
+	}
+}
+void TGL::show_fps(bool show)
+{
+	tgl->fps_enabled = show;
+}
 
 //=============================================================================
 //		TGL_Private
@@ -646,6 +657,8 @@ TGL_Private::TGL_Private(TGL* tgl_public)
 	gamepad.OpenAllAvailable();
 
 	this->tgl_public = tgl_public;
+
+	perfmon.fps_starttime = SDL_GetTicks();
 }
 TGL_Private::~TGL_Private()
 {
@@ -686,11 +699,28 @@ void TGL_Private::create_window(rgb back_color, int size_factor)
 	frame_counter = 0;
 	is_running = true;
 }
-void TGL_Private::update()
+void TGL_Private::draw_frame()
 {
+	on_draw_frame_begin();
 	wnd->Update();
-	debug_frame();
+	on_draw_frame_end();
+}
+void TGL_Private::on_draw_frame_begin()
+{
+	if (fps_enabled) {
+		tgl_public->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0);
+	}
+}
+void TGL_Private::on_draw_frame_end()
+{
 	frame_counter++;
+	
+	perfmon.fps_frames++;
+	perfmon.fps_lasttime = SDL_GetTicks() - perfmon.fps_starttime;
+	if (perfmon.fps_lasttime) {
+		double elapsed_sec = perfmon.fps_lasttime / 1000.0;
+		perfmon.fps_current = perfmon.fps_frames / elapsed_sec;
+	}
 }
 void TGL_Private::clip(int x1, int y1, int x2, int y2)
 {
@@ -1015,7 +1045,8 @@ string TGL_Private::line_input(int length, int x, int y, bool tiled)
 		
 		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(blanks);
 		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(text + text_input.cursor);
-		update();
+
+		draw_frame();
 
 		SDL_Event e = { 0 };
 		process_default_events(&e);
@@ -1125,7 +1156,4 @@ int TGL_Private::get_gray_level(TColor& color)
 		return color.R;
 	else
 		return -1;
-}
-void TGL_Private::debug_frame()
-{
 }
