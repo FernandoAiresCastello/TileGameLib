@@ -34,7 +34,7 @@ void draw_score();
 void demo_invaders()
 {
 	tgl.title("TGL Invaders");
-	tgl.window_gbc();
+	tgl.window_gbc(0xffffff, 5);
 	tgl.show_fps(true);
 
 	init_tiles();

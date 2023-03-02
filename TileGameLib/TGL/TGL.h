@@ -63,8 +63,8 @@ struct TGL
 	//		GRAPHICS > WINDOW
 	//=========================================================================
 	void window(int img_width, int img_height, rgb back_color, int size_factor);
-	void window_gbc(rgb back_color = 0xffffff, int size_factor = 5);
-	void window_wide(rgb back_color = 0xffffff, int size_factor = 3);
+	void window_gbc(rgb back_color, int size_factor);
+	void window_wide(rgb back_color, int size_factor);
 	void title(string str);
 	void fullscreen(bool full);
 	bool fullscreen();
@@ -179,6 +179,9 @@ struct TGL
 	void mouse(bool enabled);
 	int mouse_x();
 	int mouse_y();
+	bool mouse_right();
+	bool mouse_left();
+	bool mouse_middle();
 
 	//=========================================================================
 	//		INPUT > KEYBOARD
@@ -241,6 +244,6 @@ struct TGL
 	//=========================================================================
 	//		DEBUGGING
 	//=========================================================================
-	void print_debug(string str, int x, int y, rgb color = 0xc0c0c0);
+	void print_debug(string str, int x, int y, rgb color);
 	void show_fps(bool show);
 };

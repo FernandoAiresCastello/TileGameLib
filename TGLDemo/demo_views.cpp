@@ -3,7 +3,7 @@
 void demo_views()
 {
 	TGL tgl;
-	tgl.window_gbc(0x000000);
+	tgl.window_gbc(0x000000, 5);
 
 	tgl.tile_pat("tp_square_1f", "11111111"
 								 "10000001"

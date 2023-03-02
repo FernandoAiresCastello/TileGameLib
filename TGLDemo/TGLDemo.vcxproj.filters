@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="demo_basic.cpp" />
+    <ClCompile Include="demo_mouse.cpp" />
     <ClCompile Include="demo_font.cpp" />
     <ClCompile Include="demo_helloworld.cpp" />
     <ClCompile Include="demo_invaders.cpp" />

@@ -168,14 +168,14 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> window_gbc(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 5</span>)
+	<span class="apiref-type">void</span> window_gbc(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
-	Almost the same as window() but creates the image with the same size as the GameBoy Color screen dimensions (i.e. 160x144 pixels).
+	Almost the same as window() but creates the image with a size of 160x144 pixels (i.e. same resolution as the GBC).
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> window_wide(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 3</span>)
+	<span class="apiref-type">void</span> window_wide(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
 	Almost the same as window() but creates the image with a size of 360x200 pixels.
@@ -452,7 +452,7 @@
 	<span class="apiref-type">void</span> mouse(<span class="apiref-type">bool</span> enabled)
 </p>
 <p class="apiref-entry">
-	Enables or disables the mouse pointer when it's over the application window. Note that even if the pointer is invisible, the mouse_x() and mouse_y() functions will still return the expected values.
+	Enables or disables the mouse pointer when it's over the application window. Note that this only refers to the visibility of the mouse pointer. It has no effect on the other "mouse_" functions.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -467,6 +467,27 @@
 </p>
 <p class="apiref-entry">
 	Returns the absolute y coordinate of the mouse pointer within the window. Note that currently, in fullscreen mode, the mouse coordinates expand to the entire screen rather than the frame image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_right()
+</p>
+<p class="apiref-entry">
+	Returns whether the RIGHT mouse button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_left()
+</p>
+<p class="apiref-entry">
+	Returns whether the LEFT mouse button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_middle()
+</p>
+<p class="apiref-entry">
+	Returns whether the MIDDLE mouse button is pressed.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="keyboard">INPUT > KEYBOARD</p>

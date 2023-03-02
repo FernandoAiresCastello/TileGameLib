@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClCompile Include="demo_basic.cpp" />
+    <ClCompile Include="demo_mouse.cpp" />
     <ClCompile Include="demo_font.cpp" />
     <ClCompile Include="demo_views.cpp" />
   </ItemGroup>

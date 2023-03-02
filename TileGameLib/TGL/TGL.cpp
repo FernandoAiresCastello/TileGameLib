@@ -20,6 +20,7 @@ using namespace TGL_Internal;
 #define WND_SIZE_FACTOR_MAX		5
 #define TILE_SIZE				8
 #define STRING_FMT_MAXBUFLEN	1024
+#define FPS_COLOR				0xd0d0d0
 
 TGL_Private* tgl = nullptr;
 
@@ -118,6 +119,21 @@ int TGL::mouse_y()
 	int y = 0;
 	SDL_GetMouseState(NULL, &y);
 	return y / tgl->wnd->PixelHeight;
+}
+bool TGL::mouse_right()
+{
+	Uint32 buttons = SDL_GetMouseState(NULL, NULL);
+	return buttons & SDL_BUTTON_RMASK;
+}
+bool TGL::mouse_left()
+{
+	Uint32 buttons = SDL_GetMouseState(NULL, NULL);
+	return buttons & SDL_BUTTON_LMASK;
+}
+bool TGL::mouse_middle()
+{
+	Uint32 buttons = SDL_GetMouseState(NULL, NULL);
+	return buttons & SDL_BUTTON_MMASK;
 }
 void TGL::error(string msg)
 {
@@ -719,7 +735,7 @@ void TGL_Private::draw_frame()
 void TGL_Private::on_draw_frame_begin()
 {
 	if (fps_enabled) {
-		tgl_public->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0);
+		tgl_public->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0, FPS_COLOR);
 	}
 }
 void TGL_Private::on_draw_frame_end()
