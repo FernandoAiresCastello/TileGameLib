@@ -83,7 +83,7 @@ private:
 	TGamepad gamepad;
 
 	void process_default_events(SDL_Event* e);
-	void create_window(rgb back_color, int size_factor);
+	void create_window(int width, int height, rgb back_color, int size_factor);
 	bool assert_tile_exists(string& id);
 	bool assert_tilepattern_exists(string& id);
 	bool assert_view_exists(string& id);

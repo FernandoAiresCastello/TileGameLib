@@ -3,7 +3,7 @@
 void demo_basic()
 {
 	TGL tgl;
-	tgl.window();
+	tgl.window_gbc();
 
 	while (tgl.running()) {
 		tgl.system();

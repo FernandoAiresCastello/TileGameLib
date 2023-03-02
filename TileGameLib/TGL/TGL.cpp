@@ -12,8 +12,10 @@ using namespace TGL_Internal;
 #include "TGL.h"
 #include "TGL_Private.h"
 
-#define WND_RES_W				160
-#define WND_RES_H				144
+#define GAMEBOY_SCR_W			160
+#define GAMEBOY_SCR_H			144
+#define WIDE_SCR_W				360
+#define WIDE_SCR_H				200
 #define WND_SIZE_FACTOR_MIN		1
 #define WND_SIZE_FACTOR_MAX		5
 #define TILE_SIZE				8
@@ -21,8 +23,7 @@ using namespace TGL_Internal;
 
 TGL_Private* tgl = nullptr;
 
-TGL::TGL() : width(WND_RES_W), height(WND_RES_H), tilesize(TILE_SIZE),
-			 cols(width / tilesize), rows(height / tilesize) 
+TGL::TGL() : tilesize(TILE_SIZE)
 {
 	tgl = new TGL_Private(this);
 }
@@ -68,11 +69,19 @@ void TGL::pause(int ms)
 		ms--;
 	}
 }
-void TGL::window(rgb back_color, int size_factor)
+void TGL::window(int img_width, int img_height, rgb back_color, int size_factor)
 {
 	if (size_factor < WND_SIZE_FACTOR_MIN) size_factor = WND_SIZE_FACTOR_MIN;
 	else if (size_factor > WND_SIZE_FACTOR_MAX) size_factor = WND_SIZE_FACTOR_MAX;
-	tgl->create_window(back_color, size_factor);
+	tgl->create_window(img_width, img_height, back_color, size_factor);
+}
+void TGL::window_gbc(rgb back_color, int size_factor)
+{
+	window(GAMEBOY_SCR_W, GAMEBOY_SCR_H, back_color, size_factor);
+}
+void TGL::window_wide(rgb back_color, int size_factor)
+{
+	window(WIDE_SCR_W, WIDE_SCR_H, back_color, size_factor);
 }
 bool TGL::running()
 {
@@ -395,19 +404,21 @@ void TGL::screenshot(string path)
 {
 	tgl->wnd->SaveScreenshot(path);
 }
-int TGL::window_width()
+int TGL::width()
 {
-	int w = 0;
-	int h = 0;
-	SDL_GetWindowSize(tgl->wnd->GetSDLWindow(), &w, &h);
-	return w;
+	return tgl->wnd->HorizontalResolution;
 }
-int TGL::window_height()
+int TGL::height()
 {
-	int w = 0;
-	int h = 0;
-	SDL_GetWindowSize(tgl->wnd->GetSDLWindow(), &w, &h);
-	return h;
+	return tgl->wnd->VerticalResolution;
+}
+int TGL::cols()
+{
+	return width() / tilesize;
+}
+int TGL::rows()
+{
+	return height() / tilesize;
 }
 void TGL::input_color(rgb foreground, rgb background)
 {
@@ -624,11 +635,11 @@ bool TGL::kb_f12()
 {
 	return TKey::IsPressed(SDL_SCANCODE_F12);
 }
-void TGL::print_debug(string str, int x, int y, rgb forecolor, rgb backcolor)
+void TGL::print_debug(string str, int x, int y, rgb color)
 {
 	for (auto& ch : str) {
 		string& pixels = tgl->font_patterns[ch];
-		tgl->wnd->DrawPixelBlock8x8(pixels, backcolor, forecolor, backcolor, backcolor, true, x, y, true);
+		tgl->wnd->DrawPixelBlock8x8(pixels, 0, color, 0, 0, true, x, y, true);
 		x += TILE_SIZE;
 	}
 }
@@ -684,12 +695,12 @@ void TGL_Private::process_default_events(SDL_Event* e)
 		}
 	}
 }
-void TGL_Private::create_window(rgb back_color, int size_factor)
+void TGL_Private::create_window(int width, int height, rgb back_color, int size_factor)
 {
 	if (wnd) delete wnd;
 
 	wnd = new TRGBWindow(
-		WND_RES_W / TILE_SIZE, WND_RES_H / TILE_SIZE,
+		width / TILE_SIZE, height / TILE_SIZE,
 		size_factor, size_factor, back_color);
 
 	wnd_back_color = back_color;

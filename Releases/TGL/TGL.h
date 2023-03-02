@@ -47,10 +47,6 @@ struct TGL
 	//		CONSTANTS
 	//=========================================================================
 	const int tilesize;
-	const int width;
-	const int height;
-	const int cols;
-	const int rows;
 
 	//=========================================================================
 	//		SYSTEM
@@ -66,13 +62,17 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > WINDOW
 	//=========================================================================
-	void window(rgb back_color = 0xffffff, int size_factor = 5);
+	void window(int img_width, int img_height, rgb back_color, int size_factor);
+	void window_gbc(rgb back_color = 0xffffff, int size_factor = 5);
+	void window_wide(rgb back_color = 0xffffff, int size_factor = 3);
 	void title(string str);
 	void fullscreen(bool full);
 	bool fullscreen();
 	void screenshot(string path);
-	int window_width();
-	int window_height();
+	int width();
+	int height();
+	int cols();
+	int rows();
 
 	//=========================================================================
 	//		GRAPHICS > VIEWS
@@ -241,6 +241,6 @@ struct TGL
 	//=========================================================================
 	//		DEBUGGING
 	//=========================================================================
-	void print_debug(string str, int x, int y, rgb forecolor = 0xffffff, rgb backcolor = 0x000000);
+	void print_debug(string str, int x, int y, rgb color = 0xc0c0c0);
 	void show_fps(bool show);
 };

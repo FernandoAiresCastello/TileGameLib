@@ -107,35 +107,6 @@
 	Defined as 8, which is both the width and height of tiles.
 </p>
 <!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">const int</span> width
-</p>
-<p class="apiref-entry">
-	Defined as 160, which is the horizontal resolution of the frame image, regardless of the actual size factor of the window.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">const int</span> height
-</p>
-<p class="apiref-entry">
-	Defined as 144, which is the vertical resolution of the frame image, regardless of the actual size factor of the window.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">const int</span> cols
-</p>
-<p class="apiref-entry">
-	Defined as 20, which is the result of the formula: cols = width / tilesize.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">const int</span> rows
-</p>
-<p class="apiref-entry">
-	Defined as 18, which is the result of the formula: rows = height / tilesize.
-</p>
-
-<!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="system">SYSTEM</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -190,10 +161,24 @@
 <p class="apiref-section-header" id="window">GRAPHICS > WINDOW</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> window(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 5</span>)
+	<span class="apiref-type">void</span> window(<span class="apiref-type">int</span> img_width, <span class="apiref-type">int</span> img_height, <span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
-	Creates the application window with the specified background color and size factor (ranging from 1 to 5). Both arguments are optional, and the default background color is white, while the default size factor is 5 (which is also the maximum value supported). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
+	Creates the application window with the specified image size (in pixels), background color and size factor (ranging from 1 to 5). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_gbc(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 5</span>)
+</p>
+<p class="apiref-entry">
+	Almost the same as window() but creates the image with the same size as the GameBoy Color screen dimensions (i.e. 160x144 pixels).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_wide(<span class="apiref-type">rgb</span> back_color <span class="apiref-default-arg">= 0xffffff</span>, <span class="apiref-type">int</span> size_factor <span class="apiref-default-arg">= 3</span>)
+</p>
+<p class="apiref-entry">
+	Almost the same as window() but creates the image with a size of 360x200 pixels.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -225,17 +210,31 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">int</span> window_width()
+	<span class="apiref-type">int</span> width()
 </p>
 <p class="apiref-entry">
-	Returns the real width of the window. Unlike the "width" constant which represents the fixed frame image width, this is the width of the actual OS window itself, which may change depending on whether the window is in fullscreen or windowed mode.
+	Returns the horizontal resolution of the frame image, regardless of the actual size of the window.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">int</span> window_width()
+	<span class="apiref-type">int</span> height()
 </p>
 <p class="apiref-entry">
-	Returns the real height of the window. Unlike the "height" constant which represents the fixed frame image height, this is the height of the actual OS window itself, which may change depending on whether the window is in fullscreen or windowed mode.
+	Returns the vertical resolution of the frame image, regardless of the actual size of the window.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> cols()
+</p>
+<p class="apiref-entry">
+	Returns the result of the formula: cols = width / tilesize.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> rows()
+</p>
+<p class="apiref-entry">
+	Returns the result of the formula: rows = height / tilesize.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="views">GRAPHICS > VIEWS</p>
@@ -1007,10 +1006,10 @@
 <p class="apiref-section-header" id="debug">DEBUGGING</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> print_debug(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">rgb</span> forecolor, <span class="apiref-type">rgb</span> backcolor)
+	<span class="apiref-type">void</span> print_debug(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">rgb</span> color)
 </p>
 <p class="apiref-entry">
-	Draws the specified string at the absolute x and y coordinates of the frame image using the specified foreground and background colors. This function ignores the current view and draws directly to the window, for debugging purposes.
+	Draws the specified string at the absolute x and y coordinates of the frame image using the specified text color. This function ignores the current view and draws directly to the window, for debugging purposes.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">

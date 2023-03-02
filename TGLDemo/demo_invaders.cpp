@@ -34,7 +34,7 @@ void draw_score();
 void demo_invaders()
 {
 	tgl.title("TGL Invaders");
-	tgl.window();
+	tgl.window_gbc();
 	tgl.show_fps(true);
 
 	init_tiles();
@@ -45,8 +45,8 @@ void demo_invaders()
 
 	tgl.timer_new("alien_move", 30, true);
 
-	tgl.view_new("main", 0, 0, tgl.width, 120, 0x000000, true);
-	tgl.view_new("sub", 0, 120, tgl.width, 144, 0x0000a0, true);
+	tgl.view_new("main", 0, 0, tgl.width(), 120, 0x000000, true);
+	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
 
 	while (tgl.running()) {
 
@@ -77,8 +77,8 @@ void handle_input()
 	if (tgl.kb_left() || tgl.gpad_left() || tgl.gpad_l()) player.x--;
 
 	if (player.x < -tgl.tilesize) 
-		player.x = tgl.width;
-	else if (player.x >= tgl.width) 
+		player.x = tgl.width();
+	else if (player.x >= tgl.width()) 
 		player.x = -tgl.tilesize;
 
 	if (tgl.kb_space() || tgl.gpad_a()) player_shoot();
@@ -144,7 +144,7 @@ void init_aliens()
 
 	for (int i = 0; i < number_of_aliens; i++) {
 		t_alien alien;
-		alien.x = tgl.rnd(0, tgl.cols - 1) * tgl.tilesize;
+		alien.x = tgl.rnd(0, tgl.cols() - 1) * tgl.tilesize;
 		alien.y = tgl.rnd(-200, 0) * tgl.tilesize;
 		aliens.push_back(alien);
 	}

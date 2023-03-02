@@ -4,7 +4,7 @@ void demo_helloworld()
 {
 	TGL tgl;
 
-	tgl.window();
-	tgl.print_free("Hello World!", 35, 65);
+	tgl.window_wide();
+	tgl.print_tiled("Hello World!", 16, 12);
 	tgl.halt();
 }
