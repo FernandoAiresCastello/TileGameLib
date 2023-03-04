@@ -89,9 +89,9 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > TILE SET
 	//=========================================================================
-	void tile_pat(string pattern_id, string pixels);
-	void tile_file(string pattern_id, string path);
-	void tile_add(string tile_id, string pattern_id, int count = 1);
+	void tile_pixels(string img_id, rgb pixels[64]);
+	void tile_file(string img_id, string path);
+	void tile_add(string tile_id, string img_id, int count = 1);
 
 	//=========================================================================
 	//		GRAPHICS > COLOR MODES

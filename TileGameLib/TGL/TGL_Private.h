@@ -65,6 +65,10 @@ private:
 		Uint32 fps_frames = 0;
 	} perfmon;
 
+	struct t_tileimg {
+		rgb pixels[64];
+	};
+
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
@@ -74,19 +78,20 @@ private:
 	int frame_counter;
 	bool fps_enabled = false;
 	rgb wnd_back_color;
-	unordered_map<string, string> tile_patterns;
-	unordered_map<string, t_tileseq> tiles;
+	unordered_map<string, t_tileimg> tile_img;
+	unordered_map<string, t_tileseq> tile_seq;
 	unordered_map<char, string> font_patterns;
 	unordered_map<string, t_viewport> views;
 	t_viewport* cur_view = nullptr;
 	unordered_map<string, t_timer> timers;
 	TGamepad gamepad;
 	SDL_Keycode last_key = 0;
+	rgb transp_key = 0xffffff;
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);
-	bool assert_tile_exists(string& id);
-	bool assert_tilepattern_exists(string& id);
+	bool assert_tileseq_exists(string& id);
+	bool assert_tileimg_exists(string& id);
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();

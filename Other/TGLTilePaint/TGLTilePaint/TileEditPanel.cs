@@ -8,8 +8,7 @@ namespace TGLTilePaint
     public partial class TileEditPanel : UserControl
     {
         public TileModel Tile;
-        public int LeftColorIx;
-        public bool ShowPixelCodes;
+        public Color CurrentColor;
         public bool ShowMainGrid;
         public bool ShowSubGrid;
 
@@ -17,11 +16,6 @@ namespace TGLTilePaint
         public Color Color1;
         public Color Color2;
         public Color Color3;
-
-        private readonly Color TGLColor0 = Color.FromArgb(255, 255, 255, 255);
-        private readonly Color TGLColor1 = Color.FromArgb(255, 0, 0, 0);
-        private readonly Color TGLColor2 = Color.FromArgb(255, 127, 127, 127);
-        private readonly Color TGLColor3 = Color.FromArgb(255, 195, 195, 195);
 
         private MainWindow Wnd;
         private Color GridColor;
@@ -48,18 +42,14 @@ namespace TGLTilePaint
             Wnd = wnd;
             Mode = EditMode.Single;
 
-            Color0 = TGLColor0;
-            Color1 = TGLColor1;
-            Color2 = TGLColor2;
-            Color3 = TGLColor3;
+            ResetColors();
 
             GridColor = Color.FromArgb(20, 100, 100, 128);
             GridColorMid = Color.FromArgb(90, 100, 100, 128);
             GridTextColor = Color.FromArgb(200, 100, 100, 128);
 
             Tile = new TileModel();
-            LeftColorIx = 1;
-            ShowPixelCodes = true;
+            CurrentColor = Color.Black;
             ShowMainGrid = true;
             ShowSubGrid = true;
 
@@ -72,10 +62,10 @@ namespace TGLTilePaint
 
         public void ResetColors()
         {
-            Color0 = TGLColor0;
-            Color1 = TGLColor1;
-            Color2 = TGLColor2;
-            Color3 = TGLColor3;
+            Color0 = Color.FromArgb(255, 255, 255);
+            Color1 = Color.FromArgb(220, 220, 220);
+            Color2 = Color.FromArgb(127, 127, 127);
+            Color3 = Color.FromArgb(0, 0, 0);
         }
 
         public void Mode8x8()
@@ -145,12 +135,13 @@ namespace TGLTilePaint
 
             if (e.Button == MouseButtons.Left)
             {
-                Tile.SetPixel(px, py, LeftColorIx);
+                Tile.SetPixel(px, py, CurrentColor);
             }
             else if (e.Button == MouseButtons.Right)
             {
-                LeftColorIx = Tile.GetPixel(px, py);
-                Wnd.UpdateLeftButton();
+                CurrentColor = Tile.GetPixel(px, py);
+                Wnd.UpdateColorButtons();
+                Wnd.UpdateColorHexRGBs();
             }
 
             Refresh();
@@ -181,23 +172,11 @@ namespace TGLTilePaint
             {
                 for (int x = 0; x < w; x++)
                 {
-                    int pixel = Tile.GetPixel(x, y);
-                    if (pixel == 0) brush.Color = Color0;
-                    else if (pixel == 1) brush.Color = Color1;
-                    else if (pixel == 2) brush.Color = Color2;
-                    else if (pixel == 3) brush.Color = Color3;
-
                     int px = x * cellWidth;
                     int py = y * cellHeight;
+                    Color color = Tile.GetPixel(x, y);
+                    brush.Color = color;
                     g.FillRectangle(brush, px, py, cellWidth, cellHeight);
-
-                    if (ShowPixelCodes)
-                    {
-                        if (Is16x16())
-                            g.DrawString(pixel.ToString(), DefaultFont, textBrush, px + 10, py + 8);
-                        else if (Is8x8())
-                            g.DrawString(pixel.ToString(), DefaultFont, textBrush, px + 24, py + 20);
-                    }
                 }
             }
 
@@ -248,7 +227,7 @@ namespace TGLTilePaint
 
         public void FillPixelsColorLeft()
         {
-            Tile.Fill(LeftColorIx);
+            Tile.Fill(CurrentColor);
             Refresh();
         }
 
@@ -269,15 +248,7 @@ namespace TGLTilePaint
             {
                 for (int x = 0; x < TileSize; x++)
                 {
-                    int colorIndex = -1;
-
-                    Color color = bitmap.GetPixel(x, y);
-                    if (color == TGLColor0) colorIndex = 0;
-                    else if (color == TGLColor1) colorIndex = 1;
-                    else if (color == TGLColor2) colorIndex = 2;
-                    else if (color == TGLColor3) colorIndex = 3;
-
-                    Tile.SetPixel(x, y, colorIndex);
+                    Tile.SetPixel(x, y, bitmap.GetPixel(x, y));
                 }
             }
             Refresh();
@@ -291,15 +262,7 @@ namespace TGLTilePaint
             {
                 for (int x = 0; x < TileSize; x++)
                 {
-                    Color color = Color.FromArgb(0, 0, 0, 0);
-
-                    int colorIndex = Tile.GetPixel(x, y);
-                    if (colorIndex == 0) color = Color0;
-                    else if (colorIndex == 1) color = Color1;
-                    else if (colorIndex == 2) color = Color2;
-                    else if (colorIndex == 3) color = Color3;
-
-                    bitmap.SetPixel(x, y, color);
+                    bitmap.SetPixel(x, y, Tile.GetPixel(x, y));
                 }
             }
             return bitmap;
@@ -343,15 +306,7 @@ namespace TGLTilePaint
             {
                 for (int x = 0; x < 8; x++)
                 {
-                    Color color = Color.FromArgb(0, 0, 0, 0);
-
-                    int colorIndex = Tile.GetPixel(ix + x, iy + y);
-                    if (colorIndex == 0) color = TGLColor0;
-                    else if (colorIndex == 1) color = TGLColor1;
-                    else if (colorIndex == 2) color = TGLColor2;
-                    else if (colorIndex == 3) color = TGLColor3;
-
-                    bitmap.SetPixel(x, y, color);
+                    bitmap.SetPixel(x, y, Tile.GetPixel(ix + x, iy + y));
                 }
             }
             return bitmap;
@@ -365,15 +320,7 @@ namespace TGLTilePaint
             {
                 for (int x = 0; x < TileSize; x++)
                 {
-                    Color color = Color.FromArgb(0, 0, 0, 0);
-
-                    int colorIndex = Tile.GetPixel(x, y);
-                    if (colorIndex == 0) color = TGLColor0;
-                    else if (colorIndex == 1) color = TGLColor1;
-                    else if (colorIndex == 2) color = TGLColor2;
-                    else if (colorIndex == 3) color = TGLColor3;
-
-                    bitmap.SetPixel(x, y, color);
+                    bitmap.SetPixel(x, y, Tile.GetPixel(x, y));
                 }
             }
             return bitmap;

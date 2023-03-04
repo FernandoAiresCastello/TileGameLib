@@ -12,130 +12,57 @@ namespace TGLTilePaint
         private static readonly int Width = 16;
         private static readonly int Height = 16;
 
-        private int[,] Pixels;
+        private Color[,] Pixels;
 
         public TileModel()
         {
-            Pixels = new int[Height, Width];
-            Fill(0);
+            Pixels = new Color[Height, Width];
+            New();
         }
 
-        public override string ToString()
+        public void New()
         {
-            return ToStringSingle16x16();
+            Fill(Color.White);
         }
 
-        public string ToStringSingle16x16()
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int y = 0; y < Height; y++)
-                for (int x = 0; x < Width; x++)
-                    sb.Append(GetPixel(x, y));
-
-            return sb.ToString();
-        }
-
-        public string ToStringSingle8x8()
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int y = 0; y <= 7; y++)
-                for (int x = 0; x <= 7; x++)
-                    sb.Append(GetPixel(x, y));
-
-            return sb.ToString();
-        }
-
-        public string ToStringComposite()
-        {
-            StringBuilder topLeft = new StringBuilder();
-            for (int y = 0; y <= 7; y++)
-                for (int x = 0; x <= 7; x++)
-                    topLeft.Append(GetPixel(x, y));
-            StringBuilder topRight = new StringBuilder();
-            for (int y = 0; y <= 7; y++)
-                for (int x = 8; x <= 15; x++)
-                    topRight.Append(GetPixel(x, y));
-            StringBuilder btmLeft = new StringBuilder();
-            for (int y = 8; y <= 15; y++)
-                for (int x = 0; x <= 7; x++)
-                    btmLeft.Append(GetPixel(x, y));
-            StringBuilder btmRight = new StringBuilder();
-            for (int y = 8; y <= 15; y++)
-                for (int x = 8; x <= 15; x++)
-                    btmRight.Append(GetPixel(x, y));
-
-            return
-                topLeft + Environment.NewLine +
-                topRight + Environment.NewLine +
-                btmLeft + Environment.NewLine +
-                btmRight + Environment.NewLine;
-        }
-
-        public bool Parse(string str)
-        {
-            if (str.Length != 64) return false;
-
-            int i = 0;
-            Fill(0);
-
-            for (int y = 0; y <= 7; y++)
-            {
-                for (int x = 0; x <= 7; x++)
-                {
-                    int ixColor = 0;
-                    if (str[i] == '0') ixColor = 0;
-                    else if (str[i] == '1') ixColor = 1;
-                    else if (str[i] == '2') ixColor = 2;
-                    else if (str[i] == '3') ixColor = 3;
-
-                    SetPixel(x, y, ixColor);
-                    i++;
-                }
-            }
-
-            return true;
-        }
-
-        public void Fill(int ixColor)
+        public void Fill(Color color)
         {
             for (int y = 0; y < Height; y++)
                 for (int x = 0; x < Width; x++)
-                    SetPixel(x, y, ixColor);
+                    SetPixel(x, y, color);
         }
 
-        public void SetPixel(int x, int y, int ixColor)
+        public void SetPixel(int x, int y, Color color)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
-                Pixels[y, x] = ixColor;
+                Pixels[y, x] = color;
         }
 
-        public int GetPixel(int x, int y)
+        public Color GetPixel(int x, int y)
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 return Pixels[y, x];
 
-            return -1;
+            return Color.FromArgb(0, 0, 0, 0);
         }
 
-        public void SetPixels(string pixels)
+        public List<Color> GetColorPalette()
         {
-            int x = 0;
-            int y = 0;
-
-            foreach (char pix in pixels)
+            HashSet<int> argbs = new HashSet<int>();
+            for (int y = 0; y < Height; y++)
             {
-                if (pix == '0') SetPixel(x, y, 0);
-                else if (pix == '1') SetPixel(x, y, 1);
-                else if (pix == '2') SetPixel(x, y, 2);
-                else if (pix == '3') SetPixel(x, y, 3);
-
-                x++;
-                if (x >= Width)
+                for (int x = 0; x < Width; x++)
                 {
-                    y++;
-                    x = 0;
+                    argbs.Add(GetPixel(x, y).ToArgb());
                 }
             }
+
+            List<Color> colors = new List<Color>();
+            foreach (int argb in argbs)
+            {
+                colors.Add(Color.FromArgb(255, Color.FromArgb(argb)));
+            }
+            return colors;
         }
     }
 }

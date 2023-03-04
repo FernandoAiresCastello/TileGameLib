@@ -32,8 +32,9 @@ namespace TGLTilePaint
 
             Text = Title;
             StatusLabel.Text = "";
-            UpdateColorButtons(true);
-            UpdateLeftButton();
+            
+            UpdateColorButtons();
+            UpdateColorHexRGBs();
         }
 
         private void MainWindow_DragEnter(object sender, DragEventArgs e)
@@ -50,17 +51,6 @@ namespace TGLTilePaint
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             LoadBitmap(files[0]);
-
-            if (PnlTileEdit.Is8x8())
-            {
-                BtnCopy8x8.Text = "Copy 8x8";
-                MenuBtnCopy.Text = BtnCopy8x8.Text;
-            }
-            else
-            {
-                BtnCopy8x8.Text = "Copy 4x 8x8";
-                MenuBtnCopy.Text = BtnCopy8x8.Text;
-            }
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -69,15 +59,15 @@ namespace TGLTilePaint
                 return;
 
             if (e.KeyCode == Keys.D0)
-                PnlTileEdit.LeftColorIx = 0;
+                PnlTileEdit.CurrentColor = Btn0.BackColor;
             else if (e.KeyCode == Keys.D1)
-                PnlTileEdit.LeftColorIx = 1;
+                PnlTileEdit.CurrentColor = Btn1.BackColor;
             else if (e.KeyCode == Keys.D2)
-                PnlTileEdit.LeftColorIx = 2;
+                PnlTileEdit.CurrentColor = Btn2.BackColor;
             else if (e.KeyCode == Keys.D3)
-                PnlTileEdit.LeftColorIx = 3;
+                PnlTileEdit.CurrentColor = Btn3.BackColor;
 
-            UpdateLeftButton();
+            UpdateColorButtons();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -92,10 +82,10 @@ namespace TGLTilePaint
 
             if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
             {
-                if (btn.Text == "0") PnlTileEdit.LeftColorIx = 0;
-                else if (btn.Text == "1") PnlTileEdit.LeftColorIx = 1;
-                else if (btn.Text == "2") PnlTileEdit.LeftColorIx = 2;
-                else if (btn.Text == "3") PnlTileEdit.LeftColorIx = 3;
+                if (btn.Text == "0") PnlTileEdit.CurrentColor = Btn0.BackColor;
+                else if (btn.Text == "1") PnlTileEdit.CurrentColor = Btn1.BackColor;
+                else if (btn.Text == "2") PnlTileEdit.CurrentColor = Btn2.BackColor;
+                else if (btn.Text == "3") PnlTileEdit.CurrentColor = Btn3.BackColor;
             }
             else if (e.Button == MouseButtons.Middle)
             {
@@ -103,9 +93,11 @@ namespace TGLTilePaint
                 else if (btn.Text == "1") ShowColorPicker(1);
                 else if (btn.Text == "2") ShowColorPicker(2);
                 else if (btn.Text == "3") ShowColorPicker(3);
+                else ShowColorPicker(4);
             }
 
-            UpdateLeftButton();
+            UpdateColorButtons();
+            UpdateColorHexRGBs();
         }
 
         private void ShowColorPicker(int targetColorIx)
@@ -120,6 +112,8 @@ namespace TGLTilePaint
                 colorDialog.Color = PnlTileEdit.Color2;
             else if (targetColorIx == 3)
                 colorDialog.Color = PnlTileEdit.Color3;
+            else if (targetColorIx == 4)
+                colorDialog.Color = PnlTileEdit.CurrentColor;
 
             if (colorDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -131,64 +125,52 @@ namespace TGLTilePaint
                     PnlTileEdit.Color2 = colorDialog.Color;
                 else if (targetColorIx == 3)
                     PnlTileEdit.Color3 = colorDialog.Color;
+                else if (targetColorIx == 4)
+                    PnlTileEdit.CurrentColor = colorDialog.Color;
 
-                UpdateColorButtons(true);
+                UpdateColorButtons();
+                UpdateColorHexRGBs();
                 Refresh();
             }
         }
 
-        private void UpdateColorButtons(bool updateRgbText)
+        public void UpdateColorButtons()
         {
-            UpdateColorButton(Btn0, TxtColor0, 0, updateRgbText);
-            UpdateColorButton(Btn1, TxtColor1, 1, updateRgbText);
-            UpdateColorButton(Btn2, TxtColor2, 2, updateRgbText);
-            UpdateColorButton(Btn3, TxtColor3, 3, updateRgbText);
-
-            UpdateLeftButton();
+            UpdateColorButton(BtnCurrentColor, PnlTileEdit.CurrentColor);
+            UpdateColorButton(Btn0, PnlTileEdit.Color0);
+            UpdateColorButton(Btn1, PnlTileEdit.Color1);
+            UpdateColorButton(Btn2, PnlTileEdit.Color2);
+            UpdateColorButton(Btn3, PnlTileEdit.Color3);
         }
 
-        private void UpdateColorButton(Button btn, TextBox txt, int colorIx, bool updateRgbText)
+        public void UpdateColorHexRGBs()
         {
-            Color color = PnlTileEdit.Color0;
+            UpdateColorHexRGB(TxtCurrentColor, PnlTileEdit.CurrentColor);
+            UpdateColorHexRGB(TxtColor0, PnlTileEdit.Color0);
+            UpdateColorHexRGB(TxtColor1, PnlTileEdit.Color1);
+            UpdateColorHexRGB(TxtColor2, PnlTileEdit.Color2);
+            UpdateColorHexRGB(TxtColor3, PnlTileEdit.Color3);
+        }
 
-            if (colorIx == 0)
-                color = PnlTileEdit.Color0;
-            else if (colorIx == 1)
-                color = PnlTileEdit.Color1;
-            else if (colorIx == 2)
-                color = PnlTileEdit.Color2;
-            else if (colorIx == 3)
-                color = PnlTileEdit.Color3;
-
+        private void UpdateColorButton(Button btn, Color color)
+        {
             btn.BackColor = color;
 
             if (color.R < 128 && color.G < 128 && color.B < 128)
                 btn.ForeColor = Color.White;
             else
                 btn.ForeColor = Color.Black;
+        }
 
-            if (updateRgbText)
-            {
-                string rgb = color.ToArgb().ToString("X06");
-                txt.Text = rgb.Length > 6 ? rgb.Substring(2) : rgb;
-            }
+        private void UpdateColorHexRGB(TextBox txt, Color color)
+        {
+            string rgb = color.ToArgb().ToString("X06");
+            txt.Text = rgb.Length > 6 ? rgb.Substring(2) : rgb;
         }
 
         private void BtnFill_Click(object sender, EventArgs e)
         {
             PnlTileEdit.FillPixelsColorLeft();
-        }
-
-        public void UpdateLeftButton()
-        {
-            if (PnlTileEdit.LeftColorIx == 0)
-                BtnLeft.BackColor = PnlTileEdit.Color0;
-            if (PnlTileEdit.LeftColorIx == 1)
-                BtnLeft.BackColor = PnlTileEdit.Color1;
-            if (PnlTileEdit.LeftColorIx == 2)
-                BtnLeft.BackColor = PnlTileEdit.Color2;
-            if (PnlTileEdit.LeftColorIx == 3)
-                BtnLeft.BackColor = PnlTileEdit.Color3;
         }
 
         private void TxtColor_KeyDown(object sender, KeyEventArgs e)
@@ -219,8 +201,10 @@ namespace TGLTilePaint
                     PnlTileEdit.Color2 = color;
                 else if (txt == TxtColor3)
                     PnlTileEdit.Color3 = color;
+                else if (txt == TxtCurrentColor)
+                    PnlTileEdit.CurrentColor = color;
 
-                UpdateColorButtons(false);
+                UpdateColorButtons();
                 Refresh();
             }
         }
@@ -238,20 +222,6 @@ namespace TGLTilePaint
             }.Contains(key);
         }
 
-        private void TxtColor_Enter(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt == null) return;
-
-            txt.SelectAll();
-        }
-
-        private void ShowPixelCodes(bool show)
-        {
-            PnlTileEdit.ShowPixelCodes = show;
-            PnlTileEdit.Refresh();
-        }
-
         private void ShowMainGrid(bool show)
         {
             PnlTileEdit.ShowMainGrid = show;
@@ -262,11 +232,6 @@ namespace TGLTilePaint
         {
             PnlTileEdit.ShowSubGrid = show;
             PnlTileEdit.Refresh();
-        }
-
-        private void BtnTogglePixelCodes_Click(object sender, EventArgs e)
-        {
-            ShowPixelCodes(BtnTogglePixelCodes.Checked);
         }
 
         private void BtnToggleMainGrid_Click(object sender, EventArgs e)
@@ -291,25 +256,10 @@ namespace TGLTilePaint
 
         private void MenuBtnCopy_Click(object sender, EventArgs e)
         {
-            if (PnlTileEdit.Is8x8())
-                Clipboard.SetText(PnlTileEdit.Tile.ToStringSingle8x8());
-            else if (PnlTileEdit.Is16x16())
-                Clipboard.SetText(PnlTileEdit.Tile.ToStringComposite());
-
-            ShowTempStatus("Tile pattern copied to clipboard!");
         }
 
         private void MenuBtnPaste_Click(object sender, EventArgs e)
         {
-            if (PnlTileEdit.Tile.Parse(Clipboard.GetText()))
-            {
-                Refresh();
-                ShowTempStatus("Tile pattern parsed from clipboard!");
-            }
-            else
-            {
-                MessageBox.Show("Invalid string format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -320,15 +270,11 @@ namespace TGLTilePaint
         private void BtnTileSize8x8_Click(object sender, EventArgs e)
         {
             PnlTileEdit.Mode8x8();
-            BtnCopy8x8.Text = "Copy 8x8";
-            MenuBtnCopy.Text = BtnCopy8x8.Text;
         }
 
         private void BtnTileSize16x16_Click(object sender, EventArgs e)
         {
             PnlTileEdit.Mode16x16();
-            BtnCopy8x8.Text = "Copy 4x 8x8";
-            MenuBtnCopy.Text = BtnCopy8x8.Text;
         }
 
         private void LoadBitmap(string filename)
@@ -338,8 +284,6 @@ namespace TGLTilePaint
             bitmap.Dispose();
 
             OnFileLoaded(filename);
-            PnlTileEdit.ResetColors();
-            UpdateColorButtons(true);
             Refresh();
 
             PnlTileEdit.Enabled = false;
@@ -440,7 +384,8 @@ namespace TGLTilePaint
         private void ResetPalette()
         {
             PnlTileEdit.ResetColors();
-            UpdateColorButtons(true);
+            UpdateColorButtons();
+            UpdateColorHexRGBs();
             Refresh();
         }
 
@@ -474,17 +419,6 @@ namespace TGLTilePaint
         private void BtnToggleMode_Click(object sender, EventArgs e)
         {
             PnlTileEdit.ToggleMode();
-
-            if (PnlTileEdit.Is8x8())
-            {
-                BtnCopy8x8.Text = "Copy 8x8";
-                MenuBtnCopy.Text = BtnCopy8x8.Text;
-            }
-            else
-            {
-                BtnCopy8x8.Text = "Copy 4x 8x8";
-                MenuBtnCopy.Text = BtnCopy8x8.Text;
-            }
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -499,8 +433,9 @@ namespace TGLTilePaint
 
         private void CreateNewTile()
         {
-            PnlTileEdit.Tile.Fill(0);
-            ResetPalette();
+            PnlTileEdit.Tile.New();
+            Refresh();
+
             CurrentFile = "";
             Text = Title;
             ShowTempStatus("New tile created");
@@ -522,6 +457,30 @@ namespace TGLTilePaint
 
             string folder = Path.GetDirectoryName(CurrentFile);
             Process.Start("explorer", folder);
+        }
+
+        private void BtnParsePal_Click(object sender, EventArgs e)
+        {
+            List<Color> colors = PnlTileEdit.Tile.GetColorPalette();
+
+            if (colors.Count > 4)
+            {
+                MessageBox.Show("Unable to parse. Tile has more than 4 colors", 
+                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (colors.Count > 0) PnlTileEdit.Color0 = colors[0];
+            else PnlTileEdit.Color0 = Color.White;
+            if (colors.Count > 1) PnlTileEdit.Color1 = colors[1];
+            else PnlTileEdit.Color1 = Color.White;
+            if (colors.Count > 2) PnlTileEdit.Color2 = colors[2];
+            else PnlTileEdit.Color2 = Color.White;
+            if (colors.Count > 3) PnlTileEdit.Color3 = colors[3];
+            else PnlTileEdit.Color3 = Color.White;
+
+            UpdateColorButtons();
+            UpdateColorHexRGBs();
         }
     }
 }

@@ -5,24 +5,8 @@ void demo_views()
 	TGL tgl;
 	tgl.window_gbc(0x000000, 5);
 
-	tgl.tile_pat("tp_square_1f", "11111111"
-								 "10000001"
-								 "10222201"
-								 "10233201"
-								 "10233201"
-								 "10222201"
-								 "10000001"
-								 "11111111");
-
-	tgl.tile_pat("tp_square_2f", "33333333"
-								 "30000003"
-								 "30111103"
-								 "30122103"
-								 "30122103"
-								 "30111103"
-								 "30000003"
-								 "33333333");
-
+	tgl.tile_file("tp_square_1f", "Tiles/test_1.bmp");
+	tgl.tile_file("tp_square_1f", "Tiles/test_2.bmp");
 	tgl.tile_add("t_square", "tp_square_1f");
 	tgl.tile_add("t_square", "tp_square_2f");
 

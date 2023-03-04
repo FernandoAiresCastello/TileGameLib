@@ -101,6 +101,31 @@ namespace TGL_Internal
 		}
 	}
 
+	void TRGBWindow::DrawPixelBlock8x8(RGB pixels[64], bool transparent, RGB transpKey, int x, int y, bool ignoreClip)
+	{
+		int px = x;
+		int py = y;
+		bool hidePixel = false;
+
+		for (int i = 0; i < 64; i++) {
+			RGB color = pixels[i];
+
+			if (HasClip() && !ignoreClip)
+				hidePixel = IsOutsideClip(px, py);
+
+			if (!hidePixel) {
+				if (!transparent || (transparent && color != transpKey))
+					SetPixel(px, py, color);
+			}
+
+			px++;
+			if (px >= x + TChar::Width) {
+				py++;
+				px = x;
+			}
+		}
+	}
+
 	void TRGBWindow::SetClip(int x1, int y1, int x2, int y2)
 	{
 		Clip.Set(x1, y1, x2, y2);

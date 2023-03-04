@@ -148,45 +148,29 @@ void TGL::clear()
 {
 	tgl->wnd->ClearBackground();
 }
-void TGL::tile_pat(string pattern_id, string pixels)
+void TGL::tile_pixels(string img_id, rgb pixels[64])
 {
-	tgl->tile_patterns[pattern_id] = pixels;
+	for (int i = 0; i < 64; i++) {
+		tgl->tile_img[img_id].pixels[i] = pixels[i];
+	}
 }
-void TGL::tile_file(string pattern_id, string path)
+void TGL::tile_file(string img_id, string path)
 {
 	TImage img;
 	img.Load(path);
 	if (img.GetWidth() != tilesize || img.GetHeight() != tilesize) {
-		abort("Invalid tile pattern file: " + path);
+		abort("Invalid tile bitmap: " + path);
 		return;
 	}
-
-	string pixels = "";
-
-	for (int i = 0; i < img.GetSize(); i++) {
-		TColor color = img.GetPixel(i);
-		int gray_level = tgl->get_gray_level(color);
-
-		if (gray_level == 255) pixels += '0';
-		else if (gray_level == 0) pixels += '1';
-		else if (gray_level == 127) pixels += '2';
-		else if (gray_level == 195) pixels += '3';
-		else {
-			abort(String::Format(
-				"Invalid color in tile pattern file\r\n\r\n"
-				"RGB: %i, %i, %i\r\nFile: %s",
-				color.R, color.G, color.B, path.c_str()));
-			return;
-		}
+	for (int i = 0; i < 64; i++) {
+		tgl->tile_img[img_id].pixels[i] = img.GetPixel(i).ToColorRGB();
 	}
-
-	tgl->tile_patterns[pattern_id] = pixels;
 }
-void TGL::tile_add(string tile_id, string pattern_id, int count)
+void TGL::tile_add(string tile_id, string img_id, int count)
 {
-	if (tgl->assert_tilepattern_exists(pattern_id)) {
+	if (tgl->assert_tileimg_exists(img_id)) {
 		for (int i = 0; i < count; i++) {
-			tgl->tiles[tile_id].pattern_ids.push_back(pattern_id);
+			tgl->tile_seq[tile_id].pattern_ids.push_back(img_id);
 		}
 	}
 }
@@ -792,18 +776,18 @@ void TGL_Private::clear_view()
 	wnd->ClearBackground();
 	wnd->SetBackColor(prev_back_color);
 }
-bool TGL_Private::assert_tile_exists(string& id)
+bool TGL_Private::assert_tileseq_exists(string& id)
 {
-	if (tiles.find(id) == tiles.end()) {
-		tgl_public->abort("Tile not found with id: \"" + id + "\"");
+	if (tile_seq.find(id) == tile_seq.end()) {
+		tgl_public->abort("Tile sequence not found with id: \"" + id + "\"");
 		return false;
 	}
 	return true;
 }
-bool TGL_Private::assert_tilepattern_exists(string& id)
+bool TGL_Private::assert_tileimg_exists(string& id)
 {
-	if (tile_patterns.find(id) == tile_patterns.end()) {
-		tgl_public->abort("Tile pattern not found with id: \"" + id + "\"");
+	if (tile_img.find(id) == tile_img.end()) {
+		tgl_public->abort("Tile not found with id: \"" + id + "\"");
 		return false;
 	}
 	return true;
@@ -828,11 +812,11 @@ void TGL_Private::pos_tiled(int x, int y)
 }
 void TGL_Private::draw(string& tile_id)
 {
-	if (!assert_tile_exists(tile_id)) return;
+	if (!assert_tileseq_exists(tile_id)) return;
 
-	t_tileseq& tile = tiles[tile_id];
-	string& pattern_id = tile.pattern_ids[wnd->GetFrame() % tile.pattern_ids.size()];
-	string& pixels = tile_patterns[pattern_id];
+	t_tileseq& tileseq = tile_seq[tile_id];
+	string& pattern_id = tileseq.pattern_ids[wnd->GetFrame() % tileseq.pattern_ids.size()];
+	t_tileimg& tile = tile_img[pattern_id];
 
 	int x = cursor.x;
 	int y = cursor.y;
@@ -846,7 +830,7 @@ void TGL_Private::draw(string& tile_id)
 		y += wnd->GetClip().Y1;
 	}
 
-	wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, x, y);
+	wnd->DrawPixelBlock8x8(tile.pixels, palette.ignore_c0, transp_key, x, y);
 }
 void TGL_Private::print(string str)
 {
