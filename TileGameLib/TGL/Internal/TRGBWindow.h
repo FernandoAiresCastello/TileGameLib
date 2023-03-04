@@ -23,8 +23,8 @@ namespace TGL_Internal
 		virtual void ClearBackground();
 
 		int GetFrame();
-		void DrawPixelBlock8x8(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y, bool ignoreClip = false);
-		void DrawPixelBlock8x8(RGB pixels[64], bool transparent, RGB transpKey, int x, int y, bool ignoreClip = false);
+		void DrawChar8x8(std::string& pixels, RGB foreColor, RGB backColor, bool transparent, int x, int y, bool ignoreClip);
+		void DrawPixelBlock8x8(RGB pixels[64], bool transparent, RGB transpKey, int x, int y, bool ignoreClip);
 		void SetClip(int x1, int y1, int x2, int y2);
 		void RemoveClip();
 		bool HasClip();

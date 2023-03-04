@@ -17,22 +17,16 @@ private:
 	} cursor;
 
 	struct {
-		rgb c0 = 0x000000;
-		rgb c1 = 0x000000;
-		rgb c2 = 0x000000;
-		rgb c3 = 0x000000;
-		bool ignore_c0 = true;
-		bool single_color_mode = false;
-	} palette;
+		rgb fore_color = 0xffffff;
+		rgb back_color = 0x000000;
+		bool transparent = true;
+		bool shadow_enabled = false;
+		rgb shadow_color = 0x000000;
+	} font_style;
 
 	struct {
-		bool enabled = false;
-		rgb color = 0x000000;
-	} text_shadow;
-
-	struct {
-		rgb fgc = 0xffffff;
-		rgb bgc = 0x000000;
+		rgb fore_color = 0xffffff;
+		rgb back_color = 0x000000;
 		bool cancelled = false;
 		char cursor = '_';
 	} text_input;
@@ -69,6 +63,11 @@ private:
 		rgb pixels[64];
 	};
 
+	struct {
+		bool enabled = false;
+		rgb key = 0xffffff;
+	} tile_transparency;
+
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
@@ -86,7 +85,6 @@ private:
 	unordered_map<string, t_timer> timers;
 	TGamepad gamepad;
 	SDL_Keycode last_key = 0;
-	rgb transp_key = 0xffffff;
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);

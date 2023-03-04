@@ -92,13 +92,8 @@ struct TGL
 	void tile_pixels(string img_id, rgb pixels[64]);
 	void tile_file(string img_id, string path);
 	void tile_add(string tile_id, string img_id, int count = 1);
-
-	//=========================================================================
-	//		GRAPHICS > COLOR MODES
-	//=========================================================================
-	void color_single(rgb c1);
-	void color_sprite(rgb c1, rgb c2, rgb c3);
-	void color_normal(rgb c0, rgb c1, rgb c2, rgb c3);
+	void transparent(bool state);
+	void transparency_key(rgb color);
 
 	//=========================================================================
 	//		GRAPHICS > TILE RENDERING
@@ -110,9 +105,11 @@ struct TGL
 	//		GRAPHICS > TEXT RENDERING
 	//=========================================================================
 	void font(char ch, string pattern);
-	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
-	void font_reset();
 	void font_new();
+	void font_reset();
+	void font_color(rgb color);
+	void font_color(rgb fore_color, rgb back_color);
+	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
 	void print_free(string str, int x, int y);
 	void print_tiled(string str, int col, int row);
 

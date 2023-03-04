@@ -8,7 +8,7 @@ void demo_mouse()
 	while (tgl.running()) {
 
 		tgl.clear();
-		tgl.color_single(0x000000);
+		tgl.font_color(0x000000);
 		tgl.font_shadow(true, 0xd0d0d0);
 		tgl.print_tiled(tgl.fmt("X: %i", tgl.mouse_x()), 1, 1);
 		tgl.print_tiled(tgl.fmt("Y: %i", tgl.mouse_y()), 1, 2);

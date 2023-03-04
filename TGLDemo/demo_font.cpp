@@ -54,7 +54,7 @@ void print(TGL& tgl, string str, int x, int y)
 	x *= tgl.tilesize;
 	y *= tgl.tilesize;
 
-	tgl.color_single(0xffffff);
+	tgl.font_color(0xffffff);
 	tgl.print_free(str, x, y);
 }
 void header(TGL& tgl, string str, int x, int y)
@@ -62,11 +62,11 @@ void header(TGL& tgl, string str, int x, int y)
 	x *= tgl.tilesize;
 	y *= tgl.tilesize;
 
-	tgl.color_single(0xffff00);
+	tgl.font_color(0xffff00, 0x0000ff);
 	tgl.print_free(str, x, y);
 }
 void title(TGL& tgl, string str)
 {
-	tgl.color_single(0x00ffff);
+	tgl.font_color(0x00ffff);
 	tgl.print_free(str, 43, 1);
 }

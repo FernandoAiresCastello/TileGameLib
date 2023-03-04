@@ -4,11 +4,12 @@ void demo_views()
 {
 	TGL tgl;
 	tgl.window_gbc(0x000000, 5);
+	tgl.transparency_key(0xffffff);
 
-	tgl.tile_file("tp_square_1f", "Tiles/test_1.bmp");
-	tgl.tile_file("tp_square_1f", "Tiles/test_2.bmp");
-	tgl.tile_add("t_square", "tp_square_1f");
-	tgl.tile_add("t_square", "tp_square_2f");
+	tgl.tile_file("square_1", "Tiles/test_1.bmp");
+	tgl.tile_file("square_2", "Tiles/test_2.bmp");
+	tgl.tile_add("square", "square_1");
+	tgl.tile_add("square", "square_2");
 
 	int x = 0;
 	int y = 0;
@@ -25,21 +26,17 @@ void demo_views()
 		tgl.view("view_bg");
 
 		tgl.view("view_1");
-		tgl.color_sprite(0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw_free("t_square", 0, 0);
+		tgl.draw_free("square", 0, 0);
 
 		tgl.view("view_2");
-		tgl.color_normal(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw_tiled("t_square", 1, 1);
+		tgl.draw_tiled("square", 1, 1);
 
 		tgl.view("view_3");
-		tgl.color_normal(0x000000, 0xff0000, 0x00ff00, 0x0000ff);
-		tgl.draw_tiled("t_square", 1, 1);
-		tgl.draw_tiled("t_square", 2, 2);
-		tgl.draw_tiled("t_square", 4, 4);
+		tgl.draw_tiled("square", 1, 1);
+		tgl.draw_tiled("square", 2, 2);
+		tgl.draw_tiled("square", 4, 4);
 
-		tgl.color_sprite(0xffff00, 0xff00ff, 0x00ffff);
-		tgl.draw_free("t_square", x, y);
+		tgl.draw_free("square", x, y);
 
 		if (tgl.kb_esc()) tgl.exit();
 

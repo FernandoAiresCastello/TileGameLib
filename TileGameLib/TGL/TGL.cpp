@@ -174,6 +174,15 @@ void TGL::tile_add(string tile_id, string img_id, int count)
 		}
 	}
 }
+void TGL::transparency_key(rgb color)
+{
+	tgl->tile_transparency.enabled = true;
+	tgl->tile_transparency.key = color;
+}
+void TGL::transparent(bool state)
+{
+	tgl->tile_transparency.enabled = state;
+}
 void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
 {
 	TGL_Private::t_viewport vw;
@@ -216,31 +225,6 @@ int TGL::scroll_y()
 {
 	return tgl->cur_view->scroll_y;
 }
-void TGL::color_single(rgb c1)
-{
-	tgl->palette.single_color_mode = true;
-	tgl->palette.ignore_c0 = true;
-	tgl->palette.c0 = 0;
-	tgl->palette.c1 = c1;
-}
-void TGL::color_sprite(rgb c1, rgb c2, rgb c3)
-{
-	tgl->palette.single_color_mode = false;
-	tgl->palette.ignore_c0 = true;
-	tgl->palette.c0 = 0;
-	tgl->palette.c1 = c1;
-	tgl->palette.c2 = c2;
-	tgl->palette.c3 = c3;
-}
-void TGL::color_normal(rgb c0, rgb c1, rgb c2, rgb c3)
-{
-	tgl->palette.single_color_mode = false;
-	tgl->palette.ignore_c0 = false;
-	tgl->palette.c0 = c0;
-	tgl->palette.c1 = c1;
-	tgl->palette.c2 = c2;
-	tgl->palette.c3 = c3;
-}
 void TGL::draw_free(string tile_id, int x, int y)
 {
 	tgl->pos_free(x, y);
@@ -251,14 +235,25 @@ void TGL::draw_tiled(string tile_id, int col, int row)
 	tgl->pos_tiled(col, row);
 	tgl->draw(tile_id);
 }
+void TGL::font_color(rgb color)
+{
+	tgl->font_style.fore_color = color;
+	tgl->font_style.transparent = true;
+}
+void TGL::font_color(rgb fore_color, rgb back_color)
+{
+	tgl->font_style.fore_color = fore_color;
+	tgl->font_style.back_color = back_color;
+	tgl->font_style.transparent = false;
+}
 void TGL::font(char ch, string pattern)
 {
 	tgl->font_patterns[ch] = pattern;
 }
 void TGL::font_shadow(bool shadow, rgb shadow_color)
 {
-	tgl->text_shadow.enabled = shadow;
-	tgl->text_shadow.color = shadow_color;
+	tgl->font_style.shadow_enabled = shadow;
+	tgl->font_style.shadow_color = shadow_color;
 }
 void TGL::font_reset()
 {
@@ -425,8 +420,8 @@ int TGL::rows()
 }
 void TGL::input_color(rgb foreground, rgb background)
 {
-	tgl->text_input.fgc = foreground;
-	tgl->text_input.bgc = background;
+	tgl->text_input.fore_color = foreground;
+	tgl->text_input.back_color = background;
 }
 void TGL::input_cursor(char ch)
 {
@@ -648,7 +643,7 @@ void TGL::print_debug(string str, int x, int y, rgb color)
 {
 	for (auto& ch : str) {
 		string& pixels = tgl->font_patterns[ch];
-		tgl->wnd->DrawPixelBlock8x8(pixels, 0, color, 0, 0, true, x, y, true);
+		tgl->wnd->DrawChar8x8(pixels, color, 0, true, x, y, true);
 		x += TILE_SIZE;
 	}
 }
@@ -830,7 +825,7 @@ void TGL_Private::draw(string& tile_id)
 		y += wnd->GetClip().Y1;
 	}
 
-	wnd->DrawPixelBlock8x8(tile.pixels, palette.ignore_c0, transp_key, x, y);
+	wnd->DrawPixelBlock8x8(tile.pixels, tile_transparency.enabled, tile_transparency.key, x, y, false);
 }
 void TGL_Private::print(string str)
 {
@@ -844,10 +839,14 @@ void TGL_Private::print(string str)
 
 	for (auto& ch : str) {
 		string& pixels = font_patterns[ch];
-		if (text_shadow.enabled) {
-			wnd->DrawPixelBlock8x8(pixels, palette.c0, text_shadow.color, palette.c0, palette.c0, palette.ignore_c0, char_x + 1, char_y + 1);
+		
+		if (font_style.shadow_enabled) {
+			wnd->DrawChar8x8(pixels, font_style.shadow_color, font_style.back_color,
+				true, char_x + 1, char_y + 1, false);
 		}
-		wnd->DrawPixelBlock8x8(pixels, palette.c0, palette.c1, palette.c2, palette.c3, palette.ignore_c0, char_x, char_y);
+		wnd->DrawChar8x8(pixels, font_style.fore_color, font_style.back_color,
+			font_style.transparent, char_x, char_y, false);
+
 		char_x += TILE_SIZE;
 	}
 }
@@ -1045,23 +1044,21 @@ void TGL_Private::init_default_font()
 }
 string TGL_Private::line_input(int length, int x, int y, bool tiled)
 {
-	bool finished = false;
-	bool prev_text_shadow = text_shadow.enabled;
-	bool prev_ignore_c0 = palette.ignore_c0;
-	bool prev_single_color = palette.single_color_mode;
-	rgb prev_c0 = palette.c0;
-	rgb prev_c1 = palette.c1;
-	
-	text_shadow.enabled = false;
-	palette.ignore_c0 = false;
-	palette.single_color_mode = false;
-	palette.c0 = text_input.bgc;
-	palette.c1 = text_input.fgc;
-	
+	bool prev_shadow_enabled = font_style.shadow_enabled;
+	bool prev_transparent = font_style.transparent;
+	rgb prev_fore_color = font_style.fore_color;
+	rgb prev_back_color = font_style.back_color;
+
+	font_style.shadow_enabled = false;
+	font_style.transparent = false;
+	font_style.fore_color = text_input.fore_color;
+	font_style.back_color = text_input.back_color;
+
 	text_input.cancelled = false;
 	string blanks = String::Repeat(' ', length + 1);
 	string text = "";
 
+	bool finished = false;
 	while (is_running && !finished) {
 		
 		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(blanks);
@@ -1102,11 +1099,10 @@ string TGL_Private::line_input(int length, int x, int y, bool tiled)
 		}
 	}
 
-	text_shadow.enabled = prev_text_shadow;
-	palette.ignore_c0 = prev_ignore_c0;
-	palette.single_color_mode = prev_single_color;
-	palette.c0 = prev_c0;
-	palette.c1 = prev_c1;
+	font_style.shadow_enabled = prev_shadow_enabled;
+	font_style.transparent = prev_transparent;
+	font_style.fore_color = prev_fore_color;
+	font_style.back_color = prev_back_color;
 
 	return text;
 }

@@ -298,56 +298,38 @@
 <p class="apiref-section-header" id="tileset">GRAPHICS > TILE SET</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_pat(<span class="apiref-type">string</span> pattern_id, <span class="apiref-type">string</span> pixels)
+	<span class="apiref-type">void</span> tile_pixels(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> pixels[64])
 </p>
 <p class="apiref-entry">
-	Creates a new pixel pattern or redefine an existing pattern with the specified pattern_id, and assign a text of length 64 (8x8) containing the color indices for each pixel. Only the characters '0', '1', '2' or '3' are valid to represent the respective color indices.
+	Creates a new tile with the specified pixel colors.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_file(<span class="apiref-type">string</span> pattern_id, <span class="apiref-type">string</span> path)
+	<span class="apiref-type">void</span> tile_file(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
-	Imports a TGL bitmap image from a file and assigns the specified pattern_id. A TGL bitmap image is just like a regular bitmap, but it must limited to size 8x8 and each pixel must be exactly one of the following RGB values, which will be converted to the corresponding color index in the tile pattern:
-</p>
-<ul class="apiref-list">
-	<li>Color index 0 = RGB 255,255,255 (0xffffff)</li>
-	<li>Color index 1 = RGB   0,  0,  0 (0x000000)</li>
-	<li>Color index 2 = RGB 127,127,127 (0x7f7f7f)</li>
-	<li>Color index 3 = RGB 195,195,195 (0xc3c3c3)</li>
-</ul>
-<p class="apiref-entry">
-	To create TGL bitmaps you can use any paint tool (such as MS Paint or Photoshop) as long as you save the image as a standard "24-bit color bitmap" of size 8x8 using only the colors mentioned above. Or alternatively you can use the tool "TGL Tile Paint" to draw, save and load TGL bitmap files easily.
+	Loads a bitmap image from a file, creates a new tile and assigns to it the specified img_id and pixels from the loaded bitmap.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> pattern_id)
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> img_id)
 </p>
 <p class="apiref-entry">
-	Creates a new tile sequence with a single animation frame as indicated by the pattern_id, or modify an existing tile by adding a new animation frame as indicated by the pattern_id. The pattern_id should correspond to an existing tile pattern that was previously created by the tile_pat() or tile_file() functions.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-section-header" id="palette">GRAPHICS > COLOR PALETTE</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_single(<span class="apiref-type">rgb</span> c1)
-</p>
-<p class="apiref-entry">
-	Enables the "single" color mode, which only sets the RGB value for the color index 1 of all subsequent tiles that are drawn. Useful for drawing text using the default font, since all default character tiles only contain the indices 0 and 1, with 0 being the transparency key, i.e. pixels with the index 0 will not be drawn in this mode.
+	Creates a new tile sequence with a single animation frame as indicated by the img_id, or modify an existing tile by adding a new animation frame as indicated by the img_id. The img_id should correspond to an existing tile image that was previously created by the tile_pixels() or tile_file() functions.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_sprite(<span class="apiref-type">rgb</span> c1, <span class="apiref-type">rgb</span> c2, <span class="apiref-type">rgb</span> c3)
+	<span class="apiref-type">void</span> transparent(<span class="apiref-type">bool</span> state)
 </p>
 <p class="apiref-entry">
-	Enables the "sprite" color mode, which sets the RGB values for the color indices 1, 2 and 3 of all subsequent tiles that are drawn, while pixels with the index 0 (i.e. the transparency key) will not be drawn.
+	Enables or disables tile transparency. This function does not change the color of the transparency key.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> color_normal(<span class="apiref-type">rgb</span> c0, <span class="apiref-type">rgb</span> c1, <span class="apiref-type">rgb</span> c2, <span class="apiref-type">rgb</span> c3)
+	<span class="apiref-type">void</span> transparency_key(<span class="apiref-type">rgb</span> color)
 </p>
 <p class="apiref-entry">
-	Enables the "normal" color mode, which sets the RGB values for the color indices 0, 1, 2 and 3 of all subsequent tiles that are drawn. Using this function disables the transparency key, i.e. in this mode all pixels will be drawn, including the ones with index 0.
+	Enables and sets the color of the global transparency key, i.e. whenever any tile contains the specified color, it will not be rendered if transparency is enabled.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="tiledraw">GRAPHICS > TILE DRAWING</p>
@@ -371,6 +353,20 @@
 </p>
 <p class="apiref-entry">
 	Sets the tile pattern for the specified character in the internal font tileset used for drawing text. Note that the font tileset is separate and independent from the regular tileset, but the tiles themselves are drawn in the exact same manner, i.e. all features and limitations of regular tiles also apply to font characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Set the color of the text font. The background of the text will be transparent.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> fore_color, rgb back_color)
+</p>
+<p class="apiref-entry">
+	Set the foreground and background colors of the text font. The background of the text is drawn normally.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -491,6 +487,13 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="keyboard">INPUT > KEYBOARD</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> kb_lastkey()
+</p>
+<p class="apiref-entry">
+	Returns the code of the last key that was pressed. Unlike the other "kb_" functions, this function is affected by the "keyboard delay" and "keyboard repeat" rates of the OS.
+</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
 	<span class="apiref-type">bool</span> kb_char(<span class="apiref-type">char</span> ch)

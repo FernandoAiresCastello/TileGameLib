@@ -69,7 +69,7 @@ namespace TGL_Internal
 		return RgbWndTileAnimation.CachedFrame;
 	}
 
-	void TRGBWindow::DrawPixelBlock8x8(std::string& pixels, RGB c0, RGB c1, RGB c2, RGB c3, bool ignoreC0, int x, int y, bool ignoreClip)
+	void TRGBWindow::DrawChar8x8(std::string& pixels, RGB foreColor, RGB backColor, bool transparent, int x, int y, bool ignoreClip)
 	{
 		RGB color;
 		int px = x;
@@ -83,12 +83,9 @@ namespace TGL_Internal
 
 			if (!hidePixel)
 			{
-				if (pixel == '1') color = c1;
-				else if (pixel == '2') color = c2;
-				else if (pixel == '3') color = c3;
-				else color = c0;
+				color = pixel >= '1' ? foreColor : backColor;
 
-				if (!ignoreC0 || (ignoreC0 && pixel != '0'))
+				if (!transparent || (transparent && pixel != '0'))
 					SetPixel(px, py, color);
 			}
 

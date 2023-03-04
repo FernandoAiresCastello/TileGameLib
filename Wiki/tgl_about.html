@@ -52,33 +52,19 @@
 	<b>Application Window:</b> TGL uses the standard OS windowing system for output, with the image resolution fixed at the moment of creation. There are two default sizes, one tries to replicate the GameBoy Color screen size, and the other is a widescreen size. The window itself cannot be resized manually, only programmatically via a "scale factor", which basically just scales the entire image to fill a window with different sizes (i.e. it stretches or shrinks all pixels). The window does not update automatically. Everything is drawn on an off-screen pixel buffer. The window can be updated by calling the almighty "system" function, which should be called at the end of each and every frame to allow for the default window event processing, and that includes refreshing the window contents.
 </p>
 <p class="horizontal-padding">
-	<b>Tile Format:</b> All tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. Each tile is limited to a maximum of 4 colors. They can be loaded from a bitmap image file or created directly within the code using "pixel patterns": those are merely strings of length 64 (i.e. 8x8) containing the characters '0', '1', '2' or '3' indicating the color index of a pixel, i.e. tiles don't have color information, they only contain indices that refer to the current color palette kept internally by the system. The tiles themselves are sequences of tile patterns, which allows for every tile to be animated automatically (or not, if it has a single frame). Pixel patterns and tiles are stored internally in a tileset and can be referred to via string IDs.
+	<b>Tile Format:</b> Internally, all tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. Tiles can be loaded from a bitmap image file or created directly within the code using "pixel patterns": those are merely arrays of length 64 (i.e. 8x8) containing the RGB values for the color of each pixel. The tiles themselves are sequences of pixel patterns, which allows for every tile to be animated automatically (or not, if it has a single frame). Pixel patterns and tiles are stored internally in a tileset and can be referred to via string IDs.
 </p>
 <p class="horizontal-padding">
-	<b>Tile Animation:</b> The system internally runs a thread that handles the automatic animation of tile sequences. Every tile drawn on the screen is actually a tile pattern sequence. If the tile contains only one single tile pattern, it simply does not animate. If it contains more than one tile pattern, the graphics system will draw the appropriate pattern according to the current animation frame. Tile animation "wraps around", meaning it restarts automatically when the current animation frame exceeds the total amount of frames in any tile.
+	<b>Tile Animation:</b> The system internally runs a thread that handles the automatic animation of tile sequences. Every tile drawn on the screen is actually a tile pattern sequence. If the tile contains only one single tile pattern, it simply does not animate. If it contains more than one tile pattern, the graphics system will draw the appropriate pattern according to the current animation frame. Tile animation "wraps around" automatically, meaning it restarts from the first frame once the current animation frame exceeds the size of the tile sequence.
 </p>
 <p class="horizontal-padding">
 	<b>Pixels:</b> Individual pixels can only be manipulated on a tile-by-tile basis, meaning 8x8 "pixel patterns" must be manipulated in the internal tileset before drawing anything on the screen, again similar to the GBC concept of "tile memory". As such, direct access to the internal pixel buffer is not provided.
 </p>
 <p class="horizontal-padding">
-	<b>Sprites:</b> Those can be simulated by using tiles that have "transparent" backgrounds. This is achieved by specifying 3 colors instead of 4 when drawing any regular tile, in which case only the indices 1, 2 and 3 are specified, the index 0 is the transparency key. This is the so-called "sprite" color mode. Transparency here has nothing to do with alpha transparency or blending (TGL does not support color blending). It simply means that pixels assigned with the index 0 will not be drawn.
+	<b>Sprites:</b> Those can be simulated by enabling transparency and setting the color of the transparency key. Transparency here has nothing to do with alpha transparency or blending (TGL does not support color blending). It simply means pixels that have the same color of the transparency key will not be drawn when transparency is enabled.
 </p>
 <p class="horizontal-padding">
-	<b>Colors:</b> Colors themselves are encoded in the typical RGB format (i.e. from 0x000000 to 0xffffff), but tile colors are indexed into the system's internal color palette. Each of the 64 pixels in a tile is assigned one of 4 color indexes (0, 1, 2 or 3). The RGB colors for each index (i.e. the "color palette") are assigned to individual tiles as they are drawn using one of the available "color_" functions.
-</p>
-<p class="horizontal-padding">
-	<b>Color Modes:</b> The API exposes 3 different color modes. Each of the color modes are enabled by calling one of the "color_" functions at any moment. The enabled color mode will affect all subsequent tiles that are drawn.
-	<ol style="margin-left:50px">
-		<li>
-			<b>Normal Mode: </b>This is the default initial mode. In this mode, all 4 colors of the tile are rendered.
-		</li>
-		<li>
-			<b>Sprite Mode: </b>In this mode, only pixels with indices 1, 2 or 3 in the tile are rendered. Pixels with the index 0 are invisible.
-		</li>
-		<li>
-			<b>Single Mode: </b>In this mode, only pixels with index 1 in the tile are rendered. Pixels with the index 0, 2 and 3 are invisible, i.e. only that one single color will be rendered.
-		</li>
-	</ol>
+	<b>Colors:</b> Colors themselves are encoded in the typical RGB format (i.e. from 0x000000 to 0xffffff). Each one of the 64 pixels in a tile can be assigned an individual RGB value.
 </p>
 <p class="horizontal-padding">
 	<b>Virtual Tile Grid:</b> The graphics system contains an infinitely large, invisible grid divided into cells of size 8x8 each. Tiles may be drawn "freely" at any absolute x and y coordinate, i.e. outside the grid, or they may be drawn "tiled", i.e. into the grid, which means the system will fit them neatly into the 8x8 cells of the grid, preventing any partial overlap. The choice of free or tiled mode is selected at the moment of drawing via either one of the "draw_" functions.
@@ -98,7 +84,7 @@
 
 <b>Text</b>
 <p class="horizontal-padding">
-	Text drawing is simply implemented as a string of tiles. The default font can be redefined by the user, and each character is stored as a pixel pattern, just like the tileset. You can think of the font as just a special separate internal tileset, and every font character has the exact same features and limitations of regular tiles.
+	Text drawing is simply implemented as a string of tiles. The default font can be redefined by the user, and each character is stored as a pixel pattern.
 </p>
 
 <b>Sound</b>
