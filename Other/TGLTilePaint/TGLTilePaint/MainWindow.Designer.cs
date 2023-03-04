@@ -35,18 +35,13 @@ namespace TGLTilePaint
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TileEditPanelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.BtnResetPal = new System.Windows.Forms.Button();
-            this.BtnPermutate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.BtnPaste = new System.Windows.Forms.Button();
             this.BtnCopy8x8 = new System.Windows.Forms.Button();
             this.TxtColor3 = new System.Windows.Forms.TextBox();
             this.TxtColor2 = new System.Windows.Forms.TextBox();
             this.TxtColor1 = new System.Windows.Forms.TextBox();
             this.TxtColor0 = new System.Windows.Forms.TextBox();
-            this.BtnFillRight = new System.Windows.Forms.Button();
-            this.BtnRight = new System.Windows.Forms.Button();
             this.BtnLeft = new System.Windows.Forms.Button();
             this.BtnFillLeft = new System.Windows.Forms.Button();
             this.Btn3 = new System.Windows.Forms.Button();
@@ -74,6 +69,8 @@ namespace TGLTilePaint
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnNew2 = new System.Windows.Forms.Button();
+            this.BtnOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -123,18 +120,14 @@ namespace TGLTilePaint
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.BtnNew2);
             this.panel1.Controls.Add(this.BtnResetPal);
-            this.panel1.Controls.Add(this.BtnPermutate);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.BtnPaste);
             this.panel1.Controls.Add(this.BtnCopy8x8);
             this.panel1.Controls.Add(this.TxtColor3);
             this.panel1.Controls.Add(this.TxtColor2);
             this.panel1.Controls.Add(this.TxtColor1);
             this.panel1.Controls.Add(this.TxtColor0);
-            this.panel1.Controls.Add(this.BtnFillRight);
-            this.panel1.Controls.Add(this.BtnRight);
             this.panel1.Controls.Add(this.BtnLeft);
             this.panel1.Controls.Add(this.BtnFillLeft);
             this.panel1.Controls.Add(this.Btn3);
@@ -147,51 +140,20 @@ namespace TGLTilePaint
             this.panel1.Size = new System.Drawing.Size(291, 436);
             this.panel1.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(98, 297);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Color palette";
-            // 
             // BtnResetPal
             // 
-            this.BtnResetPal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResetPal.Location = new System.Drawing.Point(149, 321);
+            this.BtnResetPal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnResetPal.Location = new System.Drawing.Point(149, 356);
             this.BtnResetPal.Name = "BtnResetPal";
             this.BtnResetPal.Size = new System.Drawing.Size(126, 30);
             this.BtnResetPal.TabIndex = 17;
-            this.BtnResetPal.Text = "Reset";
+            this.BtnResetPal.Text = "Reset palette";
             this.BtnResetPal.UseVisualStyleBackColor = true;
             this.BtnResetPal.Click += new System.EventHandler(this.BtnResetPal_Click);
             // 
-            // BtnPermutate
-            // 
-            this.BtnPermutate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPermutate.Location = new System.Drawing.Point(17, 321);
-            this.BtnPermutate.Name = "BtnPermutate";
-            this.BtnPermutate.Size = new System.Drawing.Size(126, 30);
-            this.BtnPermutate.TabIndex = 16;
-            this.BtnPermutate.Text = "Permutate";
-            this.BtnPermutate.UseVisualStyleBackColor = true;
-            this.BtnPermutate.Click += new System.EventHandler(this.BtnPermutate_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 367);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 17);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "String pattern";
-            // 
             // BtnPaste
             // 
-            this.BtnPaste.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPaste.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPaste.Location = new System.Drawing.Point(149, 392);
             this.BtnPaste.Name = "BtnPaste";
             this.BtnPaste.Size = new System.Drawing.Size(126, 30);
@@ -202,7 +164,7 @@ namespace TGLTilePaint
             // 
             // BtnCopy8x8
             // 
-            this.BtnCopy8x8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCopy8x8.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCopy8x8.Location = new System.Drawing.Point(17, 392);
             this.BtnCopy8x8.Name = "BtnCopy8x8";
             this.BtnCopy8x8.Size = new System.Drawing.Size(126, 30);
@@ -215,7 +177,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor3.Location = new System.Drawing.Point(215, 158);
+            this.TxtColor3.Location = new System.Drawing.Point(215, 123);
             this.TxtColor3.MaxLength = 6;
             this.TxtColor3.Name = "TxtColor3";
             this.TxtColor3.Size = new System.Drawing.Size(60, 20);
@@ -230,7 +192,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor2.Location = new System.Drawing.Point(149, 158);
+            this.TxtColor2.Location = new System.Drawing.Point(149, 123);
             this.TxtColor2.MaxLength = 6;
             this.TxtColor2.Name = "TxtColor2";
             this.TxtColor2.Size = new System.Drawing.Size(60, 20);
@@ -245,7 +207,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor1.Location = new System.Drawing.Point(83, 158);
+            this.TxtColor1.Location = new System.Drawing.Point(83, 123);
             this.TxtColor1.MaxLength = 6;
             this.TxtColor1.Name = "TxtColor1";
             this.TxtColor1.Size = new System.Drawing.Size(60, 20);
@@ -260,7 +222,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor0.Location = new System.Drawing.Point(17, 158);
+            this.TxtColor0.Location = new System.Drawing.Point(17, 123);
             this.TxtColor0.MaxLength = 6;
             this.TxtColor0.Name = "TxtColor0";
             this.TxtColor0.Size = new System.Drawing.Size(60, 20);
@@ -271,47 +233,22 @@ namespace TGLTilePaint
             this.TxtColor0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtColor0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
             // 
-            // BtnFillRight
-            // 
-            this.BtnFillRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFillRight.Location = new System.Drawing.Point(149, 48);
-            this.BtnFillRight.Name = "BtnFillRight";
-            this.BtnFillRight.Size = new System.Drawing.Size(126, 30);
-            this.BtnFillRight.TabIndex = 7;
-            this.BtnFillRight.Text = "Fill";
-            this.BtnFillRight.UseVisualStyleBackColor = true;
-            this.BtnFillRight.Click += new System.EventHandler(this.BtnFillRight_Click);
-            // 
-            // BtnRight
-            // 
-            this.BtnRight.Enabled = false;
-            this.BtnRight.FlatAppearance.BorderSize = 0;
-            this.BtnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRight.Location = new System.Drawing.Point(149, 12);
-            this.BtnRight.Name = "BtnRight";
-            this.BtnRight.Size = new System.Drawing.Size(126, 30);
-            this.BtnRight.TabIndex = 6;
-            this.BtnRight.Text = "RMB";
-            this.BtnRight.UseVisualStyleBackColor = true;
-            // 
             // BtnLeft
             // 
             this.BtnLeft.Enabled = false;
-            this.BtnLeft.FlatAppearance.BorderSize = 0;
+            this.BtnLeft.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLeft.Location = new System.Drawing.Point(17, 12);
             this.BtnLeft.Name = "BtnLeft";
             this.BtnLeft.Size = new System.Drawing.Size(126, 30);
             this.BtnLeft.TabIndex = 5;
-            this.BtnLeft.Text = "LMB";
             this.BtnLeft.UseVisualStyleBackColor = true;
             // 
             // BtnFillLeft
             // 
-            this.BtnFillLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFillLeft.Location = new System.Drawing.Point(17, 48);
+            this.BtnFillLeft.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFillLeft.Location = new System.Drawing.Point(149, 12);
             this.BtnFillLeft.Name = "BtnFillLeft";
             this.BtnFillLeft.Size = new System.Drawing.Size(126, 30);
             this.BtnFillLeft.TabIndex = 4;
@@ -322,7 +259,9 @@ namespace TGLTilePaint
             // Btn3
             // 
             this.Btn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn3.Location = new System.Drawing.Point(215, 90);
+            this.Btn3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn3.ForeColor = System.Drawing.Color.Black;
+            this.Btn3.Location = new System.Drawing.Point(215, 55);
             this.Btn3.Name = "Btn3";
             this.Btn3.Size = new System.Drawing.Size(60, 64);
             this.Btn3.TabIndex = 3;
@@ -333,7 +272,9 @@ namespace TGLTilePaint
             // Btn2
             // 
             this.Btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn2.Location = new System.Drawing.Point(149, 90);
+            this.Btn2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn2.ForeColor = System.Drawing.Color.Black;
+            this.Btn2.Location = new System.Drawing.Point(149, 55);
             this.Btn2.Name = "Btn2";
             this.Btn2.Size = new System.Drawing.Size(60, 64);
             this.Btn2.TabIndex = 2;
@@ -344,7 +285,9 @@ namespace TGLTilePaint
             // Btn1
             // 
             this.Btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn1.Location = new System.Drawing.Point(83, 90);
+            this.Btn1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn1.ForeColor = System.Drawing.Color.Black;
+            this.Btn1.Location = new System.Drawing.Point(83, 55);
             this.Btn1.Name = "Btn1";
             this.Btn1.Size = new System.Drawing.Size(60, 64);
             this.Btn1.TabIndex = 1;
@@ -355,7 +298,9 @@ namespace TGLTilePaint
             // Btn0
             // 
             this.Btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn0.Location = new System.Drawing.Point(17, 90);
+            this.Btn0.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn0.ForeColor = System.Drawing.Color.Black;
+            this.Btn0.Location = new System.Drawing.Point(17, 55);
             this.Btn0.Name = "Btn0";
             this.Btn0.Size = new System.Drawing.Size(60, 64);
             this.Btn0.TabIndex = 0;
@@ -368,6 +313,7 @@ namespace TGLTilePaint
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BtnNew,
             this.BtnLoadBmp,
+            this.BtnOpenFolder,
             this.BtnSaveBmp,
             this.BtnSaveAs,
             this.toolStripSeparator2,
@@ -380,7 +326,7 @@ namespace TGLTilePaint
             // 
             this.BtnNew.Name = "BtnNew";
             this.BtnNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.BtnNew.Size = new System.Drawing.Size(184, 22);
+            this.BtnNew.Size = new System.Drawing.Size(212, 22);
             this.BtnNew.Text = "New";
             this.BtnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
@@ -388,7 +334,7 @@ namespace TGLTilePaint
             // 
             this.BtnLoadBmp.Name = "BtnLoadBmp";
             this.BtnLoadBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.BtnLoadBmp.Size = new System.Drawing.Size(184, 22);
+            this.BtnLoadBmp.Size = new System.Drawing.Size(212, 22);
             this.BtnLoadBmp.Text = "Open";
             this.BtnLoadBmp.Click += new System.EventHandler(this.BtnLoadBmp_Click);
             // 
@@ -396,7 +342,7 @@ namespace TGLTilePaint
             // 
             this.BtnSaveBmp.Name = "BtnSaveBmp";
             this.BtnSaveBmp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.BtnSaveBmp.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveBmp.Size = new System.Drawing.Size(212, 22);
             this.BtnSaveBmp.Text = "Save";
             this.BtnSaveBmp.Click += new System.EventHandler(this.BtnSaveBmp_Click);
             // 
@@ -405,19 +351,19 @@ namespace TGLTilePaint
             this.BtnSaveAs.Name = "BtnSaveAs";
             this.BtnSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.BtnSaveAs.Size = new System.Drawing.Size(184, 22);
+            this.BtnSaveAs.Size = new System.Drawing.Size(212, 22);
             this.BtnSaveAs.Text = "Save as";
             this.BtnSaveAs.Click += new System.EventHandler(this.BtnSaveAs_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(209, 6);
             // 
             // BtnExit
             // 
             this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(184, 22);
+            this.BtnExit.Size = new System.Drawing.Size(212, 22);
             this.BtnExit.Text = "Exit";
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
@@ -544,9 +490,29 @@ namespace TGLTilePaint
             // BtnAbout
             // 
             this.BtnAbout.Name = "BtnAbout";
-            this.BtnAbout.Size = new System.Drawing.Size(180, 22);
+            this.BtnAbout.Size = new System.Drawing.Size(107, 22);
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
+            // 
+            // BtnNew2
+            // 
+            this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNew2.Location = new System.Drawing.Point(17, 356);
+            this.BtnNew2.Name = "BtnNew2";
+            this.BtnNew2.Size = new System.Drawing.Size(126, 30);
+            this.BtnNew2.TabIndex = 18;
+            this.BtnNew2.Text = "New tile";
+            this.BtnNew2.UseVisualStyleBackColor = true;
+            this.BtnNew2.Click += new System.EventHandler(this.BtnNew2_Click);
+            // 
+            // BtnOpenFolder
+            // 
+            this.BtnOpenFolder.Name = "BtnOpenFolder";
+            this.BtnOpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.BtnOpenFolder.Size = new System.Drawing.Size(212, 22);
+            this.BtnOpenFolder.Text = "Open folder";
+            this.BtnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
             // MainWindow
             // 
@@ -585,16 +551,13 @@ namespace TGLTilePaint
         private System.Windows.Forms.Button Btn1;
         private System.Windows.Forms.Button Btn0;
         private System.Windows.Forms.Button BtnFillLeft;
-        private System.Windows.Forms.Button BtnRight;
         private System.Windows.Forms.Button BtnLeft;
-        private System.Windows.Forms.Button BtnFillRight;
         private System.Windows.Forms.TextBox TxtColor0;
         private System.Windows.Forms.TextBox TxtColor3;
         private System.Windows.Forms.TextBox TxtColor2;
         private System.Windows.Forms.TextBox TxtColor1;
         private System.Windows.Forms.Button BtnCopy8x8;
         private System.Windows.Forms.Button BtnPaste;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BtnExit;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
@@ -611,15 +574,15 @@ namespace TGLTilePaint
         private System.Windows.Forms.ToolStripMenuItem BtnLoadBmp;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveBmp;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnResetPal;
-        private System.Windows.Forms.Button BtnPermutate;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.ToolStripMenuItem BtnToggleMode;
         private System.Windows.Forms.ToolStripMenuItem BtnNew;
         private System.Windows.Forms.ToolStripMenuItem BtnSaveAs;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BtnAbout;
+        private System.Windows.Forms.Button BtnNew2;
+        private System.Windows.Forms.ToolStripMenuItem BtnOpenFolder;
     }
 }
 

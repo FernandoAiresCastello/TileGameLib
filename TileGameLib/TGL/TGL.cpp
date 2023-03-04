@@ -182,10 +182,13 @@ void TGL::tile_file(string pattern_id, string path)
 
 	tgl->tile_patterns[pattern_id] = pixels;
 }
-void TGL::tile_add(string tile_id, string pattern_id)
+void TGL::tile_add(string tile_id, string pattern_id, int count)
 {
-	if (tgl->assert_tilepattern_exists(pattern_id))
-		tgl->tiles[tile_id].pattern_ids.push_back(pattern_id);
+	if (tgl->assert_tilepattern_exists(pattern_id)) {
+		for (int i = 0; i < count; i++) {
+			tgl->tiles[tile_id].pattern_ids.push_back(pattern_id);
+		}
+	}
 }
 void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg)
 {
@@ -457,6 +460,12 @@ bool TGL::input_confirmed()
 {
 	return !tgl->text_input.cancelled;
 }
+int TGL::kb_lastkey()
+{
+	int key = tgl->last_key;
+	tgl->last_key = 0;
+	return key;
+}
 bool TGL::kb_char(char ch)
 {
 	SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
@@ -704,6 +713,7 @@ void TGL_Private::process_default_events(SDL_Event* e)
 		tgl_public->exit();
 	} else if (e->type == SDL_KEYDOWN) {
 		auto key = e->key.keysym.sym;
+		last_key = key;
 		if (TKey::Alt() && key == SDLK_RETURN && wnd) {
 			wnd->ToggleFullscreen();
 		} else if (key == SDLK_PRINTSCREEN) {

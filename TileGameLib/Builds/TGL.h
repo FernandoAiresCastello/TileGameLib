@@ -91,7 +91,7 @@ struct TGL
 	//=========================================================================
 	void tile_pat(string pattern_id, string pixels);
 	void tile_file(string pattern_id, string path);
-	void tile_add(string tile_id, string pattern_id);
+	void tile_add(string tile_id, string pattern_id, int count = 1);
 
 	//=========================================================================
 	//		GRAPHICS > COLOR MODES
@@ -186,6 +186,7 @@ struct TGL
 	//=========================================================================
 	//		INPUT > KEYBOARD
 	//=========================================================================
+	int kb_lastkey();
 	bool kb_char(char ch);
 	bool kb_right();
 	bool kb_left();

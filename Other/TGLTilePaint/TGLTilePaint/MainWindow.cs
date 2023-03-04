@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
+using System.Diagnostics;
 
 namespace TGLTilePaint
 {
@@ -32,7 +33,7 @@ namespace TGLTilePaint
             Text = Title;
             StatusLabel.Text = "";
             UpdateColorButtons(true);
-            UpdateLeftRightButtons();
+            UpdateLeftButton();
         }
 
         private void MainWindow_DragEnter(object sender, DragEventArgs e)
@@ -76,7 +77,7 @@ namespace TGLTilePaint
             else if (e.KeyCode == Keys.D3)
                 PnlTileEdit.LeftColorIx = 3;
 
-            UpdateLeftRightButtons();
+            UpdateLeftButton();
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -89,19 +90,12 @@ namespace TGLTilePaint
             Button btn = sender as Button;
             if (btn == null) return;
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
             {
                 if (btn.Text == "0") PnlTileEdit.LeftColorIx = 0;
                 else if (btn.Text == "1") PnlTileEdit.LeftColorIx = 1;
                 else if (btn.Text == "2") PnlTileEdit.LeftColorIx = 2;
                 else if (btn.Text == "3") PnlTileEdit.LeftColorIx = 3;
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                if (btn.Text == "0") PnlTileEdit.RightColorIx = 0;
-                else if (btn.Text == "1") PnlTileEdit.RightColorIx = 1;
-                else if (btn.Text == "2") PnlTileEdit.RightColorIx = 2;
-                else if (btn.Text == "3") PnlTileEdit.RightColorIx = 3;
             }
             else if (e.Button == MouseButtons.Middle)
             {
@@ -111,7 +105,7 @@ namespace TGLTilePaint
                 else if (btn.Text == "3") ShowColorPicker(3);
             }
 
-            UpdateLeftRightButtons();
+            UpdateLeftButton();
         }
 
         private void ShowColorPicker(int targetColorIx)
@@ -150,7 +144,7 @@ namespace TGLTilePaint
             UpdateColorButton(Btn2, TxtColor2, 2, updateRgbText);
             UpdateColorButton(Btn3, TxtColor3, 3, updateRgbText);
 
-            UpdateLeftRightButtons();
+            UpdateLeftButton();
         }
 
         private void UpdateColorButton(Button btn, TextBox txt, int colorIx, bool updateRgbText)
@@ -168,6 +162,11 @@ namespace TGLTilePaint
 
             btn.BackColor = color;
 
+            if (color.R < 128 && color.G < 128 && color.B < 128)
+                btn.ForeColor = Color.White;
+            else
+                btn.ForeColor = Color.Black;
+
             if (updateRgbText)
             {
                 string rgb = color.ToArgb().ToString("X06");
@@ -180,12 +179,7 @@ namespace TGLTilePaint
             PnlTileEdit.FillPixelsColorLeft();
         }
 
-        private void BtnFillRight_Click(object sender, EventArgs e)
-        {
-            PnlTileEdit.FillPixelsColorRight();
-        }
-
-        public void UpdateLeftRightButtons()
+        public void UpdateLeftButton()
         {
             if (PnlTileEdit.LeftColorIx == 0)
                 BtnLeft.BackColor = PnlTileEdit.Color0;
@@ -195,15 +189,6 @@ namespace TGLTilePaint
                 BtnLeft.BackColor = PnlTileEdit.Color2;
             if (PnlTileEdit.LeftColorIx == 3)
                 BtnLeft.BackColor = PnlTileEdit.Color3;
-
-            if (PnlTileEdit.RightColorIx == 0)
-                BtnRight.BackColor = PnlTileEdit.Color0;
-            if (PnlTileEdit.RightColorIx == 1)
-                BtnRight.BackColor = PnlTileEdit.Color1;
-            if (PnlTileEdit.RightColorIx == 2)
-                BtnRight.BackColor = PnlTileEdit.Color2;
-            if (PnlTileEdit.RightColorIx == 3)
-                BtnRight.BackColor = PnlTileEdit.Color3;
         }
 
         private void TxtColor_KeyDown(object sender, KeyEventArgs e)
@@ -447,13 +432,6 @@ namespace TGLTilePaint
             }
         }
 
-        private void BtnPermutate_Click(object sender, EventArgs e)
-        {
-            PnlTileEdit.PermutateColors();
-            UpdateColorButtons(true);
-            Refresh();
-        }
-
         private void BtnResetPal_Click(object sender, EventArgs e)
         {
             ResetPalette();
@@ -511,6 +489,16 @@ namespace TGLTilePaint
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
+            CreateNewTile();
+        }
+
+        private void BtnNew2_Click(object sender, EventArgs e)
+        {
+            CreateNewTile();
+        }
+
+        private void CreateNewTile()
+        {
             PnlTileEdit.Tile.Fill(0);
             ResetPalette();
             CurrentFile = "";
@@ -525,6 +513,15 @@ namespace TGLTilePaint
                 "This tool is part of the TileGameLib (TGL) project:\r\n" +
                 "https://github.com/FernandoAiresCastello/TileGameLib",
                 "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnOpenFolder_Click(object sender, EventArgs e)
+        {
+            if (CurrentFile == "")
+                return;
+
+            string folder = Path.GetDirectoryName(CurrentFile);
+            Process.Start("explorer", folder);
         }
     }
 }

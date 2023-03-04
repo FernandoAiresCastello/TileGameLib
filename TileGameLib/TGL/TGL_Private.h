@@ -81,6 +81,7 @@ private:
 	t_viewport* cur_view = nullptr;
 	unordered_map<string, t_timer> timers;
 	TGamepad gamepad;
+	SDL_Keycode last_key = 0;
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);

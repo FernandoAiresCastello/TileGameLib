@@ -87,7 +87,7 @@ namespace TGLTilePaint
                     else if (str[i] == '1') ixColor = 1;
                     else if (str[i] == '2') ixColor = 2;
                     else if (str[i] == '3') ixColor = 3;
-                    
+
                     SetPixel(x, y, ixColor);
                     i++;
                 }
@@ -107,16 +107,6 @@ namespace TGLTilePaint
         {
             if (x >= 0 && y >= 0 && x < Width && y < Height)
                 Pixels[y, x] = ixColor;
-        }
-
-        public void ShiftPixelColorIndex(int x, int y)
-        {
-            int index = Pixels[y, x];
-            index++;
-            if (index > 3)
-                index = 0;
-
-            Pixels[y, x] = index;
         }
 
         public int GetPixel(int x, int y)

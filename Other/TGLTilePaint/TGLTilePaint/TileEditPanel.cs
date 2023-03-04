@@ -9,7 +9,6 @@ namespace TGLTilePaint
     {
         public TileModel Tile;
         public int LeftColorIx;
-        public int RightColorIx;
         public bool ShowPixelCodes;
         public bool ShowMainGrid;
         public bool ShowSubGrid;
@@ -54,13 +53,12 @@ namespace TGLTilePaint
             Color2 = TGLColor2;
             Color3 = TGLColor3;
 
-            GridColor = Color.FromArgb(20, 0, 0, 0);
-            GridColorMid = Color.FromArgb(80, 0, 0, 0);
-            GridTextColor = Color.FromArgb(128, 0, 0, 0);
+            GridColor = Color.FromArgb(20, 100, 100, 128);
+            GridColorMid = Color.FromArgb(90, 100, 100, 128);
+            GridTextColor = Color.FromArgb(200, 100, 100, 128);
 
             Tile = new TileModel();
             LeftColorIx = 1;
-            RightColorIx = 0;
             ShowPixelCodes = true;
             ShowMainGrid = true;
             ShowSubGrid = true;
@@ -78,19 +76,6 @@ namespace TGLTilePaint
             Color1 = TGLColor1;
             Color2 = TGLColor2;
             Color3 = TGLColor3;
-        }
-
-        public void PermutateColors()
-        {
-            Color color0 = Color.FromArgb(Color0.R, Color0.G, Color0.B);
-            Color color1 = Color.FromArgb(Color1.R, Color1.G, Color1.B);
-            Color color2 = Color.FromArgb(Color2.R, Color2.G, Color2.B);
-            Color color3 = Color.FromArgb(Color3.R, Color3.G, Color3.B);
-
-            Color0 = Color.FromArgb(color1.R, color1.G, color1.B);
-            Color1 = Color.FromArgb(color2.R, color2.G, color2.B);
-            Color2 = Color.FromArgb(color3.R, color3.G, color3.B);
-            Color3 = Color.FromArgb(color0.R, color0.G, color0.B);
         }
 
         public void Mode8x8()
@@ -159,11 +144,14 @@ namespace TGLTilePaint
             int py = y / cellHeight;
 
             if (e.Button == MouseButtons.Left)
+            {
                 Tile.SetPixel(px, py, LeftColorIx);
+            }
             else if (e.Button == MouseButtons.Right)
-                Tile.SetPixel(px, py, RightColorIx);
-            else if (e.Button == MouseButtons.Middle)
-                Tile.ShiftPixelColorIndex(px, py);
+            {
+                LeftColorIx = Tile.GetPixel(px, py);
+                Wnd.UpdateLeftButton();
+            }
 
             Refresh();
         }
@@ -261,12 +249,6 @@ namespace TGLTilePaint
         public void FillPixelsColorLeft()
         {
             Tile.Fill(LeftColorIx);
-            Refresh();
-        }
-
-        public void FillPixelsColorRight()
-        {
-            Tile.Fill(RightColorIx);
             Refresh();
         }
 
