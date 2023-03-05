@@ -11,6 +11,8 @@ namespace TGLTilePaint
     {
         private static readonly int Width = 16;
         private static readonly int Height = 16;
+        private static readonly int HalfWidth = Width / 2;
+        private static readonly int HalfHeight = Height / 2;
 
         private Color[,] Pixels;
 
@@ -46,22 +48,27 @@ namespace TGLTilePaint
             return Color.FromArgb(0, 0, 0, 0);
         }
 
-        public List<Color> GetColorPalette()
+        public List<Color> GetColorPalette(bool single)
         {
             HashSet<int> argbs = new HashSet<int>();
-            for (int y = 0; y < Height; y++)
+
+            if (single)
             {
-                for (int x = 0; x < Width; x++)
-                {
-                    argbs.Add(GetPixel(x, y).ToArgb());
-                }
+                for (int y = 0; y < HalfHeight; y++)
+                    for (int x = 0; x < HalfWidth; x++)
+                        argbs.Add(GetPixel(x, y).ToArgb());
+            }
+            else
+            {
+                for (int y = 0; y < Height; y++)
+                    for (int x = 0; x < Width; x++)
+                        argbs.Add(GetPixel(x, y).ToArgb());
             }
 
             List<Color> colors = new List<Color>();
             foreach (int argb in argbs)
-            {
                 colors.Add(Color.FromArgb(255, Color.FromArgb(argb)));
-            }
+
             return colors;
         }
     }

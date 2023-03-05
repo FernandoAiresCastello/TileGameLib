@@ -25,11 +25,6 @@ namespace TGLTilePaint
             PnlTileEdit.Parent = TileEditPanelContainer;
             PnlTileEdit.Dock = DockStyle.Fill;
 
-            PnlMosaic = new MosaicPanel();
-            PnlMosaic.Parent = PnlMosaicContainer;
-            PnlMosaic.Dock = DockStyle.Fill;
-            PnlMosaicContainer.Hide();
-
             KeyPreview = true;
 
             KeyDown += MainWindow_KeyDown;
@@ -65,13 +60,13 @@ namespace TGLTilePaint
             if (TxtColor0.Focused || TxtColor1.Focused || TxtColor2.Focused || TxtColor3.Focused)
                 return;
 
-            if (e.KeyCode == Keys.D0)
+            if (e.KeyCode == Keys.D1)
                 PnlTileEdit.CurrentColor = Btn0.BackColor;
-            else if (e.KeyCode == Keys.D1)
-                PnlTileEdit.CurrentColor = Btn1.BackColor;
             else if (e.KeyCode == Keys.D2)
-                PnlTileEdit.CurrentColor = Btn2.BackColor;
+                PnlTileEdit.CurrentColor = Btn1.BackColor;
             else if (e.KeyCode == Keys.D3)
+                PnlTileEdit.CurrentColor = Btn2.BackColor;
+            else if (e.KeyCode == Keys.D4)
                 PnlTileEdit.CurrentColor = Btn3.BackColor;
 
             UpdateColorButtons();
@@ -89,17 +84,17 @@ namespace TGLTilePaint
 
             if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
             {
-                if (btn.Text == "0") PnlTileEdit.CurrentColor = Btn0.BackColor;
-                else if (btn.Text == "1") PnlTileEdit.CurrentColor = Btn1.BackColor;
-                else if (btn.Text == "2") PnlTileEdit.CurrentColor = Btn2.BackColor;
-                else if (btn.Text == "3") PnlTileEdit.CurrentColor = Btn3.BackColor;
+                if (btn.Text == "1") PnlTileEdit.CurrentColor = Btn0.BackColor;
+                else if (btn.Text == "2") PnlTileEdit.CurrentColor = Btn1.BackColor;
+                else if (btn.Text == "3") PnlTileEdit.CurrentColor = Btn2.BackColor;
+                else if (btn.Text == "4") PnlTileEdit.CurrentColor = Btn3.BackColor;
             }
             else if (e.Button == MouseButtons.Middle)
             {
-                if (btn.Text == "0") ShowColorPicker(0);
-                else if (btn.Text == "1") ShowColorPicker(1);
-                else if (btn.Text == "2") ShowColorPicker(2);
-                else if (btn.Text == "3") ShowColorPicker(3);
+                if (btn.Text == "1") ShowColorPicker(0);
+                else if (btn.Text == "2") ShowColorPicker(1);
+                else if (btn.Text == "3") ShowColorPicker(2);
+                else if (btn.Text == "4") ShowColorPicker(3);
                 else ShowColorPicker(4);
             }
 
@@ -468,7 +463,7 @@ namespace TGLTilePaint
 
         private void BtnParsePal_Click(object sender, EventArgs e)
         {
-            List<Color> colors = PnlTileEdit.Tile.GetColorPalette();
+            List<Color> colors = PnlTileEdit.Tile.GetColorPalette(PnlTileEdit.Is8x8());
 
             if (colors.Count > 4)
             {
@@ -488,6 +483,17 @@ namespace TGLTilePaint
 
             UpdateColorButtons();
             UpdateColorHexRGBs();
+        }
+
+        private void BtnReplace_Click(object sender, EventArgs e)
+        {
+            int rgbSrc = int.Parse(TxtReplaceSrc.Text, NumberStyles.HexNumber);
+            int rgbDst = int.Parse(TxtReplaceDst.Text, NumberStyles.HexNumber);
+
+            Color src = Color.FromArgb(255, Color.FromArgb(rgbSrc));
+            Color dst = Color.FromArgb(255, Color.FromArgb(rgbDst));
+
+            PnlTileEdit.ReplaceColor(src, dst);
         }
     }
 }

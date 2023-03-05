@@ -35,13 +35,22 @@ namespace TGLTilePaint
             }
         }
 
+        public TileEditPanel()
+        {
+            Init(null, EditMode.Multiple);
+        }
+
         public TileEditPanel(MainWindow wnd)
         {
-            InitializeComponent();
+            Init(wnd, EditMode.Single);
+        }
 
+        private void Init(MainWindow wnd, EditMode mode)
+        {
             Wnd = wnd;
-            Mode = EditMode.Single;
+            Mode = mode;
 
+            InitializeComponent();
             ResetColors();
 
             GridColor = Color.FromArgb(20, 100, 100, 128);
@@ -324,6 +333,20 @@ namespace TGLTilePaint
                 }
             }
             return bitmap;
+        }
+
+        public void ReplaceColor(Color src, Color dst)
+        {
+            for (int y = 0; y < TileSize; y++)
+            {
+                for (int x = 0; x < TileSize; x++)
+                {
+                    int rgb = Tile.GetPixel(x, y).ToArgb();
+                    if (rgb == src.ToArgb())
+                        Tile.SetPixel(x, y, dst);
+                }
+            }
+            Refresh();
         }
     }
 }

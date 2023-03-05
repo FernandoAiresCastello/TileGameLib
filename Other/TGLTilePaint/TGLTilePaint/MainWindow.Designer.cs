@@ -35,7 +35,6 @@ namespace TGLTilePaint
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TileEditPanelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.BtnParsePal = new System.Windows.Forms.Button();
             this.TxtCurrentColor = new System.Windows.Forms.TextBox();
             this.BtnNew2 = new System.Windows.Forms.Button();
@@ -68,11 +67,15 @@ namespace TGLTilePaint
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.PnlMosaicContainer = new System.Windows.Forms.Panel();
+            this.TxtReplaceSrc = new System.Windows.Forms.TextBox();
+            this.TxtReplaceDst = new System.Windows.Forms.TextBox();
+            this.BtnReplace = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -118,41 +121,19 @@ namespace TGLTilePaint
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.PnlMosaicContainer);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.BtnParsePal);
-            this.panel1.Controls.Add(this.TxtCurrentColor);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.BtnNew2);
-            this.panel1.Controls.Add(this.BtnResetPal);
-            this.panel1.Controls.Add(this.TxtColor3);
-            this.panel1.Controls.Add(this.TxtColor2);
-            this.panel1.Controls.Add(this.TxtColor1);
-            this.panel1.Controls.Add(this.TxtColor0);
-            this.panel1.Controls.Add(this.BtnCurrentColor);
-            this.panel1.Controls.Add(this.BtnFillLeft);
-            this.panel1.Controls.Add(this.Btn3);
-            this.panel1.Controls.Add(this.Btn2);
-            this.panel1.Controls.Add(this.Btn1);
-            this.panel1.Controls.Add(this.Btn0);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(477, 3);
+            this.panel1.Location = new System.Drawing.Point(474, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(291, 436);
+            this.panel1.Size = new System.Drawing.Size(297, 442);
             this.panel1.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(101, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 30);
-            this.button1.TabIndex = 21;
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // BtnParsePal
             // 
             this.BtnParsePal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnParsePal.Location = new System.Drawing.Point(192, 13);
+            this.BtnParsePal.Location = new System.Drawing.Point(154, 210);
             this.BtnParsePal.Name = "BtnParsePal";
             this.BtnParsePal.Size = new System.Drawing.Size(90, 30);
             this.BtnParsePal.TabIndex = 20;
@@ -164,7 +145,7 @@ namespace TGLTilePaint
             // 
             this.TxtCurrentColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtCurrentColor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCurrentColor.Location = new System.Drawing.Point(17, 83);
+            this.TxtCurrentColor.Location = new System.Drawing.Point(34, 131);
             this.TxtCurrentColor.MaxLength = 6;
             this.TxtCurrentColor.Name = "TxtCurrentColor";
             this.TxtCurrentColor.Size = new System.Drawing.Size(60, 20);
@@ -177,7 +158,7 @@ namespace TGLTilePaint
             // BtnNew2
             // 
             this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNew2.Location = new System.Drawing.Point(17, 393);
+            this.BtnNew2.Location = new System.Drawing.Point(84, 11);
             this.BtnNew2.Name = "BtnNew2";
             this.BtnNew2.Size = new System.Drawing.Size(126, 30);
             this.BtnNew2.TabIndex = 18;
@@ -188,7 +169,7 @@ namespace TGLTilePaint
             // BtnResetPal
             // 
             this.BtnResetPal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResetPal.Location = new System.Drawing.Point(192, 45);
+            this.BtnResetPal.Location = new System.Drawing.Point(154, 242);
             this.BtnResetPal.Name = "BtnResetPal";
             this.BtnResetPal.Size = new System.Drawing.Size(90, 30);
             this.BtnResetPal.TabIndex = 17;
@@ -200,7 +181,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor3.Location = new System.Drawing.Point(215, 185);
+            this.TxtColor3.Location = new System.Drawing.Point(198, 181);
             this.TxtColor3.MaxLength = 6;
             this.TxtColor3.Name = "TxtColor3";
             this.TxtColor3.Size = new System.Drawing.Size(60, 20);
@@ -214,7 +195,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor2.Location = new System.Drawing.Point(149, 185);
+            this.TxtColor2.Location = new System.Drawing.Point(132, 181);
             this.TxtColor2.MaxLength = 6;
             this.TxtColor2.Name = "TxtColor2";
             this.TxtColor2.Size = new System.Drawing.Size(60, 20);
@@ -228,7 +209,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor1.Location = new System.Drawing.Point(83, 185);
+            this.TxtColor1.Location = new System.Drawing.Point(198, 87);
             this.TxtColor1.MaxLength = 6;
             this.TxtColor1.Name = "TxtColor1";
             this.TxtColor1.Size = new System.Drawing.Size(60, 20);
@@ -242,7 +223,7 @@ namespace TGLTilePaint
             // 
             this.TxtColor0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtColor0.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor0.Location = new System.Drawing.Point(17, 185);
+            this.TxtColor0.Location = new System.Drawing.Point(132, 87);
             this.TxtColor0.MaxLength = 6;
             this.TxtColor0.Name = "TxtColor0";
             this.TxtColor0.Size = new System.Drawing.Size(60, 20);
@@ -257,7 +238,7 @@ namespace TGLTilePaint
             this.BtnCurrentColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnCurrentColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCurrentColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCurrentColor.Location = new System.Drawing.Point(17, 13);
+            this.BtnCurrentColor.Location = new System.Drawing.Point(34, 61);
             this.BtnCurrentColor.Name = "BtnCurrentColor";
             this.BtnCurrentColor.Size = new System.Drawing.Size(60, 64);
             this.BtnCurrentColor.TabIndex = 5;
@@ -267,7 +248,7 @@ namespace TGLTilePaint
             // BtnFillLeft
             // 
             this.BtnFillLeft.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFillLeft.Location = new System.Drawing.Point(101, 13);
+            this.BtnFillLeft.Location = new System.Drawing.Point(21, 157);
             this.BtnFillLeft.Name = "BtnFillLeft";
             this.BtnFillLeft.Size = new System.Drawing.Size(90, 30);
             this.BtnFillLeft.TabIndex = 4;
@@ -280,11 +261,11 @@ namespace TGLTilePaint
             this.Btn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn3.ForeColor = System.Drawing.Color.Black;
-            this.Btn3.Location = new System.Drawing.Point(215, 117);
+            this.Btn3.Location = new System.Drawing.Point(198, 113);
             this.Btn3.Name = "Btn3";
             this.Btn3.Size = new System.Drawing.Size(60, 64);
             this.Btn3.TabIndex = 3;
-            this.Btn3.Text = "3";
+            this.Btn3.Text = "4";
             this.Btn3.UseVisualStyleBackColor = true;
             this.Btn3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
@@ -293,11 +274,11 @@ namespace TGLTilePaint
             this.Btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn2.ForeColor = System.Drawing.Color.Black;
-            this.Btn2.Location = new System.Drawing.Point(149, 117);
+            this.Btn2.Location = new System.Drawing.Point(132, 113);
             this.Btn2.Name = "Btn2";
             this.Btn2.Size = new System.Drawing.Size(60, 64);
             this.Btn2.TabIndex = 2;
-            this.Btn2.Text = "2";
+            this.Btn2.Text = "3";
             this.Btn2.UseVisualStyleBackColor = true;
             this.Btn2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
@@ -306,11 +287,11 @@ namespace TGLTilePaint
             this.Btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn1.ForeColor = System.Drawing.Color.Black;
-            this.Btn1.Location = new System.Drawing.Point(83, 117);
+            this.Btn1.Location = new System.Drawing.Point(198, 19);
             this.Btn1.Name = "Btn1";
             this.Btn1.Size = new System.Drawing.Size(60, 64);
             this.Btn1.TabIndex = 1;
-            this.Btn1.Text = "1";
+            this.Btn1.Text = "2";
             this.Btn1.UseVisualStyleBackColor = true;
             this.Btn1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
@@ -319,11 +300,11 @@ namespace TGLTilePaint
             this.Btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn0.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn0.ForeColor = System.Drawing.Color.Black;
-            this.Btn0.Location = new System.Drawing.Point(17, 117);
+            this.Btn0.Location = new System.Drawing.Point(132, 19);
             this.Btn0.Name = "Btn0";
             this.Btn0.Size = new System.Drawing.Size(60, 64);
             this.Btn0.TabIndex = 0;
-            this.Btn0.Text = "0";
+            this.Btn0.Text = "1";
             this.Btn0.UseVisualStyleBackColor = true;
             this.Btn0.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
@@ -485,13 +466,66 @@ namespace TGLTilePaint
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // PnlMosaicContainer
+            // TxtReplaceSrc
             // 
-            this.PnlMosaicContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlMosaicContainer.Location = new System.Drawing.Point(73, 223);
-            this.PnlMosaicContainer.Name = "PnlMosaicContainer";
-            this.PnlMosaicContainer.Size = new System.Drawing.Size(147, 143);
-            this.PnlMosaicContainer.TabIndex = 22;
+            this.TxtReplaceSrc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtReplaceSrc.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtReplaceSrc.Location = new System.Drawing.Point(25, 340);
+            this.TxtReplaceSrc.MaxLength = 6;
+            this.TxtReplaceSrc.Name = "TxtReplaceSrc";
+            this.TxtReplaceSrc.Size = new System.Drawing.Size(60, 20);
+            this.TxtReplaceSrc.TabIndex = 22;
+            this.TxtReplaceSrc.Text = "FFFFFF";
+            this.TxtReplaceSrc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtReplaceSrc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
+            // 
+            // TxtReplaceDst
+            // 
+            this.TxtReplaceDst.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtReplaceDst.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtReplaceDst.Location = new System.Drawing.Point(88, 340);
+            this.TxtReplaceDst.MaxLength = 6;
+            this.TxtReplaceDst.Name = "TxtReplaceDst";
+            this.TxtReplaceDst.Size = new System.Drawing.Size(60, 20);
+            this.TxtReplaceDst.TabIndex = 23;
+            this.TxtReplaceDst.Text = "FFFFFF";
+            this.TxtReplaceDst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtReplaceDst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
+            // 
+            // BtnReplace
+            // 
+            this.BtnReplace.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReplace.Location = new System.Drawing.Point(154, 334);
+            this.BtnReplace.Name = "BtnReplace";
+            this.BtnReplace.Size = new System.Drawing.Size(90, 30);
+            this.BtnReplace.TabIndex = 24;
+            this.BtnReplace.Text = "Replace";
+            this.BtnReplace.UseVisualStyleBackColor = true;
+            this.BtnReplace.Click += new System.EventHandler(this.BtnReplace_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BtnCurrentColor);
+            this.groupBox1.Controls.Add(this.BtnReplace);
+            this.groupBox1.Controls.Add(this.TxtCurrentColor);
+            this.groupBox1.Controls.Add(this.TxtReplaceDst);
+            this.groupBox1.Controls.Add(this.BtnFillLeft);
+            this.groupBox1.Controls.Add(this.TxtReplaceSrc);
+            this.groupBox1.Controls.Add(this.BtnResetPal);
+            this.groupBox1.Controls.Add(this.TxtColor3);
+            this.groupBox1.Controls.Add(this.BtnParsePal);
+            this.groupBox1.Controls.Add(this.TxtColor2);
+            this.groupBox1.Controls.Add(this.Btn0);
+            this.groupBox1.Controls.Add(this.TxtColor1);
+            this.groupBox1.Controls.Add(this.Btn1);
+            this.groupBox1.Controls.Add(this.TxtColor0);
+            this.groupBox1.Controls.Add(this.Btn2);
+            this.groupBox1.Controls.Add(this.Btn3);
+            this.groupBox1.Location = new System.Drawing.Point(13, 46);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 385);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
             // 
             // MainWindow
             // 
@@ -511,9 +545,10 @@ namespace TGLTilePaint
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,8 +593,10 @@ namespace TGLTilePaint
         private System.Windows.Forms.ToolStripMenuItem BtnOpenFolder;
         private System.Windows.Forms.TextBox TxtCurrentColor;
         private System.Windows.Forms.Button BtnParsePal;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel PnlMosaicContainer;
+        private System.Windows.Forms.Button BtnReplace;
+        private System.Windows.Forms.TextBox TxtReplaceDst;
+        private System.Windows.Forms.TextBox TxtReplaceSrc;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
