@@ -166,8 +166,8 @@ struct TGL
 	//=========================================================================
 	void input_color(rgb foreground, rgb background);
 	void input_cursor(char ch);
-	string input_free(int length, int x, int y);
-	string input_tiled(int length, int col, int row);
+	string input_free(int length, int x, int y, void(*fn)() = nullptr);
+	string input_tiled(int length, int col, int row, void(*fn)() = nullptr);
 	bool input_confirmed();
 
 	//=========================================================================

@@ -427,13 +427,13 @@ void TGL::input_cursor(char ch)
 {
 	tgl->text_input.cursor = ch;
 }
-string TGL::input_free(int length, int x, int y)
+string TGL::input_free(int length, int x, int y, void(*fn)())
 {
-	return tgl->line_input(length, x, y, false);
+	return tgl->line_input(length, x, y, false, fn);
 }
-string TGL::input_tiled(int length, int col, int row)
+string TGL::input_tiled(int length, int col, int row, void(*fn)())
 {
-	return tgl->line_input(length, col, row, true);
+	return tgl->line_input(length, col, row, true, fn);
 }
 bool TGL::input_confirmed()
 {
@@ -1008,7 +1008,7 @@ void TGL_Private::init_default_font()
 	font(91, "0001111000011000000110000001100000011000000110000001100000011110"); // 91 [
 	font(92, "1000000001000000001000000001000000001000000001000000001000000001"); // 92 Backslash (\)
 	font(93, "0111100000011000000110000001100000011000000110000001100001111000"); // 93 ]
-	font(94, "0001000000011000111111001111111011111100000110000001000000000000"); // 94 Right arrow (^)
+	font(94, "1111111111111111111111111111111111111111111111111111111111111111"); // 94 Solid box (^)
 	font(95, "0000000000000000000000000000000000000000000000000111111000000000"); // 95 _
 	font(96, "0000000000011000000110000011000000000000000000000000000000000000"); // 96 Backtick (`)
 	font(97, "0000000000000000011111000000110001111100011011000111111000000000"); // 97 Letter a
@@ -1042,17 +1042,12 @@ void TGL_Private::init_default_font()
 	font(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 	font(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 }
-string TGL_Private::line_input(int length, int x, int y, bool tiled)
+string TGL_Private::line_input(int length, int x, int y, bool tiled, void(*fn)())
 {
 	bool prev_shadow_enabled = font_style.shadow_enabled;
 	bool prev_transparent = font_style.transparent;
 	rgb prev_fore_color = font_style.fore_color;
 	rgb prev_back_color = font_style.back_color;
-
-	font_style.shadow_enabled = false;
-	font_style.transparent = false;
-	font_style.fore_color = text_input.fore_color;
-	font_style.back_color = text_input.back_color;
 
 	text_input.cancelled = false;
 	string blanks = String::Repeat(' ', length + 1);
@@ -1060,9 +1055,16 @@ string TGL_Private::line_input(int length, int x, int y, bool tiled)
 
 	bool finished = false;
 	while (is_running && !finished) {
-		
+
+		font_style.shadow_enabled = false;
+		font_style.transparent = false;
+		font_style.fore_color = text_input.fore_color;
+		font_style.back_color = text_input.back_color;
+
 		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(blanks);
 		if (tiled) pos_tiled(x, y); else pos_free(x, y); print(text + text_input.cursor);
+
+		if (fn) fn();
 
 		draw_frame();
 

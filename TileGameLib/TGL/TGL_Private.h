@@ -106,7 +106,7 @@ private:
 	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();
-	string line_input(int length, int x, int y, bool tiled);
+	string line_input(int length, int x, int y, bool tiled, void(*fn)());
 	char keycode_to_char(SDL_Keycode key);
 	bool is_shade_of_gray(TColor& color);
 	int get_gray_level(TColor& color);
