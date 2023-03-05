@@ -12,6 +12,7 @@ namespace TGLTilePaint
     public partial class MainWindow : Form
     {
         private TileEditPanel PnlTileEdit;
+        private MosaicPanel PnlMosaic;
         private string Title = "TGL Tile Paint";
         private string CurrentFile = "";
 
@@ -23,6 +24,12 @@ namespace TGLTilePaint
             PnlTileEdit = new TileEditPanel(this);
             PnlTileEdit.Parent = TileEditPanelContainer;
             PnlTileEdit.Dock = DockStyle.Fill;
+
+            PnlMosaic = new MosaicPanel();
+            PnlMosaic.Parent = PnlMosaicContainer;
+            PnlMosaic.Dock = DockStyle.Fill;
+            PnlMosaicContainer.Hide();
+
             KeyPreview = true;
 
             KeyDown += MainWindow_KeyDown;

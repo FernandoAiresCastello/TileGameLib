@@ -35,6 +35,10 @@ namespace TGLTilePaint
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TileEditPanelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BtnParsePal = new System.Windows.Forms.Button();
+            this.TxtCurrentColor = new System.Windows.Forms.TextBox();
+            this.BtnNew2 = new System.Windows.Forms.Button();
             this.BtnResetPal = new System.Windows.Forms.Button();
             this.TxtColor3 = new System.Windows.Forms.TextBox();
             this.TxtColor2 = new System.Windows.Forms.TextBox();
@@ -49,6 +53,7 @@ namespace TGLTilePaint
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnLoadBmp = new System.Windows.Forms.ToolStripMenuItem();
+            this.BtnOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveBmp = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,10 +68,7 @@ namespace TGLTilePaint
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.BtnNew2 = new System.Windows.Forms.Button();
-            this.BtnOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.TxtCurrentColor = new System.Windows.Forms.TextBox();
-            this.BtnParsePal = new System.Windows.Forms.Button();
+            this.PnlMosaicContainer = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -116,6 +118,8 @@ namespace TGLTilePaint
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.PnlMosaicContainer);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.BtnParsePal);
             this.panel1.Controls.Add(this.TxtCurrentColor);
             this.panel1.Controls.Add(this.BtnNew2);
@@ -135,6 +139,51 @@ namespace TGLTilePaint
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(291, 436);
             this.panel1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(101, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 30);
+            this.button1.TabIndex = 21;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // BtnParsePal
+            // 
+            this.BtnParsePal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnParsePal.Location = new System.Drawing.Point(192, 13);
+            this.BtnParsePal.Name = "BtnParsePal";
+            this.BtnParsePal.Size = new System.Drawing.Size(90, 30);
+            this.BtnParsePal.TabIndex = 20;
+            this.BtnParsePal.Text = "Parse";
+            this.BtnParsePal.UseVisualStyleBackColor = true;
+            this.BtnParsePal.Click += new System.EventHandler(this.BtnParsePal_Click);
+            // 
+            // TxtCurrentColor
+            // 
+            this.TxtCurrentColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtCurrentColor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCurrentColor.Location = new System.Drawing.Point(17, 83);
+            this.TxtCurrentColor.MaxLength = 6;
+            this.TxtCurrentColor.Name = "TxtCurrentColor";
+            this.TxtCurrentColor.Size = new System.Drawing.Size(60, 20);
+            this.TxtCurrentColor.TabIndex = 19;
+            this.TxtCurrentColor.Text = "FFFFFF";
+            this.TxtCurrentColor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtCurrentColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
+            this.TxtCurrentColor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
+            // 
+            // BtnNew2
+            // 
+            this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNew2.Location = new System.Drawing.Point(17, 393);
+            this.BtnNew2.Name = "BtnNew2";
+            this.BtnNew2.Size = new System.Drawing.Size(126, 30);
+            this.BtnNew2.TabIndex = 18;
+            this.BtnNew2.Text = "New tile";
+            this.BtnNew2.UseVisualStyleBackColor = true;
+            this.BtnNew2.Click += new System.EventHandler(this.BtnNew2_Click);
             // 
             // BtnResetPal
             // 
@@ -218,9 +267,9 @@ namespace TGLTilePaint
             // BtnFillLeft
             // 
             this.BtnFillLeft.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFillLeft.Location = new System.Drawing.Point(93, 29);
+            this.BtnFillLeft.Location = new System.Drawing.Point(101, 13);
             this.BtnFillLeft.Name = "BtnFillLeft";
-            this.BtnFillLeft.Size = new System.Drawing.Size(60, 30);
+            this.BtnFillLeft.Size = new System.Drawing.Size(90, 30);
             this.BtnFillLeft.TabIndex = 4;
             this.BtnFillLeft.Text = "Fill";
             this.BtnFillLeft.UseVisualStyleBackColor = true;
@@ -307,6 +356,15 @@ namespace TGLTilePaint
             this.BtnLoadBmp.Size = new System.Drawing.Size(212, 22);
             this.BtnLoadBmp.Text = "Open";
             this.BtnLoadBmp.Click += new System.EventHandler(this.BtnLoadBmp_Click);
+            // 
+            // BtnOpenFolder
+            // 
+            this.BtnOpenFolder.Name = "BtnOpenFolder";
+            this.BtnOpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.BtnOpenFolder.Size = new System.Drawing.Size(212, 22);
+            this.BtnOpenFolder.Text = "Open folder";
+            this.BtnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
             // BtnSaveBmp
             // 
@@ -423,54 +481,17 @@ namespace TGLTilePaint
             // 
             this.BtnAbout.Name = "BtnAbout";
             this.BtnAbout.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.BtnAbout.Size = new System.Drawing.Size(180, 22);
+            this.BtnAbout.Size = new System.Drawing.Size(126, 22);
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // BtnNew2
+            // PnlMosaicContainer
             // 
-            this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNew2.Location = new System.Drawing.Point(17, 393);
-            this.BtnNew2.Name = "BtnNew2";
-            this.BtnNew2.Size = new System.Drawing.Size(126, 30);
-            this.BtnNew2.TabIndex = 18;
-            this.BtnNew2.Text = "New tile";
-            this.BtnNew2.UseVisualStyleBackColor = true;
-            this.BtnNew2.Click += new System.EventHandler(this.BtnNew2_Click);
-            // 
-            // BtnOpenFolder
-            // 
-            this.BtnOpenFolder.Name = "BtnOpenFolder";
-            this.BtnOpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.O)));
-            this.BtnOpenFolder.Size = new System.Drawing.Size(212, 22);
-            this.BtnOpenFolder.Text = "Open folder";
-            this.BtnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
-            // 
-            // TxtCurrentColor
-            // 
-            this.TxtCurrentColor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtCurrentColor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCurrentColor.Location = new System.Drawing.Point(17, 83);
-            this.TxtCurrentColor.MaxLength = 6;
-            this.TxtCurrentColor.Name = "TxtCurrentColor";
-            this.TxtCurrentColor.Size = new System.Drawing.Size(60, 20);
-            this.TxtCurrentColor.TabIndex = 19;
-            this.TxtCurrentColor.Text = "FFFFFF";
-            this.TxtCurrentColor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtCurrentColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
-            this.TxtCurrentColor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
-            // 
-            // BtnParsePal
-            // 
-            this.BtnParsePal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnParsePal.Location = new System.Drawing.Point(192, 13);
-            this.BtnParsePal.Name = "BtnParsePal";
-            this.BtnParsePal.Size = new System.Drawing.Size(90, 30);
-            this.BtnParsePal.TabIndex = 20;
-            this.BtnParsePal.Text = "Parse";
-            this.BtnParsePal.UseVisualStyleBackColor = true;
-            this.BtnParsePal.Click += new System.EventHandler(this.BtnParsePal_Click);
+            this.PnlMosaicContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PnlMosaicContainer.Location = new System.Drawing.Point(73, 223);
+            this.PnlMosaicContainer.Name = "PnlMosaicContainer";
+            this.PnlMosaicContainer.Size = new System.Drawing.Size(147, 143);
+            this.PnlMosaicContainer.TabIndex = 22;
             // 
             // MainWindow
             // 
@@ -537,6 +558,8 @@ namespace TGLTilePaint
         private System.Windows.Forms.ToolStripMenuItem BtnOpenFolder;
         private System.Windows.Forms.TextBox TxtCurrentColor;
         private System.Windows.Forms.Button BtnParsePal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel PnlMosaicContainer;
     }
 }
 

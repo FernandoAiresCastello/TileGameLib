@@ -55,6 +55,12 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MosaicPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MosaicPanel.Designer.cs">
+      <DependentUpon>MosaicPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileEditPanel.cs">
