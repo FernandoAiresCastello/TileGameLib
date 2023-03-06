@@ -135,6 +135,10 @@ struct TGL
 	//		STRING MANIPULATION
 	//=========================================================================
 	string fmt(const char* str, ...);
+	string ucase(string str);
+	string lcase(string str);
+	string trim(string str);
+	vector<string> split(string str, char delim);
 
 	//=========================================================================
 	//		MATH

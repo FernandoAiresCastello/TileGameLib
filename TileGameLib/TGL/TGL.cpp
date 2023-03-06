@@ -353,6 +353,22 @@ string TGL::fmt(const char* str, ...)
 
 	return output;
 }
+string TGL::ucase(string str)
+{
+	return String::ToUpper(str);
+}
+string TGL::lcase(string str)
+{
+	return String::ToLower(str);
+}
+string TGL::trim(string str)
+{
+	return String::Trim(str);
+}
+vector<string> TGL::split(string str, char delim)
+{
+	return String::Split(str, delim, false);
+}
 void TGL::play_volume(int vol)
 {
 	tgl->snd_notes->SetVolume(vol);
