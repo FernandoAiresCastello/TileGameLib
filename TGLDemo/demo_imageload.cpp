@@ -5,7 +5,7 @@ void demo_imageload()
 	TGL tgl;
 	tgl.window_gbc(0xffffff, 5);
 
-	tgl.tile_file("smiley", "Tiles/smiley.bmp");
+	tgl.tile_load("smiley", "Tiles/smiley.bmp");
 	tgl.tile_add("smiley", "smiley");
 
 	while (tgl.running()) {

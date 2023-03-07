@@ -96,6 +96,10 @@ void TGL::title(string str)
 		tgl->title = str;
 	}
 }
+void TGL::backcolor(rgb back_color)
+{
+	tgl->wnd->SetBackColor(back_color);
+}
 void TGL::fullscreen(bool full)
 {
 	tgl->wnd->SetFullscreen(full);
@@ -148,13 +152,13 @@ void TGL::clear()
 {
 	tgl->wnd->ClearBackground();
 }
-void TGL::tile_pixels(string img_id, rgb pixels[64])
+void TGL::tile_new(string img_id, rgb pixels[64])
 {
 	for (int i = 0; i < 64; i++) {
 		tgl->tile_img[img_id].pixels[i] = pixels[i];
 	}
 }
-void TGL::tile_file(string img_id, string path)
+void TGL::tile_load(string img_id, string path)
 {
 	TImage img;
 	img.Load(path);
@@ -178,6 +182,17 @@ void TGL::transparency_key(rgb color)
 {
 	tgl->tile_transparency.enabled = true;
 	tgl->tile_transparency.key = color;
+}
+void TGL::replace_color(string img_id, rgb original_color, rgb new_color)
+{
+	if (tgl->assert_tileimg_exists(img_id)) {
+		auto& tile = tgl->tile_img[img_id];
+		for (int i = 0; i < 64; i++) {
+			if (tile.pixels[i] == original_color) {
+				tile.pixels[i] = new_color;
+			}
+		}
+	}
 }
 void TGL::transparent(bool state)
 {

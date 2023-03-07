@@ -14,8 +14,8 @@ int main(int argc, char* args[])
 	//demo_font();
 	//demo_views();
 	//demo_invaders();
-	demo_lineinput();
-	//demo_imageload();
+	//demo_lineinput();
+	demo_imageload();
 	//demo_mouse();
 
 	return 0;

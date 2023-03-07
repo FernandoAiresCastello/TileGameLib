@@ -66,6 +66,7 @@ struct TGL
 	void window_gbc(rgb back_color, int size_factor);
 	void window_wide(rgb back_color, int size_factor);
 	void title(string str);
+	void backcolor(rgb back_color);
 	void fullscreen(bool full);
 	bool fullscreen();
 	void screenshot(string path);
@@ -89,11 +90,12 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > TILE SET
 	//=========================================================================
-	void tile_pixels(string img_id, rgb pixels[64]);
-	void tile_file(string img_id, string path);
+	void tile_new(string img_id, rgb pixels[64]);
+	void tile_load(string img_id, string path);
 	void tile_add(string tile_id, string img_id, int count = 1);
 	void transparent(bool state);
 	void transparency_key(rgb color);
+	void replace_color(string img_id, rgb original_color, rgb new_color);
 
 	//=========================================================================
 	//		GRAPHICS > TILE RENDERING
