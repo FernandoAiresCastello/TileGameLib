@@ -250,6 +250,10 @@ void TGL::color_normal()
 {
 	tgl->color_normal();
 }
+void TGL::color_binary(rgb fore_color)
+{
+	tgl->color_binary(fore_color);
+}
 void TGL::color_binary(rgb fore_color, rgb back_color)
 {
 	tgl->color_binary(fore_color, back_color);
@@ -1228,6 +1232,11 @@ int TGL_Private::get_gray_level(TColor& color)
 void TGL_Private::color_normal()
 {
 	color_mode = t_colormode::normal;
+}
+void TGL_Private::color_binary(rgb fore_color)
+{
+	color_mode = t_colormode::binary;
+	binary_color.fore = fore_color;
 }
 void TGL_Private::color_binary(rgb fore_color, rgb back_color)
 {

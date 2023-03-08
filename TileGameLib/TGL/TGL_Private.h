@@ -120,5 +120,6 @@ private:
 	bool is_shade_of_gray(TColor& color);
 	int get_gray_level(TColor& color);
 	void color_normal();
+	void color_binary(rgb fore_color);
 	void color_binary(rgb fore_color, rgb back_color);
 };

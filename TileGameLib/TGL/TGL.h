@@ -91,6 +91,7 @@ struct TGL
 	//		GRAPHICS > COLOR MODES
 	//=========================================================================
 	void color_normal();
+	void color_binary(rgb fore_color);
 	void color_binary(rgb fore_color, rgb back_color);
 
 	//=========================================================================
