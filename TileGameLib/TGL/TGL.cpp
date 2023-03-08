@@ -328,6 +328,11 @@ bool TGL::timer(string timer_id)
 	TGL_Private::t_timer& tmr = tgl->timers[timer_id];
 	return tmr.frames_elapsed >= tmr.frames_max;
 }
+void TGL::timer_reset(string timer_id)
+{
+	if (tgl->timers.find(timer_id) == tgl->timers.end()) return;
+	tgl->timers[timer_id].frames_elapsed = 0;
+}
 bool TGL::collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 {
 	return	(tile1_x >= tile2_x - TILE_SIZE) && (tile1_x <= tile2_x + TILE_SIZE) &&

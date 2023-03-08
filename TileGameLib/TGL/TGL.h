@@ -141,6 +141,7 @@ struct TGL
 	//=========================================================================
 	void timer_new(string timer_id, int frames, bool loop);
 	bool timer(string timer_id);
+	void timer_reset(string timer_id);
 
 	//=========================================================================
 	//		STRING MANIPULATION
