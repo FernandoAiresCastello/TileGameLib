@@ -184,12 +184,12 @@ void TGL::tile_add(string tile_id, string img_id, int count)
 		}
 	}
 }
-void TGL::transparency_key(rgb color)
+void TGL::tile_transparency_key(rgb color)
 {
 	tgl->tile_transparency.enabled = true;
 	tgl->tile_transparency.key = color;
 }
-void TGL::replace_color(string img_id, rgb original_color, rgb new_color)
+void TGL::tile_replace_color(string img_id, rgb original_color, rgb new_color)
 {
 	if (tgl->assert_tileimg_exists(img_id)) {
 		auto& tile = tgl->tile_img[img_id];
@@ -200,7 +200,7 @@ void TGL::replace_color(string img_id, rgb original_color, rgb new_color)
 		}
 	}
 }
-void TGL::transparent(bool state)
+void TGL::tile_transparent(bool state)
 {
 	tgl->tile_transparency.enabled = state;
 }
@@ -271,13 +271,11 @@ void TGL::draw_tiled(string tile_id, int col, int row)
 void TGL::font_color(rgb color)
 {
 	tgl->font_style.fore_color = color;
-	tgl->font_style.transparent = true;
 }
 void TGL::font_color(rgb fore_color, rgb back_color)
 {
 	tgl->font_style.fore_color = fore_color;
 	tgl->font_style.back_color = back_color;
-	tgl->font_style.transparent = false;
 }
 void TGL::font(char ch, string pattern)
 {
@@ -287,6 +285,10 @@ void TGL::font_shadow(bool shadow, rgb shadow_color)
 {
 	tgl->font_style.shadow_enabled = shadow;
 	tgl->font_style.shadow_color = shadow_color;
+}
+void TGL::font_transparent(bool state)
+{
+	tgl->font_style.transparent = state;
 }
 void TGL::font_reset()
 {

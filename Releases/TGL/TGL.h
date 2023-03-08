@@ -101,9 +101,9 @@ struct TGL
 	void tile_new(string img_id, string binary_pattern);
 	void tile_load(string img_id, string path);
 	void tile_add(string tile_id, string img_id, int count = 1);
-	void transparent(bool state);
-	void transparency_key(rgb color);
-	void replace_color(string img_id, rgb original_color, rgb new_color);
+	void tile_transparent(bool state);
+	void tile_transparency_key(rgb color);
+	void tile_replace_color(string img_id, rgb original_color, rgb new_color);
 
 	//=========================================================================
 	//		GRAPHICS > TILE RENDERING
@@ -120,6 +120,7 @@ struct TGL
 	void font_color(rgb color);
 	void font_color(rgb fore_color, rgb back_color);
 	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
+	void font_transparent(bool state);
 	void print_free(string str, int x, int y);
 	void print_tiled(string str, int col, int row);
 
