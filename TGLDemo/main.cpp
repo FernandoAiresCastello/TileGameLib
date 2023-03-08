@@ -7,6 +7,7 @@ void demo_invaders();
 void demo_lineinput();
 void demo_imageload();
 void demo_mouse();
+void demo_binarycolor();
 
 int main(int argc, char* args[])
 {
@@ -15,8 +16,9 @@ int main(int argc, char* args[])
 	//demo_views();
 	//demo_invaders();
 	//demo_lineinput();
-	demo_imageload();
+	//demo_imageload();
 	//demo_mouse();
+	demo_binarycolor();
 
 	return 0;
 }

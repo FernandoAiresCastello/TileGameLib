@@ -23,6 +23,9 @@
     <ClCompile Include="demo_views.cpp">
       <Filter>Demos</Filter>
     </ClCompile>
+    <ClCompile Include="demo_binarycolor.cpp">
+      <Filter>Demos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">

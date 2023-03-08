@@ -67,6 +67,7 @@ struct TGL
 	void window_wide(rgb back_color, int size_factor);
 	void title(string str);
 	void backcolor(rgb back_color);
+	void clear();
 	void fullscreen(bool full);
 	bool fullscreen();
 	void screenshot(string path);
@@ -78,9 +79,8 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > VIEWS
 	//=========================================================================
-	void clear();
-	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
 	void view_default();
+	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
 	void view(string view_id);
 	void scroll(int dx, int dy);
 	void scroll_to(int x, int y);
@@ -88,9 +88,16 @@ struct TGL
 	int scroll_y();
 
 	//=========================================================================
+	//		GRAPHICS > COLOR MODES
+	//=========================================================================
+	void color_normal();
+	void color_binary(rgb fore_color, rgb back_color);
+
+	//=========================================================================
 	//		GRAPHICS > TILE SET
 	//=========================================================================
 	void tile_new(string img_id, rgb pixels[64]);
+	void tile_new(string img_id, string binary_pattern);
 	void tile_load(string img_id, string path);
 	void tile_add(string tile_id, string img_id, int count = 1);
 	void transparent(bool state);

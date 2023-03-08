@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="demo_binarycolor.cpp" />
     <ClCompile Include="demo_helloworld.cpp" />
     <ClCompile Include="demo_imageload.cpp" />
     <ClCompile Include="demo_invaders.cpp" />

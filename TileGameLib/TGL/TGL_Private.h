@@ -68,6 +68,15 @@ private:
 		rgb key = 0xffffff;
 	} tile_transparency;
 
+	enum class t_colormode {
+		normal, binary
+	} color_mode = t_colormode::normal;
+
+	struct {
+		rgb fore = 0xffffff;
+		rgb back = 0x000000;
+	} binary_color;
+
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
@@ -110,4 +119,6 @@ private:
 	char keycode_to_char(SDL_Keycode key);
 	bool is_shade_of_gray(TColor& color);
 	int get_gray_level(TColor& color);
+	void color_normal();
+	void color_binary(rgb fore_color, rgb back_color);
 };

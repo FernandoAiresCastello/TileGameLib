@@ -158,6 +158,12 @@ void TGL::tile_new(string img_id, rgb pixels[64])
 		tgl->tile_img[img_id].pixels[i] = pixels[i];
 	}
 }
+void TGL::tile_new(string img_id, string binary_pattern)
+{
+	for (int i = 0; i < 64; i++) {
+		tgl->tile_img[img_id].pixels[i] = binary_pattern[i] == '1' ? 0x000000 : 0xffffff;
+	}
+}
 void TGL::tile_load(string img_id, string path)
 {
 	TImage img;
@@ -239,6 +245,14 @@ int TGL::scroll_x()
 int TGL::scroll_y()
 {
 	return tgl->cur_view->scroll_y;
+}
+void TGL::color_normal()
+{
+	tgl->color_normal();
+}
+void TGL::color_binary(rgb fore_color, rgb back_color)
+{
+	tgl->color_binary(fore_color, back_color);
 }
 void TGL::draw_free(string tile_id, int x, int y)
 {
@@ -856,7 +870,11 @@ void TGL_Private::draw(string& tile_id)
 		y += wnd->GetClip().Y1;
 	}
 
-	wnd->DrawPixelBlock8x8(tile.pixels, tile_transparency.enabled, tile_transparency.key, x, y, false);
+	if (color_mode == t_colormode::normal) {
+		wnd->DrawPixelBlock8x8(tile.pixels, tile_transparency.enabled, tile_transparency.key, x, y, false);
+	} else if (color_mode == t_colormode::binary) {
+		wnd->DrawChar8x8(tile.pixels, binary_color.fore, binary_color.back, tile_transparency.enabled, x, y, false);
+	}
 }
 void TGL_Private::print(string str)
 {
@@ -1206,4 +1224,14 @@ int TGL_Private::get_gray_level(TColor& color)
 		return color.R;
 	else
 		return -1;
+}
+void TGL_Private::color_normal()
+{
+	color_mode = t_colormode::normal;
+}
+void TGL_Private::color_binary(rgb fore_color, rgb back_color)
+{
+	color_mode = t_colormode::binary;
+	binary_color.fore = fore_color;
+	binary_color.back = back_color;
 }
