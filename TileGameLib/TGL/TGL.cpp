@@ -430,7 +430,7 @@ void TGL::beep(float freq, int len)
 {
 	tgl->snd_notes->Beep(freq, len);
 }
-void TGL::sound_file(string sound_id, string file)
+void TGL::sound_load(string sound_id, string file)
 {
 	if (File::Exists(file)) {
 		tgl->snd_files->Load(sound_id, file);

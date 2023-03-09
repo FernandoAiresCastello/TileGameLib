@@ -132,7 +132,7 @@ struct TGL
 	void play_notes_loop(string notes);
 	void play_notes_stop();
 	void beep(float freq, int len);
-	void sound_file(string sound_id, string file);
+	void sound_load(string sound_id, string file);
 	void sound(string sound_id);
 	void sound_await(string sound_id);
 
