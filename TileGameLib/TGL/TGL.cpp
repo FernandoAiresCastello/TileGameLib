@@ -480,6 +480,10 @@ void TGL::sound_await(string sound_id)
 		error("Sound not found with ID: " + sound_id);
 	}
 }
+void TGL::sound_stop()
+{
+	tgl->snd_files->StopAll();
+}
 void TGL::screenshot(string path)
 {
 	tgl->wnd->SaveScreenshot(path);

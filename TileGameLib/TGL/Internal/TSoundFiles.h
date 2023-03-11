@@ -14,6 +14,7 @@ namespace TGL_Internal
 		void Load(std::string id, std::string file);
 		void Play(std::string id, bool async);
 		bool Has(std::string id);
+		void StopAll();
 		
 	private:
 		std::unordered_map<std::string, std::string> Files; // id -> file_path

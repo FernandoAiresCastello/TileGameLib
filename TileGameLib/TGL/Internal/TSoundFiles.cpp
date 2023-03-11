@@ -74,6 +74,18 @@ namespace TGL_Internal
 		return Files.find(id) != Files.end();
 	}
 
+	void TSoundFiles::StopAll()
+	{
+		for (auto& file : Files) {
+			std::string playString = "stop " + file.first;
+			MCIERROR playError = mciSendString(playString.c_str(), NULL, 0, NULL);
+			if (playError) {
+				ShowError(playError);
+				return;
+			}
+		}
+	}
+
 	void TSoundFiles::ShowError(unsigned long error)
 	{
 		char msg[1024] = { 0 };
