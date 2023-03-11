@@ -148,6 +148,18 @@ void TGL::abort(string msg)
 	error(msg);
 	exit();
 }
+string TGL::date()
+{
+	return Util::CurrentDate();
+}
+string TGL::time()
+{
+	return Util::CurrentTime();
+}
+string TGL::datetime()
+{
+	return date() + " " + time();
+}
 void TGL::clear()
 {
 	tgl->wnd->ClearBackground();

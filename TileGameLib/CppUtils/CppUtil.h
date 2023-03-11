@@ -36,5 +36,7 @@ namespace CppUtils
 		static std::string XorEncrypt(std::string str, char xor_key);
 		static std::string XorDecrypt(std::string str, char xor_key);
 		static std::string FormatNumberOfBytes(uint64_t bytes);
+		static std::string CurrentDate();
+		static std::string CurrentTime();
 	};
 }

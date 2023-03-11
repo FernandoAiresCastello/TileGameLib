@@ -21,6 +21,7 @@
 #include <sys/stat.h>
 #include "CppUtil.h"
 #include "CppMsgBox.h"
+#include "CppString.h"
 
 namespace CppUtils
 {
@@ -227,5 +228,19 @@ namespace CppUtils
 		char output[100];
 		sprintf(output, "%.02lf %s", dblBytes, suffix[i]);
 		return output;
+	}
+
+	std::string Util::CurrentDate()
+	{
+		SYSTEMTIME time;
+		GetLocalTime(&time);
+		return String::Format("%02i/%02i/%04i", time.wMonth, time.wDay, time.wYear);
+	}
+
+	std::string Util::CurrentTime()
+	{
+		SYSTEMTIME time;
+		GetLocalTime(&time);
+		return String::Format("%02i:%02i:%02i", time.wHour, time.wMinute, time.wSecond);
 	}
 }

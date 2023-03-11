@@ -58,6 +58,9 @@ struct TGL
 	bool running();
 	void error(string msg);
 	void abort(string msg);
+	string date();
+	string time();
+	string datetime();
 
 	//=========================================================================
 	//		GRAPHICS > WINDOW
