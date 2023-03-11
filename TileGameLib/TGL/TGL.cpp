@@ -435,6 +435,10 @@ int TGL::to_int(string str)
 {
 	return String::ToInt(str);
 }
+string TGL::to_string(int value)
+{
+	return String::ToString(value);
+}
 void TGL::play_volume(int vol)
 {
 	tgl->snd_notes->SetVolume(vol);

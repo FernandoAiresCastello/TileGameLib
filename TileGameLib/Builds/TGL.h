@@ -156,6 +156,7 @@ struct TGL
 	string trim(string str);
 	vector<string> split(string str, char delim);
 	int to_int(string str);
+	string to_string(int value);
 
 	//=========================================================================
 	//		MATH
