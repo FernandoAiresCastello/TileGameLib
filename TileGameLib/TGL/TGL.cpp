@@ -431,6 +431,10 @@ vector<string> TGL::split(string str, char delim)
 {
 	return String::Split(str, delim, false);
 }
+int TGL::to_int(string str)
+{
+	return String::ToInt(str);
+}
 void TGL::play_volume(int vol)
 {
 	tgl->snd_notes->SetVolume(vol);

@@ -154,6 +154,7 @@ struct TGL
 	string lcase(string str);
 	string trim(string str);
 	vector<string> split(string str, char delim);
+	int to_int(string str);
 
 	//=========================================================================
 	//		MATH
