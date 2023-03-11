@@ -172,7 +172,7 @@ namespace CppUtils
 	std::vector<std::string> File::ReadLines(std::string filename, std::string lineDelimiter)
 	{
 		auto text = ReadText(filename);
-		return String::Split(text, lineDelimiter, false);
+		return String::Split(text, lineDelimiter, true);
 	}
 
 	std::vector<byte> File::ReadBytes(std::string filename)
@@ -220,14 +220,16 @@ namespace CppUtils
 		ofs.close();
 	}
 
-	void File::WriteLines(std::string filename, std::vector<std::string> lines)
+	void File::WriteLines(std::string filename, std::vector<std::string> lines, std::string lineDelimiter)
 	{
 		std::ofstream ofs(filename);
 
 		if (ofs.good()) {
 			for (int i = 0; i < lines.size(); i++) {
 				std::string line = lines[i];
-				line.append("\n");
+				if (i < lines.size() - 1) {
+					line.append(lineDelimiter);
+				}
 				ofs.write(line.c_str(), line.length());
 			}
 		}

@@ -364,7 +364,17 @@ string TGL::file_cload(string path)
 }
 vector<string> TGL::file_lines(string path)
 {
-	return File::ReadLines(path, "\r\n");
+	return File::ReadLines(path, "\n");
+}
+void TGL::file_appendln(string path, string text)
+{
+	const string crlf = "\n";
+	vector<string> lines;
+	if (File::Exists(path)) {
+		lines = File::ReadLines(path, crlf);
+	}
+	lines.push_back(text);
+	File::WriteLines(path, lines, crlf);
 }
 vector<byte> TGL::file_bload(string path)
 {

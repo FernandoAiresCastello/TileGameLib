@@ -172,6 +172,7 @@ struct TGL
 	bool folder_exists(string folder_path);
 	string file_cload(string path);
 	vector<string> file_lines(string path);
+	void file_appendln(string path, string text);
 	vector<byte> file_bload(string path);
 	void file_csave(string path, string text);
 	void file_bsave(string path, vector<byte>& bytes);
