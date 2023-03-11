@@ -148,11 +148,11 @@ void init_aliens()
 void init_sounds()
 {
 	// MUSIC
-	tgl.sound_file("bgmusic", "Sound/bgmusic.wav");
+	tgl.sound_load("bgmusic", "Sound/bgmusic.wav");
 
 	// SFX
-	tgl.sound_file("player_missile", "Sound/player_missile.wav");
-	tgl.sound_file("enemy_dead", "Sound/enemy_dead.wav");
+	tgl.sound_load("player_missile", "Sound/player_missile.wav");
+	tgl.sound_load("enemy_dead", "Sound/enemy_dead.wav");
 }
 void init_tiles()
 {

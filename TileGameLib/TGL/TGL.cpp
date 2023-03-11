@@ -50,7 +50,7 @@ void TGL::system()
 	tgl->draw_frame();
 	tgl->advance_timers();
 
-	SDL_Event e;
+	SDL_Event e = { 0 };
 	tgl->process_default_events(&e);
 }
 int TGL::halt()
@@ -62,7 +62,7 @@ int TGL::halt()
 }
 void TGL::pause(int ms)
 {
-	SDL_Event e;
+	SDL_Event e = { 0 };
 	while (ms > 0) {
 		tgl->draw_frame();
 		tgl->process_default_events(&e);
