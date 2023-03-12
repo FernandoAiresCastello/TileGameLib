@@ -45,29 +45,30 @@
 		<tr>
 			<td><a href="#window">Graphics > Window</a></td>
 			<td><a href="#views">Graphics > Views</a></td>
-			<td><a href="#tileset">Graphics > Tile Set</a></td>
+			<td><a href="#colormodes">Graphics > Color Modes</a></td>
 		</tr>
 		<tr>
+			<td><a href="#tileset">Graphics > Tile Set</a></td>
 			<td><a href="#palette">Graphics > Color Palette</a></td>
 			<td><a href="#tiledraw">Graphics > Tile Drawing</a></td>
-			<td><a href="#textdraw">Graphics > Text Drawing</a></td>
 		</tr>
 		<tr>
+			<td><a href="#textdraw">Graphics > Text Drawing</a></td>
 			<td><a href="#textinput">Input > Text</a></td>
 			<td><a href="#mouse">Input > Mouse</a></td>
-			<td><a href="#keyboard">Input > Keyboard</a></td>
 		</tr>
 		<tr>
+			<td><a href="#keyboard">Input > Keyboard</a></td>
 			<td><a href="#gamepad">Input > Controller</a></td>
 			<td><a href="#sound">Sound</a></td>
-			<td><a href="#timers">Timers</a></td>
 		</tr>
 		<tr>
+			<td><a href="#timers">Timers</a></td>
 			<td><a href="#strings">Strings</a></td>
 			<td><a href="#math">Math</a></td>
-			<td><a href="#collision">Collision</a></td>
 		</tr>
 		<tr>
+			<td><a href="#collision">Collision</a></td>
 			<td><a href="#filesystem">Filesystem</a></td>
 			<td><a href="#debug">Debugging</a></td>
 		</tr>
@@ -158,6 +159,27 @@
 	Almost the same as the error() function, but terminates the application as soon as the message is dismissed.
 </p>
 <!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> date()
+</p>
+<p class="apiref-entry">
+	Returns the current date of the OS in the MM/DD/YYYY format.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> time()
+</p>
+<p class="apiref-entry">
+	Returns the current time of the OS in the HH:MM:SS format.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> datetime()
+</p>
+<p class="apiref-entry">
+	Returns the combined date and time in a single string.
+</p>
+<!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="window">GRAPHICS > WINDOW</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -186,6 +208,20 @@
 </p>
 <p class="apiref-entry">
 	Sets the window title to the specified string. This can be called even before the window is created since it's stored separately and it gets assigned to the window as soon as it opens.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> backcolor(<span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Set the background color of the window, i.e. the color that appears in the default view, behind all user-created views.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> clear()
+</p>
+<p class="apiref-entry">
+	Clears the contents of the current view, by filling the entire view region with that view's background color.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -261,13 +297,6 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> clear()
-</p>
-<p class="apiref-entry">
-	Clears the contents of the current view, by filling the entire view region with that view's background color.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
 	<span class="apiref-type">void</span> scroll(<span class="apiref-type">int</span> dx, <span class="apiref-type">int</span> dy)
 </p>
 <p class="apiref-entry">
@@ -295,41 +324,78 @@
 	Returns the vertical scroll position for the current view.
 </p>
 <!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="colormodes">GRAPHICS > COLOR MODES</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_normal()
+</p>
+<p class="apiref-entry">
+	Enables the "normal" color mode. This is the default. In this mode, when drawing a tile, the system interprets the color information encoded within the tile data itself, in the form of RGB values for each one of the 64 pixels, i.e. a bitmapped image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_binary(<span class="apiref-type">rgb</span> fore_color)
+</p>
+<p class="apiref-entry">
+	Enables the "binary" color mode and sets the foreground color. In this mode, the system interprets only the values '0' and '1' in the tile data, '0' meaning background and '1' meaning foreground. The colors are assigned just before drawing a tile..
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_binary(<span class="apiref-type">rgb</span> fore_color, <span class="apiref-type">rgb</span> back_color)
+</p>
+<p class="apiref-entry">
+	Almost the same as the other "color_binary" function. Enables the "binary" color mode and sets the foreground and background colors.
+</p>
+<!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="tileset">GRAPHICS > TILE SET</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_pixels(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> pixels[64])
+	<span class="apiref-type">void</span> tile_new(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> pixels[64])
 </p>
 <p class="apiref-entry">
-	Creates a new tile with the specified pixel colors.
+	Creates a new tile with the specified pixel colors in RGB format. Most suitable for use with the "normal" color mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_file(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> path)
+	<span class="apiref-type">void</span> tile_new(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> binary_pattern)
 </p>
 <p class="apiref-entry">
-	Loads a bitmap image from a file, creates a new tile and assigns to it the specified img_id and pixels from the loaded bitmap.
+	Creates a new tile with the specified binary pattern, i.e. a string containing only 0's and 1's, where 0 is the background and 1 is the foreground. Suitable for use with the "binary" color mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> img_id)
+	<span class="apiref-type">void</span> tile_load(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
-	Creates a new tile sequence with a single animation frame as indicated by the img_id, or modify an existing tile by adding a new animation frame as indicated by the img_id. The img_id should correspond to an existing tile image that was previously created by the tile_pixels() or tile_file() functions.
+	Loads a bitmap image from a file, creates a new tile and assigns to it the specified img_id and pixels. Only uncompressed, 24-bit RGB color bitmap files are supported. Each bitmap loaded must be exactly 8x8 pixels in size, or else this function fails.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> transparent(<span class="apiref-type">bool</span> state)
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> img_id, <span class="apiref-type">int</span> count <span class="apiref-default-arg">= 1</span>)
+</p>
+<p class="apiref-entry">
+	Creates a new tile sequence with the specified number of repeating animation frames as indicated by the img_id, or modify an existing tile by adding a new animation frame as indicated by the img_id. The img_id should correspond to an existing tile that was previously created by the tile_new() or tile_file() functions.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_transparent(<span class="apiref-type">bool</span> state)
 </p>
 <p class="apiref-entry">
 	Enables or disables tile transparency. This function does not change the color of the transparency key.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> transparency_key(<span class="apiref-type">rgb</span> color)
+	<span class="apiref-type">void</span> tile_transparency_key(<span class="apiref-type">rgb</span> color)
 </p>
 <p class="apiref-entry">
 	Enables and sets the color of the global transparency key, i.e. whenever any tile contains the specified color, it will not be rendered if transparency is enabled.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_replace_color(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> original_color, <span class="apiref-type">rgb</span> new_color)
+</p>
+<p class="apiref-entry">
+	Replaces every pixel of the original_color with the new_color in the specified tile.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="tiledraw">GRAPHICS > TILE DRAWING</p>
@@ -356,6 +422,20 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_new()
+</p>
+<p class="apiref-entry">
+	Deletes all font characters. Useful for implementing entirely new custom fonts from the ground up.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_reset()
+</p>
+<p class="apiref-entry">
+	Resets all font characters to their default tile patterns.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
 	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> color)
 </p>
 <p class="apiref-entry">
@@ -363,7 +443,7 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> fore_color, rgb back_color)
+	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> fore_color, <span class="apiref-type">rgb</span> back_color)
 </p>
 <p class="apiref-entry">
 	Set the foreground and background colors of the text font. The background of the text is drawn normally.
@@ -377,17 +457,10 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> font_reset()
+	<span class="apiref-type">void</span> font_transparent(<span class="apiref-type">bool</span> state)
 </p>
 <p class="apiref-entry">
-	Resets all font characters to their default tile patterns.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
-	<span class="apiref-type">void</span> font_new()
-</p>
-<p class="apiref-entry">
-	Deletes all font characters. Useful for implementing entirely new custom fonts from the ground up.
+	Enables or disables the font transparency.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -885,7 +958,7 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> sound_file(<span class="apiref-type">string</span> sound_id, <span class="apiref-type">string</span> file)
+	<span class="apiref-type">void</span> sound_load(<span class="apiref-type">string</span> sound_id, <span class="apiref-type">string</span> file)
 </p>
 <p class="apiref-entry">
 	Loads a sound file and stores it internally. The loaded sound can be subsequently referred to by the sound_id.
@@ -895,7 +968,7 @@
 	<span class="apiref-type">void</span> sound(<span class="apiref-type">string</span> sound_id)
 </p>
 <p class="apiref-entry">
-	Plays a sound file that was previously loaded with the specified sound_id. The sound plays asynchronously.
+	Plays a sound file that was previously loaded via the sound() function with the specified sound_id. The sound plays asynchronously.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -903,6 +976,13 @@
 </p>
 <p class="apiref-entry">
 	Almost the same as sound(), but will play synchronously, i.e. program execution will stop while the sound is playing, and will resume once the sound has stopped.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_stop()
+</p>
+<p class="apiref-entry">
+	Stops all currently playing sound files. MML note sequences handled by the play_notes() function are not affected.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="timers">TIMERS</p>
@@ -921,6 +1001,13 @@
 	Returns true if the specified timer has expired, i.e. if the required number of frames have elapsed since it started. Returns false if the timer is still going.
 </p>
 <!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> timer_reset(<span class="apiref-type">string</span> timer_id)
+</p>
+<p class="apiref-entry">
+	Restarts the specified timer.
+</p>
+<!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="strings">STRINGS</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -928,6 +1015,48 @@
 </p>
 <p class="apiref-entry">
 	This is basically the TGL version of the standard C function sprintf(), except that the output is returned as a string instance, and the internal buffer for the output is limited to a maximum of 1024 characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> ucase(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts entire string to uppercase characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> lcase(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts entire string to lowercase characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> trim(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Removes leading and trailing spaces from the string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> split(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> delim)
+</p>
+<p class="apiref-entry">
+	Split a string separated by the specified delimiter character into a list of strings.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> to_string(<span class="apiref-type">int</span> value)
+</p>
+<p class="apiref-entry">
+	Converts the integer value into its string representation.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> to_int(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts the string into an integer value.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="math">MATH</p>
@@ -976,6 +1105,13 @@
 </p>
 <p class="apiref-entry">
 	Loads a file and returns the entire contents as a list of text lines.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_appendln(<span class="apiref-type">string</span> path, <span class="apiref-type">string</span> text)
+</p>
+<p class="apiref-entry">
+	Appends a line of text to the end of the specified file.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
