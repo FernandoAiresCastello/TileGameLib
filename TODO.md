@@ -5,18 +5,13 @@ The items in this list are not in any particular order.
 **GRAPHICS:**
 
 - Improve rendering performance
-- Implement stable frame rate
-- Implement loading and converting tiles and tilesets from external file to the TGL internal format
+- Improve frame rate stability
 
 **SOUND:**
 
 - Improve square-wave sound synthesis
 - Change sound synthesis to be able to generate the same kinds of sounds 
 that the GameBoy Color is capable of
-
-**INPUT:**
-
-- Implement gamepad/controller input handling
 
 **DATA:**
 
