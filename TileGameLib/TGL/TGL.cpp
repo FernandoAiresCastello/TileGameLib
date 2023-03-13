@@ -325,6 +325,12 @@ int TGL::rnd(int min, int max)
 {
 	return Util::Random(min, max);
 }
+bool TGL::rnd_chance(int percent)
+{
+	if (percent <= 0) return false;
+	else if (percent >= 100) return true;
+	else return rnd(0, 100) >= (100 - percent);
+}
 void TGL::timer_new(string timer_id, int frames, bool loop)
 {
 	TGL_Private::t_timer tmr;
