@@ -157,6 +157,9 @@ struct TGL
 	vector<string> split(string str, char delim);
 	int to_int(string str);
 	string to_string(int value);
+	string replace(string str, string original, string replacement);
+	bool starts_with(string str, string prefix);
+	bool ends_with(string str, string suffix);
 
 	//=========================================================================
 	//		MATH

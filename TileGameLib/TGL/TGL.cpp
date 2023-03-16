@@ -445,6 +445,18 @@ string TGL::to_string(int value)
 {
 	return String::ToString(value);
 }
+string TGL::replace(string str, string original, string replacement)
+{
+	return String::Replace(str, original, replacement);
+}
+bool TGL::starts_with(string str, string prefix)
+{
+	return String::StartsWith(str, prefix);
+}
+bool TGL::ends_with(string str, string suffix)
+{
+	return String::EndsWith(str, suffix);
+}
 void TGL::play_volume(int vol)
 {
 	tgl->snd_notes->SetVolume(vol);
