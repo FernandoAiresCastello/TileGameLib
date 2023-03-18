@@ -21,7 +21,7 @@
 	BODY
 =========================================================*/
 body {
-    margin: 0 100px;
+    margin: 0;
 	margin-bottom: 50px;
     padding: 0 20px 0 20px;
     background: #f0f0f0;
@@ -192,8 +192,6 @@ ol li {
 	margin: 0;
 }
 .apiref-section-header, .apiref-entry-title, .apiref-entry, ul.apiref-list {
-	margin-left: 100px;
-	margin-right: 100px;
 }
 .apiref-type {
 	color: #342dc5;

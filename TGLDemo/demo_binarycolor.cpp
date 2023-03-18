@@ -34,6 +34,6 @@ void demo_binarycolor()
 		tgl.color_binary(0x0000ff, 0xff00ff);
 		tgl.draw_tiled("test", 1, 1);
 		if (tgl.kb_esc()) tgl.exit();
-		tgl.system();
+		tgl.update();
 	}
 }

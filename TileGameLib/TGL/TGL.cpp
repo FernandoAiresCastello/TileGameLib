@@ -45,25 +45,25 @@ int TGL::exit()
 	::exit(0);
 	return 0;
 }
-void TGL::system()
+void TGL::update()
 {
 	tgl->draw_frame();
 	tgl->advance_timers();
-
 	SDL_Event e = { 0 };
 	tgl->process_default_events(&e);
 }
-int TGL::halt()
+int TGL::halt(void(*fn)())
 {
 	while (true) {
-		pause(1);
+		pause(1, fn);
 	}
 	return exit();
 }
-void TGL::pause(int ms)
+void TGL::pause(int ms, void(*fn)())
 {
 	SDL_Event e = { 0 };
 	while (ms > 0) {
+		if (fn) fn();
 		tgl->draw_frame();
 		tgl->process_default_events(&e);
 		SDL_Delay(1);

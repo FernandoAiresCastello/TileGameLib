@@ -51,10 +51,10 @@ struct TGL
 	//=========================================================================
 	//		SYSTEM
 	//=========================================================================
-	void system();
+	void update();
 	int exit();
-	int halt();
-	void pause(int ms);
+	int halt(void(*fn)() = nullptr);
+	void pause(int ms, void(*fn)() = nullptr);
 	bool running();
 	void error(string msg);
 	void abort(string msg);

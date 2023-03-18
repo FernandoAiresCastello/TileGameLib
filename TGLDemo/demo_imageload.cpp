@@ -17,6 +17,6 @@ void demo_imageload()
 		tgl.draw_tiled("smiley", tgl.cols() / 2 - 1, tgl.rows() / 2);
 		tgl.draw_tiled("smiley", tgl.cols() / 2, tgl.rows() / 2);
 
-		tgl.system();
+		tgl.update();
 	}
 }

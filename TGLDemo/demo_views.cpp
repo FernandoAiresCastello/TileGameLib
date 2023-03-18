@@ -21,7 +21,7 @@ void demo_views()
 
 	while (tgl.running()) {
 
-		tgl.system();
+		tgl.update();
 
 		tgl.view("view_bg");
 

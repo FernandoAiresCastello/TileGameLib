@@ -14,7 +14,7 @@ void demo_font()
 
 	while (tgl.running()) {
 
-		tgl.system();
+		tgl.update();
 
 		tgl.view_default();
 		tgl.font_shadow(true, 0x000020);

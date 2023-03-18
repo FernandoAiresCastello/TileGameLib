@@ -49,14 +49,12 @@ void demo_invaders()
 	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
 
 	while (tgl.running()) {
-
-		tgl.system();
-
 		tgl.view("main");
 		aliens_cycle();
 		player_cycle();
 		draw_score();
 		handle_input();
+		tgl.update();
 	}
 }
 void draw_score()

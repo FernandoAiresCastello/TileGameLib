@@ -98,7 +98,8 @@ int main(int argc, char* argv[])
 {
 	TGL tgl;
 	
-	tgl.window_gbc();
+	tgl.window_gbc(0xffffff, 4);
+	tgl.font_color(0x000000);
 	tgl.print_free("Hello World!", 35, 65);
 
 	return tgl.halt();
@@ -116,7 +117,10 @@ int main(int argc, char* argv[])
 		Inside the main function, the first line creates the TGL singleton. This initializes the internal state of the library. 
 	</li>
 	<li>
-		Next, the window_gbc() function opens the application window. Note that the two optional arguments are not provided, which means the background color will be white and the size factor will be 5 (i.e. the defaults).
+		Next, the window_gbc() function opens the application window. The first argument is the background color (white in this case), and the second argument is the window size factor.
+	</li>
+	<li>
+		Next, the font_color() function sets the color of the following text (black in this case).
 	</li>
 	<li>
 		Next, the print_free() function draws the string "Hello World!" on the screen at the absolute x and y coordinates of 35 and 65 respectively. Note that since the color mode has not been defined using any of the "color_" functions, the text appears as black (i.e. the default).

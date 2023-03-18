@@ -18,6 +18,6 @@ void demo_mouse()
 
 		if (tgl.kb_esc()) tgl.exit();
 
-		tgl.system();
+		tgl.update();
 	}
 }

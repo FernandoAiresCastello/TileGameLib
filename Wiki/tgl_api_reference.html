@@ -111,10 +111,10 @@
 <p class="apiref-section-header" id="system">SYSTEM</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> system()
+	<span class="apiref-type">void</span> update()
 </p>
 <p class="apiref-entry">
-	This function should be called at the end of every frame in your application. It refreshes the window with everything that has been drawn in that frame, updates internal state such as advancing timers and automatic animation of tiles, and also processes default window events such as the "close" button to exit the application and the ALT+ENTER key combination to toggle fullscreen mode.
+	This function should be called at the end of every frame in your application. It refreshes the window with everything that has been drawn in that frame, updates internal state such as timers and automatic animation of tiles, and also processes default window events such as the "close" button to exit the application and the ALT+ENTER key combination to toggle fullscreen mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -494,14 +494,14 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">string</span> input_free(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
+	<span class="apiref-type">string</span> input_free(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">void</span>(*fn)() <span class="apiref-default-arg">= nullptr</span>)
 </p>
 <p class="apiref-entry">
-	Shows a text input field at the specified coordinates and waits for the user to type something, then returns the typed text. The input is confirmed when the user presses the ENTER key, and it is cancelled if the user presses the ESCAPE key.
+	Shows a text input field at the specified coordinates and waits for the user to type something, then returns the typed text. The input is confirmed when the user presses the ENTER key, and it is cancelled if the user presses the ESCAPE key. The optional argument "fn" is a pointer to a function that will be called every frame while the input routine is active.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">string</span> input_tiled(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)
+	<span class="apiref-type">string</span> input_tiled(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row, <span class="apiref-type">void</span>(*fn)() <span class="apiref-default-arg">= nullptr</span>)
 </p>
 <p class="apiref-entry">
 	Almost the same as input_free() except that the coordinates are not the absolute x and y but a column and row into the virtual tile grid.
@@ -1057,6 +1057,48 @@
 </p>
 <p class="apiref-entry">
 	Converts the string into an integer value.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> substr(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> begin, <span class="apiref-type">int</span> end)
+</p>
+<p class="apiref-entry">
+	Returns a new string containing the portion of the string between the specified character positions.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> replace(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> original, <span class="apiref-type">string</span> replacement)
+</p>
+<p class="apiref-entry">
+	Returns a new string with all occurrences of the "original" string replaced with "replacement" string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> starts_with(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> prefix)
+</p>
+<p class="apiref-entry">
+	Returns whether the string starts with the specified prefix.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> ends_with(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> suffix)
+</p>
+<p class="apiref-entry">
+	Returns whether the string ends with the specified suffix.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> contains(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> other)
+</p>
+<p class="apiref-entry">
+	Returns whether the string contains some other string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> indexof(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> ch)
+</p>
+<p class="apiref-entry">
+	Returns the position in the string of the first character that matches the specified value.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="math">MATH</p>
