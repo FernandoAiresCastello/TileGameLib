@@ -384,7 +384,10 @@ namespace CppUtils
 		std::string str = "";
 		for (int i = 0; i < strings.size(); i++) {
 			if (!inBetween.empty()) {
-				str += strings[i] + inBetween;
+				str += strings[i];
+				if (i < strings.size() - 1) {
+					str += inBetween;
+				}
 			}
 			else {
 				str += strings[i];

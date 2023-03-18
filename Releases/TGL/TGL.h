@@ -155,11 +155,15 @@ struct TGL
 	string lcase(string str);
 	string trim(string str);
 	vector<string> split(string str, char delim);
+	string join(vector<string>& str, string separator);
 	int to_int(string str);
 	string to_string(int value);
+	string substr(string str, int first, int last);
 	string replace(string str, string original, string replacement);
 	bool starts_with(string str, string prefix);
 	bool ends_with(string str, string suffix);
+	bool contains(string str, string other);
+	int indexof(string str, char ch);
 
 	//=========================================================================
 	//		MATH

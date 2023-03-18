@@ -435,7 +435,11 @@ string TGL::trim(string str)
 }
 vector<string> TGL::split(string str, char delim)
 {
-	return String::Split(str, delim, false);
+	return String::Split(str, delim, true);
+}
+string TGL::join(vector<string>& str, string separator)
+{
+	return String::Join(str, separator);
 }
 int TGL::to_int(string str)
 {
@@ -444,6 +448,10 @@ int TGL::to_int(string str)
 string TGL::to_string(int value)
 {
 	return String::ToString(value);
+}
+string TGL::substr(string str, int first, int last)
+{
+	return String::Substring(str, first, last);
 }
 string TGL::replace(string str, string original, string replacement)
 {
@@ -456,6 +464,14 @@ bool TGL::starts_with(string str, string prefix)
 bool TGL::ends_with(string str, string suffix)
 {
 	return String::EndsWith(str, suffix);
+}
+bool TGL::contains(string str, string other)
+{
+	return String::Contains(str, other);
+}
+int TGL::indexof(string str, char ch)
+{
+	return String::IndexOf(str, ch);
 }
 void TGL::play_volume(int vol)
 {
@@ -803,8 +819,6 @@ void TGL_Private::process_default_events(SDL_Event* e)
 		last_key = key;
 		if (TKey::Alt() && key == SDLK_RETURN && wnd) {
 			wnd->ToggleFullscreen();
-		} else if (key == SDLK_PRINTSCREEN) {
-			tgl_public->screenshot("TGL.bmp");
 		}
 	}
 }
