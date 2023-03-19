@@ -35,20 +35,24 @@ namespace TGLTilePaint
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TileEditPanelContainer = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnParsePal = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnCurrentColor = new System.Windows.Forms.Button();
+            this.BtnReplace = new System.Windows.Forms.Button();
             this.TxtCurrentColor = new System.Windows.Forms.TextBox();
-            this.BtnNew2 = new System.Windows.Forms.Button();
+            this.TxtReplaceDst = new System.Windows.Forms.TextBox();
+            this.BtnFillLeft = new System.Windows.Forms.Button();
+            this.TxtReplaceSrc = new System.Windows.Forms.TextBox();
             this.BtnResetPal = new System.Windows.Forms.Button();
             this.TxtColor3 = new System.Windows.Forms.TextBox();
+            this.BtnParsePal = new System.Windows.Forms.Button();
             this.TxtColor2 = new System.Windows.Forms.TextBox();
-            this.TxtColor1 = new System.Windows.Forms.TextBox();
-            this.TxtColor0 = new System.Windows.Forms.TextBox();
-            this.BtnCurrentColor = new System.Windows.Forms.Button();
-            this.BtnFillLeft = new System.Windows.Forms.Button();
-            this.Btn3 = new System.Windows.Forms.Button();
-            this.Btn2 = new System.Windows.Forms.Button();
-            this.Btn1 = new System.Windows.Forms.Button();
             this.Btn0 = new System.Windows.Forms.Button();
+            this.TxtColor1 = new System.Windows.Forms.TextBox();
+            this.Btn1 = new System.Windows.Forms.Button();
+            this.TxtColor0 = new System.Windows.Forms.TextBox();
+            this.Btn2 = new System.Windows.Forms.Button();
+            this.Btn3 = new System.Windows.Forms.Button();
+            this.BtnNew2 = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnLoadBmp = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,15 +71,11 @@ namespace TGLTilePaint
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.TxtReplaceSrc = new System.Windows.Forms.TextBox();
-            this.TxtReplaceDst = new System.Windows.Forms.TextBox();
-            this.BtnReplace = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -130,16 +130,53 @@ namespace TGLTilePaint
             this.panel1.Size = new System.Drawing.Size(297, 442);
             this.panel1.TabIndex = 2;
             // 
-            // BtnParsePal
+            // groupBox1
             // 
-            this.BtnParsePal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnParsePal.Location = new System.Drawing.Point(154, 210);
-            this.BtnParsePal.Name = "BtnParsePal";
-            this.BtnParsePal.Size = new System.Drawing.Size(90, 30);
-            this.BtnParsePal.TabIndex = 20;
-            this.BtnParsePal.Text = "Parse";
-            this.BtnParsePal.UseVisualStyleBackColor = true;
-            this.BtnParsePal.Click += new System.EventHandler(this.BtnParsePal_Click);
+            this.groupBox1.Controls.Add(this.BtnCurrentColor);
+            this.groupBox1.Controls.Add(this.BtnReplace);
+            this.groupBox1.Controls.Add(this.TxtCurrentColor);
+            this.groupBox1.Controls.Add(this.TxtReplaceDst);
+            this.groupBox1.Controls.Add(this.BtnFillLeft);
+            this.groupBox1.Controls.Add(this.TxtReplaceSrc);
+            this.groupBox1.Controls.Add(this.BtnResetPal);
+            this.groupBox1.Controls.Add(this.TxtColor3);
+            this.groupBox1.Controls.Add(this.BtnParsePal);
+            this.groupBox1.Controls.Add(this.TxtColor2);
+            this.groupBox1.Controls.Add(this.Btn0);
+            this.groupBox1.Controls.Add(this.TxtColor1);
+            this.groupBox1.Controls.Add(this.Btn1);
+            this.groupBox1.Controls.Add(this.TxtColor0);
+            this.groupBox1.Controls.Add(this.Btn2);
+            this.groupBox1.Controls.Add(this.Btn3);
+            this.groupBox1.Location = new System.Drawing.Point(13, 46);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 381);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Color";
+            // 
+            // BtnCurrentColor
+            // 
+            this.BtnCurrentColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnCurrentColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCurrentColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCurrentColor.Location = new System.Drawing.Point(34, 61);
+            this.BtnCurrentColor.Name = "BtnCurrentColor";
+            this.BtnCurrentColor.Size = new System.Drawing.Size(60, 64);
+            this.BtnCurrentColor.TabIndex = 5;
+            this.BtnCurrentColor.UseVisualStyleBackColor = true;
+            this.BtnCurrentColor.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
+            // 
+            // BtnReplace
+            // 
+            this.BtnReplace.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReplace.Location = new System.Drawing.Point(21, 332);
+            this.BtnReplace.Name = "BtnReplace";
+            this.BtnReplace.Size = new System.Drawing.Size(90, 30);
+            this.BtnReplace.TabIndex = 24;
+            this.BtnReplace.Text = "Replace";
+            this.BtnReplace.UseVisualStyleBackColor = true;
+            this.BtnReplace.Click += new System.EventHandler(this.BtnReplace_Click);
             // 
             // TxtCurrentColor
             // 
@@ -155,21 +192,47 @@ namespace TGLTilePaint
             this.TxtCurrentColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtCurrentColor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
             // 
-            // BtnNew2
+            // TxtReplaceDst
             // 
-            this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNew2.Location = new System.Drawing.Point(84, 11);
-            this.BtnNew2.Name = "BtnNew2";
-            this.BtnNew2.Size = new System.Drawing.Size(126, 30);
-            this.BtnNew2.TabIndex = 18;
-            this.BtnNew2.Text = "New tile";
-            this.BtnNew2.UseVisualStyleBackColor = true;
-            this.BtnNew2.Click += new System.EventHandler(this.BtnNew2_Click);
+            this.TxtReplaceDst.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtReplaceDst.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtReplaceDst.Location = new System.Drawing.Point(34, 306);
+            this.TxtReplaceDst.MaxLength = 6;
+            this.TxtReplaceDst.Name = "TxtReplaceDst";
+            this.TxtReplaceDst.Size = new System.Drawing.Size(60, 20);
+            this.TxtReplaceDst.TabIndex = 23;
+            this.TxtReplaceDst.Text = "FFFFFF";
+            this.TxtReplaceDst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtReplaceDst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
+            // 
+            // BtnFillLeft
+            // 
+            this.BtnFillLeft.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFillLeft.Location = new System.Drawing.Point(21, 157);
+            this.BtnFillLeft.Name = "BtnFillLeft";
+            this.BtnFillLeft.Size = new System.Drawing.Size(90, 30);
+            this.BtnFillLeft.TabIndex = 4;
+            this.BtnFillLeft.Text = "Fill";
+            this.BtnFillLeft.UseVisualStyleBackColor = true;
+            this.BtnFillLeft.Click += new System.EventHandler(this.BtnFill_Click);
+            // 
+            // TxtReplaceSrc
+            // 
+            this.TxtReplaceSrc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtReplaceSrc.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtReplaceSrc.Location = new System.Drawing.Point(34, 283);
+            this.TxtReplaceSrc.MaxLength = 6;
+            this.TxtReplaceSrc.Name = "TxtReplaceSrc";
+            this.TxtReplaceSrc.Size = new System.Drawing.Size(60, 20);
+            this.TxtReplaceSrc.TabIndex = 22;
+            this.TxtReplaceSrc.Text = "FFFFFF";
+            this.TxtReplaceSrc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtReplaceSrc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             // 
             // BtnResetPal
             // 
             this.BtnResetPal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResetPal.Location = new System.Drawing.Point(154, 242);
+            this.BtnResetPal.Location = new System.Drawing.Point(155, 243);
             this.BtnResetPal.Name = "BtnResetPal";
             this.BtnResetPal.Size = new System.Drawing.Size(90, 30);
             this.BtnResetPal.TabIndex = 17;
@@ -191,6 +254,17 @@ namespace TGLTilePaint
             this.TxtColor3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtColor3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
             // 
+            // BtnParsePal
+            // 
+            this.BtnParsePal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnParsePal.Location = new System.Drawing.Point(155, 211);
+            this.BtnParsePal.Name = "BtnParsePal";
+            this.BtnParsePal.Size = new System.Drawing.Size(90, 30);
+            this.BtnParsePal.TabIndex = 20;
+            this.BtnParsePal.Text = "Parse";
+            this.BtnParsePal.UseVisualStyleBackColor = true;
+            this.BtnParsePal.Click += new System.EventHandler(this.BtnParsePal_Click);
+            // 
             // TxtColor2
             // 
             this.TxtColor2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -204,6 +278,19 @@ namespace TGLTilePaint
             this.TxtColor2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxtColor2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtColor2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
+            // 
+            // Btn0
+            // 
+            this.Btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn0.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn0.ForeColor = System.Drawing.Color.Black;
+            this.Btn0.Location = new System.Drawing.Point(132, 19);
+            this.Btn0.Name = "Btn0";
+            this.Btn0.Size = new System.Drawing.Size(60, 64);
+            this.Btn0.TabIndex = 0;
+            this.Btn0.Text = "1";
+            this.Btn0.UseVisualStyleBackColor = true;
+            this.Btn0.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
             // TxtColor1
             // 
@@ -219,6 +306,19 @@ namespace TGLTilePaint
             this.TxtColor1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtColor1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
             // 
+            // Btn1
+            // 
+            this.Btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn1.ForeColor = System.Drawing.Color.Black;
+            this.Btn1.Location = new System.Drawing.Point(198, 19);
+            this.Btn1.Name = "Btn1";
+            this.Btn1.Size = new System.Drawing.Size(60, 64);
+            this.Btn1.TabIndex = 1;
+            this.Btn1.Text = "2";
+            this.Btn1.UseVisualStyleBackColor = true;
+            this.Btn1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
+            // 
             // TxtColor0
             // 
             this.TxtColor0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -233,28 +333,18 @@ namespace TGLTilePaint
             this.TxtColor0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
             this.TxtColor0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyUp);
             // 
-            // BtnCurrentColor
+            // Btn2
             // 
-            this.BtnCurrentColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnCurrentColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCurrentColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCurrentColor.Location = new System.Drawing.Point(34, 61);
-            this.BtnCurrentColor.Name = "BtnCurrentColor";
-            this.BtnCurrentColor.Size = new System.Drawing.Size(60, 64);
-            this.BtnCurrentColor.TabIndex = 5;
-            this.BtnCurrentColor.UseVisualStyleBackColor = true;
-            this.BtnCurrentColor.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
-            // 
-            // BtnFillLeft
-            // 
-            this.BtnFillLeft.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFillLeft.Location = new System.Drawing.Point(21, 157);
-            this.BtnFillLeft.Name = "BtnFillLeft";
-            this.BtnFillLeft.Size = new System.Drawing.Size(90, 30);
-            this.BtnFillLeft.TabIndex = 4;
-            this.BtnFillLeft.Text = "Fill";
-            this.BtnFillLeft.UseVisualStyleBackColor = true;
-            this.BtnFillLeft.Click += new System.EventHandler(this.BtnFill_Click);
+            this.Btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn2.ForeColor = System.Drawing.Color.Black;
+            this.Btn2.Location = new System.Drawing.Point(132, 113);
+            this.Btn2.Name = "Btn2";
+            this.Btn2.Size = new System.Drawing.Size(60, 64);
+            this.Btn2.TabIndex = 2;
+            this.Btn2.Text = "3";
+            this.Btn2.UseVisualStyleBackColor = true;
+            this.Btn2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
             // Btn3
             // 
@@ -269,44 +359,16 @@ namespace TGLTilePaint
             this.Btn3.UseVisualStyleBackColor = true;
             this.Btn3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
             // 
-            // Btn2
+            // BtnNew2
             // 
-            this.Btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn2.ForeColor = System.Drawing.Color.Black;
-            this.Btn2.Location = new System.Drawing.Point(132, 113);
-            this.Btn2.Name = "Btn2";
-            this.Btn2.Size = new System.Drawing.Size(60, 64);
-            this.Btn2.TabIndex = 2;
-            this.Btn2.Text = "3";
-            this.Btn2.UseVisualStyleBackColor = true;
-            this.Btn2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
-            // 
-            // Btn1
-            // 
-            this.Btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn1.ForeColor = System.Drawing.Color.Black;
-            this.Btn1.Location = new System.Drawing.Point(198, 19);
-            this.Btn1.Name = "Btn1";
-            this.Btn1.Size = new System.Drawing.Size(60, 64);
-            this.Btn1.TabIndex = 1;
-            this.Btn1.Text = "2";
-            this.Btn1.UseVisualStyleBackColor = true;
-            this.Btn1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
-            // 
-            // Btn0
-            // 
-            this.Btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn0.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn0.ForeColor = System.Drawing.Color.Black;
-            this.Btn0.Location = new System.Drawing.Point(132, 19);
-            this.Btn0.Name = "Btn0";
-            this.Btn0.Size = new System.Drawing.Size(60, 64);
-            this.Btn0.TabIndex = 0;
-            this.Btn0.Text = "1";
-            this.Btn0.UseVisualStyleBackColor = true;
-            this.Btn0.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDigit_Click);
+            this.BtnNew2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnNew2.Location = new System.Drawing.Point(88, 10);
+            this.BtnNew2.Name = "BtnNew2";
+            this.BtnNew2.Size = new System.Drawing.Size(126, 30);
+            this.BtnNew2.TabIndex = 18;
+            this.BtnNew2.Text = "New tile";
+            this.BtnNew2.UseVisualStyleBackColor = true;
+            this.BtnNew2.Click += new System.EventHandler(this.BtnNew2_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -466,67 +528,6 @@ namespace TGLTilePaint
             this.BtnAbout.Text = "About";
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // TxtReplaceSrc
-            // 
-            this.TxtReplaceSrc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtReplaceSrc.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtReplaceSrc.Location = new System.Drawing.Point(25, 340);
-            this.TxtReplaceSrc.MaxLength = 6;
-            this.TxtReplaceSrc.Name = "TxtReplaceSrc";
-            this.TxtReplaceSrc.Size = new System.Drawing.Size(60, 20);
-            this.TxtReplaceSrc.TabIndex = 22;
-            this.TxtReplaceSrc.Text = "FFFFFF";
-            this.TxtReplaceSrc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtReplaceSrc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
-            // 
-            // TxtReplaceDst
-            // 
-            this.TxtReplaceDst.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtReplaceDst.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtReplaceDst.Location = new System.Drawing.Point(88, 340);
-            this.TxtReplaceDst.MaxLength = 6;
-            this.TxtReplaceDst.Name = "TxtReplaceDst";
-            this.TxtReplaceDst.Size = new System.Drawing.Size(60, 20);
-            this.TxtReplaceDst.TabIndex = 23;
-            this.TxtReplaceDst.Text = "FFFFFF";
-            this.TxtReplaceDst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtReplaceDst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtColor_KeyDown);
-            // 
-            // BtnReplace
-            // 
-            this.BtnReplace.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReplace.Location = new System.Drawing.Point(154, 334);
-            this.BtnReplace.Name = "BtnReplace";
-            this.BtnReplace.Size = new System.Drawing.Size(90, 30);
-            this.BtnReplace.TabIndex = 24;
-            this.BtnReplace.Text = "Replace";
-            this.BtnReplace.UseVisualStyleBackColor = true;
-            this.BtnReplace.Click += new System.EventHandler(this.BtnReplace_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.BtnCurrentColor);
-            this.groupBox1.Controls.Add(this.BtnReplace);
-            this.groupBox1.Controls.Add(this.TxtCurrentColor);
-            this.groupBox1.Controls.Add(this.TxtReplaceDst);
-            this.groupBox1.Controls.Add(this.BtnFillLeft);
-            this.groupBox1.Controls.Add(this.TxtReplaceSrc);
-            this.groupBox1.Controls.Add(this.BtnResetPal);
-            this.groupBox1.Controls.Add(this.TxtColor3);
-            this.groupBox1.Controls.Add(this.BtnParsePal);
-            this.groupBox1.Controls.Add(this.TxtColor2);
-            this.groupBox1.Controls.Add(this.Btn0);
-            this.groupBox1.Controls.Add(this.TxtColor1);
-            this.groupBox1.Controls.Add(this.Btn1);
-            this.groupBox1.Controls.Add(this.TxtColor0);
-            this.groupBox1.Controls.Add(this.Btn2);
-            this.groupBox1.Controls.Add(this.Btn3);
-            this.groupBox1.Location = new System.Drawing.Point(13, 46);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 385);
-            this.groupBox1.TabIndex = 25;
-            this.groupBox1.TabStop = false;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,10 +546,10 @@ namespace TGLTilePaint
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
