@@ -28,6 +28,8 @@ I am currently the sole developer in this project. Please check out the document
 
 **Other projects included:**
 
+- [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) is an experimental version of TGL using C# scripts for the Unity game engine.
+
 - [TGL Tile Paint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the same format used by TileGameLib.
 
 - [TileGameLibCS (TileGameLib.dll / Tile Game Maker)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE. Currently, this project is not being actively developed.
