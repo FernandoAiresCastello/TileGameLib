@@ -2,39 +2,56 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public struct Tile
+namespace TileGameLib
 {
-    public Rgb[] pixels;
-
-    public static readonly int size = 8;
-    public static readonly Rgb binaryForeColor = 0x000000;
-    public static readonly Rgb binaryBackColor = 0xffffff;
-
-    private static readonly int width = size;
-    private static readonly int height = size;
-    private static readonly int pixelCount = width * height;
-
-    public Tile(Rgb[] pixels)
+    public struct Tile
     {
-        this.pixels = pixels;
-    }
+        public Rgb[] pixels;
 
-    public Tile(Binary pixels)
-    {
-        if (pixels.Length != pixelCount)
-            throw new ArgumentException("Binary string contains less than " + pixelCount + " characters");
+        public static readonly int size = 8;
+        public static readonly int width = size;
+        public static readonly int height = size;
+        public static readonly int pixelCount = width * height;
+        public static readonly Rgb binaryForeColor = 0x000000;
+        public static readonly Rgb binaryBackColor = 0xffffff;
 
-        this.pixels = new Rgb[pixelCount];
-        int index = 0;
-
-        foreach (char bit in pixels.Bits)
+        public Tile(Rgb[] pixelColors)
         {
-            if (bit == '0')
-                this.pixels[index] = Tile.binaryBackColor;
-            else if (bit == '1')
-                this.pixels[index] = Tile.binaryForeColor;
-            else
-                throw new ArgumentException("Binary string contains invalid characters");
+            pixels = pixelColors;
+        }
+
+        public Tile(Binary binaryString)
+        {
+            if (binaryString.Length != pixelCount)
+                throw new ArgumentException("Binary string must contain exactly " + pixelCount + " characters");
+
+            this.pixels = new Rgb[pixelCount];
+
+            for (int i = 0; i < binaryString.Length; i++)
+            {
+                char bit = binaryString.Bits[i];
+                if (bit == '0')
+                    pixels[i] = Tile.binaryBackColor;
+                else if (bit == '1')
+                    pixels[i] = Tile.binaryForeColor;
+                else
+                    throw new ArgumentException("Binary string contains invalid characters");
+            }
+        }
+
+        public string ToString()
+        {
+            string str = "";
+
+            for (int i = 0; i < pixelCount; i++)
+            {
+                string color = pixels[i].ToString();
+                str += color;
+                if (i < pixelCount - 1)
+                    str += ",";
+            }
+
+            return str;
         }
     }
 }

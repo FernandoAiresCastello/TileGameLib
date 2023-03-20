@@ -1,16 +1,22 @@
-using System;
-
-public struct Rgb
+namespace TileGameLib
 {
-    private int _value;
-
-    public static implicit operator Rgb(int value)
+    public struct Rgb
     {
-        return new Rgb { _value = value };
-    }
+        private int _value;
 
-    public static implicit operator int(Rgb value)
-    {
-        return value._value;
+        public static implicit operator Rgb(int value)
+        {
+            return new Rgb { _value = value };
+        }
+
+        public static implicit operator int(Rgb value)
+        {
+            return value._value;
+        }
+
+        public string ToString()
+        {
+            return "0x" + _value.ToString("X6");
+        }
     }
 }
