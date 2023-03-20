@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".gitignore": true,
+        "**/*.meta": true,
+        "**/.vs": true,
+        "**/.vscode": true
+    },
+    "explorerExclude.backup": {}
+}
