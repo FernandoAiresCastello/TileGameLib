@@ -10,17 +10,13 @@ public class TileGameLibTest : MonoBehaviour
 {
     private TileDisplay screen;
     private Tileset tileset;
-    private Tile tile;
 
     void Start()
     {
-        if (Camera.main == null)
-            throw new NullReferenceException("Main camera not found");
-
         screen = new TileDisplay();
         tileset = new Tileset();
 
-        tile = new Tile(
+        tileset.Add("smiley",
             "00111100" +
             "01000010" +
             "10100101" +
@@ -35,12 +31,26 @@ public class TileGameLibTest : MonoBehaviour
     void Update()
     {
         screen.Clear();
-        //screen.DrawTestFrame();
+        
+        Tile tile = tileset.Get("smiley").First;
 
-        screen.ColorBinary(0xff0000, 0xffff00);
-        screen.DrawTileFree(tile, 0, 0);
-        screen.ColorBinary(0x00ff00, 0x00ffff);
-        screen.DrawTileFree(tile, 8, 8);
+        for (int y = 0; y < screen.Rows; y++)
+        {
+            for (int x = 0; x < screen.Cols; x++)
+            {
+                screen.ColorBinary(
+                    Random.Range(0x000000, 0xffffff),
+                    Random.Range(0x000000, 0xffffff));
+
+                screen.DrawTiled(tile, x, y);
+            }
+        }
+        
+        screen.FontColor(0xff0000, 0xffff00);
+        screen.FontTransparent(true);
+        screen.PrintFree("~ Hello Free World! ~", 4, 4);
+        screen.FontTransparent(false);
+        screen.PrintTiled("~ Hello Tiled World! ~", 4, 4);
 
         screen.Update();
     }

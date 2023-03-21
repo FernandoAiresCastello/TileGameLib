@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,11 +10,12 @@ namespace TileGameLib
         public Rgb[] pixels;
 
         public static readonly int size = 8;
-        public static readonly int width = size;
-        public static readonly int height = size;
-        public static readonly int pixelCount = width * height;
+        public static readonly int pixelCount = size * size;
         public static readonly Rgb binaryForeColor = 0x000000;
         public static readonly Rgb binaryBackColor = 0xffffff;
+
+        public static Tile Blank => new Tile(
+            Enumerable.Repeat<Rgb>(0x000000, pixelCount).ToArray());
 
         public Tile(Rgb[] pixelColors)
         {
@@ -30,10 +32,10 @@ namespace TileGameLib
             for (int i = 0; i < binaryString.Length; i++)
             {
                 char bit = binaryString.Bits[i];
-                if (bit == '0')
-                    pixels[i] = Tile.binaryBackColor;
-                else if (bit == '1')
-                    pixels[i] = Tile.binaryForeColor;
+                if (bit == Binary.Bit0)
+                    pixels[i] = binaryBackColor;
+                else if (bit == Binary.Bit1)
+                    pixels[i] = binaryForeColor;
                 else
                     throw new ArgumentException("Binary string contains invalid characters");
             }
@@ -49,6 +51,24 @@ namespace TileGameLib
                 str += color;
                 if (i < pixelCount - 1)
                     str += ",";
+            }
+
+            return str;
+        }
+
+        public Binary ToBinary()
+        {
+            string str = "";
+
+            for (int i = 0; i < pixelCount; i++)
+            {
+                Rgb color = pixels[i];
+                if (color == binaryBackColor)
+                    str += Binary.Bit0;
+                else if (color == binaryForeColor)
+                    str += Binary.Bit1;
+                else
+                    throw new ArgumentException("Binary string contains invalid characters");
             }
 
             return str;

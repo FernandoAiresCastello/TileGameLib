@@ -6,7 +6,7 @@ namespace TileGameLib
 {
     public class Tileset
     {
-        private Dictionary<string, TileSeq> tiles;
+        private readonly Dictionary<string, TileSeq> tiles = new Dictionary<string, TileSeq>();
 
         public TileSeq Get(string id)
         {

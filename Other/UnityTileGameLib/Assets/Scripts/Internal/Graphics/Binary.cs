@@ -2,6 +2,9 @@ namespace TileGameLib
 {
     public struct Binary
     {
+        public static readonly char Bit0 = '0';
+        public static readonly char Bit1 = '1';
+
         public string Bits => _value;
         public int Length => _value.Length;
 

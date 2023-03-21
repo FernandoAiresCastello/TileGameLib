@@ -6,17 +6,17 @@ namespace TileGameLib
 {
     public class TileSeq
     {
-        public int length => tiles.Count;
-        public Tile first => tiles.Count > 0 ? tiles[0] : throw new InvalidOperationException();
+        public int Length => tiles.Count;
+        public Tile First => tiles.Count > 0 ? tiles[0] : throw new InvalidOperationException();
 
-        private List<Tile> tiles;
+        private readonly List<Tile> tiles = new List<Tile>();
 
         public Tile Get(int index)
         {
             return tiles[index % tiles.Count];
         }
 
-    public void Add(Tile tile)
+        public void Add(Tile tile)
         {
             tiles.Add(tile);
         }
