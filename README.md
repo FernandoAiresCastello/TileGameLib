@@ -1,11 +1,11 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-1.png?raw=true)
 
 # TileGameLib
-TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ or C# (Unity)
+TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ or C# (Unity).
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. This repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status).
+Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. This repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status). Only Windows (7/8/10/11) is currently supported.
 
 I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
 
@@ -40,7 +40,7 @@ The following projects are also part of the TileGameLib toolkit, but are otherwi
 
 - [TileGameLibCS](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE. Currently, this project is not being actively developed, as it will most likely be replaced by the Unity version in the future.
 
-**Disclaimers:**
+**Notes:**
 
 - This entire toolkit is in pre-alpha stage and is under constant development. Breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
 - Supports only Windows (7/8/10/11). Most projects are built using Visual Studio Community 2019.
