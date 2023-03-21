@@ -4,3 +4,4 @@
 *.css -linguist-detectable
 *.ts -linguist-detectable
 *.bat -linguist-detectable
+*.aspx -linguist-detectable
