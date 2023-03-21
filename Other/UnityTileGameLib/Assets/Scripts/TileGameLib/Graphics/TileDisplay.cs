@@ -12,15 +12,15 @@ namespace TileGameLib
         public int Cols => buf.Width / Tile.size;
         public int Rows => buf.Height / Tile.size;
 
-        private readonly GameObject gameObject;
-        private readonly PixelBuffer buf;
-        private readonly RawImage img;
         private Rgb backColor;
         private ColorMode colorMode;
         private BinaryColor binaryColor;
+        private readonly GameObject gameObject;
+        private readonly PixelBuffer buf;
+        private readonly RawImage img;
         private readonly Font font;
-        private FontStyle fontStyle;
-        private TileAnimation animation;
+        private readonly FontStyle fontStyle;
+        private readonly TileAnimation animation;
 
         public TileDisplay(int width, int height)
         {

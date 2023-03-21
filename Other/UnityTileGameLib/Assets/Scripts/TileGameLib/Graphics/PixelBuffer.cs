@@ -11,11 +11,11 @@ namespace TileGameLib
         public int Width => width;
         public int Height => height;
 
-        private int width;
-        private int height;
-        private Texture2D tex;
-        private Color32[] pixels;
-        private RawImage image;
+        private readonly int width;
+        private readonly int height;
+        private readonly Texture2D tex;
+        private readonly Color32[] pixels;
+        private readonly RawImage image;
 
         public PixelBuffer(RawImage targetImage, int width, int height)
         {
