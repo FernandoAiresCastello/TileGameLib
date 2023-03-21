@@ -12,12 +12,12 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 **Downloads:**
 
 - [TGL.lib - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [TGL.lib - Latest Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
+- [TGLDemo.exe - Latest demo build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
 - [TGL.lib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
-- [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLib/TGL/TGL.h)
+- [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TGL/TGL/TGL.h)
 - [TGL.lib - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Subreddit:**
