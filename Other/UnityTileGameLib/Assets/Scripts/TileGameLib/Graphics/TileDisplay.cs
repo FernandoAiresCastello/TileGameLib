@@ -20,11 +20,7 @@ namespace TileGameLib
         private BinaryColor binaryColor;
         private readonly Font font;
         private FontStyle fontStyle;
-        private bool animationEnabled;
-        private int animationFrame;
-        private int animationSpeed;
-        private int animationAdvanceCounter;
-        private readonly int animationAdvanceCounterMax;
+        private TileAnimation animation;
 
         public TileDisplay(int width, int height)
         {
@@ -44,12 +40,7 @@ namespace TileGameLib
             binaryColor = new BinaryColor(0x000000, 0xffffff, false);
             font = new Font();
             fontStyle = new FontStyle(0x000000, 0xffffff, false, true, 0xd0d0d0);
-            
-            animationEnabled = true;
-            animationFrame = 0;
-            animationSpeed = 85;
-            animationAdvanceCounter = 0;
-            animationAdvanceCounterMax = 100;
+            animation = new TileAnimation();
 
             ColorNormal();
             Clear();
@@ -69,16 +60,7 @@ namespace TileGameLib
         public void Update()
         {
             buf.Update();
-
-            if (animationEnabled)
-            {
-                animationAdvanceCounter++;
-                if (animationAdvanceCounter >= animationAdvanceCounterMax - animationSpeed)
-                {
-                    animationFrame++;
-                    animationAdvanceCounter = 0;
-                }
-            }
+            animation.NextFrame();
         }
 
         public void Clear()
@@ -141,15 +123,7 @@ namespace TileGameLib
 
         public void AnimationSpeed(int speed)
         {
-            if (speed > 0)
-            {
-                animationSpeed = speed;
-                animationEnabled = true;
-            }
-            else
-            {
-                animationEnabled = false;
-            }
+            animation.Speed(speed);
         }
 
         public void DrawTiled(TileSeq tileSeq, int x, int y)
@@ -161,7 +135,7 @@ namespace TileGameLib
         {
             int px = x;
 
-            foreach (Rgb color in tileSeq.Get(animationFrame).pixels)
+            foreach (Rgb color in tileSeq.Get(animation.Frame).pixels)
             {
                 if (colorMode == ColorMode.Normal)
                 {
