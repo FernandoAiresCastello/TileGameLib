@@ -31,8 +31,7 @@ namespace TileGameLib
             }
             else
             {
-                tiles[id] = new TileSeq();
-                tiles[id].Add(tile);
+                tiles[id] = new TileSeq(tile);
             }
         }
     }

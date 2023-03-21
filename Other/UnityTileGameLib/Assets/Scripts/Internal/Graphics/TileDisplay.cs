@@ -12,16 +12,21 @@ namespace TileGameLib
         public int Cols => buf.Width / Tile.size;
         public int Rows => buf.Height / Tile.size;
 
-        private GameObject gameObject;
-        private PixelBuffer buf;
-        private RawImage img;
+        private readonly GameObject gameObject;
+        private readonly PixelBuffer buf;
+        private readonly RawImage img;
         private Rgb backColor;
         private ColorMode colorMode;
         private BinaryColor binaryColor;
-        private Font font;
+        private readonly Font font;
         private FontStyle fontStyle;
+        private bool animationEnabled;
+        private int animationFrame;
+        private int animationSpeed;
+        private int animationAdvanceCounter;
+        private readonly int animationAdvanceCounterMax;
 
-        public TileDisplay()
+        public TileDisplay(int width, int height)
         {
             if (Camera.main == null)
                 throw new NullReferenceException("Main camera not found");
@@ -29,7 +34,7 @@ namespace TileGameLib
             gameObject = new GameObject(this.GetType().Name);
 
             img = gameObject.AddComponent<RawImage>();
-            buf = new PixelBuffer(img, 256, 192);
+            buf = new PixelBuffer(img, width, height);
 
             Canvas canvas = gameObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -39,15 +44,41 @@ namespace TileGameLib
             binaryColor = new BinaryColor(0x000000, 0xffffff, false);
             font = new Font();
             fontStyle = new FontStyle(0x000000, 0xffffff, false, true, 0xd0d0d0);
+            
+            animationEnabled = true;
+            animationFrame = 0;
+            animationSpeed = 85;
+            animationAdvanceCounter = 0;
+            animationAdvanceCounterMax = 100;
 
             ColorNormal();
             Clear();
             Update();
         }
 
+        public void ResizeWindow(int width, int height)
+        {
+            Screen.SetResolution(width, height, false);
+        }
+
+        public void Fullscreen(bool full)
+        {
+            Screen.fullScreen = full;
+        }
+
         public void Update()
         {
             buf.Update();
+
+            if (animationEnabled)
+            {
+                animationAdvanceCounter++;
+                if (animationAdvanceCounter >= animationAdvanceCounterMax - animationSpeed)
+                {
+                    animationFrame++;
+                    animationAdvanceCounter = 0;
+                }
+            }
         }
 
         public void Clear()
@@ -108,16 +139,29 @@ namespace TileGameLib
             fontStyle.shadowColor = color;
         }
 
-        public void DrawTiled(Tile tile, int x, int y)
+        public void AnimationSpeed(int speed)
         {
-            DrawFree(tile, x * Tile.size, y * Tile.size);
+            if (speed > 0)
+            {
+                animationSpeed = speed;
+                animationEnabled = true;
+            }
+            else
+            {
+                animationEnabled = false;
+            }
         }
 
-        public void DrawFree(Tile tile, int x, int y)
+        public void DrawTiled(TileSeq tileSeq, int x, int y)
+        {
+            DrawFree(tileSeq, x * Tile.size, y * Tile.size);
+        }
+
+        public void DrawFree(TileSeq tileSeq, int x, int y)
         {
             int px = x;
 
-            foreach (Rgb color in tile.pixels)
+            foreach (Rgb color in tileSeq.Get(animationFrame).pixels)
             {
                 if (colorMode == ColorMode.Normal)
                 {

@@ -6,8 +6,8 @@ namespace TileGameLib
 {
     public class Font
     {
-        private static int defaultSize = 256;
-        private readonly List<Tile> chars = new List<Tile>();
+        private static readonly int defaultSize = 256;
+        private readonly List<TileSeq> chars = new List<TileSeq>();
 
         public Font()
         {
@@ -19,10 +19,10 @@ namespace TileGameLib
             if (index < 0 || index >= chars.Count)
                 throw new ArgumentException("Invalid font character index");
 
-            chars[index] = new Tile(binaryString);
+            chars[index] = new TileSeq(new Tile(binaryString));
         }
 
-        public Tile GetTile(int index)
+        public TileSeq GetTile(int index)
         {
             if (index < 0 || index >= chars.Count)
                 throw new ArgumentException("Invalid font character index");
@@ -32,17 +32,17 @@ namespace TileGameLib
 
         public Binary GetBinary(int index)
         {
-            return GetTile(index).ToBinary();
+            return GetTile(index).First.ToBinary();
         }
 
         public void Add(Binary binaryString)
         {
-            chars.Add(new Tile(binaryString));
+            chars.Add(new TileSeq(new Tile(binaryString)));
         }
 
         public void AddBlank()
         {
-            chars.Add(Tile.Blank);
+            chars.Add(TileSeq.Blank);
         }
 
         public void Clear()

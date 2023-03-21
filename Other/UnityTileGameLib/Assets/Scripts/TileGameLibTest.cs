@@ -13,7 +13,9 @@ public class TileGameLibTest : MonoBehaviour
 
     void Start()
     {
-        screen = new TileDisplay();
+        screen = new TileDisplay(256, 192);
+        screen.ResizeWindow(800, 600);
+
         tileset = new Tileset();
 
         tileset.Add("smiley",
@@ -26,21 +28,31 @@ public class TileGameLibTest : MonoBehaviour
             "01000010" +
             "00111100"
         );
+        tileset.Add("smiley",
+            "00111100" +
+            "01000010" +
+            "10000001" +
+            "10000001" +
+            "10000001" +
+            "10000001" +
+            "01000010" +
+            "00111100"
+        );
     }
 
     void Update()
     {
         screen.Clear();
         
-        Tile tile = tileset.Get("smiley").First;
+        TileSeq tile = tileset.Get("smiley");
 
         for (int y = 0; y < screen.Rows; y++)
         {
             for (int x = 0; x < screen.Cols; x++)
             {
                 screen.ColorBinary(
-                    Random.Range(0x000000, 0xffffff),
-                    Random.Range(0x000000, 0xffffff));
+                    Random.Range(0x000000, 0x808080),
+                    Random.Range(0x909090, 0xffffff));
 
                 screen.DrawTiled(tile, x, y);
             }
