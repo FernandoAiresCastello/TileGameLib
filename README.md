@@ -1,11 +1,11 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-1.fw.png?raw=true)
 
 # TileGameLib
-TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ or C# (Unity).
+TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ with [SDL2](https://www.libsdl.org/), or in C# with [Unity](https://unity.com/).
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. This repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status). Only Windows (7/8/10/11) is currently supported.
+Currently, the main project in the toolkit is the C/C++ library **TGL.lib**, but this repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status). Only Windows (7/8/10/11) is currently supported for all projects.
 
 I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
 
@@ -30,19 +30,19 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 **Main project:**
 
-- [TGL.lib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TGL) is a C/C++ static library built on top of [SDL2](https://www.libsdl.org/). Under active development as of 2023.
+- [TGL.lib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TGL) is a C/C++ static library built on top of SDL2. Development status: ACTIVE.
 
 **Side projects:**
 
 The following projects are also part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
-- [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) contains a collection of C# scripts for use in the [Unity](https://unity.com/) game engine. Under active development as of 2023
+- [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) contains a collection of C# scripts for use in the Unity game engine (2D mode only). Development status: ACTIVE.
 
-- [TGL TilePaint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the TGL format.
+- [TGL TilePaint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the TGL format. Development status: INACTIVE.
 
-- [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) was an early attempt to create a web-based version of TGL.lib using Typescript and HTML/CSS. Currently, this project is not being actively developed.
+- [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) was an early attempt to create a web-based version of TGL.lib using Typescript and HTML/CSS. Development status: INACTIVE.
 
-- [TileGameLibCS](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE. Currently, this project is not being actively developed, as it will most likely be replaced by the Unity version in the future.
+- [TileGameLibCS](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE. Development status: INACTIVE.
 
 **Notes:**
 
