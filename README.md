@@ -1,4 +1,4 @@
-
+![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner.png?raw=true)
 
 # TileGameLib
 TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ or C# (Unity).
