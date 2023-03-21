@@ -991,7 +991,7 @@
 	<span class="apiref-type">void</span> timer_new(<span class="apiref-type">string</span> timer_id, <span class="apiref-type">int</span> frames, <span class="apiref-type">bool</span> loop)
 </p>
 <p class="apiref-entry">
-	Creates a new timer with the specified timer_id which will count from 0 to the specified number of frames, and then simply stop if the loop argument is false. If the loop argument is true, the timer will then restart from 0 and repeat indefinitely until it's manually stopped. The system() function is responsible for advancing all existing timers.
+	Creates a new timer with the specified timer_id which will count from 0 to the specified number of frames, and then simply stop if the loop argument is false. If the loop argument is true, the timer will then restart from 0 and repeat indefinitely until it's manually stopped. The update() system function is responsible for advancing all existing timers.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -1039,10 +1039,17 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">string</span> split(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> delim)
+	<span class="apiref-type">vector&lt;string&gt;</span> split(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> delim)
 </p>
 <p class="apiref-entry">
-	Split a string separated by the specified delimiter character into a list of strings.
+	Splits a string separated by the specified delimiter character into a list of strings.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> join(<span class="apiref-type">vector&lt;string&gt;&</span> str, <span class="apiref-type">char</span> separator)
+</p>
+<p class="apiref-entry">
+	Joins all strings from a list into a single string using the specified separator to delimit each item
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
