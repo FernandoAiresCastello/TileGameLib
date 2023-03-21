@@ -18,12 +18,19 @@
 	src: url('fonts/RobotoMono-Regular.ttf') format('truetype');
 }
 /*=========================================================
-	BODY
+	HTML / BODY
 =========================================================*/
+html {
+	display: table;
+	margin: auto;
+}
 body {
-    margin: 0;
-	margin-bottom: 50px;
-    padding: 0 20px 0 20px;
+	max-width: 1280px;
+	display: table-cell;
+    vertical-align: middle;
+	min-width: inherit;
+	padding: 0 50px 50px 50px;
+	margin: 0;
     background: #f0f0f0;
     color: #000;
     font-family: 'Roboto', 'Consolas', monospace;
@@ -107,6 +114,7 @@ body {
 	background: #e0e0e0;
 	padding: 10px;
 	padding-left: 20px;
+	table-layout: fixed;
 }
 .note.yellow {
 	border-left: 10px solid #e1e16c;
@@ -115,6 +123,12 @@ body {
 .note.red {
 	border-left: 10px solid #ffa0a0;
 	background: #ffc8c8;
+}
+.note td.header {
+	text-align: left
+	max-width: 200px;
+	min-width: 200px;
+	width: 200px;
 }
 /*=========================================================
 	HYPERLINKS
@@ -205,7 +219,7 @@ ol li {
 	margin-top: 30px;
 }
 .apiref-index-tbl {
-	width: 50%;
+	width: 90%;
 	margin: 0 auto;
 	text-align: left;
 }
