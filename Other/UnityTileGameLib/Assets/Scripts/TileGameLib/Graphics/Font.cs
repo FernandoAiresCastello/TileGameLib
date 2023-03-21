@@ -14,12 +14,12 @@ namespace TileGameLib
             LoadDefault();
         }
 
-        public void Set(int index, Binary binaryString)
+        public void Set(int index, BinaryString binaryString)
         {
             if (index < 0 || index >= chars.Count)
                 throw new ArgumentException("Invalid font character index");
 
-            chars[index] = new TileSeq(new Tile(binaryString));
+            chars[index] = new TileSeq(Tile.Binary(binaryString));
         }
 
         public TileSeq GetTile(int index)
@@ -30,14 +30,14 @@ namespace TileGameLib
             return chars[index];
         }
 
-        public Binary GetBinary(int index)
+        public BinaryString GetBinary(int index)
         {
             return GetTile(index).First.ToBinary();
         }
 
-        public void Add(Binary binaryString)
+        public void Add(BinaryString binaryString)
         {
-            chars.Add(new TileSeq(new Tile(binaryString)));
+            chars.Add(new TileSeq(Tile.Binary(binaryString)));
         }
 
         public void AddBlank()

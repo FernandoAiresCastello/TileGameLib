@@ -15,12 +15,12 @@ namespace TileGameLib
 
         public void Add(string id, Rgb[] pixels)
         {
-            Add(id, new Tile(pixels));
+            Add(id, Tile.Rgb(pixels));
         }
 
-        public void Add(string id, Binary pixels)
+        public void Add(string id, BinaryString pixels)
         {
-            Add(id, new Tile(pixels));
+            Add(id, Tile.Binary(pixels));
         }
 
         private void Add(string id, Tile tile)

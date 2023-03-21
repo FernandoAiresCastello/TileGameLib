@@ -31,7 +31,7 @@ namespace TileGameLib
             if (Camera.main == null)
                 throw new NullReferenceException("Main camera not found");
 
-            gameObject = new GameObject(this.GetType().Name);
+            gameObject = new GameObject("TileGameLib Display");
 
             img = gameObject.AddComponent<RawImage>();
             buf = new PixelBuffer(img, width, height);

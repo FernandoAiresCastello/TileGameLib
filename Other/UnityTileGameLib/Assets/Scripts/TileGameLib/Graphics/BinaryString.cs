@@ -1,6 +1,6 @@
 namespace TileGameLib
 {
-    public struct Binary
+    public struct BinaryString
     {
         public static readonly char Bit0 = '0';
         public static readonly char Bit1 = '1';
@@ -10,12 +10,12 @@ namespace TileGameLib
 
         private string _value;
 
-        public static implicit operator Binary(string value)
+        public static implicit operator BinaryString(string value)
         {
-            return new Binary { _value = value };
+            return new BinaryString { _value = value };
         }
 
-        public static implicit operator string(Binary value)
+        public static implicit operator string(BinaryString value)
         {
             return value._value;
         }
