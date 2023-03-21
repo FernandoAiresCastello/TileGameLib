@@ -14,7 +14,7 @@ namespace TileGameLib
             return value._value;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return "0x" + _value.ToString("X6");
         }
