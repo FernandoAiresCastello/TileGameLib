@@ -42,6 +42,6 @@ The following projects are also part of the TileGameLib toolkit, but are otherwi
 
 **Disclaimers:**
 
-- This toolkit is under continuous development, therefore breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
-- Only Microsoft Windows (7 and above) is currently supported. Most projects are built using Visual Studio Community 2019. 
-- There is no direct compatibility or interoperability among the projects, each project in this toolkit is completely independent.
+- This entire toolkit is in pre-alpha stage and is under constant development. Breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
+- Supports only Windows (7/8/10/11). Most projects are built using Visual Studio Community 2019.
+- There is no direct compatibility or interoperability among the projects, as each project in the toolkit is completely independent.
