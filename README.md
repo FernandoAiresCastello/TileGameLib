@@ -5,7 +5,7 @@ TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is TGL.lib, a C/C++ static library built on top of SDL2. The "side projects" are located in the "Other" subdirectory, and may or may not be under active development (check below for status).
+Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. The "side projects" are located in the "Other" subdirectory, and may or may not be under active development (check below for status).
 
 I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the toolkit somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
 
@@ -28,7 +28,7 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 - [TileGameLib (TGL.lib)](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLib) is a C/C++ static library. Under active development as of 2023.
 
-**Side projects included:**
+**Side projects:**
 
 The following projects are part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
@@ -43,5 +43,5 @@ The following projects are part of the TileGameLib toolkit, but are otherwise co
 **Disclaimers:**
 
 - This toolkit is under continuous development, therefore breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
-- Only Microsoft Windows (7 and above) is currently supported. The projects are built using Visual Studio Community 2019. 
-- There is no compatibility or interoperability among the C++, C# and JS projects, they are completely independent.
+- Only Microsoft Windows (7 and above) is currently supported. Most projects are built using Visual Studio Community 2019. 
+- There is no direct compatibility or interoperability among the projects, each project in this toolkit is completely independent.
