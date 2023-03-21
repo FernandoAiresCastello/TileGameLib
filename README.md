@@ -26,7 +26,7 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 **Main project:**
 
-- [TileGameLib (TGL.lib)](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLib) is a C/C++ static library. Under active development as of 2023.
+- [TGL.lib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLib) is a C/C++ static library. Under active development as of 2023.
 
 **Side projects:**
 
