@@ -5,20 +5,20 @@ TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. The "side projects" are located in the "Other" subdirectory, and may or may not be under active development (check below for status).
+Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. This repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status).
 
-I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the toolkit somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
+I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
 
 **Downloads:**
 
-- [TGL.lib - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+- [TGL.lib - Latest build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
 - [TGLDemo.exe - Latest demo build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
 - [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TGL/TGL/TGL.h)
 - [TGL.lib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
-- [Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
+- [Help Needed - TO-DO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Subreddit:**
 
