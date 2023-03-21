@@ -1,24 +1,24 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-1.png?raw=true)
 
 # TileGameLib
-TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games.
+TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ or C# (Unity)
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. The "side projects" are located in the "Other" subdirectory, and may or may not be under active development (check below for status).
+Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static library built on top of SDL2. This repository also includes a few other "side projects" located in the "Other" subdirectory, which may or may not be under active development (check below for status).
 
-I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list (links below) to see where help is currently needed and let me know if you can contribute to the toolkit somehow! Also, all questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
+I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
 
 **Downloads:**
 
-- [TGL.lib - Latest Build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [TGL.lib - Latest Demo](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
+- [TGL.lib - Latest build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+- [TGLDemo.exe - Latest demo build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
+- [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TGL/TGL/TGL.h)
 - [TGL.lib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
-- [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/TileGameLib/TGL/TGL.h)
-- [TGL.lib - Help Needed - TODO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
+- [Help Needed - TO-DO List](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/TODO.md)
 
 **Subreddit:**
 
@@ -26,13 +26,13 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 **Main project:**
 
-- [TGL.lib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TileGameLib) is a C/C++ static library. Under active development as of 2023.
+- [TGL.lib](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/TGL) is a C/C++ static library built on top of [SDL2](https://www.libsdl.org/). Under active development as of 2023.
 
 **Side projects:**
 
-The following projects are part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
+The following projects are also part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
-- [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) is an experimental version of TGL using C# scripts for the Unity game engine.
+- [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) contains a collection of C# scripts for use in the [Unity](https://unity.com/) game engine. Under active development as of 2023
 
 - [TGL TilePaint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the TGL format.
 
