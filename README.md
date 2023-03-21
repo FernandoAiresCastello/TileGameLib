@@ -9,12 +9,14 @@ Currently, the main project in the toolkit is **TGL.lib**, a C/C++ static librar
 
 I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
 
-**Current version:** Pre-Alpha
+**Current version:** 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre-Alpha
 
 **Downloads:**
 
-- [TGL.lib - Latest build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [TGLDemo.exe - Latest demo build](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
+- [TGL.lib - Latest build (dev release)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
+- [TGLDemo.exe - Latest demo build (dev release)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
