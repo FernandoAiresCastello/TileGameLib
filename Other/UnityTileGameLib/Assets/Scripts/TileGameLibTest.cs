@@ -9,11 +9,16 @@ public class TileGameLibTest : MonoBehaviour
 {
     private TileDisplay screen;
     private Tileset tileset;
+    private Palette palette;
 
     void Start()
     {
         screen = new TileDisplay(256, 192);
         screen.ResizeWindow(800, 600);
+
+        palette = new Palette();
+        palette.Set("red", 0xff0000);
+        palette.Set("yellow", 0xffff00);
 
         tileset = new Tileset();
 
@@ -57,7 +62,7 @@ public class TileGameLibTest : MonoBehaviour
             }
         }
         
-        screen.FontColor(0xff0000, 0xffff00);
+        screen.FontColor(palette.Get("red"), palette.Get("yellow"));
         screen.FontTransparent(true);
         screen.PrintFree("~ Hello Free World! ~", 4, 4);
         screen.FontTransparent(false);
