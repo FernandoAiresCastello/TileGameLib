@@ -9,6 +9,8 @@ namespace TileGameLib
 {
     public class TileDisplay
     {
+        public int Width => buf.Width;
+        public int Height => buf.Height;
         public int Cols => buf.Width / Tile.size;
         public int Rows => buf.Height / Tile.size;
 
@@ -21,8 +23,9 @@ namespace TileGameLib
         private readonly Font font;
         private readonly FontStyle fontStyle;
         private readonly TileAnimation animation;
+        private readonly Viewset views;
 
-        public TileDisplay(int width, int height)
+        public TileDisplay(int width, int height, Rgb backColor)
         {
             if (Camera.main == null)
                 throw new NullReferenceException("Main camera not found");
@@ -36,11 +39,15 @@ namespace TileGameLib
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.pixelPerfect = true;
 
-            backColor = 0xffffff;
+            this.backColor = backColor;
             binaryColor = new BinaryColor(0x000000, 0xffffff, false);
             font = new Font();
             fontStyle = new FontStyle(0x000000, 0xffffff, false, true, 0xd0d0d0);
             animation = new TileAnimation();
+
+            views = new Viewset();
+            views.AddDefault(0, 0, width, height, backColor);
+            views.SelectDefault();
 
             ColorNormal();
             Clear();
@@ -68,11 +75,32 @@ namespace TileGameLib
             buf.Clear(backColor);
         }
 
+        private void ClearViewRect(View view)
+        {
+            buf.ClearRect(view.Rect, view.backColor);
+        }
+
         public void DrawTestFrame()
         {
             for (int y = 0; y < buf.Height; y++)
                 for (int x = 0; x < buf.Width; x++)
                     buf.SetPixel(x, y, Random.Range(0x000000, 0xffffff));
+        }
+
+        public void AddView(string id, int x1, int y1, int x2, int y2, Rgb backColor)
+        {
+            views.Add(id, x1, y1, x2, y2, backColor);
+        }
+
+        public void View(string id)
+        {
+            views.Select(id);
+            ClearViewRect(views.Selected);
+        }
+
+        public void Scroll(string viewId, int dx, int dy)
+        {
+            views.Get(viewId).Scroll(dx, dy);
         }
 
         public void ColorNormal()
@@ -133,32 +161,39 @@ namespace TileGameLib
 
         public void DrawFree(TileSeq tileSeq, int x, int y)
         {
-            int px = x;
+            Rect rect = views.Selected.Rect;
+            x += rect.x1 - views.Selected.scrollX;
+            y += rect.y1 - views.Selected.scrollY;
+
+            int initialX = x;
 
             foreach (Rgb color in tileSeq.Get(animation.Frame).pixels)
             {
-                if (colorMode == ColorMode.Normal)
+                if (rect.Contains(x, y))
                 {
-                    buf.SetPixel(x, y, color);
-                }
-                else if (colorMode == ColorMode.Binary)
-                {
-                    if (color == Tile.binaryForeColor)
-                        buf.SetPixel(x, y, binaryColor.foreground);
-                    else if (color == Tile.binaryBackColor && !binaryColor.transparent)
-                        buf.SetPixel(x, y, binaryColor.background);
-                }
-                else if (colorMode == ColorMode.Text)
-                {
-                    if (color == Tile.binaryForeColor)
-                        buf.SetPixel(x, y, fontStyle.color.foreground);
-                    else if (color == Tile.binaryBackColor && !fontStyle.color.transparent)
-                        buf.SetPixel(x, y, fontStyle.color.background);
+                    if (colorMode == ColorMode.Normal)
+                    {
+                        buf.SetPixel(x, y, color);
+                    }
+                    else if (colorMode == ColorMode.Binary)
+                    {
+                        if (color == Tile.binaryForeColor)
+                            buf.SetPixel(x, y, binaryColor.foreground);
+                        else if (color == Tile.binaryBackColor && !binaryColor.transparent)
+                            buf.SetPixel(x, y, binaryColor.background);
+                    }
+                    else if (colorMode == ColorMode.Text)
+                    {
+                        if (color == Tile.binaryForeColor)
+                            buf.SetPixel(x, y, fontStyle.color.foreground);
+                        else if (color == Tile.binaryBackColor && !fontStyle.color.transparent)
+                            buf.SetPixel(x, y, fontStyle.color.background);
+                    }
                 }
 
                 x++;
-                if (x >= px + Tile.size) {
-                    x = px;
+                if (x >= initialX + Tile.size) {
+                    x = initialX;
                     y++;
                 }
             }

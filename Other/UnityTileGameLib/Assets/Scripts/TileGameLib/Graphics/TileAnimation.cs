@@ -12,7 +12,7 @@ namespace TileGameLib
 
         private bool enabled = true;
         private int frame = 0;
-        private int speed = 85;
+        private int speed = 70;
         private int advanceCounter = 0;
         private readonly int advanceCounterMax = 100;
 

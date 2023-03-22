@@ -16,7 +16,7 @@ namespace TileGameLib
         public Rgb Get(string name)
         {
             return colors.ContainsKey(name) ? colors[name] : 
-                throw new ArgumentException("Palette does not contain color with name: " + name);
+                throw new ArgumentException("Color not found with name: " + name);
         }
     }
 }

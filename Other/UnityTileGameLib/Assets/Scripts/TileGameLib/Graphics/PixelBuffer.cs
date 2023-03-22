@@ -28,7 +28,7 @@ namespace TileGameLib
 
             image = targetImage;
             image.texture = tex;
-            image.uvRect = new Rect(0, 0, 1, -1);
+            image.uvRect = new UnityEngine.Rect(0, 0, 1, -1);
 
             for (int i = 0; i < pixels.Length; i++)
                 pixels[i] = new Color32(0, 0, 0, 255);
@@ -44,6 +44,13 @@ namespace TileGameLib
         {
             for (int i = 0; i < pixels.Length; i++)
                 SetPixel(i, color);
+        }
+
+        public void ClearRect(Rect rect, Rgb color)
+        {
+            for (int y = rect.y1; y <= rect.y2; y++)
+                for (int x = rect.x1; x <= rect.x2; x++)
+                    SetPixel(x, y, color);
         }
 
         public void SetPixel(int x, int y, Rgb color)
