@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Collection of named <see cref="Rgb"/> colors.
+    /// </summary>
     public class Palette
     {
         private readonly Dictionary<string, Rgb> colors = new Dictionary<string, Rgb>();

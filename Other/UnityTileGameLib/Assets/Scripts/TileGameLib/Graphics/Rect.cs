@@ -1,5 +1,8 @@
 ﻿namespace TileGameLib
 {
+    /// <summary>
+    /// Represents any rectangular area
+    /// </summary>
     public struct Rect
     {
         public int x1;

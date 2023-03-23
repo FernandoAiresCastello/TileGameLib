@@ -1,5 +1,8 @@
 namespace TileGameLib
 {
+    /// <summary>
+    /// Styling information for the text font, such as colors and shadow.
+    /// </summary>
     public class FontStyle
     {
         public BinaryColor color;

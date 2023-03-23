@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Stores information required for the automatic animation of <see cref="TileSeq"/> objects.
+    /// </summary>
     public class TileAnimation
     {
         public int Frame => frame;

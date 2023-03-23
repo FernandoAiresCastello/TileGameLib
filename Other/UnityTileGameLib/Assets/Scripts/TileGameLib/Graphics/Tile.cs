@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// An 8x8 block of pixels with color information.
+    /// </summary>
     public struct Tile
     {
         public Rgb[] pixels;
@@ -16,7 +19,7 @@ namespace TileGameLib
 
         public static Tile Blank()
         {
-            return new Tile(Enumerable.Repeat<Rgb>(0x000000, pixelCount).ToArray());
+            return new Tile(Enumerable.Repeat(binaryBackColor, pixelCount).ToArray());
         }
 
         public static Tile Rgb(Rgb[] pixelColors)

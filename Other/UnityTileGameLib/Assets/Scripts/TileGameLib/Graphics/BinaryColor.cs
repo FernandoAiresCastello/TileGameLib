@@ -1,5 +1,8 @@
 namespace TileGameLib
 {
+    /// <summary>
+    /// Color information to be used when drawing tiles in the binary <see cref="ColorMode"/>
+    /// </summary>
     public struct BinaryColor
     {
         public Rgb foreground;

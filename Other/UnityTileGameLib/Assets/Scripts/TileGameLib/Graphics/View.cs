@@ -5,6 +5,9 @@ using System.Text;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Rectangular area on a <see cref="TileDisplay"/>.
+    /// </summary>
     public class View
     {
         public static readonly string DefaultId = "default";

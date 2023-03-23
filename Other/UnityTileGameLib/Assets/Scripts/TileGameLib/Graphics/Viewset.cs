@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Collection of named <see cref="View"/> objects.
+    /// </summary>
     public class Viewset
     {
         public View Selected => selected;

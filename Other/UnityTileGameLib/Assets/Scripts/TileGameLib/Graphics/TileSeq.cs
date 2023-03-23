@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// A sequence of <see cref="Tile"/> objects.
+    /// </summary>
     public class TileSeq
     {
         public int Length => tiles.Count;
@@ -15,6 +18,11 @@ namespace TileGameLib
         public TileSeq(Tile first)
         {
             Add(first);
+        }
+
+        public TileSeq(TileSeq other)
+        {
+            tiles.AddRange(other.tiles);
         }
 
         public Tile Get(int index)

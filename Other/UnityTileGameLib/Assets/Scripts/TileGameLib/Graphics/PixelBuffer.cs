@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// An offscreen pixel buffer.
+    /// </summary>
     public class PixelBuffer
     {
         public int Width => width;

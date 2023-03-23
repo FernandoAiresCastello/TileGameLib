@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Used for drawing graphical tiles on the screen.
+    /// </summary>
     public class TileDisplay
     {
         public int Width => buf.Width;

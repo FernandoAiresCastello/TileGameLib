@@ -1,5 +1,8 @@
 namespace TileGameLib
 {
+    /// <summary>
+    /// A string that should contain only the characters '0' or '1'.
+    /// </summary>
     public struct BinaryString
     {
         public static readonly char Bit0 = '0';

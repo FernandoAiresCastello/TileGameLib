@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Collection of single-frame <see cref="TileSeq"/> objects representing ASCII characters used for printing text.
+    /// </summary>
     public class Font
     {
         private static readonly int defaultSize = 256;

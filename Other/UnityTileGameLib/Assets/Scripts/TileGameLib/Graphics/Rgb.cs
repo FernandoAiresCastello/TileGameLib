@@ -1,5 +1,8 @@
 namespace TileGameLib
 {
+    /// <summary>
+    /// Represents a color in 24-bit RGB format (0x000000 to 0xffffff).
+    /// </summary>
     public struct Rgb
     {
         private int _value;

@@ -4,13 +4,21 @@ using System.Collections.Generic;
 
 namespace TileGameLib
 {
+    /// <summary>
+    /// Collection of named <see cref="TileSeq"/> objects.
+    /// </summary>
     public class Tileset
     {
         private readonly Dictionary<string, TileSeq> tiles = new Dictionary<string, TileSeq>();
 
-        public TileSeq Get(string id)
+        public TileSeq GetRef(string id)
         {
             return tiles.ContainsKey(id) ? tiles[id] : null;
+        }
+
+        public TileSeq GetCopy(string id)
+        {
+            return tiles.ContainsKey(id) ? new TileSeq(tiles[id]) : null;
         }
 
         public void Add(string id, Rgb[] pixels)

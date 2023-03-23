@@ -50,7 +50,7 @@ public class TileGameLibTest : MonoBehaviour
 
     void Test_02()
     {
-        TileSeq tile = tileset.Get("smiley");
+        TileSeq tile = tileset.GetRef("smiley");
         screen.ColorBinary(0xffff00, 0xff0000);
         screen.FontColor(0x00ffff, 0xff00ff);
 
@@ -81,7 +81,7 @@ public class TileGameLibTest : MonoBehaviour
     {
         screen.Clear();
 
-        TileSeq tile = tileset.Get("smiley");
+        TileSeq tile = tileset.GetRef("smiley");
 
         for (int y = 0; y < screen.Rows; y++)
         {
