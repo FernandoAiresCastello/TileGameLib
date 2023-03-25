@@ -1,7 +1,7 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-2.fw.png?raw=true)
 
 # TileGameLib
-TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games, in C/C++ with [SDL2](https://www.libsdl.org/), or in C# with [Unity](https://unity.com/).
+TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games.
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
