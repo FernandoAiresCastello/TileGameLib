@@ -164,19 +164,19 @@ void TGL::clear()
 {
 	tgl->wnd->ClearBackground();
 }
-void TGL::tile_new(string img_id, rgb pixels[64])
+void TGL::img_new(string img_id, rgb pixels[64])
 {
 	for (int i = 0; i < 64; i++) {
 		tgl->tile_img[img_id].pixels[i] = pixels[i];
 	}
 }
-void TGL::tile_new(string img_id, string binary_pattern)
+void TGL::img_new(string img_id, string binary_pattern)
 {
 	for (int i = 0; i < 64; i++) {
 		tgl->tile_img[img_id].pixels[i] = binary_pattern[i] == '1' ? 0x000000 : 0xffffff;
 	}
 }
-void TGL::tile_load(string img_id, string path)
+void TGL::img_load(string img_id, string path)
 {
 	TImage img;
 	img.Load(path);
@@ -190,10 +190,8 @@ void TGL::tile_load(string img_id, string path)
 }
 void TGL::tile_add(string tile_id, string img_id, int count)
 {
-	if (tgl->assert_tileimg_exists(img_id)) {
-		for (int i = 0; i < count; i++) {
-			tgl->tile_seq[tile_id].pattern_ids.push_back(img_id);
-		}
+	for (int i = 0; i < count; i++) {
+		tgl->tile_seq[tile_id].pattern_ids.push_back(img_id);
 	}
 }
 void TGL::tile_transparency_key(rgb color)

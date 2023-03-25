@@ -155,24 +155,24 @@ void init_sounds()
 void init_tiles()
 {
 	// SPACESHIP
-	tgl.tile_load("spaceship_1", "Tiles/spaceship_1.bmp");
-	tgl.tile_load("spaceship_2", "Tiles/spaceship_2.bmp");
+	tgl.img_load("spaceship_1", "Tiles/spaceship_1.bmp");
+	tgl.img_load("spaceship_2", "Tiles/spaceship_2.bmp");
 	tgl.tile_add("spaceship", "spaceship_1");
 	tgl.tile_add("spaceship", "spaceship_2");
 	
 	// MISSILE
-	tgl.tile_load("missile_1", "Tiles/player_missile.bmp");
+	tgl.img_load("missile_1", "Tiles/player_missile.bmp");
 	tgl.tile_add("missile", "missile_1");
 
 	// ALIEN
-	tgl.tile_load("alien_1", "Tiles/alien_1.bmp");
-	tgl.tile_load("alien_2", "Tiles/alien_2.bmp");
+	tgl.img_load("alien_1", "Tiles/alien_1.bmp");
+	tgl.img_load("alien_2", "Tiles/alien_2.bmp");
 	tgl.tile_add("alien", "alien_1");
 	tgl.tile_add("alien", "alien_2");
 
 	// BLAST
-	tgl.tile_load("blast_1", "Tiles/blast_1.bmp");
-	tgl.tile_load("blast_2", "Tiles/blast_2.bmp");
+	tgl.img_load("blast_1", "Tiles/blast_1.bmp");
+	tgl.img_load("blast_2", "Tiles/blast_2.bmp");
 	tgl.tile_add("blast", "blast_1");
 	tgl.tile_add("blast", "blast_2");
 }

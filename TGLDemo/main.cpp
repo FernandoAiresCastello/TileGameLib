@@ -11,10 +11,10 @@ void demo_binarycolor();
 
 int main(int argc, char* args[])
 {
-	demo_helloworld();
+	//demo_helloworld();
 	//demo_font();
 	//demo_views();
-	//demo_invaders();
+	demo_invaders();
 	//demo_lineinput();
 	//demo_imageload();
 	//demo_mouse();

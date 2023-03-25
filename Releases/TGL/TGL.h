@@ -100,9 +100,9 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > TILE SET
 	//=========================================================================
-	void tile_new(string img_id, rgb pixels[64]);
-	void tile_new(string img_id, string binary_pattern);
-	void tile_load(string img_id, string path);
+	void img_new(string img_id, rgb pixels[64]);
+	void img_new(string img_id, string binary_pattern);
+	void img_load(string img_id, string path);
 	void tile_add(string tile_id, string img_id, int count = 1);
 	void tile_transparent(bool state);
 	void tile_transparency_key(rgb color);
