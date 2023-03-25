@@ -16,7 +16,7 @@ void demo_font()
 
 		tgl.update();
 
-		tgl.view_default();
+		tgl.view("default");
 		tgl.font_shadow(true, 0x000020);
 		title(tgl, "Font Demo");
 
@@ -43,10 +43,10 @@ void demo_font()
 		print(tgl, "{Braces}<Lt_&_Gt>", 0, 14);
 
 		if (tgl.kb_esc()) tgl.exit();
-		if (tgl.kb_right()) tgl.scroll(1, 0);
-		if (tgl.kb_left()) tgl.scroll(-1, 0);
-		if (tgl.kb_down()) tgl.scroll(0, 1);
-		if (tgl.kb_up()) tgl.scroll(0, -1);
+		if (tgl.kb_right()) tgl.scroll("background", 1, 0);
+		if (tgl.kb_left()) tgl.scroll("background", -1, 0);
+		if (tgl.kb_down()) tgl.scroll("background", 0, 1);
+		if (tgl.kb_up()) tgl.scroll("background", 0, -1);
 	}
 }
 void print(TGL& tgl, string str, int x, int y)

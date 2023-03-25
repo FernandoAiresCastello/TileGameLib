@@ -223,12 +223,6 @@ void TGL::view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_colo
 	vw.back_color = back_color; vw.clear_bg = clear_bg;
 	tgl->views[view_id] = vw;
 }
-void TGL::view_default()
-{
-	tgl->cur_view = nullptr;
-	tgl->unclip();
-	tgl->clear_entire_window();
-}
 void TGL::view(string view_id)
 {
 	if (!tgl->assert_view_exists(view_id)) return;
@@ -240,23 +234,27 @@ void TGL::view(string view_id)
 		tgl->clear_view();
 	}
 }
-void TGL::scroll(int dx, int dy)
+void TGL::scroll(string view_id, int dx, int dy)
 {
-	tgl->cur_view->scroll_x += dx;
-	tgl->cur_view->scroll_y += dy;
+	if (!tgl->assert_view_exists(view_id)) return;
+
+	tgl->views[view_id].scroll_x += dx;
+	tgl->views[view_id].scroll_y += dy;
 }
-void TGL::scroll_to(int x, int y)
+void TGL::scroll_to(string view_id, int x, int y)
 {
-	tgl->cur_view->scroll_x = x;
-	tgl->cur_view->scroll_y = y;
+	if (!tgl->assert_view_exists(view_id)) return;
+
+	tgl->views[view_id].scroll_x = x;
+	tgl->views[view_id].scroll_y = y;
 }
-int TGL::scroll_x()
+int TGL::scroll_x(string view_id)
 {
-	return tgl->cur_view->scroll_x;
+	return tgl->views[view_id].scroll_x;
 }
-int TGL::scroll_y()
+int TGL::scroll_y(string view_id)
 {
-	return tgl->cur_view->scroll_y;
+	return tgl->views[view_id].scroll_y;
 }
 void TGL::color_normal()
 {
@@ -834,6 +832,17 @@ void TGL_Private::create_window(int width, int height, rgb back_color, int size_
 	wnd->SetTitle(title);
 	wnd->Show();
 
+	if (views.find("default") == views.end()) {
+		t_viewport def_view;
+		def_view.x1 = 0;
+		def_view.y1 = 0;
+		def_view.x2 = width - 1;
+		def_view.y2 = height - 1;
+		def_view.back_color = back_color;
+		def_view.clear_bg = true;
+		views["default"] = def_view;
+	}
+	cur_view = &views["default"];
 	frame_counter = 0;
 	is_running = true;
 }

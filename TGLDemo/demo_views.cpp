@@ -41,10 +41,10 @@ void demo_views()
 		if (tgl.kb_esc()) tgl.exit();
 
 		if (tgl.kb_ctrl()) {
-			if (tgl.kb_right()) tgl.scroll(1, 0);
-			if (tgl.kb_left()) tgl.scroll(-1, 0);
-			if (tgl.kb_down()) tgl.scroll(0, 1);
-			if (tgl.kb_up()) tgl.scroll(0, -1);
+			if (tgl.kb_right()) tgl.scroll("view_3", 1, 0);
+			if (tgl.kb_left()) tgl.scroll("view_3", -1, 0);
+			if (tgl.kb_down()) tgl.scroll("view_3", 0, 1);
+			if (tgl.kb_up()) tgl.scroll("view_3", 0, -1);
 		} else {
 			if (tgl.kb_right()) x++;
 			if (tgl.kb_left()) x--;

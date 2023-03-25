@@ -1,8 +1,9 @@
 /*=============================================================================
 
-	TileGameLib (TGL)
+	TGL.lib
 
-	https://github.com/FernandoAiresCastello/TileGameToolkit
+	Part of the TileGameLib toolkit:
+	https://github.com/FernandoAiresCastello/TileGameLib
 
 	Copyright (c) 2019-2023 Fernando Aires Castello
 
@@ -82,13 +83,12 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > VIEWS
 	//=========================================================================
-	void view_default();
 	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
 	void view(string view_id);
-	void scroll(int dx, int dy);
-	void scroll_to(int x, int y);
-	int scroll_x();
-	int scroll_y();
+	void scroll(string view_id, int dx, int dy);
+	void scroll_to(string view_id, int x, int y);
+	int scroll_x(string view_id);
+	int scroll_y(string view_id);
 
 	//=========================================================================
 	//		GRAPHICS > COLOR MODES
