@@ -21,6 +21,7 @@ namespace TGL_Internal
 		TColor& GetTransparency();
 		TColor& GetPixel(int i);
 		TColor& GetPixel(int x, int y);
+		std::vector<TColor>& GetPixels();
 
 	private:
 		friend class TTiledImage;

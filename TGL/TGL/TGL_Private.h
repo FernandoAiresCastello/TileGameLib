@@ -31,8 +31,11 @@ private:
 		char cursor = '_';
 	} text_input;
 
+	struct t_tile {
+		rgb pixels[64];
+	};
 	struct t_tileseq {
-		vector<string> pattern_ids;
+		vector<t_tile> tiles;
 	};
 
 	struct t_viewport {
@@ -59,10 +62,6 @@ private:
 		Uint32 fps_frames = 0;
 	} perfmon;
 
-	struct t_tileimg {
-		rgb pixels[64];
-	};
-
 	struct {
 		bool enabled = false;
 		rgb key = 0xffffff;
@@ -86,8 +85,7 @@ private:
 	int frame_counter;
 	bool fps_enabled = false;
 	rgb wnd_back_color;
-	unordered_map<string, t_tileimg> tile_img;
-	unordered_map<string, t_tileseq> tile_seq;
+	unordered_map<string, t_tileseq> tiles;
 	unordered_map<char, string> font_patterns;
 	unordered_map<string, t_viewport> views;
 	t_viewport* cur_view = nullptr;
@@ -97,8 +95,7 @@ private:
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);
-	bool assert_tileseq_exists(string& id);
-	bool assert_tileimg_exists(string& id);
+	bool assert_tile_exists(string& id);
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();

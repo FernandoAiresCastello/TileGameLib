@@ -91,4 +91,9 @@ namespace TGL_Internal
 	{
 		return Pixels[y * Width + x];
 	}
+
+	std::vector<TColor>& TImage::GetPixels()
+	{
+		return Pixels;
+	}
 }

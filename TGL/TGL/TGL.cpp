@@ -164,19 +164,29 @@ void TGL::clear()
 {
 	tgl->wnd->ClearBackground();
 }
-void TGL::img_new(string img_id, rgb pixels[64])
+void TGL::tile_add(string tile_id, rgb pixels[64])
 {
-	for (int i = 0; i < 64; i++) {
-		tgl->tile_img[img_id].pixels[i] = pixels[i];
+	if (tgl->tiles.find(tile_id) == tgl->tiles.end()) {
+		tgl->tiles[tile_id] = TGL_Private::t_tileseq();
 	}
+	TGL_Private::t_tile tile;
+	for (int i = 0; i < 64; i++) {
+		tile.pixels[i] = pixels[i];
+	}
+	tgl->tiles[tile_id].tiles.push_back(tile);
 }
-void TGL::img_new(string img_id, string binary_pattern)
+void TGL::tile_add(string tile_id, string binary_pattern)
 {
-	for (int i = 0; i < 64; i++) {
-		tgl->tile_img[img_id].pixels[i] = binary_pattern[i] == '1' ? 0x000000 : 0xffffff;
+	if (tgl->tiles.find(tile_id) == tgl->tiles.end()) {
+		tgl->tiles[tile_id] = TGL_Private::t_tileseq();
 	}
+	TGL_Private::t_tile tile;
+	for (int i = 0; i < 64; i++) {
+		tile.pixels[i] = binary_pattern[i] == '1' ? 0x000000 : 0xffffff;
+	}
+	tgl->tiles[tile_id].tiles.push_back(tile);
 }
-void TGL::img_load(string img_id, string path)
+void TGL::tile_load(string tile_id, string path)
 {
 	TImage img;
 	img.Load(path);
@@ -184,28 +194,27 @@ void TGL::img_load(string img_id, string path)
 		abort("Invalid tile bitmap: " + path);
 		return;
 	}
-	for (int i = 0; i < 64; i++) {
-		tgl->tile_img[img_id].pixels[i] = img.GetPixel(i).ToColorRGB();
+	rgb pixels[64] = { 0 };
+	int i = 0;
+	for (auto color : img.GetPixels()) {
+		pixels[i++] = color.ToColorRGB();
 	}
-}
-void TGL::tile_add(string tile_id, string img_id, int count)
-{
-	for (int i = 0; i < count; i++) {
-		tgl->tile_seq[tile_id].pattern_ids.push_back(img_id);
-	}
+	tile_add(tile_id, pixels);
 }
 void TGL::tile_transparency_key(rgb color)
 {
 	tgl->tile_transparency.enabled = true;
 	tgl->tile_transparency.key = color;
 }
-void TGL::tile_replace_color(string img_id, rgb original_color, rgb new_color)
+void TGL::tile_replace_color(string tile_id, rgb original_color, rgb new_color)
 {
-	if (tgl->assert_tileimg_exists(img_id)) {
-		auto& tile = tgl->tile_img[img_id];
-		for (int i = 0; i < 64; i++) {
-			if (tile.pixels[i] == original_color) {
-				tile.pixels[i] = new_color;
+	if (tgl->assert_tile_exists(tile_id)) {
+		auto& tileseq = tgl->tiles[tile_id];
+		for (auto& tile : tileseq.tiles) {
+			for (int i = 0; i < 64; i++) {
+				if (tile.pixels[i] == original_color) {
+					tile.pixels[i] = new_color;
+				}
 			}
 		}
 	}
@@ -900,18 +909,10 @@ void TGL_Private::clear_view()
 	wnd->ClearBackground();
 	wnd->SetBackColor(prev_back_color);
 }
-bool TGL_Private::assert_tileseq_exists(string& id)
+bool TGL_Private::assert_tile_exists(string& id)
 {
-	if (tile_seq.find(id) == tile_seq.end()) {
+	if (tiles.find(id) == tiles.end()) {
 		tgl_public->abort("Tile sequence not found with id: \"" + id + "\"");
-		return false;
-	}
-	return true;
-}
-bool TGL_Private::assert_tileimg_exists(string& id)
-{
-	if (tile_img.find(id) == tile_img.end()) {
-		tgl_public->abort("Tile not found with id: \"" + id + "\"");
 		return false;
 	}
 	return true;
@@ -936,11 +937,10 @@ void TGL_Private::pos_tiled(int x, int y)
 }
 void TGL_Private::draw(string& tile_id)
 {
-	if (!assert_tileseq_exists(tile_id)) return;
+	if (!assert_tile_exists(tile_id)) return;
 
-	t_tileseq& tileseq = tile_seq[tile_id];
-	string& pattern_id = tileseq.pattern_ids[wnd->GetFrame() % tileseq.pattern_ids.size()];
-	t_tileimg& tile = tile_img[pattern_id];
+	t_tileseq& tileseq = tiles[tile_id];
+	t_tile& tile = tileseq.tiles[wnd->GetFrame() % tileseq.tiles.size()];
 
 	int x = cursor.x;
 	int y = cursor.y;

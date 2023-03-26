@@ -5,7 +5,7 @@ void demo_binarycolor()
 	TGL tgl;
 	tgl.window_gbc(0xffffff, 5);
 
-	tgl.img_new("test", 
+	tgl.tile_add("test", 
 		"11111111"
 		"10000001"
 		"10100101"
@@ -15,7 +15,7 @@ void demo_binarycolor()
 		"10000001"
 		"11111111"
 	);
-	tgl.img_new("test2",
+	tgl.tile_add("test",
 		"11111111"
 		"10000001"
 		"10000001"
@@ -25,8 +25,6 @@ void demo_binarycolor()
 		"10000001"
 		"11111111"
 	);
-	tgl.tile_add("test", "test");
-	tgl.tile_add("test", "test2");
 
 	while (tgl.running()) {
 		tgl.color_binary(0xff0000, 0x00ff00);

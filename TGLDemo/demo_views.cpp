@@ -6,10 +6,8 @@ void demo_views()
 	tgl.window_gbc(0x000000, 5);
 	tgl.tile_transparency_key(0xffffff);
 
-	tgl.img_load("square_1", "Tiles/test_1.bmp");
-	tgl.img_load("square_2", "Tiles/test_2.bmp");
-	tgl.tile_add("square", "square_1");
-	tgl.tile_add("square", "square_2");
+	tgl.tile_load("square", "Tiles/test_1.bmp");
+	tgl.tile_load("square", "Tiles/test_2.bmp");
 
 	int x = 0;
 	int y = 0;
