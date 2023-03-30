@@ -350,31 +350,31 @@
 <p class="apiref-section-header" id="tileset">GRAPHICS > TILE SET</p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_new(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> pixels[64])
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id)
 </p>
 <p class="apiref-entry">
-	Creates a new tile with the specified pixel colors in RGB format. Most suitable for use with the "normal" color mode.
+	Creates a new, empty tile sequence with the specified id.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_new(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> binary_pattern)
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">rgb</span> pixels[64])
 </p>
 <p class="apiref-entry">
-	Creates a new tile with the specified binary pattern, i.e. a string containing only 0's and 1's, where 0 is the background and 1 is the foreground. Suitable for use with the "binary" color mode.
+	Creates or adds to an existing tile sequence, a single tile with the specified pixel colors in RGB format. Suitable for use with the "normal" color mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_load(<span class="apiref-type">string</span> img_id, <span class="apiref-type">string</span> path)
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> binary_pattern)
 </p>
 <p class="apiref-entry">
-	Loads a bitmap image from a file, creates a new tile and assigns to it the specified img_id and pixels. Only uncompressed, 24-bit RGB color bitmap files are supported. Each bitmap loaded must be exactly 8x8 pixels in size, or else this function fails.
+	Creates or adds to an existing tile sequence, a single tile with the specified binary pattern, i.e. a string containing only characters 0's and 1's, where 0 represents the background and 1 represents the foreground. Suitable for use with the "binary" color mode.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> img_id, <span class="apiref-type">int</span> count <span class="apiref-default-arg">= 1</span>)
+	<span class="apiref-type">void</span> tile_load(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> path)
 </p>
 <p class="apiref-entry">
-	Creates a new tile sequence with the specified number of repeating animation frames as indicated by the img_id, or modify an existing tile by adding a new animation frame as indicated by the img_id. The img_id should correspond to an existing tile that was previously created by the tile_new() or tile_file() functions.
+	Loads a bitmap image from a file, creates a new tile sequence with a single tile and assigns to it the specified tile_id and pixels. Only uncompressed, 24-bit RGB color bitmap files are supported. Each bitmap loaded must be exactly 8x8 pixels in size, or else this function fails.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
@@ -392,7 +392,7 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> tile_replace_color(<span class="apiref-type">string</span> img_id, <span class="apiref-type">rgb</span> original_color, <span class="apiref-type">rgb</span> new_color)
+	<span class="apiref-type">void</span> tile_replace_color(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">rgb</span> original_color, <span class="apiref-type">rgb</span> new_color)
 </p>
 <p class="apiref-entry">
 	Replaces every pixel of the original_color with the new_color in the specified tile.
@@ -1115,6 +1115,13 @@
 </p>
 <p class="apiref-entry">
 	Returns a pseudo-random integer number betweem min and max, inclusive. For example, respectively passing 1 and 2 as arguments, will always yield either 1 or 2.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> rnd_chance(<span class="apiref-type">int</span> percent)
+</p>
+<p class="apiref-entry">
+	Returns true X percent of the time, e.g. passing 100 as argument will always return true, passing 0 will always return false, passing 50 there will be a 50/50 chance of returning true or false.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-section-header" id="collision">COLLISION</p>

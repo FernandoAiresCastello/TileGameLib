@@ -1,4 +1,5 @@
 .vs
+vscode.bat
 bin
 obj
 debug

@@ -125,7 +125,7 @@ body {
 	background: #ffc8c8;
 }
 .note td.header {
-	text-align: left
+	text-align: left;
 	max-width: 200px;
 	min-width: 200px;
 	width: 200px;
