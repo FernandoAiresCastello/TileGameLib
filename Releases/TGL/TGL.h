@@ -100,6 +100,7 @@ struct TGL
 	//=========================================================================
 	//		GRAPHICS > TILE SET
 	//=========================================================================
+	void tile_add(string tile_id);
 	void tile_add(string tile_id, rgb pixels[64]);
 	void tile_add(string tile_id, string binary_pattern);
 	void tile_load(string tile_id, string path);

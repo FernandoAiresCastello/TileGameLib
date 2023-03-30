@@ -164,6 +164,12 @@ void TGL::clear()
 {
 	tgl->wnd->ClearBackground();
 }
+void TGL::tile_add(string tile_id)
+{
+	if (tgl->tiles.find(tile_id) == tgl->tiles.end()) {
+		tgl->tiles[tile_id] = TGL_Private::t_tileseq();
+	}
+}
 void TGL::tile_add(string tile_id, rgb pixels[64])
 {
 	if (tgl->tiles.find(tile_id) == tgl->tiles.end()) {
