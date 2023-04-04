@@ -1,6 +1,6 @@
 /*=============================================================================
 
-	TGL.lib
+	TGL.h
 
 	Part of the TileGameLib toolkit:
 	https://github.com/FernandoAiresCastello/TileGameLib
@@ -29,8 +29,27 @@
 #ifndef _TGL_H_
 #define _TGL_H_
 
-void tgl_init(int buf_width, int buf_height, int wnd_width, int wnd_height);
+#include <stdbool.h>
+
+typedef unsigned int rgb;
+typedef unsigned char byte;
+
+void tgl_init(int buf_width, int buf_height, int wnd_size, rgb back_color);
 void tgl_exit();
 void tgl_halt();
+void tgl_proc_default_events();
+void tgl_update();
+void tgl_fullscreen(bool full);
+void tgl_toggle_fullscreen();
+void tgl_clear();
+int tgl_width();
+int tgl_height();
+byte tgl_color_r(rgb color);
+byte tgl_color_g(rgb color);
+byte tgl_color_b(rgb color);
+rgb tgl_color_rgb(byte r, byte g, byte b);
+void tgl_pset(int x, int y, rgb rgb);
+int tgl_rnd(int min, int max);
+void tgl_test_static();
 
 #endif
