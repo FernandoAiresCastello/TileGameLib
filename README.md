@@ -7,7 +7,7 @@ This repository was created in 2019. The goal of this toolkit is to facilitate t
 
 Currently, the main project in the toolkit is the C/C++ library **TGL.lib**, but this repository also includes a few related "side projects" in various stages of development, which may or may not be under active development, and are located inside the "Other" subdirectory. Only Windows (7/8/10/11) is currently supported, except for the Javascript version which should work in any modern browser.
 
-I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are also welcome in the official TileGameLib subreddit. Thanks for stopping by! ❤
+I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
 
 **Current version:** 
 
