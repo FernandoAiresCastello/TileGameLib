@@ -16,7 +16,6 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 **Downloads:**
 
 - [TGL.lib - Latest build (dev release)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL)
-- [TGLDemo.exe - Latest demo build (dev release)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGLDemo/Builds)
 
 **Documentation:**
 
