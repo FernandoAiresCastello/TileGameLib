@@ -1,17 +1,19 @@
 //=============================================================================
 //		PUBLIC API
 //=============================================================================
+const TGL_TILESIZE = 8;
+
 class TGL {
 	log = new TGL_Log();
 	private = new TGL_Private();
-	backColor = '#111';
+	palette = ["#111", "#f00", "#0f0", "#00f", "#ff0", "#0ff", "#f0f", "#888", "#eee"];
 
 	constructor() {
 		this.log.info("TGL singleton created");
 	}
 	init(w, h, backColor) {
 		if (backColor) {
-			this.backColor = backColor;
+			this.private.backColor = backColor;
 		}
 		this.private.display.init(w, h);
 		this.cls();
@@ -19,12 +21,24 @@ class TGL {
 	log(str) {
 		this.private.log(str);
 	}
-	drawTestFrame() {
+	testDrawPixels() {
+		this.colorNormal();
 		let i = 0;
 		for (let y = 0; y < this.private.display.height; y++) {
 			for (let x = 0; x < this.private.display.width; x++) {
 				this.private.display.pixels[i++] = 
-					this.private.palette[this.rnd(0, this.private.palette.length - 1)];
+					this.palette[this.rnd(0, this.palette.length - 1)];
+			}
+		}
+	}
+	testDrawTiles() {
+		this.colorBinary();
+		for (let y = 0; y < this.rows(); y++) {
+			for (let x = 0; x < this.cols(); x++) {
+				this.colorBinary(
+					this.palette[this.rnd(0, this.palette.length - 1)],
+					this.palette[this.rnd(0, this.palette.length - 1)]);
+				this.drawTiled(tile, x, y);
 			}
 		}
 	}
@@ -33,8 +47,42 @@ class TGL {
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
+	tilesize() {
+		return TGL_TILESIZE;
+	}
+	cols() {
+		return this.private.display.width / TGL_TILESIZE;
+	}
+	rows() {
+		return this.private.display.height / TGL_TILESIZE;
+	}
 	cls() {
-		this.private.display.clear(this.backColor);
+		this.private.display.clear();
+	}
+	backColor(color) {
+		this.private.display.backColor = color;
+	}
+	colorNormal() {
+		this.private.display.colorMode = "normal";
+	}
+	colorBinary(fgc, bgc) {
+		this.private.display.colorMode = "binary";
+		this.private.display.binaryFgc = fgc;
+		if (bgc) {
+			this.private.display.binaryBgc = bgc;
+		}
+	}
+	transparency(state) {
+		this.private.display.transparency = state;
+	}
+	drawFree(tile, x, y) {
+		this.private.display.putPixelBlock(tile, x, y, 
+			this.private.display.colorMode);
+	}
+	drawTiled(tile, x, y) {
+		this.private.display.putPixelBlock(tile, 
+			x * TGL_TILESIZE, y * TGL_TILESIZE, 
+			this.private.display.colorMode);
 	}
 }
 //=============================================================================
@@ -43,7 +91,6 @@ class TGL {
 class TGL_Private {
 	log = new TGL_Log();
 	display = new TGL_Display(this);
-	palette = ["#111", "#f00", "#0f0", "#00f", "#ff0", "#0ff", "#f0f", "#888", "#eee"];
 }
 class TGL_Log {
 	info(str) {
@@ -57,6 +104,11 @@ class TGL_Display {
 	canvas = null;
 	element = null;
 	pixels = null;
+	backColor = "#111";
+	colorMode = "normal";
+	binaryFgc = "#fff";
+	binaryBgc = this.backColor;
+	transparency = false;
 
 	init(w, h) {
 		this.width = w;
@@ -86,21 +138,53 @@ class TGL_Display {
 		let i = 0;
 		for (let y = 0; y < this.height; y++) {
 			for (let x = 0; x < this.width; x++) {
-				this.pset(x, y, this.pixels[i++]);
+				this.renderPixel(x, y, this.pixels[i++]);
 			}
 		}
 		requestAnimationFrame(() => this.update());
 	}
-	clear(color) {
+	clear() {
 		let i = 0;
 		for (let y = 0; y < this.height; y++) {
 			for (let x = 0; x < this.width; x++) {
-				this.pset(x, y, color);
+				this.putPixel(x, y, this.backColor);
 			}
 		}
 	}
-	pset(x, y, color) {
+	renderPixel(x, y, color) {
 		this.canvas.fillStyle = color;
 		this.canvas.fillRect(x, y, 1, 1);
+	}
+	putPixel(x, y, color) {
+		this.pixels[y * this.width + x] = color;
+	}
+	putPixelBlock(block, x, y, colorMode) {
+		let initX = x;
+		for (let i = 0; i < block.length; i++) {
+			let color = null;
+			if (colorMode == "normal") {
+				color = block[i];
+			} else if (colorMode == "binary") {
+				if (block[i] == '0') {
+					if (!this.transparency) {
+						color = this.binaryBgc;
+					}
+				} else if (block[i] == '1') {
+					color = this.binaryFgc;
+				} else {
+					throw new Error("Invalid binary bit: " + block[i]);
+				}
+			} else {
+				throw new Error("Invalid color mode: " + colorMode);
+			}
+			if (color) {
+				this.putPixel(x, y, color);
+			}
+			x++;
+			if (x - initX >= 8) {
+				x = initX;
+				y++;
+			}
+		}
 	}
 }
