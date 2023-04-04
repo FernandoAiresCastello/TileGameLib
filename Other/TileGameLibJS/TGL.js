@@ -1,12 +1,9 @@
-//================================================================================
-//		TGL
-//================================================================================
 class TGL {
 	display = {
 		width: 0,
 		height: 0,
 		canvas: null,
-		canvas_e: null,
+		element: null,
 		pixels: null,
 		pal: ['#111', '#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#888', '#eee']
 	};
@@ -21,16 +18,16 @@ class TGL {
 		page.style.margin = 0;
 		page.style.padding = 0;
 		page.innerHTML = "<canvas></canvas>";
-		this.display.canvas_e = document.querySelector("canvas");
-		this.display.canvas_e.display = "block";
-		this.display.canvas_e.style.margin = "0 auto";
-		this.display.canvas_e.style.padding = 0;
-		this.display.canvas_e.width = w;
-		this.display.canvas_e.height = h;
-		this.display.canvas_e.style.width = "100%";
-		this.display.canvas_e.style.height = "100%";
-		this.display.canvas_e.style.imageRendering = "pixelated";
-		this.display.canvas = this.display.canvas_e.getContext("2d");
+		this.display.element = document.querySelector("canvas");
+		this.display.element.display = "block";
+		this.display.element.style.margin = "0 auto";
+		this.display.element.style.padding = 0;
+		this.display.element.width = w;
+		this.display.element.height = h;
+		this.display.element.style.width = "100%";
+		this.display.element.style.height = "100%";
+		this.display.element.style.imageRendering = "pixelated";
+		this.display.canvas = this.display.element.getContext("2d");
 		requestAnimationFrame(() => this.update());
 	}
 	update() {
@@ -57,17 +54,10 @@ class TGL {
 	}
 	clear(color) {
 		this.display.canvas.fillStyle = color;
-		this.display.canvas.fillRect(0, 0, this.display.canvas_e.width, this.display.canvas_e.height);
+		this.display.canvas.fillRect(0, 0, this.display.element.width, this.display.element.height);
 	}
 	pset(x, y, color) {
 		this.display.canvas.fillStyle = color;
 		this.display.canvas.fillRect(x, y, 1, 1);
 	}
 }
-
-//================================================================================
-//		TEST
-//================================================================================
-const tgl = new TGL();
-tgl.init_screen(256, 192);
-tgl.draw_test_frame();
