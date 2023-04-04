@@ -1,3 +1,10 @@
 const tgl = new TGL();
-tgl.init_screen(256, 192);
-tgl.draw_test_frame();
+tgl.init(256, 192);
+
+/*
+requestAnimationFrame(onFrame);
+function onFrame() {
+    tgl.drawTestFrame();
+    requestAnimationFrame(onFrame);
+}
+*/
