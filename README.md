@@ -5,7 +5,7 @@ TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-
 
 This repository was created in 2019. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is the C++ library **TGL.lib**, but this repository also includes a few related "side projects" in various stages of development, which may or may not be under active development, and are located inside the "Other" subdirectory. Only Windows (7/8/10/11) is currently supported, except for the Javascript version which should work in any modern browser.
+Currently, the main project in the toolkit is the C++ library **TGL.lib**, but this repository also includes a few related "side projects" in various stages of development, which may or may not be under active development, and are located inside the "Other" subdirectory. Only Windows (7/8/10/11) is currently supported, except the Javascript version which should work in any modern browser.
 
 I (Fernando) am currently the sole developer for this toolkit. Please check out the documentation wiki and the TODO list to see where help is needed and let me know if you can contribute somehow! Questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
 
@@ -30,7 +30,7 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 The following projects are also part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
-- [TGL.lib (C)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib%20(C)) is a plain C static library built on top of SDL 2.
+- [TGL.lib (C)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib%20(C)) is a plain C library built on top of SDL 2. Just add both TGL.h and TGL.cpp files to your project and compile it (with GCC).
 
 - [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) is a web-based version of TGL using vanilla Javascript.
 

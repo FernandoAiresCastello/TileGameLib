@@ -50,6 +50,23 @@ struct {
     int pixel_h;
 } screen;
 
+void tgl_proc_default_events() {
+    SDL_Event e = { 0 };
+    while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT) {
+            tgl_exit();
+            return;
+        } else if (e.type == SDL_KEYDOWN) {
+            const SDL_Keycode key = e.key.keysym.sym;
+            if (key == SDLK_ESCAPE) {
+                tgl_exit();
+                return;
+            } else if (key == SDLK_RETURN && (SDL_GetModState() & KMOD_ALT)) {
+                tgl_toggle_fullscreen();
+            }
+        }
+    }
+}
 void tgl_clear_to_rgb(rgb rgb) {
     for (int i = 0; i < screen.buf_len; i++) {
         screen.buf[i] = screen.back_color;
@@ -132,8 +149,10 @@ double genRand(MTRand* rand) {
 //==============================================================================
 //      PUBLIC API
 //==============================================================================
-void tgl_init(int buf_width, int buf_height, int wnd_size, rgb back_color) {
+void tgl_init() {
     rng = seedRand(time(0));
+}
+void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_w = buf_width;
     screen.buf_h = buf_height;
     screen.buf_len = sizeof(rgb) * buf_width * buf_height;
@@ -157,6 +176,15 @@ void tgl_init(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     SDL_SetWindowPosition(screen.wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
     SDL_RaiseWindow(screen.wnd);
 }
+void tgl_screen_160x144(int wnd_size, rgb back_color) {
+    tgl_screen(160, 144, wnd_size, back_color);
+}
+void tgl_screen_256x192(int wnd_size, rgb back_color) {
+    tgl_screen(256, 192, wnd_size, back_color);
+}
+void tgl_screen_360x200(int wnd_size, rgb back_color) {
+    tgl_screen(360, 200, wnd_size, back_color);
+}
 void tgl_exit() {
     free(screen.buf);
     SDL_DestroyTexture(screen.tx);
@@ -167,23 +195,6 @@ void tgl_exit() {
 void tgl_halt() {
     while (true) {
         tgl_update();
-    }
-}
-void tgl_proc_default_events() {
-    SDL_Event e = { 0 };
-    while (SDL_PollEvent(&e)) {
-        if (e.type == SDL_QUIT) {
-            tgl_exit();
-            return;
-        } else if (e.type == SDL_KEYDOWN) {
-            const SDL_Keycode key = e.key.keysym.sym;
-            if (key == SDLK_ESCAPE) {
-                tgl_exit();
-                return;
-            } else if (key == SDLK_RETURN && (SDL_GetModState() & KMOD_ALT)) {
-                tgl_toggle_fullscreen();
-            }
-        }
     }
 }
 void tgl_update() {
@@ -218,6 +229,9 @@ int tgl_width() {
 int tgl_height() {
     return screen.buf_h;
 }
+void tgl_pset(int x, int y, rgb rgb) {
+    tgl_fillrect(x, y, screen.pixel_w, screen.pixel_h, rgb);
+}
 byte tgl_color_r(rgb color) {
     return (color & 0xff0000) >> 16;
 }
@@ -230,9 +244,6 @@ byte tgl_color_b(rgb color) {
 rgb tgl_color_rgb(byte r, byte g, byte b) {
     return b | (g << CHAR_BIT) | (r << CHAR_BIT * 2);
 }
-void tgl_pset(int x, int y, rgb rgb) {
-    tgl_fillrect(x, y, screen.pixel_w, screen.pixel_h, rgb);
-}
 int tgl_rnd(int min, int max) {
     return min + genRandLong(&rng) % (max - min + 1);
 }
@@ -243,5 +254,4 @@ void tgl_test_static() {
             tgl_pset(x, y, pal[tgl_rnd(0, 3)]);
         }
     }
-    tgl_update();
 }
