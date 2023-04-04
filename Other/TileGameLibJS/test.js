@@ -31,7 +31,7 @@ tgl.drawTiled(tile, 1, 1);
 tgl.transparency(true);
 tgl.drawFree(tile, 12, 12);
 tgl.colorBinary("#0f0")
-tgl.printTiled("Hello World!", 4, 10);
+tgl.printTiled("~Hello World!~", 4, 10);
 
 /*
 requestAnimationFrame(onFrame);

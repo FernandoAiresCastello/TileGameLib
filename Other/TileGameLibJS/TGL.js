@@ -20,40 +20,6 @@ class TGL {
 	log(str) {
 		this.private.log(str);
 	}
-	testClear() {
-		this.backColor(this.palette[this.rnd(0, this.palette.length - 1)]);
-		this.cls();
-	}
-	testDrawPixels() {
-		this.colorNormal();
-		let i = 0;
-		for (let y = 0; y < this.private.display.height; y++) {
-			for (let x = 0; x < this.private.display.width; x++) {
-				this.private.display.pixels[i++] = 
-					this.palette[this.rnd(0, this.palette.length - 1)];
-			}
-		}
-	}
-	testDrawTiles() {
-		const tile = 
-		"11111111" +
-		"10000001" +
-		"10000001" +
-		"10011001" +
-		"10011001" +
-		"10000001" +
-		"10000001" +
-		"11111111";
-		this.colorBinary();
-		for (let y = 0; y < this.rows(); y++) {
-			for (let x = 0; x < this.cols(); x++) {
-				this.colorBinary(
-					this.private.palette[this.rnd(0, this.private.palette.length - 1)],
-					this.private.palette[this.rnd(0, this.private.palette.length - 1)]);
-				this.drawTiled(tile, x, y);
-			}
-		}
-	}
 	rnd(min, max) {
 		min = Math.ceil(min);
 		max = Math.floor(max);
@@ -112,6 +78,12 @@ class TGL {
 	}
 	font(chr, binaryTile) {
 		this.private.setFont(chr, binaryTile);
+	}
+	clip(x1, y1, x2, y2) {
+		this.private.display.setClip(x1, y1, x2, y2);
+	}
+	unclip() {
+		this.private.display.removeClip();
 	}
 }
 //=============================================================================
@@ -241,10 +213,44 @@ class TGL_Private {
 		this.setFont(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 		this.setFont(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 	}
+	testClear() {
+		this.backColor(this.palette[this.rnd(0, this.palette.length - 1)]);
+		this.cls();
+	}
+	testDrawPixels() {
+		this.colorNormal();
+		let i = 0;
+		for (let y = 0; y < this.private.display.height; y++) {
+			for (let x = 0; x < this.private.display.width; x++) {
+				this.private.display.pixels[i++] = 
+					this.palette[this.rnd(0, this.palette.length - 1)];
+			}
+		}
+	}
+	testDrawTiles() {
+		const tile = 
+		"11111111" +
+		"10000001" +
+		"10000001" +
+		"10011001" +
+		"10011001" +
+		"10000001" +
+		"10000001" +
+		"11111111";
+		this.colorBinary();
+		for (let y = 0; y < this.rows(); y++) {
+			for (let x = 0; x < this.cols(); x++) {
+				this.colorBinary(
+					this.private.palette[this.rnd(0, this.private.palette.length - 1)],
+					this.private.palette[this.rnd(0, this.private.palette.length - 1)]);
+				this.drawTiled(tile, x, y);
+			}
+		}
+	}
 }
 class TGL_Log {
 	info(str) {
-		console.info("TGL >>> " + str);
+		console.info("[TGL] " + str);
 	}
 }
 class TGL_Display {
@@ -259,6 +265,7 @@ class TGL_Display {
 	binaryFgc = "#fff";
 	binaryBgc = this.backColor;
 	transparency = false;
+	clip = null;
 
 	init(w, h) {
 		this.width = w;
@@ -292,6 +299,12 @@ class TGL_Display {
 			}
 		}
 		requestAnimationFrame(() => this.update());
+	}
+	setClip(x1, y1, x2, y2) {
+		this.clip = { x1: x1, y1: y1, x2: x2, y2: y2 };
+	}
+	removeClip() {
+		this.clip = null;
 	}
 	clear() {
 		let i = 0;
@@ -330,7 +343,14 @@ class TGL_Display {
 				throw new Error("Invalid color mode: " + colorMode);
 			}
 			if (color) {
-				this.putPixel(x, y, color);
+				if (this.clip) {
+					if (x >= this.clip.x1 && x <= this.clip.x2 && 
+						y >= this.clip.y1 && y <= this.clip.y2) {
+							this.putPixel(x, y, color);
+						}
+				} else {
+					this.putPixel(x, y, color);
+				}
 			}
 			x++;
 			if (x - initX >= TGL_TILESIZE) {

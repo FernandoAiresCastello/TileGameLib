@@ -36,11 +36,11 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 The following projects are also part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
+- [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) is a web-based version of TGL using vanilla Javascript.
+
 - [Unity TileGameLib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/UnityTileGameLib) contains a collection of C# scripts for use in the Unity game engine (2D mode only).
 
 - [TGL TilePaint](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TGLTilePaint) is a standalone C# desktop app for drawing 8x8 or 16x16 tiles in the TGL format.
-
-- [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) is an attempt to create a web-based version of TGL.lib using Typescript and HTML/CSS.
 
 - [TileGameLibCS](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other/TileGameLibCS) is a standalone C# desktop application (TileGameMaker.exe) built on top of Windows Forms targeting the .NET Framework. The solution also includes a dynamic library (TileGameLib.dll) that is independent from the TileGameMaker.exe application and can be used in other projects. Mostly useful for drawing and prototyping games, sort of like an IDE.
 
