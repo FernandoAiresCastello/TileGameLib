@@ -34,6 +34,18 @@ class TGL {
 	rows() {
 		return this.private.display.height / TGL_TILESIZE;
 	}
+	width() {
+		return this.private.display.width;
+	}
+	height() {
+		return this.private.display.height;
+	}
+	horizontalStretch(w) {
+		this.private.display.element.style.width = w + "%";
+	}
+	frameNumber() {
+		return this.private.display.frameCounter;
+	}
 	cls() {
 		this.private.display.clear();
 	}
@@ -266,6 +278,7 @@ class TGL_Display {
 	binaryBgc = this.backColor;
 	transparency = false;
 	clip = null;
+	frameCounter = 0;
 
 	init(w, h) {
 		this.width = w;
@@ -277,6 +290,7 @@ class TGL_Display {
 		const page = document.querySelector("body");
 		page.style.margin = 0;
 		page.style.padding = 0;
+		page.style.textAlign = "center";
 		page.innerHTML = "<canvas></canvas>";
 		this.element = document.querySelector("canvas");
 		this.element.display = "block";
@@ -298,6 +312,7 @@ class TGL_Display {
 				this.renderPixel(x, y, this.pixels[i++]);
 			}
 		}
+		this.frameCounter++;
 		requestAnimationFrame(() => this.update());
 	}
 	setClip(x1, y1, x2, y2) {
