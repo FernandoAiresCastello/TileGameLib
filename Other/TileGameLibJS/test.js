@@ -4,6 +4,7 @@ main();
 
 function main() {
     tgl.init(256, 192);
+    tgl.horizontalStretch(60);
 
     const tile = 
         "11111111" +

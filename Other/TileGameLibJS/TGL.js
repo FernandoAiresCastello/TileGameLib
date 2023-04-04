@@ -17,9 +17,6 @@ class TGL {
 		this.private.display.init(w, h);
 		this.cls();
 	}
-	log(str) {
-		this.private.log(str);
-	}
 	rnd(min, max) {
 		min = Math.ceil(min);
 		max = Math.floor(max);
