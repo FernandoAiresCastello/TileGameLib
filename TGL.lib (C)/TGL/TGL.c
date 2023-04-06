@@ -37,6 +37,8 @@
 //==============================================================================
 //      PRIVATE API
 //==============================================================================
+#define TGL_TILESIZE    8
+
 struct {
     SDL_Window* wnd;
     SDL_Renderer* rend;
@@ -48,7 +50,15 @@ struct {
     rgb back_color;
     int pixel_w;
     int pixel_h;
+    struct {
+        bool enabled;
+        int x1, y1, x2, y2;
+    } clip;
 } screen;
+
+typedef struct {
+    char str[TGL_TILESIZE];
+} tgl_tile;
 
 void tgl_proc_default_events() {
     SDL_Event e = { 0 };
@@ -78,8 +88,15 @@ void tgl_fillrect(int x, int y, int w, int h, rgb rgb) {
     const int prevX = px;
     for (int iy = 0; iy < w; iy++) {
         for (int ix = 0; ix < h; ix++) {
-            if (px >= 0 && py >= 0 && px < screen.buf_w && py < screen.buf_h) {
-                screen.buf[py * screen.buf_w + px] = rgb;
+            if (screen.clip.enabled) {
+                if (px >= screen.clip.x1 && py >= screen.clip.y1 && 
+                    px <= screen.clip.x2 && py <= screen.clip.y2) {
+                    screen.buf[py * screen.buf_w + px] = rgb;
+                }
+            } else {
+                if (px >= 0 && py >= 0 && px < screen.buf_w && py < screen.buf_h) {
+                    screen.buf[py * screen.buf_w + px] = rgb;
+                }
             }
             px++;
         }
@@ -87,8 +104,11 @@ void tgl_fillrect(int x, int y, int w, int h, rgb rgb) {
         py++;
     }
 }
+void tgl_pset(int x, int y, rgb rgb) {
+    tgl_fillrect(x, y, screen.pixel_w, screen.pixel_h, rgb);
+}
 
-// The MTwister C Library (https://github.com/ESultanik/mtwister)
+// MTwister C Library (https://github.com/ESultanik/mtwister)
 
 #define STATE_VECTOR_LENGTH 624
 #define STATE_VECTOR_M      397
@@ -152,15 +172,48 @@ double genRand(MTRand* rand) {
 void tgl_init() {
     rng = seedRand(time(0));
 }
+void tgl_exit() {
+    free(screen.buf);                   screen.buf = NULL;
+    SDL_DestroyTexture(screen.tx);      screen.tx = NULL;
+    SDL_DestroyRenderer(screen.rend);   screen.rend = NULL;
+    SDL_DestroyWindow(screen.wnd);      screen.wnd = NULL;
+    SDL_Quit();
+    exit(0);
+}
+void tgl_halt() {
+    while (true) {
+        tgl_update();
+    }
+}
+void tgl_update_screen() {
+    static int pitch;
+    static void* pixels;
+    SDL_LockTexture(screen.tx, NULL, &pixels, &pitch);
+    SDL_memcpy(pixels, screen.buf, screen.buf_len);
+    SDL_UnlockTexture(screen.tx);
+    SDL_RenderClear(screen.rend);
+    SDL_RenderCopy(screen.rend, screen.tx, NULL, NULL);
+    SDL_RenderPresent(screen.rend);
+}
+void tgl_update() {
+    tgl_update_screen();
+    tgl_proc_default_events();
+}
 void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_w = buf_width;
     screen.buf_h = buf_height;
     screen.buf_len = sizeof(rgb) * buf_width * buf_height;
     screen.buf = calloc(screen.buf_len, sizeof(rgb));
-    screen.back_color = back_color;
     tgl_clear();
     screen.pixel_w = 1;
     screen.pixel_h = 1;
+    tgl_backcolor(back_color);
+    screen.clip.enabled = false;
+    screen.clip.x1 = 0;
+    screen.clip.y1 = 0;
+    screen.clip.x2 = 0;
+    screen.clip.y2 = 0;
+
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
@@ -176,6 +229,9 @@ void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     SDL_SetWindowPosition(screen.wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
     SDL_RaiseWindow(screen.wnd);
 }
+void tgl_screen_128x128(int wnd_size, rgb back_color) {
+    tgl_screen(128, 128, wnd_size, back_color);
+}
 void tgl_screen_160x144(int wnd_size, rgb back_color) {
     tgl_screen(160, 144, wnd_size, back_color);
 }
@@ -185,27 +241,8 @@ void tgl_screen_256x192(int wnd_size, rgb back_color) {
 void tgl_screen_360x200(int wnd_size, rgb back_color) {
     tgl_screen(360, 200, wnd_size, back_color);
 }
-void tgl_exit() {
-    free(screen.buf);
-    SDL_DestroyTexture(screen.tx);
-    SDL_DestroyRenderer(screen.rend);
-    SDL_DestroyWindow(screen.wnd);
-    SDL_Quit();
-}
-void tgl_halt() {
-    while (true) {
-        tgl_update();
-    }
-}
-void tgl_update() {
-    static int pitch;
-    static void* pixels;
-    SDL_LockTexture(screen.tx, NULL, &pixels, &pitch);
-    SDL_memcpy(pixels, screen.buf, screen.buf_len);
-    SDL_UnlockTexture(screen.tx);
-    SDL_RenderCopy(screen.rend, screen.tx, NULL, NULL);
-    SDL_RenderPresent(screen.rend);
-    tgl_proc_default_events();
+void* tgl_window() {
+    return screen.wnd;
 }
 void tgl_fullscreen(bool full) {
     Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -220,6 +257,9 @@ void tgl_toggle_fullscreen() {
     SDL_SetWindowFullscreen(screen.wnd, isFullscreen ? 0 : fullscreenFlag);
     tgl_update();
 }
+void tgl_backcolor(rgb color) {
+    screen.back_color = color;
+}
 void tgl_clear() {
     tgl_clear_to_rgb(screen.back_color);
 }
@@ -229,8 +269,19 @@ int tgl_width() {
 int tgl_height() {
     return screen.buf_h;
 }
-void tgl_pset(int x, int y, rgb rgb) {
-    tgl_fillrect(x, y, screen.pixel_w, screen.pixel_h, rgb);
+void tgl_clip(int x1, int y1, int x2, int y2) {
+    screen.clip.enabled = true;
+    screen.clip.x1 = x1;
+    screen.clip.y1 = y1;
+    screen.clip.x2 = x2;
+    screen.clip.y2 = y2;
+}
+void tgl_unclip() {
+    screen.clip.enabled = false;
+    screen.clip.x1 = 0;
+    screen.clip.y1 = 0;
+    screen.clip.x2 = 0;
+    screen.clip.y2 = 0;
 }
 byte tgl_color_r(rgb color) {
     return (color & 0xff0000) >> 16;

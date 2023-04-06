@@ -1,7 +1,5 @@
 .vs
 .vscode
-make.bat
-clean.bat
 vscode.bat
 bin
 obj

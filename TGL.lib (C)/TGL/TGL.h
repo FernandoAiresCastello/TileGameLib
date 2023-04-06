@@ -41,10 +41,6 @@ typedef unsigned char byte;
 //      SYSTEM
 //==============================================================================
 void tgl_init();
-void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color);
-void tgl_screen_160x144(int wnd_size, rgb back_color);
-void tgl_screen_256x192(int wnd_size, rgb back_color);
-void tgl_screen_360x200(int wnd_size, rgb back_color);
 void tgl_exit();
 void tgl_halt();
 void tgl_update();
@@ -52,12 +48,20 @@ void tgl_update();
 //==============================================================================
 //      SCREEN
 //==============================================================================
+void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color);
+void tgl_screen_128x128(int wnd_size, rgb back_color);
+void tgl_screen_160x144(int wnd_size, rgb back_color);
+void tgl_screen_256x192(int wnd_size, rgb back_color);
+void tgl_screen_360x200(int wnd_size, rgb back_color);
+void* tgl_window();
 void tgl_fullscreen(bool full);
 void tgl_toggle_fullscreen();
+void tgl_backcolor(rgb color);
 void tgl_clear();
 int tgl_width();
 int tgl_height();
-void tgl_pset(int x, int y, rgb rgb);
+void tgl_clip(int x1, int y1, int x2, int y2);
+void tgl_unclip();
 
 //==============================================================================
 //      COLOR
