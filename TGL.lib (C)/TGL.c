@@ -40,6 +40,8 @@
 #define TGL_TILESIZE    8
 #define TGL_TILELENGTH  (TGL_TILESIZE * TGL_TILESIZE)
 #define TGL_FONTSIZE    256
+#define TGL_MAXSOUNDS   256
+#define TGL_STRFMT_LEN  1024
 
 typedef enum {
     TGL_MODE_RGB, TGL_MODE_BINARY
@@ -62,6 +64,7 @@ struct {
         int x1, y1, x2, y2;
     } clip;
     bool transparency;
+    rgb transparency_key;
 } screen;
 
 struct {
@@ -75,11 +78,31 @@ typedef struct {
 
 struct {
     tgl_tiledef* tiles;
-} tileset;
+} tileset = { NULL };
 
 struct {
     tgl_tiledef tiles[TGL_FONTSIZE];
 } font;
+
+typedef struct {
+    bool loaded;
+    SDL_AudioDeviceID device;
+    SDL_AudioSpec spec;
+    Uint32 length;
+    Uint8 *buffer;
+} tgl_sound_data;
+
+struct {
+    tgl_sound_data sounds[TGL_MAXSOUNDS];
+} sound_pool;
+
+struct {
+    int last_key;
+} input;
+
+struct {
+    char fmt_buf[TGL_STRFMT_LEN];
+} strings;
 
 void tgl_proc_default_events() {
     SDL_Event e = { 0 };
@@ -88,6 +111,7 @@ void tgl_proc_default_events() {
             tgl_exit();
             return;
         } else if (e.type == SDL_KEYDOWN) {
+            input.last_key = e.key.keysym.sym;
             const SDL_Keycode key = e.key.keysym.sym;
             if (key == SDLK_ESCAPE) {
                 tgl_exit();
@@ -289,9 +313,19 @@ double genRand(MTRand* rand) {
 //      PUBLIC API
 //==============================================================================
 void tgl_init() {
+    SDL_Init(SDL_INIT_EVERYTHING);
     rng = seedRand(time(0));
+    input.last_key = 0;
 }
 void tgl_exit() {
+    for (int i = 0; i < TGL_MAXSOUNDS; i++) {
+        if (sound_pool.sounds[i].loaded) {
+            SDL_CloseAudioDevice(sound_pool.sounds[i].device);
+            SDL_FreeWAV(sound_pool.sounds[i].buffer);
+            sound_pool.sounds[i].buffer = NULL;
+            sound_pool.sounds[i].loaded = false;
+        }
+    }
     free(tileset.tiles);                tileset.tiles = NULL;
     free(screen.buf);                   screen.buf = NULL;
     SDL_DestroyTexture(screen.tx);      screen.tx = NULL;
@@ -323,6 +357,17 @@ void tgl_update() {
     tgl_update_screen();
     tgl_proc_default_events();
 }
+void tgl_hcf() {
+    rgb pal[] = { 0x101010, 0x404040, 0x808080, 0xd0d0d0 };
+    while (tgl_window()) {
+        for (int y = 0; y < tgl_height(); y++) {
+            for (int x = 0; x < tgl_width(); x++) {
+                tgl_pset(x, y, pal[tgl_rnd(0, 3)]);
+            }
+        }
+        tgl_update();
+    }
+}
 void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_w = buf_width;
     screen.buf_h = buf_height;
@@ -339,11 +384,11 @@ void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.clip.x2 = 0;
     screen.clip.y2 = 0;
     screen.transparency = false;
+    screen.transparency_key = 0xffffff;
     binary_color.fg = 0xffffff;
     binary_color.bg = 0x000000;
     tgl_font_default();
 
-    SDL_Init(SDL_INIT_EVERYTHING);
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
     screen.wnd = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, wnd_size * buf_width, wnd_size * buf_height, 0);
@@ -440,14 +485,6 @@ void tgl_transparent(bool flag) {
 int tgl_rnd(int min, int max) {
     return min + genRandLong(&rng) % (max - min + 1);
 }
-void tgl_test_static() {
-    rgb pal[] = { 0x101010, 0x404040, 0x808080, 0xd0d0d0 };
-    for (int y = 0; y < tgl_height(); y++) {
-        for (int x = 0; x < tgl_width(); x++) {
-            tgl_pset(x, y, pal[tgl_rnd(0, 3)]);
-        }
-    }
-}
 void tgl_mode_rgb() {
     screen.mode = TGL_MODE_RGB;
 }
@@ -455,6 +492,9 @@ void tgl_mode_bin() {
     screen.mode = TGL_MODE_BINARY;
 }
 void tgl_tileset(int size) {
+    if (tileset.tiles) {
+        free(tileset.tiles);
+    }
     tileset.tiles = (tgl_tiledef*)calloc(size, sizeof(tgl_tiledef));
 }
 void tgl_tile_rgb(int index, rgb* pixels) {
@@ -467,12 +507,35 @@ void tgl_tile_bin(int index, char* pixels) {
         tileset.tiles[index].data[i] = pixels[i];
     }
 }
+void tgl_tile_rgb_load(int index, char* file) {
+    SDL_Surface* bmp = SDL_LoadBMP(file);
+    if (!bmp) {
+        tgl_abort("Could not load RGB tile: bitmap file not found");
+        return;
+    }
+    const Uint8 bpp = bmp->format->BytesPerPixel;
+    int width = bmp->w;
+    int height = bmp->h;
+    int i = 0;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            Uint8* ptr_pixel = (Uint8*)bmp->pixels + y * bmp->pitch + x * bpp;
+            Uint32 pixel_data = *(Uint32*)ptr_pixel;
+            SDL_Color color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
+            SDL_GetRGB(pixel_data, bmp->format, &color.r, &color.g, &color.b);
+            tileset.tiles[index].data[i++] = tgl_color_rgb(color.r, color.g, color.b);
+        }
+    }
+    SDL_FreeSurface(bmp);
+}
 void tgl_draw_tile(tgl_tiledef* tile, int x, int y, tgl_screen_mode mode) {
     int px = x;
     int py = y;
     for (int i = 0; i < TGL_TILELENGTH; i++) {
         if (mode == TGL_MODE_RGB) {
-            tgl_pset(px, py, tile->data[i]);
+            if (!screen.transparency || tile->data[i] != screen.transparency_key) {
+                tgl_pset(px, py, tile->data[i]);
+            }
         } else if (mode == TGL_MODE_BINARY) {
             if (tile->data[i] == '1') {
                 tgl_pset(px, py, binary_color.fg);
@@ -517,4 +580,64 @@ void tgl_print_free(char* str, int x, int y) {
         tgl_draw_tile(tile, x, y, TGL_MODE_BINARY);
         x += TGL_TILESIZE;
     }
+}
+char* tgl_fmt(char* str, ...) {
+    SDL_memset(strings.fmt_buf, 0, TGL_STRFMT_LEN);
+	va_list arg;
+	va_start(arg, str);
+	vsprintf(strings.fmt_buf, str, arg);
+	va_end(arg);
+    return strings.fmt_buf;
+}
+void tgl_sound_load(int index, char* file) {
+    if (sound_pool.sounds[index].loaded) {
+        tgl_abort("Duplicate sound index");
+        return;
+    }
+    tgl_sound_data* data = &sound_pool.sounds[index];
+    if (SDL_LoadWAV(file, &data->spec, &data->buffer, &data->length) == NULL) {
+        tgl_abort("Could not load WAV sound: file not found");
+        return;
+    }
+    data->device = SDL_OpenAudioDevice(NULL, 0, &data->spec, NULL, 0);
+    if (data->device <= 0) {
+        tgl_abort("Could not open audio device");
+        return;
+    }
+    data->loaded = true;
+}
+void tgl_sound_play(int index) {
+    tgl_sound_data* data = &sound_pool.sounds[index];
+    if (!data->loaded) {
+        tgl_abort("Sound not found at index");
+        return;
+    }
+    int success = SDL_QueueAudio(data->device, data->buffer, data->length);
+    if (success < 0) {
+        tgl_abort("Could not queue audio");
+        return;
+    }
+    SDL_PauseAudioDevice(data->device, 0);
+}
+int tgl_inkey() {
+    int key = input.last_key;
+    input.last_key = 0;
+    return key;
+}
+bool tgl_key(int scancode) {
+    SDL_PumpEvents();
+    const Uint8* state = SDL_GetKeyboardState(NULL);
+    return state[scancode];
+}
+bool tgl_kshift() {
+    return SDL_GetModState() & KMOD_SHIFT;
+}
+bool tgl_kctrl() {
+    return SDL_GetModState() & KMOD_CTRL;
+}
+bool tgl_kalt() {
+    return SDL_GetModState() & KMOD_ALT;
+}
+bool tgl_kcaps() {
+    return SDL_GetModState() & KMOD_CAPS;
 }

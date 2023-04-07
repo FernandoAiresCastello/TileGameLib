@@ -45,6 +45,7 @@ void tgl_exit();
 void tgl_abort(char* msg);
 void tgl_halt();
 void tgl_update();
+void tgl_hcf();
 
 //==============================================================================
 //      SCREEN
@@ -88,6 +89,7 @@ void tgl_transparent(bool flag);
 void tgl_tileset(int size);
 void tgl_tile_rgb(int index, rgb* pixels);
 void tgl_tile_bin(int index, char* pixels);
+void tgl_tile_rgb_load(int index, char* file);
 
 //==============================================================================
 //      TILE DRAWING
@@ -104,13 +106,29 @@ void tgl_print_free(char* str, int x, int y);
 void tgl_print_tiled(char* str, int x, int y);
 
 //==============================================================================
+//      STRINGS
+//==============================================================================
+char* tgl_fmt(char* str, ...);
+
+//==============================================================================
 //      MATH
 //==============================================================================
 int tgl_rnd(int min, int max);
 
 //==============================================================================
-//      TEST
+//      SOUND
 //==============================================================================
-void tgl_test_static();
+void tgl_sound_load(int index, char* file);
+void tgl_sound_play(int index);
+
+//==============================================================================
+//      KEYBOARD
+//==============================================================================
+int tgl_inkey();
+bool tgl_key(int scancode);
+bool tgl_kshift();
+bool tgl_kctrl();
+bool tgl_kalt();
+bool tgl_kcaps();
 
 #endif
