@@ -38,6 +38,11 @@
 //      PRIVATE API
 //==============================================================================
 #define TGL_TILESIZE    8
+#define TGL_TILELENGTH  (TGL_TILESIZE * TGL_TILESIZE)
+
+typedef enum {
+    TGL_MODE_RGB, TGL_MODE_BINARY
+} tgl_screen_mode;
 
 struct {
     SDL_Window* wnd;
@@ -50,15 +55,26 @@ struct {
     rgb back_color;
     int pixel_w;
     int pixel_h;
+    tgl_screen_mode mode;
     struct {
         bool enabled;
         int x1, y1, x2, y2;
     } clip;
+    bool transparency;
 } screen;
 
+struct {
+    rgb fg;
+    rgb bg;
+} binary_color;
+
 typedef struct {
-    char str[TGL_TILESIZE];
-} tgl_tile;
+    int data[TGL_TILELENGTH];
+} tgl_tiledef;
+
+struct {
+    tgl_tiledef* tiles;
+} tileset;
 
 void tgl_proc_default_events() {
     SDL_Event e = { 0 };
@@ -173,6 +189,7 @@ void tgl_init() {
     rng = seedRand(time(0));
 }
 void tgl_exit() {
+    free(tileset.tiles);                tileset.tiles = NULL;
     free(screen.buf);                   screen.buf = NULL;
     SDL_DestroyTexture(screen.tx);      screen.tx = NULL;
     SDL_DestroyRenderer(screen.rend);   screen.rend = NULL;
@@ -204,15 +221,19 @@ void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_h = buf_height;
     screen.buf_len = sizeof(rgb) * buf_width * buf_height;
     screen.buf = calloc(screen.buf_len, sizeof(rgb));
+    screen.back_color = back_color;
     tgl_clear();
     screen.pixel_w = 1;
     screen.pixel_h = 1;
-    tgl_backcolor(back_color);
+    screen.mode = TGL_MODE_BINARY;
     screen.clip.enabled = false;
     screen.clip.x1 = 0;
     screen.clip.y1 = 0;
     screen.clip.x2 = 0;
     screen.clip.y2 = 0;
+    screen.transparency = false;
+    binary_color.fg = 0xffffff;
+    binary_color.bg = 0x000000;
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
@@ -223,7 +244,7 @@ void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.tx = SDL_CreateTexture(screen.rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, buf_width, buf_height);
     SDL_SetTextureBlendMode(screen.tx, SDL_BLENDMODE_NONE);
     SDL_SetRenderDrawBlendMode(screen.rend, SDL_BLENDMODE_NONE);
-    SDL_SetRenderDrawColor(screen.rend, tgl_color_r(back_color), tgl_color_g(back_color), tgl_color_b(back_color), 255);
+    SDL_SetRenderDrawColor(screen.rend, 0, 0, 0, 255);
     SDL_RenderClear(screen.rend);
     SDL_RenderPresent(screen.rend);
     SDL_SetWindowPosition(screen.wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
@@ -269,6 +290,12 @@ int tgl_width() {
 int tgl_height() {
     return screen.buf_h;
 }
+int tgl_cols() {
+    return screen.buf_w / TGL_TILESIZE;
+}
+int tgl_rows() {
+    return screen.buf_h / TGL_TILESIZE;
+}
 void tgl_clip(int x1, int y1, int x2, int y2) {
     screen.clip.enabled = true;
     screen.clip.x1 = x1;
@@ -295,6 +322,13 @@ byte tgl_color_b(rgb color) {
 rgb tgl_color_rgb(byte r, byte g, byte b) {
     return b | (g << CHAR_BIT) | (r << CHAR_BIT * 2);
 }
+void tgl_color(rgb fore_color, rgb back_color) {
+    binary_color.fg = fore_color;
+    binary_color.bg = back_color;
+}
+void tgl_transparent(bool flag) {
+    screen.transparency = flag;
+}
 int tgl_rnd(int min, int max) {
     return min + genRandLong(&rng) % (max - min + 1);
 }
@@ -303,6 +337,53 @@ void tgl_test_static() {
     for (int y = 0; y < tgl_height(); y++) {
         for (int x = 0; x < tgl_width(); x++) {
             tgl_pset(x, y, pal[tgl_rnd(0, 3)]);
+        }
+    }
+}
+void tgl_mode_rgb() {
+    screen.mode = TGL_MODE_RGB;
+}
+void tgl_mode_bin() {
+    screen.mode = TGL_MODE_BINARY;
+}
+void tgl_tileset(int size) {
+    tileset.tiles = (tgl_tiledef*)calloc(size, sizeof(tgl_tiledef));
+}
+void tgl_tile_rgb(int index, int* data) {
+    for (int i = 0; i < TGL_TILELENGTH; i++) {
+        tileset.tiles[index].data[i] = data[i];
+    }
+}
+void tgl_tile_bin(int index, char* data) {
+    for (int i = 0; i < TGL_TILELENGTH; i++) {
+        tileset.tiles[index].data[i] = data[i];
+    }
+}
+void tgl_draw_tiled(int tile_index, int x, int y) {
+    tgl_draw_free(tile_index, x * TGL_TILESIZE, y * TGL_TILESIZE);
+}
+void tgl_draw_free(int tile_index, int x, int y) {
+    int px = x;
+    int py = y;
+    tgl_tiledef* tile = &tileset.tiles[tile_index];
+    for (int i = 0; i < TGL_TILELENGTH; i++) {
+        if (screen.mode == TGL_MODE_RGB) {
+            tgl_pset(px, py, tile->data[i]);
+        } else if (screen.mode == TGL_MODE_BINARY) {
+            if (tile->data[i] == '1') {
+                tgl_pset(px, py, binary_color.fg);
+            } else if (tile->data[i] == '0') {
+                if (!screen.transparency) {
+                    tgl_pset(px, py, binary_color.bg);
+                }
+            } else {
+                // invalid binary tile
+            }
+        }
+        px++;
+        if (px >= x + TGL_TILESIZE) {
+            px = x;
+            py++;
         }
     }
 }

@@ -60,8 +60,16 @@ void tgl_backcolor(rgb color);
 void tgl_clear();
 int tgl_width();
 int tgl_height();
+int tgl_cols();
+int tgl_rows();
 void tgl_clip(int x1, int y1, int x2, int y2);
 void tgl_unclip();
+
+//==============================================================================
+//      SCREEN MODES
+//==============================================================================
+void tgl_mode_rgb();
+void tgl_mode_bin();
 
 //==============================================================================
 //      COLOR
@@ -70,6 +78,25 @@ byte tgl_color_r(rgb color);
 byte tgl_color_g(rgb color);
 byte tgl_color_b(rgb color);
 rgb tgl_color_rgb(byte r, byte g, byte b);
+void tgl_color(rgb fore_color, rgb back_color);
+void tgl_transparent(bool flag);
+
+//==============================================================================
+//      TILE SET
+//==============================================================================
+void tgl_tileset(int size);
+void tgl_tile_rgb(int index, int* data);
+void tgl_tile_bin(int index, char* data);
+
+//==============================================================================
+//      TILE DRAWING
+//==============================================================================
+void tgl_draw_free(int tile_index, int x, int y);
+void tgl_draw_tiled(int tile_index, int x, int y);
+
+//==============================================================================
+//      MATH
+//==============================================================================
 int tgl_rnd(int min, int max);
 
 //==============================================================================
