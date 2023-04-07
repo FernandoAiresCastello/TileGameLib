@@ -42,6 +42,7 @@ typedef unsigned char byte;
 //==============================================================================
 void tgl_init();
 void tgl_exit();
+void tgl_abort(char* msg);
 void tgl_halt();
 void tgl_update();
 
@@ -85,14 +86,22 @@ void tgl_transparent(bool flag);
 //      TILE SET
 //==============================================================================
 void tgl_tileset(int size);
-void tgl_tile_rgb(int index, int* data);
-void tgl_tile_bin(int index, char* data);
+void tgl_tile_rgb(int index, rgb* pixels);
+void tgl_tile_bin(int index, char* pixels);
 
 //==============================================================================
 //      TILE DRAWING
 //==============================================================================
 void tgl_draw_free(int tile_index, int x, int y);
 void tgl_draw_tiled(int tile_index, int x, int y);
+
+//==============================================================================
+//      TEXT DRAWING
+//==============================================================================
+void tgl_font(int char_index, char* pixels);
+void tgl_font_clear();
+void tgl_print_free(char* str, int x, int y);
+void tgl_print_tiled(char* str, int x, int y);
 
 //==============================================================================
 //      MATH
