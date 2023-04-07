@@ -46,6 +46,7 @@ void tgl_abort(char* msg);
 void tgl_halt();
 void tgl_update();
 void tgl_hcf();
+void tgl_title(char* title);
 
 //==============================================================================
 //      SCREEN
@@ -100,8 +101,8 @@ void tgl_draw_tiled(int tile_index, int x, int y);
 //==============================================================================
 //      TEXT DRAWING
 //==============================================================================
-void tgl_font(int char_index, char* pixels);
 void tgl_font_clear();
+void tgl_font(int char_index, char* pixels);
 void tgl_print_free(char* str, int x, int y);
 void tgl_print_tiled(char* str, int x, int y);
 

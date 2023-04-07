@@ -368,6 +368,9 @@ void tgl_hcf() {
         tgl_update();
     }
 }
+void tgl_title(char* title) {
+    SDL_SetWindowTitle(screen.wnd, title);
+}
 void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_w = buf_width;
     screen.buf_h = buf_height;

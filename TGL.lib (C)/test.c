@@ -3,6 +3,7 @@
 int main(int argc, char* argv[]) {
     tgl_init();
     tgl_screen_360x200(4, 0x101010);
+    tgl_title("Hello World!");
 
     tgl_tileset(10);
     tgl_tile_bin(0, 
