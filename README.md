@@ -30,7 +30,7 @@ I (Fernando) am currently the sole developer for this toolkit. Please check out 
 
 The following projects are also part of the TileGameLib toolkit, but are otherwise completely independent of the main project. These side projects are all located under the [Other](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Other) subdirectory:
 
-- [TGL.lib (C)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib%20(C)) is a plain C library built on top of SDL 2. Just add both TGL.h and TGL.cpp files to your project and compile it (with GCC).
+- [TGL.lib (C)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib%20(C)) is a plain C library built on top of SDL 2, compiled with GCC. To use it, just add both TGL.h and TGL.cpp files to your project.
 
 - [TileGameLibJS](https://github.com/FernandoAiresCastello/TileGameToolkit/tree/master/Other/TileGameLibJS) is a web-based version of TGL using vanilla Javascript.
 
