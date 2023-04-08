@@ -80,14 +80,14 @@ void TGL::update()
 	SDL_Event e = { 0 };
 	tgl->process_default_events(&e);
 }
-int TGL::halt(void(*fn)())
+int TGL::halt(callback fn)
 {
 	while (true) {
 		pause(1, fn);
 	}
 	return exit();
 }
-void TGL::pause(int ms, void(*fn)())
+void TGL::pause(int ms, callback fn)
 {
 	SDL_Event e = { 0 };
 	while (ms > 0) {
@@ -590,11 +590,11 @@ void TGL::input_cursor(char ch)
 {
 	tgl->text_input.cursor = ch;
 }
-string TGL::input_free(int length, int x, int y, void(*fn)())
+string TGL::input_free(int length, int x, int y, callback fn)
 {
 	return tgl->line_input(length, x, y, false, fn);
 }
-string TGL::input_tiled(int length, int col, int row, void(*fn)())
+string TGL::input_tiled(int length, int col, int row, callback fn)
 {
 	return tgl->line_input(length, col, row, true, fn);
 }
