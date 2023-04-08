@@ -26,7 +26,7 @@ void demo_binarycolor()
 		"11111111"
 	);
 
-	while (tgl.running()) {
+	while (tgl.window()) {
 		tgl.color_binary(0xff0000, 0x00ff00);
 		tgl.draw_tiled("test", 0, 0);
 		tgl.color_binary(0x0000ff, 0xff00ff);

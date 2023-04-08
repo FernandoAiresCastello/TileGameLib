@@ -57,7 +57,6 @@ struct TGL
 	int exit();
 	int halt(callback fn = nullptr);
 	void pause(int ms, callback fn = nullptr);
-	bool running();
 	void error(string msg);
 	void abort(string msg);
 	string date();
@@ -71,6 +70,7 @@ struct TGL
 	void window_160x144(rgb back_color, int size_factor);
 	void window_256x192(rgb back_color, int size_factor);
 	void window_360x200(rgb back_color, int size_factor);
+	bool window();
 	void title(string str);
 	void backcolor(rgb back_color);
 	void clear();

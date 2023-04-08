@@ -112,9 +112,9 @@ void TGL::window_360x200(rgb back_color, int size_factor)
 {
 	window(360, 200, back_color, size_factor);
 }
-bool TGL::running()
+bool TGL::window()
 {
-	return tgl->is_running;
+	return tgl->wnd != nullptr;
 }
 void TGL::title(string str)
 {

@@ -139,13 +139,6 @@
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">bool</span> running()
-</p>
-<p class="apiref-entry">
-	Returns true as long as the application is running, i.e. if the window hasn't been closed either by the user or by forcing an exit.
-</p>
-<!---------------------------------------------------------------------------->
-<p class="apiref-entry-title">
 	<span class="apiref-type">void</span> error(<span class="apiref-type">string</span> msg)
 </p>
 <p class="apiref-entry">
@@ -186,21 +179,35 @@
 	<span class="apiref-type">void</span> window(<span class="apiref-type">int</span> img_width, <span class="apiref-type">int</span> img_height, <span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
-	Creates the application window with the specified image size (in pixels), background color and size factor (ranging from 1 to 5). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
+	Creates the application window with the specified custom image size (in pixels), background color and size factor (ranging from 1 to 5). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> window_gbc(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+	<span class="apiref-type">void</span> window_160x144(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
-	Almost the same as window() but creates the image with a size of 160x144 pixels (i.e. same resolution as the GBC).
+	Creates the application window with an image size of 160x144 pixels (same resolution as the GameBoy Color).
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">
-	<span class="apiref-type">void</span> window_wide(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+	<span class="apiref-type">void</span> window_256x192(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
 </p>
 <p class="apiref-entry">
-	Almost the same as window() but creates the image with a size of 360x200 pixels.
+	Creates the application window with an image size of 256x192 pixels (same resolution as the MSX or ZX Spectrum).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_360x200(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+</p>
+<p class="apiref-entry">
+	Creates the application window with an image size of 360x200 pixels (widescreen, 16:9 aspect ratio).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> window()
+</p>
+<p class="apiref-entry">
+	Returns true as long as the application window is open. Returns false otherwise.
 </p>
 <!---------------------------------------------------------------------------->
 <p class="apiref-entry-title">

@@ -5,7 +5,7 @@ void demo_mouse()
 	TGL tgl;
 	tgl.window_360x200(0xffffff, 4);
 
-	while (tgl.running()) {
+	while (tgl.window()) {
 
 		tgl.clear();
 		tgl.font_color(0x000000);

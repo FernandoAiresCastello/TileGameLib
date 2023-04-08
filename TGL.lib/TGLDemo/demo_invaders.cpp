@@ -48,7 +48,7 @@ void demo_invaders()
 	tgl.view_new("main", 0, 0, tgl.width(), 120, 0x000000, true);
 	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
 
-	while (tgl.running()) {
+	while (tgl.window()) {
 		tgl.view("main");
 		aliens_cycle();
 		player_cycle();

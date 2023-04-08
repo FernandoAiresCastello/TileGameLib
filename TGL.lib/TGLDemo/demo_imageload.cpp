@@ -7,7 +7,7 @@ void demo_imageload()
 
 	tgl.tile_load("smiley", "Tiles/smiley.bmp");
 
-	while (tgl.running()) {
+	while (tgl.window()) {
 		if (tgl.kb_esc()) tgl.exit();
 
 		tgl.clear();

@@ -12,7 +12,7 @@ void demo_font()
 	
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
 
-	while (tgl.running()) {
+	while (tgl.window()) {
 
 		tgl.update();
 
