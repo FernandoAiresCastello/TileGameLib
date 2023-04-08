@@ -166,8 +166,8 @@
     <PostBuildEvent>
       <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)Builds\TGL.lib"
 copy "$(ProjectDir)TGL.h" "$(SolutionDir)Builds\TGL.h"
-copy "$(OutDir)TGL.lib" "$(SolutionDir)..\Releases\TGL\TGL.lib"
-copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\Releases\TGL\TGL.h"
+copy "$(OutDir)TGL.lib" "$(SolutionDir)..\Releases\TGL.lib\TGL.lib"
+copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\Releases\TGL.lib\TGL.h"
 </Command>
     </PostBuildEvent>
     <Lib>
