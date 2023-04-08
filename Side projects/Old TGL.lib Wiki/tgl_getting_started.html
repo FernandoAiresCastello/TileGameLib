@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="tgl_index.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>TileGameLib (TGL) Docs</title>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<a name="top"></a>
+<table class="page-header">
+	<tr>
+		<td class="page-header icon">
+			<a href="tgl_index.html" class="home-link">
+				<img class="gameboy-icon" src="images/wiki-banner-1.fw.png">
+			</a>
+		</td>
+		<td class="page-header left">
+		</td>
+	</tr>
+</table>
+
+<!-- CONTENT -->
+
+<p class="section-header">GETTING STARTED</p>
+
+<p>
+	This page will guide you through the steps necessary to install TileGameLib in your local environment and show you how to start making games with it.
+</p>
+<p>
+	<b>Note:</b> This guide is for using the pre-built TGL library in your own projects. To build TGL in your own development environment you'll need to follow a different setup process which is not described in this page.
+</p>
+
+<p class="sub-section-header">PREREQUISITES</p>
+<ol>
+	<li>
+		<b><a href="https://visualstudio.microsoft.com/vs/community/" target="_blank">Visual Studio Community</a>: </b>If you don't have Visual Studio installed, you can click this link to download and install it for free. TGL has been tested on the Community Edition of VS 2019 and 2022, so it should at least work in either of those.
+	</li>
+	<li>
+		<b><a href="https://github.com/libsdl-org/SDL/releases/download/release-2.0.8/SDL2-devel-2.0.8-VC.zip" target="_blank">SDL 2</a>: </b>If you don't have the SDL 2 library installed, first you'll need to download and install it. TGL has been developed and tested only with SDL <b>version 2.0.8</b>. You can click this link to download it from the official SDL repository on GitHub. If this link is dead for some reason just remember you need to download specifically the <b>SDL2-devel-2.0.8-VC.zip</b> file, so you can search for this on Google and you should find it somewhere else. Extract the downloaded ZIP file into your preferred location. Upon extracting it you should see a folder named <b>SDL2-2.0.8</b>. SDL is now installed on your system. The path where you installed SDL will be referred to as <b>SDL_PATH</b> for the rest of this guide.
+	</li>
+	<li>
+		<b><a href="https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL.lib" target="_blank">TileGameLib</a>: </b>Click this link to download the latest build of TileGameLib from the GitHub repository. Note that you need to download both files: <b>TGL.h</b> and <b>TGL.lib</b>. Then you can keep both of these files together in your preferred location. TGL is now installed on your system. The path where you installed TGL will be referred to as <b>TGL_PATH</b> for the rest of this guide.
+	</li>
+</ol>
+
+<p class="sub-section-header">SETUP</p>
+
+<ol>
+	<li>
+		Create a new empty C++ project in Visual Studio.
+		<p class="screenshot"><img src="images/setup-1.png"></p>
+	<li>
+		Enter a name for your project, for example "HelloWorld", and the path where it will be created, then click on the "Create" button.
+		<p class="screenshot"><img src="images/setup-2.png"></p>
+	</li>
+	<li>
+		Once created, right-click on the project in the "Solution Explorer" tool window on the left side of the IDE, then on the dropdown menu that appears, select "Add", then click on "New Item...". The "Add New Item" window will appear. Select "Visual C++" on the left panel, and "C++ File (.cpp)" on the right panel. Type "main.cpp" in the "Name" field on the bottom panel then click on "Add" to create the file.
+		<p class="screenshot"><img src="images/setup-3.png"></p>
+	</li>
+	<li>
+		Right-click again on the project in the "Solution Explorer", then click on "Properties".
+		<p class="screenshot"><img src="images/setup-4.png"></p>
+	</li>
+	<li>
+		On the left panel, expand the "C/C++" section and select "General". Now on the right panel, click on "Additional Include Directories". Add both directories where the header files for SDL and TGL are located. In the example screenshot below, the SDL_PATH is "C:\Lib\SDL2-2.0.8" and TGL_PATH is "C:\Lib\TGL". Remember, TGL_PATH and SDL_PATH refer to the root directories where you've installed the libraries, so you'll have to change both paths accordingly.
+		<p class="screenshot"><img src="images/setup-5.png"></p>
+	</li>
+	<li>
+		On the left panel, expand the "Linker" section and select "General". Now on the right panel, click on "Additional Library Directories". Add both directories where the binaries for SDL and TGL are located. The binaries are the ".lib" files. For SDL you need to include specifically the directory under "SDL_PATH\lib\x86". For TGL you need to include the same directory as the previous step (i.e. TGL_PATH).
+		<p class="screenshot"><img src="images/setup-6.png"></p>
+	</li>
+	<li>
+		On the left panel, still under the "Linker" section, select "Input". Now on the right panel, click on "Additional Dependencies". Add the SDL, SDLmain and TGL libraries as show in the screenshot below. Note that the order in which you include them is important, so SDL.lib should be first, then SDLmain.lib and last TGL.lib.
+		<p class="screenshot"><img src="images/setup-7.png"></p>
+	</li>
+	<li>
+		On the left panel, still under the "Linker" section, select "System". Now on the right panel, click on "SubSystem" and choose the option "Windows" in the dropdown menu of this option.
+		<p class="screenshot"><img src="images/setup-8.png"></p>
+	</li>
+	<li>
+		Click OK and the setup is finished! Now you can go ahead and create your first TGL app. Read the next section to create the typical "Hello World" program.
+	</li>
+</ol>
+
+<p class="sub-section-header">HELLO WORLD!</p>
+
+<p>Now let me show you a simple program that prints "Hello World!" on a window using TGL, to demonstrate how easy it is. Copy the following code into your "main.cpp" file:</p>
+
+<p class="code">
+#include &lt;TGL.h&gt;
+
+int main(int argc, char* argv[])
+{
+	TGL tgl;
+	
+	tgl.window_gbc(0xffffff, 4);
+	tgl.font_color(0x000000);
+	tgl.print_free("Hello World!", 35, 65);
+
+	return tgl.halt();
+}
+</p>
+
+<p>
+	Now let's explain what happens in each line:
+</p>
+<ol>
+	<li>
+		The TGL.h header file is included at the top. 
+	</li>
+	<li>
+		Inside the main function, the first line creates the TGL singleton. This initializes the internal state of the library. 
+	</li>
+	<li>
+		Next, the window_gbc() function opens the application window. The first argument is the background color (white in this case), and the second argument is the window size factor.
+	</li>
+	<li>
+		Next, the font_color() function sets the color of the following text (black in this case).
+	</li>
+	<li>
+		Next, the print_free() function draws the string "Hello World!" on the screen at the absolute x and y coordinates of 35 and 65 respectively. Note that since the color mode has not been defined using any of the "color_" functions, the text appears as black (i.e. the default).
+	</li>
+	<li>
+		Lastly, the halt() function stops execution of the program, but keeps the window open and refreshing automatically so that you can see the output. Closing the window will terminate the application.
+	</li>
+</ol>
+
+Now just build your project and run. If everything is OK with your setup, you should see a window like this appear at the center of your screen:
+<p class="screenshot"><img src="images/helloworld.png" width="400"></p>
+
+<a href="tgl_index.html" class="back-home">Back to Home</a>
+
+</body>
+</html>

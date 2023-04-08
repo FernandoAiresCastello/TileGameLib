@@ -21,6 +21,13 @@ struct t_alien {
 };
 vector<t_alien> aliens;
 
+struct {
+	tile_rgb missile;
+	tile_rgb spaceship;
+	tile_rgb alien;
+	tile_rgb blast;
+} tiles;
+
 void init_tiles();
 void init_aliens();
 void init_sounds();
@@ -35,7 +42,6 @@ void demo_invaders()
 {
 	tgl.title("TGL Invaders");
 	tgl.window_160x144(0xffffff, 5);
-	tgl.tile_transparency_key(0xffffff);
 
 	init_tiles();
 	init_aliens();
@@ -94,9 +100,9 @@ void player_shoot()
 void player_cycle()
 {
 	if (player.missile.active) {
-		tgl.draw_free("missile", player.missile.x, player.missile.y);
+		tgl.draw_free(tiles.missile, player.missile.x, player.missile.y);
 	}
-	tgl.draw_free("spaceship", player.x, player.y);
+	tgl.draw_free(tiles.spaceship, player.x, player.y);
 
 	if (player.missile.active) {
 		player.missile.y -= 2;
@@ -110,14 +116,14 @@ void aliens_cycle()
 	for (auto& alien : aliens) {
 		if (alien.alive) {
 			if (alien.y >= -tgl.tilesize) {
-				tgl.draw_free("alien", alien.x, alien.y);
+				tgl.draw_free(tiles.alien, alien.x, alien.y);
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
 					alien_destroy(alien);
 				}
 			}
 		} else if (alien.blast_counter > 0) {
 			alien.blast_counter--;
-			tgl.draw_free("blast", alien.x, alien.y);
+			tgl.draw_free(tiles.blast, alien.x, alien.y);
 		}
 		if (tgl.timer("alien_move")) {
 			alien.y += 4;
@@ -145,27 +151,14 @@ void init_aliens()
 }
 void init_sounds()
 {
-	// MUSIC
 	tgl.sound_load("bgmusic", "Sound/bgmusic.wav");
-
-	// SFX
 	tgl.sound_load("player_missile", "Sound/player_missile.wav");
 	tgl.sound_load("enemy_dead", "Sound/enemy_dead.wav");
 }
 void init_tiles()
 {
-	// SPACESHIP
-	tgl.tile_load("spaceship", "Tiles/spaceship_1.bmp");
-	tgl.tile_load("spaceship", "Tiles/spaceship_2.bmp");
-	
-	// MISSILE
-	tgl.tile_load("missile", "Tiles/player_missile.bmp");
-
-	// ALIEN
-	tgl.tile_load("alien", "Tiles/alien_1.bmp");
-	tgl.tile_load("alien", "Tiles/alien_2.bmp");
-
-	// BLAST
-	tgl.tile_load("blast", "Tiles/blast_1.bmp");
-	tgl.tile_load("blast", "Tiles/blast_2.bmp");
+	tiles.spaceship = tgl.tile_load_rgb("Tiles/spaceship_1.bmp", 0xffffff);
+	tiles.missile = tgl.tile_load_rgb("Tiles/player_missile.bmp", 0xffffff);
+	tiles.alien = tgl.tile_load_rgb("Tiles/alien_1.bmp", 0xffffff);
+	tiles.blast = tgl.tile_load_rgb("Tiles/blast_1.bmp", 0xffffff);
 }

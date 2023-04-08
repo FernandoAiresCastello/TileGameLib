@@ -2,8 +2,6 @@ var searchData=
 [
   ['clear_0',['clear',['../struct_t_g_l.html#a02cd9996d1bdd155bd05459c959fa568',1,'TGL']]],
   ['collision_1',['collision',['../struct_t_g_l.html#aafb05844ee13e9a6f07aaff4e3733705',1,'TGL']]],
-  ['color_5fbinary_2',['color_binary',['../struct_t_g_l.html#a3b97d4e1faee49f03160a4a556b752af',1,'TGL::color_binary(rgb fore_color)'],['../struct_t_g_l.html#aa09c11c9238faf333e6841e03bb2dba7',1,'TGL::color_binary(rgb fore_color, rgb back_color)']]],
-  ['color_5fnormal_3',['color_normal',['../struct_t_g_l.html#a3202f13e2baa49d16d522b1ca20bb41b',1,'TGL']]],
-  ['cols_4',['cols',['../struct_t_g_l.html#a7085a1ccd5085a33c3cf460734c671e6',1,'TGL']]],
-  ['contains_5',['contains',['../struct_t_g_l.html#a4581315d0f5b8ce8956babed3db3c8d9',1,'TGL']]]
+  ['cols_2',['cols',['../struct_t_g_l.html#a7085a1ccd5085a33c3cf460734c671e6',1,'TGL']]],
+  ['contains_3',['contains',['../struct_t_g_l.html#a4581315d0f5b8ce8956babed3db3c8d9',1,'TGL']]]
 ];

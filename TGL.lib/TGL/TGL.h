@@ -40,6 +40,21 @@ typedef int rgb;
 typedef unsigned char byte;
 typedef void(*callback)();
 
+struct tile_rgb
+{
+	rgb pixels[64];
+	bool transparent = false;
+	rgb transparency_key = 0xffffff;
+	tile_rgb();
+	tile_rgb(rgb pixels[64]);
+	tile_rgb(rgb pixels[64], rgb transparency_key);
+};
+struct tile_bin
+{
+	string bits;
+	tile_bin();
+	tile_bin(string bits);
+};
 struct TGL
 {
 	TGL();
@@ -93,32 +108,21 @@ struct TGL
 	int scroll_y(string view_id);
 
 	//=========================================================================
-	//		GRAPHICS > COLOR MODES
+	//		GRAPHICS > TILES
 	//=========================================================================
-	void color_normal();
-	void color_binary(rgb fore_color);
-	void color_binary(rgb fore_color, rgb back_color);
-
-	//=========================================================================
-	//		GRAPHICS > TILE SET
-	//=========================================================================
-	void tile_add(string tile_id);
-	void tile_add(string tile_id, rgb pixels[64]);
-	void tile_add(string tile_id, string binary_pattern);
-	void tile_load(string tile_id, string path);
-	void tile_transparent(bool state);
-	void tile_transparency_key(rgb color);
-	void tile_replace_color(string tile_id, rgb original_color, rgb new_color);
-
-	//=========================================================================
-	//		GRAPHICS > TILE RENDERING
-	//=========================================================================
-	void draw_free(string tile_id, int x, int y);
-	void draw_tiled(string tile_id, int col, int row);
-	void draw_free_ex(string binary_pattern, int x, int y, rgb fore_color);
-	void draw_free_ex(string binary_pattern, int x, int y, rgb fore_color, rgb back_color);
-	void draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color);
-	void draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color, rgb back_color);
+	tile_rgb tile_load_rgb(string path);
+	tile_rgb tile_load_rgb(string path, rgb transparency_key);
+	tile_bin tile_load_bin(string path);
+	void draw_free(tile_rgb& tile, int x, int y);
+	void draw_free(tile_bin& tile, int x, int y, rgb fore_color);
+	void draw_free(tile_bin& tile, int x, int y, rgb fore_color, rgb back_color);
+	void draw_free(string binary, int x, int y, rgb fore_color);
+	void draw_free(string binary, int x, int y, rgb fore_color, rgb back_color);
+	void draw_tiled(tile_rgb& tile, int x, int y);
+	void draw_tiled(tile_bin& tile, int x, int y, rgb fore_color);
+	void draw_tiled(tile_bin& tile, int x, int y, rgb fore_color, rgb back_color);
+	void draw_tiled(string binary, int x, int y, rgb fore_color);
+	void draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color);
 
 	//=========================================================================
 	//		GRAPHICS > TEXT RENDERING
@@ -131,7 +135,7 @@ struct TGL
 	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
 	void font_transparent(bool state);
 	void print_free(string str, int x, int y);
-	void print_tiled(string str, int col, int row);
+	void print_tiled(string str, int x, int y);
 
 	//=========================================================================
 	//		SOUND

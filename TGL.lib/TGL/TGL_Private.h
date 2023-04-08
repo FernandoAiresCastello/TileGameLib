@@ -12,11 +12,6 @@ private:
 	~TGL_Private();
 
 	struct {
-		int x = 0;
-		int y = 0;
-	} cursor;
-
-	struct {
 		rgb fore_color = 0xffffff;
 		rgb back_color = 0x000000;
 		bool transparent = true;
@@ -30,13 +25,6 @@ private:
 		bool cancelled = false;
 		char cursor = '_';
 	} text_input;
-
-	struct t_tile {
-		rgb pixels[64];
-	};
-	struct t_tileseq {
-		vector<t_tile> tiles;
-	};
 
 	struct t_viewport {
 		int x1 = 0;
@@ -62,20 +50,6 @@ private:
 		Uint32 fps_frames = 0;
 	} perfmon;
 
-	struct {
-		bool enabled = false;
-		rgb key = 0xffffff;
-	} tile_transparency;
-
-	enum class t_colormode {
-		normal, binary
-	} color_mode = t_colormode::normal;
-
-	struct {
-		rgb fore = 0xffffff;
-		rgb back = 0x000000;
-	} binary_color;
-
 	TGL* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
@@ -85,7 +59,6 @@ private:
 	int frame_counter;
 	bool fps_enabled = false;
 	rgb wnd_back_color;
-	unordered_map<string, t_tileseq> tiles;
 	unordered_map<char, string> font_patterns;
 	unordered_map<string, t_viewport> views;
 	t_viewport* cur_view = nullptr;
@@ -95,7 +68,6 @@ private:
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);
-	bool assert_tile_exists(string& id);
 	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
@@ -104,19 +76,14 @@ private:
 	void on_draw_frame_end();
 	void clear_entire_window();
 	void clear_view();
-	void pos_free(int x, int y);
-	void pos_tiled(int x, int y);
-	void draw(string& tile_id);
-	void print(string str);
+	void print(string str, int x, int y, bool tiled);
 	void advance_timers();
 	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();
-	string line_input(int length, int x, int y, bool tiled, void(*fn)());
+	string line_input(int length, int x, int y, bool tiled, callback fn);
 	char keycode_to_char(SDL_Keycode key);
 	bool is_shade_of_gray(TColor& color);
 	int get_gray_level(TColor& color);
-	void color_normal();
-	void color_binary(rgb fore_color);
-	void color_binary(rgb fore_color, rgb back_color);
+	void adjust_pos(int& x, int& y);
 };

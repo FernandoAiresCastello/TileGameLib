@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="tgl_index.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>TileGameLib (TGL) Docs</title>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<a name="top"></a>
+<table class="page-header">
+	<tr>
+		<td class="page-header icon">
+			<a href="tgl_index.html" class="home-link">
+				<img class="gameboy-icon" src="images/wiki-banner-1.fw.png">
+			</a>
+		</td>
+		<td class="page-header left">
+		</td>
+	</tr>
+</table>
+
+<!-- CONTENT -->
+
+<p class="section-header">API REFERENCE</p>
+
+<p>
+	This is a list of all functions, types and constants in the public API.
+</p>
+<p>
+	Note that all constants and functions listed here are members of the TGL class, and all types are declared at the global scope in the TGL.h header, which means this is the only header you need to include in your program to use the features of the entire API.
+</p>
+
+<div class="apiref-index">
+	<table class="apiref-index-tbl">
+		<tr>
+			<td><a href="#types">Types</a></td>
+			<td><a href="#constants">Constants</a></td>
+			<td><a href="#system">System</a></td>
+		</tr>
+		<tr>
+			<td><a href="#window">Graphics > Window</a></td>
+			<td><a href="#views">Graphics > Views</a></td>
+			<td><a href="#colormodes">Graphics > Color Modes</a></td>
+		</tr>
+		<tr>
+			<td><a href="#tileset">Graphics > Tile Set</a></td>
+			<td><a href="#palette">Graphics > Color Palette</a></td>
+			<td><a href="#tiledraw">Graphics > Tile Drawing</a></td>
+		</tr>
+		<tr>
+			<td><a href="#textdraw">Graphics > Text Drawing</a></td>
+			<td><a href="#textinput">Input > Text</a></td>
+			<td><a href="#mouse">Input > Mouse</a></td>
+		</tr>
+		<tr>
+			<td><a href="#keyboard">Input > Keyboard</a></td>
+			<td><a href="#gamepad">Input > Controller</a></td>
+			<td><a href="#sound">Sound</a></td>
+		</tr>
+		<tr>
+			<td><a href="#timers">Timers</a></td>
+			<td><a href="#strings">Strings</a></td>
+			<td><a href="#math">Math</a></td>
+		</tr>
+		<tr>
+			<td><a href="#collision">Collision</a></td>
+			<td><a href="#filesystem">Filesystem</a></td>
+			<td><a href="#debug">Debugging</a></td>
+		</tr>
+	</table>
+</div>
+
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="types">TYPES</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">typedef <span class="apiref-type">unsigned char</span> byte</span>
+</p>
+<p class="apiref-entry">
+	Represents a byte value (i.e. an integer number from 0 to 255).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">typedef <span class="apiref-type">int</span> rgb</span>
+</p>
+<p class="apiref-entry">
+	Used for representing a color in 32-bit RGB format (i.e. from 0x000000 to 0xffffff).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">struct TGL</span>
+</p>
+<p class="apiref-entry">
+	This is the entry point for all features of the TGL public API. All constants and functions described below are public members of this class, so in this reference the scoping "TGL::" part is omitted from all declarations for brevity.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="constants">CONSTANTS</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">const int</span> tilesize
+</p>
+<p class="apiref-entry">
+	Defined as 8, which is both the width and height of tiles.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="system">SYSTEM</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> update()
+</p>
+<p class="apiref-entry">
+	This function should be called at the end of every frame in your application. It refreshes the window with everything that has been drawn in that frame, updates internal state such as timers and automatic animation of tiles, and also processes default window events such as the "close" button to exit the application and the ALT+ENTER key combination to toggle fullscreen mode.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> exit()
+</p>
+<p class="apiref-entry">
+	Forces the window to close and terminates execution of the application immediately. It's the same as closing the window using the X button on the top-right corner. Returns 0 so that it can be called with a return statement at the end of the main function if needed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> halt()
+</p>
+<p class="apiref-entry">
+	Stops program execution. The only way out of the halted state is by closing the window to terminate the program. Note that even while halted the window still gets refreshed and the processing of default events still occurs in each and every frame. Returns 0 so that it can be called with a return statement at the end of the main function if needed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> pause(<span class="apiref-type">int</span> frames)
+</p>
+<p class="apiref-entry">
+	Pauses program execution for the specified number of frames. Note that while the system is "paused", the window still gets refreshed and the processing of default events still occurs in each and every frame.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> error(<span class="apiref-type">string</span> msg)
+</p>
+<p class="apiref-entry">
+	Reports an error to the user, by showing a standard modal message box with the specified message. Continues execution normally once the message is dismissed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> abort(<span class="apiref-type">string</span> msg)
+</p>
+<p class="apiref-entry">
+	Almost the same as the error() function, but terminates the application as soon as the message is dismissed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> date()
+</p>
+<p class="apiref-entry">
+	Returns the current date of the OS in the MM/DD/YYYY format.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> time()
+</p>
+<p class="apiref-entry">
+	Returns the current time of the OS in the HH:MM:SS format.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> datetime()
+</p>
+<p class="apiref-entry">
+	Returns the combined date and time in a single string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="window">GRAPHICS > WINDOW</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window(<span class="apiref-type">int</span> img_width, <span class="apiref-type">int</span> img_height, <span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+</p>
+<p class="apiref-entry">
+	Creates the application window with the specified custom image size (in pixels), background color and size factor (ranging from 1 to 5). Size factor simply scales the frame image, which has a constant fixed size, to fit a larger window, i.e. all pixels get stretched both horizontally and vertically as required. Currently there is no support for multiple windows. Once the window is closed, the application terminates automatically.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_160x144(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+</p>
+<p class="apiref-entry">
+	Creates the application window with an image size of 160x144 pixels (same resolution as the GameBoy Color).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_256x192(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+</p>
+<p class="apiref-entry">
+	Creates the application window with an image size of 256x192 pixels (same resolution as the MSX or ZX Spectrum).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> window_360x200(<span class="apiref-type">rgb</span> back_color, <span class="apiref-type">int</span> size_factor)
+</p>
+<p class="apiref-entry">
+	Creates the application window with an image size of 360x200 pixels (widescreen, 16:9 aspect ratio).
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> window()
+</p>
+<p class="apiref-entry">
+	Returns true as long as the application window is open. Returns false otherwise.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> title(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Sets the window title to the specified string. This can be called even before the window is created since it's stored separately and it gets assigned to the window as soon as it opens.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> backcolor(<span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Set the background color of the window, i.e. the color that appears in the default view, behind all user-created views.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> clear()
+</p>
+<p class="apiref-entry">
+	Clears the contents of the current view, by filling the entire view region with that view's background color.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> fullscreen(<span class="apiref-type">bool</span> full)
+</p>
+<p class="apiref-entry">
+	Passing true as argument will make the application enter fullscreen mode. Passing false will return to windowed mode.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> fullscreen()
+</p>
+<p class="apiref-entry">
+	Returns true if the window is in fullscreen mode, or false if it's in windowed mode.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> screenshot(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Takes a screenshot of the entire current frame image and saves it as a bitmap file (.bmp) in the specified path.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> width()
+</p>
+<p class="apiref-entry">
+	Returns the horizontal resolution of the frame image, regardless of the actual size of the window.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> height()
+</p>
+<p class="apiref-entry">
+	Returns the vertical resolution of the frame image, regardless of the actual size of the window.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> cols()
+</p>
+<p class="apiref-entry">
+	Returns the result of the formula: cols = width / tilesize.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> rows()
+</p>
+<p class="apiref-entry">
+	Returns the result of the formula: rows = height / tilesize.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="views">GRAPHICS > VIEWS</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> view_new(<span class="apiref-type">string</span> view_id, <span class="apiref-type">int</span> x1, <span class="apiref-type">int</span> y1, <span class="apiref-type">int</span> x2, <span class="apiref-type">int</span> y2, <span class="apiref-type">rgb</span> back_color, <span class="apiref-type">bool</span> clear_bg)
+</p>
+<p class="apiref-entry">
+	Creates a new rectangular view with the specified view_id, with the top-left corner at the x1 and y1 coordinates and the bottom-right corner at the x2 and y2 coordinates. The background color of the view is specified in the back_color argument. If the clear_bg argument is true, the region within this view will be cleared to its background color everytime the view is drawn. If clear_bg is false, when the view is drawn the system does not clear the background pixels, which means subsequent tiles drawn on this view will be rendered over whatever was drawn before within that same region.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> view_default()
+</p>
+<p class="apiref-entry">
+	Selects the default view as the current view for drawing, which means the region of the entire frame image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> view(<span class="apiref-type">string</span> view_id)
+</p>
+<p class="apiref-entry">
+	Selects the specified view as the current view for drawing.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> scroll(<span class="apiref-type">int</span> dx, <span class="apiref-type">int</span> dy)
+</p>
+<p class="apiref-entry">
+	Scrolls the current view by the specified distance, where dx is the horizontal distance and dy is the vertical distance.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> scroll_to(<span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
+</p>
+<p class="apiref-entry">
+	Scrolls the the current view to the absolute specified coordinates.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> scroll_x()
+</p>
+<p class="apiref-entry">
+	Returns the horizontal scroll position for the current view.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> scroll_y()
+</p>
+<p class="apiref-entry">
+	Returns the vertical scroll position for the current view.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="colormodes">GRAPHICS > COLOR MODES</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_normal()
+</p>
+<p class="apiref-entry">
+	Enables the "normal" color mode. This is the default. In this mode, when drawing a tile, the system interprets the color information encoded within the tile data itself, in the form of RGB values for each one of the 64 pixels, i.e. a bitmapped image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_binary(<span class="apiref-type">rgb</span> fore_color)
+</p>
+<p class="apiref-entry">
+	Enables the "binary" color mode and sets the foreground color. In this mode, the system interprets only the values '0' and '1' in the tile data, '0' meaning background and '1' meaning foreground. The colors are assigned just before drawing a tile..
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> color_binary(<span class="apiref-type">rgb</span> fore_color, <span class="apiref-type">rgb</span> back_color)
+</p>
+<p class="apiref-entry">
+	Almost the same as the other "color_binary" function. Enables the "binary" color mode and sets the foreground and background colors.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="tileset">GRAPHICS > TILE SET</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id)
+</p>
+<p class="apiref-entry">
+	Creates a new, empty tile sequence with the specified id.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">rgb</span> pixels[64])
+</p>
+<p class="apiref-entry">
+	Creates or adds to an existing tile sequence, a single tile with the specified pixel colors in RGB format. Suitable for use with the "normal" color mode.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_add(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> binary_pattern)
+</p>
+<p class="apiref-entry">
+	Creates or adds to an existing tile sequence, a single tile with the specified binary pattern, i.e. a string containing only characters 0's and 1's, where 0 represents the background and 1 represents the foreground. Suitable for use with the "binary" color mode.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_load(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a bitmap image from a file, creates a new tile sequence with a single tile and assigns to it the specified tile_id and pixels. Only uncompressed, 24-bit RGB color bitmap files are supported. Each bitmap loaded must be exactly 8x8 pixels in size, or else this function fails.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_transparent(<span class="apiref-type">bool</span> state)
+</p>
+<p class="apiref-entry">
+	Enables or disables tile transparency. This function does not change the color of the transparency key.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_transparency_key(<span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Enables and sets the color of the global transparency key, i.e. whenever any tile contains the specified color, it will not be rendered if transparency is enabled.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> tile_replace_color(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">rgb</span> original_color, <span class="apiref-type">rgb</span> new_color)
+</p>
+<p class="apiref-entry">
+	Replaces every pixel of the original_color with the new_color in the specified tile.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="tiledraw">GRAPHICS > TILE DRAWING</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> draw_free(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
+</p>
+<p class="apiref-entry">
+	Draws into the current view the 8x8 pixel pattern of the current animation frame of the tile sequence indicated by tile_id, with the top-left corner of the tile at the specified absolute coordinates x and y, using the colors indicated by the latest call to one of the "color_" functions. Note that only pixels located within the current scroll position will be rendered.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> draw_tiled(<span class="apiref-type">string</span> tile_id, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)</p>
+<p class="apiref-entry">
+	Almost the same as the draw_free() function, except that instead of specifying the x and y coordinates, this function expects the numbers of a column and row within a virtual, invisible and infinitely large grid which divides the entire graphical system into 8x8 cells, and the tile is drawn neatly within that cell. This is basically a simple shortcut to draw tiles without them overlapping with one another, simulating the background tilemaps that were used on the GBC. As with the draw_free() function, only pixels located within the current scroll position will be rendered.</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="textdraw">GRAPHICS > TEXT DRAWING </p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font(<span class="apiref-type">char</span> ch, <span class="apiref-type">string</span> pattern)
+</p>
+<p class="apiref-entry">
+	Sets the tile pattern for the specified character in the internal font tileset used for drawing text. Note that the font tileset is separate and independent from the regular tileset, but the tiles themselves are drawn in the exact same manner, i.e. all features and limitations of regular tiles also apply to font characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_new()
+</p>
+<p class="apiref-entry">
+	Deletes all font characters. Useful for implementing entirely new custom fonts from the ground up.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_reset()
+</p>
+<p class="apiref-entry">
+	Resets all font characters to their default tile patterns.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Set the color of the text font. The background of the text will be transparent.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_color(<span class="apiref-type">rgb</span> fore_color, <span class="apiref-type">rgb</span> back_color)
+</p>
+<p class="apiref-entry">
+	Set the foreground and background colors of the text font. The background of the text is drawn normally.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_shadow(<span class="apiref-type">bool</span> shadow, <span class="apiref-type">rgb</span> shadow_color <span class="apiref-default-arg">= 0x000000</span>)
+</p>
+<p class="apiref-entry">
+	Enables or disables the font shadow, and optionally sets the RGB color of the font shadow if it's enabled. Enabling font shadow simply makes the "print_" functions draw the text with a "shadow" of the specified color underneath it to make reading easier.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> font_transparent(<span class="apiref-type">bool</span> state)
+</p>
+<p class="apiref-entry">
+	Enables or disables the font transparency.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> print_free(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y)
+</p>
+<p class="apiref-entry">
+	Draws the specified text with the top-left corner at the specified x and y coordinates.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> print_tiled(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row)
+</p>
+<p class="apiref-entry">
+	Like the print_free() function, this function also draws the specified string, but the first character is drawn within the cell at the specified column and row numbers in the same grid used by the draw_tiled() function, with subsequent tiles drawn within the cells at the adjacent columns to the right.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="textinput">INPUT > TEXT</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> input_color(<span class="apiref-type">rgb</span> foreground, <span class="apiref-type">rgb</span> background)
+</p>
+<p class="apiref-entry">
+	Sets the foreground and background color of the text input field.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> input_cursor(<span class="apiref-type">char</span> ch)
+</p>
+<p class="apiref-entry">
+	Sets the cursor character of the text input field.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> input_free(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">void</span>(*fn)() <span class="apiref-default-arg">= nullptr</span>)
+</p>
+<p class="apiref-entry">
+	Shows a text input field at the specified coordinates and waits for the user to type something, then returns the typed text. The input is confirmed when the user presses the ENTER key, and it is cancelled if the user presses the ESCAPE key. The optional argument "fn" is a pointer to a function that will be called every frame while the input routine is active.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> input_tiled(<span class="apiref-type">int</span> length, <span class="apiref-type">int</span> col, <span class="apiref-type">int</span> row, <span class="apiref-type">void</span>(*fn)() <span class="apiref-default-arg">= nullptr</span>)
+</p>
+<p class="apiref-entry">
+	Almost the same as input_free() except that the coordinates are not the absolute x and y but a column and row into the virtual tile grid.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> input_confirmed()
+</p>
+<p class="apiref-entry">
+	Returns true if the user confirmed the last input field that was shown, i.e. the ENTER key was pressed, or false if it was cancelled, i.e. the ESCAPE key was pressed.
+</p>
+
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="mouse">INPUT > MOUSE</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> mouse(<span class="apiref-type">bool</span> enabled)
+</p>
+<p class="apiref-entry">
+	Enables or disables the mouse pointer when it's over the application window. Note that this only refers to the visibility of the mouse pointer. It has no effect on the other "mouse_" functions.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> mouse_x()
+</p>
+<p class="apiref-entry">
+	Returns the absolute x coordinate of the mouse pointer within the window. Note that currently, in fullscreen mode, the mouse coordinates expand to the entire screen rather than the frame image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> mouse_y()
+</p>
+<p class="apiref-entry">
+	Returns the absolute y coordinate of the mouse pointer within the window. Note that currently, in fullscreen mode, the mouse coordinates expand to the entire screen rather than the frame image.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_right()
+</p>
+<p class="apiref-entry">
+	Returns whether the RIGHT mouse button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_left()
+</p>
+<p class="apiref-entry">
+	Returns whether the LEFT mouse button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> mouse_middle()
+</p>
+<p class="apiref-entry">
+	Returns whether the MIDDLE mouse button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="keyboard">INPUT > KEYBOARD</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> kb_inkey()
+</p>
+<p class="apiref-entry">
+	Returns the code of the last key that was pressed. Unlike the other "kb_" functions, this function is affected by the "keyboard delay" and "keyboard repeat" rates of the OS.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_char(<span class="apiref-type">char</span> ch)
+</p>
+<p class="apiref-entry">
+	Returns whether a key that would produce the specified character is currently pressed. For example, passing either 'X' or 'x' as an argument will return true if the X key is pressed, regardless of the state of the CAPSLOCK key.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_right()
+</p>
+<p class="apiref-entry">
+	Returns whether the RIGHT arrow key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_left()
+</p>
+<p class="apiref-entry">
+	Returns whether the LEFT arrow key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_down()
+</p>
+<p class="apiref-entry">
+	Returns whether the DOWN arrow key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_up()
+</p>
+<p class="apiref-entry">
+	Returns whether the UP arrow key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_ctrl()
+</p>
+<p class="apiref-entry">
+	Returns whether the CONTROL key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_shift()
+</p>
+<p class="apiref-entry">
+	Returns whether the SHIFT key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_alt()
+</p>
+<p class="apiref-entry">
+	Returns whether the key ALT is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_capslock()
+</p>
+<p class="apiref-entry">
+	Returns whether the CAPS LOCK key is on.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_esc()
+</p>
+<p class="apiref-entry">
+	Returns whether the ESCAPE key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_space()
+</p>
+<p class="apiref-entry">
+	Returns whether the SPACE key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_backspace()
+</p>
+<p class="apiref-entry">
+	Returns whether the BACKSPACE key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_enter()
+</p>
+<p class="apiref-entry">
+	Returns whether the ENTER/RETURN key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_tab()
+</p>
+<p class="apiref-entry">
+	Returns whether the TAB key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_insert()
+</p>
+<p class="apiref-entry">
+	Returns whether the INSERT key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_delete()
+</p>
+<p class="apiref-entry">
+	Returns whether the DELETE key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_home()
+</p>
+<p class="apiref-entry">
+	Returns whether the HOME key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_end()
+</p>
+<p class="apiref-entry">
+	Returns whether the END key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_pageup()
+</p>
+<p class="apiref-entry">
+	Returns whether the PAGE UP key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_pagedown()
+</p>
+<p class="apiref-entry">
+	Returns whether the PAGE DOWN key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_pausebrk()
+</p>
+<p class="apiref-entry">
+	Returns whether the PAUSE/BREAK key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_printscr()
+</p>
+<p class="apiref-entry">
+	Returns whether the PRINT SCREEN key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f1()
+</p>
+<p class="apiref-entry">
+	Returns whether the F1 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f2()
+</p>
+<p class="apiref-entry">
+	Returns whether the F2 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f3()
+</p>
+<p class="apiref-entry">
+	Returns whether the F3 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f4()
+</p>
+<p class="apiref-entry">
+	Returns whether the F4 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f5()
+</p>
+<p class="apiref-entry">
+	Returns whether the F5 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f6()
+</p>
+<p class="apiref-entry">
+	Returns whether the F6 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f7()
+</p>
+<p class="apiref-entry">
+	Returns whether the F7 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f8()
+</p>
+<p class="apiref-entry">
+	Returns whether the F8 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f9()
+</p>
+<p class="apiref-entry">
+	Returns whether the F9 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f10()
+</p>
+<p class="apiref-entry">
+	Returns whether the F10 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f11()
+</p>
+<p class="apiref-entry">
+	Returns whether the F11 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> kb_f12()
+</p>
+<p class="apiref-entry">
+	Returns whether the F12 key is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="gamepad">INPUT > CONTROLLER</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> gpad_count()
+</p>
+<p class="apiref-entry">
+	Returns the total number of available controllers connected to the system.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_connected(<span class="apiref-type">int</span> number)
+</p>
+<p class="apiref-entry">
+	Returns whether the specified controller is connected and available. Controllers are numbered starting from 0.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> gpad_redetect()
+</p>
+<p class="apiref-entry">
+	Redetects and try to reopen all available controllers connected to the system. Note that all available controllers are automatically detected as soon as the TGL singleton is created. This function is useful to detect any new controllers that have been attached after the application started, or to redetect controllers that were initially attached but for some reason got disconnected after the application started.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad(<span class="apiref-type">int</span> number)
+</p>
+<p class="apiref-entry">
+	Selects the controller with the specified number, starting from 0. All other "gpad_" functions will subsequently refer to the controller that has been selected. If this function is never called at runtime, then the controller number 0 is considered to be the one selected for all other "gpad_" functions. Returns true if the controller selected is connected, returns false otherwise.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_right()
+</p>
+<p class="apiref-entry">
+	Returns whether the RIGHT button on the directional pad is pressed, or whether the left stick is held to the RIGHT.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_left()
+</p>
+<p class="apiref-entry">
+	Returns whether the LEFT button on the directional pad is pressed, or whether the left stick is held to the LEFT.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_down()
+</p>
+<p class="apiref-entry">
+	Returns whether the DOWN button on the directional pad is pressed, or whether the left stick is held DOWNWARDS.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_up()
+</p>
+<p class="apiref-entry">
+	Returns whether the UP button on the directional pad is pressed, or whether the left stick is held UPWARDS.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_a()
+</p>
+<p class="apiref-entry">
+	Returns whether the A button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_b()
+</p>
+<p class="apiref-entry">
+	Returns whether the B button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_x()
+</p>
+<p class="apiref-entry">
+	Returns whether the X button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_y()
+</p>
+<p class="apiref-entry">
+	Returns whether the Y button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_r()
+</p>
+<p class="apiref-entry">
+	Returns whether the R button or R trigger is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_l()
+</p>
+<p class="apiref-entry">
+	Returns whether the L button or L trigger is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_start()
+</p>
+<p class="apiref-entry">
+	Returns whether the START button is pressed.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> gpad_select()
+</p>
+<p class="apiref-entry">
+	Returns whether the SELECT button is pressed. This would be the so-called "back" button to the left of the "start" button on a standard Xbox controller.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="sound">SOUND</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> play_volume(<span class="apiref-type">int</span> vol)
+</p>
+<p class="apiref-entry">
+	Sets the volume of the notes for the "play_" functions. This will not affect the volume of any sound files that have been loaded.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> play_notes(<span class="apiref-type">string</span> notes)
+</p>
+<p class="apiref-entry">
+	Plays asynchronously, only once, the sound notes using a simplified version of MML (Music Macro Language), where the characters C, D, E, F, G, A and B stand for different sound frequencies, like a piano. The character O followed by a number specifies the octave for all subsequent notes. The character L followed by a number specifies the length of all subsequent notes. The P character causes a short pause in the sound stream. All sounds are currently generated from square waves and there is only a single audio channel. Only a single sound stream can be playing at any one moment. If any "play_" function is called while the system is playing any other sound, the current sound simply stops and the new music is played.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> play_notes_loop(<span class="apiref-type">string</span> notes)
+</p>
+<p class="apiref-entry">
+	Almost the same as the play() function, except that after playing the specified notes once, it repeats the exact same notes on a loop indefinitely, until the play_stop() function is called or another sound gets played and replaces the looped music.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> play_notes_stop()
+</p>
+<p class="apiref-entry">
+	Interrupts all notes that are currently playing. This will not stop any sound files.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> beep(<span class="apiref-type">float </span> freq, <span class="apiref-type">int</span> len)
+</p>
+<p class="apiref-entry">
+	Plays a single note, basically generating a beeping sound, with the specified frequency and for the indicated length of time.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_load(<span class="apiref-type">string</span> sound_id, <span class="apiref-type">string</span> file)
+</p>
+<p class="apiref-entry">
+	Loads a sound file and stores it internally. The loaded sound can be subsequently referred to by the sound_id.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound(<span class="apiref-type">string</span> sound_id)
+</p>
+<p class="apiref-entry">
+	Plays a sound file that was previously loaded via the sound() function with the specified sound_id. The sound plays asynchronously.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_await(<span class="apiref-type">string</span> sound_id)
+</p>
+<p class="apiref-entry">
+	Almost the same as sound(), but will play synchronously, i.e. program execution will stop while the sound is playing, and will resume once the sound has stopped.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> sound_stop()
+</p>
+<p class="apiref-entry">
+	Stops all currently playing sound files. MML note sequences handled by the play_notes() function are not affected.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="timers">TIMERS</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> timer_new(<span class="apiref-type">string</span> timer_id, <span class="apiref-type">int</span> frames, <span class="apiref-type">bool</span> loop)
+</p>
+<p class="apiref-entry">
+	Creates a new timer with the specified timer_id which will count from 0 to the specified number of frames, and then simply stop if the loop argument is false. If the loop argument is true, the timer will then restart from 0 and repeat indefinitely until it's manually stopped. The update() system function is responsible for advancing all existing timers.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> timer(<span class="apiref-type">string</span> timer_id)
+</p>
+<p class="apiref-entry">
+	Returns true if the specified timer has expired, i.e. if the required number of frames have elapsed since it started. Returns false if the timer is still going.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> timer_reset(<span class="apiref-type">string</span> timer_id)
+</p>
+<p class="apiref-entry">
+	Restarts the specified timer.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="strings">STRINGS</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> fmt(<span class="apiref-type">const char*</span> str, ...)
+</p>
+<p class="apiref-entry">
+	This is basically the TGL version of the standard C function sprintf(), except that the output is returned as a string instance, and the internal buffer for the output is limited to a maximum of 1024 characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> ucase(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts entire string to uppercase characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> lcase(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts entire string to lowercase characters.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> trim(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Removes leading and trailing spaces from the string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> split(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> delim)
+</p>
+<p class="apiref-entry">
+	Splits a string separated by the specified delimiter character into a list of strings.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> join(<span class="apiref-type">vector&lt;string&gt;&</span> str, <span class="apiref-type">char</span> separator)
+</p>
+<p class="apiref-entry">
+	Joins all strings from a list into a single string using the specified separator to delimit each item
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> to_string(<span class="apiref-type">int</span> value)
+</p>
+<p class="apiref-entry">
+	Converts the integer value into its string representation.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> to_int(<span class="apiref-type">string</span> str)
+</p>
+<p class="apiref-entry">
+	Converts the string into an integer value.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> substr(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> begin, <span class="apiref-type">int</span> end)
+</p>
+<p class="apiref-entry">
+	Returns a new string containing the portion of the string between the specified character positions.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> replace(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> original, <span class="apiref-type">string</span> replacement)
+</p>
+<p class="apiref-entry">
+	Returns a new string with all occurrences of the "original" string replaced with "replacement" string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> starts_with(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> prefix)
+</p>
+<p class="apiref-entry">
+	Returns whether the string starts with the specified prefix.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> ends_with(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> suffix)
+</p>
+<p class="apiref-entry">
+	Returns whether the string ends with the specified suffix.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> contains(<span class="apiref-type">string</span> str, <span class="apiref-type">string</span> other)
+</p>
+<p class="apiref-entry">
+	Returns whether the string contains some other string.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> indexof(<span class="apiref-type">string</span> str, <span class="apiref-type">char</span> ch)
+</p>
+<p class="apiref-entry">
+	Returns the position in the string of the first character that matches the specified value.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="math">MATH</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">int</span> rnd(<span class="apiref-type">int</span> min, <span class="apiref-type">int</span> max)
+</p>
+<p class="apiref-entry">
+	Returns a pseudo-random integer number betweem min and max, inclusive. For example, respectively passing 1 and 2 as arguments, will always yield either 1 or 2.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> rnd_chance(<span class="apiref-type">int</span> percent)
+</p>
+<p class="apiref-entry">
+	Returns true X percent of the time, e.g. passing 100 as argument will always return true, passing 0 will always return false, passing 50 there will be a 50/50 chance of returning true or false.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="collision">COLLISION</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> collision(<span class="apiref-type">int</span> tile1_x, <span class="apiref-type">int</span> tile1_y, <span class="apiref-type">int</span> tile2_x, <span class="apiref-type">int</span> tile2_y)
+</p>
+<p class="apiref-entry">
+	Performs a very basic collision check between any two tiles based on their x and y coordinates only. Note that the system does not internally keep track of the positions of any tile, which means it will simply check for two overlapping bounding boxes with a size of 8x8 pixels based on the coordinates specified. Returns true if a collision is detected or false otherwise.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="filesystem">FILESYSTEM</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> file_exists(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Returns whether the specified file exists.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">bool</span> folder_exists(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns whether the specified folder exists.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">string</span> file_cload(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as text.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> file_lines(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as a list of text lines.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_appendln(<span class="apiref-type">string</span> path, <span class="apiref-type">string</span> text)
+</p>
+<p class="apiref-entry">
+	Appends a line of text to the end of the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;byte&gt;</span> file_bload(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Loads a file and returns the entire contents as a list of bytes.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_csave(<span class="apiref-type">string</span> path, <span class="apiref-type">string</span> text)
+</p>
+<p class="apiref-entry">
+	Writes all text into the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_bsave(<span class="apiref-type">string</span> path, <span class="apiref-type">vector&lt;byte&gt;&</span> bytes)
+</p>
+<p class="apiref-entry">
+	Writes all bytes into the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> file_list(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns a list of all files in the specified folder. Hidden files are not included.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">vector&lt;string&gt;</span> folder_list(<span class="apiref-type">string</span> folder_path)
+</p>
+<p class="apiref-entry">
+	Returns a list of all subfolders in the specified folder. Hidden folders are not included.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_copy(<span class="apiref-type">string</span> src_path, <span class="apiref-type">string</span> dest_path)
+</p>
+<p class="apiref-entry">
+	Copies the file at src_path to a file at dest_path.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> file_delete(<span class="apiref-type">string</span> path)
+</p>
+<p class="apiref-entry">
+	Deletes the specified file.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-section-header" id="debug">DEBUGGING</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> print_debug(<span class="apiref-type">string</span> str, <span class="apiref-type">int</span> x, <span class="apiref-type">int</span> y, <span class="apiref-type">rgb</span> color)
+</p>
+<p class="apiref-entry">
+	Draws the specified string at the absolute x and y coordinates of the frame image using the specified text color. This function ignores the current view and draws directly to the window, for debugging purposes.
+</p>
+<!---------------------------------------------------------------------------->
+<p class="apiref-entry-title">
+	<span class="apiref-type">void</span> show_fps(<span class="apiref-type">bool</span> show)
+</p>
+<p class="apiref-entry">
+	Shows the current number of FPS (frames per second) on the screen.
+</p>
+
+<!---------------------------------------------------------------------------->
+<a href="tgl_index.html" class="back-home">Back to Home</a>
+
+</body>
+</html>

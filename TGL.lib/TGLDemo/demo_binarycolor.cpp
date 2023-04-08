@@ -5,33 +5,32 @@ void demo_binarycolor()
 	TGL tgl;
 	tgl.window_160x144(0xffffff, 5);
 
-	tgl.tile_add("test", 
+	tile_bin test_1(
 		"11111111"
 		"10000001"
 		"10100101"
 		"10000001"
 		"10100101"
 		"10011001"
-		"10000001"
-		"11111111"
-	);
-	tgl.tile_add("test",
-		"11111111"
-		"10000001"
-		"10000001"
-		"10000001"
-		"10011001"
-		"10100101"
 		"10000001"
 		"11111111"
 	);
 
 	while (tgl.window()) {
-		tgl.color_binary(0xff0000, 0x00ff00);
-		tgl.draw_tiled("test", 0, 0);
-		tgl.color_binary(0x0000ff, 0xff00ff);
-		tgl.draw_tiled("test", 1, 1);
-		if (tgl.kb_esc()) tgl.exit();
+		tgl.draw_tiled(test_1, 0, 0, 0xff0000, 0x00ff00);
+		tgl.draw_free(
+			"11111111"
+			"10000001"
+			"11100111"
+			"10000001"
+			"10011001"
+			"10100101"
+			"10000001"
+			"11111111", 4, 4, 0x0000ff);
+
 		tgl.update();
+		if (tgl.kb_esc()) {
+			tgl.exit();
+		}
 	}
 }

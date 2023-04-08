@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="tgl_index.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="UTF-8">
+	<title>TileGameLib (TGL) Docs</title>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<a name="top"></a>
+<table class="page-header">
+	<tr>
+		<td class="page-header icon">
+			<a href="tgl_index.html" class="home-link">
+				<img class="gameboy-icon" src="images/wiki-banner-1.fw.png">
+			</a>
+		</td>
+		<td class="page-header left">
+		</td>
+	</tr>
+</table>
+
+<!-- CONTENT -->
+
+<p class="section-header">TECHNICAL OVERVIEW</p>
+
+<p>
+	This is a technical overview of what the library is and how it works. It explains some of the important concepts used by TGL as well as some of its limitations.
+</p>
+
+<b>What is this library exactly?</b>
+<p class="horizontal-padding">
+	It's basically a barebones 2D game engine for Windows built as a static library that exposes a very simplified API to quickly and easily create tile-based pseudo-8-bit games or prototypes that have a strong GameBoy Color aesthetic.
+</p>
+
+<b>Simplified API</b>
+<p class="horizontal-padding">
+	I have purposely designed the public API to be minimal, so that it can be quick and easy to use. It consists of a single C++ class and a couple of typedefs. All new functions in the public API should be implemented as members of the TGL class, so that the user only has a single entry point to all features of the library. Note that this applies to the public API only. The internal, private API is much more complex (and sometimes messy, and bloated). For all functions in the public API I try to avoid returning pointers and accepting pointer arguments as much as possible, usually only primitive types like string, bool, int, float, rgb, etc. are passed by value. Internally managed resources such as pixel patterns, tiles and views, are referred to by string IDs assigned by the user upon creation using the appropriate function. I purposely avoid exposing any internal types.
+</p>
+
+<b>The TGL class</b>
+<p class="horizontal-padding">
+	This class is the entry point to all features of TileGameLib. Applications using TGL should create only one instance of TGL, as it was strictly designed to be a singleton. The TGL class is declared in the TGL.h header file, so this is the only header that needs to be included to use the entire library.
+</p>
+
+<b>Graphics</b>
+<p class="horizontal-padding">
+	<b>Application Window:</b> TGL uses the standard OS windowing system for output, with the image resolution fixed at the moment of creation. There are two default sizes, one tries to replicate the GameBoy Color screen size, and the other is a widescreen size. The window itself cannot be resized manually, only programmatically via a "scale factor", which basically just scales the entire image to fill a window with different sizes (i.e. it stretches or shrinks all pixels). The window does not update automatically. Everything is drawn on an off-screen pixel buffer. The window can be updated by calling the update() function, which should be called at the end of each and every frame to allow for the default window event processing, and that includes refreshing the window contents.
+</p>
+<p class="horizontal-padding">
+	<b>Tile Format:</b> Internally, all tiles are strictly 8x8 pixels, and larger graphics can only be drawn by "stitching them together" like a mosaic, just like the GBC. Tiles can be loaded from a bitmap image file or created directly within the code using "pixel patterns": those are merely arrays of length 64 (i.e. 8x8) containing the RGB values for the color of each pixel. The tiles themselves are sequences of pixel patterns, which allows for every tile to be animated automatically (or not, if it has a single frame). Pixel patterns and tiles are stored internally in a tileset and can be referred to via string IDs.
+</p>
+<p class="horizontal-padding">
+	<b>Tile Animation:</b> The system internally runs a thread that handles the automatic animation of tile sequences. Every tile drawn on the screen is actually a tile pattern sequence. If the tile contains only one single tile pattern, it simply does not animate. If it contains more than one tile pattern, the graphics system will draw the appropriate pattern according to the current animation frame. Tile animation "wraps around" automatically, meaning it restarts from the first frame once the current animation frame exceeds the size of the tile sequence.
+</p>
+<p class="horizontal-padding">
+	<b>Pixels:</b> Individual pixels can only be manipulated on a tile-by-tile basis, meaning 8x8 "pixel patterns" must be manipulated in the internal tileset before drawing anything on the screen, again similar to the GBC concept of "tile memory". As such, direct access to the internal pixel buffer is not provided.
+</p>
+<p class="horizontal-padding">
+	<b>Sprites:</b> Those can be simulated by enabling transparency and setting the color of the transparency key. Transparency here has nothing to do with alpha transparency or blending (TGL does not support color blending). It simply means pixels that have the same color of the transparency key will not be drawn when transparency is enabled.
+</p>
+<p class="horizontal-padding">
+	<b>Color Modes:</b> There are two color modes: normal and binary. In the "normal" color mode, colors themselves are encoded in the typical RGB format (i.e. from 0x000000 to 0xffffff), and each one of the 64 pixels in a tile can be assigned an individual RGB value, i.e. the tile itself contains all the color information. In the "binary" color mode, only the characters '0' and '1' are recognized in the tile pattern, 0 meaning background and 1 meaning foreground. In this mode, colors are assigned just before drawing, using one of the "color_binary()" functions.
+</p>
+<p class="horizontal-padding">
+	<b>Virtual Tile Grid:</b> The graphics system contains an infinitely large, invisible grid divided into cells of size 8x8 each. Tiles may be drawn "freely" at any absolute x and y coordinate, i.e. outside the grid, or they may be drawn "tiled", i.e. into the grid, which means the system will fit them neatly into the 8x8 cells of the grid, preventing any partial overlap. The choice of free or tiled mode is selected at the moment of drawing via either one of the "draw_" functions.
+</p>
+<p class="horizontal-padding">
+	<b>Layering:</b> The API has no concept of "layers", but this can be easily achieved by the order in which individual tiles and views are drawn.
+</p>
+<p class="horizontal-padding">
+	<b>Views:</b> There is a "viewport" system that can be used to simulate the so-called "windows" in the GBC, meaning all drawing is limited to the area of the currently active view, i.e. a clipping rectangle. There is a "default" view which is the exact same size as the window itself, and all other views appear in front (or on top) of it. There can be multiple overlapping views and each view can be "scrolled" independently, meaning pixels will only be visible if they are drawn within the current viewport area starting from the current x and y scroll offset. This is used to simulate the scrolling backgrounds on the GBC. Note that it is perfectly valid to draw tiles at coordinates that lie outside the area of the view or the screen, since those pixels are simply "clipped out". The system keeps internally the set of all views and each view can be referred to by a string ID.
+</p>
+<p class="horizontal-padding">
+	<b>Rendering Mode:</b> The graphics system mostly follows the immediate mode pattern, wherein every single tile must be drawn directly by function calls, as opposed to retained mode where the API would manage all drawing internally. This is opposed to the original GBC which has a "tile buffer" in memory. TGL does not internally keep track of which tiles have been drawn or the positions at which they are drawn at any one moment. It is up to the programmer to keep track of any coordinates.
+</p>
+<p class="horizontal-padding">
+	Help is needed most with performance issues, especially during rendering, since TGL renders the entire screen pixel by pixel and it's currently not optimized for speed. Also, the framerate is currently very unstable, so help with making everything run smoothly would be greatly appreciated.
+</p>
+
+<b>Text</b>
+<p class="horizontal-padding">
+	Text drawing is simply implemented as a string of tiles. The default font can be redefined by the user, and each character is stored as a pixel pattern.
+</p>
+
+<b>Sound</b>
+<p class="horizontal-padding">
+	TGL has 2 independent sound systems. One is for playing musical notes using a simplified version of MML (Music Macro Language). The other is for loading and playing sound files in the WAV format. It is possible to play musical notes at the same time that a sound file is playing in the background. Playing notes is currently implemented with very rudimentary (and probably buggy) single-channel square-wave sound synthesis only, since I have limited knowledge of audio programming. The system only plays one note sequence at a time, meaning whenever a call to play a sound is made, any currently playing sound simply stops to allow for the new one to play. All sound generation is asynchronous, meaning the program execution does not pause to wait for any sounds to finish playing. The ultimate goal is to replace this sound system with one that is able to generate the same sounds as the GBC.
+</p>
+
+<b>User Input</b>
+<p class="horizontal-padding">
+	TGL can handle keyboard, mouse and gamepad/controller input, with some limitations. Not all keyboard scancodes are mapped so certain keystrokes cannot be detected by the system. Mouse pointer coordinates are always absolute starting from the top-left corner of the window, i.e. x0 y0 being the top-left corner, all the way to x159 y143 at the bottom-right corner. As for the gamepad/controller, multiple controllers are supported. The only controller buttons currently detected by the system are the following: the 4 d-pad directional buttons (right, left, up, down), A, B, X, Y, left and right shoulder buttons (trigger L is considered the same as shoulder L, and trigger R is considered the same as shoulder R), start and select (the "select" button in TGL means the "back" button on the standard Xbox controller). Apart from these controller buttons, the system also detects the position of the left stick and interprets it as the same as if the directional pad buttons are being pressed. The right stick and both stick buttons are currently not detectable.
+</p>
+
+<b>Collision Detection</b>
+<p class="horizontal-padding">
+	I have implemented very basic collision detection that works on an tile-by-tile basis, meaning it simply calculates if two 8x8 tiles overlap based on their x and y coordinates. This is provided mostly for convenience only, so currently there are no plans to expand the collision detection system.
+</p>
+
+<b>Timers</b>
+<p class="horizontal-padding">
+	This is a very simple feature to help coordinate the timing of stuff. There is basically an internal set of countdown timers where each timer is a counter that starts from some specified integer number down to 0. Once the timer reaches 0, it can be automatically reset, causing the timer to repeat. This can be used to simulate interval-based events. All enabled timers can be advanced at the same time upon calling the update() function, which should be called at the end of each and every frame as discussed in the next section.
+</p>
+
+<b>System</b>
+<p class="horizontal-padding">
+	There is a very important function called update(). It is intended to be called at the end of each and every frame. The purpose of this function is to update internal states such as advancing timers and handling the default window processing events, for instance it allows moving and closing the window, and pressing ALT+ENTER at any moment to toggle fullscreen mode. It is also responsible for updating the window with everything that has been drawn since the last call to update() (i.e. the current off-screen framebuffer gets copied to the window surface) and also coordinates the built-in animation thread.
+</p>
+
+<a href="tgl_index.html" class="back-home">Back to Home</a>
+
+</body>
+</html>
