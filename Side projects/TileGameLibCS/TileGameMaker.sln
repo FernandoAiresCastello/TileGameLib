@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameLib", "TileGameLib\TileGameLib.csproj", "{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileGameMaker", "TileGameMaker\TileGameMaker.csproj", "{AFF6D9B6-1483-4F5B-B919-C928809461EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|x64.Build.0 = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Debug|x86.Build.0 = Debug|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|x64.ActiveCfg = Release|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|x64.Build.0 = Release|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED0D0220-B0AF-4183-BC9F-204E6DF1381C}.Release|x86.Build.0 = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|x64.Build.0 = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{AFF6D9B6-1483-4F5B-B919-C928809461EC}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {585A6E1C-5D5E-4742-B17F-4A503DB87154}
+	EndGlobalSection
+EndGlobal
