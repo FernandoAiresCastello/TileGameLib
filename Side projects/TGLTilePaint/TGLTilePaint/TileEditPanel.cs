@@ -17,7 +17,7 @@ namespace TGLTilePaint
         public Color Color2;
         public Color Color3;
 
-        private MainWindow Wnd;
+        private Form Wnd;
         private Color GridColor;
         private Color GridColorMid;
         private Color GridTextColor;
@@ -40,12 +40,12 @@ namespace TGLTilePaint
             Init(null, EditMode.Multiple);
         }
 
-        public TileEditPanel(MainWindow wnd)
+        public TileEditPanel(Form wnd)
         {
             Init(wnd, EditMode.Single);
         }
 
-        private void Init(MainWindow wnd, EditMode mode)
+        private void Init(Form wnd, EditMode mode)
         {
             Wnd = wnd;
             Mode = mode;
@@ -144,13 +144,30 @@ namespace TGLTilePaint
 
             if (e.Button == MouseButtons.Left)
             {
-                Tile.SetPixel(px, py, CurrentColor);
+                if (Wnd is MainWindow)
+                {
+                    Tile.SetPixel(px, py, CurrentColor);
+                }
+                else if (Wnd is BinaryWindow)
+                {
+                    Tile.SetPixel(px, py, (Wnd as BinaryWindow).TileForeColor);
+                    (Wnd as BinaryWindow).UpdateBinaryString();
+                }
             }
             else if (e.Button == MouseButtons.Right)
             {
                 CurrentColor = Tile.GetPixel(px, py);
-                Wnd.UpdateColorButtons();
-                Wnd.UpdateColorHexRGBs();
+
+                if (Wnd is MainWindow)
+                {
+                    (Wnd as MainWindow).UpdateColorButtons();
+                    (Wnd as MainWindow).UpdateColorHexRGBs();
+                }
+                else if (Wnd is BinaryWindow)
+                {
+                    Tile.SetPixel(px, py, (Wnd as BinaryWindow).TileBackColor);
+                    (Wnd as BinaryWindow).UpdateBinaryString();
+                }
             }
 
             Refresh();
@@ -237,6 +254,12 @@ namespace TGLTilePaint
         public void FillPixelsColorLeft()
         {
             Tile.Fill(CurrentColor);
+            Refresh();
+        }
+
+        public void FillPixelsColor(Color color)
+        {
+            Tile.Fill(color);
             Refresh();
         }
 
