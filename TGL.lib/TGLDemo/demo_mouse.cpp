@@ -2,7 +2,7 @@
 
 void demo_mouse()
 {
-	TGL tgl;
+	TGL_APP tgl;
 	tgl.window_360x200(0xffffff, 4);
 
 	while (tgl.window()) {

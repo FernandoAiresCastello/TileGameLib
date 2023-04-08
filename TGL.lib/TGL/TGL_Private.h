@@ -6,9 +6,9 @@ using namespace TGL_Internal;
 struct TGL_Private
 {
 private:
-	friend struct TGL;
+	friend struct TGL_APP;
 
-	TGL_Private(TGL* tgl_public);
+	TGL_Private(TGL_APP* tgl_public);
 	~TGL_Private();
 
 	struct {
@@ -26,23 +26,6 @@ private:
 		char cursor = '_';
 	} text_input;
 
-	struct t_viewport {
-		int x1 = 0;
-		int y1 = 0;
-		int x2 = 0;
-		int y2 = 0;
-		int scroll_x = 0;
-		int scroll_y = 0;
-		rgb back_color = 0x000000;
-		bool clear_bg = true;
-	};
-
-	struct t_timer {
-		int frames_max = 0;
-		int frames_elapsed = 0;
-		bool loop = false;
-	};
-
 	struct {
 		Uint32 fps_starttime = 0;
 		Uint32 fps_lasttime = 0;
@@ -50,7 +33,7 @@ private:
 		Uint32 fps_frames = 0;
 	} perfmon;
 
-	TGL* tgl_public = nullptr;
+	TGL_APP* tgl_public = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
 	TSoundFiles* snd_files = nullptr;
@@ -59,25 +42,22 @@ private:
 	int frame_counter;
 	bool fps_enabled = false;
 	rgb wnd_back_color;
-	unordered_map<char, string> font_patterns;
-	unordered_map<string, t_viewport> views;
-	t_viewport* cur_view = nullptr;
-	unordered_map<string, t_timer> timers;
+	unordered_map<char, string> font_tiles;
+	TGL_VIEW* cur_view = nullptr;
+	TGL_VIEW default_view;
 	TGamepad gamepad;
 	SDL_Keycode last_key = 0;
 
 	void process_default_events(SDL_Event* e);
 	void create_window(int width, int height, rgb back_color, int size_factor);
-	bool assert_view_exists(string& id);
 	void clip(int x1, int y1, int x2, int y2);
 	void unclip();
 	void draw_frame();
 	void on_draw_frame_begin();
 	void on_draw_frame_end();
 	void clear_entire_window();
-	void clear_view();
+	void clear_current_view();
 	void print(string str, int x, int y, bool tiled);
-	void advance_timers();
 	bool is_valid_gpad_selected();
 	void font(char ch, string pattern);
 	void init_default_font();

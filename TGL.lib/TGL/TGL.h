@@ -36,126 +36,214 @@
 #include <cstdarg>
 using namespace std;
 
+/// Color represented as a 24-bit integer (0xRRGGBB)
 typedef int rgb;
+
+/// Byte value (0-255)
 typedef unsigned char byte;
+
+/// Pointer to callback procedure
 typedef void(*callback)();
 
-struct tile_rgb
+/// Structure for an RGB tile
+struct TGL_TILE_RGB
 {
 	rgb pixels[64];
 	bool transparent = false;
 	rgb transparency_key = 0xffffff;
-	tile_rgb();
-	tile_rgb(rgb pixels[64]);
-	tile_rgb(rgb pixels[64], rgb transparency_key);
+	TGL_TILE_RGB();
+	TGL_TILE_RGB(rgb pixels[64]);
+	TGL_TILE_RGB(rgb pixels[64], rgb transparency_key);
 };
-struct tile_bin
+
+/// Structure for a binary tile
+struct TGL_TILE_BIN
 {
 	string bits;
-	tile_bin();
-	tile_bin(string bits);
+	TGL_TILE_BIN();
+	TGL_TILE_BIN(string bits);
 };
-struct TGL
+
+/// Structure for a view
+struct TGL_VIEW
 {
-	TGL();
-	~TGL();
+	int x1 = 0;
+	int y1 = 0;
+	int x2 = 0;
+	int y2 = 0;
+	int scroll_x = 0;
+	int scroll_y = 0;
+	rgb back_color = 0x000000;
+	bool clear_bg = true;
+	TGL_VIEW();
+	TGL_VIEW(int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg = true);
+	void scroll(int dx, int dy);
+	void scroll_to(int x, int y);
+};
+
+/// Structure for a timer
+struct TGL_TIMER
+{
+	int length = 0;
+	int elapsed = 0;
+	bool loop = false;
+	TGL_TIMER(int length, bool loop);
+	void tick();
+	bool done();
+};
+
+/// Structure for a sound resource
+struct TGL_SOUND
+{
+	string file;
+};
+
+/// Structure for the TGL application singleton
+struct TGL_APP
+{
+	/// Create the application
+	TGL_APP();
+	/// Destroy the application
+	~TGL_APP();
 
 	//=========================================================================
 	//		CONSTANTS
 	//=========================================================================
-	const int tilesize;
+
+	/// The width and height of a tile
+	const int tilesize = 8;
 
 	//=========================================================================
 	//		SYSTEM
 	//=========================================================================
+
+	/// Update window and process default events. Should be called after drawing each and every frame
 	void update();
+	/// Close the window and terminate application.
 	int exit();
+	/// Enter an infinite loop while processing default events and optionally executing the provided callback
 	int halt(callback fn = nullptr);
-	void pause(int ms, callback fn = nullptr);
+	/// Pause for the specified number of frames while processing default events and optionally executing the provided callback
+	void pause(int frames, callback fn = nullptr);
+	/// Show a standard error message box with the specified message, then continue execution normally
 	void error(string msg);
+	/// Show a standard error message box with the specified message, then terminate application
 	void abort(string msg);
+	/// Return the system date in MM/DD/YYYY format
 	string date();
+	/// Return the system time in HH:MM:SS format
 	string time();
+	/// Return the system date and time in a single string
 	string datetime();
 
 	//=========================================================================
 	//		GRAPHICS > WINDOW
 	//=========================================================================
+
+	/// Create application window with custom resolution and background color
 	void window(int img_width, int img_height, rgb back_color, int size_factor);
+	/// Create application window with standard resolution of 160x144 and specified background color
 	void window_160x144(rgb back_color, int size_factor);
+	/// Create application window with standard resolution of 256x192 and specified background color
 	void window_256x192(rgb back_color, int size_factor);
+	/// Create application window with standard resolution of 360x200 and specified background color
 	void window_360x200(rgb back_color, int size_factor);
+	/// Return whether the application window is open
 	bool window();
+	/// Set the window title
 	void title(string str);
+	/// Set the window background color
 	void backcolor(rgb back_color);
+	/// Clear the window background
 	void clear();
+	/// Switch to fullscreen mode or windowed mode
 	void fullscreen(bool full);
+	/// Return whether the window is in fullscreen mode
 	bool fullscreen();
+	/// Save a screenshot of the window contents to a bitmap image file
 	void screenshot(string path);
+	/// Return the horizontal resolution
 	int width();
+	/// Return the vertical resolution
 	int height();
+	/// Return the horizontal resolution divided by the tile size
 	int cols();
+	/// Return the vertical resolution divided by the tile size
 	int rows();
 
 	//=========================================================================
 	//		GRAPHICS > VIEWS
 	//=========================================================================
-	void view_new(string view_id, int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg);
-	void view(string view_id);
-	void scroll(string view_id, int dx, int dy);
-	void scroll_to(string view_id, int x, int y);
-	int scroll_x(string view_id);
-	int scroll_y(string view_id);
+
+	/// Subsequent drawing operations will occur inside the selected view
+	void view_in(TGL_VIEW& vw);
+	/// Subsequent drawing operations will occur outside any views, i.e. directly on the window
+	void view_out();
 
 	//=========================================================================
 	//		GRAPHICS > TILES
 	//=========================================================================
-	tile_rgb tile_load_rgb(string path);
-	tile_rgb tile_load_rgb(string path, rgb transparency_key);
-	tile_bin tile_load_bin(string path);
-	void draw_free(tile_rgb& tile, int x, int y);
-	void draw_free(tile_bin& tile, int x, int y, rgb fore_color);
-	void draw_free(tile_bin& tile, int x, int y, rgb fore_color, rgb back_color);
+
+	/// Load RGB tile from an 8x8 24-bit bitmap file
+	TGL_TILE_RGB tile_load_rgb(string path);
+	/// Load RGB tile from an 8x8 24-bit bitmap file. When drawn, transparency key color will be invisible
+	TGL_TILE_RGB tile_load_rgb(string path, rgb transparency_key);
+	/// Draw RGB tile at absolute position
+	void draw_free(TGL_TILE_RGB& tile, int x, int y);
+	/// Draw RGB tile aligned with virtual grid
+	void draw_tiled(TGL_TILE_RGB& tile, int x, int y);
+	/// Draw binary tile at absolute position, with specified foreground color and invisible background color
+	void draw_free(TGL_TILE_BIN& tile, int x, int y, rgb fore_color);
+	/// Draw binary tile at absolute position, with specified foreground and background colors
+	void draw_free(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb back_color);
+	/// Draw binary tile at absolute position, with specified foreground color and invisible background color
 	void draw_free(string binary, int x, int y, rgb fore_color);
+	/// Draw binary tile at absolute position, with specified foreground and background colors
 	void draw_free(string binary, int x, int y, rgb fore_color, rgb back_color);
-	void draw_tiled(tile_rgb& tile, int x, int y);
-	void draw_tiled(tile_bin& tile, int x, int y, rgb fore_color);
-	void draw_tiled(tile_bin& tile, int x, int y, rgb fore_color, rgb back_color);
+	/// Draw binary tile aligned with virtual grid, with specified foreground color and invisible background color
+	void draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color);
+	/// Draw binary tile aligned with virtual grid, with specified foreground and background colors
+	void draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb back_color);
+	/// Draw binary tile aligned with virtual grid, with specified foreground color and invisible background color
 	void draw_tiled(string binary, int x, int y, rgb fore_color);
+	/// Draw binary tile aligned with virtual grid, with specified foreground and background colors
 	void draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color);
 
 	//=========================================================================
 	//		GRAPHICS > TEXT RENDERING
 	//=========================================================================
-	void font(char ch, string pattern);
+
+	/// Set binary tile to be used for the specified character in the text font
+	void font(char ch, string binary);
+	/// Clear all characters in the text font
 	void font_new();
+	/// Reset all characters in the text font to their default tiles
 	void font_reset();
+	/// Set font color for printing text without changing its background color
 	void font_color(rgb color);
+	/// Set font color and background color for printing text
 	void font_color(rgb fore_color, rgb back_color);
+	/// Enable or disable text shadow, optionally set color of shadow
 	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
+	/// Enable or disable text font background color
 	void font_transparent(bool state);
+	/// Print text at absolute position
 	void print_free(string str, int x, int y);
+	/// Print text aligned with virtual grid
 	void print_tiled(string str, int x, int y);
 
 	//=========================================================================
-	//		SOUND
+	//		AUDIO
 	//=========================================================================
 	void play_volume(int vol);
 	void play_notes(string notes);
 	void play_notes_loop(string notes);
 	void play_notes_stop();
 	void beep(float freq, int len);
-	void sound_load(string sound_id, string file);
-	void sound(string sound_id);
-	void sound_await(string sound_id);
+	TGL_SOUND sound_load(string file);
+	void sound_play(TGL_SOUND& snd);
+	void sound_await(TGL_SOUND& snd);
 	void sound_stop();
-
-	//=========================================================================
-	//		TIMERS
-	//=========================================================================
-	void timer_new(string timer_id, int frames, bool loop);
-	bool timer(string timer_id);
-	void timer_reset(string timer_id);
 
 	//=========================================================================
 	//		STRING MANIPULATION
@@ -209,7 +297,7 @@ struct TGL
 	void input_cursor(char ch);
 	string input_free(int length, int x, int y, callback fn = nullptr);
 	string input_tiled(int length, int col, int row, callback fn = nullptr);
-	bool input_confirmed();
+	bool input_ok();
 
 	//=========================================================================
 	//		INPUT > MOUSE

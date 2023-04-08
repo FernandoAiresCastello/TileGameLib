@@ -2,10 +2,10 @@
 
 void demo_imageload()
 {
-	TGL tgl;
+	TGL_APP tgl;
 	tgl.window_160x144(0xffffff, 5);
 
-	tile_rgb smiley = tgl.tile_load_rgb("Tiles/smiley.bmp");
+	TGL_TILE_RGB smiley = tgl.tile_load_rgb("Tiles/smiley.bmp");
 
 	while (tgl.window()) {
 		tgl.clear();

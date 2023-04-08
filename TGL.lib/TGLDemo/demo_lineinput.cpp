@@ -2,7 +2,7 @@
 
 void demo_lineinput()
 {
-	TGL tgl;
+	TGL_APP tgl;
 	tgl.window_160x144(0xffffff, 5);
 
 	tgl.font_color(0x0000ff);
@@ -14,7 +14,7 @@ void demo_lineinput()
 
 	tgl.clear();
 
-	if (tgl.input_confirmed()) {
+	if (tgl.input_ok()) {
 		tgl.font_color(0x0000ff);
 		tgl.print_tiled("Thx! You typed:", 1, 1);
 		tgl.font_color(0x000000);

@@ -2,10 +2,10 @@
 
 void demo_binarycolor()
 {
-	TGL tgl;
+	TGL_APP tgl;
 	tgl.window_160x144(0xffffff, 5);
 
-	tile_bin test_1(
+	TGL_TILE_BIN test_1(
 		"11111111"
 		"10000001"
 		"10100101"

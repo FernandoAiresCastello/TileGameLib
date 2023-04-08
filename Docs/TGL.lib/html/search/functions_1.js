@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['backcolor_0',['backcolor',['../struct_t_g_l.html#ae1ea9a5942904fb4fdcff53655584d6b',1,'TGL']]],
-  ['beep_1',['beep',['../struct_t_g_l.html#ab1cb9fb388df3b4f77701c06fe33c87c',1,'TGL']]]
+  ['backcolor_0',['backcolor',['../struct_t_g_l___a_p_p.html#a11e91f643232e047da0d5c36fe081d7e',1,'TGL_APP']]],
+  ['beep_1',['beep',['../struct_t_g_l___a_p_p.html#a974d4df93118cd183a7769ca04454c9b',1,'TGL_APP']]]
 ];

@@ -5,7 +5,7 @@ TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-
 
 This repository was created in 2019 and contains a collection of many distinct projects. The goal of this toolkit is to facilitate the development of games that somewhat resemble the look and feel of *GameBoy Color* games and other 8-bit tile-based computer systems, providing a simplified and minimalistic API, while requiring few dependencies on external libraries.
 
-Currently, the main project in the toolkit is the C++ static library [TGL.lib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib), which is built on top of [SDL 2](https://www.libsdl.org/). In the [Side projects](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Side%20projects) subdirectory there are various other independent and mostly experimental projects. Only Windows (7/8/10/11) is currently supported.
+Currently, the main project in the toolkit is the C++ static library [TGL.lib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib), which is built on top of [SDL 2](https://www.libsdl.org/). In the [Side projects](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Side%20projects) subdirectory there are various other independent and mostly experimental projects. Only Windows (7/8/10/11) is currently supported. Warning: this entire toolkit is in pre-alpha stage and is under constant development. Breaking changes in the public APIs may be (and often are) introduced at any time without prior notice. Use at your own risk.
 
 I (Fernando) am currently the sole developer. This toolkit is my hobby project and I usually work on it whenever I have some spare time. For more information, please check out the documentation (links below) or ask me directly. All questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
 
@@ -20,12 +20,9 @@ I (Fernando) am currently the sole developer. This toolkit is my hobby project a
 
 **Downloads:**
 
-- [TGL.lib - Latest build (dev release)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL.lib)
+- [TGL.lib - Latest release (dev build)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL.lib)
 
 **Documentation:**
 
 - [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/TGL/TGL.h)
-
-**Note:**
-
-This entire toolkit is in pre-alpha stage and is under constant development. Breaking changes in the public APIs may be introduced at any time without prior notice. Use at your own risk.
+- [TGL.lib - Auto-generated HTML docs)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Docs/TGL.lib)

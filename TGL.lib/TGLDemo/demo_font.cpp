@@ -1,26 +1,24 @@
 #include <TGL.h>
 
-void title(TGL& tgl, string str);
-void print(TGL& tgl, string str, int x, int y);
-void header(TGL& tgl, string str, int x, int y);
+void title(TGL_APP& tgl, string str);
+void print(TGL_APP& tgl, string str, int x, int y);
+void header(TGL_APP& tgl, string str, int x, int y);
 
 void demo_font()
 {
-	TGL tgl;
+	TGL_APP tgl;
 	tgl.title("TGL Font Demo");
 	tgl.window_160x144(0x201080, 5);
 	
-	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
+	TGL_VIEW vw_background(10, 10, 150, 134, 0x408040);
 
 	while (tgl.window()) {
 
-		tgl.update();
-
-		tgl.view("default");
+		tgl.view_out();
 		tgl.font_shadow(true, 0x000020);
 		title(tgl, "Font Demo");
 
-		tgl.view("background");
+		tgl.view_in(vw_background);
 		tgl.font_shadow(true, 0x004000);
 
 		header(tgl, "Digits", 0, 0);
@@ -42,14 +40,16 @@ void demo_font()
 		print(tgl, "(Parens)[Bracket]", 0, 13);
 		print(tgl, "{Braces}<Lt_&_Gt>", 0, 14);
 
+		tgl.update();
+
 		if (tgl.kb_esc()) tgl.exit();
-		if (tgl.kb_right()) tgl.scroll("background", 1, 0);
-		if (tgl.kb_left()) tgl.scroll("background", -1, 0);
-		if (tgl.kb_down()) tgl.scroll("background", 0, 1);
-		if (tgl.kb_up()) tgl.scroll("background", 0, -1);
+		if (tgl.kb_right()) vw_background.scroll(1, 0);
+		if (tgl.kb_left()) vw_background.scroll(-1, 0);
+		if (tgl.kb_down()) vw_background.scroll(0, 1);
+		if (tgl.kb_up()) vw_background.scroll(0, -1);
 	}
 }
-void print(TGL& tgl, string str, int x, int y)
+void print(TGL_APP& tgl, string str, int x, int y)
 {
 	x *= tgl.tilesize;
 	y *= tgl.tilesize;
@@ -57,7 +57,7 @@ void print(TGL& tgl, string str, int x, int y)
 	tgl.font_color(0xffffff);
 	tgl.print_free(str, x, y);
 }
-void header(TGL& tgl, string str, int x, int y)
+void header(TGL_APP& tgl, string str, int x, int y)
 {
 	x *= tgl.tilesize;
 	y *= tgl.tilesize;
@@ -65,7 +65,7 @@ void header(TGL& tgl, string str, int x, int y)
 	tgl.font_color(0xffff00, 0x0000ff);
 	tgl.print_free(str, x, y);
 }
-void title(TGL& tgl, string str)
+void title(TGL_APP& tgl, string str)
 {
 	tgl.font_color(0x00ffff);
 	tgl.print_free(str, 43, 1);

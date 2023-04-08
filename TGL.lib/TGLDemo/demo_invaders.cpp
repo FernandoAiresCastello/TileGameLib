@@ -1,6 +1,6 @@
 #include <TGL.h>
 
-static TGL tgl;
+static TGL_APP tgl;
 
 struct {
 	int x = 75;
@@ -22,11 +22,24 @@ struct t_alien {
 vector<t_alien> aliens;
 
 struct {
-	tile_rgb missile;
-	tile_rgb spaceship;
-	tile_rgb alien;
-	tile_rgb blast;
+	TGL_TILE_RGB missile;
+	TGL_TILE_RGB spaceship;
+	TGL_TILE_RGB alien;
+	TGL_TILE_RGB blast;
 } tiles;
+
+struct {
+	TGL_VIEW scene;
+	TGL_VIEW score;
+} views;
+
+struct {
+	TGL_SOUND bgmusic;
+	TGL_SOUND player_missile;
+	TGL_SOUND enemy_dead;
+} sounds;
+
+TGL_TIMER tmr_alien_move(30, true);
 
 void init_tiles();
 void init_aliens();
@@ -49,13 +62,11 @@ void demo_invaders()
 
 	//tgl.sound("bgmusic");
 
-	tgl.timer_new("alien_move", 30, true);
-
-	tgl.view_new("main", 0, 0, tgl.width(), 120, 0x000000, true);
-	tgl.view_new("sub", 0, 120, tgl.width(), 144, 0x0000a0, true);
+	views.scene = TGL_VIEW(0, 0, tgl.width(), 120, 0x000000);
+	views.score = TGL_VIEW(0, 120, tgl.width(), 144, 0x0000a0);
 
 	while (tgl.window()) {
-		tgl.view("main");
+		tgl.view_in(views.scene);
 		aliens_cycle();
 		player_cycle();
 		draw_score();
@@ -65,7 +76,7 @@ void demo_invaders()
 }
 void draw_score()
 {
-	tgl.view("sub");
+	tgl.view_in(views.score);
 	string score = tgl.fmt("Score: %05i", player.score);
 	tgl.font_color(0x000020);
 	tgl.print_free(score, 33, 5);
@@ -91,7 +102,7 @@ void player_shoot()
 {
 	if (player.missile.active) return;
 
-	tgl.sound("player_missile");
+	tgl.sound_play(sounds.player_missile);
 
 	player.missile.active = true;
 	player.missile.x = player.x;
@@ -125,14 +136,15 @@ void aliens_cycle()
 			alien.blast_counter--;
 			tgl.draw_free(tiles.blast, alien.x, alien.y);
 		}
-		if (tgl.timer("alien_move")) {
+		if (tmr_alien_move.done()) {
 			alien.y += 4;
 		}
 	}
+	tmr_alien_move.tick();
 }
 void alien_destroy(t_alien& alien)
 {
-	tgl.sound("enemy_dead");
+	tgl.sound_play(sounds.enemy_dead);
 
 	alien.alive = false;
 	player.missile.active = false;
@@ -151,9 +163,9 @@ void init_aliens()
 }
 void init_sounds()
 {
-	tgl.sound_load("bgmusic", "Sound/bgmusic.wav");
-	tgl.sound_load("player_missile", "Sound/player_missile.wav");
-	tgl.sound_load("enemy_dead", "Sound/enemy_dead.wav");
+	sounds.bgmusic = tgl.sound_load("Sound/bgmusic.wav");
+	sounds.player_missile = tgl.sound_load("Sound/player_missile.wav");
+	sounds.enemy_dead = tgl.sound_load("Sound/enemy_dead.wav");
 }
 void init_tiles()
 {

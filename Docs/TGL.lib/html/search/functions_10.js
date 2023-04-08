@@ -1,16 +1,15 @@
 var searchData=
 [
-  ['tgl_0',['TGL',['../struct_t_g_l.html#a145ea537600f670c708808c5036ac852',1,'TGL']]],
-  ['tile_5fbin_1',['tile_bin',['../structtile__bin.html#af4f6bc35022428dc8865e3ee242bd02c',1,'tile_bin::tile_bin()'],['../structtile__bin.html#a656e487e9a9fa5ac21b0316d86b6b1b7',1,'tile_bin::tile_bin(string bits)']]],
-  ['tile_5fload_5fbin_2',['tile_load_bin',['../struct_t_g_l.html#aeae85dc33b15da2891a06d0402543a40',1,'TGL']]],
-  ['tile_5fload_5frgb_3',['tile_load_rgb',['../struct_t_g_l.html#a873cd627043cf4346d2512f038f17b4b',1,'TGL::tile_load_rgb(string path)'],['../struct_t_g_l.html#adb55003f559c74b59d4ec10b9debcf3f',1,'TGL::tile_load_rgb(string path, rgb transparency_key)']]],
-  ['tile_5frgb_4',['tile_rgb',['../structtile__rgb.html#a6a64b324a21f577c82756848ac7166ac',1,'tile_rgb::tile_rgb()'],['../structtile__rgb.html#ab2238ed62cfba011a4dce8c45253bdd3',1,'tile_rgb::tile_rgb(rgb pixels[64])'],['../structtile__rgb.html#ad3beaad863b739319b80b9ea2e06ec0d',1,'tile_rgb::tile_rgb(rgb pixels[64], rgb transparency_key)']]],
-  ['time_5',['time',['../struct_t_g_l.html#afd750fdd65389eb539705fb1b3a2e710',1,'TGL']]],
-  ['timer_6',['timer',['../struct_t_g_l.html#ad71e34d324e6187fc758b357906abba7',1,'TGL']]],
-  ['timer_5fnew_7',['timer_new',['../struct_t_g_l.html#a082c87bafb12f2959607a411a1fc68a7',1,'TGL']]],
-  ['timer_5freset_8',['timer_reset',['../struct_t_g_l.html#a9fa1f4d99f79284354d3ade4232df62b',1,'TGL']]],
-  ['title_9',['title',['../struct_t_g_l.html#a703911a6225c6e503226867b7f23c41f',1,'TGL']]],
-  ['to_5fint_10',['to_int',['../struct_t_g_l.html#a0fe06aac5c2f3a4655c042169b921c43',1,'TGL']]],
-  ['to_5fstring_11',['to_string',['../struct_t_g_l.html#ae6a12ae269e6c499500221cca21fe83b',1,'TGL']]],
-  ['trim_12',['trim',['../struct_t_g_l.html#a47635f8dbcc19fe003aaf1d6143d41f9',1,'TGL']]]
+  ['tgl_5fapp_0',['TGL_APP',['../struct_t_g_l___a_p_p.html#a245e20c83e0fe9542f16ee7618cfe6d3',1,'TGL_APP']]],
+  ['tgl_5ftile_5fbin_1',['TGL_TILE_BIN',['../struct_t_g_l___t_i_l_e___b_i_n.html#aee2df294d4f4d9300e6a3647e2846397',1,'TGL_TILE_BIN::TGL_TILE_BIN()'],['../struct_t_g_l___t_i_l_e___b_i_n.html#ae4646f56c3962323d31125826d46885f',1,'TGL_TILE_BIN::TGL_TILE_BIN(string bits)']]],
+  ['tgl_5ftile_5frgb_2',['TGL_TILE_RGB',['../struct_t_g_l___t_i_l_e___r_g_b.html#a95a5f4ad99a7136f1c231945dee68a9a',1,'TGL_TILE_RGB::TGL_TILE_RGB()'],['../struct_t_g_l___t_i_l_e___r_g_b.html#a8d333e3d24f423f7782b0f19c988a167',1,'TGL_TILE_RGB::TGL_TILE_RGB(rgb pixels[64])'],['../struct_t_g_l___t_i_l_e___r_g_b.html#a005c2af72ba094ace29376d1f2712750',1,'TGL_TILE_RGB::TGL_TILE_RGB(rgb pixels[64], rgb transparency_key)']]],
+  ['tgl_5ftimer_3',['TGL_TIMER',['../struct_t_g_l___t_i_m_e_r.html#a6f4c63c06da88da6de655c6a8a747dcf',1,'TGL_TIMER']]],
+  ['tgl_5fview_4',['TGL_VIEW',['../struct_t_g_l___v_i_e_w.html#a1a4374d673352120b38023b083e73d71',1,'TGL_VIEW::TGL_VIEW()'],['../struct_t_g_l___v_i_e_w.html#a1335994605480712440a2cf9d5a64112',1,'TGL_VIEW::TGL_VIEW(int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg=true)']]],
+  ['tick_5',['tick',['../struct_t_g_l___t_i_m_e_r.html#ad54007699bfcb97057e7de229cceaa06',1,'TGL_TIMER']]],
+  ['tile_5fload_5frgb_6',['tile_load_rgb',['../struct_t_g_l___a_p_p.html#a8f0fb6e8152a4053b792bbaede3910b5',1,'TGL_APP::tile_load_rgb(string path)'],['../struct_t_g_l___a_p_p.html#af979ebaab244f2239ed5417bb7848a07',1,'TGL_APP::tile_load_rgb(string path, rgb transparency_key)']]],
+  ['time_7',['time',['../struct_t_g_l___a_p_p.html#a8076dada5469079e4bdaf1869422d91e',1,'TGL_APP']]],
+  ['title_8',['title',['../struct_t_g_l___a_p_p.html#a36b6d7aa43b5f89a0f02570284b75242',1,'TGL_APP']]],
+  ['to_5fint_9',['to_int',['../struct_t_g_l___a_p_p.html#a852f2b7a0835dd67ade36ccd36b67976',1,'TGL_APP']]],
+  ['to_5fstring_10',['to_string',['../struct_t_g_l___a_p_p.html#a7f92bce9ce433b675c461a475791a7e2',1,'TGL_APP']]],
+  ['trim_11',['trim',['../struct_t_g_l___a_p_p.html#a2d0ee0194bf002ed470782ede4136389',1,'TGL_APP']]]
 ];
