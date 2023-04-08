@@ -38,6 +38,7 @@ using namespace std;
 
 typedef int rgb;
 typedef unsigned char byte;
+typedef void(*callback)();
 
 struct TGL
 {
@@ -54,8 +55,8 @@ struct TGL
 	//=========================================================================
 	void update();
 	int exit();
-	int halt(void(*fn)() = nullptr);
-	void pause(int ms, void(*fn)() = nullptr);
+	int halt(callback fn = nullptr);
+	void pause(int ms, callback fn = nullptr);
 	bool running();
 	void error(string msg);
 	void abort(string msg);
@@ -113,6 +114,10 @@ struct TGL
 	//=========================================================================
 	void draw_free(string tile_id, int x, int y);
 	void draw_tiled(string tile_id, int col, int row);
+	void draw_free_ex(string binary_pattern, int x, int y, rgb fore_color);
+	void draw_free_ex(string binary_pattern, int x, int y, rgb fore_color, rgb back_color);
+	void draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color);
+	void draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color, rgb back_color);
 
 	//=========================================================================
 	//		GRAPHICS > TEXT RENDERING
@@ -197,8 +202,8 @@ struct TGL
 	//=========================================================================
 	void input_color(rgb foreground, rgb background);
 	void input_cursor(char ch);
-	string input_free(int length, int x, int y, void(*fn)() = nullptr);
-	string input_tiled(int length, int col, int row, void(*fn)() = nullptr);
+	string input_free(int length, int x, int y, callback fn = nullptr);
+	string input_tiled(int length, int col, int row, callback fn = nullptr);
 	bool input_confirmed();
 
 	//=========================================================================

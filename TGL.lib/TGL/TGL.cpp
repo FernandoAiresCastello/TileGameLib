@@ -319,6 +319,22 @@ void TGL::draw_tiled(string tile_id, int col, int row)
 	tgl->pos_tiled(col, row);
 	tgl->draw(tile_id);
 }
+void TGL::draw_free_ex(string binary_pattern, int x, int y, rgb fore_color)
+{
+	tgl->wnd->DrawChar8x8(binary_pattern, fore_color, fore_color, true, x, y, false);
+}
+void TGL::draw_free_ex(string binary_pattern, int x, int y, rgb fore_color, rgb back_color)
+{
+	tgl->wnd->DrawChar8x8(binary_pattern, fore_color, back_color, false, x, y, false);
+}
+void TGL::draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color)
+{
+	tgl->wnd->DrawChar8x8(binary_pattern, fore_color, fore_color, true, col * TILE_SIZE, row * TILE_SIZE, false);
+}
+void TGL::draw_tiled_ex(string binary_pattern, int col, int row, rgb fore_color, rgb back_color)
+{
+	tgl->wnd->DrawChar8x8(binary_pattern, fore_color, back_color, false, col * TILE_SIZE, row * TILE_SIZE, false);
+}
 void TGL::font_color(rgb color)
 {
 	tgl->font_style.fore_color = color;
