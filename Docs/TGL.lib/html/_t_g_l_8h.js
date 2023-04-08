@@ -8,5 +8,6 @@ var _t_g_l_8h =
     [ "TGL_APP", "struct_t_g_l___a_p_p.html", "struct_t_g_l___a_p_p" ],
     [ "byte", "_t_g_l_8h.html#a0c8186d9b9b7880309c27230bbb5e69d", null ],
     [ "callback", "_t_g_l_8h.html#ac7253d9915c821f541408ea973bfe3ba", null ],
-    [ "rgb", "_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013", null ]
+    [ "rgb", "_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013", null ],
+    [ "TGL_TILESIZE", "_t_g_l_8h.html#a6fd3f9eb691fc3ac2ae047cd02b44c32", null ]
 ];

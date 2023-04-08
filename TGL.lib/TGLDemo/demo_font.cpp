@@ -15,11 +15,11 @@ void demo_font()
 	while (tgl.window()) {
 
 		tgl.view_out();
-		tgl.font_shadow(true, 0x000020);
+		tgl.text_shadow(true, 0x000020);
 		title(tgl, "Font Demo");
 
 		tgl.view_in(vw_background);
-		tgl.font_shadow(true, 0x004000);
+		tgl.text_shadow(true, 0x004000);
 
 		header(tgl, "Digits", 0, 0);
 		print(tgl, "0123456789", 0, 1);
@@ -51,22 +51,22 @@ void demo_font()
 }
 void print(TGL_APP& tgl, string str, int x, int y)
 {
-	x *= tgl.tilesize;
-	y *= tgl.tilesize;
+	x *= TGL_TILESIZE;
+	y *= TGL_TILESIZE;
 
-	tgl.font_color(0xffffff);
+	tgl.text_color(0xffffff);
 	tgl.print_free(str, x, y);
 }
 void header(TGL_APP& tgl, string str, int x, int y)
 {
-	x *= tgl.tilesize;
-	y *= tgl.tilesize;
+	x *= TGL_TILESIZE;
+	y *= TGL_TILESIZE;
 
-	tgl.font_color(0xffff00, 0x0000ff);
+	tgl.text_color(0xffff00, 0x0000ff);
 	tgl.print_free(str, x, y);
 }
 void title(TGL_APP& tgl, string str)
 {
-	tgl.font_color(0x00ffff);
+	tgl.text_color(0x00ffff);
 	tgl.print_free(str, 43, 1);
 }

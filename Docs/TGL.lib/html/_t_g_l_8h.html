@@ -26,8 +26,9 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
   <td id="projectalign">
-   <div id="projectname">TGL.lib (TileGameLib)
+   <div id="projectname">TGL.lib (TileGameLib)<span id="projectnumber">&#160;Pre-Alpha</span>
    </div>
+   <div id="projectbrief">TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games.</div>
   </td>
  </tr>
  </tbody>
@@ -92,16 +93,14 @@ $(document).ready(function(){initNavTree('_t_g_l_8h.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">TGL.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;SDL.h&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
-<code>#include &lt;unordered_map&gt;</code><br />
-<code>#include &lt;cstdarg&gt;</code><br />
 </div>
 <p><a href="_t_g_l_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -137,6 +136,12 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ac7253d9915c821f541408ea973bfe3ba"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_l_8h.html#ac7253d9915c821f541408ea973bfe3ba">callback</a>) ()</td></tr>
 <tr class="memdesc:ac7253d9915c821f541408ea973bfe3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to callback procedure.  <br /></td></tr>
 <tr class="separator:ac7253d9915c821f541408ea973bfe3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6fd3f9eb691fc3ac2ae047cd02b44c32"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_g_l_8h.html#a6fd3f9eb691fc3ac2ae047cd02b44c32">TGL_TILESIZE</a> = 8</td></tr>
+<tr class="memdesc:a6fd3f9eb691fc3ac2ae047cd02b44c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width and height of a tile.  <br /></td></tr>
+<tr class="separator:a6fd3f9eb691fc3ac2ae047cd02b44c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a0c8186d9b9b7880309c27230bbb5e69d" name="a0c8186d9b9b7880309c27230bbb5e69d"></a>
@@ -184,6 +189,31 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Color represented as a 24-bit integer (0xRRGGBB) </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6fd3f9eb691fc3ac2ae047cd02b44c32" name="a6fd3f9eb691fc3ac2ae047cd02b44c32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd3f9eb691fc3ac2ae047cd02b44c32">&#9670;&#160;</a></span>TGL_TILESIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int TGL_TILESIZE = 8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Width and height of a tile. </p>
 
 </div>
 </div>

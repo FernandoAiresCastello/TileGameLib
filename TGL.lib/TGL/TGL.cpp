@@ -38,14 +38,14 @@ using namespace CppUtils;
 using namespace TGL_Internal;
 
 #include "TGL.h"
-#include "TGL_Private.h"
+#include "TGL_PRIVATE.h"
 
 #define WND_SIZE_FACTOR_MIN		1
 #define WND_SIZE_FACTOR_MAX		5
 #define STRING_FMT_MAXBUFLEN	1024
 #define FPS_COLOR				0xd0d0d0
 
-TGL_Private* tgl = nullptr;
+TGL_PRIVATE* tgl = nullptr;
 
 TGL_TILE_RGB::TGL_TILE_RGB()
 {
@@ -117,7 +117,7 @@ bool TGL_TIMER::done()
 }
 TGL_APP::TGL_APP()
 {
-	tgl = new TGL_Private(this);
+	tgl = new TGL_PRIVATE(this);
 }
 TGL_APP::~TGL_APP()
 {
@@ -273,7 +273,7 @@ TGL_TILE_RGB TGL_APP::tile_load_rgb(string path)
 {
 	TImage img;
 	img.Load(path);
-	if (img.GetWidth() != tilesize || img.GetHeight() != tilesize) {
+	if (img.GetWidth() != TGL_TILESIZE || img.GetHeight() != TGL_TILESIZE) {
 		abort("Invalid TGL bitmap file: " + path);
 	}
 	TGL_TILE_RGB tile;
@@ -291,7 +291,7 @@ TGL_TILE_RGB TGL_APP::tile_load_rgb(string path, rgb transparency_key)
 	tile.transparency_key = transparency_key;
 	return tile;
 }
-void TGL_Private::adjust_pos(int& x, int& y)
+void TGL_PRIVATE::adjust_pos(int& x, int& y)
 {
 	if (tgl->cur_view) {
 		x -= tgl->cur_view->scroll_x;
@@ -329,45 +329,45 @@ void TGL_APP::draw_free(string binary, int x, int y, rgb fore_color, rgb back_co
 }
 void TGL_APP::draw_tiled(TGL_TILE_RGB& tile, int x, int y)
 {
-	draw_free(tile, x * tilesize, y * tilesize);
+	draw_free(tile, x * TGL_TILESIZE, y * TGL_TILESIZE);
 }
 void TGL_APP::draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color)
 {
-	draw_free(tile, x * tilesize, y * tilesize, fore_color);
+	draw_free(tile, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color);
 }
 void TGL_APP::draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb back_color)
 {
-	draw_free(tile, x * tilesize, y * tilesize, fore_color, back_color);
+	draw_free(tile, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color, back_color);
 }
 void TGL_APP::draw_tiled(string binary, int x, int y, rgb fore_color)
 {
-	draw_free(binary, x * tilesize, y * tilesize, fore_color);
+	draw_free(binary, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color);
 }
 void TGL_APP::draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color)
 {
-	draw_free(binary, x * tilesize, y * tilesize, fore_color, back_color);
+	draw_free(binary, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color, back_color);
 }
-void TGL_APP::font_color(rgb color)
+void TGL_APP::text_color(rgb color)
 {
-	tgl->font_style.fore_color = color;
+	tgl->text_style.fore_color = color;
 }
-void TGL_APP::font_color(rgb fore_color, rgb back_color)
+void TGL_APP::text_color(rgb fore_color, rgb back_color)
 {
-	tgl->font_style.fore_color = fore_color;
-	tgl->font_style.back_color = back_color;
+	tgl->text_style.fore_color = fore_color;
+	tgl->text_style.back_color = back_color;
 }
 void TGL_APP::font(char ch, string binary)
 {
 	tgl->font_tiles[ch] = binary;
 }
-void TGL_APP::font_shadow(bool shadow, rgb shadow_color)
+void TGL_APP::text_shadow(bool shadow, rgb shadow_color)
 {
-	tgl->font_style.shadow_enabled = shadow;
-	tgl->font_style.shadow_color = shadow_color;
+	tgl->text_style.shadow_enabled = shadow;
+	tgl->text_style.shadow_color = shadow_color;
 }
-void TGL_APP::font_transparent(bool state)
+void TGL_APP::text_transparent(bool state)
 {
-	tgl->font_style.transparent = state;
+	tgl->text_style.transparent = state;
 }
 void TGL_APP::font_reset()
 {
@@ -398,8 +398,8 @@ bool TGL_APP::rnd_chance(int percent)
 }
 bool TGL_APP::collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 {
-	return	(tile1_x >= tile2_x - tilesize) && (tile1_x <= tile2_x + tilesize) &&
-			(tile1_y >= tile2_y - tilesize) && (tile1_y <= tile2_y + tilesize);
+	return	(tile1_x >= tile2_x - TGL_TILESIZE) && (tile1_x <= tile2_x + TGL_TILESIZE) &&
+			(tile1_y >= tile2_y - TGL_TILESIZE) && (tile1_y <= tile2_y + TGL_TILESIZE);
 }
 bool TGL_APP::file_exists(string path)
 {
@@ -587,11 +587,11 @@ int TGL_APP::height()
 }
 int TGL_APP::cols()
 {
-	return width() / tilesize;
+	return width() / TGL_TILESIZE;
 }
 int TGL_APP::rows()
 {
-	return height() / tilesize;
+	return height() / TGL_TILESIZE;
 }
 void TGL_APP::input_color(rgb foreground, rgb background)
 {
@@ -819,7 +819,7 @@ void TGL_APP::print_debug(string str, int x, int y, rgb color)
 	for (auto& ch : str) {
 		string& pixels = tgl->font_tiles[ch];
 		tgl->wnd->DrawChar8x8(pixels, color, 0, true, x, y, true);
-		x += tilesize;
+		x += TGL_TILESIZE;
 	}
 }
 void TGL_APP::show_fps(bool show)
@@ -828,10 +828,10 @@ void TGL_APP::show_fps(bool show)
 }
 
 //=============================================================================
-//		TGL_Private
+//		TGL_PRIVATE
 //=============================================================================
 
-TGL_Private::TGL_Private(TGL_APP* tgl_public)
+TGL_PRIVATE::TGL_PRIVATE(TGL_APP* tgl_app)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Util::Randomize();
@@ -846,11 +846,11 @@ TGL_Private::TGL_Private(TGL_APP* tgl_public)
 	init_default_font();
 	gamepad.OpenAllAvailable();
 
-	this->tgl_public = tgl_public;
+	this->tgl_app = tgl_app;
 
 	perfmon.fps_starttime = SDL_GetTicks();
 }
-TGL_Private::~TGL_Private()
+TGL_PRIVATE::~TGL_PRIVATE()
 {
 	delete wnd;
 	wnd = nullptr;
@@ -859,12 +859,12 @@ TGL_Private::~TGL_Private()
 	delete snd_files;
 	snd_files = nullptr;
 }
-void TGL_Private::process_default_events(SDL_Event* e)
+void TGL_PRIVATE::process_default_events(SDL_Event* e)
 {
 	SDL_PollEvent(e);
 
 	if (e->type == SDL_QUIT) {
-		tgl_public->exit();
+		tgl_app->exit();
 	} else if (e->type == SDL_KEYDOWN) {
 		auto key = e->key.keysym.sym;
 		last_key = key;
@@ -873,12 +873,12 @@ void TGL_Private::process_default_events(SDL_Event* e)
 		}
 	}
 }
-void TGL_Private::create_window(int width, int height, rgb back_color, int size_factor)
+void TGL_PRIVATE::create_window(int width, int height, rgb back_color, int size_factor)
 {
 	if (wnd) delete wnd;
 
 	wnd = new TRGBWindow(
-		width / tgl_public->tilesize, height / tgl_public->tilesize, 
+		width / TGL_TILESIZE, height / TGL_TILESIZE,
 		size_factor, size_factor, back_color);
 
 	wnd_back_color = back_color;
@@ -890,19 +890,19 @@ void TGL_Private::create_window(int width, int height, rgb back_color, int size_
 	frame_counter = 0;
 	is_running = true;
 }
-void TGL_Private::draw_frame()
+void TGL_PRIVATE::draw_frame()
 {
 	on_draw_frame_begin();
 	wnd->Update();
 	on_draw_frame_end();
 }
-void TGL_Private::on_draw_frame_begin()
+void TGL_PRIVATE::on_draw_frame_begin()
 {
 	if (fps_enabled) {
-		tgl_public->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0, FPS_COLOR);
+		tgl_app->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0, FPS_COLOR);
 	}
 }
-void TGL_Private::on_draw_frame_end()
+void TGL_PRIVATE::on_draw_frame_end()
 {
 	frame_counter++;
 	
@@ -913,15 +913,15 @@ void TGL_Private::on_draw_frame_end()
 		perfmon.fps_current = perfmon.fps_frames / elapsed_sec;
 	}
 }
-void TGL_Private::clip(int x1, int y1, int x2, int y2)
+void TGL_PRIVATE::clip(int x1, int y1, int x2, int y2)
 {
 	wnd->SetClip(x1, y1, x2, y2);
 }
-void TGL_Private::unclip()
+void TGL_PRIVATE::unclip()
 {
 	wnd->RemoveClip();
 }
-void TGL_Private::clear_entire_window()
+void TGL_PRIVATE::clear_entire_window()
 {
 	if (cur_view) {
 		rgb prev_back_color = cur_view->back_color;
@@ -933,18 +933,18 @@ void TGL_Private::clear_entire_window()
 		wnd->ClearBackground();
 	}
 }
-void TGL_Private::clear_current_view()
+void TGL_PRIVATE::clear_current_view()
 {
 	rgb prev_back_color = cur_view->back_color;
 	wnd->SetBackColor(cur_view->back_color);
 	wnd->ClearBackground();
 	wnd->SetBackColor(prev_back_color);
 }
-void TGL_Private::print(string str, int x, int y, bool tiled)
+void TGL_PRIVATE::print(string str, int x, int y, bool tiled)
 {
 	if (tiled) {
-		x *= tgl_public->tilesize;
-		y *= tgl_public->tilesize;
+		x *= TGL_TILESIZE;
+		y *= TGL_TILESIZE;
 	}
 	int char_x = cur_view ? x - cur_view->scroll_x : x;
 	int char_y = cur_view ? y - cur_view->scroll_y : y;
@@ -957,21 +957,21 @@ void TGL_Private::print(string str, int x, int y, bool tiled)
 	for (auto& ch : str) {
 		string& pixels = font_tiles[ch];
 		
-		if (font_style.shadow_enabled) {
-			wnd->DrawChar8x8(pixels, font_style.shadow_color, font_style.back_color,
+		if (text_style.shadow_enabled) {
+			wnd->DrawChar8x8(pixels, text_style.shadow_color, text_style.back_color,
 				true, char_x + 1, char_y + 1, false);
 		}
-		wnd->DrawChar8x8(pixels, font_style.fore_color, font_style.back_color,
-			font_style.transparent, char_x, char_y, false);
+		wnd->DrawChar8x8(pixels, text_style.fore_color, text_style.back_color,
+			text_style.transparent, char_x, char_y, false);
 
-		char_x += tgl_public->tilesize;
+		char_x += TGL_TILESIZE;
 	}
 }
-bool TGL_Private::is_valid_gpad_selected()
+bool TGL_PRIVATE::is_valid_gpad_selected()
 {
 	return gamepad.Number >= 0 && gamepad.Number < gamepad.CountOpen();
 }
-void TGL_Private::font(char ch, string pattern)
+void TGL_PRIVATE::font(char ch, string pattern)
 {
 	font_tiles[ch] = pattern;
 }
@@ -1047,7 +1047,7 @@ bool TGL_APP::gpad_select()
 {
 	return tgl->is_valid_gpad_selected() ? tgl->gamepad.Select() : false;
 }
-void TGL_Private::init_default_font()
+void TGL_PRIVATE::init_default_font()
 {
 	font(32, "0000000000000000000000000000000000000000000000000000000000000000"); // 32 Space
 	font(33, "0011000000110000001100000011000000110000000000000011000000000000"); // 33 !
@@ -1145,12 +1145,12 @@ void TGL_Private::init_default_font()
 	font(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 	font(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 }
-string TGL_Private::line_input(int length, int x, int y, bool tiled, callback fn)
+string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callback fn)
 {
-	bool prev_shadow_enabled = font_style.shadow_enabled;
-	bool prev_transparent = font_style.transparent;
-	rgb prev_fore_color = font_style.fore_color;
-	rgb prev_back_color = font_style.back_color;
+	bool prev_shadow_enabled = text_style.shadow_enabled;
+	bool prev_transparent = text_style.transparent;
+	rgb prev_fore_color = text_style.fore_color;
+	rgb prev_back_color = text_style.back_color;
 
 	text_input.cancelled = false;
 	string blanks = String::Repeat(' ', length + 1);
@@ -1159,10 +1159,10 @@ string TGL_Private::line_input(int length, int x, int y, bool tiled, callback fn
 	bool finished = false;
 	while (is_running && !finished) {
 
-		font_style.shadow_enabled = false;
-		font_style.transparent = false;
-		font_style.fore_color = text_input.fore_color;
-		font_style.back_color = text_input.back_color;
+		text_style.shadow_enabled = false;
+		text_style.transparent = false;
+		text_style.fore_color = text_input.fore_color;
+		text_style.back_color = text_input.back_color;
 
 		print(blanks, x, y, tiled);
 		print(text + text_input.cursor, x, y, tiled);
@@ -1204,14 +1204,14 @@ string TGL_Private::line_input(int length, int x, int y, bool tiled, callback fn
 		}
 	}
 
-	font_style.shadow_enabled = prev_shadow_enabled;
-	font_style.transparent = prev_transparent;
-	font_style.fore_color = prev_fore_color;
-	font_style.back_color = prev_back_color;
+	text_style.shadow_enabled = prev_shadow_enabled;
+	text_style.transparent = prev_transparent;
+	text_style.fore_color = prev_fore_color;
+	text_style.back_color = prev_back_color;
 
 	return text;
 }
-char TGL_Private::keycode_to_char(SDL_Keycode key)
+char TGL_PRIVATE::keycode_to_char(SDL_Keycode key)
 {
 	bool shift = TKey::Shift();
 
@@ -1268,11 +1268,11 @@ char TGL_Private::keycode_to_char(SDL_Keycode key)
 
 	return 0;
 }
-bool TGL_Private::is_shade_of_gray(TColor& color)
+bool TGL_PRIVATE::is_shade_of_gray(TColor& color)
 {
 	return color.R == color.G && color.G == color.B;
 }
-int TGL_Private::get_gray_level(TColor& color)
+int TGL_PRIVATE::get_gray_level(TColor& color)
 {
 	if (is_shade_of_gray(color))
 		return color.R;

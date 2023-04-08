@@ -51,7 +51,7 @@
     <ClInclude Include="Internal\TWindowBase.h" />
     <ClInclude Include="Internal\TWindowCreationFlags.h" />
     <ClInclude Include="TGL.h" />
-    <ClInclude Include="TGL_Private.h" />
+    <ClInclude Include="TGL_PRIVATE.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CppUtils\CppFile.cpp" />

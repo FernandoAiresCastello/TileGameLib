@@ -26,8 +26,9 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
   <td id="projectalign">
-   <div id="projectname">TGL.lib (TileGameLib)
+   <div id="projectname">TGL.lib (TileGameLib)<span id="projectnumber">&#160;Pre-Alpha</span>
    </div>
+   <div id="projectbrief">TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-bit games.</div>
   </td>
  </tr>
  </tbody>
@@ -92,7 +93,6 @@ $(document).ready(function(){initNavTree('struct_t_g_l___a_p_p.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_t_g_l___a_p_p-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">TGL_APP Struct Reference</div></div>
 </div><!--header-->
@@ -234,18 +234,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf226c94ae195bc68e364d9d8069cc76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#acf226c94ae195bc68e364d9d8069cc76">font_reset</a> ()</td></tr>
 <tr class="memdesc:acf226c94ae195bc68e364d9d8069cc76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all characters in the text font to their default tiles.  <br /></td></tr>
 <tr class="separator:acf226c94ae195bc68e364d9d8069cc76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a379ea89e92cbdcb3e6319a5e0023e37f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a379ea89e92cbdcb3e6319a5e0023e37f">font_color</a> (<a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> color)</td></tr>
-<tr class="memdesc:a379ea89e92cbdcb3e6319a5e0023e37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set font color for printing text without changing its background color.  <br /></td></tr>
-<tr class="separator:a379ea89e92cbdcb3e6319a5e0023e37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f3659d628779693440c20b56226e8dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a1f3659d628779693440c20b56226e8dc">font_color</a> (<a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> fore_color, <a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> back_color)</td></tr>
-<tr class="memdesc:a1f3659d628779693440c20b56226e8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set font color and background color for printing text.  <br /></td></tr>
-<tr class="separator:a1f3659d628779693440c20b56226e8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a250e44da0a2a54f57e33d1b28dbf7cfc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a250e44da0a2a54f57e33d1b28dbf7cfc">font_shadow</a> (bool shadow, <a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> shadow_color=0x000000)</td></tr>
-<tr class="memdesc:a250e44da0a2a54f57e33d1b28dbf7cfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable text shadow, optionally set color of shadow.  <br /></td></tr>
-<tr class="separator:a250e44da0a2a54f57e33d1b28dbf7cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d9a0f5ccd9f0fe6015a8323dae888c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a2d9a0f5ccd9f0fe6015a8323dae888c9">font_transparent</a> (bool state)</td></tr>
-<tr class="memdesc:a2d9a0f5ccd9f0fe6015a8323dae888c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable text font background color.  <br /></td></tr>
-<tr class="separator:a2d9a0f5ccd9f0fe6015a8323dae888c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af318dfe2eb44f74324274e3953d79ca5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#af318dfe2eb44f74324274e3953d79ca5">text_color</a> (<a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> color)</td></tr>
+<tr class="memdesc:af318dfe2eb44f74324274e3953d79ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set text color without changing background color.  <br /></td></tr>
+<tr class="separator:af318dfe2eb44f74324274e3953d79ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbece188a82860d4f07b367a0e68c564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#acbece188a82860d4f07b367a0e68c564">text_color</a> (<a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> fore_color, <a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> back_color)</td></tr>
+<tr class="memdesc:acbece188a82860d4f07b367a0e68c564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set text and background colors.  <br /></td></tr>
+<tr class="separator:acbece188a82860d4f07b367a0e68c564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d18628d8193fe3be30a354d699da0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a98d18628d8193fe3be30a354d699da0b">text_shadow</a> (bool shadow, <a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a> shadow_color=0x000000)</td></tr>
+<tr class="memdesc:a98d18628d8193fe3be30a354d699da0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable text shadow, optionally set color of shadow.  <br /></td></tr>
+<tr class="separator:a98d18628d8193fe3be30a354d699da0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4645b25bd17f23ebd825642996fbdd78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a4645b25bd17f23ebd825642996fbdd78">text_transparent</a> (bool state)</td></tr>
+<tr class="memdesc:a4645b25bd17f23ebd825642996fbdd78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable text background.  <br /></td></tr>
+<tr class="separator:a4645b25bd17f23ebd825642996fbdd78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56b7bb603544eb072dcf9f49feb60e5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a56b7bb603544eb072dcf9f49feb60e5a">print_free</a> (string str, int x, int y)</td></tr>
 <tr class="memdesc:a56b7bb603544eb072dcf9f49feb60e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print text at absolute position.  <br /></td></tr>
 <tr class="separator:a56b7bb603544eb072dcf9f49feb60e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -456,12 +456,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab1b9bb54fc2b34a079eae31d5fcff5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaa73218d3893fcc518b25acfd5cf4cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#abaa73218d3893fcc518b25acfd5cf4cd">show_fps</a> (bool show)</td></tr>
 <tr class="separator:abaa73218d3893fcc518b25acfd5cf4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a712e4bf2cceda3e88126026ab2f05e16"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___a_p_p.html#a712e4bf2cceda3e88126026ab2f05e16">tilesize</a> = 8</td></tr>
-<tr class="memdesc:a712e4bf2cceda3e88126026ab2f05e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width and height of a tile.  <br /></td></tr>
-<tr class="separator:a712e4bf2cceda3e88126026ab2f05e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure for the TGL application singleton. </p>
@@ -1530,56 +1524,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a379ea89e92cbdcb3e6319a5e0023e37f" name="a379ea89e92cbdcb3e6319a5e0023e37f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a379ea89e92cbdcb3e6319a5e0023e37f">&#9670;&#160;</a></span>font_color() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TGL_APP::font_color </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
-          <td class="paramname"><em>color</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set font color for printing text without changing its background color. </p>
-
-</div>
-</div>
-<a id="a1f3659d628779693440c20b56226e8dc" name="a1f3659d628779693440c20b56226e8dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f3659d628779693440c20b56226e8dc">&#9670;&#160;</a></span>font_color() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TGL_APP::font_color </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
-          <td class="paramname"><em>fore_color</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
-          <td class="paramname"><em>back_color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set font color and background color for printing text. </p>
-
-</div>
-</div>
 <a id="abb1b285760c31a93f2ff38d6cbad3c73" name="abb1b285760c31a93f2ff38d6cbad3c73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb1b285760c31a93f2ff38d6cbad3c73">&#9670;&#160;</a></span>font_new()</h2>
 
@@ -1615,56 +1559,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reset all characters in the text font to their default tiles. </p>
-
-</div>
-</div>
-<a id="a250e44da0a2a54f57e33d1b28dbf7cfc" name="a250e44da0a2a54f57e33d1b28dbf7cfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a250e44da0a2a54f57e33d1b28dbf7cfc">&#9670;&#160;</a></span>font_shadow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TGL_APP::font_shadow </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>shadow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
-          <td class="paramname"><em>shadow_color</em> = <code>0x000000</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable or disable text shadow, optionally set color of shadow. </p>
-
-</div>
-</div>
-<a id="a2d9a0f5ccd9f0fe6015a8323dae888c9" name="a2d9a0f5ccd9f0fe6015a8323dae888c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d9a0f5ccd9f0fe6015a8323dae888c9">&#9670;&#160;</a></span>font_transparent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TGL_APP::font_transparent </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable or disable text font background color. </p>
 
 </div>
 </div>
@@ -3447,6 +3341,106 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af318dfe2eb44f74324274e3953d79ca5" name="af318dfe2eb44f74324274e3953d79ca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af318dfe2eb44f74324274e3953d79ca5">&#9670;&#160;</a></span>text_color() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TGL_APP::text_color </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set text color without changing background color. </p>
+
+</div>
+</div>
+<a id="acbece188a82860d4f07b367a0e68c564" name="acbece188a82860d4f07b367a0e68c564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbece188a82860d4f07b367a0e68c564">&#9670;&#160;</a></span>text_color() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TGL_APP::text_color </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
+          <td class="paramname"><em>fore_color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
+          <td class="paramname"><em>back_color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set text and background colors. </p>
+
+</div>
+</div>
+<a id="a98d18628d8193fe3be30a354d699da0b" name="a98d18628d8193fe3be30a354d699da0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d18628d8193fe3be30a354d699da0b">&#9670;&#160;</a></span>text_shadow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TGL_APP::text_shadow </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>shadow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_t_g_l_8h.html#a88195a1d986f78d1917acd7119462013">rgb</a>&#160;</td>
+          <td class="paramname"><em>shadow_color</em> = <code>0x000000</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable text shadow, optionally set color of shadow. </p>
+
+</div>
+</div>
+<a id="a4645b25bd17f23ebd825642996fbdd78" name="a4645b25bd17f23ebd825642996fbdd78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4645b25bd17f23ebd825642996fbdd78">&#9670;&#160;</a></span>text_transparent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TGL_APP::text_transparent </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable text background. </p>
+
+</div>
+</div>
 <a id="a8f0fb6e8152a4053b792bbaede3910b5" name="a8f0fb6e8152a4053b792bbaede3910b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f0fb6e8152a4053b792bbaede3910b5">&#9670;&#160;</a></span>tile_load_rgb() <span class="overload">[1/2]</span></h2>
 
@@ -3833,23 +3827,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create application window with standard resolution of 360x200 and specified background color. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a712e4bf2cceda3e88126026ab2f05e16" name="a712e4bf2cceda3e88126026ab2f05e16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a712e4bf2cceda3e88126026ab2f05e16">&#9670;&#160;</a></span>tilesize</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int TGL_APP::tilesize = 8</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The width and height of a tile. </p>
 
 </div>
 </div>

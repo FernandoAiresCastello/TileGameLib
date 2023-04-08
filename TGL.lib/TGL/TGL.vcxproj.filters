@@ -114,7 +114,7 @@
     <ClInclude Include="TGL.h">
       <Filter>TGLAPI</Filter>
     </ClInclude>
-    <ClInclude Include="TGL_Private.h">
+    <ClInclude Include="TGL_PRIVATE.h">
       <Filter>TGLAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\CppUtils\CppFile.h">

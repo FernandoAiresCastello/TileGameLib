@@ -78,9 +78,9 @@ void draw_score()
 {
 	tgl.view_in(views.score);
 	string score = tgl.fmt("Score: %05i", player.score);
-	tgl.font_color(0x000020);
+	tgl.text_color(0x000020);
 	tgl.print_free(score, 33, 5);
-	tgl.font_color(0xffffff);
+	tgl.text_color(0xffffff);
 	tgl.print_free(score, 32, 4);
 }
 void handle_input()
@@ -91,10 +91,10 @@ void handle_input()
 	if (tgl.kb_right() || tgl.gpad_right() || tgl.gpad_r()) player.x++;
 	if (tgl.kb_left() || tgl.gpad_left() || tgl.gpad_l()) player.x--;
 
-	if (player.x < -tgl.tilesize) 
+	if (player.x < -TGL_TILESIZE) 
 		player.x = tgl.width();
 	else if (player.x >= tgl.width()) 
-		player.x = -tgl.tilesize;
+		player.x = -TGL_TILESIZE;
 
 	if (tgl.kb_space() || tgl.gpad_a()) player_shoot();
 }
@@ -117,7 +117,7 @@ void player_cycle()
 
 	if (player.missile.active) {
 		player.missile.y -= 2;
-		if (player.missile.y < -tgl.tilesize) {
+		if (player.missile.y < -TGL_TILESIZE) {
 			player.missile.active = false;
 		}
 	}
@@ -126,7 +126,7 @@ void aliens_cycle()
 {
 	for (auto& alien : aliens) {
 		if (alien.alive) {
-			if (alien.y >= -tgl.tilesize) {
+			if (alien.y >= -TGL_TILESIZE) {
 				tgl.draw_free(tiles.alien, alien.x, alien.y);
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
 					alien_destroy(alien);
@@ -156,8 +156,8 @@ void init_aliens()
 
 	for (int i = 0; i < number_of_aliens; i++) {
 		t_alien alien;
-		alien.x = tgl.rnd(0, tgl.cols() - 1) * tgl.tilesize;
-		alien.y = tgl.rnd(-200, 0) * tgl.tilesize;
+		alien.x = tgl.rnd(0, tgl.cols() - 1) * TGL_TILESIZE;
+		alien.y = tgl.rnd(-200, 0) * TGL_TILESIZE;
 		aliens.push_back(alien);
 	}
 }

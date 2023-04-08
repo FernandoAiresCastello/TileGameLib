@@ -12,7 +12,7 @@ void demo_timing()
 	while (tgl.window()) {
 		tgl.backcolor(RND_COLOR);
 		tgl.clear();
-		tgl.font_color(RND_COLOR);
+		tgl.text_color(RND_COLOR);
 		tgl.print_free(tgl.fmt("Pause: %3i frames", pause_frames), 13, 65);
 		tgl.update();
 		tgl.pause(pause_frames);

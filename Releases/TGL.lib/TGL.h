@@ -31,9 +31,6 @@
 #include <SDL.h>
 #include <string>
 #include <vector>
-#include <map>
-#include <unordered_map>
-#include <cstdarg>
 using namespace std;
 
 /// Color represented as a 24-bit integer (0xRRGGBB)
@@ -44,6 +41,9 @@ typedef unsigned char byte;
 
 /// Pointer to callback procedure
 typedef void(*callback)();
+
+/// Width and height of a tile
+constexpr int TGL_TILESIZE = 8;
 
 /// Structure for an RGB tile
 struct TGL_TILE_RGB
@@ -107,17 +107,10 @@ struct TGL_APP
 	~TGL_APP();
 
 	//=========================================================================
-	//		CONSTANTS
-	//=========================================================================
-
-	/// The width and height of a tile
-	const int tilesize = 8;
-
-	//=========================================================================
 	//		SYSTEM
 	//=========================================================================
 
-	/// Update window, advance timers and process default events. Should be called after drawing each and every frame
+	/// Update window and process default events. Should be called after drawing each and every frame
 	void update();
 	/// Close the window and terminate application.
 	int exit();
@@ -210,7 +203,7 @@ struct TGL_APP
 	void draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color);
 
 	//=========================================================================
-	//		GRAPHICS > TEXT RENDERING
+	//		GRAPHICS > TEXT
 	//=========================================================================
 
 	/// Set binary tile to be used for the specified character in the text font
@@ -219,14 +212,14 @@ struct TGL_APP
 	void font_new();
 	/// Reset all characters in the text font to their default tiles
 	void font_reset();
-	/// Set font color for printing text without changing its background color
-	void font_color(rgb color);
-	/// Set font color and background color for printing text
-	void font_color(rgb fore_color, rgb back_color);
+	/// Set text color without changing background color
+	void text_color(rgb color);
+	/// Set text and background colors
+	void text_color(rgb fore_color, rgb back_color);
 	/// Enable or disable text shadow, optionally set color of shadow
-	void font_shadow(bool shadow, rgb shadow_color = 0x000000);
-	/// Enable or disable text font background color
-	void font_transparent(bool state);
+	void text_shadow(bool shadow, rgb shadow_color = 0x000000);
+	/// Enable or disable text background
+	void text_transparent(bool state);
 	/// Print text at absolute position
 	void print_free(string str, int x, int y);
 	/// Print text aligned with virtual grid

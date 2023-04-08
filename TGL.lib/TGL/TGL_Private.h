@@ -3,13 +3,13 @@
 #include "Internal/TSoundFiles.h"
 using namespace TGL_Internal;
 
-struct TGL_Private
+struct TGL_PRIVATE
 {
 private:
 	friend struct TGL_APP;
 
-	TGL_Private(TGL_APP* tgl_public);
-	~TGL_Private();
+	TGL_PRIVATE(TGL_APP* tgl_app);
+	~TGL_PRIVATE();
 
 	struct {
 		rgb fore_color = 0xffffff;
@@ -17,7 +17,7 @@ private:
 		bool transparent = true;
 		bool shadow_enabled = false;
 		rgb shadow_color = 0x000000;
-	} font_style;
+	} text_style;
 
 	struct {
 		rgb fore_color = 0xffffff;
@@ -33,7 +33,7 @@ private:
 		Uint32 fps_frames = 0;
 	} perfmon;
 
-	TGL_APP* tgl_public = nullptr;
+	TGL_APP* tgl_app = nullptr;
 	TRGBWindow* wnd = nullptr;
 	TSound* snd_notes = nullptr;
 	TSoundFiles* snd_files = nullptr;

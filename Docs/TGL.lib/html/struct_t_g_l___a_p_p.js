@@ -38,12 +38,8 @@ var struct_t_g_l___a_p_p =
     [ "folder_exists", "struct_t_g_l___a_p_p.html#a4c2c6610f2e992f40ec6341c638a3b81", null ],
     [ "folder_list", "struct_t_g_l___a_p_p.html#aa1cb7d1c8ff6e9a8a60b535767d06beb", null ],
     [ "font", "struct_t_g_l___a_p_p.html#ab90e2fa2c6d1634988e217b483959a20", null ],
-    [ "font_color", "struct_t_g_l___a_p_p.html#a379ea89e92cbdcb3e6319a5e0023e37f", null ],
-    [ "font_color", "struct_t_g_l___a_p_p.html#a1f3659d628779693440c20b56226e8dc", null ],
     [ "font_new", "struct_t_g_l___a_p_p.html#abb1b285760c31a93f2ff38d6cbad3c73", null ],
     [ "font_reset", "struct_t_g_l___a_p_p.html#acf226c94ae195bc68e364d9d8069cc76", null ],
-    [ "font_shadow", "struct_t_g_l___a_p_p.html#a250e44da0a2a54f57e33d1b28dbf7cfc", null ],
-    [ "font_transparent", "struct_t_g_l___a_p_p.html#a2d9a0f5ccd9f0fe6015a8323dae888c9", null ],
     [ "fullscreen", "struct_t_g_l___a_p_p.html#a698e9e4e655b37a7ee5cc0ba5b43cd65", null ],
     [ "fullscreen", "struct_t_g_l___a_p_p.html#aa69441239bc07dc40dc8c4edfd2a16b3", null ],
     [ "gpad", "struct_t_g_l___a_p_p.html#a6864e2b3faae1f854c13eaa7005ad8e2", null ],
@@ -134,6 +130,10 @@ var struct_t_g_l___a_p_p =
     [ "split", "struct_t_g_l___a_p_p.html#abd7cca006d2fa0e5d0b022f460562b06", null ],
     [ "starts_with", "struct_t_g_l___a_p_p.html#a89d19c1ab6e80c900400c69eea4c6358", null ],
     [ "substr", "struct_t_g_l___a_p_p.html#a24aecad8d7060ce40bd4eabfbfa09972", null ],
+    [ "text_color", "struct_t_g_l___a_p_p.html#af318dfe2eb44f74324274e3953d79ca5", null ],
+    [ "text_color", "struct_t_g_l___a_p_p.html#acbece188a82860d4f07b367a0e68c564", null ],
+    [ "text_shadow", "struct_t_g_l___a_p_p.html#a98d18628d8193fe3be30a354d699da0b", null ],
+    [ "text_transparent", "struct_t_g_l___a_p_p.html#a4645b25bd17f23ebd825642996fbdd78", null ],
     [ "tile_load_rgb", "struct_t_g_l___a_p_p.html#a8f0fb6e8152a4053b792bbaede3910b5", null ],
     [ "tile_load_rgb", "struct_t_g_l___a_p_p.html#af979ebaab244f2239ed5417bb7848a07", null ],
     [ "time", "struct_t_g_l___a_p_p.html#a8076dada5469079e4bdaf1869422d91e", null ],
@@ -150,6 +150,5 @@ var struct_t_g_l___a_p_p =
     [ "window", "struct_t_g_l___a_p_p.html#a51ce4ec95efef4f3f35dc7f7bdc87afa", null ],
     [ "window_160x144", "struct_t_g_l___a_p_p.html#a336951dce0995ae9d1c2cfcf52db0610", null ],
     [ "window_256x192", "struct_t_g_l___a_p_p.html#a17c7fe4b4aa66e958c60e9d037b0d9cc", null ],
-    [ "window_360x200", "struct_t_g_l___a_p_p.html#a20ebb3ecd4280a789bbc4ed59afdefa8", null ],
-    [ "tilesize", "struct_t_g_l___a_p_p.html#a712e4bf2cceda3e88126026ab2f05e16", null ]
+    [ "window_360x200", "struct_t_g_l___a_p_p.html#a20ebb3ecd4280a789bbc4ed59afdefa8", null ]
 ];
