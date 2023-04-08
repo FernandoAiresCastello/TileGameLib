@@ -3,7 +3,7 @@
 void demo_views()
 {
 	TGL tgl;
-	tgl.window_gbc(0x000000, 5);
+	tgl.window_160x144(0x000000, 5);
 	tgl.tile_transparency_key(0xffffff);
 
 	tgl.tile_load("square", "Tiles/test_1.bmp");

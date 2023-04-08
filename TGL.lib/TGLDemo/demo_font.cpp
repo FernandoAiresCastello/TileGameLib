@@ -8,7 +8,7 @@ void demo_font()
 {
 	TGL tgl;
 	tgl.title("TGL Font Demo");
-	tgl.window_gbc(0x201080, 5);
+	tgl.window_160x144(0x201080, 5);
 	
 	tgl.view_new("background", 10, 10, 150, 134, 0x408040, true);
 

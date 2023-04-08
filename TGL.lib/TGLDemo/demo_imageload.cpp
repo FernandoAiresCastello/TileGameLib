@@ -3,7 +3,7 @@
 void demo_imageload()
 {
 	TGL tgl;
-	tgl.window_gbc(0xffffff, 5);
+	tgl.window_160x144(0xffffff, 5);
 
 	tgl.tile_load("smiley", "Tiles/smiley.bmp");
 

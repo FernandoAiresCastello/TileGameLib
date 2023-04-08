@@ -3,7 +3,7 @@
 void demo_binarycolor()
 {
 	TGL tgl;
-	tgl.window_gbc(0xffffff, 5);
+	tgl.window_160x144(0xffffff, 5);
 
 	tgl.tile_add("test", 
 		"11111111"

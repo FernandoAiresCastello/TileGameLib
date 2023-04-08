@@ -68,8 +68,9 @@ struct TGL
 	//		GRAPHICS > WINDOW
 	//=========================================================================
 	void window(int img_width, int img_height, rgb back_color, int size_factor);
-	void window_gbc(rgb back_color, int size_factor);
-	void window_wide(rgb back_color, int size_factor);
+	void window_160x144(rgb back_color, int size_factor);
+	void window_256x192(rgb back_color, int size_factor);
+	void window_360x200(rgb back_color, int size_factor);
 	void title(string str);
 	void backcolor(rgb back_color);
 	void clear();

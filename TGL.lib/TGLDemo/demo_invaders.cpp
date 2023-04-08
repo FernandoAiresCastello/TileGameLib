@@ -34,7 +34,7 @@ void draw_score();
 void demo_invaders()
 {
 	tgl.title("TGL Invaders");
-	tgl.window_gbc(0xffffff, 5);
+	tgl.window_160x144(0xffffff, 5);
 	tgl.tile_transparency_key(0xffffff);
 
 	init_tiles();

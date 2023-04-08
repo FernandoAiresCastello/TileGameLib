@@ -3,7 +3,7 @@
 void demo_lineinput()
 {
 	TGL tgl;
-	tgl.window_gbc(0xffffff, 5);
+	tgl.window_160x144(0xffffff, 5);
 
 	tgl.font_color(0x0000ff);
 	tgl.font_shadow(true, 0xe0e0e0);

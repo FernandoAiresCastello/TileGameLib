@@ -40,10 +40,6 @@ using namespace TGL_Internal;
 #include "TGL.h"
 #include "TGL_Private.h"
 
-#define GAMEBOY_SCR_W			160
-#define GAMEBOY_SCR_H			144
-#define WIDE_SCR_W				360
-#define WIDE_SCR_H				200
 #define WND_SIZE_FACTOR_MIN		1
 #define WND_SIZE_FACTOR_MAX		5
 #define TILE_SIZE				8
@@ -104,13 +100,17 @@ void TGL::window(int img_width, int img_height, rgb back_color, int size_factor)
 	else if (size_factor > WND_SIZE_FACTOR_MAX) size_factor = WND_SIZE_FACTOR_MAX;
 	tgl->create_window(img_width, img_height, back_color, size_factor);
 }
-void TGL::window_gbc(rgb back_color, int size_factor)
+void TGL::window_160x144(rgb back_color, int size_factor)
 {
-	window(GAMEBOY_SCR_W, GAMEBOY_SCR_H, back_color, size_factor);
+	window(160, 144, back_color, size_factor);
 }
-void TGL::window_wide(rgb back_color, int size_factor)
+void TGL::window_256x192(rgb back_color, int size_factor)
 {
-	window(WIDE_SCR_W, WIDE_SCR_H, back_color, size_factor);
+	window(256, 192, back_color, size_factor);
+}
+void TGL::window_360x200(rgb back_color, int size_factor)
+{
+	window(360, 200, back_color, size_factor);
 }
 bool TGL::running()
 {
