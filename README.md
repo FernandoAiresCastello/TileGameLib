@@ -24,8 +24,7 @@ I (Fernando) am currently the sole developer. This toolkit is my hobby project a
 
 **Documentation:**
 
-- [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/TGL/TGL.h)
-- [TGL.lib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
+- [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/TGL/TGL.h)
 
 **Note:**
 
