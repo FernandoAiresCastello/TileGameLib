@@ -32,6 +32,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include <ctype.h>
+#include <string.h>
 #include "TGL.h"
 
 //==============================================================================
@@ -103,6 +105,13 @@ struct {
 struct {
     char fmt_buf[TGL_STRFMT_LEN];
 } strings;
+
+struct {
+    FILE* fp;
+    char* line;
+    size_t length;
+    ssize_t read;
+} file;
 
 void tgl_proc_default_events() {
     SDL_Event e = { 0 };
@@ -371,6 +380,9 @@ void tgl_hcf() {
 void tgl_title(char* title) {
     SDL_SetWindowTitle(screen.wnd, title);
 }
+void tgl_msgbox(char* msg) {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "", msg, screen.wnd);
+}
 void tgl_screen(int buf_width, int buf_height, int wnd_size, rgb back_color) {
     screen.buf_w = buf_width;
     screen.buf_h = buf_height;
@@ -592,6 +604,28 @@ char* tgl_fmt(char* str, ...) {
 	va_end(arg);
     return strings.fmt_buf;
 }
+int tgl_strlen(char* str) {
+    return SDL_strlen(str);
+}
+void tgl_trim(char* str) {
+    char* p = str;
+    int l = tgl_strlen(p);
+    if (l > 0) {
+        while (isspace(p[l - 1])) p[--l] = 0;
+        while (*p && isspace(*p)) ++p, --l;
+        memmove(str, p, l + 1);
+    }
+}
+void tgl_ucase(char* str) {
+    for (int i = 0; i < tgl_strlen(str); i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+void tgl_lcase(char* str) {
+    for (int i = 0; i < tgl_strlen(str); i++) {
+        str[i] = tolower(str[i]);
+    }
+}
 void tgl_sound_load(int index, char* file) {
     if (sound_pool.sounds[index].loaded) {
         tgl_abort("Duplicate sound index");
@@ -643,4 +677,37 @@ bool tgl_kalt() {
 }
 bool tgl_kcaps() {
     return SDL_GetModState() & KMOD_CAPS;
+}
+void tgl_file_open(char* path) {
+    file.fp = NULL;
+    file.line = NULL;
+    file.length = 0;
+    file.read = 0;
+
+    file.fp = fopen(path, "rb");
+    if (file.fp == NULL) {
+        tgl_abort("Could not open file");
+        return;
+    }
+}
+char* tgl_file_line() {
+    int result = (file.read = getline(&file.line, &file.length, file.fp));
+    if (result >= 0) {
+        int len = tgl_strlen(file.line);
+        if (file.line[len - 1] == '\n') file.line[len - 1] = 0;
+        if (file.line[len - 1] == '\r') file.line[len - 1] = 0;
+        if (file.line[len - 2] == '\r') file.line[len - 2] = 0;
+        return file.line;
+    }
+    return "";
+}
+int tgl_file_byte() {
+    return getc(file.fp);
+}
+void tgl_file_close() {
+    fclose(file.fp);
+    free(file.line);
+}
+bool tgl_file_eof() {
+    return feof(file.fp) != 0;
 }

@@ -47,6 +47,7 @@ void tgl_halt();
 void tgl_update();
 void tgl_hcf();
 void tgl_title(char* title);
+void tgl_msgbox(char* msg);
 
 //==============================================================================
 //      SCREEN
@@ -110,6 +111,10 @@ void tgl_print_tiled(char* str, int x, int y);
 //      STRINGS
 //==============================================================================
 char* tgl_fmt(char* str, ...);
+int tgl_strlen(char* str);
+void tgl_trim(char* str);
+void tgl_ucase(char* str);
+void tgl_lcase(char* str);
 
 //==============================================================================
 //      MATH
@@ -131,5 +136,14 @@ bool tgl_kshift();
 bool tgl_kctrl();
 bool tgl_kalt();
 bool tgl_kcaps();
+
+//==============================================================================
+//      FILESYSTEM
+//==============================================================================
+void tgl_file_open(char* path);
+char* tgl_file_line();
+int tgl_file_byte();
+void tgl_file_close();
+bool tgl_file_eof();
 
 #endif
