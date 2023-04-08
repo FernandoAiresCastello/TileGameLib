@@ -16,6 +16,7 @@ namespace TGLTilePaint
         public Color TileBackColor = Color.FromArgb(255, 255, 255);
 
         private TileEditPanel PnlTileEdit;
+        private MosaicPanel PnlMosaic;
 
         public BinaryWindow()
         {
@@ -25,8 +26,13 @@ namespace TGLTilePaint
             PnlTileEdit.Dock = DockStyle.Fill;
             UpdateBinaryString();
 
-            Size = new Size(418, 570);
-            //ResizeEnd += BinaryWindow_ResizeEnd;
+            PnlMosaic = new MosaicPanel();
+            PnlMosaic.Parent = PnlMosaicContainer;
+            PnlMosaic.Dock = DockStyle.Fill;
+            PnlMosaic.TileImage = PnlTileEdit.GetBitmapRGB();
+
+            //Size = new Size(418, 570);
+            ResizeEnd += BinaryWindow_ResizeEnd;
         }
 
         private void BinaryWindow_ResizeEnd(object sender, EventArgs e)
@@ -37,10 +43,17 @@ namespace TGLTilePaint
         private void BtnClear_Click(object sender, EventArgs e)
         {
             PnlTileEdit.FillPixelsColor(TileBackColor);
-            UpdateBinaryString();
+            UpdateMosaicAndBinaryString();
         }
 
-        public void UpdateBinaryString()
+        public void UpdateMosaicAndBinaryString()
+        {
+            UpdateBinaryString();
+            PnlMosaic.TileImage = PnlTileEdit.GetBitmapRGB();
+            PnlMosaic.Refresh();
+        }
+
+        private void UpdateBinaryString()
         {
             Bitmap bmp = PnlTileEdit.GetBitmapRGB();
             StringBuilder binary = new StringBuilder();

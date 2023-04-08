@@ -29,8 +29,16 @@ namespace TGLTilePaint
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MosaicPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "MosaicPanel";
+            this.Size = new System.Drawing.Size(279, 318);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

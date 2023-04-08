@@ -151,7 +151,7 @@ namespace TGLTilePaint
                 else if (Wnd is BinaryWindow)
                 {
                     Tile.SetPixel(px, py, (Wnd as BinaryWindow).TileForeColor);
-                    (Wnd as BinaryWindow).UpdateBinaryString();
+                    (Wnd as BinaryWindow).UpdateMosaicAndBinaryString();
                 }
             }
             else if (e.Button == MouseButtons.Right)
@@ -166,7 +166,7 @@ namespace TGLTilePaint
                 else if (Wnd is BinaryWindow)
                 {
                     Tile.SetPixel(px, py, (Wnd as BinaryWindow).TileBackColor);
-                    (Wnd as BinaryWindow).UpdateBinaryString();
+                    (Wnd as BinaryWindow).UpdateMosaicAndBinaryString();
                 }
             }
 
