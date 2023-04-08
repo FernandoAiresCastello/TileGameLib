@@ -49,6 +49,11 @@ namespace TGLTilePaint
         public void UpdateMosaicAndBinaryString()
         {
             UpdateBinaryString();
+            UpdateMosaic();
+        }
+
+        private void UpdateMosaic()
+        {
             PnlMosaic.TileImage = PnlTileEdit.GetBitmapRGB();
             PnlMosaic.Refresh();
         }
@@ -115,8 +120,9 @@ namespace TGLTilePaint
                     y++;
                 }
             }
-
+            
             PnlTileEdit.Refresh();
+            UpdateMosaic();
             TxtBinary.Text = text;
         }
     }
