@@ -376,7 +376,8 @@ void TGL_APP::font_reset()
 }
 void TGL_APP::font_new()
 {
-	tgl->font_tiles.clear();
+	for (int i = 0; i < TGL_FONTSIZE; i++)
+		tgl->font_tiles[i] = TGL_TILE_BIN();
 }
 void TGL_APP::print_free(string str, int x, int y)
 {
@@ -817,7 +818,7 @@ bool TGL_APP::kb_f12()
 void TGL_APP::print_debug(string str, int x, int y, rgb color)
 {
 	for (auto& ch : str) {
-		string& pixels = tgl->font_tiles[ch];
+		string& pixels = tgl->font_tiles[ch].bits;
 		tgl->wnd->DrawChar8x8(pixels, color, 0, true, x, y, true);
 		x += TGL_TILESIZE;
 	}
@@ -955,7 +956,7 @@ void TGL_PRIVATE::print(string str, int x, int y, bool tiled)
 	}
 
 	for (auto& ch : str) {
-		string& pixels = font_tiles[ch];
+		string& pixels = font_tiles[ch].bits;
 		
 		if (text_style.shadow_enabled) {
 			wnd->DrawChar8x8(pixels, text_style.shadow_color, text_style.back_color,

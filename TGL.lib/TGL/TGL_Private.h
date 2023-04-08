@@ -3,6 +3,8 @@
 #include "Internal/TSoundFiles.h"
 using namespace TGL_Internal;
 
+constexpr int TGL_FONTSIZE = 256;
+
 struct TGL_PRIVATE
 {
 private:
@@ -42,7 +44,7 @@ private:
 	int frame_counter;
 	bool fps_enabled = false;
 	rgb wnd_back_color;
-	unordered_map<char, string> font_tiles;
+	TGL_TILE_BIN font_tiles[TGL_FONTSIZE];
 	TGL_VIEW* cur_view = nullptr;
 	TGL_VIEW default_view;
 	TGamepad gamepad;
