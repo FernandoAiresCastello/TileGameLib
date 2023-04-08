@@ -7,7 +7,7 @@ This repository was created in 2019 and contains a collection of many distinct p
 
 Currently, the main project in the toolkit is the C++ static library [TGL.lib](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib), which is built on top of [SDL 2](https://www.libsdl.org/). In the [Side projects](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Side%20projects) subdirectory there are various other independent and mostly experimental projects. Only Windows (7/8/10/11) is currently supported.
 
-I (Fernando) am currently the sole developer. This toolkit is my hobby project and I usually work on it whenever I have some spare time. For more information, please check out the wiki (links below). All questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
+I (Fernando) am currently the sole developer. This toolkit is my hobby project and I usually work on it whenever I have some spare time. For more information, please check out the documentation (links below) or ask me directly. All questions, suggestions and bug reports are welcome. Thanks for stopping by! ❤
 
 **Current version:** 
 
@@ -25,7 +25,7 @@ I (Fernando) am currently the sole developer. This toolkit is my hobby project a
 **Documentation:**
 
 - [TGL.lib - Public API Header File (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/TGL/TGL.h)
-- [TGL.lib - Documentation Wiki](https://fernandoairescastello.neocities.org/proj/tgl/tgl_index)
+- [TGL.lib - Auto-generated docs](https://github.com/FernandoAiresCastello/TileGameLib/Docs/TGL.lib/html/struct_t_g_l.html)
 
 **Note:**
 
