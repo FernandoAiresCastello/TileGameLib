@@ -70,7 +70,8 @@ void demo_invaders()
 	views.score = TGL_VIEW(0, 120, tgl.width(), 144, 0x0000a0);
 
 	while (tgl.window()) {
-		tgl.view_in(views.scene);
+		tgl.title(tgl.fmt("FPS: %i | Frame: %i", tgl.fps(), tgl.framecount()));
+		tgl.view(views.scene);
 		aliens_cycle();
 		player_cycle();
 		draw_score();
@@ -81,7 +82,7 @@ void demo_invaders()
 }
 void draw_score()
 {
-	tgl.view_in(views.score);
+	tgl.view(views.score);
 	string score = tgl.fmt("Score: %05i", player.score);
 	tgl.text_color(0x000020);
 	tgl.print_free(score, 33, 5);

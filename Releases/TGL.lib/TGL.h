@@ -163,15 +163,19 @@ struct TGL_APP
 	int cols();
 	/// Return the vertical resolution divided by the tile size
 	int rows();
+	/// Return the frame count
+	int framecount();
+	/// Return how many frames are drawn per second
+	int fps();
 
 	//=========================================================================
 	//		GRAPHICS > VIEWS
 	//=========================================================================
 
-	/// Subsequent drawing operations will occur inside the selected view
-	void view_in(TGL_VIEW& vw);
+	/// Subsequent drawing operations will occur inside the specified view
+	void view(TGL_VIEW& vw);
 	/// Subsequent drawing operations will occur outside any views, i.e. directly on the window
-	void view_out();
+	void exit_view();
 
 	//=========================================================================
 	//		GRAPHICS > TILES
@@ -360,10 +364,4 @@ struct TGL_APP
 	bool gpad_r();
 	bool gpad_start();
 	bool gpad_select();
-
-	//=========================================================================
-	//		DEBUGGING
-	//=========================================================================
-	void print_debug(string str, int x, int y, rgb color);
-	void show_fps(bool show);
 };

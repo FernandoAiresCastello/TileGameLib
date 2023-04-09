@@ -20,15 +20,15 @@ void demo_views()
 
 		tgl.update();
 
-		tgl.view_in(view_bg);
+		tgl.view(view_bg);
 
-		tgl.view_in(view_1);
+		tgl.view(view_1);
 		tgl.draw_free(square_1, 0, 0);
 
-		tgl.view_in(view_2);
+		tgl.view(view_2);
 		tgl.draw_tiled(square_1, 1, 1);
 
-		tgl.view_in(view_3);
+		tgl.view(view_3);
 		tgl.draw_tiled(square_1, 1, 1);
 		tgl.draw_tiled(square_1, 2, 2);
 		tgl.draw_tiled(square_1, 4, 4);

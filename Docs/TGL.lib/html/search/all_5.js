@@ -17,5 +17,7 @@ var searchData=
   ['font_14',['font',['../struct_t_g_l___a_p_p.html#ab90e2fa2c6d1634988e217b483959a20',1,'TGL_APP']]],
   ['font_5fnew_15',['font_new',['../struct_t_g_l___a_p_p.html#abb1b285760c31a93f2ff38d6cbad3c73',1,'TGL_APP']]],
   ['font_5freset_16',['font_reset',['../struct_t_g_l___a_p_p.html#acf226c94ae195bc68e364d9d8069cc76',1,'TGL_APP']]],
-  ['fullscreen_17',['fullscreen',['../struct_t_g_l___a_p_p.html#aa69441239bc07dc40dc8c4edfd2a16b3',1,'TGL_APP::fullscreen(bool full)'],['../struct_t_g_l___a_p_p.html#a698e9e4e655b37a7ee5cc0ba5b43cd65',1,'TGL_APP::fullscreen()']]]
+  ['fps_17',['fps',['../struct_t_g_l___a_p_p.html#ac66cff3f72042cfb02b37d3aca4f385d',1,'TGL_APP']]],
+  ['framecount_18',['framecount',['../struct_t_g_l___a_p_p.html#ab833287f6897fd8c8b2565fdcb8a06cb',1,'TGL_APP']]],
+  ['fullscreen_19',['fullscreen',['../struct_t_g_l___a_p_p.html#aa69441239bc07dc40dc8c4edfd2a16b3',1,'TGL_APP::fullscreen(bool full)'],['../struct_t_g_l___a_p_p.html#a698e9e4e655b37a7ee5cc0ba5b43cd65',1,'TGL_APP::fullscreen()']]]
 ];

@@ -257,7 +257,7 @@ void TGL_APP::clear()
 {
 	tgl->wnd->ClearBackground();
 }
-void TGL_APP::view_in(TGL_VIEW& vw)
+void TGL_APP::view(TGL_VIEW& vw)
 {
 	tgl->cur_view = &vw;
 	tgl->clip(tgl->cur_view->x1, tgl->cur_view->y1, tgl->cur_view->x2 - 1, tgl->cur_view->y2 - 1);
@@ -265,9 +265,9 @@ void TGL_APP::view_in(TGL_VIEW& vw)
 		tgl->clear_current_view();
 	}
 }
-void TGL_APP::view_out()
+void TGL_APP::exit_view()
 {
-	view_in(tgl->default_view);
+	view(tgl->default_view);
 }
 TGL_TILE_RGB TGL_APP::tile_load_rgb(string path)
 {
@@ -594,6 +594,14 @@ int TGL_APP::rows()
 {
 	return height() / TGL_TILESIZE;
 }
+int TGL_APP::framecount()
+{
+	return tgl->frame_counter;
+}
+int TGL_APP::fps()
+{
+	return tgl->perfmon.fps_current;
+}
 void TGL_APP::input_color(rgb foreground, rgb background)
 {
 	tgl->text_input.fore_color = foreground;
@@ -815,18 +823,6 @@ bool TGL_APP::kb_f12()
 {
 	return TKey::IsPressed(SDL_SCANCODE_F12);
 }
-void TGL_APP::print_debug(string str, int x, int y, rgb color)
-{
-	for (auto& ch : str) {
-		string& pixels = tgl->font_tiles[ch].bits;
-		tgl->wnd->DrawChar8x8(pixels, color, 0, true, x, y, true);
-		x += TGL_TILESIZE;
-	}
-}
-void TGL_APP::show_fps(bool show)
-{
-	tgl->fps_enabled = show;
-}
 
 //=============================================================================
 //		TGL_PRIVATE
@@ -899,9 +895,6 @@ void TGL_PRIVATE::draw_frame()
 }
 void TGL_PRIVATE::on_draw_frame_begin()
 {
-	if (fps_enabled) {
-		tgl_app->print_debug(String::Format("FPS: %i", perfmon.fps_current), 0, 0, FPS_COLOR);
-	}
 }
 void TGL_PRIVATE::on_draw_frame_end()
 {

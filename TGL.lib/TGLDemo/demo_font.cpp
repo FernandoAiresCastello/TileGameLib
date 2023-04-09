@@ -14,11 +14,11 @@ void demo_font()
 
 	while (tgl.window()) {
 
-		tgl.view_out();
+		tgl.exit_view();
 		tgl.text_shadow(true, 0x000020);
 		title(tgl, "Font Demo");
 
-		tgl.view_in(vw_background);
+		tgl.view(vw_background);
 		tgl.text_shadow(true, 0x004000);
 
 		header(tgl, "Digits", 0, 0);

@@ -42,7 +42,6 @@ private:
 	bool is_running;
 	string title;
 	int frame_counter;
-	bool fps_enabled = false;
 	rgb wnd_back_color;
 	TGL_TILE_BIN font_tiles[TGL_FONTSIZE];
 	TGL_VIEW* cur_view = nullptr;
