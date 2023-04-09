@@ -17,15 +17,18 @@ struct t_alien {
 	int x = 0;
 	int y = 0;
 	bool alive = true;
-	int blast_counter = 20;
+	TGL_TIMER tmr_blast = TGL_TIMER(50, false);
 };
 vector<t_alien> aliens;
 
 struct {
 	TGL_TILE_RGB missile;
 	TGL_TILE_RGB spaceship;
+	TGL_TILE_RGB spaceship_2;
 	TGL_TILE_RGB alien;
+	TGL_TILE_RGB alien_2;
 	TGL_TILE_RGB blast;
+	TGL_TILE_RGB blast_2;
 } tiles;
 
 struct {
@@ -40,6 +43,7 @@ struct {
 } sounds;
 
 TGL_TIMER tmr_alien_move(30, true);
+TGL_TIMER tmr_animation(30, true);
 
 void init_tiles();
 void init_aliens();
@@ -72,6 +76,7 @@ void demo_invaders()
 		draw_score();
 		handle_input();
 		tgl.update();
+		tmr_animation.tick();
 	}
 }
 void draw_score()
@@ -113,7 +118,12 @@ void player_cycle()
 	if (player.missile.active) {
 		tgl.draw_free(tiles.missile, player.missile.x, player.missile.y);
 	}
-	tgl.draw_free(tiles.spaceship, player.x, player.y);
+	if (tmr_animation.elapsed < tmr_animation.length / 2) {
+		tgl.draw_free(tiles.spaceship, player.x, player.y);
+	}
+	else {
+		tgl.draw_free(tiles.spaceship_2, player.x, player.y);
+	}
 
 	if (player.missile.active) {
 		player.missile.y -= 2;
@@ -127,14 +137,24 @@ void aliens_cycle()
 	for (auto& alien : aliens) {
 		if (alien.alive) {
 			if (alien.y >= -TGL_TILESIZE) {
-				tgl.draw_free(tiles.alien, alien.x, alien.y);
+				if (tmr_animation.elapsed < tmr_animation.length / 2) {
+					tgl.draw_free(tiles.alien, alien.x, alien.y);
+				}
+				else {
+					tgl.draw_free(tiles.alien_2, alien.x, alien.y);
+				}
 				if (player.missile.active && tgl.collision(alien.x, alien.y, player.missile.x, player.missile.y)) {
 					alien_destroy(alien);
 				}
 			}
-		} else if (alien.blast_counter > 0) {
-			alien.blast_counter--;
-			tgl.draw_free(tiles.blast, alien.x, alien.y);
+		} else if (!alien.tmr_blast.done()) {
+			alien.tmr_blast.tick();
+			if (tmr_animation.elapsed < tmr_animation.length / 2) {
+				tgl.draw_free(tiles.blast, alien.x, alien.y);
+			}
+			else {
+				tgl.draw_free(tiles.blast_2, alien.x, alien.y);
+			}
 		}
 		if (tmr_alien_move.done()) {
 			alien.y += 4;
@@ -170,7 +190,10 @@ void init_sounds()
 void init_tiles()
 {
 	tiles.spaceship = tgl.tile_load_rgb("Tiles/spaceship_1.bmp", 0xffffff);
+	tiles.spaceship_2 = tgl.tile_load_rgb("Tiles/spaceship_2.bmp", 0xffffff);
 	tiles.missile = tgl.tile_load_rgb("Tiles/player_missile.bmp", 0xffffff);
 	tiles.alien = tgl.tile_load_rgb("Tiles/alien_1.bmp", 0xffffff);
+	tiles.alien_2 = tgl.tile_load_rgb("Tiles/alien_2.bmp", 0xffffff);
 	tiles.blast = tgl.tile_load_rgb("Tiles/blast_1.bmp", 0xffffff);
+	tiles.blast_2 = tgl.tile_load_rgb("Tiles/blast_2.bmp", 0xffffff);
 }
