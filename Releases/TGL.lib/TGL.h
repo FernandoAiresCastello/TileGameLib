@@ -232,85 +232,145 @@ struct TGL_APP
 	//=========================================================================
 	//		AUDIO
 	//=========================================================================
+
+	/// Set volume for playing MML (Music Macro Language)
 	void play_volume(int vol);
+	/// Play MML string once
 	void play_notes(string notes);
+	/// Play MML string, repeatedly
 	void play_notes_loop(string notes);
+	/// Stop playing MML
 	void play_notes_stop();
+	/// Generate a beeping sound with the specified frequency and duration
 	void beep(float freq, int len);
+	/// Load a WAV sound resource from a file
 	TGL_SOUND sound_load(string file);
+	/// Play a WAV sound resource asynchronously
 	void sound_play(TGL_SOUND& snd);
+	/// Play a WAV sound resource and pause program execution until the sound has finished
 	void sound_await(TGL_SOUND& snd);
+	/// Stop playing WAV sounds
 	void sound_stop();
 
 	//=========================================================================
 	//		STRING MANIPULATION
 	//=========================================================================
+
+	/// Format a string (works like sprintf in standard C)
 	string fmt(const char* str, ...);
+	/// Return specified string in uppercase
 	string ucase(string str);
+	/// Return specified string in lowercase
 	string lcase(string str);
+	/// Remove leading and trailing spaces from string
 	string trim(string str);
+	/// Split string into a list
 	vector<string> split(string str, char delim);
+	/// Join all strings from a list into a single string
 	string join(vector<string>& str, string separator);
+	/// Convert string to integer
 	int to_int(string str);
+	/// Convert integer to string
 	string to_string(int value);
+	/// Return a slice of the specified string
 	string substr(string str, int first, int last);
+	/// Replace occurrences of a substring
 	string replace(string str, string original, string replacement);
+	/// Return whether the string starts with a prefix
 	bool starts_with(string str, string prefix);
+	/// Return whether the string ends with a suffix
 	bool ends_with(string str, string suffix);
+	/// Return whether the string contains a substring
 	bool contains(string str, string other);
+	/// Return index of first occurrence of character in string
 	int indexof(string str, char ch);
 
 	//=========================================================================
 	//		MATH
 	//=========================================================================
+
+	/// Return pseudo-random number within a range
 	int rnd(int min, int max);
+	/// Return true with the specified probability (0% to 100%)
 	bool rnd_chance(int percent);
 
 	//=========================================================================
 	//		COLLISION DETECTION
 	//=========================================================================
+
+	/// Return whether two tiles overlap based on their coordinates
 	bool collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y);
 
 	//=========================================================================
 	//		FILESYSTEM
 	//=========================================================================
+
+	/// Return whether a file exists
 	bool file_exists(string path);
+	/// Return whether a folder exists
 	bool folder_exists(string folder_path);
+	/// Read text file contents into string
 	string file_cload(string path);
+	/// Read lines of text file into list of strings
 	vector<string> file_lines(string path);
-	void file_appendln(string path, string text);
+	/// Append line to the end of a text file then save it
+	void file_line_add(string path, string text);
+	/// Read binary file into list of bytes
 	vector<byte> file_bload(string path);
+	/// Create or replace contents of text file with specified string then save it
 	void file_csave(string path, string text);
+	/// Create or replace contents of binary file with specified bytes then save it
 	void file_bsave(string path, vector<byte>& bytes);
+	/// Return list of files in a folder
 	vector<string> file_list(string folder_path);
+	/// Return list of subfolders in a folder
 	vector<string> folder_list(string folder_path);
+	/// Create a new file with same contents as the source file, i.e. duplicate it
 	void file_copy(string src_path, string dest_path);
+	/// Permanently delete file
 	void file_delete(string path);
 
 	//=========================================================================
 	//		INPUT > TEXT
 	//=========================================================================
+
+	/// Set color of text input field
 	void input_color(rgb foreground, rgb background);
+	/// Set character used as cursor in text input field
 	void input_cursor(char ch);
+	/// Show text input field with the maximum specified length, at absolute position, optionally executing the provided callback
 	string input_free(int length, int x, int y, callback fn = nullptr);
+	/// Show text input field with the maximum specified length, aligned with virtual grid, optionally executing the provided callback
 	string input_tiled(int length, int col, int row, callback fn = nullptr);
+	/// Return whether the last text input field shown was confirmed
 	bool input_ok();
 
 	//=========================================================================
 	//		INPUT > MOUSE
 	//=========================================================================
-	void mouse(bool enabled);
+
+	/// Show or hide the mouse pointer
+	void mouse(bool show);
+	/// Get the absolute X coordinate of mouse pointer
 	int mouse_x();
+	/// Get the absolute Y coordinate of mouse pointer
 	int mouse_y();
+	/// Return whether the right mouse button is pressed
 	bool mouse_right();
+	/// Return whether the left mouse button is pressed
 	bool mouse_left();
+	/// Return whether the middle mouse button is pressed
 	bool mouse_middle();
 
 	//=========================================================================
 	//		INPUT > KEYBOARD
 	//=========================================================================
+
+	/// Return code of last key pressed, subject to keyboard repeat delay and rate
 	int kb_inkey();
+	/// Return whether the key that would produce the specified character is pressed
 	bool kb_char(char ch);
+
 	bool kb_right();
 	bool kb_left();
 	bool kb_down();
@@ -348,20 +408,37 @@ struct TGL_APP
 	//=========================================================================
 	//		INPUT > GAMEPAD
 	//=========================================================================
+
+	/// Redetect connected controllers
 	void gpad_redetect();
+	/// Return number of controllers connected
 	int gpad_count();
+	/// Return whether controller is connected
 	bool gpad_connected(int number);
+	/// Set the current controller, return whether it is actually connected
 	bool gpad(int number);
+	/// Return whether d-pad right button is pressed, or if left stick is held to the right
 	bool gpad_right();
+	/// Return whether d-pad left button is pressed, or if left stick is held to the left
 	bool gpad_left();
+	/// Return whether d-pad down button is pressed, or if left stick is held down
 	bool gpad_down();
+	/// Return whether d-pad up button is pressed, or if left stick is held up
 	bool gpad_up();
+	/// Return whether A button is pressed
 	bool gpad_a();
+	/// Return whether B button is pressed
 	bool gpad_b();
+	/// Return whether X button is pressed
 	bool gpad_x();
+	/// Return whether Y button is pressed
 	bool gpad_y();
+	/// Return whether left shoulder button or left trigger is pressed
 	bool gpad_l();
+	/// Return whether right shoulder button or right trigger is pressed
 	bool gpad_r();
+	/// Return whether the start button is pressed
 	bool gpad_start();
+	/// Return whether the select (or back) button is pressed
 	bool gpad_select();
 };

@@ -201,9 +201,9 @@ bool TGL_APP::fullscreen()
 {
 	return tgl->wnd->IsFullscreen();
 }
-void TGL_APP::mouse(bool enabled)
+void TGL_APP::mouse(bool show)
 {
-	SDL_ShowCursor(enabled);
+	SDL_ShowCursor(show);
 }
 int TGL_APP::mouse_x()
 {
@@ -418,7 +418,7 @@ vector<string> TGL_APP::file_lines(string path)
 {
 	return File::ReadLines(path, "\n");
 }
-void TGL_APP::file_appendln(string path, string text)
+void TGL_APP::file_line_add(string path, string text)
 {
 	const string crlf = "\n";
 	vector<string> lines;
