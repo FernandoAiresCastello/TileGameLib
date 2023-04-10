@@ -62,6 +62,7 @@ struct TGL_TILE_BIN
 	string bits;
 	TGL_TILE_BIN();
 	TGL_TILE_BIN(string bits);
+	void clear();
 };
 
 /// Structure for a view

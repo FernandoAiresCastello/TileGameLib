@@ -75,6 +75,12 @@ TGL_TILE_BIN::TGL_TILE_BIN(string bits)
 {
 	this->bits = string(bits);
 }
+void TGL_TILE_BIN::clear()
+{
+	for (int i = 0; i < bits.length(); i++) {
+		bits[i] = '0';
+	}
+}
 TGL_VIEW::TGL_VIEW()
 {
 }
