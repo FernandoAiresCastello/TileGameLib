@@ -5,7 +5,7 @@ const TGL_TILESIZE = 8;
 
 class TGL {
 	log = new TGL_Log();
-	private = new TGL_Private();
+	private = new TGL_Private(this);
 
 	constructor() {
 		this.log.info("TGL singleton created");
@@ -100,10 +100,12 @@ class TGL {
 //=============================================================================
 class TGL_Private {
 	log = new TGL_Log();
+	public_api = null;
 	display = new TGL_Display(this);
 	palette = ["#111", "#f00", "#0f0", "#00f", "#ff0", "#0ff", "#f0f", "#888", "#eee"];
 	font = [];
-	constructor() {
+	constructor(public_api) {
+		this.public_api = public_api;
 		this.initDefaultFont();
 	}
 	setFont(chr, binaryTile) {
@@ -246,13 +248,13 @@ class TGL_Private {
 		"10000001" +
 		"10000001" +
 		"11111111";
-		this.colorBinary();
-		for (let y = 0; y < this.rows(); y++) {
-			for (let x = 0; x < this.cols(); x++) {
-				this.colorBinary(
-					this.private.palette[this.rnd(0, this.private.palette.length - 1)],
-					this.private.palette[this.rnd(0, this.private.palette.length - 1)]);
-				this.drawTiled(tile, x, y);
+		this.public_api.colorBinary();
+		for (let y = 0; y < this.public_api.rows(); y++) {
+			for (let x = 0; x < this.public_api.cols(); x++) {
+				this.public_api.colorBinary(
+					this.palette[this.public_api.rnd(0, this.palette.length - 1)],
+					this.palette[this.public_api.rnd(0, this.palette.length - 1)]);
+				this.public_api.drawTiled(tile, x, y);
 			}
 		}
 	}

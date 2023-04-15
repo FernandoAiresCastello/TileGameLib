@@ -380,6 +380,14 @@ void TGL_APP::font_reset()
 	font_new();
 	tgl->init_default_font();
 }
+string TGL_APP::font_getbits(int ch)
+{
+	return tgl->font_tiles[ch].bits;
+}
+int TGL_APP::font_getsize()
+{
+	return TGL_FONTSIZE;
+}
 void TGL_APP::font_new()
 {
 	for (int i = 0; i < TGL_FONTSIZE; i++)

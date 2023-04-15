@@ -4,7 +4,7 @@ main();
 
 function main() {
     tgl.init(256, 192);
-    tgl.horizontalStretch(70);
+    //tgl.horizontalStretch(70);
 
     const tile = 
         "11111111" +
@@ -27,6 +27,7 @@ function main() {
         '#f00','#0ff','#f00','#0ff','#f0f','#0ff','#f0f','#0ff'
     ];
 
+    /*
     tgl.backColor("#008");
     tgl.cls();
     tgl.colorNormal();
@@ -37,12 +38,13 @@ function main() {
     tgl.drawFree(tile, 12, 12);
     tgl.colorBinary("#0f0")
     tgl.printTiled("~Hello World!~", 4, 10);
+    tgl.colorNormal();
+    tgl.drawFree(tile2, 100, 100);
+    */
 
-    /*
     requestAnimationFrame(onFrame);
     function onFrame() {
-        tgl.testDrawTiles();
+        tgl.private.testDrawTiles();
         requestAnimationFrame(onFrame);
     }
-    */
 }

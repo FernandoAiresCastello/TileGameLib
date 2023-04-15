@@ -39,6 +39,8 @@ var struct_t_g_l___a_p_p =
     [ "folder_exists", "struct_t_g_l___a_p_p.html#a4c2c6610f2e992f40ec6341c638a3b81", null ],
     [ "folder_list", "struct_t_g_l___a_p_p.html#aa1cb7d1c8ff6e9a8a60b535767d06beb", null ],
     [ "font", "struct_t_g_l___a_p_p.html#ab90e2fa2c6d1634988e217b483959a20", null ],
+    [ "font_getbits", "struct_t_g_l___a_p_p.html#af938e49549cc17c2220792ce839ae632", null ],
+    [ "font_getsize", "struct_t_g_l___a_p_p.html#ab8424f708b48dca64ed760a26d34ef86", null ],
     [ "font_new", "struct_t_g_l___a_p_p.html#abb1b285760c31a93f2ff38d6cbad3c73", null ],
     [ "font_reset", "struct_t_g_l___a_p_p.html#acf226c94ae195bc68e364d9d8069cc76", null ],
     [ "fps", "struct_t_g_l___a_p_p.html#ac66cff3f72042cfb02b37d3aca4f385d", null ],

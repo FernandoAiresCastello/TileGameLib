@@ -217,6 +217,10 @@ struct TGL_APP
 	void font_new();
 	/// Reset all characters in the text font to their default tiles
 	void font_reset();
+	/// Get binary tile from font character
+	string font_getbits(int ch);
+	/// Get number of characters in font
+	int font_getsize();
 	/// Set text color without changing background color
 	void text_color(rgb color);
 	/// Set text and background colors
