@@ -179,9 +179,9 @@ void TGL_APP::window_256x192(rgb back_color, int size_factor)
 {
 	window(256, 192, back_color, size_factor);
 }
-void TGL_APP::window_360x200(rgb back_color, int size_factor)
+void TGL_APP::window_352x198(rgb back_color, int size_factor)
 {
-	window(360, 200, back_color, size_factor);
+	window(352, 198, back_color, size_factor);
 }
 bool TGL_APP::window()
 {

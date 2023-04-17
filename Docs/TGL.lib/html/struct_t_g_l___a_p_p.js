@@ -152,5 +152,5 @@ var struct_t_g_l___a_p_p =
     [ "window", "struct_t_g_l___a_p_p.html#a51ce4ec95efef4f3f35dc7f7bdc87afa", null ],
     [ "window_160x144", "struct_t_g_l___a_p_p.html#a336951dce0995ae9d1c2cfcf52db0610", null ],
     [ "window_256x192", "struct_t_g_l___a_p_p.html#a17c7fe4b4aa66e958c60e9d037b0d9cc", null ],
-    [ "window_360x200", "struct_t_g_l___a_p_p.html#a20ebb3ecd4280a789bbc4ed59afdefa8", null ]
+    [ "window_352x198", "struct_t_g_l___a_p_p.html#aa84053f22441df055b20a656dccf041d", null ]
 ];
