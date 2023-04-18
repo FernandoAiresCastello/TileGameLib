@@ -243,4 +243,39 @@ namespace CppUtils
 		GetLocalTime(&time);
 		return String::Format("%02i:%02i:%02i", time.wHour, time.wMinute, time.wSecond);
 	}
+
+	void Util::SendTextToClipboard(std::string text)
+	{
+		bool ok = OpenClipboard(nullptr);
+		if (ok) {
+			ok = EmptyClipboard();
+			const char* text_chars = text.c_str();
+			int length = strlen(text_chars);
+			HGLOBAL clipboard_data = GlobalAlloc(GMEM_MOVEABLE, length + 1);
+			if (clipboard_data != nullptr) {
+				char* text_chars_copy = (char*)GlobalLock(clipboard_data);
+				if (text_chars_copy != nullptr) {
+					strcpy(text_chars_copy, LPCSTR(text_chars));
+				}
+				GlobalUnlock(clipboard_data);
+				SetClipboardData(CF_TEXT, clipboard_data);
+			}
+			ok = CloseClipboard();
+		}
+	}
+
+	std::string Util::GetTextFromClipboard()
+	{
+		bool ok = OpenClipboard(nullptr);
+		if (ok) {
+			HANDLE clipboard_data = GetClipboardData(CF_TEXT);
+			char* text_chars = (char*)GlobalLock(clipboard_data);
+			if (text_chars != nullptr) {
+				std::string text(text_chars);
+				GlobalUnlock(clipboard_data);
+				return text;
+			}
+		}
+		return "";
+	}
 }

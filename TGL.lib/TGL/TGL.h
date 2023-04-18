@@ -148,6 +148,10 @@ struct TGL_APP
 	string time();
 	/// Return the system date and time in a single string
 	string datetime();
+	/// Copy string to clipboard
+	void to_clipboard(string text);
+	/// Get string from clipboard
+	string from_clipboard();
 
 	//=========================================================================
 	//		GRAPHICS > WINDOW

@@ -285,6 +285,14 @@ string TGL_APP::datetime()
 {
 	return date() + " " + time();
 }
+void TGL_APP::to_clipboard(string text)
+{
+	Util::SendTextToClipboard(text);
+}
+string TGL_APP::from_clipboard()
+{
+	return Util::GetTextFromClipboard();
+}
 void TGL_APP::clear()
 {
 	tgl->wnd->ClearBackground();
