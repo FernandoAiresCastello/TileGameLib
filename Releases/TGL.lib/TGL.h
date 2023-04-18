@@ -163,8 +163,8 @@ struct TGL_APP
 	void window_160x144(rgb back_color, int size_factor);
 	/// Create application window with standard resolution of 256x192 and specified background color
 	void window_256x192(rgb back_color, int size_factor);
-	/// Create application window with standard resolution of 352x198 and specified background color
-	void window_352x198(rgb back_color, int size_factor);
+	/// Create application window with standard resolution of 352x200 and specified background color
+	void window_352x200(rgb back_color, int size_factor);
 	/// Return whether the application window is open
 	bool window();
 	/// Set the window title
