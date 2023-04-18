@@ -1233,6 +1233,8 @@ string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callback fn
 	text_style.fore_color = prev_fore_color;
 	text_style.back_color = prev_back_color;
 
+	last_key = 0; // Clear last key, so as not to interfere with the kb_inkey function
+
 	return text;
 }
 char TGL_PRIVATE::keycode_to_char(SDL_Keycode key)
