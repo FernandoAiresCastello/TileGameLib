@@ -12,7 +12,7 @@ var searchData=
   ['tile_5fload_5frgb_9',['tile_load_rgb',['../struct_t_g_l___a_p_p.html#a8f0fb6e8152a4053b792bbaede3910b5',1,'TGL_APP::tile_load_rgb(string path)'],['../struct_t_g_l___a_p_p.html#af979ebaab244f2239ed5417bb7848a07',1,'TGL_APP::tile_load_rgb(string path, rgb transparency_key)']]],
   ['time_10',['time',['../struct_t_g_l___a_p_p.html#a8076dada5469079e4bdaf1869422d91e',1,'TGL_APP']]],
   ['title_11',['title',['../struct_t_g_l___a_p_p.html#a36b6d7aa43b5f89a0f02570284b75242',1,'TGL_APP']]],
-  ['to_5fint_12',['to_int',['../struct_t_g_l___a_p_p.html#a852f2b7a0835dd67ade36ccd36b67976',1,'TGL_APP']]],
-  ['to_5fstring_13',['to_string',['../struct_t_g_l___a_p_p.html#a7f92bce9ce433b675c461a475791a7e2',1,'TGL_APP']]],
-  ['trim_14',['trim',['../struct_t_g_l___a_p_p.html#a2d0ee0194bf002ed470782ede4136389',1,'TGL_APP']]]
+  ['to_5fint_12',['to_int',['../struct_t_g_l___a_p_p.html#a1e67a66b0ae827bae915b87a6cd9ce9b',1,'TGL_APP']]],
+  ['to_5fstring_13',['to_string',['../struct_t_g_l___a_p_p.html#a4a680310f2570c39dc9ad72e3e061336',1,'TGL_APP']]],
+  ['trim_14',['trim',['../struct_t_g_l___a_p_p.html#a6f07165c73b5136b0d5b326c04e39f72',1,'TGL_APP']]]
 ];

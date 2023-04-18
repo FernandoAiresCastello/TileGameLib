@@ -5,6 +5,7 @@ var _t_g_l_8h =
     [ "TGL_VIEW", "struct_t_g_l___v_i_e_w.html", "struct_t_g_l___v_i_e_w" ],
     [ "TGL_TIMER", "struct_t_g_l___t_i_m_e_r.html", "struct_t_g_l___t_i_m_e_r" ],
     [ "TGL_SOUND", "struct_t_g_l___s_o_u_n_d.html", "struct_t_g_l___s_o_u_n_d" ],
+    [ "TGL_FILE", "struct_t_g_l___f_i_l_e.html", "struct_t_g_l___f_i_l_e" ],
     [ "TGL_APP", "struct_t_g_l___a_p_p.html", "struct_t_g_l___a_p_p" ],
     [ "byte", "_t_g_l_8h.html#a0c8186d9b9b7880309c27230bbb5e69d", null ],
     [ "callback", "_t_g_l_8h.html#ac7253d9915c821f541408ea973bfe3ba", null ],

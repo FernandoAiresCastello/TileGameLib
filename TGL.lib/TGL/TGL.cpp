@@ -121,6 +121,32 @@ bool TGL_TIMER::done()
 {
 	return elapsed == length;
 }
+void TGL_FILE::write(string value)
+{
+	output_buf += value + field_separator;
+}
+void TGL_FILE::write(int value)
+{
+	output_buf += TGL_APP::to_string(value) + field_separator;
+}
+void TGL_FILE::save(string path)
+{
+	TGL_APP::file_csave(path, output_buf);
+}
+void TGL_FILE::load(string path)
+{
+	string data = TGL_APP::file_cload(path);
+	input_buf = TGL_APP::split(data, field_separator);
+	input_buf_ptr = 0;
+}
+string TGL_FILE::read_string()
+{
+	return input_buf[input_buf_ptr++];
+}
+int TGL_FILE::read_int()
+{
+	return TGL_APP::to_int(input_buf[input_buf_ptr++]);
+}
 TGL_APP::TGL_APP()
 {
 	tgl = new TGL_PRIVATE(this);

@@ -99,6 +99,25 @@ struct TGL_SOUND
 	string file;
 };
 
+/// Structure for a file resource
+struct TGL_FILE
+{
+	char field_separator = '§';
+
+	void write(string value);
+	void write(int value);
+	void save(string path);
+
+	void load(string path);
+	string read_string();
+	int read_int();
+
+private:
+	string output_buf;
+	vector<string> input_buf;
+	int input_buf_ptr = 0;
+};
+
 /// Structure for the TGL application singleton
 struct TGL_APP
 {
@@ -239,13 +258,13 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Create color from red, green and blue components
-	rgb color_rgb(int r, int g, int b);
+	static rgb color_rgb(int r, int g, int b);
 	/// Get value of red component from color
-	int color_r(rgb color);
+	static int color_r(rgb color);
 	/// Get value of green component from color
-	int color_g(rgb color);
+	static int color_g(rgb color);
 	/// Get value of blue component from color
-	int color_b(rgb color);
+	static int color_b(rgb color);
 
 	//=========================================================================
 	//		AUDIO
@@ -275,42 +294,42 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Format a string (works like sprintf in standard C)
-	string fmt(const char* str, ...);
+	static string fmt(const char* str, ...);
 	/// Return specified string in uppercase
-	string ucase(string str);
+	static string ucase(string str);
 	/// Return specified string in lowercase
-	string lcase(string str);
+	static string lcase(string str);
 	/// Remove leading and trailing spaces from string
-	string trim(string str);
+	static string trim(string str);
 	/// Split string into a list
-	vector<string> split(string str, char delim);
+	static vector<string> split(string str, char delim);
 	/// Join all strings from a list into a single string
-	string join(vector<string>& str, string separator);
+	static string join(vector<string>& str, string separator);
 	/// Convert string to integer
-	int to_int(string str);
+	static int to_int(string str);
 	/// Convert integer to string
-	string to_string(int value);
+	static string to_string(int value);
 	/// Return a slice of the specified string
-	string substr(string str, int first, int last);
+	static string substr(string str, int first, int last);
 	/// Replace occurrences of a substring
-	string replace(string str, string original, string replacement);
+	static string replace(string str, string original, string replacement);
 	/// Return whether the string starts with a prefix
-	bool starts_with(string str, string prefix);
+	static bool starts_with(string str, string prefix);
 	/// Return whether the string ends with a suffix
-	bool ends_with(string str, string suffix);
+	static bool ends_with(string str, string suffix);
 	/// Return whether the string contains a substring
-	bool contains(string str, string other);
+	static bool contains(string str, string other);
 	/// Return index of first occurrence of character in string
-	int indexof(string str, char ch);
+	static int indexof(string str, char ch);
 
 	//=========================================================================
 	//		MATH
 	//=========================================================================
 
 	/// Return pseudo-random number within a range
-	int rnd(int min, int max);
+	static int rnd(int min, int max);
 	/// Return true with the specified probability (0% to 100%)
-	bool rnd_chance(int percent);
+	static bool rnd_chance(int percent);
 
 	//=========================================================================
 	//		COLLISION DETECTION
@@ -324,29 +343,29 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Return whether a file exists
-	bool file_exists(string path);
+	static bool file_exists(string path);
 	/// Return whether a folder exists
-	bool folder_exists(string folder_path);
+	static bool folder_exists(string folder_path);
 	/// Read text file contents into string
-	string file_cload(string path);
+	static string file_cload(string path);
 	/// Read lines of text file into list of strings
-	vector<string> file_lines(string path);
+	static vector<string> file_lines(string path);
 	/// Append line to the end of a text file then save it
-	void file_line_add(string path, string text);
+	static void file_line_add(string path, string text);
 	/// Read binary file into list of bytes
-	vector<byte> file_bload(string path);
+	static vector<byte> file_bload(string path);
 	/// Create or replace contents of text file with specified string then save it
-	void file_csave(string path, string text);
+	static void file_csave(string path, string text);
 	/// Create or replace contents of binary file with specified bytes then save it
-	void file_bsave(string path, vector<byte>& bytes);
+	static void file_bsave(string path, vector<byte>& bytes);
 	/// Return list of files in a folder
-	vector<string> file_list(string folder_path);
+	static vector<string> file_list(string folder_path);
 	/// Return list of subfolders in a folder
-	vector<string> folder_list(string folder_path);
+	static vector<string> folder_list(string folder_path);
 	/// Create a new file with same contents as the source file, i.e. duplicate it
-	void file_copy(string src_path, string dest_path);
+	static void file_copy(string src_path, string dest_path);
 	/// Permanently delete file
-	void file_delete(string path);
+	static void file_delete(string path);
 
 	//=========================================================================
 	//		INPUT > TEXT

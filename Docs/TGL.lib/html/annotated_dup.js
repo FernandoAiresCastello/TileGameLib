@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "TGL_APP", "struct_t_g_l___a_p_p.html", "struct_t_g_l___a_p_p" ],
+    [ "TGL_FILE", "struct_t_g_l___f_i_l_e.html", "struct_t_g_l___f_i_l_e" ],
     [ "TGL_SOUND", "struct_t_g_l___s_o_u_n_d.html", "struct_t_g_l___s_o_u_n_d" ],
     [ "TGL_TILE_BIN", "struct_t_g_l___t_i_l_e___b_i_n.html", "struct_t_g_l___t_i_l_e___b_i_n" ],
     [ "TGL_TILE_RGB", "struct_t_g_l___t_i_l_e___r_g_b.html", "struct_t_g_l___t_i_l_e___r_g_b" ],
