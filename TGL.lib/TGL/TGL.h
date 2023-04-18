@@ -235,6 +235,19 @@ struct TGL_APP
 	void print_tiled(string str, int x, int y);
 
 	//=========================================================================
+	//		GRAPHICS > COLOR
+	//=========================================================================
+
+	/// Create color from red, green and blue components
+	rgb color_rgb(int r, int g, int b);
+	/// Get value of red component from color
+	int color_r(rgb color);
+	/// Get value of green component from color
+	int color_g(rgb color);
+	/// Get value of blue component from color
+	int color_b(rgb color);
+
+	//=========================================================================
 	//		AUDIO
 	//=========================================================================
 

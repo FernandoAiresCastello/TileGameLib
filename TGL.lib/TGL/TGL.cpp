@@ -401,6 +401,22 @@ void TGL_APP::print_tiled(string str, int x, int y)
 {
 	tgl->print(str, x, y, true);
 }
+rgb TGL_APP::color_rgb(int r, int g, int b)
+{
+	return TColor(r, g, b).ToColorRGB();
+}
+int TGL_APP::color_r(rgb color)
+{
+	return TColor(color).R;
+}
+int TGL_APP::color_g(rgb color)
+{
+	return TColor(color).G;
+}
+int TGL_APP::color_b(rgb color)
+{
+	return TColor(color).B;
+}
 int TGL_APP::rnd(int min, int max)
 {
 	return Util::Random(min, max);
