@@ -13,7 +13,7 @@ public class TileGameLibTest : MonoBehaviour
 
     void Start()
     {
-        screen = new TileDisplay(256, 192, 0xffffff);
+        screen = new TileDisplay(352, 200, 0x101010);
         screen.ResizeWindow(800, 600);
 
         tileset = new Tileset();
@@ -40,7 +40,7 @@ public class TileGameLibTest : MonoBehaviour
         );
 
         screen.AddView("top_left", 10, 10, 100, 100, 0x0000ff);
-        screen.AddView("btm_right", 80, 80, 240, 170, 0x00ff00);
+        screen.AddView("btm_right", 80, 80, 240, 170, 0x000080);
     }
 
     void Update()
@@ -52,7 +52,9 @@ public class TileGameLibTest : MonoBehaviour
     {
         TileSeq tile = tileset.GetRef("smiley");
         screen.ColorBinary(0xffff00, 0xff0000);
-        screen.FontColor(0x00ffff, 0xff00ff);
+        screen.FontTransparent(true);
+        screen.FontColor(0xffff00);
+        screen.FontShadow(0x000000);
 
         screen.View("default");
         screen.DrawTiled(tile, 5, 20);
