@@ -1,6 +1,7 @@
 var struct_t_g_l___f_i_l_e =
 [
     [ "load", "struct_t_g_l___f_i_l_e.html#ab3bf4ce2e32a424c658150fa6a538642", null ],
+    [ "load_from_memory", "struct_t_g_l___f_i_l_e.html#a654e8e138c911d0140d71ba73ab6e15c", null ],
     [ "read_int", "struct_t_g_l___f_i_l_e.html#a8d049d697b8c6b1047987b8f833b6f0e", null ],
     [ "read_string", "struct_t_g_l___f_i_l_e.html#aae26884acef98ab1b4a49c9f9e502d18", null ],
     [ "save", "struct_t_g_l___f_i_l_e.html#aaed8fd8f87e0a10856b5a7a5125cb5a8", null ],

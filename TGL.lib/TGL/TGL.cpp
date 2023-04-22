@@ -139,6 +139,11 @@ void TGL_FILE::load(string path)
 	input_buf = TGL_APP::split(data, field_separator);
 	input_buf_ptr = 0;
 }
+void TGL_FILE::load_from_memory(string data)
+{
+	input_buf = TGL_APP::split(data, field_separator);
+	input_buf_ptr = 0;
+}
 string TGL_FILE::read_string()
 {
 	return input_buf[input_buf_ptr++];

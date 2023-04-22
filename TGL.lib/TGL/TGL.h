@@ -109,6 +109,7 @@ struct TGL_FILE
 	void save(string path);
 
 	void load(string path);
+	void load_from_memory(string data);
 	string read_string();
 	int read_int();
 
