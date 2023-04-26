@@ -152,6 +152,14 @@ int TGL_FILE::read_int()
 {
 	return TGL_APP::to_int(input_buf[input_buf_ptr++]);
 }
+bool TGL_FILE::eof()
+{
+	return input_buf_ptr >= input_buf.size();
+}
+int TGL_FILE::fields()
+{
+	return input_buf.size();
+}
 TGL_APP::TGL_APP()
 {
 	tgl = new TGL_PRIVATE(this);
