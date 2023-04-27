@@ -48,76 +48,109 @@ constexpr int TGL_TILESIZE = 8;
 /// Structure for an RGB tile
 struct TGL_TILE_RGB
 {
+	/// The 24-bit RGB values for each pixel in the tile
 	rgb pixels[64];
+	/// Indicate whether this tile should be transparent when drawn
 	bool transparent = false;
+	/// The transparency key indicates which color will not be rendered when the tile is transparent
 	rgb transparency_key = 0xffffff;
+	/// Construct a new blank tile
 	TGL_TILE_RGB();
+	/// Construct a new opaque tile with the specified pixels
 	TGL_TILE_RGB(rgb pixels[64]);
+	/// Construct a new transparent tile with the specified pixels and transparency key
 	TGL_TILE_RGB(rgb pixels[64], rgb transparency_key);
 };
 
 /// Structure for a binary tile
 struct TGL_TILE_BIN
 {
+	/// A string containing either '0' or '1' characters representing the pixels
 	string bits;
+	/// Construct a new blank tile (all bits are '0')
 	TGL_TILE_BIN();
+	/// Construct a new tile with the specified bits
 	TGL_TILE_BIN(string bits);
+	/// Set all bits to '0'
 	void clear();
 };
 
 /// Structure for a view
 struct TGL_VIEW
 {
+	/// X coordinate of the top-left corner of the view on the screen
 	int x1 = 0;
+	/// Y coordinate of the top-left corner of the view on the screen
 	int y1 = 0;
+	/// X coordinate of the bottom-right corner of the view on the screen
 	int x2 = 0;
+	/// Y coordinate of the bottom-right corner of the view on the screen
 	int y2 = 0;
+	/// Horizontal scroll position
 	int scroll_x = 0;
+	/// Vertical scroll position
 	int scroll_y = 0;
+	/// Background color
 	rgb back_color = 0x000000;
+	/// Indicate whether the background will be cleared automatically
 	bool clear_bg = true;
+	/// Construct a new inactive view
 	TGL_VIEW();
+	/// Construct a new view with the specified parameters
 	TGL_VIEW(int x1, int y1, int x2, int y2, rgb back_color, bool clear_bg = true);
+	/// Scroll the view contents by the specified distance
 	void scroll(int dx, int dy);
+	/// Scroll the view contents to the specified point
 	void scroll_to(int x, int y);
 };
 
 /// Structure for a timer
 struct TGL_TIMER
 {
+	/// The length of the timer, measured in frames
 	int length = 0;
+	/// The number of frames elapsed since the timer started
 	int elapsed = 0;
+	/// Indicate whether the timer should restart automatically once it's done
 	bool loop = false;
+	/// Construct a new timer
 	TGL_TIMER(int length, bool loop);
+	/// Advance the timer by 1 frame
 	void tick();
+	/// Return whether the elapsed number of frames is equal to the length of the timer
 	bool done();
 };
 
 /// Structure for a sound resource
 struct TGL_SOUND
 {
+	/// The path of the sound file
 	string file;
 };
 
 /// Structure for a file resource
 struct TGL_FILE
 {
+	/// The character used to split the file contents into individual data items
 	char field_separator = '§';
-
+	/// Write a string to the file buffer
 	void write(string value);
+	/// Write an int to the file buffer
 	void write(int value);
+	/// Save the file buffer to disk
 	void save(string path);
+	/// Load a file from disk into the file buffer
 	void load(string path);
+	/// Fill the file buffer with data from a string
 	void load_from_memory(string data);
+	/// Read a string from the file buffer
 	string read_string();
+	/// Read an int from the file buffer
 	int read_int();
+	/// Return whether the pointer has passed the last data item of the file buffer
 	bool eof();
+	/// Return the number of data items currently in the file buffer
 	int fields();
-
-private:
-	string output_buf;
-	vector<string> input_buf;
-	int input_buf_ptr = 0;
 };
 
 /// Structure for the TGL application singleton

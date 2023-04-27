@@ -107,19 +107,25 @@ $(document).ready(function(){initNavTree('struct_t_g_l___t_i_m_e_r.html',''); in
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f4c63c06da88da6de655c6a8a747dcf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#a6f4c63c06da88da6de655c6a8a747dcf">TGL_TIMER</a> (int <a class="el" href="struct_t_g_l___t_i_m_e_r.html#aaea88fe8dd11ae65d761798f12e5d1e7">length</a>, bool <a class="el" href="struct_t_g_l___t_i_m_e_r.html#a57bfcb808f59835e9794cafa9a42c5c3">loop</a>)</td></tr>
+<tr class="memdesc:a6f4c63c06da88da6de655c6a8a747dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new timer.  <br /></td></tr>
 <tr class="separator:a6f4c63c06da88da6de655c6a8a747dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad54007699bfcb97057e7de229cceaa06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#ad54007699bfcb97057e7de229cceaa06">tick</a> ()</td></tr>
+<tr class="memdesc:ad54007699bfcb97057e7de229cceaa06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the timer by 1 frame.  <br /></td></tr>
 <tr class="separator:ad54007699bfcb97057e7de229cceaa06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6a2a2914129dcb700d1a8d182c303d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#ab6a2a2914129dcb700d1a8d182c303d9">done</a> ()</td></tr>
+<tr class="memdesc:ab6a2a2914129dcb700d1a8d182c303d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the elapsed number of frames is equal to the length of the timer.  <br /></td></tr>
 <tr class="separator:ab6a2a2914129dcb700d1a8d182c303d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aaea88fe8dd11ae65d761798f12e5d1e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#aaea88fe8dd11ae65d761798f12e5d1e7">length</a> = 0</td></tr>
+<tr class="memdesc:aaea88fe8dd11ae65d761798f12e5d1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The length of the timer, measured in frames.  <br /></td></tr>
 <tr class="separator:aaea88fe8dd11ae65d761798f12e5d1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa07f31886360ed6b0f3292a8c5fb6875"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#aa07f31886360ed6b0f3292a8c5fb6875">elapsed</a> = 0</td></tr>
+<tr class="memdesc:aa07f31886360ed6b0f3292a8c5fb6875"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of frames elapsed since the timer started.  <br /></td></tr>
 <tr class="separator:aa07f31886360ed6b0f3292a8c5fb6875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57bfcb808f59835e9794cafa9a42c5c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_g_l___t_i_m_e_r.html#a57bfcb808f59835e9794cafa9a42c5c3">loop</a> = false</td></tr>
+<tr class="memdesc:a57bfcb808f59835e9794cafa9a42c5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the timer should restart automatically once it's done.  <br /></td></tr>
 <tr class="separator:a57bfcb808f59835e9794cafa9a42c5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,6 +157,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Construct a new timer. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -169,6 +177,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Return whether the elapsed number of frames is equal to the length of the timer. </p>
+
 </div>
 </div>
 <a id="ad54007699bfcb97057e7de229cceaa06" name="ad54007699bfcb97057e7de229cceaa06"></a>
@@ -186,6 +196,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Advance the timer by 1 frame. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -201,6 +213,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The number of frames elapsed since the timer started. </p>
+
 </div>
 </div>
 <a id="aaea88fe8dd11ae65d761798f12e5d1e7" name="aaea88fe8dd11ae65d761798f12e5d1e7"></a>
@@ -215,6 +229,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The length of the timer, measured in frames. </p>
+
 </div>
 </div>
 <a id="a57bfcb808f59835e9794cafa9a42c5c3" name="a57bfcb808f59835e9794cafa9a42c5c3"></a>
@@ -228,6 +244,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Indicate whether the timer should restart automatically once it's done. </p>
 
 </div>
 </div>
