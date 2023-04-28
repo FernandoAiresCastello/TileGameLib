@@ -151,6 +151,11 @@ struct TGL_FILE
 	bool eof();
 	/// Return the number of data items currently in the file buffer
 	int fields();
+
+private:
+	string output_buf;
+	vector<string> input_buf;
+	int input_buf_ptr = 0;
 };
 
 /// Structure for the TGL application singleton

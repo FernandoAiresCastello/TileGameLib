@@ -47,12 +47,6 @@ using namespace TGL_Internal;
 
 TGL_PRIVATE* tgl = nullptr;
 
-struct {
-	string output_buf;
-	vector<string> input_buf;
-	int input_buf_ptr = 0;
-} TGL_FILE_PRIVATE;
-
 TGL_TILE_RGB::TGL_TILE_RGB()
 {
 	for (int i = 0; i < 64; i++) {
@@ -129,42 +123,42 @@ bool TGL_TIMER::done()
 }
 void TGL_FILE::write(string value)
 {
-	TGL_FILE_PRIVATE.output_buf += value + field_separator;
+	output_buf += value + field_separator;
 }
 void TGL_FILE::write(int value)
 {
-	TGL_FILE_PRIVATE.output_buf += TGL_APP::to_string(value) + field_separator;
+	output_buf += TGL_APP::to_string(value) + field_separator;
 }
 void TGL_FILE::save(string path)
 {
-	TGL_APP::file_csave(path, TGL_FILE_PRIVATE.output_buf);
+	TGL_APP::file_csave(path, output_buf);
 }
 void TGL_FILE::load(string path)
 {
 	string data = TGL_APP::file_cload(path);
-	TGL_FILE_PRIVATE.input_buf = TGL_APP::split(data, field_separator);
-	TGL_FILE_PRIVATE.input_buf_ptr = 0;
+	input_buf = TGL_APP::split(data, field_separator);
+	input_buf_ptr = 0;
 }
 void TGL_FILE::load_from_memory(string data)
 {
-	TGL_FILE_PRIVATE.input_buf = TGL_APP::split(data, field_separator);
-	TGL_FILE_PRIVATE.input_buf_ptr = 0;
+	input_buf = TGL_APP::split(data, field_separator);
+	input_buf_ptr = 0;
 }
 string TGL_FILE::read_string()
 {
-	return TGL_FILE_PRIVATE.input_buf[TGL_FILE_PRIVATE.input_buf_ptr++];
+	return input_buf[input_buf_ptr++];
 }
 int TGL_FILE::read_int()
 {
-	return TGL_APP::to_int(TGL_FILE_PRIVATE.input_buf[TGL_FILE_PRIVATE.input_buf_ptr++]);
+	return TGL_APP::to_int(input_buf[input_buf_ptr++]);
 }
 bool TGL_FILE::eof()
 {
-	return TGL_FILE_PRIVATE.input_buf_ptr >= TGL_FILE_PRIVATE.input_buf.size();
+	return input_buf_ptr >= input_buf.size();
 }
 int TGL_FILE::fields()
 {
-	return TGL_FILE_PRIVATE.input_buf.size();
+	return input_buf.size();
 }
 TGL_APP::TGL_APP()
 {
