@@ -41,7 +41,7 @@ using namespace TGL_Internal;
 #include "TGL_PRIVATE.h"
 
 #define WND_SIZE_FACTOR_MIN		1
-#define WND_SIZE_FACTOR_MAX		5
+#define WND_SIZE_FACTOR_MAX		10
 #define STRING_FMT_MAXBUFLEN	1024
 #define FPS_COLOR				0xd0d0d0
 
