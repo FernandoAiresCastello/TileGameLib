@@ -84,9 +84,6 @@ namespace TileGameLib.Graphics
             Colors.Clear();
             for (int i = 0; i < count; i++)
                 Add(color);
-
-            Colors[0] = Color.Black.ToArgb();
-            Colors[1] = Color.White.ToArgb();
         }
 
         public void SetEmpty()

@@ -47,10 +47,20 @@ namespace TileGameLib.Graphics
                 row1, row2, row3, row4, row5, row6, row7, row8));
         }
 
+        public void Add(string binaryString)
+        {
+            Pixels.Add(new TilePixels(binaryString));
+        }
+
         public void Set(int index, byte row1, byte row2, byte row3, byte row4,
             byte row5, byte row6, byte row7, byte row8)
         {
             Pixels[index].Set(row1, row2, row3, row4, row5, row6, row7, row8);
+        }
+
+        public void Set(int index, string binaryString)
+        {
+            Pixels[index].FromBinaryString(binaryString);
         }
 
         public void Set(int index, TilePixels pixels)
