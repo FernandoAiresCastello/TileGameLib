@@ -39,6 +39,11 @@ namespace TileGameLib.Graphics
             SetEqual(other);
         }
 
+        public TilePixels Copy()
+        {
+            return new TilePixels(this);
+        }
+
         public void Clear()
         {
             for (int i = 0; i < RowCount; i++)
