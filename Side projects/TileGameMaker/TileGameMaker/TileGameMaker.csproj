@@ -127,12 +127,8 @@
     <Compile Include="Panels\ProjectPanel.Designer.cs">
       <DependentUpon>ProjectPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TiledDisplays\AnimationStripDisplay.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TiledDisplays\TileEditor16x16Display.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TiledDisplays\AnimationStripDisplay.cs" />
+    <Compile Include="TiledDisplays\TileEditor16x16Display.cs" />
     <Compile Include="Util\Config.cs" />
     <Compile Include="MapEditorElements\ObjectBlockSelection.cs" />
     <Compile Include="Util\Global.cs" />
@@ -248,9 +244,7 @@
     <Compile Include="Panels\MapEditorPanel.Designer.cs">
       <DependentUpon>MapEditorPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TiledDisplays\TileEditor8x8Display.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TiledDisplays\TileEditor8x8Display.cs" />
     <Compile Include="Windows\TileEditor16x16Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,12 +270,8 @@
       <DependentUpon>TilePickerPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="MapEditorElements\MapEditor.cs" />
-    <Compile Include="TiledDisplays\TilePickerDisplay.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TiledDisplays\ColorPickerDisplay.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TiledDisplays\TilePickerDisplay.cs" />
+    <Compile Include="TiledDisplays\ColorPickerDisplay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Windows\TileSelectorWindow.cs">
@@ -407,12 +397,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TileGameLib\TileGameLib.csproj">
-      <Project>{ed0d0220-b0af-4183-bc9f-204e6df1381c}</Project>
-      <Name>TileGameLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\page_white.png" />
