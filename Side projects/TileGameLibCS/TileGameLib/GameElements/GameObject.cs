@@ -13,6 +13,7 @@ namespace TileGameLib.GameElements
     public class GameObject
     {
         public bool Visible { set; get; }
+        public bool Transparent { set; get; }
         public ObjectAnimation Animation { set; get; } = new ObjectAnimation();
         public PropertyList Properties { set; get; } = new PropertyList();
         public Tile Tile => Animation.FirstFrame;
@@ -36,6 +37,7 @@ namespace TileGameLib.GameElements
         public void SetNull()
         {
             Visible = true;
+            Transparent = false;
             Properties.RemoveAll();
             Animation.Clear();
             Animation.AddBlankFrame();
@@ -46,6 +48,7 @@ namespace TileGameLib.GameElements
             if (o != null)
             {
                 Visible = o.Visible;
+                Transparent = o.Transparent;
                 Properties.SetEqual(o.Properties);
                 Animation.SetEqual(o.Animation);
             }
@@ -62,7 +65,7 @@ namespace TileGameLib.GameElements
 
         public override string ToString()
         {
-            return $"Properties: {Properties.Entries.Count} Frames: {Animation.Frames.Count} Visible: {Visible}";
+            return $"Properties: {Properties.Entries.Count} Frames: {Animation.Frames.Count} Visible: {Visible} Transparent: {Transparent}";
         }
 
         public override bool Equals(object obj)
@@ -74,6 +77,7 @@ namespace TileGameLib.GameElements
 
             return
                 Visible.Equals(o.Visible) &&
+                Transparent.Equals(o.Transparent) &&
                 Properties.Equals(o.Properties) &&
                 Animation.Equals(o.Animation);
         }

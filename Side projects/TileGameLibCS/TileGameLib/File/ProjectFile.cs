@@ -55,7 +55,7 @@ namespace TileGameLib.File
                 Append(map.Name);
                 Append(map.Width);
                 Append(map.Height);
-                Append(map.BackColor);
+                Append(map.BackColorIndex);
                 Append(map.Layers.Count);
 
                 // === LAYERS ===
@@ -74,6 +74,7 @@ namespace TileGameLib.File
                             {
                                 Append(1);
                                 Append(o.Visible ? 1 : 0);
+                                Append(o.Transparent ? 1 : 0);
 
                                 Append(o.Animation.Size);
                                 foreach (Tile tile in o.Animation.Frames)
@@ -244,6 +245,7 @@ namespace TileGameLib.File
                             {
                                 GameObject o = new GameObject();
                                 o.Visible = NextNumber() > 0;
+                                o.Transparent = NextNumber() > 0;
 
                                 o.Animation.Clear();
                                 int animSize = NextNumber();

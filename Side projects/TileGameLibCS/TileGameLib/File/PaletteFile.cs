@@ -74,21 +74,30 @@ namespace TileGameLib.File
 
         public static void SaveAsHexadecimalRgb(Palette palette, string path)
         {
-            MemoryFile file = new MemoryFile();
+            List<string> rgbStrings = new List<string>();
 
             for (int index = 0; index < palette.Size; index++)
             {
                 Color color = palette.GetColorObject(index);
-                string line = color.ToArgb().ToString("X").Substring(2);
-                file.WriteString(line + MemoryFile.NewLine);
+                string line = color.ToArgb().ToString("x").Substring(2);
+                rgbStrings.Add(line);
             }
 
-            file.SaveToPhysicalFile(path);
+            string str = string.Join(Environment.NewLine, rgbStrings.ToArray());
+            System.IO.File.WriteAllText(path, str);
         }
 
         public static Palette LoadFromHexadecimalRgb(string path)
         {
-            throw new NotImplementedException();
+            string[] rgbStrings = System.IO.File.ReadAllLines(path);
+            Palette palette = new Palette();
+            palette.Clear(256, 0x000000);
+
+            int i = 0;
+            foreach (string rgb in rgbStrings)
+                palette.Set(i++, int.Parse(rgb, NumberStyles.HexNumber));
+
+            return palette;
         }
 
         public static void SaveAsHexadecimalCsv(Palette palette, string path)
@@ -100,9 +109,9 @@ namespace TileGameLib.File
                 Color color = palette.GetColorObject(index);
 
                 string line = 
-                    color.R.ToString("X").PadLeft(2, '0') + "," +
-                    color.G.ToString("X").PadLeft(2, '0') + "," +
-                    color.B.ToString("X").PadLeft(2, '0') + MemoryFile.NewLine;
+                    color.R.ToString("x").PadLeft(2, '0') + "," +
+                    color.G.ToString("x").PadLeft(2, '0') + "," +
+                    color.B.ToString("x").PadLeft(2, '0') + MemoryFile.NewLine;
 
                 file.WriteString(line);
             }

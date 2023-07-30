@@ -48,7 +48,7 @@ namespace TileGameLib.Components
             ShowGrid = false;
             ShowCustomOverlay = false;
             StretchImage = false;
-            GridColor = Color.FromArgb(50, 0, 0, 0);
+            GridColor = Color.FromArgb(32, 128, 128, 128);
             AuxGridColor = Color.FromArgb(128, 255, 0, 0);
             TileHighlightColor = SystemColors.Highlight;
             TileHighlightColorOpacity = 128;

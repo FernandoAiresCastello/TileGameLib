@@ -211,7 +211,7 @@ namespace TileGameLib.Graphics
             Disp.Graphics.Palette = Map.Palette;
 
             if (ClearViewportBeforeRender)
-                Disp.Graphics.ClearRect(Map.BackColor, Viewport.X, Viewport.Y, Viewport.Width, Viewport.Height);
+                Disp.Graphics.ClearRect(Map.BackColorIndex, Viewport.X, Viewport.Y, Viewport.Width, Viewport.Height);
 
             if (RenderSingleLayer)
             {
@@ -255,7 +255,7 @@ namespace TileGameLib.Graphics
             {
                 Tile tile = o.Animation.GetFrame(AnimationFrame);
                 if (tile != null)
-                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
+                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, o.Transparent);
             }
         }
 
@@ -267,7 +267,7 @@ namespace TileGameLib.Graphics
             {
                 Tile tile = Map.OutOfBoundsObject.Animation.GetFrame(AnimationFrame);
                 if (tile != null)
-                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
+                    Disp.Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, oob.Transparent);
             }
         }
     }

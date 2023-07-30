@@ -17,7 +17,7 @@ namespace TileGameLib.GameElements
         public string Id { set; get; }
         public string Name { set; get; }
         public List<ObjectLayer> Layers { set; get; } = new List<ObjectLayer>();
-        public int BackColor { set; get; }
+        public int BackColorIndex { set; get; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public GameObject OutOfBoundsObject { get; set; }
@@ -30,12 +30,12 @@ namespace TileGameLib.GameElements
 
         public ObjectMap(Project project, int width, int height) : this(project, DefaultName, 1, width, height, 0)
         {
-            BackColor = Palette.White;
+            BackColorIndex = 0;
         }
 
         public ObjectMap(Project project, int layers, int width, int height) : this(project, DefaultName, layers, width, height, 0)
         {
-            BackColor = Palette.White;
+            BackColorIndex = 0;
         }
 
         public ObjectMap(Project project, string name, int width, int height, int backColor) : this(project, name, 1, width, height, backColor)
@@ -50,7 +50,7 @@ namespace TileGameLib.GameElements
             Name = name;
             Width = width;
             Height = height;
-            BackColor = backColor;
+            BackColorIndex = backColor;
 
             for (int i = 0; i < layers; i++)
                 AddLayer();
@@ -73,7 +73,7 @@ namespace TileGameLib.GameElements
             Name = other.Name;
             Width = other.Width;
             Height = other.Height;
-            BackColor = other.BackColor;
+            BackColorIndex = other.BackColorIndex;
             OutOfBoundsObject = other.OutOfBoundsObject;
             Layers.Clear();
 

@@ -40,7 +40,7 @@ namespace TileGameLib.Graphics
         public Tile GetTile(int col, int row)
         {
             if (col < 0 || row < 0 || col >= TileBuffer.Cols || row >= TileBuffer.Rows)
-                throw new TGLException();
+                return null;
 
             return TileBuffer.Tiles[col, row];
         }
@@ -55,29 +55,29 @@ namespace TileGameLib.Graphics
 
         public new void Clear(int color)
         {
-            Fill(Tile.Blank.Index, Tile.Blank.ForeColor, color);
+            Fill(Tile.Blank.Index, Tile.Blank.ForeColor, color, false);
         }
 
         public void ClearRect(int color, int x, int y, int width, int height)
         {
             for (int px = x; px < x + width; px++)
                 for (int py = y; py < y + height; py++)
-                    PutTile(px, py, Tile.Blank.Index, Tile.Blank.ForeColor, color);
+                    PutTile(px, py, Tile.Blank.Index, Tile.Blank.ForeColor, color, false);
         }
 
         public void Fill(Tile tile)
         {
-            Fill(tile.Index, tile.ForeColor, tile.BackColor);
+            Fill(tile.Index, tile.ForeColor, tile.BackColor, tile.Transparent);
         }
 
-        public void Fill(int charIndex, int forecolor, int backcolor)
+        public void Fill(int charIndex, int forecolor, int backcolor, bool transparent)
         {
             for (int y = 0; y < Rows; y++)
                 for (int x = 0; x < Cols; x++)
-                    PutTile(x, y, charIndex, forecolor, backcolor);
+                    PutTile(x, y, charIndex, forecolor, backcolor, transparent);
         }
 
-        public void PutString(int x, int y, string str, int forecolor, int backcolor)
+        public void PutString(int x, int y, string str, int forecolor, int backcolor, bool transparent)
         {
             int px = x;
 
@@ -96,7 +96,7 @@ namespace TileGameLib.Graphics
                     else
                     {
                         if (x < Cols && y < Rows)
-                            PutTile(x++, y, ch, forecolor, backcolor);
+                            PutTile(x++, y, ch, forecolor, backcolor, transparent);
                     }
                 }
             }
@@ -104,15 +104,15 @@ namespace TileGameLib.Graphics
 
         public void PutTile(int col, int row, Tile tile)
         {
-            PutTile(col, row, tile.Index, tile.ForeColor, tile.BackColor);
+            PutTile(col, row, tile.Index, tile.ForeColor, tile.BackColor, tile.Transparent);
         }
 
-        public void PutTile(int col, int row, int charIndex, int forecolor, int backcolor)
+        public void PutTile(int col, int row, int charIndex, int forecolor, int backcolor, bool transparent)
         {
             if (col >= 0 && row >= 0 && col < TileBuffer.Cols && row < TileBuffer.Rows)
             {
                 TileBuffer.Tiles[col, row].Set(charIndex, forecolor, backcolor);
-                DrawTile(col, row, Palette.Get(forecolor), Palette.Get(backcolor), Tileset.Get(charIndex).PixelRows);
+                DrawTile(col, row, Palette.Get(forecolor), Palette.Get(backcolor), Tileset.Get(charIndex).PixelRows, transparent);
             }
             else
             {
@@ -133,12 +133,12 @@ namespace TileGameLib.Graphics
                 {
                     Tile tile = TileBuffer.Tiles[col, row];
                     DrawTile(col, row, Palette.Get(tile.ForeColor), 
-                        Palette.Get(tile.BackColor), Tileset.Get(tile.Index).PixelRows);
+                        Palette.Get(tile.BackColor), Tileset.Get(tile.Index).PixelRows, tile.Transparent);
                 }
             }
         }
 
-        private void DrawTile(int col, int row, int color1, int color0, byte[] rows)
+        private void DrawTile(int col, int row, int color1, int color0, byte[] rows, bool transparent)
         {
             col *= TilePixels.RowLength;
             row *= TilePixels.RowCount;
@@ -153,7 +153,16 @@ namespace TileGameLib.Graphics
                 for (int bit = TilePixels.RowLength - 1; bit >= 0; bit--)
                 {
                     int pixelIndex = row * FastBitmap.Width + col;
-                    SetPixel(pixelIndex, (pixelRow & (1 << bit)) != 0 ? color1 : color0);
+
+                    if (transparent)
+                    {
+                        if ((pixelRow & (1 << bit)) != 0)
+                            SetPixel(pixelIndex, color1);
+                    }
+                    else
+                    {
+                        SetPixel(pixelIndex, (pixelRow & (1 << bit)) != 0 ? color1 : color0);
+                    }
 
                     if (++i < TilePixels.RowLength)
                     {

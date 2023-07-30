@@ -11,6 +11,7 @@ namespace TileGameLib.Graphics
         public int Index { set; get; }
         public int ForeColor { set; get; }
         public int BackColor { set; get; }
+        public bool Transparent { set; get; }
 
         public static Tile Blank => new Tile(0, 0, 0);
 
@@ -29,6 +30,7 @@ namespace TileGameLib.Graphics
             Index = chrix;
             ForeColor = fgcix;
             BackColor = bgcix;
+            Transparent = false;
         }
 
         public void Set(int tileIx, int foreColorIx, int backColorIx)
@@ -36,6 +38,7 @@ namespace TileGameLib.Graphics
             Index = tileIx;
             ForeColor = foreColorIx;
             BackColor = backColorIx;
+            Transparent = false;
         }
 
         public void SetEqual(Tile other)
@@ -43,6 +46,7 @@ namespace TileGameLib.Graphics
             Index = other.Index;
             ForeColor = other.ForeColor;
             BackColor = other.BackColor;
+            Transparent = other.Transparent;
         }
 
         public void SetBlank()
@@ -50,6 +54,7 @@ namespace TileGameLib.Graphics
             Index = Blank.Index;
             ForeColor = Blank.ForeColor;
             BackColor = Blank.BackColor;
+            Transparent = Blank.Transparent;
         }
 
         public Tile Copy()
@@ -67,7 +72,8 @@ namespace TileGameLib.Graphics
             return
                 Index == other.Index &&
                 ForeColor == other.ForeColor &&
-                BackColor == other.BackColor;
+                BackColor == other.BackColor &&
+                Transparent == other.Transparent;
         }
 
         public override int GetHashCode()

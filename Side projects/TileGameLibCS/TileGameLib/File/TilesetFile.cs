@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,26 +78,32 @@ namespace TileGameLib.File
 
         public static void SaveAsBinaryStrings(Tileset tileset, string path)
         {
-            MemoryFile file = new MemoryFile();
+            List<string> binaryStrings = new List<string>();
 
             foreach (TilePixels pixels in tileset.Pixels)
             {
                 StringBuilder binary = new StringBuilder();
-
                 foreach (byte row in pixels.PixelRows)
-                {
                     binary.Append(row.ToBinaryString());
-                }
 
-                file.WriteString(binary.ToString() + MemoryFile.NewLine);
+                binaryStrings.Add(binary.ToString());
             }
 
-            file.SaveToPhysicalFile(path);
+            string str = string.Join(Environment.NewLine, binaryStrings.ToArray());
+            System.IO.File.WriteAllText(path, str);
         }
 
         public static Tileset LoadFromBinaryStrings(string path)
         {
-            throw new NotImplementedException();
+            string[] binaryStrings = System.IO.File.ReadAllLines(path);
+            Tileset tileset = new Tileset();
+            tileset.ClearToSize(binaryStrings.Length);
+
+            int i = 0;
+            foreach (string binary in binaryStrings)
+                tileset.Set(i++, binary);
+
+            return tileset;
         }
 
         public static void SaveAsHexadecimalCsv(Tileset tileset, string path)

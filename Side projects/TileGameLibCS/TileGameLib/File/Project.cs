@@ -35,7 +35,7 @@ namespace TileGameLib.File
             Tileset = new Tileset();
             Palette = new Palette();
             Maps = new List<ObjectMap>();
-            TemplateObjects = new ObjectMap(this, 16, 16);
+            TemplateObjects = new ObjectMap(this, "Saved tiles", 1, 16, 16, 1);
             Config = new ConfigBundle();
         }
 
