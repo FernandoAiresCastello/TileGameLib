@@ -19,7 +19,7 @@ TileGameLib is a toolkit for quick and easy development of tile-based, pseudo-8-
 **Documentation:**
 
 - [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/TGL/TGL.h)
-- [TGL.lib - Auto-generated HTML docs](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Docs/TGL.lib)
+- [TGL.lib - Auto-generated HTML docs](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/v0.1b/Docs)
 
 **Notes:**
 
