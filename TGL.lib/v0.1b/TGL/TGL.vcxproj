@@ -164,8 +164,8 @@
       <ImportLibrary>$(SolutionDir)..\Builds\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)..\..\Releases\TGL.lib\TGL.lib"
-copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\..\Releases\TGL.lib\TGL.h"
+      <Command>copy "$(OutDir)TGL.lib" "$(SolutionDir)..\..\Releases\TGL.lib\v0.1b\TGL.lib"
+copy "$(ProjectDir)TGL.h" "$(SolutionDir)..\..\Releases\TGL.lib\v0.1b\TGL.h"
 cd "$(SolutionDir)Docs"
 doxygen -q</Command>
     </PostBuildEvent>
