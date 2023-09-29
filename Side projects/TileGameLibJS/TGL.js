@@ -46,6 +46,9 @@ class TGL {
 	cls() {
 		this.private.display.clear();
 	}
+	clearClip() {
+		this.private.display.clearClip();
+	}
 	backColor(color) {
 		this.private.display.backColor = color;
 	}
@@ -88,8 +91,8 @@ class TGL {
 	font(chr, binaryTile) {
 		this.private.setFont(chr, binaryTile);
 	}
-	clip(x1, y1, x2, y2) {
-		this.private.display.setClip(x1, y1, x2, y2);
+	clip(x1, y1, x2, y2, backColor) {
+		this.private.display.setClip(x1, y1, x2, y2, backColor);
 	}
 	unclip() {
 		this.private.display.removeClip();
@@ -314,8 +317,11 @@ class TGL_Display {
 		this.frameCounter++;
 		requestAnimationFrame(() => this.update());
 	}
-	setClip(x1, y1, x2, y2) {
-		this.clip = { x1: x1, y1: y1, x2: x2, y2: y2 };
+	setClip(x1, y1, x2, y2, backColor) {
+		if (!backColor) {
+			backColor = '#111';
+		}
+		this.clip = { x1: x1, y1: y1, x2: x2, y2: y2, backColor: backColor };
 	}
 	removeClip() {
 		this.clip = null;
@@ -325,6 +331,16 @@ class TGL_Display {
 		for (let y = 0; y < this.height; y++) {
 			for (let x = 0; x < this.width; x++) {
 				this.putPixel(x, y, this.backColor);
+			}
+		}
+	}
+	clearClip() {
+		if (this.clip) {
+			let i = 0;
+			for (let y = this.clip.y1; y <= this.clip.y2; y++) {
+				for (let x = this.clip.x1; x <= this.clip.x2; x++) {
+					this.putPixel(x, y, this.clip.backColor);
+				}
 			}
 		}
 	}
@@ -338,6 +354,10 @@ class TGL_Display {
 		}
 	}
 	putPixelBlock(block, x, y, colorMode) {
+		if (this.clip) {
+			x += this.clip.x1;
+			y += this.clip.y1;
+		}
 		let initX = x;
 		for (let i = 0; i < block.length; i++) {
 			let color = null;
@@ -358,10 +378,9 @@ class TGL_Display {
 			}
 			if (color) {
 				if (this.clip) {
-					if (x >= this.clip.x1 && x <= this.clip.x2 && 
-						y >= this.clip.y1 && y <= this.clip.y2) {
-							this.putPixel(x, y, color);
-						}
+					if (x <= this.clip.x2 && y <= this.clip.y2) {
+						this.putPixel(x, y, color);
+					}
 				} else {
 					this.putPixel(x, y, color);
 				}
