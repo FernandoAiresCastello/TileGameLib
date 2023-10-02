@@ -111,7 +111,7 @@ namespace TileGameMaker.TiledDisplays
                     bgc = (int)IndicatorColor.Invalid;
                 }
 
-                Graphics.PutTile(x, y, valid ? i : 0, fgc, bgc);
+                Graphics.PutTile(x, y, valid ? i : 0, fgc, bgc, false);
                 x++;
 
                 if (x >= Graphics.Cols)

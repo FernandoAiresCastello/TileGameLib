@@ -99,7 +99,7 @@ namespace TileGameMaker.Windows
 
             for (int tileIndex = from; tileIndex <= to; tileIndex++)
             {
-                Display.Graphics.PutTile(x, y, tileIndex, 0, 1);
+                Display.Graphics.PutTile(x, y, tileIndex, 0, 1, false);
 
                 x++;
                 if (x >= Display.Graphics.Cols)

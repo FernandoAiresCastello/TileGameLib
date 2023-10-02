@@ -568,7 +568,7 @@ namespace TileGameMaker.Panels
 
             Map.GenerateId();
             Map.Name = ObjectMap.DefaultName;
-            Map.BackColor = Map.Palette.White;
+            Map.BackColorIndex = PaletteIndex.White;
             Editor.ResizeMap(Config.ReadInt("DefaultMapWidth"), Config.ReadInt("DefaultMapHeight"));
             Editor.UpdateMapProperties();
             ClearMap();
@@ -653,7 +653,7 @@ namespace TileGameMaker.Panels
         {
             ColorPickerWindow win = new ColorPickerWindow(Editor, "Select map background");
             if (win.ShowDialog(this) == DialogResult.OK)
-                Map.BackColor = win.SelectedColor;
+                Map.BackColorIndex = win.SelectedColor;
         }
 
         private void MiCancelSelection_Click(object sender, EventArgs e)

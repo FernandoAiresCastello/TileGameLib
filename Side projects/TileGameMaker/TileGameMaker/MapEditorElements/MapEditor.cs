@@ -197,7 +197,7 @@ namespace TileGameMaker.MapEditorElements
 
         private GameObject CreateBlankObject()
         {
-            return new GameObject(new Tile(0, Palette.Black, Palette.White));
+            return new GameObject(new Tile(0, PaletteIndex.Black, PaletteIndex.White));
         }
     }
 }

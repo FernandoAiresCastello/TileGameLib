@@ -36,7 +36,7 @@ namespace TileGameMaker.TiledDisplays
 
             foreach (Tile tile in Animation.Frames)
             {
-                Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor);
+                Graphics.PutTile(x, y, tile.Index, tile.ForeColor, tile.BackColor, false);
 
                 x++;
                 if (x >= Cols)

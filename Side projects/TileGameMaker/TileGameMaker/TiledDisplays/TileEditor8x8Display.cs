@@ -48,9 +48,9 @@ namespace TileGameMaker.TiledDisplays
                 for (int x = 0; x < Graphics.Cols; x++)
                 {
                     if (pixels[pix] == PixelOff)
-                        Graphics.PutTile(x, y, PixelIndicator, 0, 1);
+                        Graphics.PutTile(x, y, PixelIndicator, 0, 1, false);
                     else if (pixels[pix] == PixelOn)
-                        Graphics.PutTile(x, y, PixelIndicator, 1, 0);
+                        Graphics.PutTile(x, y, PixelIndicator, 1, 0, false);
 
                     pix++;
                 }

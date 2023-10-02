@@ -227,20 +227,7 @@ class TGL_Private {
 		this.setFont(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 		this.setFont(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 	}
-	testClear() {
-		this.backColor(this.palette[this.rnd(0, this.palette.length - 1)]);
-		this.cls();
-	}
-	testDrawPixels() {
-		this.colorNormal();
-		let i = 0;
-		for (let y = 0; y < this.private.display.height; y++) {
-			for (let x = 0; x < this.private.display.width; x++) {
-				this.private.display.pixels[i++] = 
-					this.palette[this.rnd(0, this.palette.length - 1)];
-			}
-		}
-	}
+
 	testDrawTiles() {
 		const tile = 
 		"11111111" +

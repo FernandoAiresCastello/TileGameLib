@@ -69,9 +69,9 @@ namespace TileGameMaker.TiledDisplays
                 for (int x = 0; x < 8; x++)
                 {
                     if (pixelsTL[pix] == PixelOff)
-                        Graphics.PutTile(x, y, PixelIndicator, 0, 1);
+                        Graphics.PutTile(x, y, PixelIndicator, 0, 1, false);
                     else if (pixelsTL[pix] == PixelOn)
-                        Graphics.PutTile(x, y, PixelIndicator, 1, 0);
+                        Graphics.PutTile(x, y, PixelIndicator, 1, 0, false);
 
                     pix++;
                 }
@@ -88,9 +88,9 @@ namespace TileGameMaker.TiledDisplays
                 for (int x = 0; x < 8; x++)
                 {
                     if (pixelsTR[pix] == PixelOff)
-                        Graphics.PutTile(x + 8, y, PixelIndicator, 0, 1);
+                        Graphics.PutTile(x + 8, y, PixelIndicator, 0, 1, false);
                     else if (pixelsTR[pix] == PixelOn)
-                        Graphics.PutTile(x + 8, y, PixelIndicator, 1, 0);
+                        Graphics.PutTile(x + 8, y, PixelIndicator, 1, 0, false);
 
                     pix++;
                 }
@@ -107,9 +107,9 @@ namespace TileGameMaker.TiledDisplays
                 for (int x = 0; x < 8; x++)
                 {
                     if (pixelsBL[pix] == PixelOff)
-                        Graphics.PutTile(x, y + 8, PixelIndicator, 0, 1);
+                        Graphics.PutTile(x, y + 8, PixelIndicator, 0, 1, false);
                     else if (pixelsBL[pix] == PixelOn)
-                        Graphics.PutTile(x, y + 8, PixelIndicator, 1, 0);
+                        Graphics.PutTile(x, y + 8, PixelIndicator, 1, 0, false);
 
                     pix++;
                 }
@@ -126,9 +126,9 @@ namespace TileGameMaker.TiledDisplays
                 for (int x = 0; x < 8; x++)
                 {
                     if (pixelsBR[pix] == PixelOff)
-                        Graphics.PutTile(x + 8, y + 8, PixelIndicator, 0, 1);
+                        Graphics.PutTile(x + 8, y + 8, PixelIndicator, 0, 1, false);
                     else if (pixelsBR[pix] == PixelOn)
-                        Graphics.PutTile(x + 8, y + 8, PixelIndicator, 1, 0);
+                        Graphics.PutTile(x + 8, y + 8, PixelIndicator, 1, 0, false);
 
                     pix++;
                 }
