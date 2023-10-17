@@ -69,11 +69,11 @@ TGL_TILE_RGB::TGL_TILE_RGB(rgb pixels[64], rgb transparency_key)
 }
 TGL_TILE_BIN::TGL_TILE_BIN()
 {
-	bits = string(64, '0');
+	bits = std::string(64, '0');
 }
-TGL_TILE_BIN::TGL_TILE_BIN(string bits)
+TGL_TILE_BIN::TGL_TILE_BIN(std::string bits)
 {
-	this->bits = string(bits);
+	this->bits = std::string(bits);
 }
 void TGL_TILE_BIN::clear()
 {
@@ -121,7 +121,7 @@ bool TGL_TIMER::done()
 {
 	return elapsed == length;
 }
-void TGL_FILE::write(string value)
+void TGL_FILE::write(std::string value)
 {
 	output_buf += value + field_separator;
 }
@@ -129,22 +129,22 @@ void TGL_FILE::write(int value)
 {
 	output_buf += TGL_APP::to_string(value) + field_separator;
 }
-void TGL_FILE::save(string path)
+void TGL_FILE::save(std::string path)
 {
 	TGL_APP::file_csave(path, output_buf);
 }
-void TGL_FILE::load(string path)
+void TGL_FILE::load(std::string path)
 {
-	string data = TGL_APP::file_cload(path);
+	std::string data = TGL_APP::file_cload(path);
 	input_buf = TGL_APP::split(data, field_separator);
 	input_buf_ptr = 0;
 }
-void TGL_FILE::load_from_memory(string data)
+void TGL_FILE::load_from_memory(std::string data)
 {
 	input_buf = TGL_APP::split(data, field_separator);
 	input_buf_ptr = 0;
 }
-string TGL_FILE::read_string()
+std::string TGL_FILE::read_string()
 {
 	return input_buf[input_buf_ptr++];
 }
@@ -226,7 +226,7 @@ bool TGL_APP::window()
 {
 	return tgl->wnd != nullptr;
 }
-void TGL_APP::title(string str)
+void TGL_APP::title(std::string str)
 {
 	if (tgl->wnd) {
 		tgl->wnd->SetTitle(str);
@@ -277,32 +277,32 @@ bool TGL_APP::mouse_middle()
 	Uint32 buttons = SDL_GetMouseState(NULL, NULL);
 	return buttons & SDL_BUTTON_MMASK;
 }
-void TGL_APP::error(string msg)
+void TGL_APP::error(std::string msg)
 {
 	MsgBox::Error(msg);
 }
-void TGL_APP::abort(string msg)
+void TGL_APP::abort(std::string msg)
 {
 	error(msg);
 	exit();
 }
-string TGL_APP::date()
+std::string TGL_APP::date()
 {
 	return Util::CurrentDate();
 }
-string TGL_APP::time()
+std::string TGL_APP::time()
 {
 	return Util::CurrentTime();
 }
-string TGL_APP::datetime()
+std::string TGL_APP::datetime()
 {
 	return date() + " " + time();
 }
-void TGL_APP::to_clipboard(string text)
+void TGL_APP::to_clipboard(std::string text)
 {
 	Util::SendTextToClipboard(text);
 }
-string TGL_APP::from_clipboard()
+std::string TGL_APP::from_clipboard()
 {
 	return Util::GetTextFromClipboard();
 }
@@ -322,7 +322,7 @@ void TGL_APP::exit_view()
 {
 	view(tgl->default_view);
 }
-TGL_TILE_RGB TGL_APP::tile_load_rgb(string path)
+TGL_TILE_RGB TGL_APP::tile_load_rgb(std::string path)
 {
 	TImage img;
 	img.Load(path);
@@ -337,7 +337,7 @@ TGL_TILE_RGB TGL_APP::tile_load_rgb(string path)
 	}
 	return tile;
 }
-TGL_TILE_RGB TGL_APP::tile_load_rgb(string path, rgb transparency_key)
+TGL_TILE_RGB TGL_APP::tile_load_rgb(std::string path, rgb transparency_key)
 {
 	TGL_TILE_RGB tile = tile_load_rgb(path);
 	tile.transparent = true;
@@ -370,12 +370,12 @@ void TGL_APP::draw_free(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb ba
 	tgl->adjust_pos(x, y);
 	tgl->wnd->DrawChar8x8(tile.bits, fore_color, back_color, false, x, y, false);
 }
-void TGL_APP::draw_free(string binary, int x, int y, rgb fore_color)
+void TGL_APP::draw_free(std::string binary, int x, int y, rgb fore_color)
 {
 	tgl->adjust_pos(x, y);
 	tgl->wnd->DrawChar8x8(binary, fore_color, 0, true, x, y, false);
 }
-void TGL_APP::draw_free(string binary, int x, int y, rgb fore_color, rgb back_color)
+void TGL_APP::draw_free(std::string binary, int x, int y, rgb fore_color, rgb back_color)
 {
 	tgl->adjust_pos(x, y);
 	tgl->wnd->DrawChar8x8(binary, fore_color, back_color, false, x, y, false);
@@ -392,11 +392,11 @@ void TGL_APP::draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb b
 {
 	draw_free(tile, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color, back_color);
 }
-void TGL_APP::draw_tiled(string binary, int x, int y, rgb fore_color)
+void TGL_APP::draw_tiled(std::string binary, int x, int y, rgb fore_color)
 {
 	draw_free(binary, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color);
 }
-void TGL_APP::draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color)
+void TGL_APP::draw_tiled(std::string binary, int x, int y, rgb fore_color, rgb back_color)
 {
 	draw_free(binary, x * TGL_TILESIZE, y * TGL_TILESIZE, fore_color, back_color);
 }
@@ -409,7 +409,7 @@ void TGL_APP::text_color(rgb fore_color, rgb back_color)
 	tgl->text_style.fore_color = fore_color;
 	tgl->text_style.back_color = back_color;
 }
-void TGL_APP::font(char ch, string binary)
+void TGL_APP::font(char ch, std::string binary)
 {
 	tgl->font_tiles[ch] = binary;
 }
@@ -427,7 +427,7 @@ void TGL_APP::font_reset()
 	font_new();
 	tgl->init_default_font();
 }
-string TGL_APP::font_getbits(int ch)
+std::string TGL_APP::font_getbits(int ch)
 {
 	return tgl->font_tiles[ch].bits;
 }
@@ -440,11 +440,11 @@ void TGL_APP::font_new()
 	for (int i = 0; i < TGL_FONTSIZE; i++)
 		tgl->font_tiles[i] = TGL_TILE_BIN();
 }
-void TGL_APP::print_free(string str, int x, int y)
+void TGL_APP::print_free(std::string str, int x, int y)
 {
 	tgl->print(str, x, y, false);
 }
-void TGL_APP::print_tiled(string str, int x, int y)
+void TGL_APP::print_tiled(std::string str, int x, int y)
 {
 	tgl->print(str, x, y, true);
 }
@@ -479,61 +479,61 @@ bool TGL_APP::collision(int tile1_x, int tile1_y, int tile2_x, int tile2_y)
 	return	(tile1_x >= tile2_x - TGL_TILESIZE) && (tile1_x <= tile2_x + TGL_TILESIZE) &&
 			(tile1_y >= tile2_y - TGL_TILESIZE) && (tile1_y <= tile2_y + TGL_TILESIZE);
 }
-bool TGL_APP::file_exists(string path)
+bool TGL_APP::file_exists(std::string path)
 {
 	return File::Exists(path);
 }
-bool TGL_APP::folder_exists(string folder_path)
+bool TGL_APP::folder_exists(std::string folder_path)
 {
 	return File::ExistsFolder(folder_path);
 }
-string TGL_APP::file_cload(string path)
+std::string TGL_APP::file_cload(std::string path)
 {
 	return File::ReadText(path);
 }
-vector<string> TGL_APP::file_lines(string path)
+std::vector<std::string> TGL_APP::file_lines(std::string path)
 {
 	return File::ReadLines(path, "\n");
 }
-void TGL_APP::file_line_add(string path, string text)
+void TGL_APP::file_line_add(std::string path, std::string text)
 {
-	const string crlf = "\n";
-	vector<string> lines;
+	const std::string crlf = "\n";
+	std::vector<std::string> lines;
 	if (File::Exists(path)) {
 		lines = File::ReadLines(path, crlf);
 	}
 	lines.push_back(text);
 	File::WriteLines(path, lines, crlf);
 }
-vector<byte> TGL_APP::file_bload(string path)
+std::vector<byte> TGL_APP::file_bload(std::string path)
 {
 	return File::ReadBytes(path);
 }
-void TGL_APP::file_csave(string path, string text)
+void TGL_APP::file_csave(std::string path, std::string text)
 {
 	return File::WriteText(path, text);
 }
-void TGL_APP::file_bsave(string path, vector<byte>& bytes)
+void TGL_APP::file_bsave(std::string path, std::vector<byte>& bytes)
 {
 	return File::WriteBytes(path, bytes);
 }
-vector<string> TGL_APP::file_list(string folder_path)
+std::vector<std::string> TGL_APP::file_list(std::string folder_path)
 {
 	return File::List(folder_path, "*", false, false);
 }
-vector<string> TGL_APP::folder_list(string folder_path)
+std::vector<std::string> TGL_APP::folder_list(std::string folder_path)
 {
 	return File::ListFolders(folder_path, false);
 }
-void TGL_APP::file_copy(string src_path, string dest_path)
+void TGL_APP::file_copy(std::string src_path, std::string dest_path)
 {
 	File::Duplicate(src_path, dest_path);
 }
-void TGL_APP::file_delete(string path)
+void TGL_APP::file_delete(std::string path)
 {
 	File::Delete(path);
 }
-string TGL_APP::fmt(const char* str, ...)
+std::string TGL_APP::fmt(const char* str, ...)
 {
 	char output[STRING_FMT_MAXBUFLEN] = { 0 };
 	
@@ -544,55 +544,55 @@ string TGL_APP::fmt(const char* str, ...)
 
 	return output;
 }
-string TGL_APP::ucase(string str)
+std::string TGL_APP::ucase(std::string str)
 {
 	return String::ToUpper(str);
 }
-string TGL_APP::lcase(string str)
+std::string TGL_APP::lcase(std::string str)
 {
 	return String::ToLower(str);
 }
-string TGL_APP::trim(string str)
+std::string TGL_APP::trim(std::string str)
 {
 	return String::Trim(str);
 }
-vector<string> TGL_APP::split(string str, char delim)
+std::vector<std::string> TGL_APP::split(std::string str, char delim)
 {
 	return String::Split(str, delim, true);
 }
-string TGL_APP::join(vector<string>& str, string separator)
+std::string TGL_APP::join(std::vector<std::string>& str, std::string separator)
 {
 	return String::Join(str, separator);
 }
-int TGL_APP::to_int(string str)
+int TGL_APP::to_int(std::string str)
 {
 	return String::ToInt(str);
 }
-string TGL_APP::to_string(int value)
+std::string TGL_APP::to_string(int value)
 {
 	return String::ToString(value);
 }
-string TGL_APP::substr(string str, int first, int last)
+std::string TGL_APP::substr(std::string str, int first, int last)
 {
 	return String::Substring(str, first, last);
 }
-string TGL_APP::replace(string str, string original, string replacement)
+std::string TGL_APP::replace(std::string str, std::string original, std::string replacement)
 {
 	return String::Replace(str, original, replacement);
 }
-bool TGL_APP::starts_with(string str, string prefix)
+bool TGL_APP::starts_with(std::string str, std::string prefix)
 {
 	return String::StartsWith(str, prefix);
 }
-bool TGL_APP::ends_with(string str, string suffix)
+bool TGL_APP::ends_with(std::string str, std::string suffix)
 {
 	return String::EndsWith(str, suffix);
 }
-bool TGL_APP::contains(string str, string other)
+bool TGL_APP::contains(std::string str, std::string other)
 {
 	return String::Contains(str, other);
 }
-int TGL_APP::indexof(string str, char ch)
+int TGL_APP::indexof(std::string str, char ch)
 {
 	return String::IndexOf(str, ch);
 }
@@ -600,11 +600,11 @@ void TGL_APP::play_volume(int vol)
 {
 	tgl->snd_notes->SetVolume(vol);
 }
-void TGL_APP::play_notes(string notes)
+void TGL_APP::play_notes(std::string notes)
 {
 	tgl->snd_notes->PlaySubSound(notes);
 }
-void TGL_APP::play_notes_loop(string notes)
+void TGL_APP::play_notes_loop(std::string notes)
 {
 	tgl->snd_notes->PlayMainSound(notes);
 }
@@ -617,7 +617,7 @@ void TGL_APP::beep(float freq, int len)
 {
 	tgl->snd_notes->Beep(freq, len);
 }
-TGL_SOUND TGL_APP::sound_load(string file)
+TGL_SOUND TGL_APP::sound_load(std::string file)
 {
 	TGL_SOUND snd;
 	if (File::Exists(file)) {
@@ -651,7 +651,7 @@ void TGL_APP::sound_stop()
 {
 	tgl->snd_files->StopAll();
 }
-void TGL_APP::screenshot(string path)
+void TGL_APP::screenshot(std::string path)
 {
 	tgl->wnd->SaveScreenshot(path);
 }
@@ -688,11 +688,11 @@ void TGL_APP::input_cursor(char ch)
 {
 	tgl->text_input.cursor = ch;
 }
-string TGL_APP::input_free(int length, int x, int y, callback fn)
+std::string TGL_APP::input_free(int length, int x, int y, callback fn)
 {
 	return tgl->line_input(length, x, y, false, fn);
 }
-string TGL_APP::input_tiled(int length, int col, int row, callback fn)
+std::string TGL_APP::input_tiled(int length, int col, int row, callback fn)
 {
 	return tgl->line_input(length, col, row, true, fn);
 }
@@ -1011,7 +1011,7 @@ void TGL_PRIVATE::clear_current_view()
 	wnd->ClearBackground();
 	wnd->SetBackColor(prev_back_color);
 }
-void TGL_PRIVATE::print(string str, int x, int y, bool tiled)
+void TGL_PRIVATE::print(std::string str, int x, int y, bool tiled)
 {
 	if (tiled) {
 		x *= TGL_TILESIZE;
@@ -1026,7 +1026,7 @@ void TGL_PRIVATE::print(string str, int x, int y, bool tiled)
 	}
 
 	for (auto& ch : str) {
-		string& pixels = font_tiles[ch].bits;
+		std::string& pixels = font_tiles[ch].bits;
 		
 		if (text_style.shadow_enabled) {
 			wnd->DrawChar8x8(pixels, text_style.shadow_color, text_style.back_color,
@@ -1042,7 +1042,7 @@ bool TGL_PRIVATE::is_valid_gpad_selected()
 {
 	return gamepad.Number >= 0 && gamepad.Number < gamepad.CountOpen();
 }
-void TGL_PRIVATE::font(char ch, string pattern)
+void TGL_PRIVATE::font(char ch, std::string pattern)
 {
 	font_tiles[ch] = pattern;
 }
@@ -1216,7 +1216,7 @@ void TGL_PRIVATE::init_default_font()
 	font(125, "0111000000010000000100000000110000010000000100000111000000000000"); // 125 }
 	font(126, "0000000001101100111111101111111001111100001110000001000000000000"); // 126 Heart (~)
 }
-string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callback fn)
+std::string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callback fn)
 {
 	bool prev_shadow_enabled = text_style.shadow_enabled;
 	bool prev_transparent = text_style.transparent;
@@ -1224,8 +1224,8 @@ string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callback fn
 	rgb prev_back_color = text_style.back_color;
 
 	text_input.cancelled = false;
-	string blanks = String::Repeat(' ', length + 1);
-	string text = "";
+	std::string blanks = String::Repeat(' ', length + 1);
+	std::string text = "";
 
 	bool finished = false;
 	while (is_running && !finished) {

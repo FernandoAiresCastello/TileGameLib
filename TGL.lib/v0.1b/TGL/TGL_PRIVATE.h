@@ -40,7 +40,7 @@ private:
 	TSound* snd_notes = nullptr;
 	TSoundFiles* snd_files = nullptr;
 	bool is_running;
-	string title;
+	std::string title;
 	int frame_counter;
 	rgb wnd_back_color;
 	TGL_TILE_BIN font_tiles[TGL_FONTSIZE];
@@ -58,11 +58,11 @@ private:
 	void on_draw_frame_end();
 	void clear_entire_window();
 	void clear_current_view();
-	void print(string str, int x, int y, bool tiled);
+	void print(std::string str, int x, int y, bool tiled);
 	bool is_valid_gpad_selected();
-	void font(char ch, string pattern);
+	void font(char ch, std::string pattern);
 	void init_default_font();
-	string line_input(int length, int x, int y, bool tiled, callback fn);
+	std::string line_input(int length, int x, int y, bool tiled, callback fn);
 	char keycode_to_char(SDL_Keycode key);
 	bool is_shade_of_gray(TColor& color);
 	int get_gray_level(TColor& color);

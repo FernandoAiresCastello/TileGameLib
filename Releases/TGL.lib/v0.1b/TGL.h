@@ -31,7 +31,6 @@
 #include <SDL.h>
 #include <string>
 #include <vector>
-using namespace std;
 
 /// Color represented as a 24-bit integer (0xRRGGBB)
 typedef int rgb;
@@ -66,11 +65,11 @@ struct TGL_TILE_RGB
 struct TGL_TILE_BIN
 {
 	/// A string containing either '0' or '1' characters representing the pixels
-	string bits;
+	std::string bits;
 	/// Construct a new blank tile (all bits are '0')
 	TGL_TILE_BIN();
 	/// Construct a new tile with the specified bits
-	TGL_TILE_BIN(string bits);
+	TGL_TILE_BIN(std::string bits);
 	/// Set all bits to '0'
 	void clear();
 };
@@ -125,7 +124,7 @@ struct TGL_TIMER
 struct TGL_SOUND
 {
 	/// The path of the sound file
-	string file;
+	std::string file;
 };
 
 /// Structure for a file resource
@@ -134,17 +133,17 @@ struct TGL_FILE
 	/// The character used to split the file contents into individual data items
 	char field_separator = '§';
 	/// Write a string to the file buffer
-	void write(string value);
+	void write(std::string value);
 	/// Write an int to the file buffer
 	void write(int value);
 	/// Save the file buffer to disk
-	void save(string path);
+	void save(std::string path);
 	/// Load a file from disk into the file buffer
-	void load(string path);
+	void load(std::string path);
 	/// Fill the file buffer with data from a string
-	void load_from_memory(string data);
+	void load_from_memory(std::string data);
 	/// Read a string from the file buffer
-	string read_string();
+	std::string read_string();
 	/// Read an int from the file buffer
 	int read_int();
 	/// Return whether the pointer has passed the last data item of the file buffer
@@ -153,8 +152,8 @@ struct TGL_FILE
 	int fields();
 
 private:
-	string output_buf;
-	vector<string> input_buf;
+	std::string output_buf;
+	std::vector<std::string> input_buf;
 	int input_buf_ptr = 0;
 };
 
@@ -179,19 +178,19 @@ struct TGL_APP
 	/// Pause for the specified number of frames while processing default events and optionally executing the provided callback
 	void pause(int frames, callback fn = nullptr);
 	/// Show a standard error message box with the specified message, then continue execution normally
-	void error(string msg);
+	void error(std::string msg);
 	/// Show a standard error message box with the specified message, then terminate application
-	void abort(string msg);
+	void abort(std::string msg);
 	/// Return the system date in MM/DD/YYYY format
-	string date();
+	std::string date();
 	/// Return the system time in HH:MM:SS format
-	string time();
+	std::string time();
 	/// Return the system date and time in a single string
-	string datetime();
+	std::string datetime();
 	/// Copy string to clipboard
-	void to_clipboard(string text);
+	void to_clipboard(std::string text);
 	/// Get string from clipboard
-	string from_clipboard();
+	std::string from_clipboard();
 
 	//=========================================================================
 	//		GRAPHICS > WINDOW
@@ -208,7 +207,7 @@ struct TGL_APP
 	/// Return whether the application window is open
 	bool window();
 	/// Set the window title
-	void title(string str);
+	void title(std::string str);
 	/// Set the window background color
 	void backcolor(rgb back_color);
 	/// Clear the window background
@@ -218,7 +217,7 @@ struct TGL_APP
 	/// Return whether the window is in fullscreen mode
 	bool fullscreen();
 	/// Save a screenshot of the window contents to a bitmap image file
-	void screenshot(string path);
+	void screenshot(std::string path);
 	/// Return the horizontal resolution
 	int width();
 	/// Return the vertical resolution
@@ -246,9 +245,9 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Load RGB tile from an 8x8 24-bit bitmap file
-	TGL_TILE_RGB tile_load_rgb(string path);
+	TGL_TILE_RGB tile_load_rgb(std::string path);
 	/// Load RGB tile from an 8x8 24-bit bitmap file. When drawn, transparency key color will be invisible
-	TGL_TILE_RGB tile_load_rgb(string path, rgb transparency_key);
+	TGL_TILE_RGB tile_load_rgb(std::string path, rgb transparency_key);
 	/// Draw RGB tile at absolute position
 	void draw_free(TGL_TILE_RGB& tile, int x, int y);
 	/// Draw RGB tile aligned with virtual grid
@@ -258,30 +257,30 @@ struct TGL_APP
 	/// Draw binary tile at absolute position, with specified foreground and background colors
 	void draw_free(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb back_color);
 	/// Draw binary tile at absolute position, with specified foreground color and invisible background color
-	void draw_free(string binary, int x, int y, rgb fore_color);
+	void draw_free(std::string binary, int x, int y, rgb fore_color);
 	/// Draw binary tile at absolute position, with specified foreground and background colors
-	void draw_free(string binary, int x, int y, rgb fore_color, rgb back_color);
+	void draw_free(std::string binary, int x, int y, rgb fore_color, rgb back_color);
 	/// Draw binary tile aligned with virtual grid, with specified foreground color and invisible background color
 	void draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color);
 	/// Draw binary tile aligned with virtual grid, with specified foreground and background colors
 	void draw_tiled(TGL_TILE_BIN& tile, int x, int y, rgb fore_color, rgb back_color);
 	/// Draw binary tile aligned with virtual grid, with specified foreground color and invisible background color
-	void draw_tiled(string binary, int x, int y, rgb fore_color);
+	void draw_tiled(std::string binary, int x, int y, rgb fore_color);
 	/// Draw binary tile aligned with virtual grid, with specified foreground and background colors
-	void draw_tiled(string binary, int x, int y, rgb fore_color, rgb back_color);
+	void draw_tiled(std::string binary, int x, int y, rgb fore_color, rgb back_color);
 
 	//=========================================================================
 	//		GRAPHICS > TEXT
 	//=========================================================================
 
 	/// Set binary tile to be used for the specified character in the text font
-	void font(char ch, string binary);
+	void font(char ch, std::string binary);
 	/// Clear all characters in the text font
 	void font_new();
 	/// Reset all characters in the text font to their default tiles
 	void font_reset();
 	/// Get binary tile from font character
-	string font_getbits(int ch);
+	std::string font_getbits(int ch);
 	/// Get number of characters in font
 	int font_getsize();
 	/// Set text color without changing background color
@@ -293,9 +292,9 @@ struct TGL_APP
 	/// Enable or disable text background
 	void text_transparent(bool state);
 	/// Print text at absolute position
-	void print_free(string str, int x, int y);
+	void print_free(std::string str, int x, int y);
 	/// Print text aligned with virtual grid
-	void print_tiled(string str, int x, int y);
+	void print_tiled(std::string str, int x, int y);
 
 	//=========================================================================
 	//		GRAPHICS > COLOR
@@ -317,15 +316,15 @@ struct TGL_APP
 	/// Set volume for playing MML (Music Macro Language)
 	void play_volume(int vol);
 	/// Play MML string once
-	void play_notes(string notes);
+	void play_notes(std::string notes);
 	/// Play MML string, repeatedly
-	void play_notes_loop(string notes);
+	void play_notes_loop(std::string notes);
 	/// Stop playing MML
 	void play_notes_stop();
 	/// Generate a beeping sound with the specified frequency and duration
 	void beep(float freq, int len);
 	/// Load a WAV sound resource from a file
-	TGL_SOUND sound_load(string file);
+	TGL_SOUND sound_load(std::string file);
 	/// Play a WAV sound resource asynchronously
 	void sound_play(TGL_SOUND& snd);
 	/// Play a WAV sound resource and pause program execution until the sound has finished
@@ -338,33 +337,33 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Format a string (works like sprintf in standard C)
-	static string fmt(const char* str, ...);
+	static std::string fmt(const char* str, ...);
 	/// Return specified string in uppercase
-	static string ucase(string str);
+	static std::string ucase(std::string str);
 	/// Return specified string in lowercase
-	static string lcase(string str);
+	static std::string lcase(std::string str);
 	/// Remove leading and trailing spaces from string
-	static string trim(string str);
+	static std::string trim(std::string str);
 	/// Split string into a list
-	static vector<string> split(string str, char delim);
+	static std::vector<std::string> split(std::string str, char delim);
 	/// Join all strings from a list into a single string
-	static string join(vector<string>& str, string separator);
+	static std::string join(std::vector<std::string>& str, std::string separator);
 	/// Convert string to integer
-	static int to_int(string str);
+	static int to_int(std::string str);
 	/// Convert integer to string
-	static string to_string(int value);
+	static std::string to_string(int value);
 	/// Return a slice of the specified string
-	static string substr(string str, int first, int last);
+	static std::string substr(std::string str, int first, int last);
 	/// Replace occurrences of a substring
-	static string replace(string str, string original, string replacement);
+	static std::string replace(std::string str, std::string original, std::string replacement);
 	/// Return whether the string starts with a prefix
-	static bool starts_with(string str, string prefix);
+	static bool starts_with(std::string str, std::string prefix);
 	/// Return whether the string ends with a suffix
-	static bool ends_with(string str, string suffix);
+	static bool ends_with(std::string str, std::string suffix);
 	/// Return whether the string contains a substring
-	static bool contains(string str, string other);
+	static bool contains(std::string str, std::string other);
 	/// Return index of first occurrence of character in string
-	static int indexof(string str, char ch);
+	static int indexof(std::string str, char ch);
 
 	//=========================================================================
 	//		MATH
@@ -387,29 +386,29 @@ struct TGL_APP
 	//=========================================================================
 
 	/// Return whether a file exists
-	static bool file_exists(string path);
+	static bool file_exists(std::string path);
 	/// Return whether a folder exists
-	static bool folder_exists(string folder_path);
+	static bool folder_exists(std::string folder_path);
 	/// Read text file contents into string
-	static string file_cload(string path);
+	static std::string file_cload(std::string path);
 	/// Read lines of text file into list of strings
-	static vector<string> file_lines(string path);
+	static std::vector<std::string> file_lines(std::string path);
 	/// Append line to the end of a text file then save it
-	static void file_line_add(string path, string text);
+	static void file_line_add(std::string path, std::string text);
 	/// Read binary file into list of bytes
-	static vector<byte> file_bload(string path);
+	static std::vector<byte> file_bload(std::string path);
 	/// Create or replace contents of text file with specified string then save it
-	static void file_csave(string path, string text);
+	static void file_csave(std::string path, std::string text);
 	/// Create or replace contents of binary file with specified bytes then save it
-	static void file_bsave(string path, vector<byte>& bytes);
+	static void file_bsave(std::string path, std::vector<byte>& bytes);
 	/// Return list of files in a folder
-	static vector<string> file_list(string folder_path);
+	static std::vector<std::string> file_list(std::string folder_path);
 	/// Return list of subfolders in a folder
-	static vector<string> folder_list(string folder_path);
+	static std::vector<std::string> folder_list(std::string folder_path);
 	/// Create a new file with same contents as the source file, i.e. duplicate it
-	static void file_copy(string src_path, string dest_path);
+	static void file_copy(std::string src_path, std::string dest_path);
 	/// Permanently delete file
-	static void file_delete(string path);
+	static void file_delete(std::string path);
 
 	//=========================================================================
 	//		INPUT > TEXT
@@ -420,9 +419,9 @@ struct TGL_APP
 	/// Set character used as cursor in text input field
 	void input_cursor(char ch);
 	/// Show text input field with the maximum specified length, at absolute position, optionally executing the provided callback
-	string input_free(int length, int x, int y, callback fn = nullptr);
+	std::string input_free(int length, int x, int y, callback fn = nullptr);
 	/// Show text input field with the maximum specified length, aligned with virtual grid, optionally executing the provided callback
-	string input_tiled(int length, int col, int row, callback fn = nullptr);
+	std::string input_tiled(int length, int col, int row, callback fn = nullptr);
 	/// Return whether the last text input field shown was confirmed
 	bool input_ok();
 

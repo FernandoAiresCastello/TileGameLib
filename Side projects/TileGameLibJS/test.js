@@ -27,11 +27,10 @@ function main() {
         '#f00','#0ff','#f00','#0ff','#f0f','#0ff','#f0f','#0ff'
     ];
 
-	tgl.clip(100,10,150,100,'#fe8');
-    
-    tgl.backColor("#008");
-    tgl.cls();
-	tgl.clearClip();
+	//tgl.clip(100,10,150,100,'#fe8');
+    //tgl.backColor("#008");
+    //tgl.cls();
+	//tgl.clearClip();
     tgl.colorNormal();
     tgl.drawFree(tile2, 0, 0);
     tgl.colorBinary("#ff0", "#f0f");

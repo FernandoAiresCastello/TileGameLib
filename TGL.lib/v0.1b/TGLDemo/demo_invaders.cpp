@@ -19,7 +19,7 @@ struct t_alien {
 	bool alive = true;
 	TGL_TIMER tmr_blast = TGL_TIMER(50, false);
 };
-vector<t_alien> aliens;
+std::vector<t_alien> aliens;
 
 struct {
 	TGL_TILE_RGB missile;
@@ -83,7 +83,7 @@ void demo_invaders()
 void draw_score()
 {
 	tgl.view(views.score);
-	string score = tgl.fmt("Score: %05i", player.score);
+	std::string score = tgl.fmt("Score: %05i", player.score);
 	tgl.text_color(0x000020);
 	tgl.print_free(score, 33, 5);
 	tgl.text_color(0xffffff);

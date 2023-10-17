@@ -1,8 +1,8 @@
 #include <TGL.h>
 
-void title(TGL_APP& tgl, string str);
-void print(TGL_APP& tgl, string str, int x, int y);
-void header(TGL_APP& tgl, string str, int x, int y);
+void title(TGL_APP& tgl, std::string str);
+void print(TGL_APP& tgl, std::string str, int x, int y);
+void header(TGL_APP& tgl, std::string str, int x, int y);
 
 void demo_font()
 {
@@ -49,7 +49,7 @@ void demo_font()
 		if (tgl.kb_up()) vw_background.scroll(0, -1);
 	}
 }
-void print(TGL_APP& tgl, string str, int x, int y)
+void print(TGL_APP& tgl, std::string str, int x, int y)
 {
 	x *= TGL_TILESIZE;
 	y *= TGL_TILESIZE;
@@ -57,7 +57,7 @@ void print(TGL_APP& tgl, string str, int x, int y)
 	tgl.text_color(0xffffff);
 	tgl.print_free(str, x, y);
 }
-void header(TGL_APP& tgl, string str, int x, int y)
+void header(TGL_APP& tgl, std::string str, int x, int y)
 {
 	x *= TGL_TILESIZE;
 	y *= TGL_TILESIZE;
@@ -65,7 +65,7 @@ void header(TGL_APP& tgl, string str, int x, int y)
 	tgl.text_color(0xffff00, 0x0000ff);
 	tgl.print_free(str, x, y);
 }
-void title(TGL_APP& tgl, string str)
+void title(TGL_APP& tgl, std::string str)
 {
 	tgl.text_color(0x00ffff);
 	tgl.print_free(str, 43, 1);
