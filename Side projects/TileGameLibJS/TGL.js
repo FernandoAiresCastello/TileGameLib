@@ -10,11 +10,11 @@ class TGL {
 	constructor() {
 		this.log.info("TGL singleton created");
 	}
-	init(w, h, backColor) {
+	init(target_canvas_id, buffer_w, buffer_h, pixel_w, pixel_h, backColor) {
 		if (backColor) {
 			this.private.backColor = backColor;
 		}
-		this.private.display.init(w, h);
+		this.private.display.init(buffer_w, buffer_h, pixel_w, pixel_h, target_canvas_id);
 		this.cls();
 	}
 	rnd(min, max) {
@@ -37,9 +37,6 @@ class TGL {
 	height() {
 		return this.private.display.height;
 	}
-	horizontalStretch(w) {
-		this.private.display.element.style.width = w + "%";
-	}
 	frameNumber() {
 		return this.private.display.frameCounter;
 	}
@@ -58,12 +55,7 @@ class TGL {
 	colorBinary(fgc, bgc) {
 		this.private.display.colorMode = "binary";
 		this.private.display.binaryFgc = fgc;
-		if (bgc) {
-			this.private.display.binaryBgc = bgc;
-		}
-	}
-	transparency(state) {
-		this.private.display.transparency = state;
+		this.private.display.binaryBgc = bgc;
 	}
 	drawFree(tile, x, y) {
 		this.private.display.putPixelBlock(tile, x, y, 
@@ -253,6 +245,10 @@ class TGL_Log {
 	info(str) {
 		console.info("[TGL] " + str);
 	}
+	error(str) {
+		console.error("[TGL] " + str);
+		alert("TGL error:\n\n" + str);
+	}
 }
 class TGL_Display {
 	log = new TGL_Log();
@@ -265,30 +261,34 @@ class TGL_Display {
 	colorMode = "normal";
 	binaryFgc = "#fff";
 	binaryBgc = this.backColor;
-	transparency = false;
 	clip = null;
 	frameCounter = 0;
+	pixel_w = 1;
+	pixel_h = 1;
 
-	init(w, h) {
-		this.width = w;
-		this.height = h;
+	init(buffer_w, buffer_h, pixel_w, pixel_h, target_canvas_id) {
+		this.width = buffer_w;
+		this.height = buffer_h;
+		this.pixel_w = pixel_w;
+		this.pixel_h = pixel_h;
 		this.pixels = [];
-		for (let i = 0; i < w * h; i++) {
+		for (let i = 0; i < buffer_w * buffer_h; i++) {
 			this.pixels.push(0);
 		}
-		const page = document.querySelector("body");
-		page.style.margin = 0;
-		page.style.padding = 0;
-		page.style.textAlign = "center";
-		page.innerHTML = "<canvas></canvas>";
-		this.element = document.querySelector("canvas");
+		if (!target_canvas_id) {
+			const page = document.querySelector("body");
+			page.innerHTML = "<canvas id='tgl'></canvas>";
+			this.element = document.querySelector("canvas");
+		} else {
+			this.element = document.querySelector("canvas#" + target_canvas_id);
+			if (!this.element) {
+				this.log.error("Canvas not found with id: " + target_canvas_id);
+				return;
+			}
+		}
 		this.element.display = "block";
-		this.element.style.margin = "0 auto";
-		this.element.style.padding = 0;
-		this.element.width = w;
-		this.element.height = h;
-		this.element.style.width = "100%";
-		this.element.style.height = "100%";
+		this.element.width = buffer_w * pixel_w;
+		this.element.height = buffer_h * pixel_h;
 		this.element.style.imageRendering = "pixelated";
 		this.canvas = this.element.getContext("2d");
 		requestAnimationFrame(() => this.update());
@@ -332,8 +332,10 @@ class TGL_Display {
 		}
 	}
 	renderPixel(x, y, color) {
+		x *= this.pixel_w;
+		y *= this.pixel_h;
 		this.canvas.fillStyle = color;
-		this.canvas.fillRect(x, y, 1, 1);
+		this.canvas.fillRect(x, y, this.pixel_w, this.pixel_h);
 	}
 	putPixel(x, y, color) {
 		if (x >= 0 && y >= 0 && x < this.width && y < this.height) {
@@ -352,7 +354,7 @@ class TGL_Display {
 				color = block[i];
 			} else if (colorMode == "binary") {
 				if (block[i] == '0') {
-					if (!this.transparency) {
+					if (this.binaryBgc) {
 						color = this.binaryBgc;
 					}
 				} else if (block[i] == '1') {
