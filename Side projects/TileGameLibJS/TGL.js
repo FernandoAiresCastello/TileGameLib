@@ -6,16 +6,13 @@ const TGL_TILESIZE = 8;
 class TGL {
 	log = new TGL_Log();
 	private = new TGL_Private(this);
+	tileset = new TGL_Tileset();
 
 	constructor() {
 		this.log.info("TGL singleton created");
 	}
 	init(target_canvas_id, buffer_w, buffer_h, pixel_w, pixel_h, backColor) {
-		if (backColor) {
-			this.private.backColor = backColor;
-		}
-		this.private.display.init(buffer_w, buffer_h, pixel_w, pixel_h, target_canvas_id);
-		this.cls();
+		this.private.display.init(target_canvas_id, buffer_w, buffer_h, pixel_w, pixel_h, backColor);
 	}
 	rnd(min, max) {
 		min = Math.ceil(min);
@@ -42,9 +39,6 @@ class TGL {
 	}
 	cls() {
 		this.private.display.clear();
-	}
-	clearClip() {
-		this.private.display.clearClip();
 	}
 	backColor(color) {
 		this.private.display.backColor = color;
@@ -88,6 +82,18 @@ class TGL {
 	}
 	unclip() {
 		this.private.display.removeClip();
+	}
+	clearClip() {
+		this.private.display.clearClip();
+	}
+}
+class TGL_Tileset {
+	tiles = [];
+	add(tile) {
+		tiles.push(tile);
+	}
+	get(index) {
+		return tiles[index];
 	}
 }
 //=============================================================================
@@ -257,7 +263,7 @@ class TGL_Display {
 	canvas = null;
 	element = null;
 	pixels = null;
-	backColor = "#111";
+	backColor = "#101010";
 	colorMode = "normal";
 	binaryFgc = "#fff";
 	binaryBgc = this.backColor;
@@ -266,12 +272,15 @@ class TGL_Display {
 	pixel_w = 1;
 	pixel_h = 1;
 
-	init(buffer_w, buffer_h, pixel_w, pixel_h, target_canvas_id) {
+	init(target_canvas_id, buffer_w, buffer_h, pixel_w, pixel_h, backColor) {
 		this.width = buffer_w;
 		this.height = buffer_h;
 		this.pixel_w = pixel_w;
 		this.pixel_h = pixel_h;
 		this.pixels = [];
+		if (backColor) {
+			this.backColor = backColor;
+		}
 		for (let i = 0; i < buffer_w * buffer_h; i++) {
 			this.pixels.push(0);
 		}
@@ -291,6 +300,7 @@ class TGL_Display {
 		this.element.height = buffer_h * pixel_h;
 		this.element.style.imageRendering = "pixelated";
 		this.canvas = this.element.getContext("2d");
+		this.clear();
 		requestAnimationFrame(() => this.update());
 		this.log.info("Display created");
 	}

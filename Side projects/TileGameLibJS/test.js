@@ -3,7 +3,7 @@ const tgl = new TGL();
 main();
 
 function main() {
-    tgl.init("target-canvas", 256, 192, 3, 3);
+    tgl.init("target-canvas", 256, 192, 3, 3, "#048");
 
     const tile = 
         "11111111" +
@@ -27,8 +27,8 @@ function main() {
     ];
 
 	//tgl.clip(100,10,150,100,'#fe8');
-    tgl.backColor("#008");
-    tgl.cls();
+    //tgl.backColor("#008");
+    //tgl.cls();
 	//tgl.clearClip();
     tgl.colorNormal();
     tgl.drawFree(tile2, 0, 0);
@@ -39,7 +39,7 @@ function main() {
     tgl.colorBinary("#0f0");
     tgl.printTiled("~Hello World!~", 4, 8);
 	tgl.colorBinary("#0f0", "#f00");
-	tgl.printTiled("~Hello World!~", 4, 10);
+	tgl.printTiled("(Hello World!)", 4, 10);
     tgl.colorNormal();
 	tgl.drawFree(tile2, 103, 103);
 	tgl.drawFree(tile2, 100, 100);
