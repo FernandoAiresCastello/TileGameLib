@@ -11,6 +11,3 @@ class TGL {
     }
 }
 exports.TGL = TGL;
-document.addEventListener("DOMContentLoaded", (event) => {
-    window.tgl = new TGL();
-});

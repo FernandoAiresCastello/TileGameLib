@@ -12,6 +12,14 @@ exports.Log = Log;
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const tgl_1 = require("./tgl");
+document.addEventListener("DOMContentLoaded", (event) => {
+    window.tgl = new tgl_1.TGL();
+});
+
+},{"./tgl":3}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TGL = void 0;
 const log_1 = require("./log");
 class TGL {
@@ -23,8 +31,5 @@ class TGL {
     }
 }
 exports.TGL = TGL;
-document.addEventListener("DOMContentLoaded", (event) => {
-    window.tgl = new TGL();
-});
 
 },{"./log":1}]},{},[2]);

@@ -10,7 +10,3 @@ export class TGL
         Log.info("Hello World!");
     }
 }
-
-document.addEventListener("DOMContentLoaded", (event) => {
-    (window as any).tgl = new TGL();
-});
