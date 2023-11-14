@@ -418,6 +418,8 @@ struct TGL_APP
 	void input_color(rgb foreground, rgb background);
 	/// Set character used as cursor in text input field
 	void input_cursor(char ch);
+	/// Set a placeholder text for the input field
+	void input_placeholder(std::string text);
 	/// Show text input field with the maximum specified length, at absolute position, optionally executing the provided callback
 	std::string input_free(int length, int x, int y, callback fn = nullptr);
 	/// Show text input field with the maximum specified length, aligned with virtual grid, optionally executing the provided callback

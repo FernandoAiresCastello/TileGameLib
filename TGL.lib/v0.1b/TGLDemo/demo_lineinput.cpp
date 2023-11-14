@@ -10,6 +10,7 @@ void demo_lineinput()
 
 	tgl.print_tiled("Type something:", 1, 1);
 	tgl.input_color(0xffff00, 0xff0000);
+	tgl.input_placeholder("Type here");
 	std::string text = tgl.input_tiled(15, 1, 3);
 
 	tgl.clear();

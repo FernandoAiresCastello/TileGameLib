@@ -55,6 +55,7 @@ var struct_t_g_l___a_p_p =
     [ "input_cursor", "struct_t_g_l___a_p_p.html#a6a2ab49e302ccce10e67330b56145e1e", null ],
     [ "input_free", "struct_t_g_l___a_p_p.html#a3f41812e69b56284096c652a8ea0272a", null ],
     [ "input_ok", "struct_t_g_l___a_p_p.html#a0b07359d0479b0925f22dca6d80e44aa", null ],
+    [ "input_placeholder", "struct_t_g_l___a_p_p.html#ae706dd9b8dd231ef458478ce077ad3f2", null ],
     [ "input_tiled", "struct_t_g_l___a_p_p.html#ad48bdbfcb21b6be99b4ff47f60f1da75", null ],
     [ "kb_alt", "struct_t_g_l___a_p_p.html#a7ebeea8618dcadcfdf82460d5fcbef57", null ],
     [ "kb_backspace", "struct_t_g_l___a_p_p.html#aa82caf75d1a2e9d630f45f649eaf3043", null ],

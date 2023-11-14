@@ -688,6 +688,10 @@ void TGL_APP::input_cursor(char ch)
 {
 	tgl->text_input.cursor = ch;
 }
+void TGL_APP::input_placeholder(std::string text)
+{
+	tgl->text_input.placeholder = text;
+}
 std::string TGL_APP::input_free(int length, int x, int y, callback fn)
 {
 	return tgl->line_input(length, x, y, false, fn);
@@ -1225,7 +1229,7 @@ std::string TGL_PRIVATE::line_input(int length, int x, int y, bool tiled, callba
 
 	text_input.cancelled = false;
 	std::string blanks = String::Repeat(' ', length + 1);
-	std::string text = "";
+	std::string text = text_input.placeholder;
 
 	bool finished = false;
 	while (is_running && !finished) {

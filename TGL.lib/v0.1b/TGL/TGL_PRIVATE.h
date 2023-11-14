@@ -26,6 +26,7 @@ private:
 		rgb back_color = 0x000000;
 		bool cancelled = false;
 		char cursor = '_';
+		std::string placeholder = "";
 	} text_input;
 
 	struct {
