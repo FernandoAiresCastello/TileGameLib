@@ -772,6 +772,10 @@ bool TGL_APP::kb_char(char ch)
 
 	return false;
 }
+bool TGL_APP::kb_scan(int scancode)
+{
+	return TKey::IsPressed((SDL_Scancode)scancode);
+}
 bool TGL_APP::kb_right()
 {
 	return TKey::IsPressed(SDL_SCANCODE_RIGHT);

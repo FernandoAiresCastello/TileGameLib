@@ -88,6 +88,7 @@ var struct_t_g_l___a_p_p =
     [ "kb_pausebrk", "struct_t_g_l___a_p_p.html#ab7e61a67cc4bac0337ad8372d5d88def", null ],
     [ "kb_printscr", "struct_t_g_l___a_p_p.html#a38e800e6d746da285673d3f5dd2645eb", null ],
     [ "kb_right", "struct_t_g_l___a_p_p.html#ad83146afecf5300f38d02af91893616a", null ],
+    [ "kb_scan", "struct_t_g_l___a_p_p.html#ac973768ee0e1728808b37a0a240a820b", null ],
     [ "kb_shift", "struct_t_g_l___a_p_p.html#a3697a73d822ad65868237ff099b9ccd1", null ],
     [ "kb_space", "struct_t_g_l___a_p_p.html#a014942df9ff84430c2ac800f6c252921", null ],
     [ "kb_tab", "struct_t_g_l___a_p_p.html#a1daac48e48cc6dc95ce053c22a8d606d", null ],

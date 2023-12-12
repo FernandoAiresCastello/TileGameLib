@@ -452,6 +452,8 @@ struct TGL_APP
 	int kb_inkey();
 	/// Return whether the key that would produce the specified character is pressed
 	bool kb_char(char ch);
+	/// Return whether the key with the specified scancode is pressed
+	bool kb_scan(int scancode);
 
 	bool kb_right();
 	bool kb_left();
