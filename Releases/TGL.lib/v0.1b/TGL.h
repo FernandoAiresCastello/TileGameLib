@@ -42,7 +42,7 @@ typedef unsigned char byte;
 typedef void(*callback)();
 
 /// Width and height of a tile
-constexpr int TGL_TILESIZE = 8;
+inline constexpr int TGL_TILESIZE = 8;
 
 /// Structure for an RGB tile
 struct TGL_TILE_RGB
