@@ -268,7 +268,7 @@ namespace TileGameMaker.Panels
             Import(TilesetExportFormat.RawBytes);
         }
 
-        private void BtnImportBinaryStrings_Click(object sender, EventArgs e)
+        private void BtnImportBinaryStrings_Click_1(object sender, EventArgs e)
         {
             Import(TilesetExportFormat.BinaryStrings);
         }

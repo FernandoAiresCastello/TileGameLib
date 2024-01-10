@@ -47,11 +47,12 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BtnNew = new System.Windows.Forms.ToolStripButton();
             this.BtnRestoreDefault = new System.Windows.Forms.ToolStripDropDownButton();
+            this.BtnRearrange = new System.Windows.Forms.ToolStripButton();
             this.PnlColorPicker = new System.Windows.Forms.Panel();
             this.ForeBackColorPanels = new System.Windows.Forms.Panel();
             this.BackColorPanel = new System.Windows.Forms.Panel();
             this.ForeColorPanel = new System.Windows.Forms.Panel();
-            this.BtnRearrange = new System.Windows.Forms.ToolStripButton();
+            this.BtnImportHexRgb = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.ToolStripAndColorPicker.SuspendLayout();
@@ -144,7 +145,8 @@
             this.toolStripSplitButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.toolStripSeparator2,
-            this.BtnImportRawBytes});
+            this.BtnImportRawBytes,
+            this.BtnImportHexRgb});
             this.toolStripSplitButton2.Image = global::TileGameMaker.Properties.Resources.folder;
             this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton2.Name = "toolStripSplitButton2";
@@ -155,18 +157,18 @@
             // 
             this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Import from file as:";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // BtnImportRawBytes
             // 
             this.BtnImportRawBytes.Name = "BtnImportRawBytes";
-            this.BtnImportRawBytes.Size = new System.Drawing.Size(175, 22);
+            this.BtnImportRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnImportRawBytes.Text = "Bytes";
             this.BtnImportRawBytes.Click += new System.EventHandler(this.BtnImportRawBytes_Click);
             // 
@@ -190,32 +192,32 @@
             // 
             this.exportToFileAsToolStripMenuItem.Enabled = false;
             this.exportToFileAsToolStripMenuItem.Name = "exportToFileAsToolStripMenuItem";
-            this.exportToFileAsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.exportToFileAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToFileAsToolStripMenuItem.Text = "Export to file as:";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(165, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // BtnExportRawBytes
             // 
             this.BtnExportRawBytes.Name = "BtnExportRawBytes";
-            this.BtnExportRawBytes.Size = new System.Drawing.Size(168, 22);
+            this.BtnExportRawBytes.Size = new System.Drawing.Size(180, 22);
             this.BtnExportRawBytes.Text = "Bytes";
             this.BtnExportRawBytes.Click += new System.EventHandler(this.BtnExportRawBytes_Click);
             // 
             // BtnExportHexRgb
             // 
             this.BtnExportHexRgb.Name = "BtnExportHexRgb";
-            this.BtnExportHexRgb.Size = new System.Drawing.Size(168, 22);
+            this.BtnExportHexRgb.Size = new System.Drawing.Size(180, 22);
             this.BtnExportHexRgb.Text = "Hexadecimal RGB";
             this.BtnExportHexRgb.Click += new System.EventHandler(this.BtnExportHexRgb_Click);
             // 
             // BtnExportHexCsv
             // 
             this.BtnExportHexCsv.Name = "BtnExportHexCsv";
-            this.BtnExportHexCsv.Size = new System.Drawing.Size(168, 22);
+            this.BtnExportHexCsv.Size = new System.Drawing.Size(180, 22);
             this.BtnExportHexCsv.Text = "Hexadecimal CSV";
             this.BtnExportHexCsv.Click += new System.EventHandler(this.BtnExportHexCsv_Click);
             // 
@@ -242,6 +244,16 @@
             this.BtnRestoreDefault.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BtnRestoreDefault.Name = "BtnRestoreDefault";
             this.BtnRestoreDefault.Size = new System.Drawing.Size(29, 20);
+            // 
+            // BtnRearrange
+            // 
+            this.BtnRearrange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnRearrange.Image = global::TileGameMaker.Properties.Resources.layer_stack_arrange;
+            this.BtnRearrange.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnRearrange.Name = "BtnRearrange";
+            this.BtnRearrange.Size = new System.Drawing.Size(23, 20);
+            this.BtnRearrange.Text = "Rearrange colors";
+            this.BtnRearrange.Click += new System.EventHandler(this.BtnRearrange_Click);
             // 
             // PnlColorPicker
             // 
@@ -280,15 +292,12 @@
             this.ForeColorPanel.Size = new System.Drawing.Size(41, 28);
             this.ForeColorPanel.TabIndex = 5;
             // 
-            // BtnRearrange
+            // BtnImportHexRgb
             // 
-            this.BtnRearrange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnRearrange.Image = global::TileGameMaker.Properties.Resources.layer_stack_arrange;
-            this.BtnRearrange.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnRearrange.Name = "BtnRearrange";
-            this.BtnRearrange.Size = new System.Drawing.Size(23, 20);
-            this.BtnRearrange.Text = "Rearrange colors";
-            this.BtnRearrange.Click += new System.EventHandler(this.BtnRearrange_Click);
+            this.BtnImportHexRgb.Name = "BtnImportHexRgb";
+            this.BtnImportHexRgb.Size = new System.Drawing.Size(180, 22);
+            this.BtnImportHexRgb.Text = "Hexadecimal RGB";
+            this.BtnImportHexRgb.Click += new System.EventHandler(this.BtnImportHexRgb_Click);
             // 
             // ColorPickerPanel
             // 
@@ -337,5 +346,6 @@
         private System.Windows.Forms.ToolStripMenuItem exportToFileAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton BtnRearrange;
+        private System.Windows.Forms.ToolStripMenuItem BtnImportHexRgb;
     }
 }
