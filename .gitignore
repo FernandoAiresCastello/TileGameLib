@@ -23,6 +23,9 @@ Docs/Generated
 **/scratchpad.tgpro
 TileGameLibCTest
 Other/TGLCompiler
+Code snippets/*.exe
+Code snippets/*.bat
+Code snippets/*.dll
 
 # Ignore the TypeScript compiler output folder for TileGameLibJS
 js
