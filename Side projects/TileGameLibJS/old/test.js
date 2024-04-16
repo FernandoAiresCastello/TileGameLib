@@ -44,10 +44,9 @@ function main() {
 	tgl.drawFree(tile2, 103, 103);
 	tgl.drawFree(tile2, 100, 100);
     
-    /*
 	requestAnimationFrame(onFrame);
     function onFrame() {
         tgl.private.testDrawTiles();
         requestAnimationFrame(onFrame);
-    }*/
+    }
 }
