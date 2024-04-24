@@ -1,12 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <time.h>
-#include <SDL/SDL.h>
+#include "graphics.h"
 
-const char* charset[] = // IBM ASCII Codepage 437
-{
+const char* charset[] = {
 	"0000000000000000000000000000000000000000000000000000000000000000",
 	"0111111010000001101001011000000110111101100110011000000101111110",
 	"0111111011111111110110111111111111000011111001111111111101111110",
@@ -265,8 +259,6 @@ const char* charset[] = // IBM ASCII Codepage 437
 	"0000000000000000000000000000000000000000000000000000000000000000"
 };
 
-typedef int rgb;
-
 #define TILE_W		8
 #define TILE_H		8
 #define TILESIZE	TILE_W * TILE_H
@@ -285,128 +277,83 @@ SDL_Texture* tex = NULL;
 rgb scrbuf[BUFLEN] = { 0 };
 bool fullscreen = false;
 
-void open_window(const char* title);
-void close_window();
-bool has_window();
-void toggle_fullscreen();
-void clear_window(rgb color);
-void update_window();
-void set_pixel(int x, int y, rgb color);
-int get_random_int(int min, int max);
-rgb pack_rgb(int r, int g, int b);
-rgb get_random_color();
-void draw_tile(const char* bits, int x, int y, rgb color1, rgb color0, bool grid);
-void draw_text(const char* text, int x, int y, rgb color1, rgb color0, bool grid);
-void draw_test_frame_colors();
-void draw_test_frame_pixels();
-void draw_test_frame_tiles();
-
-int main(int argc, char* argv[])
-{
-	srand(time(NULL));
-	SDL_Init(SDL_INIT_EVERYTHING);
-    open_window("Hello World!");
-
-    while (has_window()) {
-		
-		draw_test_frame_tiles();
-		draw_text("Hello World!", 1, 1, 0x000000, 0xffffff, true);
-		update_window();
-
-		SDL_Event e;		
-        SDL_PollEvent(&e);
-		if (e.type == SDL_QUIT) {
-			close_window();
-		}
-		else if (e.type == SDL_KEYDOWN) {
-			if (e.key.keysym.sym == SDLK_RETURN && SDL_GetModState() & KMOD_ALT) {
-				toggle_fullscreen();
-			}
-		}
-    }
-
-    close_window();
-	SDL_Quit();
-	return 0;
-}
-
 void open_window(const char* title)
 {
-    SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+	SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
-    fullscreen = false;
+	fullscreen = false;
 
-    wnd = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WND_W, WND_H, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
-    rend = SDL_CreateRenderer(wnd, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
-    tex = SDL_CreateTexture(rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, SCR_W, SCR_H);
+	wnd = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WND_W, WND_H, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+	rend = SDL_CreateRenderer(wnd, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
+	tex = SDL_CreateTexture(rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, SCR_W, SCR_H);
 
-    SDL_SetRenderDrawBlendMode(rend, SDL_BLENDMODE_NONE);
-    SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_NONE);
-    SDL_RenderSetLogicalSize(rend, SCR_W, SCR_H);
-    SDL_SetWindowPosition(wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    SDL_RaiseWindow(wnd);
+	SDL_SetRenderDrawBlendMode(rend, SDL_BLENDMODE_NONE);
+	SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_NONE);
+	SDL_RenderSetLogicalSize(rend, SCR_W, SCR_H);
+	SDL_SetWindowPosition(wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+	SDL_RaiseWindow(wnd);
 
-    clear_window(0x000000);
-    update_window();
+	clear_window(0x000000);
+	update_window();
 }
 
 void close_window()
 {
 	if (!has_window())
 		return;
-	
-    SDL_DestroyTexture(tex);
-    SDL_DestroyRenderer(rend);
-    SDL_DestroyWindow(wnd);
 
-    tex = NULL;
-    rend = NULL;
-    wnd = NULL;
+	SDL_DestroyTexture(tex);
+	SDL_DestroyRenderer(rend);
+	SDL_DestroyWindow(wnd);
+
+	tex = NULL;
+	rend = NULL;
+	wnd = NULL;
 }
 
 bool has_window()
 {
-    return wnd != NULL;
+	return wnd != NULL;
 }
 
 void toggle_fullscreen()
 {
-    Uint32 flag = SDL_WINDOW_FULLSCREEN_DESKTOP;
-    Uint32 is_full = SDL_GetWindowFlags(wnd) & flag;
-    SDL_SetWindowFullscreen(wnd, is_full ? 0 : flag);
-    update_window();
+	Uint32 flag = SDL_WINDOW_FULLSCREEN_DESKTOP;
+	Uint32 is_full = SDL_GetWindowFlags(wnd) & flag;
+	SDL_SetWindowFullscreen(wnd, is_full ? 0 : flag);
+	update_window();
 }
 
 void clear_window(rgb color)
 {
-    for (int i = 0; i < BUFLEN; i++) {
-        scrbuf[i] = color;
-    }
+	for (int i = 0; i < BUFLEN; i++) {
+		scrbuf[i] = color;
+	}
 }
 
 void update_window()
 {
-    static int pitch;
-    static void* pixels;
+	static int pitch;
+	static void* pixels;
 
-    SDL_LockTexture(tex, NULL, &pixels, &pitch);
-    SDL_memcpy(pixels, scrbuf, BUFLEN);
-    SDL_UnlockTexture(tex);
-    SDL_RenderCopy(rend, tex, NULL, NULL);
-    SDL_RenderPresent(rend);
+	SDL_LockTexture(tex, NULL, &pixels, &pitch);
+	SDL_memcpy(pixels, scrbuf, BUFLEN);
+	SDL_UnlockTexture(tex);
+	SDL_RenderCopy(rend, tex, NULL, NULL);
+	SDL_RenderPresent(rend);
 }
 
 void set_pixel(int x, int y, rgb color)
 {
-    if (x >= 0 && y >= 0 && x < SCR_W && y < SCR_H) {
-        scrbuf[y * SCR_W + x] = color;
-    }
+	if (x >= 0 && y >= 0 && x < SCR_W && y < SCR_H) {
+		scrbuf[y * SCR_W + x] = color;
+	}
 }
 
 int get_random_int(int min, int max)
 {
-    return min + rand() % (max - min + 1);
+	return min + rand() % (max - min + 1);
 }
 
 rgb pack_rgb(int r, int g, int b)
@@ -429,11 +376,11 @@ void draw_tile(const char* bits, int x, int y, rgb color1, rgb color0, bool grid
 		x *= TILE_W;
 		y *= TILE_H;
 	}
-	
+
 	int px = x;
 	int py = y;
 	const int MAX_X = x + TILE_W;
-	
+
 	for (int i = 0; i < TILESIZE; i++) {
 		set_pixel(px, py, bits[i] == '1' ? color1 : color0);
 		px++;
@@ -450,7 +397,7 @@ void draw_text(const char* text, int x, int y, rgb color1, rgb color0, bool grid
 		x *= TILE_W;
 		y *= TILE_H;
 	}
-	
+
 	for (int i = 0; i < strlen(text); i++) {
 		draw_tile(charset[text[i]], x, y, color1, color0, false);
 		x += TILE_W;
@@ -475,7 +422,7 @@ void draw_test_frame_tiles()
 {
 	for (int y = 0; y < SCR_ROWS; y++) {
 		for (int x = 0; x < SCR_COLS; x++) {
-			draw_tile(charset[get_random_int(0, 255)], 
+			draw_tile(charset[get_random_int(0, 255)],
 				x, y, get_random_color(), get_random_color(), true);
 		}
 	}
