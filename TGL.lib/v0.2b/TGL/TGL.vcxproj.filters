@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\t_data.cpp" />
+    <ClCompile Include="src\t_window.cpp" />
+    <ClCompile Include="src\t_util.cpp" />
+    <ClCompile Include="src\t_color.cpp" />
+    <ClCompile Include="src\t_tileout.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\common.h" />
+    <ClInclude Include="src\t_data.h" />
+    <ClInclude Include="src\t_window.h" />
+    <ClInclude Include="src\t_util.h" />
+    <ClInclude Include="src\t_color.h" />
+    <ClInclude Include="src\t_tileout.h" />
+  </ItemGroup>
+</Project>

@@ -11,6 +11,7 @@ debug
 *.log
 *.ilk
 *.pdb
+*.idb
 *.map
 *.exp
 *.dia
@@ -26,6 +27,7 @@ Other/TGLCompiler
 Code snippets/*.exe
 Code snippets/*.bat
 Code snippets/*.dll
+**/temp
 
 # Ignore the TypeScript compiler output folder for TileGameLibJS
 js
