@@ -1,18 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\t_data.cpp" />
-    <ClCompile Include="src\t_window.cpp" />
-    <ClCompile Include="src\t_util.cpp" />
-    <ClCompile Include="src\t_color.cpp" />
-    <ClCompile Include="src\t_tileout.cpp" />
+    <ClCompile Include="src\t_util.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_data.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_dict.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_list.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_string.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_color.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_tileout.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\t_window.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\common.h" />
-    <ClInclude Include="src\t_data.h" />
-    <ClInclude Include="src\t_window.h" />
-    <ClInclude Include="src\t_util.h" />
-    <ClInclude Include="src\t_color.h" />
-    <ClInclude Include="src\t_tileout.h" />
+    <ClInclude Include="src\TGL.h" />
+    <ClInclude Include="src\t_util.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_data.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_dict.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_list.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_string.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_color.h">
+      <Filter>GRAPHICS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_tileout.h">
+      <Filter>GRAPHICS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\t_window.h">
+      <Filter>GRAPHICS</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UTIL">
+      <UniqueIdentifier>{dc9178fc-2800-41ad-bafb-a830eaad68a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS">
+      <UniqueIdentifier>{bccaf7d9-9b00-42fb-8221-6f0b72a8515d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

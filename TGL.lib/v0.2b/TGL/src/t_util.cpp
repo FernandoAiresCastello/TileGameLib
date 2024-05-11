@@ -1,6 +1,13 @@
+#include <random>
 #include "t_util.h"
 
-int t_util::rnd(int min, int max)
+namespace tgl
 {
-	return min + rand() % (max - min + 1);
+	std::random_device rd;
+	std::mt19937 mt(rd());
+
+	int t_util::rnd(int min, int max)
+	{
+		return std::uniform_int_distribution<int>(min, max)(mt);
+	}
 }

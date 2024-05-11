@@ -1,17 +1,16 @@
-#include <t_window.h>
-#include <t_tileout.h>
+#include <TGL.h>
 
-t_window wnd;
-t_tileout out(&wnd);
+tgl::t_window wnd;
+tgl::t_tileout out(&wnd);
 
 int main(int argc, char* argv[])
 {
-	wnd.create("TGL Test", 256, 192, 3, 3, 0xffffff);
+	wnd.open("TGL Test", 256, 192, 3, 3, 0xffffff);
 
 	SDL_Event e = { 0 };
 
 	while (wnd.is_open()) {
-		wnd.clear(t_color::get_random());
+		wnd.clear(tgl::t_color::get_random());
 		out.draw_text("Hello World!", 1, 1, 0xff0000, 0xffff00, true);
 		wnd.update();
 

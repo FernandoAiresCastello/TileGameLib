@@ -1,21 +1,26 @@
 #pragma once
-#include "common.h"
 #include "t_color.h"
+#include "t_string.h"
 
-class t_window;
-
-class t_tileout
+namespace tgl
 {
-public:
-	static constexpr int TILE_W = 8;
-	static constexpr int TILE_H = 8;
-	static constexpr int TILESIZE = TILE_W * TILE_H;
+	class t_window;
 
-	t_tileout(t_window* wnd);
+	class t_tileout
+	{
+	public:
+		static constexpr int tile_w = 8;
+		static constexpr int tile_h = 8;
+		static constexpr int tilesize = tile_w * tile_h;
 
-	void draw_tile(std::string bits, int x, int y, t_color color1, t_color color0, bool grid);
-	void draw_text(std::string text, int x, int y, t_color color1, t_color color0, bool grid);
+		t_tileout(t_window* wnd);
 
-private:
-	t_window* wnd = nullptr;
-};
+		int cols() const;
+		int rows() const;
+		void draw_tile(t_string bits, int x, int y, t_color color1, t_color color0, bool grid);
+		void draw_text(t_string text, int x, int y, t_color color1, t_color color0, bool grid);
+
+	private:
+		t_window* wnd = nullptr;
+	};
+}

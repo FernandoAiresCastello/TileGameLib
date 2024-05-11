@@ -21,14 +21,20 @@
   <ItemGroup>
     <ClCompile Include="src\t_color.cpp" />
     <ClCompile Include="src\t_data.cpp" />
+    <ClCompile Include="src\t_dict.cpp" />
+    <ClCompile Include="src\t_list.cpp" />
+    <ClCompile Include="src\t_string.cpp" />
     <ClCompile Include="src\t_tileout.cpp" />
     <ClCompile Include="src\t_util.cpp" />
     <ClCompile Include="src\t_window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\common.h" />
+    <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\t_color.h" />
     <ClInclude Include="src\t_data.h" />
+    <ClInclude Include="src\t_dict.h" />
+    <ClInclude Include="src\t_list.h" />
+    <ClInclude Include="src\t_string.h" />
     <ClInclude Include="src\t_tileout.h" />
     <ClInclude Include="src\t_util.h" />
     <ClInclude Include="src\t_window.h" />
