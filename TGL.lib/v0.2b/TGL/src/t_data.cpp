@@ -61,7 +61,7 @@ namespace tgl
 
 	int t_data::get_int(t_string key)
 	{
-		return has(key) ? std::stoi(entries[key]) : 0;
+		return has(key) ? entries[key].to_int() : 0;
 	}
 
 	bool t_data::has(t_string key)
@@ -76,7 +76,7 @@ namespace tgl
 
 	bool t_data::has(t_string key, int value)
 	{
-		return has(key) && std::stoi(entries[key]) == value;
+		return has(key) && entries[key].to_int() == value;
 	}
 
 	std::unordered_map<t_string, t_string> t_data::get_all()
