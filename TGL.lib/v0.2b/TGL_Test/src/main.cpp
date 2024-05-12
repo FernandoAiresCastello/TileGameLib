@@ -6,9 +6,6 @@ t_tileout out(&wnd);
 
 int main(int argc, char* argv[])
 {
-	t_string test1 = "-123";
-	auto test2 = test1.is_number();
-
 	wnd.open("TGL Test", 256, 192, 3, 3, 0xffffff);
 
 	SDL_Event e = { 0 };
