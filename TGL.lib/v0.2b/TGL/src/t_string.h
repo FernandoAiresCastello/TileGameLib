@@ -20,6 +20,8 @@ namespace tgl
 		t_string& operator=(const std::string& other);
 		char& operator[](size_t index);
 		const char& operator[](size_t index) const;
+		t_string& operator+=(const t_string& other);
+		t_string operator+(const t_string& other) const;
 
 		static t_string fmt(const char* str, ...);
 		static t_string from_int(int value);

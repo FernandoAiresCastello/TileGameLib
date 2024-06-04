@@ -6,7 +6,7 @@ t_tileout out(&wnd);
 
 int main(int argc, char* argv[])
 {
-	wnd.open("TGL Test", 256, 192, 3, 3, 0xffffff);
+	wnd.open("TGL Test", 360, 200, 3, 3, 0xffffff);
 
 	SDL_Event e = { 0 };
 
@@ -24,6 +24,9 @@ int main(int argc, char* argv[])
 			const auto key = e.key.keysym.sym;
 			if (key == SDLK_ESCAPE) {
 				wnd.close();
+			}
+			else if (key == SDLK_RETURN && (e.key.keysym.mod & KMOD_ALT)) {
+				wnd.toggle_full();
 			}
 		}
 	}
