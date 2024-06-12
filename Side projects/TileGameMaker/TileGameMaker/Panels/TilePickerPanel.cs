@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TileGameMaker.MapEditorElements;
 using TileGameMaker.Windows;
 using TileGameMaker.TiledDisplays;
 using TileGameLib.Util;
 using TileGameLib.Graphics;
-using TileGameMaker.Util;
 using TileGameLib.File;
-using TileGameLib.GameElements;
 
 namespace TileGameMaker.Panels
 {
@@ -278,7 +271,12 @@ namespace TileGameMaker.Panels
             Import(TilesetExportFormat.HexadecimalCsv);
         }
 
-        private void Import(TilesetExportFormat format)
+		private void BtnImportImage_Click(object sender, EventArgs e)
+		{
+            ImportFromImage();
+		}
+
+		private void Import(TilesetExportFormat format)
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
@@ -306,6 +304,23 @@ namespace TileGameMaker.Panels
             win.InitialFolder = MapEditor.Project.Folder;
             win.ShowDialog(this);
         }
+
+        private void ImportFromImage()
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            Tileset tileset = new Tileset();
+            tileset.LoadFromImage(dialog.FileName);
+            TilePicker.Graphics.Tileset.SetEqual(tileset);
+			TilePicker.UpdateSize();
+			MapEditor.Map.Tileset.SetEqual(tileset);
+			MapEditor.Refresh();
+			UpdateStatus();
+
+			Alert.Info("Tileset imported successfully!");
+		}
 
         private void BtnSwitchTileEditor_Click(object sender, EventArgs e)
         {
@@ -481,5 +496,5 @@ namespace TileGameMaker.Panels
                 }
             }
         }
-    }
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -137,11 +138,11 @@ namespace TileGameLib.Graphics
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        Color color = image.GetPixel(x, y);
-                        if (color.Equals(ImagePixelOnColor))
+                        int argb = image.GetPixel(x, y).ToArgb();
+                        if (argb.Equals(ImagePixelOnColor.ToArgb()))
                             pixelArray[x, y] = ImagePixelOnValue;
-                        else if (color.Equals(ImagePixelOffColor))
-                            pixelArray[x, y] = ImagePixelOffValue;
+                        else if (argb.Equals(ImagePixelOffColor.ToArgb()))
+							pixelArray[x, y] = ImagePixelOffValue;
                     }
                 }
 
@@ -151,11 +152,59 @@ namespace TileGameLib.Graphics
 
         public void ParseFromArray(int[,] array, int width, int height)
         {
-            for (int y = 0; y < height; y++)
+            Pixels.Clear();
+
+            int cols = width / 8;
+			int rows = width / 8;
+            int col = 0;
+            int row = 0;
+
+			bool done = false;
+
+            int tileX = 0;
+            int tileY = 0;
+            int pixelX = 0;
+            int pixelY = 0;
+            string binary = string.Empty;
+
+            while (!done)
             {
-                for (int x = 0; x < width; x++)
+                binary += array[tileX + pixelX, tileY + pixelY].ToString();
+
+                if (binary.Length == 64)
                 {
-                    // TODO
+                    Add(binary);
+                    binary = string.Empty;
+
+                    pixelX = 0;
+                    pixelY = 0;
+
+                    tileX += 8;
+                    col++;
+
+                    if (col >= cols)
+                    {
+						tileX = 0;
+						col = 0;
+						tileY += 8;
+                        row++;
+
+                        if (row >= rows)
+                        {
+                            done = true;
+                            break;
+                        }
+					}
+                }
+                else
+                {
+                    pixelX++;
+
+                    if (pixelX >= 8)
+                    {
+                        pixelX = 0;
+                        pixelY++;
+                    }
                 }
             }
         }
