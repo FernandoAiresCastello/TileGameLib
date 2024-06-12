@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include "t_string.h"
 #include "t_color.h"
 
@@ -27,10 +26,12 @@ namespace tgl
 		int wnd_w = 0;
 		int wnd_h = 0;
 
-		SDL_Window* wnd = nullptr;
-		SDL_Renderer* rend = nullptr;
-		SDL_Texture* tex = nullptr;
+		void* wnd = nullptr;
+		void* rend = nullptr;
+		void* tex = nullptr;
 		rgb* scrbuf = nullptr;
 		bool fullscreen = false;
+
+		void process_events();
 	};
 }

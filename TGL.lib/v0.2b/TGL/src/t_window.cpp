@@ -1,4 +1,9 @@
+#include <SDL.h>
 #include "t_window.h"
+
+#define sdl_wnd		((SDL_Window*)wnd)
+#define sdl_tex 	((SDL_Texture*)tex)
+#define sdl_rend	((SDL_Renderer*)rend)
 
 namespace tgl
 {
@@ -26,19 +31,19 @@ namespace tgl
 		auto wnd_flags = (fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) | SDL_WINDOW_HIDDEN;
 
 		wnd = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, wnd_w, wnd_h, wnd_flags);
-		rend = SDL_CreateRenderer(wnd, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
-		tex = SDL_CreateTexture(rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, scr_w, scr_h);
+		rend = SDL_CreateRenderer(sdl_wnd, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
+		tex = SDL_CreateTexture(sdl_rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, scr_w, scr_h);
 
-		SDL_SetRenderDrawBlendMode(rend, SDL_BLENDMODE_NONE);
-		SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_NONE);
-		SDL_RenderSetLogicalSize(rend, scr_w, scr_h);
-		SDL_SetWindowPosition(wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		SDL_SetRenderDrawBlendMode(sdl_rend, SDL_BLENDMODE_NONE);
+		SDL_SetTextureBlendMode(sdl_tex, SDL_BLENDMODE_NONE);
+		SDL_RenderSetLogicalSize(sdl_rend, scr_w, scr_h);
+		SDL_SetWindowPosition(sdl_wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
 		clear(back_color);
 		update();
 
-		SDL_ShowWindow(wnd);
-		SDL_RaiseWindow(wnd);
+		SDL_ShowWindow(sdl_wnd);
+		SDL_RaiseWindow(sdl_wnd);
 	}
 
 	void t_window::close()
@@ -46,9 +51,9 @@ namespace tgl
 		if (!is_open())
 			return;
 
-		SDL_DestroyTexture(tex);
-		SDL_DestroyRenderer(rend);
-		SDL_DestroyWindow(wnd);
+		SDL_DestroyTexture(sdl_tex);
+		SDL_DestroyRenderer(sdl_rend);
+		SDL_DestroyWindow(sdl_wnd);
 
 		tex = nullptr;
 		rend = nullptr;
@@ -66,8 +71,8 @@ namespace tgl
 	void t_window::toggle_full()
 	{
 		Uint32 flag = SDL_WINDOW_FULLSCREEN_DESKTOP;
-		Uint32 is_full = SDL_GetWindowFlags(wnd) & flag;
-		SDL_SetWindowFullscreen(wnd, is_full ? 0 : flag);
+		Uint32 is_full = SDL_GetWindowFlags(sdl_wnd) & flag;
+		SDL_SetWindowFullscreen(sdl_wnd, is_full ? 0 : flag);
 		update();
 	}
 
@@ -82,10 +87,28 @@ namespace tgl
 		static int pitch;
 		static void* pixels;
 
-		SDL_LockTexture(tex, nullptr, &pixels, &pitch);
+		SDL_LockTexture(sdl_tex, nullptr, &pixels, &pitch);
 		SDL_memcpy(pixels, scrbuf, buflen);
-		SDL_UnlockTexture(tex);
-		SDL_RenderCopy(rend, tex, nullptr, nullptr);
-		SDL_RenderPresent(rend);
+		SDL_UnlockTexture(sdl_tex);
+		SDL_RenderCopy(sdl_rend, sdl_tex, nullptr, nullptr);
+		SDL_RenderPresent(sdl_rend);
+
+		process_events();
+	}
+
+	void t_window::process_events()
+	{
+		SDL_Event e = { 0 };
+
+		SDL_PollEvent(&e);
+
+		if (e.type == SDL_QUIT) {
+			close();
+		}
+		else if (e.type == SDL_KEYDOWN) {
+			if (e.key.keysym.sym == SDLK_RETURN && (e.key.keysym.mod & KMOD_ALT)) {
+				toggle_full();
+			}
+		}
 	}
 }

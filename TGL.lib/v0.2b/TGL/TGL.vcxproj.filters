@@ -25,6 +25,9 @@
     <ClCompile Include="src\t_window.cpp">
       <Filter>GRAPHICS</Filter>
     </ClCompile>
+    <ClCompile Include="src\t_keyboard.cpp">
+      <Filter>INPUT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -52,6 +55,9 @@
     <ClInclude Include="src\t_window.h">
       <Filter>GRAPHICS</Filter>
     </ClInclude>
+    <ClInclude Include="src\t_keyboard.h">
+      <Filter>INPUT</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UTIL">
@@ -59,6 +65,9 @@
     </Filter>
     <Filter Include="GRAPHICS">
       <UniqueIdentifier>{bccaf7d9-9b00-42fb-8221-6f0b72a8515d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="INPUT">
+      <UniqueIdentifier>{6534e96e-3727-4182-8f51-0c8e198c1c03}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
