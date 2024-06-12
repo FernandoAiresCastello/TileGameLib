@@ -1,2 +1,0 @@
-# Code snippets
-This folder contains a bunch of source code files in C or C++ which include various functions and/or structures meant to be simply copied and pasted in other projects using the SDL library and may provide functionality similar to the main TileGameLib project (aka TGL.lib). So if you don't want or don't need to go through the hassle of setting up and using the entire thing, you can just grab whatever code snippets you need from here.

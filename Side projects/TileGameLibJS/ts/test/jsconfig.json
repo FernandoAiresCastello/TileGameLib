@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-      "module": "None",
-      "target": "es6"
-    },
-    "include": ["build/tgl.js"]
-  }
