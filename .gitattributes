@@ -3,3 +3,4 @@
 *.ts -linguist-detectable
 *.bat -linguist-detectable
 *.aspx -linguist-detectable
+*.js -linguist-detectable
