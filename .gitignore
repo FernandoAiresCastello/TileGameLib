@@ -53,3 +53,5 @@ js
 # format (NuGet v4 and .NET Core).
 project.lock.json
 project.assets.json
+
+vcpkg_installed
