@@ -13,7 +13,7 @@ TileGameLib is a C/C++ library for quick and easy development of tile-based, pse
 
 **Documentation**
 
-- [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/Releases/TGL.lib/0.1/TGL/TGL.h)
+- [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/Releases/TGL.lib/0.1/TGL.h)
 - [TGL.lib - Auto-generated HTML docs](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/0.1/Docs)
 
 **About**
