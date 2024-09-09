@@ -1,5 +1,5 @@
 #pragma once
-#include <raylib.h>
+#include <SDL.h>
 
 #ifdef TGLEXPORTS
 	#define TGLAPI __declspec(dllexport)

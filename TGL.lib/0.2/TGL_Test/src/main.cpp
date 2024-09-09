@@ -2,7 +2,7 @@
 
 TGL tgl;
 
-int main()
+int main(int argc, char* argv[])
 {
 	tgl.Test();
 
