@@ -15,8 +15,9 @@ namespace TGL
 		bool operator==(const TGL_Color& other) const;
 		TGL_Color& operator=(const TGL_Color& other);
 
-		static TGL_Rgb PackRgb(int r, int g, int b);
-		static void UnpackRgb(TGL_Rgb rgb, int* r, int* g, int* b);
+		inline TGL_Rgb ToRgb() const;
+		inline static TGL_Rgb PackRgb(int r, int g, int b);
+		inline static void UnpackRgb(TGL_Rgb rgb, int* r, int* g, int* b);
 		static TGL_Color GetRandom();
 
 		void Set(TGL_Rgb rgb);
@@ -27,7 +28,6 @@ namespace TGL
 		int GetR() const;
 		int GetG() const;
 		int GetB() const;
-		TGL_Rgb ToRgb() const;
 
 	private:
 		int r = 0;

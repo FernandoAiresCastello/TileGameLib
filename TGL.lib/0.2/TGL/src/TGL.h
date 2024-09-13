@@ -6,3 +6,4 @@
 #include "TGL_Rgb.h"
 #include "TGL_Color.h"
 #include "TGL_Window.h"
+#include "TGL_Image.h"

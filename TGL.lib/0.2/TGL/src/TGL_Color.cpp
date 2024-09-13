@@ -35,12 +35,17 @@ namespace TGL
         return *this;
     }
 
-    TGL_Rgb TGL_Color::PackRgb(int r, int g, int b)
+    inline TGL_Rgb TGL_Color::ToRgb() const
+    {
+        return PackRgb(r, g, b);
+    }
+
+    inline TGL_Rgb TGL_Color::PackRgb(int r, int g, int b)
     {
         return (r << 16) | (g << 8) | b;
     }
 
-    void TGL_Color::UnpackRgb(TGL_Rgb rgb, int* r, int* g, int* b)
+    inline void TGL_Color::UnpackRgb(TGL_Rgb rgb, int* r, int* g, int* b)
     {
         *r = (rgb >> 16) & 0xFF;
         *g = (rgb >> 8) & 0xFF;
@@ -70,9 +75,4 @@ namespace TGL
     int TGL_Color::GetR() const { return r; }
     int TGL_Color::GetG() const { return g; }
     int TGL_Color::GetB() const { return b; }
-
-    TGL_Rgb TGL_Color::ToRgb() const
-    {
-        return PackRgb(r, g, b);
-    }
 }

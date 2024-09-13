@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
     <ClCompile Include="src\TGL_Color.cpp" />
+    <ClCompile Include="src\TGL_Image.cpp" />
     <ClCompile Include="src\TGL_String.cpp" />
     <ClCompile Include="src\TGL_Util.cpp" />
     <ClCompile Include="src\TGL_Window.cpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Color.h" />
     <ClInclude Include="src\TGL_Globals.h" />
+    <ClInclude Include="src\TGL_Image.h" />
     <ClInclude Include="src\TGL_List.h" />
     <ClInclude Include="src\TGL_Rgb.h" />
     <ClInclude Include="src\TGL_String.h" />
