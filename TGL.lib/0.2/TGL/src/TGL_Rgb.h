@@ -1,3 +1,6 @@
 #pragma once
 
-using TGL_Rgb = int;
+namespace TGL
+{
+	using TGL_Rgb = int;
+}
