@@ -21,6 +21,7 @@ namespace TGL
 		void Open(int width, int height, int sizeMult, const TGL_Color& backColor, bool show);
 		void Open(int width, int height, int widthMult, int heightMult, const TGL_Color& backColor, bool show);
 		void Close();
+		void WaitClose();
 		void Show();
 		void Hide();
 		void ClearBackground();

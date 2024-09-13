@@ -78,6 +78,25 @@ namespace TGL
 		}
 	}
 
+	void TGL_Window::WaitClose()
+	{
+		while (IsOpen()) {
+			Update();
+			SDL_Event e;
+			while (SDL_PollEvent(&e)) {
+				if (e.type == SDL_QUIT) {
+					Close();
+				}
+				else if (e.type == SDL_KEYDOWN) {
+					if (e.key.keysym.sym == SDLK_RETURN && SDL_GetModState() & KMOD_ALT)
+						ToggleFullscreen();
+					else if (e.key.keysym.sym == SDLK_ESCAPE)
+						Close();
+				}
+			}
+		}
+	}
+
 	void TGL_Window::Show()
 	{
 		SDL_ShowWindow(Window);
