@@ -2,8 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
+    <ClCompile Include="src\TGL_Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
+    <ClInclude Include="src\TGL_Window.h" />
+    <ClInclude Include="src\TGL_Globals.h" />
+    <ClInclude Include="src\TGL_Rgb.h" />
   </ItemGroup>
 </Project>
