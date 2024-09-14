@@ -9,22 +9,22 @@ namespace TGL
 	std::random_device rd;
 	std::mt19937 mt(rd());
 
-	int TGL_Util::Rnd(int max)
+	int Util::Rnd(int max)
 	{
 		return std::uniform_int_distribution<int>(0, max)(mt);
 	}
 
-	int TGL_Util::Rnd(int min, int max)
+	int Util::Rnd(int min, int max)
 	{
 		return std::uniform_int_distribution<int>(min, max)(mt);
 	}
 
-	int TGL_Util::RndByte()
+	int Util::RndByte()
 	{
 		return Rnd(0, 255);
 	}
 
-	TGL_String TGL_Util::RndHex(int bytes)
+	String Util::RndHex(int bytes)
 	{
 		std::stringstream ss;
 
@@ -39,12 +39,12 @@ namespace TGL
 		return ss.str();
 	}
 
-	TGL_String TGL_Util::RndString(int length)
+	String Util::RndString(int length)
 	{
 		return RndString(length, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 	}
 
-	TGL_String TGL_Util::RndString(int length, const TGL_String& alphabet)
+	String Util::RndString(int length, const String& alphabet)
 	{
 		std::stringbuf sb;
 
@@ -57,7 +57,7 @@ namespace TGL
 
 	}
 
-	bool TGL_Util::Chance(int rate)
+	bool Util::Chance(int rate)
 	{
 		if (rate >= 100)
 			return true;
@@ -67,12 +67,12 @@ namespace TGL
 		return false;
 	}
 
-	int TGL_Util::Percent(int value, int percentage)
+	int Util::Percent(int value, int percentage)
 	{
 		return value * percentage / 100;
 	}
 
-	void TGL_Util::IntToBytes(uint32_t val, uint8_t bytes[4])
+	void Util::IntToBytes(uint32_t val, uint8_t bytes[4])
 	{
 		uint32_t uval = val;
 		bytes[0] = uval;
@@ -81,14 +81,14 @@ namespace TGL
 		bytes[3] = uval >> 24;
 	}
 
-	uint32_t TGL_Util::BytesToInt(uint8_t bytes[4])
+	uint32_t Util::BytesToInt(uint8_t bytes[4])
 	{
 		uint32_t u0 = bytes[0], u1 = bytes[1], u2 = bytes[2], u3 = bytes[3];
 		uint32_t uval = u0 | (u1 << 8) | (u2 << 16) | (u3 << 24);
 		return uval;
 	}
 
-	void TGL_Util::ShortToBytes(uint16_t val, uint8_t bytes[2])
+	void Util::ShortToBytes(uint16_t val, uint8_t bytes[2])
 	{
 		uint8_t int_bytes[4];
 		IntToBytes(val, int_bytes);
@@ -96,7 +96,7 @@ namespace TGL
 		bytes[1] = int_bytes[1];
 	}
 
-	uint16_t TGL_Util::BytesToShort(uint8_t bytes[2])
+	uint16_t Util::BytesToShort(uint8_t bytes[2])
 	{
 		uint8_t int_bytes[4];
 		int_bytes[0] = bytes[0];
@@ -104,7 +104,7 @@ namespace TGL
 		return BytesToInt(int_bytes);
 	}
 
-	uint32_t TGL_Util::WrapAdd(uint32_t val, int dx, const uint32_t lower, const uint32_t upper)
+	uint32_t Util::WrapAdd(uint32_t val, int dx, const uint32_t lower, const uint32_t upper)
 	{
 		while (dx < 0) {
 			if (val == lower)
@@ -123,12 +123,12 @@ namespace TGL
 		return val;
 	}
 
-	int TGL_Util::GetDigitCount(uint32_t number)
+	int Util::GetDigitCount(uint32_t number)
 	{
 		return number > 0 ? (int)log10((double)number) + 1 : 1;
 	}
 
-	TGL_String TGL_Util::XorEncrypt(const TGL_String& str, char xor_key)
+	String Util::XorEncrypt(const String& str, char xor_key)
 	{
 		std::string encrypted = str;
 
@@ -138,12 +138,12 @@ namespace TGL
 		return encrypted;
 	}
 
-	TGL_String TGL_Util::XorDecrypt(const TGL_String& str, char xor_key)
+	String Util::XorDecrypt(const String& str, char xor_key)
 	{
 		return XorEncrypt(str, xor_key);
 	}
 
-	TGL_String TGL_Util::SizeToString(uint64_t bytes)
+	String Util::SizeToString(uint64_t bytes)
 	{
 		const char* suffix[] = { "B", "KB", "MB", "GB", "TB" };
 		const char length = sizeof(suffix) / sizeof(suffix[0]);
@@ -161,7 +161,7 @@ namespace TGL
 		return output;
 	}
 
-	TGL_String TGL_Util::Datetime(const TGL_String& format)
+	String Util::Datetime(const String& format)
 	{
 		auto now = std::chrono::system_clock::now();
 		auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -171,22 +171,22 @@ namespace TGL
 		return ss.str();
 	}
 
-	TGL_String TGL_Util::Datetime()
+	String Util::Datetime()
 	{
 		return Datetime("%Y-%m-%d %H:%M:%S");
 	}
 
-	TGL_String TGL_Util::Date()
+	String Util::Date()
 	{
 		return Datetime("%Y-%m-%d");
 	}
 
-	TGL_String TGL_Util::Time()
+	String Util::Time()
 	{
 		return Datetime("%H:%M:%S");
 	}
 
-	void TGL_Util::SetClipboard(const TGL_String& text)
+	void Util::SetClipboard(const String& text)
 	{
 		bool ok = OpenClipboard(nullptr);
 		if (ok) {
@@ -206,7 +206,7 @@ namespace TGL
 		}
 	}
 
-	TGL_String TGL_Util::GetClipboard()
+	String Util::GetClipboard()
 	{
 		bool ok = OpenClipboard(nullptr);
 		if (ok) {
@@ -221,14 +221,14 @@ namespace TGL
 		return "";
 	}
 
-	int TGL_Util::Distance(int x1, int y1, int x2, int y2)
+	int Util::Distance(int x1, int y1, int x2, int y2)
 	{
 		int delta_x = x2 - x1;
 		int delta_y = y2 - y1;
 		return static_cast<int>(std::round(std::sqrt(delta_x * delta_x + delta_y * delta_y)));
 	}
 
-	float TGL_Util::Distance(float x1, float y1, float x2, float y2)
+	float Util::Distance(float x1, float y1, float x2, float y2)
 	{
 		float delta_x = x2 - x1;
 		float delta_y = y2 - y1;

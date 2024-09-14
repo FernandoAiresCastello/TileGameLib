@@ -1,26 +1,26 @@
 #pragma once
 #include "TGL_Globals.h"
-#include "TGL_Rgb.h"
+#include "TGL_RGB.h"
 
 namespace TGL
 {
-	class TGLAPI TGL_Color
+	class TGLAPI Color
 	{
 	public:
-		TGL_Color();
-		TGL_Color(TGL_Rgb rgb);
-		TGL_Color(int r, int g, int b);
-		TGL_Color(const TGL_Color& other);
+		Color();
+		Color(RGB rgb);
+		Color(int r, int g, int b);
+		Color(const Color& other);
 
-		bool operator==(const TGL_Color& other) const;
-		TGL_Color& operator=(const TGL_Color& other);
+		bool operator==(const Color& other) const;
+		Color& operator=(const Color& other);
 
-		inline TGL_Rgb ToRgb() const;
-		inline static TGL_Rgb PackRgb(int r, int g, int b);
-		inline static void UnpackRgb(TGL_Rgb rgb, int* r, int* g, int* b);
-		static TGL_Color GetRandom();
+		inline RGB ToRGB() const;
+		inline static RGB PackRGB(int r, int g, int b);
+		inline static void UnpackRGB(RGB rgb, int* r, int* g, int* b);
+		static Color GetRandom();
 
-		void Set(TGL_Rgb rgb);
+		void Set(RGB rgb);
 		void Set(int r, int g, int b);
 		void SetR(int r);
 		void SetG(int g);

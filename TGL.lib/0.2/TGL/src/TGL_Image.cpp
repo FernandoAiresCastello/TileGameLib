@@ -3,34 +3,34 @@
 
 namespace TGL
 {
-	TGL_Image::TGL_Image() : Width(0), Height(0), Size(0), Transparent(false), Transparency()
+	Image::Image() : width(0), height(0), size(0), transparent(false), transparency()
 	{
 	}
 
-	TGL_Image::~TGL_Image()
+	Image::~Image()
 	{
 	}
 
-	bool TGL_Image::Load(TGL_String filename)
+	bool Image::Load(const String& filename)
 	{
-		Pixels.clear();
+		pixels.clear();
 
 		SDL_Surface* img = SDL_LoadBMP(filename.Cstr());
 		if (!img)
 			return false;
 
 		const Uint8 bpp = img->format->BytesPerPixel;
-		Width = img->w;
-		Height = img->h;
-		Size = Width * Height;
+		width = img->w;
+		height = img->h;
+		size = width * height;
 
-		for (int y = 0; y < Height; y++) {
-			for (int x = 0; x < Width; x++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				Uint8* pPixel = (Uint8*)img->pixels + y * img->pitch + x * bpp;
 				Uint32 PixelData = *(Uint32*)pPixel;
-				SDL_Color Color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
-				SDL_GetRGB(PixelData, img->format, &Color.r, &Color.g, &Color.b);
-				Pixels.push_back(TGL_Color(Color.r, Color.g, Color.b));
+				SDL_Color color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
+				SDL_GetRGB(PixelData, img->format, &color.r, &color.g, &color.b);
+				pixels.push_back(Color(color.r, color.g, color.b));
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace TGL
 		return true;
 	}
 
-	bool TGL_Image::Load(TGL_String filename, TGL_Color transparency)
+	bool Image::Load(const String& filename, const Color& transparency)
 	{
 		if (!Load(filename))
 			return false;
@@ -48,49 +48,49 @@ namespace TGL
 		return true;
 	}
 
-	int TGL_Image::GetWidth() const
+	int Image::GetWidth() const
 	{
-		return Width;
+		return width;
 	}
 
-	int TGL_Image::GetHeight() const
+	int Image::GetHeight() const
 	{
-		return Height;
+		return height;
 	}
 
-	int TGL_Image::GetSize() const
+	int Image::GetSize() const
 	{
-		return Size;
+		return size;
 	}
 
-	bool TGL_Image::IsTransparent() const
+	bool Image::IsTransparent() const
 	{
-		return Transparent;
+		return transparent;
 	}
 
-	void TGL_Image::SetTransparency(TGL_Color color)
+	void Image::SetTransparency(const Color& color)
 	{
-		Transparent = true;
-		Transparency = color;
+		transparent = true;
+		transparency = color;
 	}
 
-	TGL_Color& TGL_Image::GetTransparency()
+	Color& Image::GetTransparency()
 	{
-		return Transparency;
+		return transparency;
 	}
 
-	TGL_Color& TGL_Image::GetPixel(int i)
+	Color& Image::GetPixel(int i)
 	{
-		return Pixels[i];
+		return pixels[i];
 	}
 
-	TGL_Color& TGL_Image::GetPixel(int x, int y)
+	Color& Image::GetPixel(int x, int y)
 	{
-		return Pixels[y * Width + x];
+		return pixels[y * width + x];
 	}
 
-	TGL_List<TGL_Color>& TGL_Image::GetPixels()
+	List<Color>& Image::GetPixels()
 	{
-		return Pixels;
+		return pixels;
 	}
 }

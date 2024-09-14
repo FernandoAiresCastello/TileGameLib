@@ -5,5 +5,5 @@
 namespace TGL
 {
 	template<typename T>
-	using TGL_List = std::vector<T>;
+	using List = std::vector<T>;
 }

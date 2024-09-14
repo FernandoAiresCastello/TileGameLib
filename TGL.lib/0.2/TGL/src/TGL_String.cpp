@@ -7,31 +7,31 @@ namespace TGL
 {
 	constexpr int fmt_buf_maxlen = 1024;
 
-	TGL_String::TGL_String() : value("") {}
-	TGL_String::TGL_String(const char* str) : value(str) {}
-	TGL_String::TGL_String(const TGL_String& other) : value(other.value) {}
-	TGL_String::TGL_String(const std::string& other) : value(other) {}
-	TGL_String::TGL_String(const char& single_char) : value(1, single_char) {}
-	TGL_String::TGL_String(TGL_String&& other) noexcept : value(std::move(other.value)) {}
-	TGL_String::TGL_String(int value) : value(FromInt(value)) {}
+	String::String() : value("") {}
+	String::String(const char* str) : value(str) {}
+	String::String(const String& other) : value(other.value) {}
+	String::String(const std::string& other) : value(other) {}
+	String::String(const char& single_char) : value(1, single_char) {}
+	String::String(String&& other) noexcept : value(std::move(other.value)) {}
+	String::String(int value) : value(FromInt(value)) {}
 
-	TGL_String::operator const::std::string&() const
+	String::operator const::std::string&() const
 	{
 		return (const std::string&)value;
 	}
 
-	bool TGL_String::operator==(const TGL_String& other) const
+	bool String::operator==(const String& other) const
 	{
 		return value == other.value;
 	}
 
-	TGL_String& TGL_String::operator=(const char* other)
+	String& String::operator=(const char* other)
 	{
 		value = other;
 		return *this;
 	}
 
-	TGL_String& TGL_String::operator=(const TGL_String& other)
+	String& String::operator=(const String& other)
 	{
 		if (this != &other)
 			value = other.value;
@@ -39,13 +39,13 @@ namespace TGL
 		return *this;
 	}
 
-	TGL_String& TGL_String::operator=(const std::string& other)
+	String& String::operator=(const std::string& other)
 	{
 		value = other;
 		return *this;
 	}
 
-	TGL_String& TGL_String::operator=(TGL_String&& other) noexcept
+	String& String::operator=(String&& other) noexcept
 	{
 		if (this != &other)
 			value = std::move(other.value);
@@ -53,61 +53,61 @@ namespace TGL
 		return *this;
 	}
 
-	char& TGL_String::operator[](size_t index)
+	char& String::operator[](size_t index)
 	{
 		return value[index];
 	}
 
-	const char& TGL_String::operator[](size_t index) const
+	const char& String::operator[](size_t index) const
 	{
 		return value[index];
 	}
 
-	TGL_String& TGL_String::operator+=(const TGL_String& other)
+	String& String::operator+=(const String& other)
 	{
 		value += other.value;
 		return *this;
 	}
 
-	TGL_String& TGL_String::operator+=(const int& ch)
+	String& String::operator+=(const int& ch)
 	{
 		value.push_back(ch);
 		return *this;
 	}
 
-	TGL_String TGL_String::operator+(const TGL_String& other) const
+	String String::operator+(const String& other) const
 	{
-		return TGL_String(value + other.value);
+		return String(value + other.value);
 	}
 
-	const std::string& TGL_String::Sstr() const
+	const std::string& String::Sstr() const
 	{
 		return value;
 	}
 
-	const char* TGL_String::Cstr() const noexcept
+	const char* String::Cstr() const noexcept
 	{
 		return value.c_str();
 	}
 
-	size_t TGL_String::Length() const noexcept
+	size_t String::Length() const noexcept
 	{
 		return value.length();
 	}
 
-	bool TGL_String::HasLength(int len) const noexcept
+	bool String::HasLength(int len) const noexcept
 	{
 		return value.length() == len;
 	}
 
-	bool TGL_String::HasLength(int min, int max) const noexcept
+	bool String::HasLength(int min, int max) const noexcept
 	{
 		return value.length() >= min && value.length() <= max;
 	}
 
-	int TGL_String::ToInt() const
+	int String::ToInt() const
 	{
-		TGL_String str = TGL_String(value).Trim();
+		String str = String(value).Trim();
 		if (str.Empty())
 			return 0;
 
@@ -134,11 +134,11 @@ namespace TGL
 		return negative ? -int_value : int_value;
 	}
 
-	float TGL_String::ToFloat() const
+	float String::ToFloat() const
 	{
 		float float_value = 0.0f;
 
-		TGL_String str = TGL_String(value).Trim();
+		String str = String(value).Trim();
 
 		bool sign = str[0] == '-';
 		if (sign)
@@ -149,17 +149,17 @@ namespace TGL
 		return sign ? -float_value : float_value;
 	}
 
-	void TGL_String::Clear() noexcept
+	void String::Clear() noexcept
 	{
 		value.clear();
 	}
 
-	bool TGL_String::Empty() const noexcept
+	bool String::Empty() const noexcept
 	{
 		return value.empty();
 	}
 
-	bool TGL_String::IsNumber() const noexcept
+	bool String::IsNumber() const noexcept
 	{
 		std::string text = value;
 		if (text.starts_with("-"))
@@ -170,7 +170,7 @@ namespace TGL
 		return !text.empty() && it == text.end();
 	}
 
-	TGL_String TGL_String::ToUpper() const
+	String String::ToUpper() const
 	{
 		std::string result = value;
 
@@ -180,7 +180,7 @@ namespace TGL
 		return result;
 	}
 
-	TGL_String TGL_String::ToLower() const
+	String String::ToLower() const
 	{
 		std::string result = value;
 
@@ -190,7 +190,7 @@ namespace TGL
 		return result;
 	}
 
-	TGL_String TGL_String::Trim() const
+	String String::Trim() const
 	{
 		size_t first = value.find_first_not_of(" \t\n\r");
 		if (first == std::string::npos)
@@ -200,12 +200,12 @@ namespace TGL
 		return value.substr(first, last - first + 1);
 	}
 
-	TGL_String TGL_String::Skip(int count) const
+	String String::Skip(int count) const
 	{
 		return RemoveFirst(count);
 	}
 
-	TGL_String TGL_String::RemoveFirst(int count) const
+	String String::RemoveFirst(int count) const
 	{
 		if (count > value.length())
 			return "";
@@ -213,7 +213,7 @@ namespace TGL
 		return value.substr(count);
 	}
 
-	TGL_String TGL_String::RemoveLast(int count) const
+	String String::RemoveLast(int count) const
 	{
 		if (count > value.length())
 			return "";
@@ -221,17 +221,17 @@ namespace TGL
 		return value.substr(0, value.length() - count);
 	}
 
-	TGL_String TGL_String::RemoveFirstAndLast(int count) const
+	String String::RemoveFirstAndLast(int count) const
 	{
 		return RemoveFirst(count).RemoveLast(count);
 	}
 
-	TGL_String TGL_String::GetFirst(int count) const
+	String String::GetFirst(int count) const
 	{
 		return value.substr(0, count);
 	}
 
-	TGL_String TGL_String::GetLast(int count) const
+	String String::GetLast(int count) const
 	{
 		if (value.size() < (unsigned)count)
 			return value;
@@ -239,14 +239,14 @@ namespace TGL
 		return value.substr(value.size() - count, count);
 	}
 
-	TGL_List<TGL_String> TGL_String::Split(char delim) const
+	List<String> String::Split(char delim) const
 	{
-		TGL_List<TGL_String> elems;
+		List<String> elems;
 		std::string item;
 		std::stringstream ss(value);
 
 		while (std::getline(ss, item, delim)) {
-			TGL_String trimmed_item(item);
+			String trimmed_item(item);
 			if (!trimmed_item.Empty())
 				elems.push_back(trimmed_item.Trim());
 		}
@@ -254,9 +254,9 @@ namespace TGL
 		return elems;
 	}
 
-	TGL_List<TGL_String> TGL_String::SplitChunks(int chunk_size) const
+	List<String> String::SplitChunks(int chunk_size) const
 	{
-		TGL_List<TGL_String> tokens;
+		List<String> tokens;
 		std::string token = "";
 
 		for (int i = 0; i < value.length(); i++) {
@@ -273,12 +273,12 @@ namespace TGL
 		return tokens;
 	}
 
-	TGL_String TGL_String::Substr(int first) const
+	String String::Substr(int first) const
 	{
 		return value.substr(first);
 	}
 
-	TGL_String TGL_String::Substr(int first, int last) const
+	String String::Substr(int first, int last) const
 	{
 		last++;
 
@@ -290,7 +290,7 @@ namespace TGL
 		return value.substr(first, last - first);
 	}
 
-	TGL_String TGL_String::Replace(const TGL_String& original, const TGL_String& replacement) const
+	String String::Replace(const String& original, const String& replacement) const
 	{
 		if (original.Empty())
 			return "";
@@ -306,9 +306,9 @@ namespace TGL
 		return replaced;
 	}
 
-	TGL_String TGL_String::Replace(const char& original, const char& replacement) const
+	String String::Replace(const char& original, const char& replacement) const
 	{
-		TGL_String replaced;
+		String replaced;
 
 		for (auto& current : value) {
 			if (current == original)
@@ -320,7 +320,7 @@ namespace TGL
 		return replaced;
 	}
 
-	TGL_String TGL_String::RemoveAll(const TGL_String& chars) const
+	String String::RemoveAll(const String& chars) const
 	{
 		std::string result = value;
 
@@ -330,68 +330,68 @@ namespace TGL
 		return result;
 	}
 
-	TGL_String TGL_String::Reverse() const
+	String String::Reverse() const
 	{
 		std::string reversed = value;
 		std::reverse(reversed.begin(), reversed.end());
 		return reversed;
 	}
 
-	bool TGL_String::StartsWith(const TGL_String& prefix) const
+	bool String::StartsWith(const String& prefix) const
 	{
 		return value.starts_with(prefix.Sstr());
 	}
 
-	bool TGL_String::EndsWith(const TGL_String& suffix) const
+	bool String::EndsWith(const String& suffix) const
 	{
 		return value.ends_with(suffix.Sstr());
 	}
 
-	bool TGL_String::StartsAndEndsWith(const TGL_String& prefix, const TGL_String& suffix) const
+	bool String::StartsAndEndsWith(const String& prefix, const String& suffix) const
 	{
 		return StartsWith(prefix) && EndsWith(suffix);
 	}
 
-	bool TGL_String::StartsAndEndsWith(const TGL_String& same_preffix_and_suffix) const
+	bool String::StartsAndEndsWith(const String& same_preffix_and_suffix) const
 	{
 		return StartsWith(same_preffix_and_suffix) && EndsWith(same_preffix_and_suffix);
 	}
 
-	bool TGL_String::Contains(const TGL_String& other) const
+	bool String::Contains(const String& other) const
 	{
 		return value.find(other) != std::string::npos;
 	}
 
-	bool TGL_String::ContainsOnly(const TGL_String& chars) const
+	bool String::ContainsOnly(const String& chars) const
 	{
 		return std::all_of(value.begin(), value.end(), [&chars](char c) {
 			return chars.Sstr().find(c) != std::string::npos;
 		});
 	}
 
-	bool TGL_String::ContainsAny(const TGL_String& chars) const
+	bool String::ContainsAny(const String& chars) const
 	{
 		return value.find_first_of(chars.Sstr()) != std::string::npos;
 	}
 
-	bool TGL_String::In(const TGL_List<TGL_String>& strings) const
+	bool String::In(const List<String>& strings) const
 	{
 		return std::find(strings.begin(), strings.end(), value) != strings.end();
 	}
 
-	int TGL_String::IndexOf(const TGL_String& str) const
+	int String::IndexOf(const String& str) const
 	{
 		return (int)value.find(str);
 	}
 
-	int TGL_String::LastIndexOf(const TGL_String& str) const
+	int String::LastIndexOf(const String& str) const
 	{
 		return (int)value.find_last_not_of(str);
 	}
 
-	TGL_List<int> TGL_String::FindAll(const char& ch, size_t offset)
+	List<int> String::FindAll(const char& ch, size_t offset)
 	{
-		TGL_List<int> indexes;
+		List<int> indexes;
 
 		for (size_t i = offset; i < value.length(); i++) {
 			if (value[i] == ch) {
@@ -402,12 +402,12 @@ namespace TGL
 		return indexes;
 	}
 
-	int TGL_String::Count(const char& ch)
+	int String::Count(const char& ch)
 	{
 		return (int)FindAll(ch).size();
 	}
 
-	TGL_String TGL_String::Fmt(const char* str, ...)
+	String String::Fmt(const char* str, ...)
 	{
 		char output[fmt_buf_maxlen] = { 0 };
 
@@ -419,12 +419,12 @@ namespace TGL
 		return output;
 	}
 
-	TGL_String TGL_String::FromInt(int value)
+	String String::FromInt(int value)
 	{
 		return std::to_string(value);
 	}
 
-	TGL_String TGL_String::FromInt(int value, int digits)
+	String String::FromInt(int value, int digits)
 	{
 		const std::string result = FromInt(value);
 		std::string padding = "";
@@ -435,22 +435,22 @@ namespace TGL
 		return padding + result;
 	}
 
-	TGL_String TGL_String::FromFloat(float value)
+	String String::FromFloat(float value)
 	{
 		return std::to_string(value);
 	}
 
-	TGL_String TGL_String::FromBool(bool value)
+	String String::FromBool(bool value)
 	{
 		return value ? "true" : "false";
 	}
 
-	TGL_String TGL_String::ToHex(int value)
+	String String::ToHex(int value)
 	{
 		return Fmt("%x", value);
 	}
 
-	TGL_String TGL_String::ToHex(int value, int digits)
+	String String::ToHex(int value, int digits)
 	{
 		const std::string hex = ToHex(value);
 		std::string padding = "";
@@ -461,7 +461,7 @@ namespace TGL
 		return padding + hex;
 	}
 
-	TGL_String TGL_String::ToBinary(int value)
+	String String::ToBinary(int value)
 	{
 		std::string str = "";
 
@@ -473,7 +473,7 @@ namespace TGL
 		return str;
 	}
 
-	TGL_String TGL_String::ToBinary(int value, int digits)
+	String String::ToBinary(int value, int digits)
 	{
 		const std::string binary = ToBinary(value);
 		std::string padding = "";
@@ -484,7 +484,7 @@ namespace TGL
 		return padding + binary;
 	}
 
-	TGL_String TGL_String::Join(const TGL_List<TGL_String>& str_list, const TGL_String& separator)
+	String String::Join(const List<String>& str_list, const String& separator)
 	{
 		std::string str = "";
 
@@ -503,7 +503,7 @@ namespace TGL
 		return str;
 	}
 
-	TGL_String TGL_String::Repeat(const TGL_String& str, int count)
+	String String::Repeat(const String& str, int count)
 	{
 		std::string result = "";
 		for (int i = 0; i < count; i++)
@@ -512,12 +512,12 @@ namespace TGL
 		return result;
 	}
 
-	char TGL_String::ToUpper(char ch)
+	char String::ToUpper(char ch)
 	{
 		return toupper(ch);
 	}
 
-	char TGL_String::ToLower(char ch)
+	char String::ToLower(char ch)
 	{
 		return tolower(ch);
 	}

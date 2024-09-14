@@ -6,30 +6,30 @@
 
 namespace TGL
 {
-	class TGLAPI TGL_Image
+	class TGLAPI Image
 	{
 	public:
-		TGL_Image();
-		~TGL_Image();
+		Image();
+		~Image();
 
-		bool Load(TGL_String filename);
-		bool Load(TGL_String filename, TGL_Color transparency);
+		bool Load(const String& filename);
+		bool Load(const String& filename, const Color& transparency);
 		int GetWidth() const;
 		int GetHeight() const;
 		int GetSize() const;
 		bool IsTransparent() const;
-		void SetTransparency(TGL_Color color);
-		TGL_Color& GetTransparency();
-		TGL_Color& GetPixel(int i);
-		TGL_Color& GetPixel(int x, int y);
-		TGL_List<TGL_Color>& GetPixels();
+		void SetTransparency(const Color& color);
+		Color& GetTransparency();
+		Color& GetPixel(int i);
+		Color& GetPixel(int x, int y);
+		List<Color>& GetPixels();
 
 	private:
-		int Width;
-		int Height;
-		int Size;
-		bool Transparent;
-		TGL_Color Transparency;
-		TGL_List<TGL_Color> Pixels;
+		int width;
+		int height;
+		int size;
+		bool transparent;
+		Color transparency;
+		List<Color> pixels;
 	};
 }

@@ -7,54 +7,54 @@
 
 namespace TGL
 {
-	class TGL_Image;
+	class Image;
 
-	class TGLAPI TGL_Window
+	class TGLAPI Window
 	{
 	public:
-		const TGL_Color DefaultBackColor = 0xffffff;
+		const Color DefaultBackColor = 0xffffff;
 
-		TGL_Window();
-		~TGL_Window();
+		Window();
+		~Window();
 
-		void Open(int width, int height, const TGL_Color& backColor, bool show);
-		void Open(int width, int height, int sizeMult, const TGL_Color& backColor, bool show);
-		void Open(int width, int height, int widthMult, int heightMult, const TGL_Color& backColor, bool show);
+		void Open(int width, int height, const Color& backColor, bool show);
+		void Open(int width, int height, int sizeMult, const Color& backColor, bool show);
+		void Open(int width, int height, int widthMult, int heightMult, const Color& backColor, bool show);
 		void Close();
 		void WaitClose();
 		void Show();
 		void Hide();
 		void ClearBackground();
-		void ClearToColor(const TGL_Color& color);
+		void ClearToColor(const Color& color);
 		void Update();
 		bool IsOpen() const;
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		bool IsFullscreen() const;
 		void SetBordered(bool bordered);
-		void SetTitle(const TGL_String& title);
-		void SetIcon(const TGL_String& iconfile);
-		void SaveScreenshot(const TGL_String& file) const;
-		void SetBackColor(const TGL_Color& color);
-		TGL_Color GetBackColor() const;
-		void SetPixelRgb(int x, int y, TGL_Rgb rgb);
-		void SetPixel(int x, int y, const TGL_Color& color);
-		void FillRect(int x, int y, int w, int h, const TGL_Color& color);
-		TGL_Rgb GetPixelRgb(int x, int y);
-		TGL_Color GetPixel(int x, int y);
-		void DrawImage(TGL_Image* img, int x, int y);
+		void SetTitle(const String& title);
+		void SetIcon(const String& iconfile);
+		void SaveScreenshot(const String& file) const;
+		void SetBackColor(const Color& color);
+		Color GetBackColor() const;
+		void SetPixelRGB(int x, int y, RGB rgb);
+		void SetPixel(int x, int y, const Color& color);
+		void FillRect(int x, int y, int w, int h, const Color& color);
+		RGB GetPixelRGB(int x, int y);
+		Color GetPixel(int x, int y);
+		void DrawImage(Image* img, int x, int y);
 
 	private:
-		SDL_Window* Window = nullptr;
-		SDL_Renderer* Renderer = nullptr;
-		SDL_Texture* Texture = nullptr;
-		TGL_Rgb* Buffer = nullptr;
-		TGL_Color BackColor = 0x000000;
-		int BufferLength = 0;
-		int Width = 0;
-		int Height = 0;
-		bool IsCreated = false;
-		bool IsVisible = false;
-		TGL_String Title;
+		SDL_Window* window = nullptr;
+		SDL_Renderer* renderer = nullptr;
+		SDL_Texture* texture = nullptr;
+		RGB* buffer = nullptr;
+		Color backColor = 0x000000;
+		int bufferLength = 0;
+		int width = 0;
+		int height = 0;
+		bool isCreated = false;
+		bool isVisible = false;
+		String title;
 	};
 }
