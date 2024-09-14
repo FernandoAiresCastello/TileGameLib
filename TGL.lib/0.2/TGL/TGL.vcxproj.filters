@@ -17,6 +17,15 @@
     <ClCompile Include="src\TGL_Util.cpp">
       <Filter>UTIL</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_Rect.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Point.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Size.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -43,6 +52,15 @@
     </ClInclude>
     <ClInclude Include="src\TGL_Globals.h">
       <Filter>GLOBALS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Rect.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Point.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Size.h">
+      <Filter>UTIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

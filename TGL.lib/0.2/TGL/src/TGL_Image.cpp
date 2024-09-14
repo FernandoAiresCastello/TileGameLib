@@ -3,7 +3,7 @@
 
 namespace TGL
 {
-	Image::Image() : width(0), height(0), size(0), transparent(false), transparency()
+	Image::Image() : size(0, 0), pixelCount(0), transparent(false), transparency()
 	{
 	}
 
@@ -20,12 +20,11 @@ namespace TGL
 			return false;
 
 		const Uint8 bpp = img->format->BytesPerPixel;
-		width = img->w;
-		height = img->h;
-		size = width * height;
+		size = { img->w, img->h };
+		pixelCount = size.GetWidth() * size.GetHeight();
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
+		for (int y = 0; y < size.GetHeight(); y++) {
+			for (int x = 0; x < size.GetWidth(); x++) {
 				Uint8* pPixel = (Uint8*)img->pixels + y * img->pitch + x * bpp;
 				Uint32 PixelData = *(Uint32*)pPixel;
 				SDL_Color color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
@@ -48,19 +47,14 @@ namespace TGL
 		return true;
 	}
 
-	int Image::GetWidth() const
-	{
-		return width;
-	}
-
-	int Image::GetHeight() const
-	{
-		return height;
-	}
-
-	int Image::GetSize() const
+	Size Image::GetSize() const
 	{
 		return size;
+	}
+
+	int Image::GetPixelCount() const
+	{
+		return pixelCount;
 	}
 
 	bool Image::IsTransparent() const
@@ -84,9 +78,9 @@ namespace TGL
 		return pixels[i];
 	}
 
-	Color& Image::GetPixel(int x, int y)
+	Color& Image::GetPixel(const Point& point)
 	{
-		return pixels[y * width + x];
+		return pixels[point.GetY() * size.GetWidth() + point.GetX()];
 	}
 
 	List<Color>& Image::GetPixels()

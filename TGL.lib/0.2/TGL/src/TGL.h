@@ -7,3 +7,6 @@
 #include "TGL_Color.h"
 #include "TGL_Window.h"
 #include "TGL_Image.h"
+#include "TGL_Point.h"
+#include "TGL_Rect.h"
+#include "TGL_Size.h"

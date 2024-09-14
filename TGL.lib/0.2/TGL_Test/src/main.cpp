@@ -5,12 +5,13 @@ using namespace TGL;
 int main(int argc, char* argv[])
 {
 	Window wnd;
-	wnd.Open(320, 240, 1, 1, 0x101010, true);
+	wnd.Open(Size(640, 480), 0, 0x101010, true);
 	wnd.SetTitle("TGL Demo");
 
 	Image img;
 	img.Load("tileset.bmp");
-	wnd.DrawImage(&img, 0, 0);
+	wnd.DrawImageTile(&img, Rect(0, 0, 15, 15), Point(0, 0));
+	//wnd.DrawImage(&img, Point(0, 0));
 	wnd.WaitClose();
 
 	return 0;

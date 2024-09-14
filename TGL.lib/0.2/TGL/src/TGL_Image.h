@@ -3,6 +3,8 @@
 #include "TGL_String.h"
 #include "TGL_List.h"
 #include "TGL_Color.h"
+#include "TGL_Point.h"
+#include "TGL_Size.h"
 
 namespace TGL
 {
@@ -14,20 +16,18 @@ namespace TGL
 
 		bool Load(const String& filename);
 		bool Load(const String& filename, const Color& transparency);
-		int GetWidth() const;
-		int GetHeight() const;
-		int GetSize() const;
+		Size GetSize() const;
+		int GetPixelCount() const;
 		bool IsTransparent() const;
 		void SetTransparency(const Color& color);
 		Color& GetTransparency();
 		Color& GetPixel(int i);
-		Color& GetPixel(int x, int y);
+		Color& GetPixel(const Point& point);
 		List<Color>& GetPixels();
 
 	private:
-		int width;
-		int height;
-		int size;
+		Size size;
+		int pixelCount;
 		bool transparent;
 		Color transparency;
 		List<Color> pixels;
