@@ -26,6 +26,9 @@
     <ClCompile Include="src\TGL_Size.cpp">
       <Filter>UTIL</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_Graphics.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="src\TGL_Size.h">
       <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Graphics.h">
+      <Filter>GRAPHICS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

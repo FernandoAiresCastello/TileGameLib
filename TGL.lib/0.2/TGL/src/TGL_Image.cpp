@@ -1,4 +1,3 @@
-#include <SDL.h>
 #include "TGL_Image.h"
 
 namespace TGL

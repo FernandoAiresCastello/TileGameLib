@@ -1,5 +1,5 @@
 #include "TGL_Window.h"
-#include "TGL_Image.h"
+#include "TGL_Graphics.h"
 
 namespace TGL
 {
@@ -24,10 +24,9 @@ namespace TGL
 
 	void Window::Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show)
 	{
+		gr = std::make_shared<Graphics>(size, backColor);
+
 		this->size = size;
-		this->backColor = backColor;
-		bufferLength = sizeof(int) * size.GetWidth() * size.GetHeight();
-		buffer = new RGB[bufferLength];
 		isCreated = true;
 
 		widthMult++;
@@ -71,8 +70,6 @@ namespace TGL
 			SDL_DestroyWindow(window);
 			SDL_VideoQuit();
 
-			delete[] buffer;
-
 			isCreated = false;
 		}
 	}
@@ -112,14 +109,7 @@ namespace TGL
 
 	void Window::ClearBackground()
 	{
-		ClearToColor(backColor);
-	}
-
-	void Window::ClearToColor(const Color& color)
-	{
-		for (int y = 0; y < size.GetHeight(); y++)
-			for (int x = 0; x < size.GetWidth(); x++)
-				buffer[y * size.GetWidth() + x] = color.ToRGB();
+		gr->ClearToColor(gr->GetBackColor());
 	}
 
 	void Window::Update()
@@ -128,7 +118,7 @@ namespace TGL
 		static void* pixels;
 
 		SDL_LockTexture(texture, nullptr, &pixels, &pitch);
-		SDL_memcpy(pixels, buffer, bufferLength);
+		SDL_memcpy(pixels, gr->GetBuffer(), gr->GetBufferLength());
 		SDL_UnlockTexture(texture);
 		SDL_RenderCopy(renderer, texture, nullptr, nullptr);
 		SDL_RenderPresent(renderer);
@@ -193,68 +183,8 @@ namespace TGL
 		SDL_FreeSurface(&icon);
 	}
 
-	void Window::SaveScreenshot(const String& file) const
+	Ptr<Graphics> Window::GetGraphics()
 	{
-		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, size.GetWidth(), size.GetHeight(), 32, SDL_PIXELFORMAT_ARGB8888);
-		SDL_memcpy(surface->pixels, buffer, bufferLength);
-		SDL_SaveBMP(surface, file.Cstr());
-		SDL_FreeSurface(surface);
-	}
-
-	void Window::SetBackColor(const Color& color)
-	{
-		backColor = color;
-	}
-
-	Color Window::GetBackColor() const
-	{
-		return backColor;
-	}
-
-	void Window::SetPixel(const Point& pos, const Color& color)
-	{
-		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < size.GetWidth() && pos.GetY() < size.GetHeight())
-			buffer[pos.GetY() * size.GetWidth() + pos.GetX()] = color.ToRGB();
-	}
-
-	void Window::FillRect(const Rect& rect, const Color& color)
-	{
-		for (int iy = rect.GetY1(); iy <= rect.GetY2(); iy++) {
-			for (int ix = rect.GetX1(); ix <= rect.GetX2(); ix++) {
-				if (ix >= 0 && iy >= 0 && ix < size.GetWidth() && iy < size.GetHeight()) {
-					buffer[iy * size.GetWidth() + ix] = color.ToRGB();
-				}
-			}
-		}
-	}
-
-	Color Window::GetPixel(int x, int y)
-	{
-		return Color(buffer[y * size.GetWidth() + x]);
-	}
-
-	void Window::DrawImage(Image* img, const Point& pos)
-	{
-		for (int py = 0; py < img->GetSize().GetHeight(); py++) {
-			for (int px = 0; px < img->GetSize().GetWidth(); px++) {
-				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img->GetPixel(Point(px, py)));
-			}
-		}
-	}
-
-	void Window::DrawImageTile(Image* img, const Rect& imgRect, const Point& dest)
-	{
-		int destX = dest.GetX();
-		int destY = dest.GetY();
-
-		const int initialX = destX;
-		for (int py = imgRect.GetY1(); py <= imgRect.GetY2(); py++) {
-			for (int px = imgRect.GetX1(); px <= imgRect.GetX2(); px++) {
-				SetPixel(Point(destX, destY), img->GetPixel(Point(px, py)));
-				destX++;
-			}
-			destX = initialX;
-			destY++;
-		}
+		return gr;
 	}
 }
