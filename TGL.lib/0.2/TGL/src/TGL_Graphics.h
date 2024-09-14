@@ -14,15 +14,13 @@ namespace TGL
 	class TGLAPI Graphics
 	{
 	public:
-		Graphics(const Size& size, const Color& backColor);
+		Graphics(const Size& size);
 		~Graphics();
 
 		RGB* GetBuffer();
 		int GetBufferLength() const;
 		void ClearToColor(const Color& color);
 		void SaveScreenshot(const String& file) const;
-		void SetBackColor(const Color& color);
-		Color GetBackColor() const;
 		Size GetSize() const;
 		Rect GetRect() const;
 		void SetPixel(const Point& pos, const Color& color);
@@ -35,6 +33,5 @@ namespace TGL
 		Size size = { 0, 0 };
 		RGB* buffer = nullptr;
 		int bufferLength = 0;
-		Color backColor = 0xffffff;
 	};
 }

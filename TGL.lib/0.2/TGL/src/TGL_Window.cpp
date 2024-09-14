@@ -24,9 +24,10 @@ namespace TGL
 
 	void Window::Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show)
 	{
-		gr = std::make_shared<Graphics>(size, backColor);
+		gr = std::make_shared<Graphics>(size);
 
 		this->size = size;
+		this->backColor = backColor;
 		isCreated = true;
 
 		widthMult++;
@@ -109,7 +110,7 @@ namespace TGL
 
 	void Window::ClearBackground()
 	{
-		gr->ClearToColor(gr->GetBackColor());
+		gr->ClearToColor(backColor);
 	}
 
 	void Window::Update()
@@ -127,6 +128,16 @@ namespace TGL
 	bool Window::IsOpen() const
 	{
 		return isCreated;
+	}
+
+	void Window::SetBackColor(const Color& color)
+	{
+		backColor = color;
+	}
+
+	Color Window::GetBackColor() const
+	{
+		return backColor;
 	}
 
 	void Window::SetFullscreen(bool full)

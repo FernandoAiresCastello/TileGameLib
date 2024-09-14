@@ -3,10 +3,9 @@
 
 namespace TGL
 {
-	Graphics::Graphics(const Size& size, const Color& backColor)
+	Graphics::Graphics(const Size& size)
 	{
 		this->size = size;
-		this->backColor = backColor;
 		bufferLength = sizeof(int) * size.GetWidth() * size.GetHeight();
 		buffer = new RGB[bufferLength];
 	}
@@ -39,16 +38,6 @@ namespace TGL
 		SDL_memcpy(surface->pixels, buffer, bufferLength);
 		SDL_SaveBMP(surface, file.Cstr());
 		SDL_FreeSurface(surface);
-	}
-
-	void Graphics::SetBackColor(const Color& color)
-	{
-		backColor = color;
-	}
-
-	Color Graphics::GetBackColor() const
-	{
-		return backColor;
 	}
 
 	Size Graphics::GetSize() const
