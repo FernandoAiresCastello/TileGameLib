@@ -23,11 +23,13 @@
     <ClCompile Include="src\TGL_Color.cpp" />
     <ClCompile Include="src\TGL_Graphics.cpp" />
     <ClCompile Include="src\TGL_Image.cpp" />
+    <ClCompile Include="src\TGL_Sprite.cpp" />
     <ClCompile Include="src\TGL_PixelBlock.cpp" />
     <ClCompile Include="src\TGL_Point.cpp" />
     <ClCompile Include="src\TGL_Rect.cpp" />
     <ClCompile Include="src\TGL_Size.cpp" />
     <ClCompile Include="src\TGL_String.cpp" />
+    <ClCompile Include="src\TGL_TiledImage.cpp" />
     <ClCompile Include="src\TGL_Util.cpp" />
     <ClCompile Include="src\TGL_Window.cpp" />
   </ItemGroup>
@@ -37,6 +39,7 @@
     <ClInclude Include="src\TGL_Globals.h" />
     <ClInclude Include="src\TGL_Graphics.h" />
     <ClInclude Include="src\TGL_Image.h" />
+    <ClInclude Include="src\TGL_Sprite.h" />
     <ClInclude Include="src\TGL_List.h" />
     <ClInclude Include="src\TGL_PixelBlock.h" />
     <ClInclude Include="src\TGL_Point.h" />
@@ -44,6 +47,7 @@
     <ClInclude Include="src\TGL_Rgb.h" />
     <ClInclude Include="src\TGL_Size.h" />
     <ClInclude Include="src\TGL_String.h" />
+    <ClInclude Include="src\TGL_TiledImage.h" />
     <ClInclude Include="src\TGL_Util.h" />
     <ClInclude Include="src\TGL_Window.h" />
   </ItemGroup>

@@ -113,16 +113,16 @@ namespace TGL
 		}
 	}
 
-	void Graphics::DrawImage(Image* img, const Point& pos)
+	void Graphics::DrawImage(const Image& img, const Point& pos)
 	{
-		for (int py = 0; py < img->GetSize().GetHeight(); py++) {
-			for (int px = 0; px < img->GetSize().GetWidth(); px++) {
-				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img->GetPixel(Point(px, py)));
+		for (int py = 0; py < img.GetSize().GetHeight(); py++) {
+			for (int px = 0; px < img.GetSize().GetWidth(); px++) {
+				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img.GetPixel(Point(px, py)));
 			}
 		}
 	}
 
-	void Graphics::DrawImageTile(Image* img, const Rect& imgRect, const Point& dest)
+	void Graphics::DrawImageTile(const Image& img, const Rect& imgRect, const Point& dest)
 	{
 		int destX = dest.GetX();
 		int destY = dest.GetY();
@@ -130,7 +130,7 @@ namespace TGL
 		const int initialX = destX;
 		for (int py = imgRect.GetY1(); py <= imgRect.GetY2(); py++) {
 			for (int px = imgRect.GetX1(); px <= imgRect.GetX2(); px++) {
-				SetPixel(Point(destX, destY), img->GetPixel(Point(px, py)));
+				SetPixel(Point(destX, destY), img.GetPixel(Point(px, py)));
 				destX++;
 			}
 			destX = initialX;

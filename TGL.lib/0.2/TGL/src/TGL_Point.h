@@ -13,6 +13,8 @@ namespace TGL
 		inline int GetX() const;
 		inline int GetY() const;
 
+		Point Move(int dx, int dy);
+
 	private:
 		int x = 0;
 		int y = 0;

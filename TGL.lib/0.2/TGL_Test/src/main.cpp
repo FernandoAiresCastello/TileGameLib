@@ -10,20 +10,11 @@ int main(int argc, char* argv[])
 
 	Ptr<Graphics> gr = wnd.GetGraphics();
 
-	Image img;
+	TiledImage img;
 	img.Load("tileset.bmp");
-
-	String block =
-		"11111111"
-		"10000001"
-		"10111101"
-		"10100101"
-		"10100101"
-		"10111101"
-		"10000001"
-		"11111111";
-
-	gr->DrawPixelBlock(block, Point(1, 1), 0xff0000, 0xffff00, false, false);
+	img.GenerateTiles(Size(16, 16));
+	
+	gr->DrawImage(img.GetTile(img.GetTileCount() - 1), Point(100, 100));
 
 	wnd.WaitClose();
 

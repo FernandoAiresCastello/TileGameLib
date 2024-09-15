@@ -6,6 +6,12 @@ namespace TGL
 	{
 	}
 
+	Image::Image(const Size& size) : size(size), pixelCount(size.GetWidth() * size.GetHeight()), transparent(false), transparency()
+	{
+		for (int i = 0; i < pixelCount; i++)
+			pixels.emplace_back(0xffffff);
+	}
+
 	Image::~Image()
 	{
 	}
@@ -28,7 +34,7 @@ namespace TGL
 				Uint32 PixelData = *(Uint32*)pPixel;
 				SDL_Color color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
 				SDL_GetRGB(PixelData, img->format, &color.r, &color.g, &color.b);
-				pixels.push_back(Color(color.r, color.g, color.b));
+				pixels.emplace_back(Color(color.r, color.g, color.b));
 			}
 		}
 
@@ -67,17 +73,17 @@ namespace TGL
 		transparency = color;
 	}
 
-	Color& Image::GetTransparency()
+	const Color& Image::GetTransparency() const
 	{
 		return transparency;
 	}
 
-	Color& Image::GetPixel(int i)
+	const Color& Image::GetPixel(int i) const
 	{
 		return pixels[i];
 	}
 
-	Color& Image::GetPixel(const Point& point)
+	const Color& Image::GetPixel(const Point& point) const
 	{
 		return pixels[point.GetY() * size.GetWidth() + point.GetX()];
 	}
@@ -85,5 +91,15 @@ namespace TGL
 	List<Color>& Image::GetPixels()
 	{
 		return pixels;
+	}
+
+	void Image::SetPixel(const Color& color, int i)
+	{
+		pixels[i] = color;
+	}
+
+	void Image::SetPixel(const Color& color, const Point& point)
+	{
+		pixels[point.GetY() * size.GetWidth() + point.GetX()] = color;
 	}
 }

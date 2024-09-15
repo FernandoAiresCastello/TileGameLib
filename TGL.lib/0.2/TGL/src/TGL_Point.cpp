@@ -23,4 +23,9 @@ namespace TGL
 	{
 		return y;
 	}
+
+	Point Point::Move(int dx, int dy)
+	{
+		return Point(x + dx, y + dy);
+	}
 }
