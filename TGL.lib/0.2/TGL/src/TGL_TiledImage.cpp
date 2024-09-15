@@ -42,7 +42,10 @@ namespace TGL
 
     Image* TiledImage::GetTile(int index)
     {
-        return &tiles[index];
+        if (index >= 0 && index < tiles.size())
+            return &tiles[index];
+
+        return nullptr;
     }
 
     int TiledImage::GetTileCount() const

@@ -85,6 +85,9 @@ namespace TGL
 
 	void Graphics::DrawPixelBlock(PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
 	{
+		if (!block)
+			return;
+
 		int x = pos.GetX();
 		int y = pos.GetY();
 
@@ -115,6 +118,9 @@ namespace TGL
 
 	void Graphics::DrawImage(Image* img, const Point& pos)
 	{
+		if (!img)
+			return;
+
 		for (int py = 0; py < img->GetSize().GetHeight(); py++) {
 			for (int px = 0; px < img->GetSize().GetWidth(); px++) {
 				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img->GetPixel(Point(px, py)));
@@ -124,6 +130,9 @@ namespace TGL
 
 	void Graphics::DrawImageTile(Image* img, const Rect& imgRect, const Point& dest)
 	{
+		if (!img)
+			return;
+
 		int destX = dest.GetX();
 		int destY = dest.GetY();
 

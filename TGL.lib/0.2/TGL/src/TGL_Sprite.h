@@ -3,11 +3,12 @@
 #include "TGL_Size.h"
 #include "TGL_Point.h"
 #include "TGL_Rect.h"
-#include "TGL_TiledImage.h"
+#include "TGL_List.h"
 
 namespace TGL
 {
 	class Graphics;
+	class TiledImage;
 
 	class TGLAPI Sprite
 	{
@@ -22,7 +23,7 @@ namespace TGL
 		Point GetPos() const;
 		void SetVisible(bool visible);
 		bool IsVisible() const;
-		void SetFrameSequence(const List<int> frames);
+		void SetFrameSequence(const List<int>& frames);
 		void SetFrame(int index);
 		void NextFrame();
 		void PrevFrame();

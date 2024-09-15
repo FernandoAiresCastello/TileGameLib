@@ -38,6 +38,9 @@
     <ClCompile Include="src\TGL_TiledImage.cpp">
       <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_TileMap.cpp">
+      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="src\TGL_TiledImage.h">
       <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_TileMap.h">
+      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

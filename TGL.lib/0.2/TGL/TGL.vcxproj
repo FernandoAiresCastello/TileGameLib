@@ -30,6 +30,7 @@
     <ClCompile Include="src\TGL_Size.cpp" />
     <ClCompile Include="src\TGL_String.cpp" />
     <ClCompile Include="src\TGL_TiledImage.cpp" />
+    <ClCompile Include="src\TGL_TileMap.cpp" />
     <ClCompile Include="src\TGL_Util.cpp" />
     <ClCompile Include="src\TGL_Window.cpp" />
   </ItemGroup>
@@ -48,6 +49,7 @@
     <ClInclude Include="src\TGL_Size.h" />
     <ClInclude Include="src\TGL_String.h" />
     <ClInclude Include="src\TGL_TiledImage.h" />
+    <ClInclude Include="src\TGL_TileMap.h" />
     <ClInclude Include="src\TGL_Util.h" />
     <ClInclude Include="src\TGL_Window.h" />
   </ItemGroup>

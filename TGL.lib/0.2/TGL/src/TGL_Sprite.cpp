@@ -1,5 +1,6 @@
 #include "TGL_Sprite.h"
 #include "TGL_Graphics.h"
+#include "TGL_TiledImage.h"
 
 namespace TGL
 {
@@ -48,7 +49,7 @@ namespace TGL
 		return visible;
 	}
 
-	void Sprite::SetFrameSequence(const List<int> frames)
+	void Sprite::SetFrameSequence(const List<int>& frames)
 	{
 		this->frames = frames;
 	}
@@ -79,6 +80,7 @@ namespace TGL
 
 	void Sprite::Draw(Graphics* gr) const
 	{
-		gr->DrawImage(tileset->GetTile(frames[currentFrame % frames.size()]), pos);
+		if (visible)
+			gr->DrawImage(tileset->GetTile(frames[currentFrame]), pos);
 	}
 }

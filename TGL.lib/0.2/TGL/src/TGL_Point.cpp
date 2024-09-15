@@ -24,7 +24,7 @@ namespace TGL
 		return y;
 	}
 
-	Point Point::Move(int dx, int dy)
+	Point Point::Move(int dx, int dy) const
 	{
 		return Point(x + dx, y + dy);
 	}
