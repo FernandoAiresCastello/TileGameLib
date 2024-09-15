@@ -28,9 +28,9 @@ namespace TGL
 		void FillRect(const Rect& rect, const Color& color);
 		void SetClip(const Rect& rect);
 		void ResetClip();
-		void DrawPixelBlock(const PixelBlock& block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
-		void DrawImage(const Image& img, const Point& pos);
-		void DrawImageTile(const Image& img, const Rect& imgRect, const Point& dest);
+		void DrawPixelBlock(PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
+		void DrawImage(Image* img, const Point& pos);
+		void DrawImageTile(Image* img, const Rect& imgRect, const Point& dest);
 
 	private:
 		RGB* buffer = nullptr;

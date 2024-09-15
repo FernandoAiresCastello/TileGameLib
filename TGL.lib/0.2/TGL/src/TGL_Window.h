@@ -36,7 +36,7 @@ namespace TGL
 		Rect GetRect() const;
 		void SetTitle(const String& title);
 		void SetIcon(const String& iconfile);
-		Ptr<Graphics> GetGraphics();
+		Graphics* GetGraphics();
 
 	private:
 		SDL_Window* window = nullptr;

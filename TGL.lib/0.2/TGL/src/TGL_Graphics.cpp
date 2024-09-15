@@ -48,7 +48,7 @@ namespace TGL
 
 	Rect Graphics::GetRect() const
 	{
-		return Rect(0, 0, size.GetWidth() - 1, size.GetHeight() - 1);
+		return size.GetRect();
 	}
 
 	void Graphics::SetPixel(const Point& pos, const Color& color)
@@ -80,10 +80,10 @@ namespace TGL
 
 	void Graphics::ResetClip()
 	{
-		clip = { 0, 0, size.GetWidth() - 1, size.GetHeight() - 1 };
+		clip = size.GetRect();
 	}
 
-	void Graphics::DrawPixelBlock(const PixelBlock& block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	void Graphics::DrawPixelBlock(PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
 	{
 		int x = pos.GetX();
 		int y = pos.GetY();
@@ -99,12 +99,12 @@ namespace TGL
 
 		for (int i = 0; i < PixelBlock::Length; i++) {
 			if (hideColor0) {
-				if (block.GetPixels()[i] == PixelBlock::Color1) {
+				if (block->GetPixels()[i] == PixelBlock::Color1) {
 					SetPixel(Point(px, py), color1);
 				}
 			}
 			else {
-				SetPixel(Point(px, py), (block.GetPixels()[i] == PixelBlock::Color1 ? color1 : color0));
+				SetPixel(Point(px, py), (block->GetPixels()[i] == PixelBlock::Color1 ? color1 : color0));
 			}
 			if (++px >= max_x) {
 				px = x;
@@ -113,16 +113,16 @@ namespace TGL
 		}
 	}
 
-	void Graphics::DrawImage(const Image& img, const Point& pos)
+	void Graphics::DrawImage(Image* img, const Point& pos)
 	{
-		for (int py = 0; py < img.GetSize().GetHeight(); py++) {
-			for (int px = 0; px < img.GetSize().GetWidth(); px++) {
-				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img.GetPixel(Point(px, py)));
+		for (int py = 0; py < img->GetSize().GetHeight(); py++) {
+			for (int px = 0; px < img->GetSize().GetWidth(); px++) {
+				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img->GetPixel(Point(px, py)));
 			}
 		}
 	}
 
-	void Graphics::DrawImageTile(const Image& img, const Rect& imgRect, const Point& dest)
+	void Graphics::DrawImageTile(Image* img, const Rect& imgRect, const Point& dest)
 	{
 		int destX = dest.GetX();
 		int destY = dest.GetY();
@@ -130,7 +130,7 @@ namespace TGL
 		const int initialX = destX;
 		for (int py = imgRect.GetY1(); py <= imgRect.GetY2(); py++) {
 			for (int px = imgRect.GetX1(); px <= imgRect.GetX2(); px++) {
-				SetPixel(Point(destX, destY), img.GetPixel(Point(px, py)));
+				SetPixel(Point(destX, destY), img->GetPixel(Point(px, py)));
 				destX++;
 			}
 			destX = initialX;

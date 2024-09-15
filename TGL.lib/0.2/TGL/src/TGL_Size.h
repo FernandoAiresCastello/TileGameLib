@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Globals.h"
+#include "TGL_Rect.h"
 
 namespace TGL
 {
@@ -12,6 +13,7 @@ namespace TGL
 
 		inline int GetWidth() const;
 		inline int GetHeight() const;
+		inline Rect GetRect() const;
 
 	private:
 		int width = 0;

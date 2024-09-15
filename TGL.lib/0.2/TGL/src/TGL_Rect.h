@@ -19,6 +19,7 @@ namespace TGL
 		inline int GetX2() const;
 		inline int GetY2() const;
 		bool Contains(const Point& point) const;
+		bool Intersects(const Rect& rect) const;
 
 	private:
 		int x1 = 0;

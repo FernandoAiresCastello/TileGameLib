@@ -54,4 +54,15 @@ namespace TGL
 			point.GetX() >= x1 && point.GetX() <= x2 &&
 			point.GetY() >= y1 && point.GetY() <= y2;
 	}
+
+	bool Rect::Intersects(const Rect& rect) const
+	{
+		if (rect.x2 <= x1 || x2 <= rect.x1)
+			return false;
+
+		if (rect.y2 <= y1 || y2 <= rect.y1)
+			return false;
+
+		return true;
+	}
 }

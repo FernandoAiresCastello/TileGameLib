@@ -23,4 +23,9 @@ namespace TGL
 	{
 		return height;
 	}
+
+	inline Rect Size::GetRect() const
+	{
+		return Rect(0, 0, width - 1, height - 1);
+	}
 }

@@ -194,8 +194,8 @@ namespace TGL
 		SDL_FreeSurface(&icon);
 	}
 
-	Ptr<Graphics> Window::GetGraphics()
+	Graphics* Window::GetGraphics()
 	{
-		return gr;
+		return gr.get();
 	}
 }

@@ -1,8 +1,9 @@
 #include "TGL_Sprite.h"
+#include "TGL_Graphics.h"
 
 namespace TGL
 {
-	Sprite::Sprite() : size(0, 0), pos(0, 0), visible(true)
+	Sprite::Sprite() : tileset(nullptr), size(0, 0), collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
 	{
 	}
 
@@ -10,9 +11,11 @@ namespace TGL
 	{
 	}
 
-	void Sprite::SetSize(const Size& size)
+	void Sprite::SetTileset(TiledImage* img)
 	{
-		this->size = size;
+		tileset = img;
+		size = img->GetTileSize();
+		collisionRect = img->GetTileSize().GetRect();
 	}
 
 	void Sprite::SetPos(const Point& pos)
@@ -43,5 +46,39 @@ namespace TGL
 	bool Sprite::IsVisible() const
 	{
 		return visible;
+	}
+
+	void Sprite::SetFrameSequence(const List<int> frames)
+	{
+		this->frames = frames;
+	}
+
+	void Sprite::SetFrame(int index)
+	{
+		currentFrame = index;
+	}
+
+	void Sprite::NextFrame()
+	{
+		currentFrame++;
+		if (currentFrame >= frames.size())
+			currentFrame = 0;
+	}
+
+	void Sprite::PrevFrame()
+	{
+		currentFrame--;
+		if (currentFrame < 0)
+			currentFrame = frames.size() - 1;
+	}
+
+	bool Sprite::CollidesWith(Sprite* other)
+	{
+		return collisionRect.Intersects(other->collisionRect);
+	}
+
+	void Sprite::Draw(Graphics* gr) const
+	{
+		gr->DrawImage(tileset->GetTile(frames[currentFrame % frames.size()]), pos);
 	}
 }

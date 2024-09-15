@@ -40,13 +40,18 @@ namespace TGL
         }
 	}
 
-    const Image& TiledImage::GetTile(int index) const
+    Image* TiledImage::GetTile(int index)
     {
-        return tiles[index];
+        return &tiles[index];
     }
 
     int TiledImage::GetTileCount() const
     {
         return tiles.size();
+    }
+
+    const Size& TiledImage::GetTileSize() const
+    {
+        return tileSize;
     }
 }

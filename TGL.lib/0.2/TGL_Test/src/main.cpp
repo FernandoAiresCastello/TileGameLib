@@ -8,13 +8,17 @@ int main(int argc, char* argv[])
 	wnd.Open(Size(360, 200), 1, 0xffffff, true);
 	wnd.SetTitle("TGL Demo");
 
-	Ptr<Graphics> gr = wnd.GetGraphics();
+	Graphics* gr = wnd.GetGraphics();
 
 	TiledImage img;
 	img.Load("tileset.bmp");
 	img.GenerateTiles(Size(16, 16));
 	
-	gr->DrawImage(img.GetTile(img.GetTileCount() - 1), Point(100, 100));
+	Sprite spr;
+	spr.SetTileset(&img);
+	spr.SetFrameSequence({0, 7, 3});
+	spr.NextFrame();
+	spr.Draw(gr);
 
 	wnd.WaitClose();
 

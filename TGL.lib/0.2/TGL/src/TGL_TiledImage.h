@@ -13,8 +13,9 @@ namespace TGL
 		~TiledImage();
 
 		void GenerateTiles(const Size& tileSize);
-		const Image& GetTile(int index) const;
+		Image* GetTile(int index);
 		int GetTileCount() const;
+		const Size& GetTileSize() const;
 
 	private:
 		Size tileSize;
