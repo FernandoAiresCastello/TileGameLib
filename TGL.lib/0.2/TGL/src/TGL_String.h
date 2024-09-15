@@ -66,6 +66,7 @@ namespace TGL
 		List<String> SplitChunks(int chunk_size) const;
 		String Substr(int first) const;
 		String Substr(int first, int last) const;
+		String Truncate(int max_length) const;
 		String Replace(const String& original, const String& replacement) const;
 		String Replace(const char& original, const char& replacement) const;
 		String RemoveAll(const String& chars) const;

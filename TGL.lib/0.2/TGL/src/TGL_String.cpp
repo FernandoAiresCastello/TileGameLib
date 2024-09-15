@@ -290,6 +290,14 @@ namespace TGL
 		return value.substr(first, last - first);
 	}
 
+	String String::Truncate(int max_length) const
+	{
+		if (value.length() > max_length)
+			return value.substr(0, max_length);
+		
+		return value;
+	}
+
 	String String::Replace(const String& original, const String& replacement) const
 	{
 		if (original.Empty())

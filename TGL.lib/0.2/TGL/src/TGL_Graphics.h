@@ -6,6 +6,7 @@
 #include "TGL_Rect.h"
 #include "TGL_Point.h"
 #include "TGL_Size.h"
+#include "TGL_PixelBlock.h"
 
 namespace TGL
 {
@@ -24,14 +25,18 @@ namespace TGL
 		Size GetSize() const;
 		Rect GetRect() const;
 		void SetPixel(const Point& pos, const Color& color);
-		void FillRect(const Rect& rect, const Color& color);
 		Color GetPixel(int x, int y);
+		void FillRect(const Rect& rect, const Color& color);
+		void SetClip(const Rect& rect);
+		void ResetClip();
+		void DrawPixelBlock(const PixelBlock& block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
 		void DrawImage(Image* img, const Point& pos);
 		void DrawImageTile(Image* img, const Rect& imgRect, const Point& dest);
 
 	private:
-		Size size = { 0, 0 };
 		RGB* buffer = nullptr;
 		int bufferLength = 0;
+		Size size = { 0, 0 };
+		Rect clip = { 0, 0, 0, 0 };
 	};
 }

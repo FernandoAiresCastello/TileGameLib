@@ -12,3 +12,4 @@
 #include "TGL_Point.h"
 #include "TGL_Rect.h"
 #include "TGL_Size.h"
+#include "TGL_PixelBlock.h"

@@ -29,6 +29,9 @@
     <ClCompile Include="src\TGL_Graphics.cpp">
       <Filter>GRAPHICS</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_PixelBlock.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -66,6 +69,9 @@
       <Filter>UTIL</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Graphics.h">
+      <Filter>GRAPHICS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_PixelBlock.h">
       <Filter>GRAPHICS</Filter>
     </ClInclude>
   </ItemGroup>

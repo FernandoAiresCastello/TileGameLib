@@ -18,6 +18,7 @@ namespace TGL
 		inline int GetY1() const;
 		inline int GetX2() const;
 		inline int GetY2() const;
+		bool Contains(const Point& point) const;
 
 	private:
 		int x1 = 0;

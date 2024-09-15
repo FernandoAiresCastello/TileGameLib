@@ -47,4 +47,11 @@ namespace TGL
 	{
 		return y2;
 	}
+
+	bool Rect::Contains(const Point& point) const
+	{
+		return
+			point.GetX() >= x1 && point.GetX() <= x2 &&
+			point.GetY() >= y1 && point.GetY() <= y2;
+	}
 }
