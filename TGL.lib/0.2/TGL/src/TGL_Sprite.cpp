@@ -80,7 +80,10 @@ namespace TGL
 
 	void Sprite::Draw(Graphics* gr) const
 	{
-		if (visible)
-			gr->DrawImage(tileset->GetTile(frames[currentFrame]), pos);
+		const int& frame = frames[currentFrame];
+
+		if (visible && frame > 0) {
+			gr->DrawImage(tileset->GetTile(frame), pos);
+		}
 	}
 }

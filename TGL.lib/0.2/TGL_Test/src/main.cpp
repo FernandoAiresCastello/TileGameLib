@@ -5,7 +5,7 @@ using namespace TGL;
 int main(int argc, char* argv[])
 {
 	Window wnd;
-	wnd.Open(Size(360, 200), 1, 0xffffff, true);
+	wnd.Open(Size(360, 200), 1, 0x201080, true);
 	wnd.SetTitle("TGL Demo");
 
 	Graphics* gr = wnd.GetGraphics();
@@ -13,12 +13,14 @@ int main(int argc, char* argv[])
 	TiledImage img;
 	img.Load("tileset.bmp");
 	img.GenerateTiles(Size(16, 16));
-	
-	Sprite spr;
-	spr.SetTileset(&img);
-	spr.SetFrameSequence({0, 7, 3});
-	spr.NextFrame();
-	spr.Draw(gr);
+
+	TileMap map;
+	map.SetTileset(&img);
+	map.SetSize(Size(21, 11));
+	map.SetPos(Point(11, 11));
+	map.Fill(18);
+	map.SetTileIndex(Point(0, 0), 3);
+	map.Draw(gr);
 
 	wnd.WaitClose();
 

@@ -42,8 +42,8 @@ namespace TGL
 
     Image* TiledImage::GetTile(int index)
     {
-        if (index >= 0 && index < tiles.size())
-            return &tiles[index];
+        if (index > 0 && index <= tiles.size())
+            return &tiles[index - 1];
 
         return nullptr;
     }
