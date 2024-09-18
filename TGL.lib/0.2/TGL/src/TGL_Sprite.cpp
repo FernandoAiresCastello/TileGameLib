@@ -1,10 +1,11 @@
 #include "TGL_Sprite.h"
 #include "TGL_Graphics.h"
+#include "TGL_Image.h"
 #include "TGL_TiledImage.h"
 
 namespace TGL
 {
-	Sprite::Sprite() : tileset(nullptr), size(0, 0), collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
+	Sprite::Sprite() : tileset(nullptr), singleImage(nullptr), size(0, 0), collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
 	{
 	}
 
@@ -17,6 +18,17 @@ namespace TGL
 		tileset = img;
 		size = img->GetTileSize();
 		collisionRect = img->GetTileSize().GetRect();
+
+		singleImage = nullptr;
+	}
+
+	void Sprite::SetSingleImage(Image* img)
+	{
+		singleImage = img;
+		size = img->GetSize();
+		collisionRect = img->GetSize().GetRect();
+
+		tileset = nullptr;
 	}
 
 	void Sprite::SetPos(const Point& pos)
@@ -56,7 +68,8 @@ namespace TGL
 
 	void Sprite::SetFrame(int index)
 	{
-		currentFrame = index;
+		if (index >= 0 && index < frames.size())
+			currentFrame = index;
 	}
 
 	void Sprite::NextFrame()
@@ -80,10 +93,19 @@ namespace TGL
 
 	void Sprite::Draw(Graphics* gr) const
 	{
-		const int& frame = frames[currentFrame];
+		if (!visible)
+			return;
 
-		if (visible && frame > 0) {
-			gr->DrawImage(tileset->GetTile(frame), pos);
+		if (tileset) {
+			if (frames.empty())
+				return;
+
+			const int& frame = frames[currentFrame];
+			if (frame > 0)
+				gr->DrawImage(tileset->GetTile(frame), pos);
+		}
+		else if (singleImage) {
+			gr->DrawImage(singleImage, pos);
 		}
 	}
 }

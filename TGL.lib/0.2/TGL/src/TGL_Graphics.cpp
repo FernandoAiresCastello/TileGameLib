@@ -123,7 +123,11 @@ namespace TGL
 
 		for (int py = 0; py < img->GetSize().GetHeight(); py++) {
 			for (int px = 0; px < img->GetSize().GetWidth(); px++) {
-				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), img->GetPixel(Point(px, py)));
+				const Color& color = img->GetPixel(Point(px, py));
+				if (img->IsTransparent() && img->GetTransparency() == color)
+					continue;
+
+				SetPixel(Point(pos.GetX() + px, pos.GetY() + py), color);
 			}
 		}
 	}
@@ -139,6 +143,11 @@ namespace TGL
 		const int initialX = destX;
 		for (int py = imgRect.GetY1(); py <= imgRect.GetY2(); py++) {
 			for (int px = imgRect.GetX1(); px <= imgRect.GetX2(); px++) {
+				const Color& color = img->GetPixel(Point(px, py));
+				if (img->IsTransparent() && img->GetTransparency() == color) {
+					destX++;
+					continue;
+				}
 				SetPixel(Point(destX, destY), img->GetPixel(Point(px, py)));
 				destX++;
 			}

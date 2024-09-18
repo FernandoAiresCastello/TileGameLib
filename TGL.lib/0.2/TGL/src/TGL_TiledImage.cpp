@@ -12,6 +12,9 @@ namespace TGL
 
 	void TiledImage::GenerateTiles(const Size& tileSize)
 	{
+        if (tileSize.GetWidth() <= 0 || tileSize.GetHeight() <= 0)
+            return;
+
         this->tileSize = tileSize;
 		tiles.clear();
 
@@ -27,7 +30,8 @@ namespace TGL
                 int currentTileHeight = std::min(tileHeight, height - y);
 
                 Image tile(Size(currentTileWidth, currentTileHeight));
-                tile.SetTransparency(transparency);
+                if (transparent)
+                    tile.SetTransparency(transparency);
 
                 for (int ty = 0; ty < currentTileHeight; ++ty) {
                     for (int tx = 0; tx < currentTileWidth; ++tx) {

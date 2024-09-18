@@ -8,6 +8,7 @@
 namespace TGL
 {
 	class Graphics;
+	class Image;
 	class TiledImage;
 
 	class TGLAPI Sprite
@@ -17,6 +18,7 @@ namespace TGL
 		~Sprite();
 
 		void SetTileset(TiledImage* img);
+		void SetSingleImage(Image* img);
 		void SetPos(const Point& pos);
 		void Move(int dx, int dy);
 		Size GetSize() const;
@@ -32,6 +34,7 @@ namespace TGL
 
 	protected:
 		TiledImage* tileset;
+		Image* singleImage;
 		Size size;
 		Rect collisionRect;
 		Point pos;
