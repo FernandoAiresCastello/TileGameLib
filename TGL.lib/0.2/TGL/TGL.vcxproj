@@ -25,7 +25,7 @@
     <ClCompile Include="src\TGL_Graphics.cpp" />
     <ClCompile Include="src\TGL_Image.cpp" />
     <ClCompile Include="src\TGL_Sprite.cpp" />
-    <ClCompile Include="src\TGL_PixelBlock.cpp" />
+    <ClCompile Include="src\TGL_BitPattern.cpp" />
     <ClCompile Include="src\TGL_Point.cpp" />
     <ClCompile Include="src\TGL_Rect.cpp" />
     <ClCompile Include="src\TGL_Size.cpp" />
@@ -45,7 +45,7 @@
     <ClInclude Include="src\TGL_Index.h" />
     <ClInclude Include="src\TGL_Sprite.h" />
     <ClInclude Include="src\TGL_List.h" />
-    <ClInclude Include="src\TGL_PixelBlock.h" />
+    <ClInclude Include="src\TGL_BitPattern.h" />
     <ClInclude Include="src\TGL_Point.h" />
     <ClInclude Include="src\TGL_Rect.h" />
     <ClInclude Include="src\TGL_Rgb.h" />

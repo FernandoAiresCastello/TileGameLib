@@ -29,7 +29,7 @@
     <ClCompile Include="src\TGL_Graphics.cpp">
       <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
-    <ClCompile Include="src\TGL_PixelBlock.cpp">
+    <ClCompile Include="src\TGL_BitPattern.cpp">
       <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Sprite.cpp">
@@ -83,7 +83,7 @@
     <ClInclude Include="src\TGL_Graphics.h">
       <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_PixelBlock.h">
+    <ClInclude Include="src\TGL_BitPattern.h">
       <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Sprite.h">

@@ -11,7 +11,7 @@
 namespace TGL
 {
 	class Image;
-	class PixelBlock;
+	class BitPattern;
 	class Charset;
 
 	class TGLAPI Graphics
@@ -33,7 +33,7 @@ namespace TGL
 		void ResetClip();
 		void DrawImage(Image* img, const Point& pos);
 		void DrawImageTile(Image* img, const Rect& imgRect, const Point& dest);
-		void DrawPixelBlock(const PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
+		void DrawBitPattern(const BitPattern* pattern, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
 		void DrawChar(const Charset* chars, Index index, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
 		void DrawString(const Charset* chars, const String& str, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
 
