@@ -16,9 +16,14 @@ namespace TGL
 		FixBinaryString();
 	}
 
-	String& PixelBlock::GetPixels() const
+	PixelBlock::PixelBlock(const char* binary) : binary(binary)
 	{
-		return (String&)binary;
+		FixBinaryString();
+	}
+
+	const String& PixelBlock::GetPixels() const
+	{
+		return binary;
 	}
 
 	void PixelBlock::FixBinaryString()

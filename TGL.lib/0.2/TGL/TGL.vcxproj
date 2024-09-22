@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
+    <ClCompile Include="src\TGL_Charset.cpp" />
     <ClCompile Include="src\TGL_Color.cpp" />
     <ClCompile Include="src\TGL_Graphics.cpp" />
     <ClCompile Include="src\TGL_Image.cpp" />
@@ -36,10 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
+    <ClInclude Include="src\TGL_Charset.h" />
     <ClInclude Include="src\TGL_Color.h" />
     <ClInclude Include="src\TGL_Globals.h" />
     <ClInclude Include="src\TGL_Graphics.h" />
     <ClInclude Include="src\TGL_Image.h" />
+    <ClInclude Include="src\TGL_Index.h" />
     <ClInclude Include="src\TGL_Sprite.h" />
     <ClInclude Include="src\TGL_List.h" />
     <ClInclude Include="src\TGL_PixelBlock.h" />

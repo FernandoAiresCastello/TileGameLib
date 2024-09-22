@@ -1,5 +1,7 @@
 #include "TGL_Graphics.h"
 #include "TGL_Image.h"
+#include "TGL_PixelBlock.h"
+#include "TGL_Charset.h"
 
 namespace TGL
 {
@@ -83,39 +85,6 @@ namespace TGL
 		clip = size.GetRect();
 	}
 
-	void Graphics::DrawPixelBlock(PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
-	{
-		if (!block)
-			return;
-
-		int x = pos.GetX();
-		int y = pos.GetY();
-
-		if (grid) { 
-			x *= PixelBlock::Width;
-			y *= PixelBlock::Height;
-		}
-
-		int px = x;
-		int py = y;
-		const int max_x = x + PixelBlock::Width;
-
-		for (int i = 0; i < PixelBlock::Length; i++) {
-			if (hideColor0) {
-				if (block->GetPixels()[i] == PixelBlock::Color1) {
-					SetPixel(Point(px, py), color1);
-				}
-			}
-			else {
-				SetPixel(Point(px, py), (block->GetPixels()[i] == PixelBlock::Color1 ? color1 : color0));
-			}
-			if (++px >= max_x) {
-				px = x;
-				py++;
-			}
-		}
-	}
-
 	void Graphics::DrawImage(Image* img, const Point& pos)
 	{
 		if (!img)
@@ -153,6 +122,60 @@ namespace TGL
 			}
 			destX = initialX;
 			destY++;
+		}
+	}
+
+	void Graphics::DrawPixelBlock(const PixelBlock* block, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	{
+		if (!block)
+			return;
+
+		int x = pos.GetX();
+		int y = pos.GetY();
+
+		if (grid) {
+			x *= PixelBlock::Width;
+			y *= PixelBlock::Height;
+		}
+
+		int px = x;
+		int py = y;
+		const int max_x = x + PixelBlock::Width;
+
+		for (int i = 0; i < PixelBlock::Length; i++) {
+			if (hideColor0) {
+				if (block->GetPixels()[i] == PixelBlock::Color1) {
+					SetPixel(Point(px, py), color1);
+				}
+			}
+			else {
+				SetPixel(Point(px, py), (block->GetPixels()[i] == PixelBlock::Color1 ? color1 : color0));
+			}
+			if (++px >= max_x) {
+				px = x;
+				py++;
+			}
+		}
+	}
+
+	void Graphics::DrawChar(const Charset* chars, Index index, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	{
+		DrawPixelBlock(chars->Get(index), pos, color1, color0, grid, hideColor0);
+	}
+
+	void Graphics::DrawString(const Charset* chars, const String& str, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	{
+		int x = pos.GetX();
+		int y = pos.GetY();
+
+		if (grid) {
+			x *= PixelBlock::Width;
+			y *= PixelBlock::Height;
+		}
+
+		for (auto& ch : str.Sstr()) {
+			DrawChar(chars, ch, Point(x, y), color1, color0, false, hideColor0);
+			x += PixelBlock::Width;
 		}
 	}
 }

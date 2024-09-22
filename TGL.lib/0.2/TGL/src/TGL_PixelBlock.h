@@ -16,8 +16,9 @@ namespace TGL
 		PixelBlock();
 		PixelBlock(const PixelBlock& other);
 		PixelBlock(const String& binary);
+		PixelBlock(const char* binary);
 
-		String& GetPixels() const;
+		const String& GetPixels() const;
 
 	private:
 		String binary;

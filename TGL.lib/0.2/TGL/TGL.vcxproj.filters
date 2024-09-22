@@ -3,13 +3,13 @@
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
     <ClCompile Include="src\TGL_Window.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Image.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Color.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_String.cpp">
       <Filter>UTIL</Filter>
@@ -27,34 +27,37 @@
       <Filter>UTIL</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Graphics.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_PixelBlock.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Sprite.cpp">
-      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-HIGH</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_TiledImage.cpp">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_TileMap.cpp">
-      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-HIGH</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Charset.cpp">
+      <Filter>GRAPHICS-LOW</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Window.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Rgb.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Image.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Color.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Util.h">
       <Filter>UTIL</Filter>
@@ -78,19 +81,25 @@
       <Filter>UTIL</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Graphics.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_PixelBlock.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Sprite.h">
-      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-HIGH</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_TiledImage.h">
-      <Filter>GRAPHICS %28LOW-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-LOW</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_TileMap.h">
-      <Filter>GRAPHICS %28HIGH-LEVEL API%29</Filter>
+      <Filter>GRAPHICS-HIGH</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Charset.h">
+      <Filter>GRAPHICS-LOW</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Index.h">
+      <Filter>UTIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +109,10 @@
     <Filter Include="GLOBALS">
       <UniqueIdentifier>{57301c92-d2dc-4e0b-ab1a-d376ae48863b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GRAPHICS %28LOW-LEVEL API%29">
+    <Filter Include="GRAPHICS-LOW">
       <UniqueIdentifier>{ecb12be1-d020-43b7-8650-42038d64540a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GRAPHICS %28HIGH-LEVEL API%29">
+    <Filter Include="GRAPHICS-HIGH">
       <UniqueIdentifier>{ac5d5e0a-558c-4f5e-8796-23e84de3b67b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -16,3 +16,5 @@
 #include "TGL_PixelBlock.h"
 #include "TGL_Sprite.h"
 #include "TGL_TileMap.h"
+#include "TGL_Charset.h"
+#include "TGL_Index.h"
