@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "TGL_Globals.h"
+#include "TGL_Global.h"
 #include "TGL_List.h"
 
 namespace TGL

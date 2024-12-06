@@ -3,13 +3,13 @@
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
     <ClCompile Include="src\TGL_Window.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Image.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Color.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_String.cpp">
       <Filter>UTIL</Filter>
@@ -27,37 +27,37 @@
       <Filter>UTIL</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Graphics.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_BitPattern.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Sprite.cpp">
-      <Filter>GRAPHICS-HIGH</Filter>
+      <Filter>GRAPHICS - ELEMENTS</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_TiledImage.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_TileMap.cpp">
-      <Filter>GRAPHICS-HIGH</Filter>
+      <Filter>GRAPHICS - ELEMENTS</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Charset.cpp">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Window.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Rgb.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Image.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Color.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Util.h">
       <Filter>UTIL</Filter>
@@ -68,8 +68,8 @@
     <ClInclude Include="src\TGL_String.h">
       <Filter>UTIL</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_Globals.h">
-      <Filter>GLOBALS</Filter>
+    <ClInclude Include="src\TGL_Global.h">
+      <Filter>GLOBAL</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Rect.h">
       <Filter>UTIL</Filter>
@@ -81,22 +81,22 @@
       <Filter>UTIL</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Graphics.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_BitPattern.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Sprite.h">
-      <Filter>GRAPHICS-HIGH</Filter>
+      <Filter>GRAPHICS - ELEMENTS</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_TiledImage.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_TileMap.h">
-      <Filter>GRAPHICS-HIGH</Filter>
+      <Filter>GRAPHICS - ELEMENTS</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Charset.h">
-      <Filter>GRAPHICS-LOW</Filter>
+      <Filter>GRAPHICS - BASE</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Index.h">
       <Filter>UTIL</Filter>
@@ -106,14 +106,14 @@
     <Filter Include="UTIL">
       <UniqueIdentifier>{55229192-03cf-4945-906d-1aff044c14d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GLOBALS">
-      <UniqueIdentifier>{57301c92-d2dc-4e0b-ab1a-d376ae48863b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GRAPHICS-LOW">
+    <Filter Include="GRAPHICS - BASE">
       <UniqueIdentifier>{ecb12be1-d020-43b7-8650-42038d64540a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GRAPHICS-HIGH">
+    <Filter Include="GRAPHICS - ELEMENTS">
       <UniqueIdentifier>{ac5d5e0a-558c-4f5e-8796-23e84de3b67b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLOBAL">
+      <UniqueIdentifier>{57301c92-d2dc-4e0b-ab1a-d376ae48863b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

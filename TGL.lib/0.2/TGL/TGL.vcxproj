@@ -39,7 +39,7 @@
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Charset.h" />
     <ClInclude Include="src\TGL_Color.h" />
-    <ClInclude Include="src\TGL_Globals.h" />
+    <ClInclude Include="src\TGL_Global.h" />
     <ClInclude Include="src\TGL_Graphics.h" />
     <ClInclude Include="src\TGL_Image.h" />
     <ClInclude Include="src\TGL_Index.h" />

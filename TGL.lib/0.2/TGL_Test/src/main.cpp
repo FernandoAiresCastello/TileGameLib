@@ -20,7 +20,6 @@ int main(int argc, char* argv[])
 	//map.SetPos(Point(11, 11));
 	map.Fill(18);
 	map.SetTileIndex(Point(0, 0), 3);
-	map.Draw(gr);
 
 	Image img;
 	img.Load("player.bmp", 0xffffff);
@@ -28,14 +27,19 @@ int main(int argc, char* argv[])
 	Sprite spr;
 	//spr.SetSingleImage(&img);
 	spr.SetTileset(&tileset);
-	spr.SetFrameSequence({1});
+	spr.SetFrameSequence({1, 2});
 	spr.SetPos(Point(100, 100));
-	spr.Draw(gr);
 
 	Charset chr;
-	gr->DrawString(&chr, "Hello World!", Point(20, 20), Color(255, 0, 0), Color(255, 255, 0), false, false);
 
-	wnd.WaitClose();
+	while (wnd.IsOpen()) {
+		map.Draw(gr);
+		spr.Draw(gr);
+		spr.NextFrame();
+		gr->DrawString(&chr, "Hello World!", Point(20, 20), Color(255, 0, 0), Color(255, 255, 0), false, false);
+		wnd.Update();
+	}
 
+	//wnd.WaitClose();
 	return 0;
 }

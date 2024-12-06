@@ -1,5 +1,5 @@
 #pragma once
-#include "TGL_Globals.h"
+#include "TGL_Global.h"
 #include "TGL_Point.h"
 
 namespace TGL

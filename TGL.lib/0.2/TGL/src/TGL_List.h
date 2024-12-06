@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "TGL_Globals.h"
+#include "TGL_Global.h"
 
 namespace TGL
 {
