@@ -5,12 +5,16 @@
 
 namespace TGL
 {
-	Graphics::Graphics(const Size& size)
+	Graphics::Graphics(const Size& size, const Color& backColor)
 	{
 		this->size = size;
+		this->backColor = backColor;
+		
 		bufferLength = sizeof(int) * size.GetWidth() * size.GetHeight();
 		buffer = new RGB[bufferLength];
+
 		ResetClip();
+		Clear();
 	}
 
 	Graphics::~Graphics()
@@ -28,11 +32,21 @@ namespace TGL
 		return bufferLength;
 	}
 
-	void Graphics::ClearToColor(const Color& color)
+	void Graphics::SetBackColor(const Color& backColor)
+	{
+		this->backColor = backColor;
+	}
+
+	Color Graphics::GetBackColor()
+	{
+		return backColor;
+	}
+
+	void Graphics::Clear()
 	{
 		for (int y = 0; y < size.GetHeight(); y++)
 			for (int x = 0; x < size.GetWidth(); x++)
-				SetPixel(Point(x, y), color);
+				SetPixel(Point(x, y), backColor);
 	}
 
 	Size Graphics::GetSize() const

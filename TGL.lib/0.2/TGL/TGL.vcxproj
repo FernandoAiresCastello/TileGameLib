@@ -25,6 +25,7 @@
     <ClCompile Include="src\TGL_Color.cpp" />
     <ClCompile Include="src\TGL_Graphics.cpp" />
     <ClCompile Include="src\TGL_Image.cpp" />
+    <ClCompile Include="src\TGL_Keyboard.cpp" />
     <ClCompile Include="src\TGL_Sprite.cpp" />
     <ClCompile Include="src\TGL_BitPattern.cpp" />
     <ClCompile Include="src\TGL_Point.cpp" />
@@ -37,6 +38,8 @@
     <ClCompile Include="src\TGL_Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\TGL_Dict.h" />
+    <ClInclude Include="src\TGL_Keyboard.h" />
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Application.h" />
     <ClInclude Include="src\TGL_Charset.h" />

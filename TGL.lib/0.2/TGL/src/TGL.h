@@ -19,3 +19,4 @@
 #include "TGL_TileMap.h"
 #include "TGL_Charset.h"
 #include "TGL_Index.h"
+#include "TGL_Keyboard.h"

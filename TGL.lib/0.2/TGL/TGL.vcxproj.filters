@@ -47,6 +47,9 @@
     <ClCompile Include="src\TGL_Application.cpp">
       <Filter>APPLICATION</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_Keyboard.cpp">
+      <Filter>INPUT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -107,6 +110,12 @@
     <ClInclude Include="src\TGL_Application.h">
       <Filter>APPLICATION</Filter>
     </ClInclude>
+    <ClInclude Include="src\TGL_Keyboard.h">
+      <Filter>INPUT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Dict.h">
+      <Filter>UTIL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UTIL">
@@ -123,6 +132,9 @@
     </Filter>
     <Filter Include="APPLICATION">
       <UniqueIdentifier>{76cf87e0-fe76-473f-b8b7-ee8e362f5351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="INPUT">
+      <UniqueIdentifier>{77d723ff-1765-4ef9-b86b-39aff73c8048}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

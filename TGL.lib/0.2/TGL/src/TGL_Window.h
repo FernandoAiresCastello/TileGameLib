@@ -22,11 +22,8 @@ namespace TGL
 		void Close();
 		void Show();
 		void Hide();
-		void ClearBackground();
 		void Update();
 		bool IsOpen() const;
-		void SetBackColor(const Color& color);
-		Color GetBackColor() const;
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
 		bool IsFullscreen() const;
@@ -46,6 +43,5 @@ namespace TGL
 		bool isVisible = false;
 		String title;
 		Graphics* gr = nullptr;
-		Color backColor = 0xffffff;
 	};
 }

@@ -16,46 +16,46 @@ namespace TGL
 
 	Application::~Application()
 	{
-		delete wnd;
-		wnd = nullptr;
-
 		SDL_Quit();
 	}
 
 	Window* Application::GetWindow()
 	{
-		if (!wnd) {
-			wnd = new Window();
-			wnd->SetTitle(title);
-		}
+		wnd.SetTitle(title);
 
-		return wnd;
+		return &wnd;
+	}
+
+	Keyboard* Application::GetKeyboard()
+	{
+		return &kb;
 	}
 
 	void Application::Update()
 	{
-		wnd->Update();
+		wnd.Update();
 		HandleEvents();
 	}
 
 	void Application::Halt()
 	{
-		while (wnd->IsOpen())
+		while (wnd.IsOpen())
 			Update();
 	}
 
 	void Application::HandleEvents()
 	{
 		while (SDL_PollEvent(&event)) {
-			if (event.type == SDL_EVENT_QUIT) {
-				wnd->Close();
+			const auto type = event.type;
+			if (type == SDL_EVENT_QUIT) {
+				wnd.Close();
 			}
-			else if (event.type == SDL_EVENT_KEY_DOWN) {
+			else if (type == SDL_EVENT_KEY_DOWN) {
 				const auto key = event.key.key;
-				if (key == SDLK_RETURN && SDL_GetModState() & SDL_KMOD_ALT)
-					wnd->ToggleFullscreen();
-				else if (key == SDLK_ESCAPE)
-					wnd->Close();
+				if (key == SDLK_RETURN && kb.Alt())
+					wnd.ToggleFullscreen();
+				else
+					kb.AddToBuffer(key);
 			}
 		}
 	}

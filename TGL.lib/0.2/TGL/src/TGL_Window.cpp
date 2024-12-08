@@ -29,18 +29,15 @@ namespace TGL
 		
 		isCreated = true;
 
-		gr = new Graphics(size);
+		gr = new Graphics(size, backColor);
 
 		this->size = size;
-		this->backColor = backColor;
 
 		widthMult++;
 		heightMult++;
 
 		const int multipliedWidth = size.GetWidth() * widthMult;
 		const int multipliedHeight = size.GetHeight() * heightMult;
-
-		ClearBackground();
 
 		SDL_CreateWindowAndRenderer("", size.GetWidth() * widthMult, size.GetHeight() * heightMult, SDL_WINDOW_HIDDEN, &window, &renderer);
 		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
@@ -93,11 +90,6 @@ namespace TGL
 		isVisible = false;
 	}
 
-	void Window::ClearBackground()
-	{
-		gr->ClearToColor(backColor);
-	}
-
 	void Window::Update()
 	{
 		static void* pixels;
@@ -112,16 +104,6 @@ namespace TGL
 	bool Window::IsOpen() const
 	{
 		return isCreated;
-	}
-
-	void Window::SetBackColor(const Color& color)
-	{
-		backColor = color;
-	}
-
-	Color Window::GetBackColor() const
-	{
-		return backColor;
 	}
 
 	void Window::SetFullscreen(bool full)
