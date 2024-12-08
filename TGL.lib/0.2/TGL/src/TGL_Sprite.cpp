@@ -5,7 +5,8 @@
 
 namespace TGL
 {
-	Sprite::Sprite() : tileset(nullptr), singleImage(nullptr), size(0, 0), collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
+	Sprite::Sprite() : tileset(nullptr), singleImage(nullptr), size(0, 0), 
+		collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
 	{
 	}
 
@@ -86,12 +87,24 @@ namespace TGL
 			currentFrame = frames.size() - 1;
 	}
 
+	void Sprite::EnableAutoAnimation(int frameLength)
+	{
+		autoAnimation.enabled = true;
+		autoAnimation.frameLength = frameLength;
+		autoAnimation.frameCount = 0;
+	}
+
+	void Sprite::DisableAutoAnimation()
+	{
+		autoAnimation.enabled = false;
+	}
+
 	bool Sprite::CollidesWith(Sprite* other)
 	{
 		return collisionRect.Intersects(other->collisionRect);
 	}
 
-	void Sprite::Draw(Graphics* gr) const
+	void Sprite::Draw(Graphics* gr)
 	{
 		if (!visible)
 			return;
@@ -103,6 +116,14 @@ namespace TGL
 			const int& frame = frames[currentFrame];
 			if (frame > 0)
 				gr->DrawImage(tileset->GetTile(frame), pos);
+
+			if (autoAnimation.enabled) {
+				autoAnimation.frameCount++;
+				if (autoAnimation.frameCount >= autoAnimation.frameLength) {
+					autoAnimation.frameCount = 0;
+					NextFrame();
+				}
+			}
 		}
 		else if (singleImage) {
 			gr->DrawImage(singleImage, pos);

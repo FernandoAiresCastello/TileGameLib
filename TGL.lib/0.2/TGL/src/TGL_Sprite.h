@@ -29,8 +29,10 @@ namespace TGL
 		void SetFrame(int index);
 		void NextFrame();
 		void PrevFrame();
+		void EnableAutoAnimation(int frameLength);
+		void DisableAutoAnimation();
 		bool CollidesWith(Sprite* other);
-		void Draw(Graphics* gr) const;
+		void Draw(Graphics* gr);
 
 	protected:
 		TiledImage* tileset;
@@ -41,5 +43,11 @@ namespace TGL
 		bool visible;
 		List<int> frames;
 		int currentFrame;
+
+		struct {
+			bool enabled = false;
+			int frameLength = 0;
+			int frameCount = 0;
+		} autoAnimation;
 	};
 }

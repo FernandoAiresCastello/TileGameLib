@@ -5,11 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGL", "TGL\TGL.vcxproj", "{97F01C83-86DA-4231-AF36-466326610920}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TGL_Test", "TGL_Test\TGL_Test.vcxproj", "{3906F211-95E7-4CF5-852C-F851C83817E7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{97F01C83-86DA-4231-AF36-466326610920} = {97F01C83-86DA-4231-AF36-466326610920}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -26,14 +21,6 @@ Global
 		{97F01C83-86DA-4231-AF36-466326610920}.Release|x64.Build.0 = Release|x64
 		{97F01C83-86DA-4231-AF36-466326610920}.Release|x86.ActiveCfg = Release|Win32
 		{97F01C83-86DA-4231-AF36-466326610920}.Release|x86.Build.0 = Release|Win32
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Debug|x64.ActiveCfg = Debug|x64
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Debug|x64.Build.0 = Debug|x64
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Debug|x86.ActiveCfg = Debug|Win32
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Debug|x86.Build.0 = Debug|Win32
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Release|x64.ActiveCfg = Release|x64
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Release|x64.Build.0 = Release|x64
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Release|x86.ActiveCfg = Release|Win32
-		{3906F211-95E7-4CF5-852C-F851C83817E7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
