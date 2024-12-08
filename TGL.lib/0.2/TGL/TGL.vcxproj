@@ -23,6 +23,7 @@
     <ClCompile Include="src\TGL_Application.cpp" />
     <ClCompile Include="src\TGL_Charset.cpp" />
     <ClCompile Include="src\TGL_Color.cpp" />
+    <ClCompile Include="src\TGL_GameBase.cpp" />
     <ClCompile Include="src\TGL_Graphics.cpp" />
     <ClCompile Include="src\TGL_Image.cpp" />
     <ClCompile Include="src\TGL_Keyboard.cpp" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL_Dict.h" />
+    <ClInclude Include="src\TGL_GameBase.h" />
     <ClInclude Include="src\TGL_Keyboard.h" />
     <ClInclude Include="src\TGL.h" />
     <ClInclude Include="src\TGL_Application.h" />

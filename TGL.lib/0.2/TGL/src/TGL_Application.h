@@ -9,11 +9,11 @@ namespace TGL
 	class TGLAPI Application
 	{
 	public:
-		Application();
-		Application(const String& title);
+		Application(const String& title, const Size& wndSize, const Size& wndSizeStretch, const Color& backColor);
 		~Application();
 
 		Window* GetWindow();
+		Graphics* GetGraphics();
 		Keyboard* GetKeyboard();
 
 		void Update();

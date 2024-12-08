@@ -18,7 +18,7 @@ namespace TGL
 
 		void Open(const Size& size, const Color& backColor, bool show);
 		void Open(const Size& size, int sizeMult, const Color& backColor, bool show);
-		void Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show);
+		void Open(const Size& size, const Size& sizeMult, const Color& backColor, bool show);
 		void Close();
 		void Show();
 		void Hide();

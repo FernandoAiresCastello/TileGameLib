@@ -3,15 +3,12 @@
 
 namespace TGL
 {
-	Application::Application() : Application("")
+	Application::Application(const String& title, const Size& wndSize, const Size& wndSizeStretch, const Color& backColor)
 	{
-	}
-
-	Application::Application(const String& title)
-	{
-		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-
 		this->title = title;
+		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+		wnd.Open(wndSize, wndSizeStretch, backColor, true);
+		wnd.SetTitle(title);
 	}
 
 	Application::~Application()
@@ -21,9 +18,12 @@ namespace TGL
 
 	Window* Application::GetWindow()
 	{
-		wnd.SetTitle(title);
-
 		return &wnd;
+	}
+
+	Graphics* Application::GetGraphics()
+	{
+		return wnd.GetGraphics();
 	}
 
 	Keyboard* Application::GetKeyboard()

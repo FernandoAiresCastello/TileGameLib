@@ -50,6 +50,9 @@
     <ClCompile Include="src\TGL_Keyboard.cpp">
       <Filter>INPUT</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_GameBase.cpp">
+      <Filter>APPLICATION</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="src\TGL_Dict.h">
       <Filter>UTIL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_GameBase.h">
+      <Filter>APPLICATION</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

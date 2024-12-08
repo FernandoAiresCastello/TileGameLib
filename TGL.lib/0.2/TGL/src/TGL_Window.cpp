@@ -14,15 +14,15 @@ namespace TGL
 
 	void Window::Open(const Size& size, const Color& backColor, bool show)
 	{
-		Open(size, 0, 0, backColor, show);
+		Open(size, Size(0, 0), backColor, show);
 	}
 
 	void Window::Open(const Size& size, int sizeMult, const Color& backColor, bool show)
 	{
-		Open(size, sizeMult, sizeMult, backColor, show);
+		Open(size, Size(sizeMult, sizeMult), backColor, show);
 	}
 
-	void Window::Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show)
+	void Window::Open(const Size& size, const Size& sizeMult, const Color& backColor, bool show)
 	{
 		if (isCreated)
 			return;
@@ -33,8 +33,8 @@ namespace TGL
 
 		this->size = size;
 
-		widthMult++;
-		heightMult++;
+		const int widthMult = sizeMult.GetWidth() + 1;
+		const int heightMult = sizeMult.GetHeight() + 1;
 
 		const int multipliedWidth = size.GetWidth() * widthMult;
 		const int multipliedHeight = size.GetHeight() * heightMult;
