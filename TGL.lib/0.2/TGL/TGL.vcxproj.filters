@@ -44,6 +44,9 @@
     <ClCompile Include="src\TGL_Charset.cpp">
       <Filter>GRAPHICS - BASE</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_Application.cpp">
+      <Filter>APPLICATION</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -101,6 +104,9 @@
     <ClInclude Include="src\TGL_Index.h">
       <Filter>UTIL</Filter>
     </ClInclude>
+    <ClInclude Include="src\TGL_Application.h">
+      <Filter>APPLICATION</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UTIL">
@@ -114,6 +120,9 @@
     </Filter>
     <Filter Include="GLOBAL">
       <UniqueIdentifier>{57301c92-d2dc-4e0b-ab1a-d376ae48863b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="APPLICATION">
+      <UniqueIdentifier>{76cf87e0-fe76-473f-b8b7-ee8e362f5351}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

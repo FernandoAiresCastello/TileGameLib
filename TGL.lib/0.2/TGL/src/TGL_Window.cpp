@@ -24,11 +24,15 @@ namespace TGL
 
 	void Window::Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show)
 	{
-		gr = std::make_shared<Graphics>(size);
+		if (isCreated)
+			return;
+		
+		isCreated = true;
+
+		gr = new Graphics(size);
 
 		this->size = size;
 		this->backColor = backColor;
-		isCreated = true;
 
 		widthMult++;
 		heightMult++;
@@ -38,20 +42,18 @@ namespace TGL
 
 		ClearBackground();
 
-		SDL_Init(SDL_INIT_VIDEO);
-		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
-		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-
-		window = SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, multipliedWidth, multipliedHeight, SDL_WINDOW_HIDDEN);
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
-
-		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-		SDL_RenderSetLogicalSize(renderer, multipliedWidth, multipliedHeight);
+		SDL_CreateWindowAndRenderer("", size.GetWidth() * widthMult, size.GetHeight() * heightMult, SDL_WINDOW_HIDDEN, &window, &renderer);
+		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
 		texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, size.GetWidth(), size.GetHeight());
 
+		SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
+		SDL_SetRenderLogicalPresentation(renderer, size.GetWidth(), size.GetHeight(), SDL_LOGICAL_PRESENTATION_STRETCH);
+		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 		SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
-		SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+		SDL_SetRenderTarget(renderer, texture);
+		SDL_RenderClear(renderer);
+		SDL_RenderPresent(renderer);
 
 		if (show)
 			Show();
@@ -69,28 +71,11 @@ namespace TGL
 			SDL_DestroyTexture(texture);
 			SDL_DestroyRenderer(renderer);
 			SDL_DestroyWindow(window);
-			SDL_VideoQuit();
+
+			delete gr;
+			gr = nullptr;
 
 			isCreated = false;
-		}
-	}
-
-	void Window::WaitClose()
-	{
-		while (IsOpen()) {
-			Update();
-			SDL_Event e;
-			while (SDL_PollEvent(&e)) {
-				if (e.type == SDL_QUIT) {
-					Close();
-				}
-				else if (e.type == SDL_KEYDOWN) {
-					if (e.key.keysym.sym == SDLK_RETURN && SDL_GetModState() & KMOD_ALT)
-						ToggleFullscreen();
-					else if (e.key.keysym.sym == SDLK_ESCAPE)
-						Close();
-				}
-			}
 		}
 	}
 
@@ -115,13 +100,12 @@ namespace TGL
 
 	void Window::Update()
 	{
-		static int pitch;
 		static void* pixels;
-
+		static int pitch;
 		SDL_LockTexture(texture, nullptr, &pixels, &pitch);
 		SDL_memcpy(pixels, gr->GetBuffer(), gr->GetBufferLength());
 		SDL_UnlockTexture(texture);
-		SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+		SDL_RenderTexture(renderer, texture, nullptr, nullptr);
 		SDL_RenderPresent(renderer);
 	}
 
@@ -142,7 +126,7 @@ namespace TGL
 
 	void Window::SetFullscreen(bool full)
 	{
-		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
+		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN;
 		Uint32 isFullscreen = SDL_GetWindowFlags(window) & fullscreenFlag;
 
 		if ((full && isFullscreen) || (!full && !isFullscreen))
@@ -154,7 +138,7 @@ namespace TGL
 
 	void Window::ToggleFullscreen()
 	{
-		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN_DESKTOP;
+		Uint32 fullscreenFlag = SDL_WINDOW_FULLSCREEN;
 		Uint32 isFullscreen = SDL_GetWindowFlags(window) & fullscreenFlag;
 		SDL_SetWindowFullscreen(window, isFullscreen ? 0 : fullscreenFlag);
 		Update();
@@ -162,12 +146,12 @@ namespace TGL
 
 	bool Window::IsFullscreen() const
 	{
-		return (SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP;
+		return (SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN) == SDL_WINDOW_FULLSCREEN;
 	}
 
 	void Window::SetBordered(bool bordered)
 	{
-		SDL_SetWindowBordered(window, bordered ? SDL_TRUE : SDL_FALSE);
+		SDL_SetWindowBordered(window, bordered ? true : false);
 	}
 
 	Size Window::GetSize() const
@@ -191,11 +175,11 @@ namespace TGL
 		SDL_Surface icon;
 		SDL_LoadBMP(iconfile.Cstr());
 		SDL_SetWindowIcon(window, &icon);
-		SDL_FreeSurface(&icon);
+		SDL_DestroySurface(&icon);
 	}
 
 	Graphics* Window::GetGraphics()
 	{
-		return gr.get();
+		return gr;
 	}
 }

@@ -35,14 +35,6 @@ namespace TGL
 				SetPixel(Point(x, y), color);
 	}
 
-	void Graphics::SaveScreenshot(const String& file) const
-	{
-		SDL_Surface* surface = SDL_CreateRGBSurfaceWithFormat(0, size.GetWidth(), size.GetHeight(), 32, SDL_PIXELFORMAT_ARGB8888);
-		SDL_memcpy(surface->pixels, buffer, bufferLength);
-		SDL_SaveBMP(surface, file.Cstr());
-		SDL_FreeSurface(surface);
-	}
-
 	Size Graphics::GetSize() const
 	{
 		return size;

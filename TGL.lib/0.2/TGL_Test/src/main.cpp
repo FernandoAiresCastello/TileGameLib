@@ -1,14 +1,15 @@
 #include <TGL.h>
+#include <SDL3/SDL_main.h>
 
 using namespace TGL;
 
 int main(int argc, char* argv[])
 {
-	Window wnd;
-	wnd.Open(Size(360, 200), 2, 0xffffff, true);
-	wnd.SetTitle("TGL Demo");
+	Application app("TGL Demo");
+	Window* wnd = app.GetWindow();
+	wnd->Open(Size(360, 200), 2, 0xffffff, true);
 
-	Graphics* gr = wnd.GetGraphics();
+	Graphics* gr = wnd->GetGraphics();
 
 	TiledImage tileset;
 	tileset.Load("tileset.bmp", 0xffffff);
@@ -32,14 +33,15 @@ int main(int argc, char* argv[])
 
 	Charset chr;
 
-	while (wnd.IsOpen()) {
+	while (wnd->IsOpen()) {
+
 		map.Draw(gr);
 		spr.Draw(gr);
 		spr.NextFrame();
 		gr->DrawString(&chr, "Hello World!", Point(20, 20), Color(255, 0, 0), Color(255, 255, 0), false, false);
-		wnd.Update();
+		
+		app.Update();
 	}
 
-	//wnd.WaitClose();
 	return 0;
 }

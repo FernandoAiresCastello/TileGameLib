@@ -1,6 +1,7 @@
 #pragma once
 
 #include "TGL_Global.h"
+#include "TGL_Application.h"
 #include "TGL_String.h"
 #include "TGL_List.h"
 #include "TGL_Util.h"

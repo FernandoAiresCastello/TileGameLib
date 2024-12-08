@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL.h>
+#include <SDL3/SDL.h>
 #include <memory>
 
 #ifdef TGLEXPORTS
@@ -10,9 +10,4 @@
 
 namespace TGL
 {
-	template<typename T>
-	using Ptr = std::shared_ptr<T>;
-
-	template<typename T>
-	using Uptr = std::unique_ptr<T>;
 }

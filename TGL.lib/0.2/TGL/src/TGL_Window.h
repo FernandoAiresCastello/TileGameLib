@@ -20,7 +20,6 @@ namespace TGL
 		void Open(const Size& size, int sizeMult, const Color& backColor, bool show);
 		void Open(const Size& size, int widthMult, int heightMult, const Color& backColor, bool show);
 		void Close();
-		void WaitClose();
 		void Show();
 		void Hide();
 		void ClearBackground();
@@ -46,7 +45,7 @@ namespace TGL
 		bool isCreated = false;
 		bool isVisible = false;
 		String title;
-		Ptr<Graphics> gr = nullptr;
+		Graphics* gr = nullptr;
 		Color backColor = 0xffffff;
 	};
 }

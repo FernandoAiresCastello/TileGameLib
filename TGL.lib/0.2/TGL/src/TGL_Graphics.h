@@ -23,7 +23,6 @@ namespace TGL
 		RGB* GetBuffer();
 		int GetBufferLength() const;
 		void ClearToColor(const Color& color);
-		void SaveScreenshot(const String& file) const;
 		Size GetSize() const;
 		Rect GetRect() const;
 		void SetPixel(const Point& pos, const Color& color);

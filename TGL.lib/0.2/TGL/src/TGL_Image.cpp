@@ -1,3 +1,4 @@
+#include <SDL_image.h>
 #include "TGL_Image.h"
 
 namespace TGL
@@ -20,25 +21,35 @@ namespace TGL
 	{
 		pixels.clear();
 
-		SDL_Surface* img = SDL_LoadBMP(filename.Cstr());
+		SDL_Surface* img = IMG_Load(filename.Cstr());
 		if (!img)
 			return false;
 
-		const Uint8 bpp = img->format->BytesPerPixel;
 		size = { img->w, img->h };
-		pixelCount = size.GetWidth() * size.GetHeight();
 
-		for (int y = 0; y < size.GetHeight(); y++) {
-			for (int x = 0; x < size.GetWidth(); x++) {
-				Uint8* pPixel = (Uint8*)img->pixels + y * img->pitch + x * bpp;
-				Uint32 PixelData = *(Uint32*)pPixel;
-				SDL_Color color = { 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE };
-				SDL_GetRGB(PixelData, img->format, &color.r, &color.g, &color.b);
-				pixels.emplace_back(Color(color.r, color.g, color.b));
+		if (SDL_MUSTLOCK(img)) {
+			if (!SDL_LockSurface(img))
+				return false;
+		}
+
+		uint8_t* surface_pixels = static_cast<uint8_t*>(img->pixels);
+		const SDL_PixelFormatDetails* format = SDL_GetPixelFormatDetails(img->format);
+
+		for (int y = 0; y < img->h; ++y) {
+			for (int x = 0; x < img->w; ++x) {
+				uint32_t* pixelAddr = reinterpret_cast<uint32_t*>(
+					surface_pixels + y * img->pitch + x * format->bytes_per_pixel);
+
+				uint8_t r, g, b, a;
+				SDL_GetRGBA(*pixelAddr, format, nullptr, &r, &g, &b, &a);
+				pixels.emplace_back(r, g, b);
 			}
 		}
 
-		SDL_FreeSurface(img);
+		if (SDL_MUSTLOCK(img))
+			SDL_UnlockSurface(img);
+
+		SDL_DestroySurface(img);
 
 		return true;
 	}

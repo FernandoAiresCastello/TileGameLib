@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
+    <ClCompile Include="src\TGL_Application.cpp" />
     <ClCompile Include="src\TGL_Charset.cpp" />
     <ClCompile Include="src\TGL_Color.cpp" />
     <ClCompile Include="src\TGL_Graphics.cpp" />
@@ -37,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
+    <ClInclude Include="src\TGL_Application.h" />
     <ClInclude Include="src\TGL_Charset.h" />
     <ClInclude Include="src\TGL_Color.h" />
     <ClInclude Include="src\TGL_Global.h" />
@@ -151,13 +153,14 @@
       <PreprocessorDefinitions>TGLEXPORTS;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Lib\SDL2-2.30.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Lib\SDL3-3.1.6\include;C:\Lib\SDL3_image-3.1.0\include\SDL3_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Lib\SDL2-2.30.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Lib\SDL3-3.1.6\lib\x64;C:\Lib\SDL3_image-3.1.0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
