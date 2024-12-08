@@ -4,6 +4,7 @@
 #include "TGL_Point.h"
 #include "TGL_Rect.h"
 #include "TGL_List.h"
+#include "TGL_Properties.h"
 
 namespace TGL
 {
@@ -14,6 +15,8 @@ namespace TGL
 	class TGLAPI Sprite
 	{
 	public:
+		Properties Data;
+
 		Sprite();
 		~Sprite();
 

@@ -53,6 +53,9 @@
     <ClCompile Include="src\TGL_GameBase.cpp">
       <Filter>APPLICATION</Filter>
     </ClCompile>
+    <ClCompile Include="src\TGL_Properties.cpp">
+      <Filter>UTIL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="src\TGL_GameBase.h">
       <Filter>APPLICATION</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Properties.h">
+      <Filter>UTIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
