@@ -3,6 +3,7 @@
 #include "TGL_Image.h"
 #include "TGL_Size.h"
 #include "TGL_List.h"
+#include "TGL_Index.h"
 
 namespace TGL
 {
@@ -13,7 +14,7 @@ namespace TGL
 		~TiledImage();
 
 		void GenerateTiles(const Size& tileSize);
-		Image* GetTile(int index);
+		Image* GetTile(Index index);
 		int GetTileCount() const;
 		const Size& GetTileSize() const;
 

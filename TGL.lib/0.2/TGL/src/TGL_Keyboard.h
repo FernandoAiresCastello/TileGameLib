@@ -13,6 +13,7 @@ namespace TGL
 		bool IsPressed(Scancode code);
 		void AddToBuffer(Keycode key);
 		Keycode GetKey();
+		void Flush();
 
 		bool Alt();
 		bool Ctrl();

@@ -13,8 +13,8 @@ namespace TGL
 		running = true;
 
 		wnd = app->GetWindow();
+		kb = app->GetKeyboard();
 		gr = wnd->GetGraphics();
-		Keyboard* kb = app->GetKeyboard();
 
 		OnInit();
 
@@ -48,12 +48,12 @@ namespace TGL
 		gr->Clear();
 	}
 
-	void GameBase::ClipScreen(const Rect& rect)
+	void GameBase::Clip(const Rect& rect)
 	{
 		gr->SetClip(rect);
 	}
 
-	void GameBase::UnclipScreen()
+	void GameBase::Unclip()
 	{
 		gr->ResetClip();
 	}
@@ -101,5 +101,40 @@ namespace TGL
 	void GameBase::DrawSprite(Sprite* sprite)
 	{
 		sprite->Draw(gr);
+	}
+
+	void GameBase::DrawRect(const Rect& rect, const Color& color)
+	{
+		gr->FillRect(rect, color);
+	}
+
+	bool GameBase::Key(Scancode key)
+	{
+		return kb->IsPressed(key);
+	}
+
+	bool GameBase::Ctrl()
+	{
+		return kb->Ctrl();
+	}
+
+	bool GameBase::Shift()
+	{
+		return kb->Shift();
+	}
+
+	bool GameBase::Alt()
+	{
+		return kb->Alt();
+	}
+
+	bool GameBase::CapsLock()
+	{
+		return kb->CapsLock();
+	}
+
+	void GameBase::FlushKeyboard()
+	{
+		kb->Flush();
 	}
 }

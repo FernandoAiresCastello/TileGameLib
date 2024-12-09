@@ -6,11 +6,15 @@
 
 namespace TGL
 {
+	class GameBase;
+
 	class TGLAPI Application
 	{
 	public:
 		Application(const String& title, const Size& wndSize, const Size& wndSizeStretch, const Color& backColor);
 		~Application();
+
+		void RunGame(GameBase* game);
 
 		Window* GetWindow();
 		Graphics* GetGraphics();

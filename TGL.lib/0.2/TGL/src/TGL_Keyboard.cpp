@@ -22,6 +22,11 @@ namespace TGL
 		return key;
 	}
 
+	void Keyboard::Flush()
+	{
+		buffer.clear();
+	}
+
 	bool Keyboard::Alt()
 	{
 		return SDL_GetModState() & SDL_KMOD_ALT;

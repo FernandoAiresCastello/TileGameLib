@@ -35,13 +35,13 @@ namespace TGL
 			cells.push_back(EmptyTileIndex);
 	}
 
-	void TileMap::SetTileIndex(const Point& pos, int tileIndex)
+	void TileMap::SetTile(const Point& pos, Index tileIndex)
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
 			cells[pos.GetY() * cols + pos.GetX()] = tileIndex;
 	}
 
-	int TileMap::GetTileIndex(const Point& pos) const
+	Index TileMap::GetTile(const Point& pos) const
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
 			return cells[pos.GetY() * cols + pos.GetX()];
@@ -49,7 +49,7 @@ namespace TGL
 		return 0;
 	}
 
-	void TileMap::Fill(int tileIndex)
+	void TileMap::Fill(Index tileIndex)
 	{
 		for (int i = 0; i < cellCount; i++)
 			cells[i] = tileIndex;
@@ -61,11 +61,11 @@ namespace TGL
 
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
-				int frameIndex = GetTileIndex(Point(x, y));
+				Index frameIndex = GetTile(Point(x, y));
 				if (frameIndex > 0)
 					gr->DrawImage(tileset->GetTile(frameIndex), currentPos);
 				else if (frameIndex < 0)
-					; // draw animated tile
+					; // TODO: draw animated tile
 
 				currentPos = currentPos.Move(cellWidth, 0);
 			}

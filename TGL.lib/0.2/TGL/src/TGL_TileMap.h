@@ -3,6 +3,7 @@
 #include "TGL_Size.h"
 #include "TGL_List.h"
 #include "TGL_Point.h"
+#include "TGL_Index.h"
 
 namespace TGL
 {
@@ -18,9 +19,9 @@ namespace TGL
 		void SetTileset(TiledImage* img);
 		void SetPos(const Point& pos);
 		void SetSize(const Size& size);
-		void SetTileIndex(const Point& pos, int tileIndex);
-		int GetTileIndex(const Point& pos) const;
-		void Fill(int tileIndex);
+		void SetTile(const Point& pos, Index tileIndex);
+		Index GetTile(const Point& pos) const;
+		void Fill(Index tileIndex);
 		void Draw(Graphics* gr) const;
 
 	private:
@@ -32,7 +33,7 @@ namespace TGL
 		int cols;
 		int rows;
 		int cellCount;
-		List<int> cells;
+		List<Index> cells;
 		Point pos;
 	};
 }

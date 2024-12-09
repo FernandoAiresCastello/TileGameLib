@@ -44,7 +44,7 @@ namespace TGL
         }
 	}
 
-    Image* TiledImage::GetTile(int index)
+    Image* TiledImage::GetTile(Index index)
     {
         if (index > 0 && index <= tiles.size())
             return &tiles[index - 1];

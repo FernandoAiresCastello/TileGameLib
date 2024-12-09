@@ -15,18 +15,16 @@ namespace TGL
 	class Application;
 	class Graphics;
 	class Window;
+	class Keyboard;
 
 	class TGLAPI GameBase
 	{
-	public:
-		void Run(Application* app);
-		void Quit();
-
 	protected:
+		void Quit();
 		void SetBackColor(const Color& color);
 		void ClearScreen();
-		void ClipScreen(const Rect& rect);
-		void UnclipScreen();
+		void Clip(const Rect& rect);
+		void Unclip();
 		void TextGrid(bool align);
 		void Print(const String& text, const Point& pos, const Color& color);
 		void Print(const String& text, const Point& pos, const Color& foreColor, const Color& backColor);
@@ -36,11 +34,21 @@ namespace TGL
 		void DrawImageTile(Image* img, const Rect& tileRect, const Point& pos);
 		void DrawTileMap(TileMap* tilemap);
 		void DrawSprite(Sprite* sprite);
+		void DrawRect(const Rect& rect, const Color& color);
+		bool Key(Scancode key);
+		bool Ctrl();
+		bool Shift();
+		bool Alt();
+		bool CapsLock();
+		void FlushKeyboard();
 
 	private:
+		friend class Application;
+
 		bool running = false;
 		Window* wnd = nullptr;
 		Graphics* gr = nullptr;
+		Keyboard* kb = nullptr;
 		Charset font;
 		bool textAlignToGrid = false;
 
@@ -48,5 +56,7 @@ namespace TGL
 		virtual void OnExit() = 0;
 		virtual void OnUpdate() = 0;
 		virtual void OnKeyPress(Keycode key) = 0;
+
+		void Run(Application* app);
 	};
 }

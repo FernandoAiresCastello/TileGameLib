@@ -1,5 +1,6 @@
 #include "TGL_Application.h"
 #include "TGL_Window.h"
+#include "TGL_GameBase.h"
 
 namespace TGL
 {
@@ -14,6 +15,11 @@ namespace TGL
 	Application::~Application()
 	{
 		SDL_Quit();
+	}
+
+	void Application::RunGame(GameBase* game)
+	{
+		game->Run(this);
 	}
 
 	Window* Application::GetWindow()
@@ -39,8 +45,10 @@ namespace TGL
 
 	void Application::Halt()
 	{
-		while (wnd.IsOpen())
+		while (wnd.IsOpen()) {
 			Update();
+			kb.Flush();
+		}
 	}
 
 	void Application::HandleEvents()
