@@ -11,7 +11,7 @@ namespace TGL
 		this->backColor = backColor;
 		
 		bufferLength = sizeof(int) * size.GetWidth() * size.GetHeight();
-		buffer = new RGB[bufferLength];
+		buffer = std::make_unique<RGB[]>(bufferLength);
 
 		ResetClip();
 		Clear();
@@ -19,17 +19,6 @@ namespace TGL
 
 	Graphics::~Graphics()
 	{
-		delete buffer;
-	}
-
-	RGB* Graphics::GetBuffer()
-	{
-		return buffer;
-	}
-
-	int Graphics::GetBufferLength() const
-	{
-		return bufferLength;
 	}
 
 	void Graphics::SetBackColor(const Color& backColor)

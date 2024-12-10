@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
+#include "TGL_Index.h"
 #include "TGL_Size.h"
 #include "TGL_Point.h"
 #include "TGL_Rect.h"
@@ -28,8 +29,8 @@ namespace TGL
 		Point GetPos() const;
 		void SetVisible(bool visible);
 		bool IsVisible() const;
-		void SetFrameSequence(const List<int>& frames);
-		void SetFrame(int index);
+		void SetFrameSequence(const List<Index>& frames);
+		void SetFrame(Index index);
 		void NextFrame();
 		void PrevFrame();
 		void EnableAutoAnimation(int frameLength);
@@ -37,14 +38,14 @@ namespace TGL
 		bool CollidesWith(Sprite* other);
 		void Draw(Graphics* gr);
 
-	protected:
+	private:
 		TiledImage* tileset;
 		Image* singleImage;
 		Size size;
 		Rect collisionRect;
 		Point pos;
 		bool visible;
-		List<int> frames;
+		List<Index> frames;
 		int currentFrame;
 
 		struct {

@@ -62,12 +62,12 @@ namespace TGL
 		return visible;
 	}
 
-	void Sprite::SetFrameSequence(const List<int>& frames)
+	void Sprite::SetFrameSequence(const List<Index>& frames)
 	{
 		this->frames = frames;
 	}
 
-	void Sprite::SetFrame(int index)
+	void Sprite::SetFrame(Index index)
 	{
 		if (index >= 0 && index < frames.size())
 			currentFrame = index;
@@ -113,7 +113,7 @@ namespace TGL
 			if (frames.empty())
 				return;
 
-			const int& frame = frames[currentFrame];
+			const Index& frame = frames[currentFrame];
 			if (frame > 0)
 				gr->DrawImage(tileset->GetTile(frame), pos);
 

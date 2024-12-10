@@ -7,7 +7,3 @@
 #else
 	#define TGLAPI __declspec(dllimport)
 #endif
-
-namespace TGL
-{
-}

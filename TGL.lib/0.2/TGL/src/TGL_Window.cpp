@@ -29,7 +29,7 @@ namespace TGL
 		
 		isCreated = true;
 
-		gr = new Graphics(size, backColor);
+		gr = std::make_shared<Graphics>(size, backColor);
 
 		this->size = size;
 
@@ -69,9 +69,6 @@ namespace TGL
 			SDL_DestroyRenderer(renderer);
 			SDL_DestroyWindow(window);
 
-			delete gr;
-			gr = nullptr;
-
 			isCreated = false;
 		}
 	}
@@ -95,7 +92,7 @@ namespace TGL
 		static void* pixels;
 		static int pitch;
 		SDL_LockTexture(texture, nullptr, &pixels, &pitch);
-		SDL_memcpy(pixels, gr->GetBuffer(), gr->GetBufferLength());
+		SDL_memcpy(pixels, gr->buffer.get(), gr->bufferLength);
 		SDL_UnlockTexture(texture);
 		SDL_RenderTexture(renderer, texture, nullptr, nullptr);
 		SDL_RenderPresent(renderer);
@@ -162,6 +159,6 @@ namespace TGL
 
 	Graphics* Window::GetGraphics()
 	{
-		return gr;
+		return gr.get();
 	}
 }

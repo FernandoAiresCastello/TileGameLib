@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
+#include "TGL_PointerTypes.h"
 #include "TGL_Rgb.h"
 #include "TGL_Color.h"
 #include "TGL_String.h"
@@ -20,8 +21,6 @@ namespace TGL
 		Graphics(const Size& size, const Color& backColor);
 		~Graphics();
 
-		RGB* GetBuffer();
-		int GetBufferLength() const;
 		void SetBackColor(const Color& backColor);
 		Color GetBackColor();
 		void Clear();
@@ -39,7 +38,9 @@ namespace TGL
 		void DrawString(const Charset* chars, const String& str, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0);
 
 	private:
-		RGB* buffer = nullptr;
+		friend class Window;
+
+		UPtr<RGB[]> buffer = nullptr;
 		int bufferLength = 0;
 		Size size = { 0, 0 };
 		Rect clip = { 0, 0, 0, 0 };

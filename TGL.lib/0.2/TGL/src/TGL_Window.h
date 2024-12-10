@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
+#include "TGL_PointerTypes.h"
 #include "TGL_String.h"
 #include "TGL_Rect.h"
 #include "TGL_Point.h"
@@ -38,10 +39,10 @@ namespace TGL
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
 		SDL_Texture* texture = nullptr;
+		String title;
+		Ptr<Graphics> gr = nullptr;
 		Size size = { 0, 0 };
 		bool isCreated = false;
 		bool isVisible = false;
-		String title;
-		Graphics* gr = nullptr;
 	};
 }
