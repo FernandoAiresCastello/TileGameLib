@@ -21,9 +21,12 @@ namespace TGL
 	{
 		pixels.clear();
 
-		SDL_Surface* img = IMG_Load(filename.Cstr());
-		if (!img)
-			return false;
+		SDL_Surface* temp = IMG_Load(filename.Cstr());
+		if (!temp) return false;
+		SDL_Surface* img = SDL_ConvertSurface(temp, SDL_PIXELFORMAT_ARGB8888);
+		if (!img) return false;
+		SDL_DestroySurface(temp);
+		temp = nullptr;
 
 		size = { img->w, img->h };
 

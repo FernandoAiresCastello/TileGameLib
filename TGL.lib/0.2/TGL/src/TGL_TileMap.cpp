@@ -4,7 +4,8 @@
 
 namespace TGL
 {
-	TileMap::TileMap() : tileset(nullptr), cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0), pos(0, 0)
+	TileMap::TileMap() : tileset(nullptr), 
+		cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0), pos(0, 0)
 	{
 	}
 
@@ -41,6 +42,14 @@ namespace TGL
 			cells[pos.GetY() * cols + pos.GetX()] = tileIndex;
 	}
 
+	Index TileMap::CreateAnimatedTile(const List<Index>& frames)
+	{
+		Index nextIndex = animatedTiles.size() + 1;
+		nextIndex = -nextIndex;
+		animatedTiles[nextIndex] = frames;
+		return nextIndex;
+	}
+
 	Index TileMap::GetTile(const Point& pos) const
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
@@ -49,27 +58,44 @@ namespace TGL
 		return 0;
 	}
 
+	void TileMap::SetAnimationDelay(int frameDelay)
+	{
+		animationCounterMax = frameDelay;
+	}
+
 	void TileMap::Fill(Index tileIndex)
 	{
 		for (int i = 0; i < cellCount; i++)
 			cells[i] = tileIndex;
 	}
 
-	void TileMap::Draw(Graphics* gr) const
+	void TileMap::Draw(Graphics* gr)
 	{
 		Point currentPos = pos;
 
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
-				Index frameIndex = GetTile(Point(x, y));
-				if (frameIndex > 0)
-					gr->DrawImage(tileset->GetTile(frameIndex), currentPos);
-				else if (frameIndex < 0)
-					; // TODO: draw animated tile
+				Index tileIndex = GetTile(Point(x, y));
+				if (tileIndex == 0) {
+					// Do not draw anything
+				}
+				else if (tileIndex > 0) {
+					gr->DrawImage(tileset->GetTile(tileIndex - 1), currentPos);
+				}
+				else if (tileIndex < 0 && animatedTiles.contains(tileIndex)) {
+					auto& animationFrames = animatedTiles.at(tileIndex);
+					Index frameIndex = animationFrames[currentAnimationFrameIndex % animationFrames.size()];
+					gr->DrawImage(tileset->GetTile(frameIndex - 1), currentPos);
+				}
 
 				currentPos = currentPos.Move(cellWidth, 0);
 			}
 			currentPos = Point(pos.GetX(), currentPos.GetY() + cellHeight);
+		}
+		animationCounter++;
+		if (animationCounter > animationCounterMax) {
+			animationCounter = 0;
+			currentAnimationFrameIndex++;
 		}
 	}
 }
