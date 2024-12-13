@@ -5,8 +5,8 @@
 
 namespace TGL
 {
-	Sprite::Sprite() : tileset(nullptr), singleImage(nullptr), size(0, 0), 
-		collisionRect(0, 0, 0, 0), pos(0, 0), visible(true), currentFrame(0)
+	Sprite::Sprite() : tileset(nullptr), singleImage(nullptr), 
+		size(0, 0), collisionRect(0, 0, 0, 0), currentFrame(0)
 	{
 	}
 
@@ -32,34 +32,9 @@ namespace TGL
 		tileset = nullptr;
 	}
 
-	void Sprite::SetPos(const Point& pos)
-	{
-		this->pos = pos;
-	}
-
-	void Sprite::Move(int dx, int dy)
-	{
-		pos = pos.Move(dx, dy);
-	}
-
 	Size Sprite::GetSize() const
 	{
 		return size;
-	}
-
-	Point Sprite::GetPos() const
-	{
-		return pos;
-	}
-
-	void Sprite::SetVisible(bool visible)
-	{
-		this->visible = visible;
-	}
-
-	bool Sprite::IsVisible() const
-	{
-		return visible;
 	}
 
 	void Sprite::SetFrameSequence(const List<Index>& frames)

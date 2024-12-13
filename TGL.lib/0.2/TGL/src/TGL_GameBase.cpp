@@ -108,6 +108,13 @@ namespace TGL
 		gr->FillRect(rect, color);
 	}
 
+	void GameBase::DrawRect(const Point& topLeft, const Size& size, const Color& color)
+	{
+		Rect rect(topLeft, Point(topLeft.GetX() + size.GetWidth(), topLeft.GetY() + size.GetHeight()));
+
+		gr->FillRect(rect, color);
+	}
+
 	bool GameBase::Key(Scancode key)
 	{
 		return kb->IsPressed(key);

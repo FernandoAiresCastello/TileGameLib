@@ -5,7 +5,7 @@
 namespace TGL
 {
 	TileMap::TileMap() : tileset(nullptr), 
-		cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0), pos(0, 0)
+		cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0)
 	{
 	}
 
@@ -18,11 +18,6 @@ namespace TGL
 		tileset = img;
 		cellWidth = img->GetTileSize().GetWidth();
 		cellHeight = img->GetTileSize().GetHeight();
-	}
-
-	void TileMap::SetPos(const Point& pos)
-	{
-		this->pos = pos;
 	}
 
 	void TileMap::SetSize(const Size& size)
@@ -71,6 +66,9 @@ namespace TGL
 
 	void TileMap::Draw(Graphics* gr)
 	{
+		if (!visible || !tileset)
+			return;
+
 		Point currentPos = pos;
 
 		for (int y = 0; y < rows; y++) {

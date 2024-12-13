@@ -35,6 +35,7 @@ namespace TGL
 		void DrawTileMap(TileMap* tilemap);
 		void DrawSprite(Sprite* sprite);
 		void DrawRect(const Rect& rect, const Color& color);
+		void DrawRect(const Point& topLeft, const Size& size, const Color& color);
 		bool Key(Scancode key);
 		bool Ctrl();
 		bool Shift();

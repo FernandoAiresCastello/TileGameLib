@@ -18,6 +18,11 @@ namespace TGL
 		inline int GetY1() const;
 		inline int GetX2() const;
 		inline int GetY2() const;
+		void Set(int x1, int y1, int x2, int y2);
+		void SetX1(int x);
+		void SetY1(int y);
+		void SetX2(int x);
+		void SetY2(int y);
 		bool Contains(const Point& point) const;
 		bool Intersects(const Rect& rect) const;
 

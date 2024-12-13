@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
+#include "TGL_Drawable.h"
 #include "TGL_Size.h"
 #include "TGL_List.h"
 #include "TGL_Dict.h"
@@ -11,21 +12,20 @@ namespace TGL
 	class TiledImage;
 	class Graphics;
 
-	class TGLAPI TileMap
+	class TGLAPI TileMap : public Drawable
 	{
 	public:
 		TileMap();
 		~TileMap();
 
 		void SetTileset(TiledImage* img);
-		void SetPos(const Point& pos);
 		void SetSize(const Size& size);
 		void SetTile(const Point& pos, Index tileIndex);
 		Index CreateAnimatedTile(const List<Index>& frames);
 		Index GetTile(const Point& pos) const;
 		void SetAnimationDelay(int frameDelay);
 		void Fill(Index tileIndex);
-		void Draw(Graphics* gr);
+		void Draw(Graphics* gr) override;
 
 	private:
 		static const int EmptyTileIndex = 0;
@@ -36,7 +36,6 @@ namespace TGL
 		int cols = 0;
 		int rows = 0;
 		int cellCount = 0;
-		Point pos;
 		List<Index> cells;
 		Dict<Index, List<Index>> animatedTiles;
 		unsigned currentAnimationFrameIndex = 0;

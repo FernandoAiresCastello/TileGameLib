@@ -1,5 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
+#include "TGL_Drawable.h"
 #include "TGL_Index.h"
 #include "TGL_Size.h"
 #include "TGL_Point.h"
@@ -13,7 +14,7 @@ namespace TGL
 	class Image;
 	class TiledImage;
 
-	class TGLAPI Sprite
+	class TGLAPI Sprite : public Drawable
 	{
 	public:
 		Properties Data;
@@ -23,12 +24,7 @@ namespace TGL
 
 		void SetTileset(TiledImage* img);
 		void SetSingleImage(Image* img);
-		void SetPos(const Point& pos);
-		void Move(int dx, int dy);
 		Size GetSize() const;
-		Point GetPos() const;
-		void SetVisible(bool visible);
-		bool IsVisible() const;
 		void SetFrameSequence(const List<Index>& frames);
 		void SetFrame(Index index);
 		void NextFrame();
@@ -36,15 +32,13 @@ namespace TGL
 		void EnableAutoAnimation(int frameLength);
 		void DisableAutoAnimation();
 		bool CollidesWith(Sprite* other);
-		void Draw(Graphics* gr);
+		void Draw(Graphics* gr) override;
 
 	private:
 		TiledImage* tileset;
 		Image* singleImage;
 		Size size;
 		Rect collisionRect;
-		Point pos;
-		bool visible;
 		List<Index> frames;
 		int currentFrame;
 
