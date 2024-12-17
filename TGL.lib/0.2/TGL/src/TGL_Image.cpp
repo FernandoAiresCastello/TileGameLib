@@ -13,6 +13,11 @@ namespace TGL
 			pixels.emplace_back(0xffffff);
 	}
 
+	Image::Image(const String& filename)
+	{
+		Load(filename);
+	}
+
 	Image::~Image()
 	{
 	}

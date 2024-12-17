@@ -1,6 +1,6 @@
 #pragma once
 #include "TGL_Global.h"
-#include "TGL_Drawable.h"
+#include "TGL_SpriteBase.h"
 #include "TGL_Index.h"
 #include "TGL_Size.h"
 #include "TGL_Point.h"
@@ -14,7 +14,7 @@ namespace TGL
 	class Image;
 	class TiledImage;
 
-	class TGLAPI Sprite : public Drawable
+	class TGLAPI Sprite : public SpriteBase
 	{
 	public:
 		Properties Data;

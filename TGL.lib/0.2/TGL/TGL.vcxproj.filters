@@ -56,7 +56,10 @@
     <ClCompile Include="src\TGL_TileMap.cpp">
       <Filter>GRAPHICS</Filter>
     </ClCompile>
-    <ClCompile Include="src\TGL_Drawable.cpp">
+    <ClCompile Include="src\TGL_SpriteBase.cpp">
+      <Filter>GRAPHICS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_ImagePool.cpp">
       <Filter>GRAPHICS</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,7 +137,10 @@
     <ClInclude Include="src\TGL_PointerTypes.h">
       <Filter>UTIL</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_Drawable.h">
+    <ClInclude Include="src\TGL_SpriteBase.h">
+      <Filter>GRAPHICS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_ImagePool.h">
       <Filter>GRAPHICS</Filter>
     </ClInclude>
   </ItemGroup>

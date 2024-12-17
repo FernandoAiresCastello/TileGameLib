@@ -13,6 +13,7 @@ namespace TGL
 	public:
 		Image();
 		Image(const Size& size);
+		Image(const String& filename);
 		virtual ~Image();
 
 		bool Load(const String& filename);

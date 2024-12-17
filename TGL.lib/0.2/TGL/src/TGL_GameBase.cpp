@@ -93,9 +93,9 @@ namespace TGL
 		gr->DrawImageTile(img, tileRect, pos);
 	}
 
-	void GameBase::DrawTileMap(TileMap* tilemap)
+	void GameBase::DrawTileMap(TileMap* tilemap, const Point& pos)
 	{
-		tilemap->Draw(gr);
+		tilemap->Draw(gr, pos);
 	}
 
 	void GameBase::DrawSprite(Sprite* sprite)

@@ -8,11 +8,11 @@ namespace TGL
 	class Graphics;
 	class Image;
 
-	class TGLAPI Drawable
+	class TGLAPI SpriteBase
 	{
 	public:
-		Drawable();
-		virtual ~Drawable();
+		SpriteBase();
+		virtual ~SpriteBase();
 
 		virtual void Draw(Graphics* gr) = 0;
 

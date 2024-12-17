@@ -20,7 +20,7 @@ namespace TGL
 		cellHeight = img->GetTileSize().GetHeight();
 	}
 
-	void TileMap::SetSize(const Size& size)
+	void TileMap::SetCellCount(const Size& size)
 	{
 		cells.clear();
 		cols = size.GetWidth();
@@ -29,6 +29,8 @@ namespace TGL
 
 		for (int i = 0; i < cellCount; i++)
 			cells.push_back(EmptyTileIndex);
+
+		imageSize = Size(cellWidth * cols, cellHeight * rows);
 	}
 
 	void TileMap::SetTile(const Point& pos, Index tileIndex)
@@ -64,7 +66,7 @@ namespace TGL
 			cells[i] = tileIndex;
 	}
 
-	void TileMap::Draw(Graphics* gr)
+	void TileMap::Draw(Graphics* gr, const Point& pos)
 	{
 		if (!visible || !tileset)
 			return;
@@ -90,10 +92,24 @@ namespace TGL
 			}
 			currentPos = Point(pos.GetX(), currentPos.GetY() + cellHeight);
 		}
+	}
+
+	void TileMap::AnimateTiles()
+	{
 		animationCounter++;
 		if (animationCounter > animationCounterMax) {
 			animationCounter = 0;
 			currentAnimationFrameIndex++;
 		}
+	}
+
+	int TileMap::GetImageWidth() const
+	{
+		return imageSize.GetWidth();
+	}
+
+	int TileMap::GetImageHeight() const
+	{
+		return imageSize.GetHeight();
 	}
 }
