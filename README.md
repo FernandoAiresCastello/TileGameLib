@@ -3,6 +3,8 @@
 # TileGameLib
 TileGameLib is a C/C++ library for quick and easy development of tile-based, pseudo-8-bit games. Requires [SDL 2](https://www.libsdl.org/).
 
+Looking for the C# TileGameLib library? It's now part of TileGameMaker and is unrelated to this project. [Click here to go to TileGameMaker.](https://github.com/FernandoAiresCastello/TileGameMaker)
+
 **Current version** 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre-Alpha (0.1)
