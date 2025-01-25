@@ -7,11 +7,11 @@ TileGameLib is a toolkit containing a pair of software libraries (one for C++, a
 
 In this repository there are currently two distinct, unrelated and independent "flavors" of TileGameLib: one is written in and designed for C++ programs, the other is written in and designed for C# programs. They are not compatible in any way with one another. Windows 10 and 11 are currently the only supported/tested systems.
 
- - **TileGameLib for C++** 
+ - **[TileGameLib for C++](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLib%20for%20C++)** 
 	 - Version 0.1 requires SDL 2.
 	 - Version 0.2 requires SDL 3.
 
- - **TileGameLib for C#** 
+ - **[TileGameLib for C#](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TileGameLib%20for%20C%23)** 
 	 - Version 0.1 requires .NET 9 and Windows Forms.
 
 ## Goals ##
