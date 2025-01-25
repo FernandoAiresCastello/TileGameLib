@@ -1,25 +1,23 @@
 ![TileGameLib Logo](https://github.com/FernandoAiresCastello/TileGameToolkit/blob/master/Images/github-banner-2.fw.png?raw=true)
 
 # TileGameLib
-TileGameLib is a C/C++ library for quick and easy development of tile-based, pseudo-8-bit games. Requires [SDL 2](https://www.libsdl.org/).
+TileGameLib is a toolkit containing a pair of software libraries (one for C++, another for C#) for quick and easy development of tile-based, pseudo-8-bit games.
 
-Looking for the C# TileGameLib library? It's now part of TileGameMaker and is unrelated to this project. [Click here to go to TileGameMaker.](https://github.com/FernandoAiresCastello/TileGameMaker)
+## About ##
 
-**Current version** 
+In this repository there are currently two distinct, unrelated and independent "flavors" of TileGameLib: one is written in and designed for C++ programs, the other is written in and designed for C# programs. They are not compatible in any way with one another. Windows 10 and 11 are currently the only supported/tested systems.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pre-Alpha (0.1)
+ - **TileGameLib for C++** 
+	 - Version 0.1 requires SDL 2.
+	 - Version 0.2 requires SDL 3.
 
-**Downloads**
+ - **TileGameLib for C#** 
+	 - Version 0.1 requires .NET 9 and Windows Forms.
 
-- [TGL.lib - Latest release (dev build)](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/Releases/TGL.lib)
+## Goals ##
 
-**Documentation**
+The goal of this toolkit is to make it quick and easy to develop 2D games that look and feel like *GameBoy Color* games and other early 8-bit computers and game systems that had tile-based displays, mainly by providing a unified and straightforward API with all the basic necessities such as tile graphics, text, sounds, music, keyboard, mouse and controller (gamepad) input, simple collision detection, string manipulation, random number generation, filesystem access, timers and debugging utilities.
 
-- [TGL.lib - Public API header file (TGL.h)](https://github.com/FernandoAiresCastello/TileGameLib/blob/master/Releases/TGL.lib/0.1/TGL.h)
-- [TGL.lib - Auto-generated HTML docs](https://github.com/FernandoAiresCastello/TileGameLib/tree/master/TGL.lib/0.1/Docs)
+## Disclaimer ##
 
-**About**
-
-The goal of this toolkit is to make it easy and quick to develop 2D games that look and feel like *GameBoy Color* games and other 8-bit tile-based computer systems, mainly by providing a unified and straightforward API with all the basic necessities such as tile graphics, text, sounds, music, keyboard, mouse and controller (gamepad) input, simple collision detection, string manipulation, random number generation, filesystem access, timers and debugging utilities.
-
-Note that everything here is currently in a "pre-alpha" stage and is under constant development. Breaking changes in the public APIs may be (and often are) introduced at any time without prior notice.
+All projects in this repository are currently in alpha stage and under constant development. Bugs and breaking changes in public APIs may be (and often are) introduced at any time without prior notice. Use at your own risk!
