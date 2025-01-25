@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TileGameLib</name>
+    </assembly>
+    <members>
+        <member name="T:TileGameLib.Controls.ColorPickerDisplay">
+            <summary>
+            	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
+            </summary>
+            <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
+            <param name="canvasSize">Size of the canvas (number of columns and rows)</param>
+            <param name="cellSize">Size of each canvas grid cell (width and height in pixels)</param>
+            <param name="zoomLevel">Magnification factor</param>
+            <param name="emptyColor">Default color for empty cells</param>
+            <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPickerDisplay.#ctor(System.Drawing.Size,System.Drawing.Size,System.Drawing.Size,System.Drawing.Color,System.Drawing.Point,System.Int32)">
+            <summary>
+            	A panel that displays a grid of colors from a <see cref="T:TileGameLib.Core.ColorPalette"/>.
+            </summary>
+            <param name="bufSize">Size of the tile buffer (number of columns and rows)</param>
+            <param name="canvasSize">Size of the canvas (number of columns and rows)</param>
+            <param name="cellSize">Size of each canvas grid cell (width and height in pixels)</param>
+            <param name="zoomLevel">Magnification factor</param>
+            <param name="emptyColor">Default color for empty cells</param>
+            <param name="viewOffset">Tile buffer offset from which it will be drawn</param>
+        </member>
+        <member name="T:TileGameLib.Controls.ColorPickerWindow">
+            <summary>
+            	A window that displays a grid of colors and allows selection of a color with a mouse click.
+            </summary>
+        </member>
+        <member name="P:TileGameLib.Controls.ColorPickerWindow.OnColorClicked">
+            <summary>
+            	Callback for when a color gets selected.
+            	The selected color and mouse button that was pressed, 
+            	along with a reference to this window, are passed as arguments.
+            </summary>
+        </member>
+        <member name="F:TileGameLib.Controls.ColorPickerWindow.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPickerWindow.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TileGameLib.Controls.ColorPickerWindow.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Controls.TileDisplay">
+            <summary>
+            	UI control for managing and displaying a <see cref="T:TileGameLib.Core.TileCanvas"/>.
+            	Can optionally display a grid, cell selection, and cell text on top of the canvas.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Core.Dataset">
+            <summary>
+            	Collection of key-value pairs for storing arbitrary data.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Core.FastBitmap">
+            <summary>
+            	An off-screen graphical object designed to quickly access and modify individual pixels.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Core.PixelBuffer">
+            <summary>
+            	An off-screen graphical object that stores a bitmap, and can be used to set or get individual pixels.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Core.TileBuffer">
+            <summary>
+            	A container for tile objects.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Core.TileBuffer.#ctor(System.Drawing.Size)">
+            <summary>
+            	Constructs a new TileBuffer
+            </summary>
+            <param name="size">Number of tile columns and rows</param>
+        </member>
+        <member name="M:TileGameLib.Core.TileBuffer.#ctor(System.Int32,System.Int32)">
+            <summary>
+            	Constructs a new TileBuffer
+            </summary>
+            <param name="cols">Number of tile columns</param>
+            <param name="rows">Number of tile rows</param>
+        </member>
+        <member name="T:TileGameLib.Core.TileCanvas">
+            <summary>
+            	Represents an off-screen graphical object where tile-based images can be drawn on a grid.
+            	To actually show this object on screen, a <see cref="T:TileGameLib.Controls.TileDisplay"/> control is required.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Core.TileCanvas.#ctor(System.Drawing.Size,System.Drawing.Size,System.Drawing.Color)">
+            <summary>
+            	Represents an off-screen graphical object where tile-based images can be drawn on a grid.
+            	To actually show this object on screen, a <see cref="T:TileGameLib.Controls.TileDisplay"/> control is required.
+            </summary>
+        </member>
+        <member name="T:TileGameLib.Core.TileImage">
+            <summary>
+            	Represents an image that can be manipulated pixel by pixel 
+            	and also load its pixel data from an image file.
+            </summary>
+        </member>
+        <member name="M:TileGameLib.Core.TileImage.#ctor(System.Int32,System.Int32,System.Drawing.Color)">
+            <param name="width">Width of the image, in pixels</param>
+            <param name="height">Height of the image, in pixels</param>
+            <param name="color">Default color of the image</param>
+        </member>
+    </members>
+</doc>
