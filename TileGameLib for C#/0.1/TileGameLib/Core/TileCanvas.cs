@@ -41,7 +41,7 @@ public class TileCanvas(Size gridSize, Size cellSize, Color backColor)
 		DrawTile(new(CellWidth, CellHeight, color), cellIndex);
 
 	public void DrawTile(TileImage tile, Point cellPos) =>
-		DrawTile(tile, cellPos.X * CellWidth, cellPos.Y * CellHeight);
+		DrawTile(tile, cellPos.X, cellPos.Y);
 
 	public void DrawTile(TileImage tile, int col, int row) => 
 		DrawFreeTile(tile, col * CellWidth, row * CellHeight);
