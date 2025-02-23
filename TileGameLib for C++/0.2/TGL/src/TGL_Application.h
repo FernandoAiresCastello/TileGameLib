@@ -22,6 +22,7 @@ namespace TGL
 
 		void Update();
 		void Halt();
+		bool WindowIsOpen() const;
 
 	private:
 		String title = "";

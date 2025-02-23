@@ -8,16 +8,16 @@
 
 namespace TGL
 {
-	class TiledImage;
+	class ImageTileset;
 	class Graphics;
 
-	class TGLAPI TileMap
+	class TGLAPI ImageTileMap
 	{
 	public:
-		TileMap();
-		~TileMap();
+		ImageTileMap();
+		~ImageTileMap();
 
-		void SetTileset(TiledImage* img);
+		void SetTileset(ImageTileset* img);
 		void SetCellCount(const Size& size);
 		void SetTile(const Point& pos, Index tileIndex);
 		Index CreateAnimatedTile(const List<Index>& frames);
@@ -32,7 +32,7 @@ namespace TGL
 	private:
 		static const int EmptyTileIndex = 0;
 
-		TiledImage* tileset = nullptr;
+		ImageTileset* tileset = nullptr;
 		Size imageSize;
 		int cellWidth = 0;
 		int cellHeight = 0;

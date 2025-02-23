@@ -51,6 +51,11 @@ namespace TGL
 		}
 	}
 
+	bool Application::WindowIsOpen() const
+	{
+		return wnd.IsOpen();
+	}
+
 	void Application::HandleEvents()
 	{
 		while (SDL_PollEvent(&event)) {

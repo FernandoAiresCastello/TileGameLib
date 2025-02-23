@@ -1,26 +1,26 @@
-#include "TGL_TileMap.h"
-#include "TGL_TiledImage.h"
+#include "TGL_ImageTileMap.h"
+#include "TGL_ImageTileset.h"
 #include "TGL_Graphics.h"
 
 namespace TGL
 {
-	TileMap::TileMap() : tileset(nullptr), 
+	ImageTileMap::ImageTileMap() : tileset(nullptr), 
 		cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0)
 	{
 	}
 
-	TileMap::~TileMap()
+	ImageTileMap::~ImageTileMap()
 	{
 	}
 
-	void TileMap::SetTileset(TiledImage* img)
+	void ImageTileMap::SetTileset(ImageTileset* img)
 	{
 		tileset = img;
 		cellWidth = img->GetTileSize().GetWidth();
 		cellHeight = img->GetTileSize().GetHeight();
 	}
 
-	void TileMap::SetCellCount(const Size& size)
+	void ImageTileMap::SetCellCount(const Size& size)
 	{
 		cells.clear();
 		cols = size.GetWidth();
@@ -33,13 +33,13 @@ namespace TGL
 		imageSize = Size(cellWidth * cols, cellHeight * rows);
 	}
 
-	void TileMap::SetTile(const Point& pos, Index tileIndex)
+	void ImageTileMap::SetTile(const Point& pos, Index tileIndex)
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
 			cells[pos.GetY() * cols + pos.GetX()] = tileIndex;
 	}
 
-	Index TileMap::CreateAnimatedTile(const List<Index>& frames)
+	Index ImageTileMap::CreateAnimatedTile(const List<Index>& frames)
 	{
 		Index nextIndex = animatedTiles.size() + 1;
 		nextIndex = -nextIndex;
@@ -47,7 +47,7 @@ namespace TGL
 		return nextIndex;
 	}
 
-	Index TileMap::GetTile(const Point& pos) const
+	Index ImageTileMap::GetTile(const Point& pos) const
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
 			return cells[pos.GetY() * cols + pos.GetX()];
@@ -55,18 +55,18 @@ namespace TGL
 		return 0;
 	}
 
-	void TileMap::SetAnimationDelay(int frameDelay)
+	void ImageTileMap::SetAnimationDelay(int frameDelay)
 	{
 		animationCounterMax = frameDelay;
 	}
 
-	void TileMap::Fill(Index tileIndex)
+	void ImageTileMap::Fill(Index tileIndex)
 	{
 		for (int i = 0; i < cellCount; i++)
 			cells[i] = tileIndex;
 	}
 
-	void TileMap::Draw(Graphics* gr, const Point& pos)
+	void ImageTileMap::Draw(Graphics* gr, const Point& pos)
 	{
 		if (!visible || !tileset)
 			return;
@@ -94,7 +94,7 @@ namespace TGL
 		}
 	}
 
-	void TileMap::AnimateTiles()
+	void ImageTileMap::AnimateTiles()
 	{
 		animationCounter++;
 		if (animationCounter > animationCounterMax) {
@@ -103,12 +103,12 @@ namespace TGL
 		}
 	}
 
-	int TileMap::GetImageWidth() const
+	int ImageTileMap::GetImageWidth() const
 	{
 		return imageSize.GetWidth();
 	}
 
-	int TileMap::GetImageHeight() const
+	int ImageTileMap::GetImageHeight() const
 	{
 		return imageSize.GetHeight();
 	}

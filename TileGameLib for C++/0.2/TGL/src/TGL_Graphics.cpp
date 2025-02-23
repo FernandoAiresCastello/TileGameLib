@@ -120,11 +120,8 @@ namespace TGL
 		}
 	}
 
-	void Graphics::DrawBitPattern(const BitPattern* pattern, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	void Graphics::DrawBitPattern(const BitPattern& pattern, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
 	{
-		if (!pattern)
-			return;
-
 		int x = pos.GetX();
 		int y = pos.GetY();
 
@@ -139,12 +136,12 @@ namespace TGL
 
 		for (int i = 0; i < BitPattern::Length; i++) {
 			if (hideColor0) {
-				if (pattern->GetBits()[i] == BitPattern::BitValue1) {
+				if (pattern.GetBits()[i] == BitPattern::BitValue1) {
 					SetPixel(Point(px, py), color1);
 				}
 			}
 			else {
-				SetPixel(Point(px, py), (pattern->GetBits()[i] == BitPattern::BitValue1 ? color1 : color0));
+				SetPixel(Point(px, py), (pattern.GetBits()[i] == BitPattern::BitValue1 ? color1 : color0));
 			}
 			if (++px >= max_x) {
 				px = x;
@@ -153,12 +150,12 @@ namespace TGL
 		}
 	}
 
-	void Graphics::DrawChar(const Charset* chars, Index index, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	void Graphics::DrawChar(Charset* chars, Index index, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
 	{
 		DrawBitPattern(chars->Get(index), pos, color1, color0, grid, hideColor0);
 	}
 
-	void Graphics::DrawString(const Charset* chars, const String& str, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
+	void Graphics::DrawString(Charset* chars, const String& str, const Point& pos, const Color& color1, const Color& color0, bool grid, bool hideColor0)
 	{
 		int x = pos.GetX();
 		int y = pos.GetY();

@@ -2,8 +2,6 @@
 
 namespace TGL
 {
-	const BitPattern Charset::EmptyBlock = {};
-
 	Charset::Charset()
 	{
 		InitDefault();
@@ -21,16 +19,12 @@ namespace TGL
 
 	void Charset::Set(Index index, const BitPattern& block)
 	{
-		if (index >= 0 && index < chars.size())
-			chars[index] = block;
+		chars[index] = block;
 	}
 
-	const BitPattern* Charset::Get(Index index) const
+	BitPattern& Charset::Get(Index index)
 	{
-		if (index >= 0 && index < chars.size())
-			return &chars[index];
-
-		return &EmptyBlock;
+		return chars[index];
 	}
 
 	void Charset::RemoveAll()

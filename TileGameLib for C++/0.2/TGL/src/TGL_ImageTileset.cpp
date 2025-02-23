@@ -1,16 +1,16 @@
-#include "TGL_TiledImage.h"
+#include "TGL_ImageTileset.h"
 
 namespace TGL
 {
-	TiledImage::TiledImage()
+    ImageTileset::ImageTileset()
 	{
 	}
 
-	TiledImage::~TiledImage()
+    ImageTileset::~ImageTileset()
 	{
 	}
 
-	void TiledImage::GenerateTiles(const Size& tileSize)
+	void ImageTileset::GenerateTiles(const Size& tileSize)
 	{
         if (tileSize.GetWidth() <= 0 || tileSize.GetHeight() <= 0)
             return;
@@ -44,7 +44,7 @@ namespace TGL
         }
 	}
 
-    Image* TiledImage::GetTile(Index index)
+    Image* ImageTileset::GetTile(Index index)
     {
         if (index >= 0 && index < tiles.size())
             return &tiles[index];
@@ -52,12 +52,12 @@ namespace TGL
         return nullptr;
     }
 
-    int TiledImage::GetTileCount() const
+    int ImageTileset::GetTileCount() const
     {
         return tiles.size();
     }
 
-    const Size& TiledImage::GetTileSize() const
+    const Size& ImageTileset::GetTileSize() const
     {
         return tileSize;
     }

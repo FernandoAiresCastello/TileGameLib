@@ -7,7 +7,7 @@
 #include "TGL_Image.h"
 #include "TGL_Point.h"
 #include "TGL_Rect.h"
-#include "TGL_TileMap.h"
+#include "TGL_ImageTileMap.h"
 #include "TGL_Sprite.h"
 
 namespace TGL
@@ -32,7 +32,7 @@ namespace TGL
 		void PutChar(char ch, const Point& pos, const Color& foreColor, const Color& backColor);
 		void DrawImage(Image* img, const Point& pos);
 		void DrawImageTile(Image* img, const Rect& tileRect, const Point& pos);
-		void DrawTileMap(TileMap* tilemap, const Point& pos);
+		void DrawTileMap(ImageTileMap* tilemap, const Point& pos);
 		void DrawSprite(Sprite* sprite);
 		void DrawRect(const Rect& rect, const Color& color);
 		void DrawRect(const Point& topLeft, const Size& size, const Color& color);

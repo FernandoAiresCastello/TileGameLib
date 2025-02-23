@@ -12,7 +12,7 @@ namespace TGL
 {
 	class Graphics;
 	class Image;
-	class TiledImage;
+	class ImageTileset;
 
 	class TGLAPI Sprite : public SpriteBase
 	{
@@ -22,7 +22,7 @@ namespace TGL
 		Sprite();
 		~Sprite();
 
-		void SetTileset(TiledImage* img);
+		void SetTileset(ImageTileset* img);
 		void SetSingleImage(Image* img);
 		Size GetSize() const;
 		void SetFrameSequence(const List<Index>& frames);
@@ -35,7 +35,7 @@ namespace TGL
 		void Draw(Graphics* gr) override;
 
 	private:
-		TiledImage* tileset;
+		ImageTileset* tileset;
 		Image* singleImage;
 		Size size;
 		Rect collisionRect;

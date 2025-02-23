@@ -9,14 +9,12 @@ namespace TGL
 	class TGLAPI Charset
 	{
 	public:
-		static const BitPattern EmptyBlock;
-
 		Charset();
 		Charset(const Charset& other);
 
 		void Add(const BitPattern& block);
 		void Set(Index index, const BitPattern& block);
-		const BitPattern* Get(Index index) const;
+		BitPattern& Get(Index index);
 		void RemoveAll();
 
 	private:

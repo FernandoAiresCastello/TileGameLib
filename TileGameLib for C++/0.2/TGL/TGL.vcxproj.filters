@@ -2,15 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\TGL.cpp" />
-    <ClCompile Include="src\TGL_Window.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TGL_Image.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TGL_Color.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
     <ClCompile Include="src\TGL_String.cpp">
       <Filter>UTIL</Filter>
     </ClCompile>
@@ -26,18 +17,6 @@
     <ClCompile Include="src\TGL_Size.cpp">
       <Filter>UTIL</Filter>
     </ClCompile>
-    <ClCompile Include="src\TGL_Graphics.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TGL_BitPattern.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TGL_TiledImage.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TGL_Charset.cpp">
-      <Filter>GRAPHICS</Filter>
-    </ClCompile>
     <ClCompile Include="src\TGL_Application.cpp">
       <Filter>APPLICATION</Filter>
     </ClCompile>
@@ -51,32 +30,50 @@
       <Filter>UTIL</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Sprite.cpp">
-      <Filter>GRAPHICS</Filter>
+      <Filter>GRAPHICS\DRAWABLES</Filter>
     </ClCompile>
-    <ClCompile Include="src\TGL_TileMap.cpp">
-      <Filter>GRAPHICS</Filter>
+    <ClCompile Include="src\TGL_ImageTileMap.cpp">
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Image.cpp">
+      <Filter>GRAPHICS\DRAWABLES</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_SpriteBase.cpp">
-      <Filter>GRAPHICS</Filter>
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_ImageTileset.cpp">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_ImagePool.cpp">
-      <Filter>GRAPHICS</Filter>
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Charset.cpp">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Color.cpp">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Graphics.cpp">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Window.cpp">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_BitPattern.cpp">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_Palette.cpp">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_CharTileFrame.cpp">
+      <Filter>GRAPHICS\CHARTILES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_CharTile.cpp">
+      <Filter>GRAPHICS\CHARTILES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TGL.h" />
-    <ClInclude Include="src\TGL_Window.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_Rgb.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_Image.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_Color.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
     <ClInclude Include="src\TGL_Util.h">
       <Filter>UTIL</Filter>
     </ClInclude>
@@ -98,18 +95,6 @@
     <ClInclude Include="src\TGL_Size.h">
       <Filter>UTIL</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_Graphics.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_BitPattern.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_TiledImage.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_Charset.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
     <ClInclude Include="src\TGL_Index.h">
       <Filter>UTIL</Filter>
     </ClInclude>
@@ -128,20 +113,53 @@
     <ClInclude Include="src\TGL_Properties.h">
       <Filter>UTIL</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_Sprite.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TGL_TileMap.h">
-      <Filter>GRAPHICS</Filter>
-    </ClInclude>
     <ClInclude Include="src\TGL_PointerTypes.h">
       <Filter>UTIL</Filter>
     </ClInclude>
+    <ClInclude Include="src\TGL_Sprite.h">
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_ImageTileMap.h">
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Image.h">
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClInclude>
     <ClInclude Include="src\TGL_SpriteBase.h">
-      <Filter>GRAPHICS</Filter>
+      <Filter>GRAPHICS\DRAWABLES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_ImageTileset.h">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_ImagePool.h">
-      <Filter>GRAPHICS</Filter>
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Charset.h">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Color.h">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Graphics.h">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Rgb.h">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Window.h">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_BitPattern.h">
+      <Filter>GRAPHICS\CORE</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_Palette.h">
+      <Filter>GRAPHICS\REPOSITORIES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_CharTileFrame.h">
+      <Filter>GRAPHICS\CHARTILES</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_CharTile.h">
+      <Filter>GRAPHICS\CHARTILES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +177,18 @@
     </Filter>
     <Filter Include="GRAPHICS">
       <UniqueIdentifier>{ecb12be1-d020-43b7-8650-42038d64540a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\DRAWABLES">
+      <UniqueIdentifier>{a9961362-2f87-418c-965f-b2c4fcd42dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\CORE">
+      <UniqueIdentifier>{972ab406-38f5-4775-8436-109c847ac7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\CHARTILES">
+      <UniqueIdentifier>{30c55150-dc22-4a86-a09e-5055477c50c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\REPOSITORIES">
+      <UniqueIdentifier>{8a755542-3471-4730-adca-6d5a77312dea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

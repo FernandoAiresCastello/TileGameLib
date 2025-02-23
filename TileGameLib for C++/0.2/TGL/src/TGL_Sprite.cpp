@@ -1,7 +1,7 @@
 #include "TGL_Sprite.h"
 #include "TGL_Graphics.h"
 #include "TGL_Image.h"
-#include "TGL_TiledImage.h"
+#include "TGL_ImageTileset.h"
 
 namespace TGL
 {
@@ -14,7 +14,7 @@ namespace TGL
 	{
 	}
 
-	void Sprite::SetTileset(TiledImage* img)
+	void Sprite::SetTileset(ImageTileset* img)
 	{
 		tileset = img;
 		size = img->GetTileSize();

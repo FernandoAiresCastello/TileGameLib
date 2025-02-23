@@ -7,11 +7,11 @@
 
 namespace TGL
 {
-	class TGLAPI TiledImage : public Image
+	class TGLAPI ImageTileset : public Image
 	{
 	public:
-		TiledImage();
-		~TiledImage();
+		ImageTileset();
+		~ImageTileset();
 
 		void GenerateTiles(const Size& tileSize);
 		Image* GetTile(Index index);
