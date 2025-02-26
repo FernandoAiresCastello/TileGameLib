@@ -65,22 +65,22 @@ namespace TGL
 
 	void GameBase::Print(const String& text, const Point& pos, const Color& color)
 	{
-		gr->DrawString(&font, text, pos, color, color, textAlignToGrid, true);
+		gr->DrawString(&charset, text, pos, color, color, textAlignToGrid, true);
 	}
 
 	void GameBase::Print(const String& text, const Point& pos, const Color& foreColor, const Color& backColor)
 	{
-		gr->DrawString(&font, text, pos, foreColor, backColor, textAlignToGrid, false);
+		gr->DrawString(&charset, text, pos, foreColor, backColor, textAlignToGrid, false);
 	}
 
 	void GameBase::PutChar(char ch, const Point& pos, const Color& color)
 	{
-		gr->DrawChar(&font, ch, pos, color, color, textAlignToGrid, true);
+		gr->DrawChar(&charset, ch, pos, color, color, textAlignToGrid, true);
 	}
 
 	void GameBase::PutChar(char ch, const Point& pos, const Color& foreColor, const Color& backColor)
 	{
-		gr->DrawChar(&font, ch, pos, foreColor, backColor, textAlignToGrid, false);
+		gr->DrawChar(&charset, ch, pos, foreColor, backColor, textAlignToGrid, false);
 	}
 
 	void GameBase::DrawImage(Image* img, const Point& pos)

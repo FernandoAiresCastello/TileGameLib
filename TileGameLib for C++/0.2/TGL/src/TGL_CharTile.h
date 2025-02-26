@@ -1,9 +1,10 @@
 #pragma once
 #include "TGL_Global.h"
-#include "TGL_CharTileFrame.h"
+#include "TGL_Char.h"
 #include "TGL_Properties.h"
 #include "TGL_List.h"
 #include "TGL_Point.h"
+#include "TGL_TileAnimation.h"
 
 namespace TGL
 {
@@ -14,22 +15,22 @@ namespace TGL
 	class TGLAPI CharTile
 	{
 	public:
-		Properties Data;
-		bool Transparent;
+		Properties data;
+		bool transparent;
 
 		CharTile();
 		CharTile(const CharTile& other);
-		CharTile(const CharTileFrame& singleChar);
+		CharTile(const Char& singleChar);
 		~CharTile();
 
 		CharTile& operator=(const CharTile& other);
 
 		int CharCount() const;
-		CharTileFrame& GetChar(int index);
-		CharTileFrame CopyChar(int index) const;
-		void AddChar(const CharTileFrame& ch);
+		Char& GetChar(int index);
+		Char CopyChar(int index) const;
+		void AddChar(const Char& ch);
 		void AddChar(Index ch, Index foreColor, Index backColor);
-		void SetChar(int index, const CharTileFrame& ch);
+		void SetChar(int index, const Char& ch);
 		void SetChar(int index, Index ch, Index foreColor, Index backColor);
 		void RemoveAllChars();
 		void SetEmpty();
@@ -45,15 +46,9 @@ namespace TGL
 		void Draw(Graphics* g, Charset* charset, Palette* palette, int x, int y);
 
 	private:
-		List<CharTileFrame> Chars;
+		List<Char> chars;
+		TileAnimation anim;
 
-		struct {
-			bool Enabled = true;
-			int CurrentFrame = 0;
-			int FrameCounter = 0;
-			int MaxFrameCounter = 70;
-		} Anim;
-
-		CharTileFrame& NextChar();
+		Char& NextChar();
 	};
 }

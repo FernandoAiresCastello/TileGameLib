@@ -4,8 +4,8 @@
 
 namespace TGL
 {
-	ImageTileMap::ImageTileMap() : tileset(nullptr), 
-		cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0)
+	ImageTileMap::ImageTileMap() : 
+		tileset(nullptr), cellWidth(0), cellHeight(0), cols(0), rows(0), cellCount(0)
 	{
 	}
 
@@ -28,42 +28,26 @@ namespace TGL
 		cellCount = cols * rows;
 
 		for (int i = 0; i < cellCount; i++)
-			cells.push_back(EmptyTileIndex);
+			cells.push_back(ImageTile());
 
 		imageSize = Size(cellWidth * cols, cellHeight * rows);
 	}
 
-	void ImageTileMap::SetTile(const Point& pos, Index tileIndex)
+	void ImageTileMap::SetTile(const Point& pos, const ImageTile& tile)
 	{
 		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
-			cells[pos.GetY() * cols + pos.GetX()] = tileIndex;
+			cells[pos.GetY() * cols + pos.GetX()] = tile;
 	}
 
-	Index ImageTileMap::CreateAnimatedTile(const List<Index>& frames)
+	ImageTile& ImageTileMap::GetTile(const Point& pos)
 	{
-		Index nextIndex = animatedTiles.size() + 1;
-		nextIndex = -nextIndex;
-		animatedTiles[nextIndex] = frames;
-		return nextIndex;
+		return cells[pos.GetY() * cols + pos.GetX()];
 	}
 
-	Index ImageTileMap::GetTile(const Point& pos) const
-	{
-		if (pos.GetX() >= 0 && pos.GetY() >= 0 && pos.GetX() < cols && pos.GetY() < rows)
-			return cells[pos.GetY() * cols + pos.GetX()];
-
-		return 0;
-	}
-
-	void ImageTileMap::SetAnimationDelay(int frameDelay)
-	{
-		animationCounterMax = frameDelay;
-	}
-
-	void ImageTileMap::Fill(Index tileIndex)
+	void ImageTileMap::Fill(const ImageTile& tile)
 	{
 		for (int i = 0; i < cellCount; i++)
-			cells[i] = tileIndex;
+			cells[i] = tile;
 	}
 
 	void ImageTileMap::Draw(Graphics* gr, const Point& pos)
@@ -75,31 +59,13 @@ namespace TGL
 
 		for (int y = 0; y < rows; y++) {
 			for (int x = 0; x < cols; x++) {
-				Index tileIndex = GetTile(Point(x, y));
-				if (tileIndex == 0) {
-					// Do not draw anything
-				}
-				else if (tileIndex > 0) {
-					gr->DrawImage(tileset->GetTile(tileIndex - 1), currentPos);
-				}
-				else if (tileIndex < 0 && animatedTiles.contains(tileIndex)) {
-					auto& animationFrames = animatedTiles.at(tileIndex);
-					Index frameIndex = animationFrames[currentAnimationFrameIndex % animationFrames.size()];
-					gr->DrawImage(tileset->GetTile(frameIndex - 1), currentPos);
-				}
+				ImageTile& tile = GetTile(Point(x, y));
+				if (tile.HasAnyFrame())
+					tile.Draw(gr, tileset, pos);
 
 				currentPos = currentPos.Move(cellWidth, 0);
 			}
 			currentPos = Point(pos.GetX(), currentPos.GetY() + cellHeight);
-		}
-	}
-
-	void ImageTileMap::AnimateTiles()
-	{
-		animationCounter++;
-		if (animationCounter > animationCounterMax) {
-			animationCounter = 0;
-			currentAnimationFrameIndex++;
 		}
 	}
 

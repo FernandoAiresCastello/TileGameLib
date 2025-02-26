@@ -3,6 +3,7 @@
 #include "TGL_Color.h"
 #include "TGL_String.h"
 #include "TGL_Charset.h"
+#include "TGL_Palette.h"
 #include "TGL_Keyboard.h"
 #include "TGL_Image.h"
 #include "TGL_Point.h"
@@ -50,7 +51,8 @@ namespace TGL
 		Window* wnd = nullptr;
 		Graphics* gr = nullptr;
 		Keyboard* kb = nullptr;
-		Charset font;
+		Charset charset;
+		Palette palette;
 		bool textAlignToGrid = false;
 
 		virtual void OnInit() = 0;

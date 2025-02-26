@@ -30,16 +30,16 @@
       <Filter>UTIL</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Sprite.cpp">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_ImageTileMap.cpp">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_Image.cpp">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_SpriteBase.cpp">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_ImageTileset.cpp">
       <Filter>GRAPHICS\REPOSITORIES</Filter>
@@ -65,11 +65,17 @@
     <ClCompile Include="src\TGL_Palette.cpp">
       <Filter>GRAPHICS\REPOSITORIES</Filter>
     </ClCompile>
-    <ClCompile Include="src\TGL_CharTileFrame.cpp">
-      <Filter>GRAPHICS\CHARTILES</Filter>
+    <ClCompile Include="src\TGL_Char.cpp">
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
     </ClCompile>
     <ClCompile Include="src\TGL_CharTile.cpp">
-      <Filter>GRAPHICS\CHARTILES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_CharTileMap.cpp">
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TGL_ImageTile.cpp">
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,16 +123,16 @@
       <Filter>UTIL</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Sprite.h">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_ImageTileMap.h">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_Image.h">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_SpriteBase.h">
-      <Filter>GRAPHICS\DRAWABLES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_ImageTileset.h">
       <Filter>GRAPHICS\REPOSITORIES</Filter>
@@ -155,11 +161,20 @@
     <ClInclude Include="src\TGL_Palette.h">
       <Filter>GRAPHICS\REPOSITORIES</Filter>
     </ClInclude>
-    <ClInclude Include="src\TGL_CharTileFrame.h">
-      <Filter>GRAPHICS\CHARTILES</Filter>
+    <ClInclude Include="src\TGL_Char.h">
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
     </ClInclude>
     <ClInclude Include="src\TGL_CharTile.h">
-      <Filter>GRAPHICS\CHARTILES</Filter>
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_CharTileMap.h">
+      <Filter>GRAPHICS\TILESYSTEM - CLASSIC</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_ImageTile.h">
+      <Filter>GRAPHICS\TILESYSTEM - MODERN</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TGL_TileAnimation.h">
+      <Filter>GRAPHICS\CORE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,17 +193,17 @@
     <Filter Include="GRAPHICS">
       <UniqueIdentifier>{ecb12be1-d020-43b7-8650-42038d64540a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GRAPHICS\DRAWABLES">
-      <UniqueIdentifier>{a9961362-2f87-418c-965f-b2c4fcd42dae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GRAPHICS\CORE">
       <UniqueIdentifier>{972ab406-38f5-4775-8436-109c847ac7af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GRAPHICS\CHARTILES">
-      <UniqueIdentifier>{30c55150-dc22-4a86-a09e-5055477c50c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GRAPHICS\REPOSITORIES">
       <UniqueIdentifier>{8a755542-3471-4730-adca-6d5a77312dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\TILESYSTEM - MODERN">
+      <UniqueIdentifier>{a9961362-2f87-418c-965f-b2c4fcd42dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GRAPHICS\TILESYSTEM - CLASSIC">
+      <UniqueIdentifier>{30c55150-dc22-4a86-a09e-5055477c50c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "TGL_Dict.h"
 #include "TGL_Point.h"
 #include "TGL_Index.h"
+#include "TGL_ImageTile.h"
 
 namespace TGL
 {
@@ -19,19 +20,14 @@ namespace TGL
 
 		void SetTileset(ImageTileset* img);
 		void SetCellCount(const Size& size);
-		void SetTile(const Point& pos, Index tileIndex);
-		Index CreateAnimatedTile(const List<Index>& frames);
-		Index GetTile(const Point& pos) const;
-		void SetAnimationDelay(int frameDelay);
-		void Fill(Index tileIndex);
+		void SetTile(const Point& pos, const ImageTile& tile);
+		ImageTile& GetTile(const Point& pos);
+		void Fill(const ImageTile& tile);
 		void Draw(Graphics* gr, const Point& pos);
-		void AnimateTiles();
 		int GetImageWidth() const;
 		int GetImageHeight() const;
 
 	private:
-		static const int EmptyTileIndex = 0;
-
 		ImageTileset* tileset = nullptr;
 		Size imageSize;
 		int cellWidth = 0;
@@ -40,10 +36,6 @@ namespace TGL
 		int rows = 0;
 		int cellCount = 0;
 		bool visible = true;
-		List<Index> cells;
-		Dict<Index, List<Index>> animatedTiles;
-		unsigned currentAnimationFrameIndex = 0;
-		int animationCounter = 0;
-		int animationCounterMax = 30;
+		List<ImageTile> cells;
 	};
 }

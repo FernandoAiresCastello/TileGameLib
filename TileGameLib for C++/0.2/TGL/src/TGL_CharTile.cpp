@@ -6,24 +6,24 @@
 namespace TGL
 {
 	CharTile::CharTile() :
-		Data(), Chars(), Transparent(false)
+		data(), chars(), anim(), transparent(false)
 	{
 	}
 
 	CharTile::CharTile(const CharTile& other) : 
-		Data(other.Data), Chars(other.Chars), Transparent(false)
+		data(other.data), chars(other.chars), anim(other.anim), transparent(false)
 	{
 	}
 
-	CharTile::CharTile(const CharTileFrame& singleFrame) :
-		Data(), Chars(), Transparent(false)
+	CharTile::CharTile(const Char& singleFrame) :
+		data(), chars(), anim(), transparent(false)
 	{
-		Chars.push_back(singleFrame);
+		chars.push_back(singleFrame);
 	}
 
 	CharTile::~CharTile()
 	{
-		Chars.clear();
+		chars.clear();
 	}
 
 	CharTile& CharTile::operator=(const CharTile& other)
@@ -31,73 +31,74 @@ namespace TGL
 		if (this == &other)
 			return *this;
 
-		Data = other.Data;
-		Chars = other.Chars;
-		Transparent = other.Transparent;
+		data = other.data;
+		chars = other.chars;
+		transparent = other.transparent;
+		anim = other.anim;
 
 		return *this;
 	}
 
 	int CharTile::CharCount() const
 	{
-		return Chars.size();
+		return chars.size();
 	}
 
-	CharTileFrame& CharTile::GetChar(int index)
+	Char& CharTile::GetChar(int index)
 	{
-		return Chars[index % Chars.size()];
+		return chars[index % chars.size()];
 	}
 
-	CharTileFrame CharTile::CopyChar(int index) const
+	Char CharTile::CopyChar(int index) const
 	{
-		return Chars[index % Chars.size()];
+		return chars[index % chars.size()];
 	}
 
-	CharTileFrame& CharTile::NextChar()
+	Char& CharTile::NextChar()
 	{
-		CharTileFrame& ch = Chars[Anim.CurrentFrame % Chars.size()];
+		Char& ch = chars[anim.currentFrame % chars.size()];
 
-		if (Anim.Enabled) {
-			Anim.FrameCounter++;
-			if (Anim.FrameCounter > Anim.MaxFrameCounter) {
-				Anim.FrameCounter = 0;
-				Anim.CurrentFrame++;
+		if (anim.enabled) {
+			anim.frameCounter++;
+			if (anim.frameCounter > anim.maxFrameCounter) {
+				anim.frameCounter = 0;
+				anim.currentFrame++;
 			}
 		}
 
 		return ch;
 	}
 
-	void CharTile::AddChar(const CharTileFrame& ch)
+	void CharTile::AddChar(const Char& ch)
 	{
-		Chars.push_back(ch);
+		chars.push_back(ch);
 	}
 
 	void CharTile::AddChar(Index ch, Index foreColor, Index backColor)
 	{
-		Chars.emplace_back(ch, foreColor, backColor);
+		chars.emplace_back(ch, foreColor, backColor);
 	}
 
-	void CharTile::SetChar(int index, const CharTileFrame& ch)
+	void CharTile::SetChar(int index, const Char& ch)
 	{
-		Chars[index] = ch;
+		chars[index] = ch;
 	}
 
 	void CharTile::SetChar(int index, Index ch, Index foreColor, Index backColor)
 	{
-		Chars[index].Set(ch, foreColor, backColor);
+		chars[index].Set(ch, foreColor, backColor);
 	}
 
 	void CharTile::RemoveAllChars()
 	{
-		Chars.clear();
+		chars.clear();
 	}
 
 	void CharTile::SetEmpty()
 	{
-		Data.Clear();
+		data.Clear();
 		RemoveAllChars();
-		Transparent = false;
+		transparent = false;
 	}
 
 	bool CharTile::IsEmpty() const
@@ -107,7 +108,7 @@ namespace TGL
 
 	bool CharTile::HasAnyChar() const
 	{
-		return !Chars.empty();
+		return !chars.empty();
 	}
 
 	bool CharTile::HasNoChars() const
@@ -117,7 +118,7 @@ namespace TGL
 
 	bool CharTile::HasAnyData() const
 	{
-		return !Data.Empty();
+		return !data.Empty();
 	}
 
 	bool CharTile::HasNoData() const
@@ -127,26 +128,26 @@ namespace TGL
 
 	void CharTile::SetCurrentAnimFrame(int index)
 	{
-		Anim.CurrentFrame = index;
+		anim.currentFrame = index;
 	}
 
 	void CharTile::SetAnimationDelay(int delay)
 	{
-		Anim.MaxFrameCounter = delay;
+		anim.maxFrameCounter = delay;
 	}
 
 	void CharTile::EnableAnimation(bool enable)
 	{
-		Anim.Enabled = enable;
+		anim.enabled = enable;
 	}
 
 	void CharTile::Draw(Graphics* g, Charset* charset, Palette* palette, const Point& pos)
 	{
-		CharTileFrame& curFrame = NextChar();
+		Char& curFrame = NextChar();
 
-		g->DrawBitPattern(charset->Get(curFrame.Char), pos, 
-			palette->Get(curFrame.ForeColor), palette->Get(curFrame.BackColor), 
-			false, Transparent);
+		g->DrawBitPattern(charset->Get(curFrame.charIndex), pos, 
+			palette->Get(curFrame.foreColor), palette->Get(curFrame.backColor), 
+			false, transparent);
 	}
 
 	void CharTile::Draw(Graphics* g, Charset* charset, Palette* palette, int x, int y)
