@@ -11,7 +11,7 @@ public abstract class Tile
 	public bool Visible { get; set; } = true;
 	public Point CellPos { get; set; } = new(0, 0);
 
-	public abstract void Draw(TileCanvas canvas);
+	public abstract void Draw(TileCanvas canvas, Point canvasPos);
 
 	public override string ToString() => 
 		$"Cell: {CellPos}; Visible: {Visible}; Data: {Data.Count} items; ID: {Id}; ";

@@ -8,8 +8,8 @@ public class ImageTile : Tile
 	public ImageTile(TileImage image) => Image = image;
 	public ImageTile(string imageFilePath) => Image = new TileImage(imageFilePath);
 
-	public override void Draw(TileCanvas canvas)
+	public override void Draw(TileCanvas canvas, Point canvasPos)
 	{
-		canvas.DrawTile(Image, CellPos);
+		canvas.DrawTile(Image, canvasPos);
 	}
 }

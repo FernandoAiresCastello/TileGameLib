@@ -311,7 +311,7 @@ public class TileDisplay : Control
 			{
 				Tile tile = GetTile(tileBufCol, tileBufRow);
 				if (tile != null && tile.Visible)
-					tile.Draw(Canvas);
+					tile.Draw(Canvas, new Point(canvasX, canvasY));
 
 				canvasX++;
 			}

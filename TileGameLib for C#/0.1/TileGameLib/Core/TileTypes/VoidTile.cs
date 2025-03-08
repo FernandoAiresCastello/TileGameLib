@@ -4,5 +4,5 @@ public class VoidTile : Tile
 {
 	public VoidTile() => Visible = false;
 
-	public override void Draw(TileCanvas canvas) {}
+	public override void Draw(TileCanvas canvas, Point canvasPos) {}
 }

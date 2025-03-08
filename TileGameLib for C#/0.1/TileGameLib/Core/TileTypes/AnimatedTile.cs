@@ -9,9 +9,9 @@ public class AnimatedTile : Tile
 	public AnimatedTile() {}
 	public AnimatedTile(List<TileImage> images) => Images = images;
 
-	public override void Draw(TileCanvas canvas)
+	public override void Draw(TileCanvas canvas, Point canvasPos)
 	{
-		canvas.DrawTile(Images[CurrentFrame % Images.Count], CellPos);
+		canvas.DrawTile(Images[CurrentFrame % Images.Count], canvasPos);
 	}
 
 	public static void NextFrame()
